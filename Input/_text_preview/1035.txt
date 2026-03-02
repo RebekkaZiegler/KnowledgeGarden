@@ -1,0 +1,818 @@
+             Bildungswerk für
+             therapeutische Berufe
+
+
+
+
+                                       Strukturen und Funktion
+                                          des Atmungssystems
+
+
+
+
+                                   © von links nach rechts: Franz Pfluegl, Kzenon, tomas del amo, AVAVA (alle stock.adobe.com)
+
+
+
+2025-09-17
+                                                                                                1035
+                   Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                                           Trägergesellschaft des Ausbildungsinstitutes ist die
+
+
+
+
+                                       BA Bergische Akademie für Erwachsenenbildung GmbH
+                                                Reinshagener Str. 32 · D-42857 Remscheid
+                                                      Amtsgericht Wuppertal, HRB 12561
+
+
+                         © Dieser Studienbrief wurde von Fachautoren/-innen speziell für die Institute
+                         der BA Bergische Akademie für Erwachsenenbildung GmbH geschrieben. Die
+                         BA Bergische Akademie für Erwachsenenbildung GmbH behält sich alle
+                         Rechte daran, eingeschlossen das Recht der Übersetzung in fremde Sprachen,
+                         vor.
+                         Der Studienbrief darf ausschließlich durch die im Ausbildungsvertrag genannte
+                         Person genutzt werden. Verleih, Verkauf sowie sonstige Übertragung auf Dritte
+                         ist untersagt. Nachdruck, fotomechanische Wiedergabe, öffentliches Zugäng-
+                         lichmachen in Online-Diensten und Internet sowie Vervielfältigung auf Daten-
+                         trägern wie CD-Rom etc. darf nur nach schriftlicher Zustimmung durch die BA
+                         Bergische Akademie für Erwachsenenbildung GmbH erfolgen.
+                         Zusätzliche Inhalte, die über QR-Codes oder Short-URLs verlinkt sind, werden
+                         möglicherweise auf Servern in den USA gehostet. Beim Zugriff auf diese
+                         Links werden technische Daten, wie Ihre IP-Adresse, an Server in den USA
+                         übermittelt. Weitere Informationen hierzu entnehmen Sie bitte unserer Daten-
+                         schutzerklärung: https://www.btb.info/datenschutz.html.
+
+
+
+
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                                                        1035
+
+
+
+                       Inhalt
+
+                       1. Das Atmungssystem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .              5
+                       2. Die Nase . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   7
+                            2.1 Die Nasennebenhöhlen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .               9
+                            2.2 Die Funktion der Nase . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+                       3. Der Rachenraum . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+                          3.1 Epipharynx . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+                            3.2 Mesopharynx . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+                            3.3 Hypopharynx . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+                       4. Der Kehlkopf (Larynx) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+                       5. Die Luftröhre (Trachea) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+                       6. Das Bronchialsystem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+                       7. Makroskopie der Lunge . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+                       8. Der Atmungsprozess . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+                          8.1 Reihenfolge des Atmungsablaufes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+                            8.2 Aufbau des Atmungssystems von außen nach innen . . . . . . . . . . . . . . . 26
+                            8.3 Lungenventilation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+                       9. Atemmuskulatur/Atemhilfsmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+                          9.1 Die Atemmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+                            9.2 Die Atemhilfsmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+                       10. Gasaustausch . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+                       11. Lungenvolumina . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+                       12. Lungenkapazitäten . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+                       13. Die Atemsteuerung . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+                          13.1 Chemische Atemsteuerung . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+                            13.2 Mechanisch-reflektorische Atemsteuerung . . . . . . . . . . . . . . . . . . . . . . 36
+                       Anhang . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+                       Beantwortung der Zwischenfragen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+                       Abbildungsverzeichnis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+
+
+
+
+                                                                                   3
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                1035
+
+
+
+                       Hinweis:
+
+                         Aus Gründen der besseren Lesbarkeit der Texte wird auf die gleichzeitige Ver-
+                         wendung männlicher und weiblicher Sprachformen verzichtet. Sämtliche Per-
+                         sonenbezeichnungen gelten gleichwohl für alle Geschlechter. Die inhaltliche
+                         Darstellung bleibt davon unberührt, d. h., Forschungsergebnisse, Studien usw.
+                         werden genderdifferenziert dargestellt.
+
+
+
+
+                                                              4
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                  1035
+
+
+
+                       1. Das Atmungssystem
+
+
+
+
+                                                      Abb. 1: Anatomie der Atemwege
+
+                       Vom ersten bis zum letzten Atemzug begleitet uns der Rhythmus unserer Atmung
+                       ein Leben lang. Das Atmungssystem ist zuständig für die Sauerstoffzufuhr in Stoff-
+                       wechselabläufe und den Abtransport gasförmiger Stoffwechselendprodukte (im
+                       Bereich der Atmung handelt es sich hier um Kohlendioxid).
+                       Im Gegensatz zu Flüssigkeit oder Nahrung muss Sauerstoff fortwährend in den Or-
+                       ganismus aufgenommen werden. Dies geschieht – wie der Schlag unseres Herzens
+                       – rhythmisch.
+                       Der Wechsel von Einatmung und Ausatmung steht dabei für Aufnahme und Abga-
+                       be. Im Organismus findet ein Austausch der ein- und ausgeatmeten Gase statt, auf
+                       den im Folgenden noch eingegangen werden soll.
+                       Wir betrachten das Atmungssystem von oben nach unten gehend.
+                       Zum Atmungssystem gehören folgende luftleitende Atmungsorgane:
+                         § Obere Atemwege
+                         § Untere Atemwege
+
+
+
+
+                                                                   5
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                 1035
+
+
+
+                       Obere Atemwege
+                       Den Teil des Atmungssystems, der sich im Bereich des Kopfes befindet, bezeich-
+                       nen wir als die oberen Atemwege.
+                       Hier finden wir:
+                          § Rachenraum (Pharynx), vor allem der obere Anteil
+                          § Nase
+                          § Nasennebenhöhlen
+                       Am Kehlkopf (Larynx) befindet sich der Übergang von den oberen zu den unteren
+                       Atemwegen.
+
+                       Untere Atemwege
+                       Der Übergang vom Kopf-/Halsbereich zum Rumpf kennzeichnet auch den Bereich
+                       der unteren Atemwege.
+                       Dieser setzt sich zusammen aus:
+                          § Luftröhre (Trachea)
+                          § Bronchien und Bronchiolen
+
+                       Merke:
+
+                         Der eigentliche Ort des Gasaustausches ist die Lunge, nicht zu verwechseln mit
+                         den luftleitenden Atmungsorganen.
+                         Einen großen und den ersten Anteil der luftleitenden Strukturen nimmt die Nase
+                         ein.
+
+
+
+
+                                                               6
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                 1035
+
+
+
+                       2. Die Nase
+
+                       Bei der Nase unterscheiden wir den Bereich
+                          § der äußeren und
+                          § der inneren Nase.
+                       Die Ossa nasalia bildet das knöcherne Gerüst der äußeren Nase.
+                       Weiter distal (vom Körper entfernt) besteht die Nase aus hyalinem Knorpel, aus
+                       welchem zum größten Teil auch die Nasenscheidewand besteht, die bis zur Nasen-
+                       spitze reicht. Man bezeichnet die Nasenscheidewand auch als Septum nasi.
+                       Die Nasenlöcher (Nares anterior) führen in den Bereich der inneren Nase.
+                       Der erste Bereich innerhalb der inneren Nase ist der sogenannte Nasenvorhof oder
+                       Vestibulum nasi. Hier verhindern relativ starre Haare das Eindringen größerer
+                       Fremdkörper.
+                       Es folgt die Nasenhöhle. Nasenvorhof und Nasenhöhle werden durch eine bogen-
+                       förmige Schwelle voneinander getrennt.
+                       Im weiteren Verlauf treffen wir auf die inneren Öffnungen der Nase in den Rachen-
+                       raum hinein (Choanae). Sie verbinden die Nasenhöhle mit dem Rachenraum.
+                       Die Nasenscheidewand teilt den inneren Bereich der Nase in eine rechte und eine
+                       linke Hälfte.
+                       Der harte Gaumen bildet hier den Boden (das Dach) der darunterliegenden Mund-
+                       höhle und trennt sie somit von der Nase. Er geht am Ende in den weichen Gaumen
+                       oder das Gaumensegel über und hat primär die Funktion, den Rachenraum bei der
+                       Nahrungsaufnahme zur Nase hin abzuschließen.
+                       Dies erfolgt jedoch nicht komplett, da ansonsten keine Atmung mehr möglich
+                       wäre.
+
+                       Beispiel:
+
+                         Das Schnarchen z. B. ist durch die im Tiefschlaf erfolgende Entspannung des
+                         Gaumensegels bedingt. Während der Atmung gerät es in Vibration und verur-
+                         sacht das uns wohlbekannte Geräusch. Auch der Rücklauf von Nahrungsmittel
+                         in die Nase (speziell Flüssigkeit) ist durch den inkompletten Schluss des Gau-
+                         mensegels möglich.
+
+                       Die Nasenmuscheln oder Conchae gehen von der lateralen Wand der Nase aus und
+                       teilen jede Hälfte in drei Gänge (siehe untere Abbildung),
+                           § den oberen (1),
+                           § mittleren (2) und
+                           § unteren Nasengang (3).
+
+
+
+
+                                                               7
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                1035
+
+
+
+
+                                                      Abb. 2: Nasenhöhle
+
+                       Hier münden Ausführungswege aus dem Bereich der Nasennebenhöhlen:
+                           § Im Bereich des unteren Nasenganges mündet der Tränennasengang.
+                           § In den Bereich des mittleren Nasenganges führen die Stirn- und Kieferhöh-
+                              len.
+                           § Siebbeinzellen und Keilbeinhöhle münden in den Bereich des oberen Na-
+                              senganges (die Siebbeinzellen teilweise auch in den mittleren Nasengang).
+                       So finden wir hinter und über der Nase ein verzweigtes System von höhlenartigen
+                       Strukturen. Erreicht wird dadurch unter anderem eine Vergrößerung der Schleimh-
+                       autoberfläche.
+
+                       Merke:
+
+                         Zu den oberen Luftwegen gehören der Rachen, die Nase und die Nasenneben-
+                         höhlen.
+
+
+
+
+                                                              8
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                  1035
+
+
+
+                       2.1 Die Nasennebenhöhlen
+                       Die Nasennebenhöhlen sind wie folgt paarig angeordnet (siehe Abbildung):
+                       1. Stirnhöhlen (Sinus frontales)
+                       2. Keilbeinhöhle (Sinus sphenoidales)
+                       3. Siebbeinzellen (Cellulae ethmoidales)
+                       4. Kieferhöhlen (Sinus maxillares)
+
+
+
+
+                                                      Abb. 3: Frontalansicht der Nasennebenhöhlen
+
+
+
+                       Kiefer- und Stirnhöhle sind auf der Zeichnung
+                           § über der Nase und den Augenbrauen
+                           § unter den Augen und neben der Nase
+                       gut zu erkennen.
+                       Die anderen Nebenhöhlen der Nase liegen tiefer im Schädelinneren, und zwar:
+
+                       Siebeinzellen
+                       Hier unterscheidet man vordere, mittlere und hintere Anteile, es handelt sich um
+                       eine Vielzahl kleiner Hohlräume, die hinter dem Nasenbein etwa an der Schädelba-
+                       sis liegen.
+
+                       Keilbeinhöhle
+                       Sie ist zwischen den Augen unterhalb der Stirnhöhle nach innen gelegen.
+
+                       Die genannten Nasennebenhöhlen
+
+                            § dienen der Gewichtsverminderung des knöchernen Schädels,
+
+
+
+
+                                                                          9
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                   1035
+
+
+
+                            § stellen einen Resonanzraum für unsere Sprache dar und
+                            § vergrößern die Schleimhautoberfläche und damit die Möglichkeit der körp-
+                              ereigenen Abwehr.
+
+
+                       2.2 Die Funktion der Nase
+
+                            § Die Nase leitet den Luftstrom zur Lunge und ebenfalls von dort wieder zu-
+                              rück.
+                            § In der Nasenhöhle wird die Luft durch entsprechende Strukturen gefiltert
+                              und größere Schmutzpartikel zurückgehalten.
+                            § Durch das feuchte Milieu wird die Luft erwärmt und befeuchtet.
+                            § Des Weiteren dient die Nase als Riechorgan (Riechstrukturen liegen in der
+                              Schleimhaut) und unterstützt den Sprechvorgang.
+
+                       Merke:
+
+                         Es gibt vier Nasennebenhöhlen: die Stirnbeinhöhle (Sinus frontalis), die Kiefer-
+                         höhle (Sinus maxillaris), die Keilbeinhöhle (Sinus sphenoidalis) und die Sieb-
+                         beinzellen (Cellulae ethmoidales).
+
+
+
+
+                       Fragen:
+
+                       Wie lautet die lateinische Bezeichnung für Kehlkopf?
+
+
+
+
+                       Welche Organe bilden jeweils obere und untere Atemwege?
+
+
+
+
+                       Welcher Bereich der Atemwege wird mit Pharynx bezeichnet?
+
+
+
+
+                                                               10
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems        1035
+
+
+
+
+                       Wie heißt der deutsche Ausdruck für Septum nasi?
+
+
+
+
+                       Welche Bereiche trennt der Gaumen voneinander?
+
+
+
+
+                       Welche Funktionen hat die Nase?
+
+
+
+
+                                                            11
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                 1035
+
+
+
+                       3. Der Rachenraum
+
+                       Der Rachen ist ein 12 – 15 cm langer, mit Schleimhaut ausgekleideter Muskel-
+                       schlauch, der vor der Halswirbelsäule liegt und sich von der Schädelbasis bis zum
+                       Oesophagus (Speiseröhre) erstreckt.
+                       Er wird in drei Abschnitte unterteilt:
+                       1. Epipharynx oder Pars nasalis
+                       2. Mesopharynx oder Pars oralis
+                       3. Hypopharynx oder Pars laryngea
+
+
+
+
+                                                      Abb. 4: Abschnitte des Rachenraums
+
+
+
+
+                       3.1 Epipharynx
+                       Der Nasenrachenraum beginnt an den Choanae und hat vier Öffnungen:
+                           § zwei zur Tuba Eustachii/Tuba auditiva,
+                           § zwei weitere zur Nasenhöhle.
+                       Im Epipharynx liegt die Rachentonsille (Tonsilla pharyngea). Daneben befindet
+                       sich zusätzliches lymphatisches Gewebe in den seitlichen Wänden des Pharynx,
+                       der sogenannte Seitenstrang. An der Mündung der Tuba auditiva im Epipharynx
+                       findet man ein weiteres lymphatisches Organ: die Tonsilla tubaria.
+
+
+
+
+                                                                     12
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                1035
+
+
+
+                       3.2 Mesopharynx
+                       Der mittlere Teil des Rachens steht mit der Mundhöhle in Verbindung, welche sei-
+                       ne einzige Öffnung ist. Man nennt diese Isthmus faucium.
+                       Hier liegen zwei paarig angeordnete lymphatische Organe: Die Gaumenmandeln
+                       (Tonsillae palatinae), in der Nische zwischen den seitlichen Gaumenbögen. Diese
+                       werden im Rahmen einer Tonsillektomie = Mandeloperation häufig entfernt. Die
+                       Zungenbälge (Tonsillae linguales) liegen am Zungengrund.
+
+
+                       3.3 Hypopharynx
+                       Der untere Teil des Rachens steht mit dem Kehlkopf und der Speiseröhre in Ver-
+                       bindung. Der Hypopharynx gehört bereits zum Speiseweg. Er ist aber auch für das
+                       Sprechen von Bedeutung, da nur durch eine Veränderung seiner Form verschiede-
+                       ne Vokallaute gebildet werden können.
+
+                       Merke:
+
+                         Der Rachenraum setzt sich zusammen aus dem Nasen-, dem Mund- und dem
+                         Kehlkopfrachenraum.
+                         Im Mesopharynx befindet sich die Kreuzung von Luft- und Speiseweg.
+                         Das lymphatische Gewebe im Bereich von Nasen-, Mundhöhle und Hypopha-
+                         rynx bildet den sogenannten Waldeyer-Rachenring.
+                         Zum Rachenring gehören die folgenden Strukturen:
+                         § Tonsilla pharyngea (Rachenmandel),
+                         § Tonsilla tubaria (Tubenmandel),
+                         § Tonsilla palatina (Gaumenmandel),
+                         § Tonsilla lingualis (Zungenmandel) und
+                         § Seitenstrang.
+
+
+
+
+                                                             13
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                      1035
+
+
+
+
+                       Fragen:
+
+
+                       Welche Nasennebenhöhlen findet man beim Menschen?
+
+
+
+
+                       Welcher Bereich wird als „Isthmus faucium“ bezeichnet?
+
+
+
+
+                       Welche Bedeutung hat der untere Rachenanteil für das Sprechen?
+
+
+
+
+                                                            14
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                               1035
+
+
+
+                       4. Der Kehlkopf (Larynx)
+
+                       Der Larynx liegt vor dem Hypopharynx und verläuft vom Zungengrund bis zur
+                       Trachea.
+                       Das Kehlkopfgerüst besteht aus
+                          § hyalinem Knorpel und
+                          § Bändern.
+
+
+
+
+                                                        Abb. 5: Der Kehlkopf
+
+
+
+                       Insgesamt finden wir neun Knorpel, die durch Bänder sowie innere und äußere
+                       Muskeln miteinander verbunden sind. Die wichtigsten Strukturen sind:
+                          § Schildknorpel (Cartilago thyroidea): Der Schildknorpel ist der größte
+                              Knorpel des Kehlkopfes. An der Vorderseite des Schildknorpelkörpers ent-
+                              wickelt sich beim Mann während der Pubertät eine Verdickung, der Adams-
+                              apfel (Prominentia laryngea), der zu den sekundären Geschlechtsmerkma-
+                              len zählt.
+                          § Ringknorpel (Cartilago cricoidea): Er bildet die Basis, auf der die ande-
+                              ren Knorpel ruhen und hat die Form eines Siegelringes.
+
+
+
+
+                                                                15
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                 1035
+
+
+
+                          § Kehldeckelknorpel (Cartilago epiglottica oder Epiglottis): Er ist in Form
+                              eines Scharniergelenkes am Schildknorpel befestigt, verhindert beim Schlu-
+                              cken von Nahrung die Aspiration in die Trachea.
+                          § Stellknorpel (Cartilago arytaenoidea): Er verstellt die Stimmbänder, wo-
+                              durch die Töne variiert werden können. Seinen Halt findet er über äußere
+                              (mit dem Zungenbein verbundene) und innere (Verbindungsstrukturen der
+                              Knorpel untereinander) Kehlkopfbänder.
+                       Unterhalb des Ringknorpels finden wir rechts und links die Schilddrüse oder Glan-
+                       dula thyreoidea.
+
+                       Die Kehlkopffunktionen
+                       Seine Funktion liegt
+                          § zum einen in der Lauterzeugung (Phonation),
+                          § zum anderen verschließt er die Atemwege (teilweise) beim Schlucken und
+                          § verhindert durch einen reflektorischen Schutz-Hustenreflex das Eindringen
+                              von Fremdkörpern in die unteren Atemwege.
+                       Zur Phonation wäre noch Folgendes anzumerken: Die Schleimhaut des Larynx bil-
+                       det zwei horizontale Falten, die sogenannten falschen Stimmbänder. Die beiden
+                       echten Stimmbänder (Ligamenta vocalia) liegen im Inneren des Kehlkopfes.
+                       Die Spalte zwischen diesen Stimmbändern nennt man Stimmritze (Rima glotti-
+                       dis). Hier erfolgt die Tonbildung, wobei die Tonhöhe von der Länge und der Span-
+                       nung der Stimmbänder abhängt.
+
+
+
+
+                                                              16
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                            1035
+
+
+
+
+                       Fragen:
+
+                       Der Rachenraum erstreckt sich von …………………………bis ………………
+                       ………..
+
+
+
+
+                       Wie lauten die lateinischen Bezeichnungen für den mittleren Teil des
+                       Rachens?
+
+
+
+
+                       Welche lymphatischen Strukturen finden wir im Rachenraum?
+
+
+
+
+                                                             17
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                 1035
+
+
+
+                       5. Die Luftröhre (Trachea)
+
+                       Als Trachea bezeichnet man das röhrenförmige Organ, das den Kehlkopf (Larynx)
+                       mit den beiden Hauptbronchien verbindet. Die Trachea ist etwa 10 – 12 cm lang
+                       und markiert den Beginn der unteren Atemwege. Sie beginnt am Ringknorpel
+                       (Cartilago cricoidea) und endet an der Bifurcatio tracheae. Als Bifurkation wird
+                       die Teilung der Trachea in den linken und rechten Hauptbronchus bezeichnet.
+                       Die Vorder- und Seitenwände bestehen aus 16 – 20 hufeisenförmigen Knorpel-
+                       spangen aus hyalinem Knorpel, der hintere Teil ist eine membranöse Bandstruktur
+                       (Lig. anulare tracheale). Diese harten Teile der Luftröhre sorgen dafür, dass die
+                       Trachea bei der Atembewegung (bei der sich die Druckverhältnisse in den At-
+                       mungsorganen stark verändern), ihre Form nicht verliert.
+                       Der hintere Teil der Trachea besteht ebenfalls aus Bändern mit eingelagerten Mus-
+                       kelfasern (Paries membranaceus). Durch diese Anordnung können sie enger ge-
+                       stellt werden und in Zusammenarbeit mit dem M. transversus eine Beschleunigung
+                       der Atemluft erwirken.
+                       Der Durchmesser der Trachea liegt bei ca. 1,4 – 2,2 cm. Er verändert sich je nach
+                       Atembewegung.
+
+                       Die Luftröhre
+
+                            § kann sich bei tiefer Einatmung um bis zu 2 cm verlängern, da sich zwischen
+                              den Knorpelspangen elastisches Bindegewebe befindet und
+                            § ist mit einer Schleimhaut mit Flimmerepithel und Muzin produzierenden
+                              Becherzellen ausgekleidet, die dafür sorgt, dass kleine eingeatmete Schwe-
+                              beteilchen zurück in Richtung Rachenraum befördert werden.
+
+                       Merke:
+
+                         Die Luftröhre (Trachea) besteht aus 16 bis 20 hufeisenförmigen Knorpel-span-
+                         gen. Ihr spezieller Aufbau verhindert, dass sie bei der Einatmung (Unterdruck)
+                         zusammenfällt.
+
+
+
+
+                                                               18
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                  1035
+
+
+
+                       6. Das Bronchialsystem
+
+                       Auf der Höhe des 5. Brustwirbels geht die Trachea an der Bifurkation (Aufzwei-
+                       gung in zwei Äste) in die Stammbronchien über, wobei sich der Durchmesser auf
+                       ca. 1,2 – 1,6 cm verkleinert.
+                       Diese Stammbronchien verästeln sich weiter in die Lappenbronchien (rechts 3,
+                       links 2), welche sich wiederum in Segmentbronchien (rechts 10, links 9) auftei-
+                       len.
+
+
+
+
+                                                      Abb. 6: Das Bronchialsystem
+
+
+
+
+                       Auch diese Segmentbronchien werden noch weiter verkleinert zu Bronchioli re-
+                       spiratorii mit einem Durchmesser von ca. 0,1 – 0,4 mm. Der kleinste Bronchioli
+                       hat einen Durchmesser von 0,1 mm. Die Wände der Bronchioli enthalten keinen
+                       Knorpelanteil mehr, sondern ausschließlich Stränge glatter Muskulatur, die den Zu-
+                       und Abstrom der Luft aktiv regulieren.
+                       Von den Bronchioli respiratorii gehen dann die Alveolargänge (Ductus alveolares)
+                       und die daran hängenden Alveolarsäckchen (Sacculi alveolares) ab. Diese beste-
+                       hen aus vielen einzelnen Lungenbläschen (Alveolen). Die Alveolen sind die
+                       strukturellen Elemente der Lunge, in denen bei der Atmung der Gasaustausch zwi-
+                       schen Blut und Alveolarluft erfolgt.
+
+
+
+
+                                                                  19
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                  1035
+
+
+
+
+                       Abb. 7: Lungenbläschen und Kapillarnetz
+
+                       A: Alveon                                     PV: Pulmonalvenenäste
+                       M: Zirkuläre Muskelschicht des Bronchiolus    N: Nerv
+                       D: Schleimhautdrüse                           BR: Bronchioli respiratori
+                       BT: Bronchiolus terminalis                    AS: Alveolarsepten
+                       PA: Äste der Pulmonalarterie                  DA: Ductus alveolaris
+
+
+
+                       Einige interessante Daten
+                       Pro Bronchiolus respiratorii gibt es ca. 200 Alveolen. Dies bedeutet für beide Lun-
+                       gen eine Gesamtmenge von 300 Millionen. Sie sind sehr stark kapillarisiert. Die
+                       Oberfläche der Alveolarwände umfasst insgesamt eine Fläche von 50 bis 100 m2
+                       (was etwa der Fläche eines Tennisplatzes oder dem 50-fachen der Körperoberflä-
+                       che entspricht).
+
+
+
+
+                                                                    20
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                             1035
+
+
+
+
+                                                      Abb. 8: Gasaustausch in Lungenbläschen
+
+
+
+                         Histologischer Aufbau des Bronchialbaumes
+                       Trachea und Stammbronchien
+                       Epithel:            mehrreihiges Flimmerepithel
+                       Drüsen:             Glandulae tracheales (serös, mukös)
+                       Muskulatur:         im Paries membranaceus
+                       Knorpel:            Knorpelspangen (hyaliner Knorpel)
+
+
+                       Lappen- und Segmentbronchien
+                       Epithel:            mehrreihiges Flimmerepithel
+                       Drüsen:             Glandulae bronchiales
+                       Muskulatur:         Tunica muscularis
+                       Knorpel:            elastischer Knorpel
+
+
+                       Bronchioli
+                       Epithel:            einschichtiges Flimmerepithel
+                       Drüsen:             —
+                       Muskulatur:         Tunica muscularis
+                       Knorpel:            —
+
+
+
+
+                                                                       21
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                1035
+
+
+
+                       Bronchioli espiratoria
+                       Epithel:            einschichtiges, isoprismatisches Epithel
+                       Drüsen:             —
+                       Muskulatur:         Tunica muscularis
+                       Knorpel:            —
+
+
+                       Alveolen
+                       Die Alveolen selber bestehen aus einschichtigem Plattenepithel und werden von
+                       einem feinen Kapillargeflecht umhüllt. In ihnen finden wir auch amöboid bewegli-
+                       che Makrophagen.
+
+                       Merke:
+
+                         Die unteren Luftwege setzen sich zusammen aus dem Kehlkopf (Larynx), der
+                         Luftröhre (Trachea), den Bronchien, den Bronchiolen und den Alveolen.
+                         Die Alveolen bilden die Endstücke des Bronchialbaumes. Hier findet der Gas-
+                         austausch satt.
+
+
+
+
+                                                                   22
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                             1035
+
+
+
+
+                       Fragen:
+
+                       Welcher Knorpel des Kehlkopfes bildet die Basis, auf der alle anderen Knorpel
+                       ruhen?
+
+
+
+
+                       Wo liegen die echten Stimmbänder?
+
+
+
+
+                       Wie werden die Knorpelspangen der Luftröhre miteinander verbunden?
+
+
+
+
+                       In welchen Bereichen des Bronchialbaumes finden wir mehrreihiges Flimmer-
+                       epithel?
+
+
+
+
+                                                            23
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                                   1035
+
+
+
+                       7. Makroskopie der Lunge
+
+                       Die makroskopische Einteilung der Lunge erfolgt in Lungenlappen jeweils für die
+                       rechte und linke Lungenhälfte.
+                          § Bei der rechten Lunge unterscheiden wir drei Lungenlappen (Ober-, Mit-
+                              tel- u. Unterlappen) und
+                          § bei der linken Lunge zwei (Ober- u. Unterlappen), bedingt durch den Me-
+                              diastinalraum und die Position des Herzens.
+                       Das Lungenvolumen verteilt sich hierdurch im Verhältnis 4:3 für rechts und links.
+                       Im weiteren Verlauf der Lunge finden wir in der Peripherie sogenannte Lungen-
+                       läppchen mit einer Kantenlänge von ca. 3 cm eingelagert in elastisches Bindege-
+                       webe, bezeichnet auch als Lobuli pulmonales. Diese sind am stärksten an der
+                       Oberfläche vertreten und werden nach innen immer weniger.
+
+                       Pleurahöhle
+                       Die gesamte Lunge liegt im Brustfellraum bzw. in der Pleurahöhle. Diese Pleura-
+                       höhle besteht aus zwei Schichten bzw. zwei Blättern:
+                          § Pleura visceralis (Lungenfell)
+                          § Pleura parietalis (Rippenfell)
+                       Die Pleura diaphragmatica stellt die Verbindung zwischen Pleura parietalis und
+                       Diaphragma (Zwerchfell) her.
+                       Im Diaphragma selber finden wir Öffnungen zum Durchlass wichtiger Gefäße und
+                       anderer Organe, wie z. B.
+                           § Hiatus oesophagus ‒ Oesophagusdurchlass
+                           § Hiatus aorticae ‒ Aortenschlitz
+                           § Foramen vena cavae ‒ Venendurchtritt
+                       Am Lungenhilus treten Arterien, Nerven sowie die beiden Stammbronchien in die
+                       Lungen ein und Venen und Lymphgefäße aus. An dieser Stelle geht das Lungenfell
+                       in das Rippenfell über.
+                       Zwischen beiden Blättern liegt der Pleuraspalt, welcher mit einer serösen Flüssig-
+                       keit gefüllt ist. Beide Pleurablätter lassen sich deshalb gegeneinander verschieben,
+                       haften aufgrund der Adhäsionskräfte der Pleuraflüssigkeit aneinander, so dass die
+                       Lunge den Bewegungen von Thorax und Zwerchfell passiv folgt. Die Lunge ist
+                       dabei immer etwas gedehnt, so dass im Pleuraspalt stets ein Unterdruck herrscht.
+
+                       Merke:
+
+                         § Die Lunge besteht aus einem rechten Lungenflügel (3 Lappen) und einem
+                           linken Lungenflügel (2 Lappen).
+                         § Das Brustfell (Pleura) besteht aus zwei Blättern (Pleura visceralis) und Pleu-
+                           ra parietalis. Dazwischen befindet sich der sogenannte Pleuraspalt.
+
+
+
+
+                                                               24
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                        Strukturen und Funktion des Atmungssystems                          1035
+
+
+
+
+                         § Am Lungenhilus treten Gefäße, Nerven und die beiden Stammbronchien in
+                           die Lunge ein.
+
+
+
+
+                                                      Abb. 9: Anatomie der Lunge
+
+
+
+
+                                                                 25
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+

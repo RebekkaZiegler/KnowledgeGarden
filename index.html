@@ -1,0 +1,121 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Garden RPG - MVP 0.1</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <h1>Knowledge Garden RPG</h1>
+    <p>MVP 0.1 - Heilpraktiker</p>
+    <div class="icon-legend-wrap">
+      <button id="favicon-legend-btn" class="icon-legend-btn" type="button" aria-label="Bedeutung der Spiel-Icon Farben">i Spiel-Icon</button>
+      <div class="icon-legend-tooltip" role="tooltip">
+        <div><strong>Spiel-Icon Farben</strong></div>
+        <div><span class="legend-dot legend-dot--red"></span> Rot: Kampf bereit</div>
+        <div><span class="legend-dot legend-dot--orange"></span> Orange: Ernte bereit</div>
+        <div><span class="legend-dot legend-dot--blue"></span> Blau: Lernaktion bereit</div>
+      </div>
+    </div>
+  </header>
+
+  <section id="world-root" class="world-root">
+    <div id="phaser-game" class="world-canvas"></div>
+    <div class="world-hud">
+      <div id="world-prompt" class="world-prompt">Bewege dich mit WASD oder Pfeiltasten.</div>
+      <button id="open-ui-btn">UI anzeigen</button>
+    </div>
+  </section>
+
+  <main id="app-ui" class="layout ui-hidden">
+    <div class="ui-toolbar">
+      <button id="toggle-settings-btn">Einstellungen (Esc)</button>
+      <button id="expand-ui-btn">Alles anzeigen</button>
+      <button id="close-ui-btn">Zur Weltansicht</button>
+    </div>
+    <section id="panel-settings" class="panel" hidden>
+      <h2>Einstellungen</h2>
+      <div id="settings-row" class="row">
+        <button id="dev-mode-btn">Dev-Cooldown: Aus</button>
+        <button id="save-btn">Speichern</button>
+        <button id="export-btn">Export</button>
+        <button id="import-btn">Import</button>
+        <button id="reset-btn" class="danger">Speicher zurücksetzen</button>
+      </div>
+      <input id="import-file-input" type="file" accept="application/json,.json" style="display:none">
+      <div class="muted">Mit Esc wieder schließen.</div>
+    </section>
+    <section id="panel-player" class="panel">
+      <h2>Spieler</h2>
+      <div id="player-stats" class="stats"></div>
+      <div id="heal-area"></div>
+      <div id="cooldown-info" class="muted"></div>
+      <div id="curriculum-status" class="muted"></div>
+      <h3 id="seed-heading">Seed-Beete</h3>
+      <div id="bed-tabs" class="tabs"></div>
+      <div id="seed-progress" class="muted"></div>
+      <div id="seed-library" class="list"></div>
+      <h3 id="lab-heading">Labor</h3>
+      <div id="lab-status" class="muted"></div>
+      <div id="lab-list" class="list"></div>
+    </section>
+
+    <section id="panel-beds" class="panel">
+      <h2 id="bed-title">Bed</h2>
+      <div id="plants-list" class="list"></div>
+    </section>
+
+    <section id="panel-detail" class="panel">
+      <h2>Pflanzendetails</h2>
+      <div id="plant-detail" class="detail">Wähle eine Pflanze zum Starten.</div>
+    </section>
+
+    <section id="panel-combat" class="panel">
+      <h2>Kampf</h2>
+      <div id="combat-status">Kampf gesperrt. Ernte zuerst mindestens eine Pflanze.</div>
+      <div class="row">
+        <button id="start-combat-btn">Kampf starten</button>
+      </div>
+      <div id="combat-detail" class="detail"></div>
+    </section>
+  </main>
+
+  <script src="./js/content.js"></script>
+  <script>
+    (function () {
+      const sidKey = "kg_app_session_id";
+      let sid = sessionStorage.getItem(sidKey);
+      if (!sid) {
+        sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + String(Math.random());
+        sessionStorage.setItem(sidKey, sid);
+      }
+
+      const post = (path, useBeacon) => {
+        if (useBeacon && navigator.sendBeacon) {
+          navigator.sendBeacon(path, sid);
+          return;
+        }
+        fetch(path, {
+          method: "POST",
+          headers: { "x-app-session": sid },
+          keepalive: true
+        }).catch(() => {});
+      };
+
+      post("/__app_open", false);
+      const timer = setInterval(() => post("/__app_ping", false), 2000);
+
+      window.addEventListener("beforeunload", () => {
+        clearInterval(timer);
+        post("/__app_close", true);
+      });
+    })();
+  </script>
+  <script src="./js/game.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js"></script>
+  <script src="./js/world.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1045 @@
+             Bildungswerk für
+             therapeutische Berufe
+
+
+
+
+                                   Strukturen und Funktion
+                                 des Bewegungsapparates:
+                                               Muskellehre
+
+
+
+
+                                   © von links nach rechts: Franz Pfluegl, Kzenon, tomas del amo, AVAVA (alle stock.adobe.com)
+
+
+
+2025-09-17
+                                                                                                1034
+                   Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                                           Trägergesellschaft des Ausbildungsinstitutes ist die
+
+
+
+
+                                       BA Bergische Akademie für Erwachsenenbildung GmbH
+                                                Reinshagener Str. 32 · D-42857 Remscheid
+                                                      Amtsgericht Wuppertal, HRB 12561
+
+
+                         © Dieser Studienbrief wurde von Fachautoren/-innen speziell für die Institute
+                         der BA Bergische Akademie für Erwachsenenbildung GmbH geschrieben. Die
+                         BA Bergische Akademie für Erwachsenenbildung GmbH behält sich alle
+                         Rechte daran, eingeschlossen das Recht der Übersetzung in fremde Sprachen,
+                         vor.
+                         Der Studienbrief darf ausschließlich durch die im Ausbildungsvertrag genannte
+                         Person genutzt werden. Verleih, Verkauf sowie sonstige Übertragung auf Dritte
+                         ist untersagt. Nachdruck, fotomechanische Wiedergabe, öffentliches Zugäng-
+                         lichmachen in Online-Diensten und Internet sowie Vervielfältigung auf Daten-
+                         trägern wie CD-Rom etc. darf nur nach schriftlicher Zustimmung durch die BA
+                         Bergische Akademie für Erwachsenenbildung GmbH erfolgen.
+                         Zusätzliche Inhalte, die über QR-Codes oder Short-URLs verlinkt sind, werden
+                         möglicherweise auf Servern in den USA gehostet. Beim Zugriff auf diese
+                         Links werden technische Daten, wie Ihre IP-Adresse, an Server in den USA
+                         übermittelt. Weitere Informationen hierzu entnehmen Sie bitte unserer Daten-
+                         schutzerklärung: https://www.btb.info/datenschutz.html.
+
+
+
+
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                                                      1034
+
+
+
+                       Inhalt
+
+                       1. Allgemeine Muskellehre . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .              5
+                           1.1 Aufbau des Muskels . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             5
+                           1.2 Funktionelle Charakteristika . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .               8
+                           1.3 Innervation der Skelettmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                  9
+                           1.4 Ernährungsphysiologie . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .              9
+                           1.5 Muskelarten . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+                            1.5.1 Quergestreifte Muskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+                                  1.5.1.1 Unterscheidung nach Muskelform . . . . . . . . . . . . . . . . . . . . . . . 15
+                                  1.5.1.2 Einteilung nach der Anzahl der Muskelköpfe . . . . . . . . . . . . . . 16
+                                  1.5.1.3 Unterscheidung nach Faserverlauf . . . . . . . . . . . . . . . . . . . . . . . 16
+                                  1.5.1.4 Unterscheidung nach Gelenkbeteiligung . . . . . . . . . . . . . . . . . . 17
+                            1.5.2 Glatte Muskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+                           1.6 Bewegungsmöglichkeiten . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+                       2. Spezielle Muskellehre, Einführung . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+                           2.1 Die Skelettmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+                             2.1.1 Unterscheidung nach Faserungstypen der Muskulatur . . . . . . . . . . . . 20
+                             2.1.2 Unterscheidung nach der Aufgabenstellung der Muskulatur . . . . . . . 21
+                           2.2 Die Muskulatur des Kopfes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+                            2.2.1 Schädeldachmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+                             2.2.2 Die Gesichtsmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+                             2.2.3 Die Kaumuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+                           2.3 Die Halsmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+                           2.4 Die Thoraxmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+                           2.5 Die Schulter- und Oberarmmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+                           2.6 Die Unterarmmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+                           2.7 Die Handmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+                           2.8 Die Bauchmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+                           2.9 Die Rückenmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+                           2.10 Die Hüftmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+                           2.11 Die Oberschenkelmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 47
+                           2.12 Unterschenkel- und Fußmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+                       Anhang . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+                       Beantwortung der Zwischenfragen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+                       Abbildungsverzeichnis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+
+
+
+
+                                                                                  3
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                1034
+
+
+
+                       Hinweis:
+
+                         Aus Gründen der besseren Lesbarkeit der Texte wird auf die gleichzeitige Ver-
+                         wendung männlicher und weiblicher Sprachformen verzichtet. Sämtliche Per-
+                         sonenbezeichnungen gelten gleichwohl für alle Geschlechter. Die inhaltliche
+                         Darstellung bleibt davon unberührt, d. h., Forschungsergebnisse, Studien usw.
+                         werden genderdifferenziert dargestellt.
+
+
+
+
+                                                              4
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+                       1. Allgemeine Muskellehre
+
+                       Die allgemeine Muskellehre beschäftigt sich mit dem histologischen Aufbau und
+                       den allgemeinen Funktionsabläufen innerhalb der Muskelzelle. Die spezielle Mus-
+                       kellehre behandelt die verschiedenen Muskeln des menschlichen Körpers –von
+                       oben nach unten.
+                       Wir unterscheiden drei Arten von Muskulatur:
+                          § quergestreifte, willkürliche Muskulatur
+                          § glatte oder unwillkürliche Muskulatur
+                          § spezielle quergestreifte, jedoch unwillkürliche Muskulatur
+
+                       Quergestreifte, willkürliche Muskulatur
+                       Beispiel: Skelettmuskulatur, auch als willkürliche Muskulatur bezeichnet
+
+                       Glatte oder unwillkürliche Muskulatur
+                       Beispiel: Magen, Blase und andere Hohlorgane
+
+                       Spezielle quergestreifte, jedoch unwillkürliche Muskulatur
+                       Beispiel: Herzmuskulatur
+                       Im Folgenden werden allgemeine Charakteristika dieser Muskelformen beschrie-
+                       ben.
+
+
+                       1.1 Aufbau des Muskels
+                       Die anatomische Grundeinheit des Skelettmuskels bildet die Muskelfaser. Beim
+                       Herzmuskel und der glatten Muskulatur sprechen wir von der Muskelzelle.
+                       Betrachtet man diese Muskelstrukturen unter dem Lichtmikroskop, erkennt man
+                       eine charakteristische Querstreifung. Hellere, etwas breitere und dunklere Streifen
+                       lassen sich klar voneinander abgrenzen. Aufgrund dieser Eigenart bezeichnet man
+                       die hierfür typische Muskelform (z. B. die Skelettmuskulatur) auch als querge-
+                       streifte Muskulatur. Diese Querstreifung kommt durch den Aufbau der Myofibril-
+                       len zustande.
+
+                       Myofibrillen => Muskelfasern => Muskelfaserbündel
+                       Myofibrillen sind feine Protoplasmafäden, welche innerhalb der Muskelfaser lie-
+                       gen. Sie stellen hier die kontraktilen Bestandteile dar. Wir finden sie auch in der
+                       glatten Muskulatur, allerdings ohne die Querstreifung.
+                       Muskelfasern besitzen die Fähigkeit, sich zu verkürzen. Myofibrillen setzen dabei
+                       chemische Energie, die die Muskulatur im Organismus zugeführt bekommt, in me-
+                       chanische um.
+                       Zusammenfassend kann man über die Skelettmuskulatur außerdem sagen, dass ein
+                       einzelnes Muskelfaserbündel aus enorm vielen Muskelfasern besteht, wobei jede
+
+
+
+
+                                                               5
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                 1034
+
+
+
+                       einzelne Faser wiederum aus vielen feinen Myofibrillen zusammengesetzt ist. Ins-
+                       gesamt bilden dann die verschiedenen Muskelbündel unsere Muskulatur.
+                       Sehen wir uns also den Aufbau eines Muskels noch einmal genau an.
+                       Bei der Betrachtung mit bloßem Auge erkennen wir in der glatt erscheinenden ro-
+                       sigen Oberfläche des Skelettmuskels bereits eine feine Streifung, die die Muskeln
+                       wie gefasert erscheinen lassen.
+
+                       Skelettmuskelfaser
+                       Bei der Betrachtung einer Skelettmuskelfaser mit einem Lichtmikroskop lässt sich
+                       erkennen, dass diese Fasern
+                            § sehr lang,
+                            § schmal und
+                            § vielkernig sind.
+                       Um die Ihnen bereits bekannte Eigenschaft der Reizfähigkeit aufrecht zu erhalten,
+                       ist jede Muskelfaser von einer elektrisch polarisierten Membran, dem sogenannten
+                       Sarkolemm umgeben.
+                       Dieses Sarkolemm wiederum wird vom sogenannten Endomysium umhüllt, wel-
+                       ches aus lockerem Bindegewebe besteht. Im Endomysium finden wir die Durch-
+                       trittsstellen für die zur Versorgung der Muskelfaser notwendigen Nerven und Gefä-
+                       ße.
+
+                       Muskelbündel
+                       Da ein Muskel aus mehreren Muskelbündeln besteht, finden wir auch hier ähnliche
+                       Haltestrukturen wie bei den Muskelfasern.
+                          § Perimysium internum: Das aus zahlreichen Muskelfasern bestehende
+                              Muskelbündel (Primärbündel) wird ebenfalls von einer Außenhaut umge-
+                              ben, dem Perimysium internum. Dieses Perimysium internum, welches
+                              auch gleichzeitig die einzelnen Muskelbündel voneinander trennt, kann man
+                              bei genauem Betrachten eines rohen Stückes Fleisches mit bloßem Auge
+                              bereits erkennen.
+                          § Perimysium externum: Die Gesamtheit der Primärbündel wird nun noch
+                              vom Perimysium externum umschlossen und bildet so ein größeres Sekun-
+                              därbündel.
+                          § Epimysium und Faszie: Das Epimysium ist eine Schicht aus lockerem
+                              Bindegewebe, die als Verschiebeschicht zwischen den Muskelbündeln und
+                              der Faszie dient. Als äußere, straffe Bindegewebsschicht umgibt und formt
+                              die Faszie die einzelnen Muskeln, kann aber auch Muskelgruppen oder eine
+                              ganze Extremität einhüllen.
+
+                       Merke:
+
+                         Als Muskelfaser (auch Muskelfaserzelle oder Myozyt) bezeichnet man die zel-
+                         luläre, spindelförmige Grundeinheit eines Skelettmuskels.
+
+
+
+
+                                                              6
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+
+                         Beim Herzmuskel und bei der glatten Muskulatur sprechen wir nicht von Mus-
+                         kelfasern, sondern von Muskelzellen
+
+                       Die Muskelfasern gehen kontinuierlich über in die Bindegewebsfasern der Sehnen
+                       oder Aponeurosen (Sehnenplatten).
+                       Sie verbinden die Muskulatur mit dem Knochen. Genauso wie Bänder und
+                       Schleimbeutel gehören sie zu den sogenannten Hilfsapparaten der Muskulatur und
+                       bilden gemeinsam mit ihr den aktiven Bewegungsapparat.
+
+                       Sehnen
+                       Abgesehen von Muskeln, bei denen die Sehnen gänzlich fehlen, hat jeder Muskel
+                       zwei Sehnen, eine am Muskelursprung und eine am Muskelansatz.
+                       Die Farbe der Sehnen ist meist weiß.
+                       Sehnen zeichnen sich durch außerordentliche Festigkeit und nahezu keine Elastizi-
+                       tät aus. Diese Festigkeit gewährleistet eine optimale Bewegungsübertragung der
+                       Muskulatur auf die Knochen.
+                       Sie ähneln sich in der Form der zugehörigen Muskulatur, so dass wir zum Beispiel
+                       im Bereich platter Muskeln auch platte Sehnenformen finden.
+                       Allgemein kann man sagen, dass man unter
+                          § Aponeurosen breite, abgeflachte Sehnen und
+                          § Sehnen eher schmale Ansätze an den Knochen versteht.
+
+                       Schleimbeutel
+                       Weitere Hilfseinrichtungen des aktiven Bewegungsapparates sind die Schleimbeu-
+                       tel (Bursae synovialis), die – wie der Name schon zum Ausdruck bringt – dünn-
+                       wandige Beutelchen sind, welche mit einer zähflüssigen Masse gefüllt sind, die aus
+                       den gleichen Bestandteilen besteht, wie die Synovialflüssigkeit der Gelenke. Die
+                       Schleimbeutel können etwa so klein wie ein Cent-Stück sein oder so groß wie ein
+                       2-Euro-Stück oder sogar noch ein wenig größer.
+                       Sie ähneln dabei eher flachen Kissen als prall gefüllten Beuteln.
+                       Ihre Funktion liegt in einer Polsterwirkung. Sie ermöglichen es Muskeln, über her-
+                       vorspringende Knochenteile zu gleiten.
+
+                       Sehnenscheiden
+                       Die Sehnen der Muskulatur sind oft von weiteren Hilfseinrichtungen umgeben:
+                       den Sehnenscheiden.
+                       Auch diese dünnwandigen, röhrenförmigen Gebilde sind mit Synovialflüssigkeit
+                       gefüllt und vermeiden so, dass sich Sehnen bei der Bewegung des Muskels an
+                       Knochen reiben. Sehnenscheiden finden wir zum Beispiel im Bereich des Handge-
+                       lenks und des Unterarms.
+
+
+
+
+                                                                7
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+                       Merke:
+
+                         Zu den Hilfsapparaten der Muskulatur gehören Sehnen, Sehnenscheiden,
+                         Schleimbeutel sowie Bänder (Bindegewebe).
+                         Sehnen sind das Anfangs- und Endstück eines Muskels, Sehnenscheiden dienen
+                         als Führungskanal für die Sehnen und Schleimbeutel erleichtern das Gleiten von
+                         Sehnen über Knochen.
+
+
+
+                       Zurück zur allgemeinen Betrachtung der verschiedenen Arten der Muskula-
+                       tur:
+                       Anders als bei den Muskelfasern der Skelettmuskulatur gehen im Bereich der glat-
+                       ten Muskulatur die Strukturen der Muskelzellen mit ihren Ausläufern ineinander
+                       über und liegen nicht faserartig langgestreckt nebeneinander.
+                       Hier finden wir auch keine Bündelungen. Die glatte Muskulatur wird zudem auf
+                       eine andere Weise innerviert als die quergestreifte – aber davon später!
+
+
+                       1.2 Funktionelle Charakteristika
+                       Natürlich unterscheiden sich die besprochenen Muskeltypen nicht nur durch ihre
+                       mikroskopische Struktur. Weitere Unterscheidungskriterien finden wir auch hin-
+                       sichtlich ihrer Innervation und ihrer Anordnung im menschlichen Körper sowie ih-
+                       rer dortigen Funktion und ihres Verlaufes.
+                       Beim näheren Betrachten finden wir jedoch interessante Parallelen hinsichtlich ih-
+                       rer funktionellen Eigenschaften.
+                       Dies sind:
+                          § Reizfähigkeit (Irritabilität)
+                          § Dehnfähigkeit (Elastizität)
+                          § Kontraktionsfähigkeit (Kontraktilität)
+                       Darüber hinaus sind Muskeln auch noch leitfähig. Diese Eigenschaft ist allerdings
+                       eher charakteristisch für Nerven.
+                       An dieser Stelle sollte aber festgehalten werden, dass unabhängig vom Nervenge-
+                       webe Muskelgewebe auch erregt werden kann.
+                       Dies wird oft als therapeutische Maßnahme bei Querschnittgelähmten eingesetzt,
+                       um eine Muskelatrophie zu vermeiden. Hierzu wird dann an den – in der Regel
+                       unteren – gelähmten Extremitäten eine schwache, elektrische Reizquelle ange-
+                       schlossen. Bei Überschreiten des notwendigen Schwellenwertes, bedingt durch das
+                       „Alles-oder-Nichts-Gesetz“, kommt es zu Kontraktionen der Muskulatur im ge-
+                       lähmten Abschnitt. Der beim Gesunden ständig vorhandene Muskeltonus wird so
+                       quasi durch Manipulation erhalten.
+
+
+
+
+                                                               8
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+                       1.3 Innervation der Skelettmuskulatur
+                       Wie verläuft die Innervation im Bereich der Muskulatur?
+                       Nervenzellen, die für die Steuerung der Skelettmuskulatur verantwortlich sind, hei-
+                       ßen motorische Neurone oder Motoneurone. Sie befinden sich im Rückenmark.
+                       Durch den Nervenfortsatz, das Axon, ist das Motoneuron mit den Muskelfasern
+                       verbunden. Das Motoneuron mit seinem Axon und allen von ihm innervierten
+                       Muskelfasern bildet eine motorische Einheit. Die motorische Einheit ist die
+                       kleinste funktionelle Einheit im Nerv-Muskel-System.
+                       Am Ende des Axons befindet sich eine neuromuskuläre Synapse (motorische
+                       Endplatte). Sie verbindet das Axon eines Muskelneurons mit einer Muskelfaser.
+                       Gelangt ein Reiz über das Motoneuron einer motorischen Einheit an die dazugehö-
+                       rigen Muskelfasern, so kontrahiert sich (= zieht sich zusammen) diese Muskelfa-
+                       ser maximal.
+                       Das bedeutet aber nicht, dass ein Muskel immer nur maximal kontrahieren kann.
+                       Sie können feststellen, dass Sie z. B. den Bizepsmuskel durchaus langsam oder
+                       schnell, mit viel oder mit wenig Widerstand beugen können.
+                       Die Erklärung dafür ist, dass der gesamte Muskel aus vielen verschiedenen Mus-
+                       kelfasern und motorischen Einheiten besteht, die nicht jedes Mal auf einmal ange-
+                       regt werden.
+                       Die Stärke der Muskelkontraktion des einzelnen Muskels hängt deshalb nicht von
+                       der Reizstärke ab, sondern davon, wie viele der motorischen Einheiten auf einmal
+                       zur Kontraktion angeregt werden. Dieser Mechanismus ist Ihnen als Alles-oder-
+                       Nichts-Regel bereits bekannt.
+                       Um eine Reaktion des entsprechenden Muskels herbeizuführen, ist es notwendig,
+                       dass der ankommende Impuls eine gewisse Intensität besitzt. Es muss ein soge-
+                       nannter Schwellenwert überschritten werden:
+                          § Liegt diese Intensität unter einem bestimmten Schwellenwert, wird keine
+                              Reaktion des Muskels erfolgen.
+                          § Wird der notwendige Schwellenwert erreicht oder sogar überschritten, re-
+                              agiert der Muskel. Dabei ist es jedoch völlig unerheblich, um wie viel der
+                              Ausgangswert überschritten wurde.
+
+
+                       1.4 Ernährungsphysiologie
+                       Sicherlich wird es Sie interessieren, wie ein Muskel ernährt wird. Die Zufuhr von
+                       Nährstoffen ist unbedingte Voraussetzung im Hinblick auf die wichtigen biochemi-
+                       schen Vorgänge innerhalb des menschlichen Körpers. In unserem Fall nun speziell
+                       der Muskulatur.
+
+                       Muskelerregung
+                       Gehen wir einmal davon aus, der Muskel wird erregt. Aus der Histologie des Mus-
+                       kelgewebes ist uns bekannt, dass Aktin- und Myosinfilamente ineinandergreifen.
+                       Bei dieser Überlegung sollten Sie sich noch einmal den Aufbau eines Sarkomers
+
+
+
+
+                                                               9
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+                       vor Augen führen. Für diesen Vorgang benötigt der Muskel natürlich Energie. Die-
+                       se kann ihm über verschiedenen „Systeme“ zugeführt werden:
+
+                       Aerober und anaerober Stoffwechsel
+                       Eine, oder besser gesagt
+                           § die energiereichste und
+                           § am schnellsten verfügbare Form
+                       der Energielieferanten unseres Organismus ist das Adenosintriphosphat (ATP).
+                       Im Rahmen eines biochemischen Vorganges wird zur Energiegewinnung eine
+                       Phosphatgruppe abgespalten. Hierdurch entsteht aus ATP das Adenosindiphos-
+                       phat (ADP).
+                       Bei der Abspaltung dieser Phosphatgruppe wird die Energie frei, die wir für unsere
+                       Muskeltätigkeit benötigen.
+                       Leider verfügt die einzelne Zelle nur über einen Vorrat an ATP, der für 5 bis 6 Se-
+                       kunden Daueraktivität reicht.
+                       Danach greift die Skelettmuskulatur auf das energiereiche Kreatinphosphat-Mo-
+                       lekül zurück. Durch die Spaltung von Kreatinphosphat können die ATP-Speicher
+                       schnell regeneriert werden, so dass der Muskel bei maximaler Arbeitsbelastung
+                       Energie für ca. 15 Sekunden hat.
+                       Wenn die Muskelarbeit länger andauert, wird auch der Kreatinphosphat-Vorrat er-
+                       schöpft, sodass als Energieträger Glukose verstoffwechselt werden muss.
+                       Im Skelettmuskel wird Glukose in ihrer Speicherform Glykogen gelagert. Bei Be-
+                       darf wird Glykogen wieder zu Glukose gespalten, um als Energielieferant zur Ver-
+                       fügung zu stehen.
+                       Damit Glukose für die Regeneration von ATP verwendet werden kann, muss sie
+                       allerdings weiter zerlegt werden.
+
+                       Dafür stehen zwei unterschiedliche Mechanismen zur Verfügung:
+
+                            § Energiegewinnung bei Sauerstoffmangel (anaerobe Energiebereitstellung)
+                              – Verstoffwechselung von Glukose (Glykolyse) ohne Sauerstoff zum Pyru-
+                              vat und weiter zur Milchsäure (Laktat).
+                            § Energiegewinnung mit Beteiligung von Sauerstoff (aerobe Energiebereit-
+                              stellung): das Pyruvat wird nicht als Laktat ausgeschieden, sondern über
+                              eine Reihe von Reaktionen (Zitronensäurezyklus) vollständig zu Kohlendi-
+                              oxid (CO2 ) und Wasser (H2O) zerlegt.
+
+
+
+
+                                                               10
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre           1034
+
+
+
+
+                                                      Abb. 1: Energiegewinnung des Muskels
+
+
+
+
+                                                                      11
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre             1034
+
+
+
+
+                       Fragen:
+
+
+
+                       Was sind Myofibrillen?
+
+
+
+
+                       Was versteht man unter einer Faszie?
+
+
+
+
+                       Wie nennt man eine breite, abgeflachte Sehne?
+
+
+
+
+                       Bei welcher Form des Energiegewinns in der Zelle entsteht Milchsäure?
+
+
+
+
+                       Welche Hilfseinrichtungen der Muskulatur gibt es?
+
+
+
+
+                                                              12
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre            1034
+
+
+
+                       1.5 Muskelarten
+                       Nachdem wir nun einige grundsätzliche Fakten besprochen haben, kommen wir zu
+                       den verschiedenen Arten der Muskulatur.
+                       Wie bereits erwähnt, finden wir vor allem zwei Typen:
+                          § quergestreifte, willkürliche Muskulatur und
+                          § glatte, unwillkürliche Muskulatur.
+
+
+
+
+                                                      Abb. 2: Quergestreifte Muskulatur
+
+
+
+
+                                                         Abb. 3: Glatte Muskulatur
+
+
+
+
+                                                                     13
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+                       Die Herzmuskulatur nimmt hier eine Sonderstellung ein und wird später im Zu-
+                       sammenhang des Herz-Kreislauf-Systems besprochen.
+
+
+
+
+                                                      Abb. 4: Herzmuskulatur
+
+
+
+                       1.5.1 Quergestreifte Muskulatur
+                       Muskeln unterscheiden sich im Faserverlauf, in ihrer äußeren Gestalt oder in ihrer
+                       Wirkung auf ein oder mehrere Gelenke.
+
+                       Einteilung nach der Muskelform:
+                          § platte Muskeln
+                          § spindelförmige Muskeln
+                          § ringförmige Muskeln
+
+                       Einteilung nach der Anzahl der Muskelköpfe:
+                          § einköpfige Muskeln
+                          § zweiköpfige Muskeln
+                          § dreiköpfige Muskeln
+                          § vierköpfige Muskeln
+
+                       Einteilung nach der Anzahl der Muskelbäuche:
+                          § einbäuchige Muskeln
+                          § mehrbäuchige Muskeln
+
+                       Einteilung nach dem Faserverlauf:
+                          § parallelfaserige Muskel
+                          § gefiederter Muskel
+
+                       Einteilung nach Gelenkbeteiligung:
+                          § eingelenkige Muskeln
+
+
+
+
+                                                               14
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                 1034
+
+
+
+                            § mehrgelenkige Muskeln
+
+                       Ursprung des Muskels
+                       Der Muskelursprung (Origo) eines Skelettmuskels ist der festgelegte sehnige oder
+                       fleischige Ursprung des Muskels am Knochen, von dem die Bewegung des Mus-
+                       kels ausgeht. In der Regel ist der Muskelursprung breitbasiger und weniger beweg-
+                       lich als der Muskelansatz.
+
+                       Ansatz des Muskels
+                       Unter dem Begriff Muskelansatz (Insertio) wird derjenige Punkt eines Knochens
+                       (z. T. auch einer Faszie) verstanden, an welchem ein Muskel sowie dessen Kraft
+                       während der Kontraktion ansetzen. Der Muskel setzt meist über eine Sehne am
+                       Knochen an. Der Ansatz eines Muskels befindet sich in der Regel an der bewegli-
+                       cheren der beiden durch den Muskel verbundenen Strukturen. Bei der Kontraktion
+                       des Muskels wird der Muskelansatz in Richtung des Muskelursprungs gezogen.
+                       Bei den Gliedmaßen liegt der Ursprung überwiegend rumpfnah (proximal) und der
+                       Ansatz rumpffern (distal).
+
+                       1.5.1.1 Unterscheidung nach Muskelform
+
+                       Platte Muskeln
+                       Sie sind insbesondere am Bau der vorderen Rumpfwand beteiligt und gehen in
+                       eine Aponeurose über.
+
+                       Spindelförmige Muskeln
+                       Die im Bereich der Gliedmaßen am meisten verbreitete Form des Muskels ist die
+                       Spindelform, die man sich wirklich so wie eine mit Garn umwickelte Spindel vor-
+                       stellen kann. Skelettmuskeln lassen sich unterteilen in:
+                           § einen Muskelbauch (Venter): der Skelettmuskel ist in der Mitte verdickt und
+                               verdünnt sich zu den Enden (Sehnenansätzen) des Muskels hin. Darum be-
+                               zeichnet man den verdickten Teil auch als Muskelbauch.
+                           § Muskelkopf (Caput): beide dünner werdenden Teile bezeichnet man als
+                               Muskelköpfe.
+
+                       Ringförmige Muskeln
+                       Eine weitere Muskelform ist die des ringförmigen Muskels, den wir besonders im
+                       Gesichtsbereich, z. B. der Augen und Lippen finden, aber auch als Schließmuskel
+                       im Bereich von Körperausgängen und Eingeweiden (Magen, After, Harnblase).
+                       Von den genannten Grundformen gibt es auch Sonderformen:
+
+
+
+
+                                                              15
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+                       1.5.1.2 Einteilung nach der Anzahl der Muskelköpfe
+
+                       Mehrköpfige Muskeln
+                       Mehrköpfige Muskeln haben mehrere Ursprünge, die in einer gemeinsamen Sehne
+                       enden, z. B.:
+                          § zweiköpfiger Armmuskel – Musculus biceps brachii
+                          § dreiköpfiger Armmuskel – Musculus triceps brachii
+                          § vierköpfiger Oberschenkelmuskel – Musculus quadriceps femoris
+
+                       Mehrbäuchige Muskeln
+                       Mehrbäuchige Muskeln besitzen einen einheitlichen Ursprung. Der Muskelbauch
+                       ist durch Zwischensehnen (Intersectiones tendineae) gegliedert, z. B. Musculus di-
+                       gastricus.
+
+                       1.5.1.3 Unterscheidung nach Faserverlauf
+
+                       Parallelfaserige Muskeln
+                       Hier verlaufen die Muskelfasern parallel in Zugrichtung der Sehne.
+
+                       Gefiederte Muskeln
+                       Hier finden sich Strukturen, in denen kurze einzelne Muskelfaserbündel schräg zur
+                       Gesamtrichtung eines Muskels angeordnet sind.
+                       Diese Muskelform wird als gefiederter Muskel bezeichnet.
+                       Abhängig davon, ob die Muskelbündel nur nach einer Seite, oder – wie bei einer
+                       Feder – nach zwei Seiten abstehen, spricht man von
+                           § einfach oder
+                           § doppelt
+                       gefiederten Muskeln.
+
+                       Die Namensgebung der einzelnen Muskeln leitet sich von folgenden Faktoren ab:
+                          § der Form: z. B. M. serratus anterior ! vorderer Sägemuskel
+                          § dem Ursprung: z. B. M. temporalis ! entspringt dem Os temporale (Schlä-
+                             fenbein)
+                          § Zahl der Abzweigungen: z. B. M. biceps ! Muskel mit zwei Köpfen
+                          § der Funktion: z. B. M. extensor hallicus longus ! streckt die große Zehe
+                             zum Fußrücken hin
+                          § Ausrichtung der Fasern: z. B. M. obliquus externus ! die Faserrichtung
+                             dieses Bauchmuskels ist schräg
+                       Die Verbindung der Muskulatur zum Knochen wurde bereits besprochen.
+
+
+
+
+                                                              16
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                  1034
+
+
+
+                       1.5.1.4 Unterscheidung nach Gelenkbeteiligung
+                       Weitere Besonderheiten stellen Muskeln dar, die nicht nur von Knochen zu Kno-
+                       chen über ein Gelenk laufen, sondern über zwei.
+                       Man spricht zur Unterscheidung von
+                          § eingelenkigen (monoartikulären – z. B. M. brachialis) und
+                          § zweigelenkigen (biartikulären – z. B. M. biceps brachii) Muskeln.
+                       Viele mehrköpfige Muskeln der Gliedmaßen laufen z. B. über zwei Gelenke und
+                       können auf diese Weise manchmal eine ganze Gliedmaße mit bewegen.
+
+                       1.5.2 Glatte Muskulatur
+                       Bei der glatten Muskulatur, welche hauptsächlich in Hohlorganen zu finden ist,
+                       sehen wir überwiegend eine Anordnung in zwei Schichten:
+                          § eine innere Ringschicht
+                          § eine äußere Längsschicht
+
+
+
+
+                                                      Abb. 5: Glatte Muskulatur II
+
+                       Hierdurch wird erreicht, dass bei der Kontraktion nicht nur der Umfang des Hohl-
+                       organs, sondern auch seine Länge verändert werden kann.
+                       Durch diese Struktur hat die glatte Muskulatur eine höhere Plastizität als die Ske-
+                       lettmuskeln.
+                       Außerdem ist sie in der Lage, peristaltische Bewegungen (wellenförmige Kon-
+                       traktionen – ähnlich der Bewegung eines Regenwurms) auszuführen. Dies dient
+                       dem Transport des Inhaltes von Hohlorganen und ist besonders im Bereich der Ver-
+                       dauung wichtig.
+                       Die ablaufenden Kontraktionen sind in der Regel langsamer und breiten sich auch
+                       dementsprechend langsamer aus als bei der Skelettmuskulatur. Hier finden wir üb-
+                       rigens das gegenteilige Prinzip: die Bewegungen der Muskeln sind zwar langsa-
+                       mer, aber glatte Muskeln ermüden nicht!
+                       Die glatte Muskulatur ist auch in Ruhe in einem gewissen Spannungszustand (To-
+                       nus). Einen Grundtonus finden wir allerdings auch bei der Skelettmuskulatur.
+                       Die Innervation der glatten Muskeln geschieht durch das vegetative Nervensystem,
+                       d. h. die Bewegungen der glatten Muskeln geschehen unwillkürlich.
+
+
+
+
+                                                                  17
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                 1034
+
+
+
+                       Merke:
+
+                         Die glatte Muskulatur ist überwiegend in zwei Schichten angeordnet und besitzt
+                         sowohl eine innere Ringschicht als auch eine äußere Längsschicht.
+                         Dadurch sind u. a. auch peristaltische Bewegungen möglich.
+                         Die glatte Muskulatur arbeitet langsamer als die Skelettmuskulatur, mit dem
+                         Vorteil, dass sie nicht ermüden kann.
+
+
+
+
+                       1.6 Bewegungsmöglichkeiten
+
+                       Abduktion
+                       von der Körpermitte weg, Abspreizen des Armes/Beines
+
+                       Adduktion
+                       zur Körpermitte hin, Heranführen des Armes/Beines
+
+                       Rotation
+                       Drehbewegung des Armes/Beines
+
+                       Anteversion
+                       Vorführung des Armes, parallel zur Sagittalebene
+
+                       Retroversion
+                       Rückführbewegung
+
+                       Zirkumduktion
+                       Umführbewegung, resultierend aus mehreren Einzelbewegungen
+                       Hier wird Ihnen nichts anderes übrigbleiben, als diese Bezeichnungen schlichtweg
+                       auswendig zu lernen. Bauen Sie sich „Eselsbrücken“ wie Ab… -weg, Retro…
+                       -rück…
+
+                       Weitere Bewegungsmöglichkeiten der Muskulatur sind:
+
+                       Pronation
+                       Heben des äußeren Handrandes/Fußrandes
+
+                       Supination
+                       Heben des inneren Handrandes/Fußrandes
+                       (Supination ‒ inneren !!!)
+
+
+
+
+                                                              18
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                 1034
+
+
+
+                       Flexion
+                       Beugung eines Gelenkes
+
+                       Extension
+                       Streckung eines Gelenkes (Extension ist als Wort länger (gestreckter!) als Flexi-
+                       on!)
+
+
+
+                       Fragen:
+
+                       Wie wird der verdickte Bereich eines spindelförmigen Muskels genannt?
+
+
+
+
+                       Was unterscheidet einen Musculus triceps von einem Musculus quadriceps?
+
+
+
+
+                       Wo finden wir ringförmige Muskeln?
+
+
+
+
+                       Wie nennt man Muskeln, bei denen Teilbereiche der Muskelfaserbündel schräg
+                       zum Gesamtmuskel verlaufen?
+
+
+
+
+                       Erklären Sie den Begriff „Abduktion“.
+
+
+
+
+                                                               19
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre               1034
+
+
+
+                       2. Spezielle Muskellehre, Einführung
+
+                       Nachfolgend finden Sie eine Aufstellung der für Sie wichtigsten Muskeln, welche
+                       natürlich nicht vollständig ist, jedoch ausreichend für Ihr Lernziel.
+                       Im ersten Teil findet sich noch die vorstehend angesprochene Beschreibung der
+                       einzelnen Muskeltypen.
+                       Zu den einzelnen Muskeln wird immer folgendes angegeben:
+                          § Ursprung
+                          § Ansatz
+                          § Innervation
+
+
+                       2.1 Die Skelettmuskulatur
+                       Zum besseren Verständnis vorab:
+                       Der Ursprung der Skelettmuskeln liegt proximal vom Rumpf ausgehend,
+                       der Ansatz distal vom Rumpf ausgehend.
+
+                       2.1.1 Unterscheidung nach Faserungstypen der Muskulatur
+                       Außerdem unterscheiden wir ergänzend zum vorab dargestellten Faserungsverlauf
+                       weitere verschiedene Faserungstypen der Muskulatur:
+                          § parallelfaseriger Muskel
+                          § einfach gegliederter Muskel
+                          § doppelt gefiederter Muskel
+                          § spiralig geformter Muskel
+                          § fächerförmiger Muskel
+
+                       Parallelfaseriger Muskel
+                       Merkmale: Gleiche Ausrichtung und Zugrichtung der Muskelfasern
+                       Beispiel: M. biceps brachii (Bizeps-Muskel)
+
+                       Einfach gegliederter Muskel
+                       Merkmale: Ursprung und Ansatz liegen sich nicht genau gegenüber, sondern ver-
+                       setzt
+                       Beispiel: M. gluteus maximus (großer Gesäßmuskel)
+
+                       Nun kommt eine Struktur der Muskelfaserung, die Sie schon kennen:
+
+
+
+
+                                                             20
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                1034
+
+
+
+                       Doppelt gefiederter Muskel
+                       Merkmale: Der Muskel wird durch eine Sehne gespalten, die Faserung verläuft
+                       schräg in beide Richtungen
+                       Beispiel: M. rectus femoris (gerader Muskel des Oberschenkels)
+
+                       Spiralig geformter Muskel
+                       Merkmale: Seine Fasern setzen an unterschiedlichen Seiten der Sehnen an und ver-
+                       laufen in Spiralform
+                       Beispiel: M. soleus (Schollenmuskel des Unterschenkels)
+
+                       Fächerförmiger Muskel
+                       Merkmale: Mehrere Faserbündel haben jeweils eine kleine Sehne (Fächerform)
+                       Beispiel: M. pectoralis major (großer Brustmuskel), Diaphragma (Zwerchfell)
+
+                       2.1.2 Unterscheidung nach der Aufgabenstellung der Muskulatur
+                       Weitere Unterscheidungen können wir bei der Muskulatur zudem hinsichtlich ihrer
+                       Aufgabenstellung treffen.
+                       Hier finden wir:
+                          § Agonisten = Hauptbeweger (z. B. Beuger)
+                          § Antagonisten = Gegenspieler (z. B. Strecker)
+                          § Synergisten = Helfer-Muskeln, die die Kraft eines Agonisten verstärken
+                       Agonist und Antagonist bilden zusammen ein Funktionspaar: der Agonist ist der
+                       Hauptbeweger, der im Zusammenspiel (Synergie) mit seinem Gegenspieler, dem
+                       Antagonisten, eine bestimmte Funktion bewirkt.
+                       Schauen wir uns dazu ein Beispiel an:
+                       Der M. biceps brachii (Bizeps) ist für die Flexion im Humero-Ulnar-Gelenk zu-
+                       ständig, d. h. er beugt den Arm im Ellenbogenbereich.
+
+                       Sie erinnern sich: Humerus ist der Oberarmknochen und Ulna die Elle!
+
+                       Diese Bewegung ist in vielerlei Hinsicht nützlich für den Menschen, aber er muss
+                       für andere Tätigkeiten den Arm auch wieder strecken können.
+                       Hierfür stehen jedem Beuger im Organismus ein oder mehrere Muskeln gegenüber,
+                       die die gegenteilige Bewegung, also die Streckung im Gelenk durchführen. Nur so
+                       bleibt der Organismus wirklich beweglich.
+                       So wirkt der M. biceps brachii als Antagonist zum M. triceps brachii.
+                       Bei der Flexion des Ellenbogengelenks durch den Musculus biceps brachii wirken
+                       der Musculus brachialis und der Musculus brachioradialis synergistisch.
+
+
+
+
+                                                               21
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                      1034
+
+
+
+                       2.2 Die Muskulatur des Kopfes
+                       2.2.1 Schädeldachmuskulatur
+
+                         M. epicranii (Mimische Muskulatur des Schädeldachs)
+                       Bestehend aus:
+                          § M. occipitofrontalis
+                          § M. temporoparietalis
+                       Funktion:
+                          § Kopfhaut: Anspannung
+                          § Stirn: Faltenbildung
+
+                         M. occipitofrontalis (Hinterkopf-Stirn-Muskel)
+                       Der M. occipitofrontalis teilt sich auf in
+                          § den vorderen Bauch (M. frontalis = Stirnmuskel) und
+                          § den Hinterhauptsbauch (M. occipitalis = Hinterhauptsmuskel).
+                       Beide Muskeln sind über eine Aponeurose (Galea) miteinander verbunden und
+                       werden als Einheit M. occipitofrontalis genannt.
+
+                       M. frontalis (Stirnmuskel)
+                       Ursprung:           Augenbrauennahe Stirnhaut
+                       Ansatz:             Schädelhaube (Galea aponeurotica) – flächige Aponeurose, die
+                                           wie eine Haube auf dem Schädeldach sitzt und mit diesem fest ver-
+                                           bunden ist
+                       Funktion:           Der Stirnmuskel (Musculus frontalis) liegt großflächig auf der
+                                           Stirn und hebt die Augenbrauen und die Stirnhaut. Die queren
+                                           Stirnfalten werden durch ihn verursacht. Das Stirnrunzeln drückt
+                                           z. B. Erstaunen aus.
+
+                       M. occipitalis (Hinterhauptsmuskel)
+                       Ursprung:           Linea nuchalis suprema am Hinterhauptsbein (Os occipitale)
+                       Ansatz:             Galea aponeurotica
+                       Funktion:           Stirnglättung
+
+                         M. temporoparietalis (Schläfen-Scheitel-Muskel)
+                       Dünner Muskel der mimischen Muskulatur, gehört zum Mm. epicranii.
+                       Ursprung:     M. temporalis: Faszie oberhalb des Ohrs
+                       Ansatz:       Galea aponeurotica
+                       Funktion:     Kopfhaut: Anspannung (zieht sich nach hinten dorsal)
+                                           Ohrmuschel: Hochziehen
+
+
+
+
+                                                                  22
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                      1034
+
+
+
+                       2.2.2 Die Gesichtsmuskulatur
+                       Die Gesichtsmuskulatur stellt die eigentliche mimische Muskulatur dar.
+                       Mit ihrer Hilfe ist es uns möglich, zu sprechen, zu lachen und unserem Gesicht
+                       einen uns eigenen Ausdruck zu geben.
+
+                         M. orbicularis oculi (Augenringmuskel)
+                       Ursprung:           Stirnbein, Oberkiefer
+                       Ansatz:             Raphe palpebralis lateralis:
+                                           äußerer Lidwinkel
+                       Funktion:           schließt die Augenlider
+                                           Erweiterung des Tränensackes
+
+                         M. procerus (Schlanker Muskel)
+                       Ursprung:            Nasenbein (Os nasale): Faszie, seitlicher Nasenknorpel
+                       Ansatz:             Stirnhaut (Glabella): zwischen den Augenbrauen
+                       Funktion:           zieht die Haut zwischen den Augenbrauen nach unten und erwei-
+                                           tert dabei auch die Nasenlöcher
+
+                         M. nasalis (Nasenmuskel)
+                       Ursprung:            Oberkiefer (Maxilla, Fossa incisiva)
+                       Ansatz:             Nasenflügel und Nasenrücken
+                       Unterteilung:       Pars transversa und Pars alaris
+                       Funktion:           zieht Nasenflügel nach abwärts und hinten
+
+                         M. orbicularis oris (Mundringmuskel)
+                       Ursprung:            Ober- und Unterkiefer (Maxilla und Mandibula)
+                       Ansatz:             Lippe (Labium oris)
+                       Funktion:           schließt die Mundspalte und reguliert den Tonus und die Stellung
+                                           der Lippen
+
+                         M. buccinator (Backenmuskel)
+                       Ursprung:            Ober- und Unterkiefer (Maxilla und Mandibula)
+                       Ansatz:             M. orbicularis oris
+                       Funktion:           s verengt die Mundhöhle und hat somit eine wichtige Funktion
+                                           beim Kauen und beim Druckaufbau (Blasen, Pusten, …)
+
+                       Die Innervation der mimischen Muskulatur erfolgt über Äste des XII. Hirnnervs
+                       (N. Facialis).
+
+
+
+
+                                                                  23
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                        1034
+
+
+
+
+                                                       Abb. 6: Die Gesichtsmuskulatur
+
+
+
+                       2.2.3 Die Kaumuskulatur
+                       Die Innervation der Kaumuskulatur geschieht durch den Nervus mandibularis, ei-
+                       nen Ast des Trigeminusnervs.
+                       Im Bereich der Kaumuskulatur finden wir:
+
+                         M. masseter (Kaumuskel)
+                       Ursprung:           Pars superficialis (oberflächlich): Jochbogen (Arcus zygomaticus),
+                                           vorderes/mittleres Drittel
+                                           Pars profunda (tief): Jochbogen (Arcus zygomaticus), hinteres
+                                           Drittel
+                       Ansatz:             Unterkiefer (Mandibula): Angulus mandibulae
+                       Funktion:           Der Musculus masseter ist zusammen mit dem Musculus tempora-
+                                           lis und dem Musculus pterygoideus medialis für das Schließen des
+                                           Kiefers verantwortlich.
+
+                         M. pterygoideus lateralis (Seitlicher/äußerer Flügelmuskel)
+                       Zur tiefen Gruppe der Kaumuskulatur gehört der zweiköpfiger Musculus pterygo-
+                       ideus lateralis.
+                       Ursprung:        Pars superior: Keilbein (Os sphenoidale), Unterfläche
+                                           Pars inferior: Flügelfortsatz (Processus pterygoideus) des Keil-
+                                           beins
+                       Ansatz:             Pars superior: Kiefergelenk (Articulatio temporomandibularis)
+
+
+
+
+                                                                    24
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Strukturen und Funktion des Bewegungsapparates: Muskellehre                      1034
+
+
+
+
+                                           Pars inferior: Unterkiefer (Mandibula)
+                       Funktion:           beidseitig: Vorschieben des Unterkiefers (Protrusion), Mundöff-
+                                           nung
+                                           einseitig: Mahlbewegungen
+
+                         M. pterygoideus medialis (Innerer Flügelmuskel)
+                       Ursprung:           Fossa pterygoidea und Proc. pterygoideus
+                       Ansatz:             Unterkiefer (Mandibula): Tuberositas pterygoidea
+                       Funktion:           Kiefer: Verschließung
+                                           Unterkiefer: Anhebung
+
+
+
+
+                                                        Abb. 7: Die Kaumuskulatur
+
+
+
+                         M. temporalis (Schläfenmuskel)
+                       Ursprung:           Schläfengrube (Fossa temporalis)
+                                           Schläfenfaszie (Fascia temporalis)
+                       Ansatz:             Unterkiefer (Mandibula): Knochenvorsprung (Processus corono-
+                                           ideus mandibulae), Crista temporalis
+                       Funktion:           Der Musculus temporalis ist zusammen mit dem Musculus masse-
+                                           ter und dem Musculus pterygoideus medialis für das Schließen des
+                                           Kiefers verantwortlich. Darüber hinaus zieht der Muskel den Un-
+                                           terkiefer nach dorsal (Retrusionsbewegung).
+
+
+
+
+                                                                   25
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+

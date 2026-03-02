@@ -1,0 +1,2624 @@
+             Bildungswerk für
+             therapeutische Berufe
+
+
+
+
+                                    Histologie (Gewebelehre)
+
+
+
+
+                                   © von links nach rechts: Franz Pfluegl, Kzenon, tomas del amo, AVAVA (alle stock.adobe.com)
+
+
+
+2025-09-17
+                                                                                                1032
+                   Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                                           Trägergesellschaft des Ausbildungsinstitutes ist die
+
+
+
+
+                                       BA Bergische Akademie für Erwachsenenbildung GmbH
+                                                Reinshagener Str. 32 · D-42857 Remscheid
+                                                      Amtsgericht Wuppertal, HRB 12561
+
+
+                         © Dieser Studienbrief wurde von Fachautoren/-innen speziell für die Institute
+                         der BA Bergische Akademie für Erwachsenenbildung GmbH geschrieben. Die
+                         BA Bergische Akademie für Erwachsenenbildung GmbH behält sich alle
+                         Rechte daran, eingeschlossen das Recht der Übersetzung in fremde Sprachen,
+                         vor.
+                         Der Studienbrief darf ausschließlich durch die im Ausbildungsvertrag genannte
+                         Person genutzt werden. Verleih, Verkauf sowie sonstige Übertragung auf Dritte
+                         ist untersagt. Nachdruck, fotomechanische Wiedergabe, öffentliches Zugäng-
+                         lichmachen in Online-Diensten und Internet sowie Vervielfältigung auf Daten-
+                         trägern wie CD-Rom etc. darf nur nach schriftlicher Zustimmung durch die BA
+                         Bergische Akademie für Erwachsenenbildung GmbH erfolgen.
+                         Zusätzliche Inhalte, die über QR-Codes oder Short-URLs verlinkt sind, werden
+                         möglicherweise auf Servern in den USA gehostet. Beim Zugriff auf diese
+                         Links werden technische Daten, wie Ihre IP-Adresse, an Server in den USA
+                         übermittelt. Weitere Informationen hierzu entnehmen Sie bitte unserer Daten-
+                         schutzerklärung: https://www.btb.info/datenschutz.html.
+
+
+
+
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                                                        1032
+
+
+
+                       Inhalt
+
+                       Einführung . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+                       1. Das Epithelgewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         7
+                           1.1 Oberflächen- oder Deckepithel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .                9
+                                 1.1.1 Einschichtiges Epithel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           9
+                                 1.1.2 Mehrreihiges Epithel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+                                 1.1.3 Mehrschichtiges Epithel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+                           1.2 Drüsenepithel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+                               1.2.1 Drüsenarten . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+                                 1.2.2 Klassifizierung der exokrinen Drüsen . . . . . . . . . . . . . . . . . . . . . . 13
+                                       1.2.2.1 Klassifikation nach der Lokalisation . . . . . . . . . . . . . . . . . 13
+                                          1.2.2.2 Klassifikation nach der Beschaffenheit des Sekretes . . . . 15
+                                          1.2.2.3 Klassifikation nach Art der Sekretabgabe . . . . . . . . . . . . . 17
+                                       1.2.2.4 Klassifikation nach der Form des Drüsengewebes . . . . . . 18
+                                 1.2.3 Sekretbildung der exokrinen Drüsen . . . . . . . . . . . . . . . . . . . . . . . 19
+                               1.2.4 Regenerationsfähigkeit des Drüsenepithels . . . . . . . . . . . . . . . . . . 20
+                           1.3 Sinnesepithel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+                           1.4 Myoepithel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+                       2. Bindegewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+                          2.1 Ortsständige Bindegewebszellen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+                           2.2 Freie Bindegewebszellen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+                           2.3 Interzellularsubstanz . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+                                 2.3.1 Fasern . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+                                 2.3.2 Grundsubstanz . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+                           2.4 Formen des Bindegewebes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+                               2.4.1 Lockeres Bindegewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+                               2.4.2 Straffes Bindegewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+                           2.5 Retikuläres Bindegewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+                           2.6 Fettgewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+                           2.7 Knorpelgewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+                                 2.7.1 Hyaliner Knorpel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+                                 2.7.2 Elastischer Knorpel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+                               2.7.3 Faserknorpel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+                           2.8 Knochengewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+                                 2.8.1 Knochenzellen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+
+
+
+
+                                                                                  3
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                                                         1032
+
+
+
+                               2.8.2 Knochenentwicklung (Osteogenese) . . . . . . . . . . . . . . . . . . . . . . . 40
+                           2.9 Blut . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+                       3. Muskelgewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+                          3.1 Quergestreifte Skelettmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+                           3.2 Herzmuskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+                           3.3 Glatte Muskulatur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+                       4. Nervengewebe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+                          4.1 Nervenzellen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+                                 4.1.1 Aufbau einer Nervenzelle . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+                                 4.1.2 Erregungsbildung und -leitung . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+                           4.2 Nervenfasern und Gliazellen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+                       Beantwortung der Zwischenfragen . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+                       Abbildungsverzeichnis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56
+
+
+                       Hinweis:
+
+                         Aus Gründen der besseren Lesbarkeit der Texte wird auf die gleichzeitige Ver-
+                         wendung männlicher und weiblicher Sprachformen verzichtet. Sämtliche Per-
+                         sonenbezeichnungen gelten gleichwohl für alle Geschlechter. Die inhaltliche
+                         Darstellung bleibt davon unberührt, d. h., Forschungsergebnisse, Studien usw.
+                         werden genderdifferenziert dargestellt.
+
+
+
+
+                                                                                  4
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Einführung
+
+                       Als Gewebe bezeichnet man Zellverbände, die aus einer Gruppe gleichartig oder
+                       unterschiedlich differenzierter Zellen bestehen und eine gemeinsame Aufgabe für
+                       den Gesamtorganismus erfüllen.
+
+                       Gewebetypen
+                       Es gibt vier Grundtypen von Geweben:
+                           § Epithelgewebe,
+                           § Binde- und Stützgewebe,
+                           § Muskelgewebe,
+                           § Nervengewebe.
+                       In jeweils unterschiedlicher Zusammensetzung bilden diese Gewebe die verschie-
+                       denen Organe des Körpers. Diese vier Gewebegruppen werden selbst noch weiter
+                       unterteilt. Die Wissenschaft von den biologischen Geweben wird Histologie ge-
+                       nannt. Sie ist Teilgebiet der Anatomie und Pathologie.
+                       Zwischen den Zellen liegen die Interzellularräume. Sie sind unterschiedlich aus-
+                       geprägt und dienen als wichtige Transportwege für Synthese- und Abbauprodukte
+                       der Zellen.
+                       Zur Aufrechterhaltung der Gewebestruktur muss das innere Milieu konstant gehal-
+                       ten werden, sowie eine adäquate Beanspruchung erfolgen. Gewebe reagiert auf äu-
+                       ßere Einflüsse und passt sich diesen an. Dabei hat jeder Gewebetyp eine unter-
+                       schiedliche Fähigkeit zur Anpassung und Regeneration. Sind die Belastungen zu
+                       hoch, kann das Gewebe seiner Aufgabe nicht mehr optimal nachkommen. Es
+                       kommt zu pathologischen Veränderungen.
+
+                       Zellverbindungen
+                       Zellverbindungen können sehr fest sein, so dass eine Trennung der einzelnen Zel-
+                       len große mechanische Kräfte erfordert. Bei Umbauvorgängen im Gewebe dage-
+                       gen lösen sich Zellen leicht voneinander. Auch im Alter werden Zellverbindungen
+                       lockerer.
+                       Die Zellen werden durch interzelluläre Makromoleküle (meist Glykoproteine)
+                       sowie Kalzium- und Magnesiumionen zusammengehalten. Auch seitliche Zell-
+                       ausläufer sorgen dafür, dass sich Zellen untereinander verzahnen.
+                       Eine andere Möglichkeit für das Entstehen von Verbänden sind die interzellulären
+                       Verbindungen. Dabei gibt es an der Oberfläche der Zellen spezielle Strukturen,
+                       die u. a. dazu dienen, Zellen zusammenzuschließen.
+                       Hier unterscheidet man
+                          § Adhäsionskontakte (Haftverbindungen, Desmosomen): Bei Haftverbin-
+                              dungen gibt es spezielle Verdichtungen im Interzellularraum und im Zyto-
+                              plasma, die als Haftplatten bezeichnet werden. Die Haftplatten der verschie-
+                              denen Zellen liegen sich gegenüber und verbinden sie, allerdings ohne den
+
+
+
+
+                                                               5
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                               Interzellularraum zu verschließen. Fasern durchziehen den Interzellularspalt
+                               und verbinden die gegenüberliegenden Zellmembranen.
+                           § Tight-junctions (Undurchlässige Verbindungen): Tight-junctions (Eng-
+                               lisch für „enge Verbindungen“) sind Verbindungen, die den Raum zwischen
+                               den Zellen vollkommen abdichten. Sie bestehen aus einem gürtelförmigen
+                               Proteinnetzwerk, das sogenannte Verschlusskontakte bildet. So wird der
+                               Transport zwischen den Zellen verhindert und es findet keine unkontrollier-
+                               te Diffusion von gelösten Stoffen statt. Tight-junctions verbinden Epithel-
+                               zellen.
+                           § Gap-junctions (Kommunizierende Verbindungen): Gap-junctions sind
+                               Eiweißstrukturen, welche die Plasmamembran von zwei Zellen miteinander
+                               verbinden. Die Membranen werden fixiert, es bleibt aber eine Lücke (Eng-
+                               lisch = Gap), die einen interzellulären Kanal bildet.
+                       Über diese Kanäle findet ein Signal- und Stoffaustausch statt. Sie sind groß genug,
+                       dass sämtliche Ionen sowie kleine Moleküle wie Glukose, Milchsäure oder Harn-
+                       stoff hindurchpassen.
+                       Während im Embryonalstadium Gap-junctions weit verbreitet sind, kommen sie
+                       beim Erwachsenen vor allem im Herzmuskel, in Epithel- und Gliazellen sowie in
+                       der Retina vor.
+                       In den embryonalen Keimblättern sind die Zellen noch multipotent, doch mit zu-
+                       nehmender Differenzierung wird ihre Leistungsfähigkeit auf einen bestimmten
+                       Sektor beschränkt. Daher können Zellen einer bestimmten Gewebeklasse nicht in
+                       die einer anderen übergehen. Es ist nicht einmal möglich, dass glatte Muskelzellen
+                       in Skelettmuskelzellen übergehen.
+                       Innerhalb der Epithelien und Binde- und Stützgewebe ist eine Umwandlung in ge-
+                       wissem Grad jedoch möglich, wenn die Situation es verlangt. Es kommt zu einer
+                       funktionellen Anpassung, indem z. B. bei erhöhter Beanspruchung bestimmter Tei-
+                       le diese Gewebeteile verhornen.
+                       Zwischen dem Epithelgewebe und dem darunterliegenden Bindegewebe, sowie
+                       zwischen Bindegewebe und Muskelfasern liegt ein homogen erscheinendes Häut-
+                       chen, die Basalmembran.
+
+                       Merke:
+
+                         § Als Gewebe bezeichnet man Zellverbände, die aus einer Gruppe gleichartig
+                           oder unterschiedlich differenzierter Zellen bestehen und eine gemeinsame
+                           Aufgabe für den Gesamtorganismus erfüllen.
+                         § Zwischen den Zellen liegen die Interzellularräume.
+                         § Die Zellen werden durch interzelluläre Makromoleküle, seitliche Zellausläu-
+                           fer sowie interzellulären Verbindungen zusammengehalten.
+                         § Es gibt Haftverbindungen (Adhäsionskontakte), undurchlässige Verbindun-
+                           gen (Tight-junctions) und kommunizierende Verbindungen (Gap-junctions).
+                         § Diese kommunizierenden Verbindungen haben Bedeutung für die Zellernäh-
+                           rung und für den Informationsaustausch.
+
+
+
+
+                                                                6
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                       1. Das Epithelgewebe
+
+                       Das Epithelgewebe (Epithelien) besteht aus flächenhaften Zellverbänden, die so-
+                       wohl die äußeren als auch die inneren Körperoberflächen bedecken.
+                       Das Epithelgewebe ist hauptsächlich
+                          § Deckgewebe, aber auch
+                          § Drüsengewebe und
+                          § Sinnesepithel.
+
+                       Aufgaben des Epithelgewebes
+
+                            § Es überzieht die äußere Körperoberfläche und dient als innere Auskleidung
+                              von Hohlräumen (Körperhöhlen) und Hohlorganen (Darm, Luftwege,
+                              Harn- und Geschlechtswege, Blutgefäße u. a.).
+                            § Es bildet damit einen Schutz für darunterliegende Gewebe (z. B. die Ober-
+                              haut).
+                            § Es dient dem Stoffaustausch mit der Umgebung. Stoffe werden von außen
+                              aufgenommen (Resorption), andere werden ausgeschieden (Sekretion).
+                            § Es dient der Reizaufnahme und bringt damit den Organismus in Beziehung
+                              zu seiner Umwelt (z. B. Sinnesrezeptoren wie Zapfen- und Stäbchenzellen
+                              der Netzhaut des Auges).
+
+                       Epithelzellen
+                       Die Epithelzellen bilden einen sehr engen Verbund, die Interzellularräume sind nur
+                       schmal. Trotzdem sind diese Interzellularspalten als Transportwege von großer Be-
+                       deutung. Diese Transportwege sind allerdings manchmal durch Tight-junctions
+                       (Zonula occludens) verriegelt. Dann werden diese Zonen umgangen.
+                       Die Epithelzellen sind breitflächig aneinandergelagert und durch interzelluläre Ver-
+                       bindungen, sowie durch zytoplasmatisches Fasernetzwerk miteinander verbunden.
+                       Durch die enge Verknüpfung wird erreicht, dass das Epithel eine biologische Ein-
+                       heit bildet, ohne dass jedoch die Spezialisierung der Zellen aufgehoben wird.
+                       Embryologisch betrachtet, stammt das Epithelgewebe von allen drei Keimblättern
+                       ab.
+                       Form und Größe der Epithelzellen sind sehr verschieden. Es überwiegt ein poly-
+                       edrisches (vielflächiges) Aussehen. Dies ist abzuleiten aus der Tatsache, dass Epi-
+                       thelzellen in der Regel dicht zusammengepackt liegen.
+                       Epithelzellen verfügen über zwei verschiedene Zellpole, einen apikalen und einen
+                       basalen Pol. Der apikale Pol zeigt nach außen (z. B. zur Haut oder zum Darmlu-
+                       men) hin. Der basale Pol verbindet die Zellen über die Basalmembran mit den
+                       darunterliegenden Zellen.
+                       Die Grenzmembran der apikalen Seite von Epithelzellen zeigt große Unterschie-
+                       de. Manche besitzen bestimmte Enzymausstattungen, die dazu dienen, beispiels-
+                       weise Fette, Kohlenhydrate oder Proteine abzubauen (bes. Darmepithel).
+
+
+
+
+                                                                7
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Andere wiederum haben feine, fingerförmige Ausstülpungen, die die Zelloberflä-
+                       che enorm vergrößern können und damit die Leistungsfähigkeit des Epithels bei
+                       der Stoffaufnahme erhöhen. Diese Ausstülpungen werden als Mikrovilli (Lat. vil-
+                       lus = Zotte) oder Mikrofalten bezeichnet. Mikrovilli sind keine statischen Gebilde.
+                       Sie können sowohl neue gebildet werden, als auch wieder verschwinden.
+                       Bürstensäume (auch Stäbchensäume genannt) sind stationäre Strukturen. Sie be-
+                       stehen aus flächenhaft angeordneten Mikrovilli und besitzen einen verringerten
+                       Diffusionswiderstand für kleine Moleküle. Sie sind daher in ihrer Struktur äußerst
+                       gut für die Aufnahme und Abgabe von Stoffen geeignet. Zudem sind sie in der
+                       Lage, geringe Kontraktionsbewegungen auszuführen (bes. Dünndarmepithel und
+                       Nierenepithel).
+                       Viel länger als die Mikrovilli sind die Kinozilien (Flimmerhärchen), bewegliche
+                       Zellfortsätze an manchen Epithelzellen. Sie stehen dicht beieinander und führen
+                       Vor- und Rückwärtsbewegungen aus. So transportieren sie Flüssigkeiten und Parti-
+                       kel innerhalb eines Organes.
+
+
+
+
+                       Abb. 1: Verankerung eines Epithels auf der Basalmembran
+                       (hier Darmepithel) und dem ernährenden Bindegewebe
+
+
+
+
+                       Versorgung des Epithelgewebes
+                       Das Epithelgewebe ist gefäßlos. Ernährt wird es durch das darunterliegende, ge-
+                       fäßführende Bindegewebe. Beim geschichteten Epithel erfolgt die Versorgung mit
+                       Nährstoffen und der Transport von Stoffwechselschlacken über Diffusion. Dabei
+                       spielt das Interzellularsystem eine bedeutende Rolle.
+                       Auch Nervenfasern dringen in das Epithelgewebe ein. Sie verlaufen durch die In-
+                       terzellularspalten.
+
+
+
+
+                                                                     8
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                       1032
+
+
+
+                       Einteilung des Epithelgewebes
+                       Aufgrund ihrer Struktur und Funktion werden vier Gruppen von Epithelien unter-
+                       schieden:
+                           § Oberflächenepithel,
+                           § Drüsenepithel,
+                           § Sinnesepithel,
+                           § Myoepithel.
+                       Im Folgenden befassen wir uns ausführlich mit den verschiedenen Arten von Epi-
+                       thel.
+
+
+                       1.1 Oberflächen- oder Deckepithel
+                       Das Oberflächenepithel bekleidet die äußere Oberfläche des Körpers oder seine
+                       Hohlräume. Zudem bildet es Grenzschichten.
+                       Nach der Anordnung ihrer Zellen spricht man von
+                          § einschichtigen,
+                          § mehrreihigen und
+                       mehrschichtigen Epithelien.
+                       Nach der Form der oberflächlichen Zellschicht wiederum von
+                          § platten,
+                          § isoprismatischen und
+                          § hochprismatischen Epithelien
+                       mit dem Zusatz verhornt oder unverhornt.
+
+                       1.1.1 Einschichtiges Epithel
+                       Das einschichtige Epithel kann je nach Form seiner Zellen
+                          § platt,
+                          § isoprismatisch (kubisch) oder
+                          § hochprismatisch (zylinderförmig) sein.
+
+                       Einschichtiges Plattenepithel
+
+                       Einschichtiges Plattenepithel ist
+                       sehr dünn und ermöglicht so einen
+                       leichten Stoffaustausch. Es kommt
+                       z. B. als Endothel vor, das die
+                       Blutgefäße auskleidet und als Me-
+                       sothel, das die Oberfläche von                Abb. 2: Einschichtiges Epithel
+                       Brust- und Bauchfell bildet.
+
+
+
+
+                                                               9
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                         1032
+
+
+
+                       Einschichtiges isoprismatisches (kubisches) Epithel
+                       Einschichtiges isoprismatisches Epithel übernimmt Transportaufgaben im Sinne
+                       von Resorption und Sekretion. So findet man es z. B. an der Oberfläche des Ovars
+                       (Eierstock), in vielen Drüsen und in verschiedenen Nierenkanälchen.
+
+                       Einschichtiges hochprismatisches Epithel
+                       Einschichtiges hochprismatisches Epithel findet man u. a. an der Oberfläche des
+                       Verdauungstrakts wie Magen- und Darmschleimhaut sowie im Uterus (Gebärmut-
+                       ter) und in den Tuben (Eileiter). Dieses Gewebe übernimmt eine Barriere- und
+                       Transportfunktion und erleichtert die Gleitbewegung der entsprechenden Organe.
+                       Zudem finden hier Resorption und Sekretion statt, und es ist zum aktiven Transport
+                       durch Pinozytose befähigt.
+
+                       1.1.2 Mehrreihiges Epithel
+                       Beim mehrreihigen Epithel sind zwar alle Zellen auf der Basallamina verankert,
+                       doch nicht alle reichen bis an die apikale Oberfläche heran. Die hochprismatischen
+                       Zellen erfüllen die eigentliche Funktion, während kleine Basalzellen als Reserve
+                       bereitstehen.
+                       Beispiele für ein mehrreihiges Epithel
+                       sind das Gewebe des Nebenhodengan-
+                       ges (zweireihig) und des Samenleiters.
+                       Zudem kleidet es Trachea (Luftröhre),
+                       Bronchien und Nasenhöhlen aus.
+                       Das respiratorische Epithel besitzt Ki-
+                       nozilien für den Partikeltransport.
+                       Auch das mehrreihige Epithel über-
+                       nimmt eine Barrierefunktion und er-
+                       füllt zum Teil sekretorische Aufgaben.
+                                                                      Abb. 3: Mehrschichtiges Epithel
+
+
+                       1.1.3 Mehrschichtiges Epithel
+                       Hier bilden die Zellen viele übereinanderliegende Lagen. Die basal gelegenen Zel-
+                       len sind meist hochprismatisch, sie flachen zur Oberfläche hin immer mehr ab. Die
+                       Einteilung des mehrschichtigen Epithels erfolgt nach der Form der oberflächlichen
+                       Zellen.
+                       So gibt es
+                          § mehrschichtiges plattes,
+                          § mehrschichtiges hochprismatisches
+                          § sowie Übergangsepithel.
+                       Epithelgewebe kann
+                          § verhornt oder
+
+
+
+
+                                                                 10
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                           § unverhornt
+                       sein.
+
+                       Mehrschichtiges unverhorntes Epithel
+                       Das mehrschichtige unverhornte Epithel bedeckt innere Oberflächen, die stets
+                       durch Drüsensekrete feucht gehalten werden müssen. Es bildet die Schleimhäute
+                       von Mund, Ösophagus (Speiseröhre), Vagina und Analkanal. Zudem finden wir es
+                       in der Bindehaut und als vorderes Hornhautepithel, wo es durch die Tränenflüssig-
+                       keit feucht gehalten wird.
+
+                       Mehrschichtiges verhorntes Epithel
+                       Mehrschichtiges verhorntes Epithel bildet die Epidermis der Haut (Oberhaut). Die
+                       Hornschicht wird laufend abgestoßen und durch Umwandlung von Epithelzellen
+                       neu gebildet.
+                       Mehrschichtiges Epithel findet sich überall dort, wo eine hohe mechanische Belas-
+                       tung herrscht. Das verhornte Plattenepithel der Haut verhindert zudem Wasserver-
+                       lust.
+
+
+
+
+                                                 Abb. 4: Mehrschichtiges verhorntes Plattenepithel
+
+
+
+
+                       Übergangsepithel
+                       Beim Übergangsepithel handelt es sich um ein mehrschichtiges Epithel, das ins-
+                       besondere Hohlorgane mit veränderlicher Ausdehnung auskleidet. Das Besondere
+                       am Übergansepithel ist seine Anpassungsfähigkeit an große Volumenschwankun-
+                       gen. Als Urothel kleidet es Nierenbecken, Ureter (Harnleiter), Harnblase und den
+                       oberen Teil der Harnröhre aus.
+                       Bei dieser speziellen Epithelart folgen der basalen Schicht aus hochprismatischen
+                       Zellen Schichten aus einer wechselnden Zahl irregulär geformter Zellen, deren
+                       Zellmembran in ungedehntem Zustand stark gefaltet ist.
+
+
+
+
+                                                                        11
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Die Oberfläche besteht aus großen, abgerundeten Deckzellen mit verdickter Zell-
+                       membran (Crusta). Sie haben häufig zwei Kerne. Diese großen Zellen sondern
+                       Schleim ab, um die darunterliegenden Zellen vor dem konzentrierten Harn zu
+                       schützen.
+                       Mit zunehmender Füllung (Dehnung) der Harnblase geht das hochprismatische in
+                       ein eher flaches Epithel über. Daher der Name Übergangsepithel.
+
+                       Lebensdauer von Epithelzellen
+                       Die Lebensdauer der Epithelzellen ist beschränkt. Besonders bei den Oberflächen-
+                       epithelien gehen physiologisch fortlaufend Zellen verloren und müssen durch neue
+                       ersetzt werden. Die Erneuerung der Zellen geschieht in der Regel von basal
+                       (Stammzellen) nach apikal (die äußere Schicht wird abgestoßen).
+                       Unter besonderen Umständen, wie z. B. nach Verletzungen, können auch andere
+                       Zellen als Reservestammzellen beim Zellersatz mitwirken. Am auffälligsten ist der
+                       Zellverlust an der Haut, doch im Magen-Darm-Kanal ist er noch wesentlich höher.
+                       Die notwendige mitotische Neubildung erfolgt möglichst entfernt von der Stelle
+                       der Abstoßung. Die erste Generation der Tochterzellen weist in der Regel eine
+                       hohe Teilungsrate auf.
+
+                       Regenerationsfähigkeit des Oberflächenepithels
+                       Das Oberflächenepithel zeigt auch unter pathologischen Bedingungen eine gute
+                       Regenerationsfähigkeit.
+                       Bei Epitheldefekten durch Verletzung der Haut oder der Cornea kommt es in der
+                       Umgebung zu zahlreichen Mitosen, so dass der Schaden meist rasch behoben ist.
+                       Bei tieferen Verletzungen ist eine Regeneration jedoch schwierig.
+
+                       Farbe des Epithels
+                       Die Farbe des Epithels wird von seinem jeweiligen Durchmesser und der Blutver-
+                       sorgung beeinflusst. Auch Pigmentzellen spielen eine Rolle. Bei entsprechender
+                       Durchblutung erscheint die Oberfläche umso rötlicher, je niedriger das Oberflä-
+                       chenepithel ist.
+
+                       Merke:
+
+                         Epithelgewebe befindet sich auf inneren und äußeren Oberflächen. Es handelt
+                         sich um geschlossene Zellverbände, die keine eigene Blutversorgung haben und
+                         durch Diffusion von dem darunterliegenden Gewebe ernährt werden.
+                         Wir unterscheiden einschichtiges, mehrreihiges und mehrschichtiges Epithel so-
+                         wie platte, isoprismatische und hochprismatische Epithelien, die z. T. verhornt
+                         und z. T. unverhornt sind.
+
+
+
+
+                                                               12
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                    1032
+
+
+
+                       1.2 Drüsenepithel
+                       Das Drüsenepithel besteht aus Zellen, die zur Sekretion, also zur Bildung und Ab-
+                       gabe von Stoffen wie Speichel, Magensaft, Schleim und Galle befähigt sind.
+                       Grundsätzlich werden die Sekrete nicht von den produzierenden Zellen selbst ge-
+                       braucht, sondern an anderer Stelle des Organismus. Die Zusammensetzung der Se-
+                       krete ist sehr unterschiedlich. Sie können Proteine (Verdauungsenzyme), Lipide
+                       (Talgdrüsen) oder Glykoproteine (Mundspeicheldrüsen) enthalten.
+                       In den Milchdrüsen werden Eiweiß, Fette und Kohlenhydrate gleichzeitig sezer-
+                       niert. Das Sekret der Schweißdrüsen unterscheidet sich dagegen nur wenig von
+                       dem des Blutplasmas.
+
+                       1.2.1 Drüsenarten
+
+                       Endokrine Drüsen
+                       Endokrine Drüsen besitzen keinen Ausführungsgang, sondern geben ihr so ge-
+                       nanntes Inkret direkt in die Blutbahn ab. Das Produkt endokriner Drüsen sind die
+                       Hormone.
+
+                       Exokrine Drüsen
+                       Exokrine Drüsen stehen mit der freien Oberfläche durch einen Ausführungsgang in
+                       Verbindung. Sie sondern ihr Sekret an eine innere oder äußere Oberfläche ab.
+                       Folgende Kriterien werden für die Klassifizierung der exokrinen Drüsen ange-
+                       wendet:
+                          § Lokalisation der Drüsen,
+                          § Beschaffenheit des Sekretes,
+                          § Art der Sekretabgabe,
+                          § Form des Drüsengewebes.
+
+                       1.2.2 Klassifizierung der exokrinen Drüsen
+                       1.2.2.1 Klassifikation nach der Lokalisation
+
+                         Endoepitheliale Drüsen
+                       Es gibt Drüsen, die nur aus einer einzigen Zelle bestehen, wie beispielsweise die
+                       schleimproduzierenden Becherzellen (Darm, Luftwege). Diese Drüsen liegen in-
+                       nerhalb des Oberflächenepithels = endoepitheliale Drüsen.
+
+                         Exoepitheliale Drüsen
+                       Doch die meisten Drüsen bestehen aus vielen Zellen. Diese finden im dünnen Epi-
+                       thelgewebe nicht genug Raum, daher stülpen sie sich in das darunterliegende Bin-
+                       degewebe aus = exoepitheliale Drüsen.
+
+
+
+
+                                                              13
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Einzellige Drüsen
+                       Wie bereits erwähnt, ist die am häufigsten vorkommende einzellige Drüse die Be-
+                       cherzelle. Man findet sie besonders im Dünndarm und im Epithel der Atemwege.
+                       Mit Sekret gefüllte Becherzellen sind kelchartig erweitert. An ihrer Oberfläche be-
+                       finden sich Mikrovilli.
+                       Das Sekret, ein unterschiedlich zusammengesetzter Schleim, wird durch Zerreißen
+                       der Zelloberfläche abgegeben. Da die Becherzelle viel raues endoplasmatisches
+                       Retikulum und einen stark entwickelten Golgi-Apparat besitzt, kann sie die für den
+                       Schleim benötigten Glykoproteine synthetisieren.
+                       Becherzellen, die ihr Sekret abgegeben haben, sind schmal. Größtenteils gehen sie
+                       nach der Schleimabgabe zugrunde.
+
+
+
+
+                       Abb. 5: Becherzellen der Darmschleimhaut
+
+
+
+
+                       Vielzellige Drüsen
+                       Die meisten mehrzelligen Drüsen liegen extraepithelial (Ausnahme: einige Stellen
+                       in der Nasenschleimhaut und in der Harnröhre). Große Drüsen sind von einer Bin-
+                       degewebskapsel umgeben und in Lappen und Läppchen untergliedert. Mit dem
+                       Bindegewebe gelangen Blut- und Lymphgefäße sowie Nerven in die Drüsen.
+                       Diese Drüsen bestehen aus einem Drüsenkörper mit sekretbildenden Drüsenend-
+                       stücken, Bindegewebe mit Gefäßen und Nerven und verschieden ausgebildeten
+                       Drüsenausführungsgängen. Meistens befinden sich an der Zelloberfläche Mikrovil-
+                       li.
+
+                       Merke:
+
+                         Drüsenzellen produzieren bestimmte Sekrete, die der Organismus an unter-
+                         schiedlichen Stellen dringend benötigt.
+                         Wir unterscheiden endoepitheliale, exoepitheliale, exokrine und endokrine Drü-
+                         sen sowie einzellige und vielzellige Drüsen.
+
+
+
+
+                                                                  14
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                   1032
+
+
+
+
+                         Die Drüsenzellen werden durch Blutgefäße mit Nährstoffen und durch Nerven
+                         mit Informationen versorgt.
+
+
+
+                       1.2.2.2 Klassifikation nach der Beschaffenheit des Sekretes
+                       Nach der Beschaffenheit des Sekretes unterscheiden wir:
+                          § seröse,
+                          § muköse und
+                          § gemischte Drüsen.
+
+                       Seröse Drüsen
+                       Die Endstücke dieser Drüsen produzieren ein dünnflüssiges, protein- und enzym-
+                       reiches Sekret. Seröse Drüsen besitzen einen runden Kern, ein stark entwickeltes
+                       raues endoplasmatisches Retikulum und einen großen Golgi-Apparat.
+                       Das Lumen der Drüsenendstücke ist eng.
+                       Beispiele für seröse Drüsen:
+                          § die Ohrspeicheldrüse (Glandula parotidea),
+                          § die Tränendrüsen (Glandula lacrimalis),
+                          § die Schweißdrüsen (Glandula sudorifera),
+                          § die Bauchspeicheldrüse (Pankreas).
+
+
+
+
+                                  Abb. 6: Seröse Drüse
+
+
+
+                       Muköse Drüsen
+                       In mukösen Drüsen wird ein dickflüssiger, enzymarmer Schleim gebildet. Die Drü-
+                       senlumina sind aus leicht ersichtlichen Gründen weit. Rein muköse Drüsen sind
+                       relativ selten.
+                       Beispiele für muköse Drüsen:
+                          § hintere Zungendrüse,
+                          § einige kleine Speicheldrüsen,
+
+
+
+
+                                                              15
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                   1032
+
+
+
+                            § die Kardia- und Pylorusdrüsen des Magens.
+
+
+
+
+                                 Abb. 7: Muköse Drüse
+
+
+
+                       Gemischte Drüsen (seromukös)
+                       In den Endstücken dieser Drüsen kommen gleichzeitig seröse und muköse End-
+                       stückzellen vor. Es wird also ein gemischtes Sekret gebildet.
+                       Beispiele für gemischte Drüsen:
+                          § die Speicheldrüsen des Mundbodens,
+                          § die Fundusdrüsen des Magens.
+
+
+
+
+                                         Abb. 8: Gemischte Drüse
+
+
+                       Drüsen, deren unterschiedlich spezialisierte Zellen verschiedene Sekrete bilden,
+                       werden heterokrin benannt (z. B. Fundusdrüsen), homokrine Drüsen (z. B.
+                       Schweißdrüsen) bestehen aus einer Zellart.
+
+
+                       Merke:
+
+                         Wir unterscheiden Drüsen aufgrund ihrer Sekretion in seröse, muköse und ge-
+                         mischte Drüsen.
+
+
+
+
+                                                                   16
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       1.2.2.3 Klassifikation nach Art der Sekretabgabe
+                       Eine Klassifikation der Drüsen kann auch nach Art der Sekretabgabe erfolgen.
+                       Hier werden
+                          § merokrine,
+                          § apokrine und
+                          § holokrine Sekretion
+
+                       Merokrine Sekretion
+                       Die merokrine Sekretion erfolgt per Exozytose. Die zu sezernierenden Stoffe befin-
+                       den sich in der Zelle in Vesikeln und werden durch eine Verschmelzung mit der
+                       Zellmembran nach außen freigesetzt.
+                       Beispiele für merokrine Drüsen:
+                          § die Speicheldrüsen,
+                          § die Schweißdrüsen,
+                          § die Drüsen des Geschlechtsapparates,
+                          § die Bauchspeicheldrüse,
+                          § alle endokrinen Drüsen.
+
+
+
+
+                                           Abb. 9: Merokrine Drüse
+
+
+
+                       Apokrine Sekretion
+                       Bei der apokrinen Sekretion wird ein Teil des apikalen Zytoplasmas von der Drü-
+                       senzelle abgeschnürt und abgestoßen. Nach diesem Vorgang kann sich die Zelle
+                       wieder regenerieren.
+                       Beispiele für apokrine Sekretion:
+                          § die Milchdrüsen,
+                          § die Schweißdrüsen (hier im Sinne von „Duftdrüsen“).
+
+
+
+
+                                         Abb. 10: Apokrine Sekretion
+
+
+
+
+                                                                       17
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                         1032
+
+
+
+                       Holokrine Sekretion
+                       Bei der holokrinen Sekretion geht die gesamte Drüsenzelle zugrunde. Das Sekret
+                       füllt die Zelle aus, die Zelle zerfällt. Daher ist jede dieser Zellen nur zu einem ein-
+                       zigen Sekretionsvorgang fähig.
+                       Beispiel für holokrine Drüsen: Talgdrüsen der Haut.
+
+
+
+
+                                Abb. 11: Holokrine Drüse
+
+
+
+                       Merke:
+
+                         Wir unterscheiden Drüsen aufgrund der Art und Weise ihrer Sekretabgabe in
+                         merokrine, apokrine und holokrine Drüsen.
+
+
+
+                       1.2.2.4 Klassifikation nach der Form des Drüsengewebes
+                       Auch nach der Form des Drüsengewebes werden Unterscheidungen getroffen und
+                       beschrieben.
+                       Wir unterscheiden
+                          § tubulöse,
+                          § azinöse und
+                          § alveoläre Drüsen.
+
+
+
+
+                                                                 18
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+
+                                                      Abb. 12: Tubulöse, alveoläre, azinöse Drüsen
+
+
+
+
+                       Azinöse und alveoläre Drüsen
+                       Sie bilden die Endstücke zahlreicher zusammengesetzter Drüsen. Die Endstücke
+                       sind bläschenartig erweitert.
+
+                       Tubulöse (oder tubuläre) Drüsen
+                       Diese Drüsen besitzen ein tubulöses, also schlauchförmiges Endstück. Die Drüsen
+                       selbst haben eine gestreckte Form.
+                       Man unterscheidet hier:
+                          § einfach-tubulöse Drüsen,
+                          § gewunden-tubulöse Drüsen mit gestrecktem Ausführungsgang und
+                              schlauchförmigem, gewundenem Endstück (z. B. Schweißdrüsen) und
+                          § verzweigt-tubulöse Drüsen ohne speziellen Ausführungsgang (Schleimhaut
+                              von Magen und Uterus).
+                       Die tiefen Endstücke sezernieren das Sekret.
+                       Die meisten der großen Drüsen sind zusammengesetzt und zeigen zahlreiche Ver-
+                       zweigungen.
+
+                       Merke:
+
+                         Wir unterscheiden Drüsen auch nach der Form ihres Drüsengewebes. Es gibt
+                         tubulöse, azinöse und alveoläre Drüsen.
+
+
+
+                       1.2.3 Sekretbildung der exokrinen Drüsen
+                       Exokrine Drüsen produzieren kontinuierlich ihre Sekrete und geben laufend Sekret
+                       ab. Es kann nur in sehr begrenztem Umfang gespeichert werden. Bei Bedarf kann
+
+
+
+
+                                                                          19
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       aber sowohl mehr Sekret produziert, als auch alles gespeicherte Sekret abgegeben
+                       werden. Damit in Zusammenhang steht eine Vergrößerung aller Zellorganellen, die
+                       an der Sekretproduktion beteiligt sind.
+                       Die Abgabe der Hormone durch die endokrinen Drüsen erfolgt über die sehr kom-
+                       plexe Regulation des Hormonsystems.
+                       Im Vordergrund der Sekretbildung steht bei allen Drüsen die Proteinbiosynthese,
+                       da fast alle Sekrete Proteine und Glykoproteine enthalten.
+                       Die Sekretbildung unterliegt genetischen und exogenen Kontrollen (Nervensystem,
+                       endokrines System). Die meisten Drüsen reagieren sehr empfindlich auf nervöse
+                       und hormonelle Reize.
+
+                       Merke:
+
+                           § Exokrine Drüsen produzieren kontinuierlich Sekrete und geben sie entspre-
+                             chend ab.
+                           § Endokrine Drüsen geben die Hormone entsprechend des Bedarfs ab, der über
+                             das Hormonsystem streng reguliert und kontrolliert wird.
+
+
+
+                       1.2.4 Regenerationsfähigkeit des Drüsenepithels
+                       Die Regeneration des Drüsenepithels ist aufgrund seines höheren Differenzierungs-
+                       grades schwieriger als die des Oberflächenepithels. In den wenigsten Fällen kann
+                       nach einer Verletzung wieder funktionstüchtiges Drüsengewebe gebildet werden.
+                       Das Drüsenepithel wird als Parenchym bezeichnet.
+
+                       Begriffsdefinition: Parenchym
+
+                           Als Parenchym bezeichnet man das organspezifische Gewebe. Die Funktion ei-
+                           nes Organs wird maßgeblich durch das Parenchym wahrgenommen1.
+
+
+
+
+                       1.3 Sinnesepithel
+                       Beim Sinnesepithel handelt es sich um Zellgruppen, die die Fähigkeit haben, spezi-
+                       fische Umweltreize aufzunehmen, wie beispielsweise Mechanorezeptoren in der
+                       Epidermis oder Geschmackszellen der Zunge. Sie dienen ausschließlich der Wahr-
+                       nehmung und Unterscheidung von Informationen. Nach Aufnahme der Informati-
+                       on generieren sie ein sogenanntes Rezeptorpotenzial. An ihre Oberfläche treten
+                       Synapsen afferenter Nervenzellen heran und geben den Reiz an das ZNS weiter.
+
+
+
+
+                       1     http://flexikon.doccheck.com
+
+
+
+
+                                                               20
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                       Diese Sinneszellen sind also nicht selbst in der Lage, einen empfangenen Reiz an
+                       das ZNS weiterzuleiten. Sie werden deshalb als sekundäre Sinneszellen bezeich-
+                       net. Sie sind weit häufiger als die primären Sinneszellen, die gleichzeitig Rezeptor
+                       und Nervenzelle sind (z. B. im Riechepithel der Nasenschleimhaut).
+
+
+                       1.4 Myoepithel
+                       Myoepithelzellen sind kontraktile Epithelzellen mit ähnlichen Eigenschaften wie
+                       die der glatten Muskelzellen (myo von griech. mys = Muskel). Sie liegen an der
+                       Basis der Drüsenendstücke von Schweißdrüsen, Duftdrüsen und Speicheldrüsen,
+                       sowie den Ausführungsgängen der Brustdrüsen.
+                       Durch ihre Kontraktion setzen sie das jeweilige Sekret frei und unterstützen dessen
+                       Transport.
+
+                       Merke:
+
+                         Sinneszellen innerhalb der Epithelverbände dienen der Aufnahme und Weiterlei-
+                         tung von Reizen. Es werden spezielle Rezeptoren für den Geschmackssinn, den
+                         Geruchssinn, für das Gehör und die Sensibilität unterschieden.
+                         Bei den Myoepithelzellen handelt es sich um spezialisierte Epithelzellen ver-
+                         schiedener Drüsen, die durch ihre Kontraktion sowohl die Sekretion als auch
+                         den Sekrettransport gewährleisten.
+
+
+
+
+                       Fragen:
+
+
+                       Durch welche Eigenschaft kann das Epithelgewebe seine Schutzfunktion beson-
+                       ders gut wahrnehmen?
+
+
+
+
+                       Welche schleimhäutigen Strukturen werden von einschichtigem, welche von
+                       mehrreihigem Epithelgewebe ausgekleidet?
+
+
+
+
+                                                               21
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                           1032
+
+
+
+                       Welche Epithelzellen im Körper haben die größte Neubildungsrate?
+
+
+
+
+                       Welche Zellverbindung verschließt den Interzellularraum nicht?
+
+
+
+
+                       Welche Verbindung zwischen Zellen gewährleistet einen Informationsaus-
+                       tausch?
+
+
+
+
+                       Wie werden die exokrinen Drüsen klassifiziert?
+
+
+
+
+                       Was unterscheidet exokrine von endokrinen Drüsen?
+
+
+
+
+                       Wie unterscheiden sich azinöse von tubulösen Drüsen?
+
+
+
+
+                                                             22
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       2. Bindegewebe
+
+                       Das Bindegewebe ist das verbindende Element im Körper. Es ist entscheidend an
+                       der Formgebung und -erhaltung des Körpers beteiligt. Daher der Name „Bindege-
+                       webe“. Es ist das am häufigsten vorkommende Gewebe.
+                       Bindegewebe übernimmt aber noch weitere Aufgaben im Körper.
+                           § Es hat eine Stützfunktion,
+                           § es dient dem Stoffaustausch,
+                           § speichert Wasser, Fett und Eiweiß und
+                           § hat Aufgaben bei der Abwehr.
+                       Das Bindegewebe liegt im Körperinnern und ist oberflächlich von Epithel bedeckt.
+                       Alle Binde- und Stützgewebe sind aus vergleichsweise wenig Zellen und dafür
+                       reichlich Interzellularsubstanz zusammengesetzt. Die Zellen sind entweder ortsan-
+                       sässig (fixe Zellen) oder frei beweglich (freie Zellen). Die Interzellularsubstanz
+                       kann geformt als Fasern oder ungeformt als Grundsubstanz vorliegen.
+                       Entwicklungsgeschichtlich gehen alle Bindegewebe aus dem Mesenchym hervor,
+                       das daher auch embryonales Bindegewebe genannt wird. Das Bindegewebe des Er-
+                       wachsenen besitzt eine große Formenvielfalt.
+
+
+                       2.1 Ortsständige Bindegewebszellen
+                       Die in jedem Bindegewebe vorkommenden Fibroblasten und Fibrozyten, die der
+                       Faserbildung und der Synthese der Interzellularsubstanz dienen, sind über weitver-
+                       zweigte, zytoplasmatische Fortsätze miteinander verbunden.
+                       Fibroblasten stellen die aktive Form mit reger Synthesetätigkeit dar, während die
+                       Fibrozyten die Ruheform sind.
+                       Einen ähnlich weitmaschigen Verband bilden die Retikulumzellen. Sie kommen in
+                       den lymphatischen Organen, im Knochenmark und in der Darmwand vor.
+
+
+                       2.2 Freie Bindegewebszellen
+                       Die freien Bindegewebszellen beteiligen sich nicht an der Bildung von Interzellu-
+                       larsubstanz. Es handelt sich um amöboid bewegliche Zellen, die vor allem für die
+                       Abwehr verantwortlich sind. Die Zellen stammen aus dem Knochenmark und wan-
+                       dern in das Bindegewebe ein.
+                       Zu ihnen gehören:
+                          § Leukozyten (weiße Blutkörperchen),
+                          § Plasmazellen (B-Lymphozyten),
+                          § Makrophagen und
+                          § Mastzellen.
+
+
+
+
+                                                              23
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                                 1032
+
+
+
+                       Makrophagen
+                       Makrophagen (Fresszellen) nehmen aufgrund ihrer Fähigkeit zur Phagozytose und
+                       Ortsveränderung eine wichtige Stelle im Abwehrsystem des Organismus ein. Sie
+                       nehmen Zellreste, veränderte Interzellularsubstanz, Mikroorganismen und andere
+                       Schadstoffe auf. Zudem wirken sie bei immunologischen Vorgängen mit.
+                       Es wird zwischen ortsständigen (sessilen) Gewebsmakrophagen unterschieden, die
+                       den Großteil der Makrophagenpopulation ausmachen, und beweglichen (ortsunab-
+                       hängigen) Makrophagen.
+
+
+
+
+                                  Abb. 13: Blutgefäß im lockeren Bindegewebe mit einigen sog. „freien Zellen“
+
+
+
+
+                       Mastzellen
+                       Mastzellen (Mastozyten) sind im menschlichen Organismus weit verbreitet (Haut,
+                       Atmungsorgane, Verdauungskanal). Sie sind lang oder oval, ihre Kerne sind rund
+                       und liegen zentral. Sie lassen sich auf eigene Stammzellen im Knochenmark zu-
+                       rückführen.
+                       In den Mastzellen findet man u. a.:
+                           § Heparin (gerinnungshemmend),
+                           § Histamin (wichtig für die Kontraktion der glatten Muskulatur, bes. Bron-
+                              chien und Erweiterung der Blutkapillaren und Steigerung deren Aktivität).
+                       Als Teil des unspezifischen Immunsystems spielen Mastzellen im Rahmen von
+                       Entzündungsprozessen und bei der Abwehr von Pathogenen eine wichtige Rolle.
+                       Außerdem sind Mastzellen an Vorgängen beteiligt, die im Körper bei einer allergi-
+                       schen Reaktion ablaufen. Beim zweiten Kontakt mit einem Allergen setzen diese
+                       Zellen ihre Botenstoffe in großen Mengen frei und provozieren damit unter ande-
+                       rem Ödembildung, Bronchospasmen und Juckreiz.
+
+
+
+
+                                                                      24
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Merke:
+
+                         Das Bindegewebe ist das verbindende und stützende Element unseres Körpers.
+                         Es ist aus eher wenig Zellen und viel Interzellularsubstanz aufgebaut.
+
+
+
+
+                       2.3 Interzellularsubstanz
+                       Die Interzellularsubstanz des Bindegewebes (oder extrazelluläre Matrix) füllt die
+                       Zellenzwischenräume aus. Ihre zwei Hauptbestandteile sind: die formgebenden
+                       Fasern, die in die Grundsubstanz eingebettet sind, und die amorphe Grundsub-
+                       stanz.
+
+                       2.3.1 Fasern
+                       Man unterscheidet:
+                         § Kollagenfasern,
+                         § retikuläre Fasern,
+                         § elastische Fasern.
+
+                       Kollagenfasern
+                       Kollagenfasern sind die häufigste Faserart des Bindegewebes. Ihr Name leitet sich
+                       aus dem Griechischen ab (kolla = Leim) und bezieht sich darauf, dass beim Ko-
+                       chen von kollagenem Bindegewebe Leim entsteht. Aufgrund ihrer Molekularstruk-
+                       tur (Scherengitteraufbau) haben Kollagenfasern eine höhere Zugfestigkeit als
+                       Stahl.
+                       Sie sind fast undehnbar, dafür aber extrem biegsam. Daher bieten die Kollagenfa-
+                       sern eine erstaunliche Kombination von Flexibilität und Zugfestigkeit.
+                       Kollagenfasern sind unverzweigt und bilden größere oder kleinere Bündel. Diese
+                       Bündel verlaufen häufig gewellt. Die kleineren Struktureinheiten der Fasern nennt
+                       man Fibrillen (lat.: fibrilla = Fäserchen). Diese Kollagenfibrillen zeigen eine aus
+                       hellen und dunklen Bändern bestehende Querstreifung, die besonders charakteris-
+                       tisch für die Herz- und Skelettmuskulatur ist.
+                       Kollagenfasern findet man vor allem
+                           § im faserigen Bindegewebe,
+                           § in Knorpeln,
+                           § Knochen und Zahnbein,
+                       also überall dort, wo mechanische Aufgaben im Vordergrund stehen.
+                       Werden Bindegewebsfasern über eine längere Zeit entspannt, so verkürzen sie
+                       sich. Diese Tatsache hat praktische Bedeutung, da es bei längerer Ruhigstellung
+                       von Gelenken zu einer vorübergehenden Versteifung des Gelenkes kommt. Durch
+                       Üben kann der vorherige Zustand jedoch wieder hergestellt werden.
+
+
+
+
+                                                               25
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                       Andererseits verlängern sich Kollagenfasern, wenn über längere Zeit eine Span-
+                       nung besteht. Dadurch kann bei zu starker Extension der Bandapparat am Gelenk
+                       überdehnt werden.
+                       Kollagen ist das häufigste Protein des menschlichen Körpers. Es liegt im Organis-
+                       mus in verschiedenen Modifikationen vor. Es wird in zahlreichen Schritten aus den
+                       zunächst synthetisierten Polypeptidketten entwickelt. In der Regel verläuft die Bio-
+                       synthese des Kollagens reibungslos. Dennoch gibt es viele Bindegewebserkran-
+                       kungen.
+
+                       Retikuläre Fasern
+                       Retikuläre Fasern (Retikulin) sind Fasern vom Kollagentyp III. Auch sie bestehen
+                       aus Proteinen, sind aber schlanker und dünner als die meisten anderen Kollagenty-
+                       pen. Diese sehr feinen Fasern werden auch als Gitterfasern bezeichnet. Sie sind
+                       eng mit dem retikulären Bindegewebe verbunden.
+                       Sie liefern zarte Fasergitter um
+                           § Kapillaren,
+                           § Drüsenendstücke,
+                           § Nierenkanälchen,
+                           § Fettzellen und
+                           § Muskel- und Nervenfasern.
+                       Sie kommen in lymphatischen Organen und im roten Knochenmark vor. Zudem
+                       stellen sie einen wesentlichen Bestandteil der Basalmembran dar.
+                       Retikulinfasern sind biegungselastisch. Ihre Netzwerke sind flexibel und können
+                       sich Form- und Volumenveränderungen anpassen. Das ist von großer Bedeutung,
+                       da sie feine Netze beispielsweise um Arterien, Uterus und Darmwand legen, deren
+                       Volumen eine ständige Veränderung erfährt.
+                       Bei einem Mangel an retikulären Fasern in Arterien oder in der Darmwand kann es
+                       zur Ruptur (Zerreißung) kommen.
+
+                       Elastische Fasern
+                       Die elastischen Fasern sind verzweigt und bilden Fasernetze. Ihr Durchmesser ist
+                       sehr unterschiedlich. Sie kommen praktisch überall zusammen mit Kollagenfasern
+                       vor. Im natürlichen Verband verlaufen sie gestreckt oder, wenn sie abgerissen sind,
+                       auch geschlängelt. Die losgerissenen Enden rollen sich ein.
+                       Auch die elastischen Fasern bestehen aus Proteinen, allerdings in einer anderen
+                       Zusammensetzung als die des Kollagens. Sie bestehen aus amorphem Elastin und
+                       elastischen Mikrofibrillen.
+                       Im Gegensatz zu den zugfesten Kollagenfasern sind elastische Fasern zug-elas-
+                       tisch. Sie können auf das 1,5-fache ihrer Länge gedehnt werden. Lassen die Zug-
+                       kräfte nach, so kehren die Fasern in ihre ursprüngliche Länge und Form zurück.
+                       Die Elastizität nimmt im Alter etwas ab. Mit fortschreitender Dehnung nimmt der
+                       ihr entgegenwirkende Widerstand zu, was besonders für elastische Sehnen wichtig
+                       ist.
+
+
+
+
+                                                               26
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Besonders wichtig sind sie für Arterien vom elastischen Typ wie z. B. die Aorta.
+                       Sie tragen zur Aufrechterhaltung einer kontinuierlichen Strömung in den periphe-
+                       ren Arterien bei. Des Weiteren findet man sie reichlich in der Lunge, in der Kapsel
+                       mancher Organe und im faserigen Bindegewebe. Sie kommen im Knorpel von Ohr
+                       und Nase vor.
+
+                       2.3.2 Grundsubstanz
+                       Grundsubstanzen sind in der Regel amorph (griech.: formlos, ohne scharfe Be-
+                       grenzung). Sie füllen die größten Teile der Interzellularräume der Binde- und
+                       Stützgewebe. Sie sind farblos und von unterschiedlicher Konsistenz. Sie können
+                       sol- (flüssig) und gelartig (zäh), aber auch fest sein.
+                       Im Wesentlichen bestehen sie aus Wasser, Eiweißen, Kohlenhydraten und Salzen.
+                       Die mechanischen Eigenschaften wie Druckelastizität bei Knorpeln oder die Fes-
+                       tigkeit von Knochen und Zähnen wird weitgehend von ihnen bestimmt. Sie beein-
+                       flussen aber auch den selektiven Stoffaustausch zwischen Blut und Zellen, binden
+                       Wasser (wichtiges Reservoir für extrazelluläre Flüssigkeiten) und wirken als Bar-
+                       riere gegen ins Gewebe eingedrungene Fremdkörper. Sie bilden das Medium zwi-
+                       schen Kapillarwand und Zellmembran, durch welches Nährstoffe und Abbaupro-
+                       dukte transportiert werden.
+                       Der Stoffwechsel der Grundsubstanzen wird genetisch kontrolliert. Bei Störungen
+                       kommt es zu pathologischen Veränderungen und zu Erkrankungen, die sich beson-
+                       ders als Beeinträchtigung der geistigen und körperlichen Entwicklung und als Ske-
+                       lettdeformationen zeigen.
+                       Die jeweils vorhandene Gewebeflüssigkeit ist normalerweise gering. Bei gestörtem
+                       Abtransport der interstitiellen Flüssigkeit (Interzellularflüssigkeit) kommt es zur
+                       Ödembildung.
+                       Mit steigendem Alter nimmt der Grundsubstanzgehalt des Bindegewebes ab, die
+                       Fasermasse nimmt zu. Dadurch wird das Gewebe derber, und seine Permeabilität
+                       wird geringer.
+
+                       Merke:
+
+                         Im Bindegewebe unterscheidet man kollagene, retikuläre und elastische Fasern.
+                         Kollagene Fasern sind extrem zugfest, elastische Fasern sind zug-elastisch und
+                         die retikulären Fasern fügen sich zu feinen Bündeln zusammen und bilden ein
+                         elastisches Netz.
+
+
+
+
+                       2.4 Formen des Bindegewebes
+                       Es gibt verschiedene Arten von Bindegewebe. Alle bestehen jedoch aus Bindege-
+                       webszellen, Bindegewebsfasern und Grundsubstanzen. Morphologisch stehen je-
+                       doch manchmal die Zellen, ein anderes Mal die Fasern im Vordergrund. Die ver-
+                       schiedenen Bindegewebe haben unterschiedliche Struktureigenschaften.
+
+
+
+
+                                                               27
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                       1032
+
+
+
+                       2.4.1 Lockeres Bindegewebe
+                       Das lockere Bindegewebe ist im Körper weit verbreitet und kommt reichlich vor.
+                       Es dient vor allem als Verschiebeschicht zwischen den einzelnen Organen.
+                       Dazu
+                          §   füllt es Lücken, z. B. zwischen Muskeln und Muskelfasern,
+                          §   umhüllt Nerven und Gefäße,
+                          §   bildet in zahlreichen Organen das Stroma („Stützgerüst“),
+                          §   stützt das Epithelgewebe
+                          §   und findet sich in der Unterhaut,
+                          §   dient als Wasserspeicher und
+                          §   spielt eine nicht unbedeutende Rolle in der Abwehr und bei Regenerations-
+                              vorgängen.
+                       Lockeres Bindegewebe ist faserarm und besteht hauptsächlich aus Grundsubstanz
+                       mit eingelagerten, in verschiedene Richtungen verlaufenden Kollagenfasern. Elas-
+                       tische oder retikuläre Fasern sind kaum vorhanden. Lockeres Bindegewebe ist ver-
+                       formbar und kann seine Form nicht konstant halten.
+
+                       2.4.2 Straffes Bindegewebe
+                       Das straffe Bindegewebe besteht hauptsächlich aus vielen kollagenen Fasern, die
+                       parallel angeordnet oder geflechtartig miteinander verwoben sind. Dazwischen
+                       liegen wenige Fibrozyten. Grundsubstanz ist nur wenig vorhanden. Straffes Binde-
+                       gewebe erfüllt in erster Linie mechanische Aufgaben, da es Zugbeanspruchungen
+                       erheblichen Widerstand leistet.
+                       Geflechtartiges Bindegewebe findet man vor allem
+                          § in den Organkapseln,
+                          § in der Lederhaut und
+                          § in der Sklera des Auges.
+                       Immer ist ein der betreffenden Stelle angepasster, funktioneller Bau zu erkennen.
+                       Parallelfaseriges Bindegewebe setzt Zugkräften großen Widerstand entgegen. Bei-
+                       spiele für dieses Bindegewebe sind Sehnen und Bänder.
+                       Der Stoffwechsel ist schwächer als im lockeren Bindegewebe. Auch freie Zellen
+                       und Blutkapillaren sind seltener.
+
+                       Merke:
+
+                         Lockeres (interstitielles) Bindegewebe ist faserarm und dient vor allem als Was-
+                         serspeicher und der Verschieblichkeit zwischen den einzelnen Organen.
+                         Das straffe Bindegewebe enthält in erster Linie kollagene Fasern, die geflechtar-
+                         tig miteinander verwoben sind oder parallelfaserig verlaufen und von daher eine
+                         hohe Zugkraft besitzen.
+
+
+
+
+                                                                28
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+
+                         Man findet sie u. a. in den Organkapseln (geflechtartig) und als Sehnen und
+                         Bänder (parallelfaserig).
+
+
+
+                       Sehnen
+                       Die weißlich glänzenden Sehnen haben die Aufgabe, Muskeln am Knochen zu be-
+                       festigen oder Muskelbäuche untereinander zu verbinden. Zwischen den parallel
+                       verlaufenden Kollagenfasern liegen in Reihen angeordnete Fibrozyten. Sie pas-
+                       sen sich in ihrer Form der Umgebung an („Flügelzellen“). Sehnen werden von lo-
+                       ckerem Bindegewebe umhüllt, und damit dringen auch Nerven und Blutgefäße ein.
+
+
+
+
+                                                         Abb. 14: Sehne
+
+
+
+
+                       An besonders beanspruchten Stellen werden die Sehnen von Sehnenscheiden aus
+                       straffem Bindegewebe umgeben. Diese Sehnenscheiden enthalten einer der Syno-
+                       via (Gelenkschmiere) ähnliche Flüssigkeit.
+
+                       Bänder
+                       In Bändern (Ligamenten) verlaufen die Kollagenfaserbündel nach einem Muster,
+                       das der Zugbeanspruchung angepasst ist. Die dicken, parallel verlaufenden, elasti-
+                       schen Faserbündel sind ebenfalls von einer geringen Menge lockeren Bindegewe-
+                       bes umhüllt. Bänder verbinden die Knochenenden an den Gelenken und geben ih-
+                       nen Führung.
+
+                       Merke:
+
+                         Sehnen sind bindegewebige Faserzüge, die Muskeln mit Knochen oder als Zwi-
+                         schensehne zwei Bäuche eines Muskels miteinander verbinden.
+
+
+
+
+                                                              29
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+
+                         Bänder bestehen aus dicken, parallel verlaufenden, elastischen Faserbündeln, sie
+                         verbinden die Knochenenden an den Gelenken und geben ihnen Führung.
+                         Sehnen und Bänder enthalten nur wenig Blutgefäße und regenerieren daher sehr
+                         langsam.
+
+
+
+
+                       2.5 Retikuläres Bindegewebe
+                       Retikuläres Bindegewebe steht dem embryonalen, undifferenzierten Bindegewebe
+                       (Mesenchym) noch nah. Es besteht aus Retikulumzellen und retikulären Fasern.
+                       Es kommt vor allem
+                          § in den Lymphknoten,
+                          § der Milz,
+                          § im roten Knochenmark und
+                          § in den Tonsillen vor.
+                       Es bildet dort ein zartes, schwammartiges Gerüst. Die Retikulumzellen bilden ei-
+                       nen weitmaschigen, dreidimensionalen Zellverband, die retikulären Fasern ein lo-
+                       ckeres Fasermaschenwerk.
+
+                       Funktion
+                       Eine der Hauptaufgaben liegt in der
+                          § Speicherung,
+                          § Phagozytose und
+                          § Verarbeitung antigener und nicht antigener Substanzen.
+                       Retikuläres Bindegewebe kann sich in Fettgewebe umwandeln.
+
+
+                       2.6 Fettgewebe
+                       Das Fettgewebe stellt eine spezielle Form des Bindegewebes dar. Es besteht über-
+                       wiegend aus Fettzellen (Adipozyten), die meist in Gruppen in Organen oder im
+                       Bindegewebe liegen. Die Fettzellen des weißen Fettgewebes sind rund, können
+                       sich, bedingt durch ihre zusammengepackte Lage, aber auch polyedrisch verfor-
+                       men.
+
+
+
+
+                                                               30
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+
+                                                      Abb. 15: Fettgewebezellen
+
+
+
+
+                       Die Fettgewebszellen sind fast vollständig von einem großen Tropfen Fett ausge-
+                       füllt. Es bleibt nur ein kleiner Rand für das Zytoplasma übrig. Hier befindet sich
+                       auch der abgeplattete Zellkern (typische Siegelringform).
+                       Jede einzelne Fettzelle wird von einer Basallamina und von retikulären Bindege-
+                       websfasern umschlossen, die ein feines Netzwerk bilden und das Fettgewebe zu-
+                       sammenhalten. Fettgewebe tritt überall im Körper auf.
+
+                       Funktion
+                       Das Fettgewebe dient
+                          § als Energiereservoir und Nahrungsreserve,
+                          § zur thermischen Isolierung (Fett ist ein schlechter Wärmeleiter) und
+                          § Wärmeproduktion (braunes Fettgewebe),
+                          § dem Binden von Wasser.
+                       Zudem hat es mechanische Aufgaben. Es dient
+                          § als „Stoßdämpfer“,
+                          § und es füllt als sogenanntes Baufett Hohlräume aus (so fixiert es z. B. den
+                              Augapfel in der Orbita).
+                       Als subkutanes Fett gestaltet es die Oberfläche des Körpers und prägt dessen Er-
+                       scheinungsbild.
+                       Man unterscheidet zwischen:
+                          § Speicherfettgewebe: Das Speicherfettgewebe steht in engem Zusammen-
+                             hang mit dem Ernährungszustand.
+                          § Baufett: Das Baufett (Augenhöhlen, Wangen, u. a.) bleibt auch bei starker
+                             Abmagerung des Individuums größtenteils erhalten.
+                       Das Fett wird zum Teil aus dem Blut entnommen, ein anderer Teil wird aus Koh-
+                       lenhydraten gebildet.
+
+
+
+
+                                                                 31
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                       Durchblutung
+                       Die Fettdepots werden reichlich mit Blutgefäßen versorgt, daher bedingen große
+                       Lager von Speicherfett eine erhebliche Mehrbelastung des Kreislaufes.
+                       Fettgewebe ist zudem stark innerviert.
+
+                       Begriffserklärung: Innervation
+
+                           Als Innervation bezeichnet man die funktionelle Versorgung eines Organs, ei-
+                           nes Körperteils oder eines Gewebes mit Nervengewebe, d. h. Nervenzellen und
+                           Nervenfasern. Die Innervation dient der Steuerung von Körpervorgängen durch
+                           Reizausübung (Erregung) und Reizwahrnehmung2.
+
+                       Fettzellen sind sehr stoffwechselaktiv. Lipogenese (‐genese = Entwicklung, Auf-
+                       bau) und Lipolyse (‐lyse = Auflösung, Abbau) laufen nebeneinander ab. Kontrol-
+                       liert und reguliert werden diese Aktivitäten durch bestimmte Hormone.
+                       Die im Fettgewebe angehäuften Moleküle unterliegen einem beständigen Wechsel.
+                       Gelegentlich vorkommende gutartige Fettgewebstumore werden als Lipome be-
+                       zeichnet.
+
+                       Merke:
+
+                           Fettgewebe dient sowohl als Baufett zur Fixierung von Organen und als Polster-
+                           material an stark beanspruchten Stellen des Körpers, als auch als Speicherfett
+                           zur Wärmeisolierung und Energiespeicher.
+                           Überschüssige Kohlenhydrate werden zu Fettsäuren umgewandelt und im Fett-
+                           gewebe gespeichert.
+                           Vermehrtes Fettgewebe kann je nach Menge eine große Mehrbelastung des
+                           Kreislaufs bzw. des gesamten Organismus darstellen.
+
+
+
+
+                       2.7 Knorpelgewebe
+                       Im Körper finden sich Knorpel überall dort, wo starke mechanische Beanspru-
+                       chung stattfindet. Straffes Bindegewebe würde dort nicht ausreichen, Knochen da-
+                       gegen wären zu wenig biegsam.
+                           § Knorpel zeichnet sich durch seine Druckelastizität aus.
+                           § Zudem hat er die Fähigkeit, Gewicht zu tragen, zu stützen und
+                           § das Gleiten von Skelettteilen gegeneinander (in Gelenken) zu ermöglichen.
+                       Der Knorpel ist also bei Druck und Zug verformbar, kehrt aber bei Nachlassen der
+                       auf ihn einwirkenden Kräfte in seine frühere Form zurück.
+
+
+
+                       2     http://flexikon.doccheck.com/
+
+
+
+
+                                                                32
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Für seine hohe Druckfestigkeit ist vor allem die reichlich vorhandene feste Grund-
+                       substanz verantwortlich, die Knorpelzellen (Chondrozyten) und elastische Fasern
+                       umlagert.
+                       Knorpel gehört zu den sogenannten bradytrohpen Geweben mit niedriger Stoff-
+                       wechselaktivität. Es ist nicht von Blutgefäßen durchzogen, seine Ernährung erfolgt
+                       durch Diffusion aus Kapillaren des umgebenden Bindegewebes oder bei Gelenken
+                       durch die Synovia.
+                       Das Knorpelgewebe besitzt weder Lymphgefäße noch Nerven. Freie Zellen kom-
+                       men im Knorpel nicht vor.
+
+
+
+
+                            Abb. 16: Runde bzw. ovale Form
+                                  von Knorpelzellen
+
+
+
+                       Nach dem Verhältnis zwischen Fasern und Knorpelgrundsubstanz werden drei Ar-
+                       ten von Knorpeln unterschieden:
+                           § hyaliner Knorpel,
+                           § elastischer Knorpel,
+                           § Faserknorpel.
+
+                       2.7.1 Hyaliner Knorpel
+                       Der hyaline Knorpel ist die häufigste Knorpelart. Sein Name leitet sich von seiner
+                       glasartig homogen erscheinenden Grundsubstanz ab (griech. hyálinos = gläsern).
+                       Er kommt an Stellen vor, an denen besondere Elastizität erforderlich ist.
+                       So überzieht er
+                          § die Gelenkenden der Knochen,
+                          § verbindet die Rippen mit dem Brustbein und
+                          § bildet das Kehlkopfgerüst sowie den knorpeligen Anteil der Nasenscheide-
+                             wand.
+                          § Zudem bildet er beim Erwachsenen die Spangen der Luftröhre und Bronchi-
+                             en.
+
+
+
+
+                                                               33
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                       Beim Embryo bildet hyaliner Knorpel zeitweise das Skelett, er wird dann aber
+                       durch Knochen ersetzt. Erhalten bleibt er jedoch eine Zeitlang in der Wachstums-
+                       phase an den Epiphysenfugen und dient dort dem Längenwachstum des Knochens.
+                       Die Chondrozyten liegen in Knorpelhöhlen, sie können Gruppen bis zu acht Zellen
+                       bilden. Sie besitzen zahlreiche Organellen und besonders gut entwickeltes raues
+                       endoplasmatisches Retikulum und einen starken Golgi-Apparat. Das deutet auf
+                       ihre lebhafte Protein- und Kohlenhydratsynthese hin.
+                       Die Knorpelgrundsubstanz besteht zu 60‒70 % aus Wasser. Die Trockensubstanz
+                       enthält viele kollagene Fasern und andere Proteine.
+                       Mit Ausnahme der Gelenkknorpel sind alle hyalinen Knorpel von einem straffen
+                       Bindegewebe, dem Perichondrium, umgeben. Dies ist wichtig für das Wachstum
+                       und den Erhalt des Knorpels.
+                       Knorpel neigen mehr als andere Gewebe zu degenerativen Veränderungen. Am
+                       häufigsten kommt es zu Kalkeinlagerungen in der Grundsubstanz. Dadurch gehen
+                       die Chondrozyten zugrunde. Am Ende bleibt nur noch ein verkalkter Restknorpel
+                       übrig. Besonders davon betroffen sind die Gelenkknorpel. Geschädigter Knorpel
+                       regeneriert sich nur bei jungen Menschen einigermaßen gut.
+
+                       2.7.2 Elastischer Knorpel
+                       Elastischer Knorpel enthält neben wenigen kollagenen Fasern vor allem elastische
+                       Fasernetze. Dadurch ist er leicht verformbar.
+                       Er kommt vor
+                          § in der Nase,
+                          § in den Ohrmuscheln,
+                          § im äußeren Gehörgang,
+                          § in der Paukenhöhle und
+                          § bildet den Kehldeckel.
+                       Seine Zellen unterscheiden sich morphologisch nicht von denen des hyalinen
+                       Knorpels, doch liegen sie häufiger einzeln.
+                       Auch elastischer Knorpel wird von straffem Bindegewebe umgeben. Er ist degene-
+                       rativen Veränderungen wie Verkalken oder Verknöchern gegenüber weniger emp-
+                       findlich als der hyaline Knorpel.
+
+                       2.7.3 Faserknorpel
+                       In dem robusten Faserknorpel sind die kollagenen Fasern stark vertreten. Faser-
+                       knorpel ist ein sehr straffes und druckfestes Gewebe und findet sich vor allem dort,
+                       wo Druckbeanspruchung durch Sehnen und Bänder auftritt, z. B.
+                          § in den Zwischenwirbelscheiben der Wirbelsäule (Disken) und den halb-
+                             mondsförmigen Knorpelscheiben des Kniegelenks (Menisken) sowie
+                          § am Knochenansatz verschiedener Bänder.
+
+
+
+
+                                                               34
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Typische Knorpelzellen (Chondrozyten) kommen nur spärlich vor. Auch die
+                       Grundsubstanz tritt stark zurück. Die Kollagenfaserbündel sind nach der Druck-
+                       und Zugbelastung angeordnet. Der Knorpel kann größeren Kräften widerstehen
+                       und bleibt bei Verformungen federnd.
+                       Faserknorpel besitzen kein Perichondrium (Knorpelhaut), sondern gehen direkt in
+                       die angrenzenden Strukturen (Knochen, straffes Bindegewebe) über.
+
+                       Merke:
+
+                         Knorpel ist ein sogenanntes bradytrophes Gewebe = nicht durchblutet.
+                         Hyalinen Knorpel finden wir an den Gelenkenden der Knochen, in der Nasen-
+                         scheidewand, am Kehlkopf und in den Spangen von Luftröhre und Bronchen.
+                         Elastischer Knorpel ist in der Nase, in den Ohrmuscheln, im äußeren Gehör-
+                         gang, in der Paukenhöhle und als Kehldeckel festzustellen.
+                         Faserknorpel ist Bestandteil von Menisken und Disken. Er bildet auch den
+                         Schambeinfugenknorpel.
+
+
+
+
+                       2.8 Knochengewebe
+                       Auch Knochen gehören zum Bindegewebe. Sie sind die wichtigsten Bestandteile
+                       des passiven Bewegungsapparates. Vorrangig haben sie eine Stütz- und Schutz-
+                       funktion:
+                          § Sie schützen insbesondere das Zentralnervensystem, das im Schädel und im
+                              Wirbelkanal liegt, aber auch das Knochenmark und die im Thorax (Brust-
+                              raum) liegenden Organe.
+                          § Sie geben dem Körper Halt und Festigkeit und dienen den Skelettmuskeln
+                              als Ansatz.
+                       Knochen sind fest gegen Zug, Druck, Biegung und Drehung. Das Knochengewebe
+                       gehört zu den härtesten Geweben im Körper. Ähnlich hart und belastbar sind nur
+                       noch die Zähne.
+                       Als wichtigster Kalziumspeicher des Körpers hat er auch metabolische Aufgaben.
+                       Der Kalziumspiegel des Blutes wird je nach Bedarf durch Knochenabbau (Osteoly-
+                       se) oder Knochenaufbau (Osteogenese) angepasst.
+                       Dies erfordert ein empfindliches (hormonell gesteuertes) System. Die Kalziumzu-
+                       fuhr erfolgt durch die Nahrung. Ist sie gestört, so kommt es zu charakteristischen
+                       Erkrankungen (z. B. Rachitis, Osteomalazie).
+                       Kalzium spielt eine große Rolle
+                          § bei der Aktivierung zahlreicher Enzymsysteme,
+                          § bei der Muskelkontraktion und
+                          § für die Erregbarkeit im Zentralnervensystem.
+                          § Zudem ist es wichtig für die Blutgerinnung und die Zellhaftung.
+
+
+
+
+                                                              35
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                  1032
+
+
+
+                       Die Knochen sind außerdem ein wichtiger Phosphatspeicher: 75 % des im Organis-
+                       mus vorkommenden Phosphats werden hier gespeichert.
+                       Trotz seiner Härte kann sich Knochen den jeweiligen Anforderungen anpassen und
+                       seinen Aufbau ändern, auch wenn dies eine längere Zeit in Anspruch nimmt.
+                       Wichtig für Wachstum und Erhalt des Knochens sind Proteine, Vitamine und Hor-
+                       mone.
+                       Jeder Knochen besteht aus
+                           § der Kompakta (Kortikalis), die als äußere kompakte Schicht die Knochen
+                              umgibt und
+                           § der Spongiosa, die im Innern ein schwammartiges (lat. spongia =
+                              Schwamm) Balkenwerk bildet.
+                       Die Kompakta ist von einer dünnen Knochenhaut, dem Periost, umgeben. Das
+                       Periost ist eine Bindegewebsschicht, die reich an Nerven ist. Diese ermöglichen
+                       unter anderem Verletzungen der Kompakta wahrzunehmen, die selbst nicht ener-
+                       viert wird. Das Periost hat überdies ernährende und regenerative Funktionen.
+                       Als Knochenmark (lat. Medulla ossium) bezeichnet man das spezialisierte Binde-
+                       und Stammzellgewebe, das sich im Zentrum der großen Knochen in der Markhöh-
+                       le zwischen den Bälkchen der Spongiosa befindet.
+                       Man unterscheidet zwischen zwei verschiedenen Formen von Knochenmark:
+                         § Rotes Knochenmark (Medulla ossium rubra): Ort der Blutbildung.
+                         § Bei Säuglingen findet man das rote Knochenmark in allen Knochen, bei Er-
+                            wachsenen kommt es in platten und kurzen Knochen vor.
+                         § Gelbes Knochenmark (Medulla ossium flava): auch Fettmark genannt.
+                         § Die gelbe Farbe kommt durch Retikulumzellen zustande, in die große Men-
+                            gen Fett eingelagert sind. Gelbes Knochenmark hat keine blutbildende
+                            Funktion. Es befindet sich hauptsächlich in der Diaphyse (Knochenschaft)
+                            der Röhrenknochen.
+
+                       Merke:
+
+                         § Die Knochen sind die härteste Substanz des menschlichen Körpers. In ihnen
+                           sind die Mineralsalze eingelagert (v. a. Kalzium).
+                         § Sie haben eine besondere Stütz- und Schutzfunktion und geben die Körper-
+                           form vor. Außerdem spielen sie eine große Rolle bei der Blutbildung.
+                         § Die Knochen sind aus Periost (Knochenhaut), Kompakta, Spongiosa und
+                           dem Knochenmark aufgebaut.
+
+                       Wir unterscheiden folgende Knochenformen:
+                          § kurze,
+                          § platte Knochen,
+                          § lange oder Röhrenknochen,
+                          § unregelmäßige Knochen.
+
+
+
+
+                                                             36
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                   1032
+
+
+
+                       Kurze Knochen
+                       Die kurzen Knochen haben nur eine dünne Kompakta und eine ausfüllende Spon-
+                       giosa. Kurze Knochen sind z. B. die Hand- und Fußwurzelknochen.
+
+                       Flache oder Platte Knochen
+                       Bei den flachen Knochen wie z. B. Schulterblatt, Brustbein oder etliche Schädel-
+                       knochen gibt es ebenfalls nur eine sehr dünne Kompakta und eine schmale Spon-
+                       giosa. Auch hier enthalten die Hohlräume der Spongiosa Knochenmark.
+
+                       Lange Knochen
+                       Die langen Knochen werden auch als Röhrenknochen bezeichnet. Sie sind typisch
+                       für die Extremitäten.
+                           § Die beiden verdickten Enden des Röhrenknochens heißen Epiphysen,
+                           § der dazwischenliegende Schaft wird als Diaphyse bezeichnet.
+                       Die Diaphysen besitzen eine sehr dicke, lamellenförmige Kompakta. Die Kno-
+                       chenhöhle enthält das Knochenmark.
+                       An den Epiphysen ist die Kompakta relativ dünn, aber Knochenbälkchen (Spon-
+                       giosa) füllen das Innere aus. Diese Bälkchen sind nach den Druck- und Zuglinien
+                       angeordnet und erreichen so ein hohes Maß an Festigkeit. Zwischen den Bälkchen
+                       findet sich das rote Knochenmark. Oberflächlich sind die Epiphysen teilweise
+                       überknorpelt und bilden die Gelenke.
+
+                       Unregelmäßige Knochen
+                       Zu den unregelmäßigen Knochen zählen z. B. die Wirbel, der Unterkiefer und die
+                       Knochen der Schädelbasis.
+
+                       Merke:
+
+                         Wir unterscheiden kurze Knochen (Hand- und Fußwurzelknochen), platte Kno-
+                         chen (Schulterblatt, Brustbein usw.), lange oder Röhrenknochen (Arme und Bei-
+                         ne) und unregelmäßige Knochen (Wirbel, Unterkiefer usw.).
+                         Knochen bestehen aus der Diaphyse (Mittelstück), der Metaphyse (Stück zwi-
+                         schen Dia- und Epiphyse), der Epiphyse (Gelenkenden) und der Epiphysenfuge
+                         (Knorpelscheibe zwischen Epi- und Metaphyse).
+
+
+
+
+                                                              37
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                    1032
+
+
+
+
+                       Abb. 17: Längsschnitt eines Röhrenknochens
+
+
+
+
+                       2.8.1 Knochenzellen
+                       Alle Knochen bestehen aus Knochenzellen (Osteozyten) und Interzellularsubstanz.
+                       Man unterscheidet vier verschiedenen Formen:
+                          § Vorläuferzellen,
+                          § Osteoblasten,
+                          § Osteozyten,
+                          § Osteoklasten.
+
+                       Vorläuferzellen
+                       Vorläuferzellen sind während des ganzen Lebens im Knochen vorhanden. Sie sind
+                       relativ undifferenziert, besitzen wenig raues endoplasmatisches Retikulum und nur
+                       einen kleinen Golgi-Apparat. Sie können sich aber zu Osteoblasten entwickeln.
+                       Während des Knochenwachstums sind sie sehr aktiv, auch bei Knochenbrüchen im
+                       Erwachsenenalter können sie wieder aktiviert werden.
+
+
+
+
+                                                                    38
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Osteoblasten
+                       Osteoblasten sind „Knochenaufbauer“. Sie synthetisieren die organischen Bestand-
+                       teile der Knochengrundsubstanz, Kollagene und andere Proteine. Man findet sie an
+                       der Oberfläche von Knochenbälkchen, wo sie dicht nebeneinander liegen. Ihre Ak-
+                       tivität wird zum großen Teil durch Hormone gesteuert. Die meisten Osteoblasten
+                       entwickeln sich zu Osteozyten.
+
+                       Osteozyten
+                       Osteozyten sind die eigentlichen Knochenzellen. Sie sind aus den Osteoblasten
+                       hervorgegangen und dienen der Erhaltung des Knochens. Ihre Fortsätze erleichtern
+                       den Stofftransport. Ihre Organellen weisen darauf hin, dass sie eine gegenüber den
+                       Osteoblasten vergleichsweise verminderte Synthesetätigkeit innehaben. Weder Os-
+                       teoblasten noch Osteozyten sind teilungsfähig.
+
+                       Osteoklasten
+                       Osteoklasten sind stark verzweigte, bewegliche Riesenzellen, die in der Lage sind,
+                       Knochengrundsubstanz abzubauen. Der große Zellleib kann mehr als 50 Kerne
+                       enthalten. Ein Osteoklast kann pro Zeiteinheit die gleiche Knochenmenge abbauen,
+                       die 100 – 150 Osteoblasten aufgebaut haben.
+                       Die Interzellularsubstanz des Knochens besteht
+                          § zu 50 % aus Mineralien,
+                          § zu etwa 25 % aus organischen Verbindungen
+                       und zu etwa 25 % aus Hydratationswasser.
+                       Unter den Bestandteilen der Knochengrundsubstanz herrschen Phosphat und Kal-
+                       zium vor. Daneben gibt es Magnesium, Kalium, Chlor, Eisen und Karbonat. 99 %
+                       des im Körper enthaltenen Kalziums sind im Knochen deponiert.
+                       Im organischen Material wiederum überwiegen die Kollagenfasern, dann folgen
+                       andere Proteine.
+                       Knochen sind sehr stoffwechselaktiv und unterliegen einem dauernden Stoffaus-
+                       tausch. Für die Ernährung des Knochens ziehen Blutgefäße vom Periost aus zu den
+                       sogenannten Havers-Kanälen im Lamellensystem der Kompakta. So gelangen
+                       Blutgefäße und auch Nervenfasern zum Knochenmark und zur Spongiosa in die
+                       Markhöhle.
+                       Die Blutversorgung des Knochengewebes erfolgt größtenteils durch eigene Gefä-
+                       ße. Dazu kommen weitere Systeme von Knochenkanälchen. Auch Abfallprodukte
+                       werden durch diese Kanalsysteme ausgeschleust.
+
+                       Merke:
+
+                         Die Osteoblasten = „Knochenbauer“, die Osteoklasten = „Knochenklauer“.
+                         Die Osteozyten dienen der Erhaltung der Knochenmatrix.
+
+
+
+
+                                                              39
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+
+                         Der Havers-Kanal sorgt für die Nährstoffversorgung und Reizübertragung der
+                         Knochen.
+
+
+
+                       2.8.2 Knochenentwicklung (Osteogenese)
+                       Knochenzellen sind, wie bereits oben erwähnt, in die feste Grundsubstanz einge-
+                       mauert. Daher können sie nicht durch Zellteilung wachsen, es muss also ein ande-
+                       rer Weg gewählt werden.
+                       Hier unterscheidet man
+                          § die desmale und
+                          § die chondrale
+                       Ossifikation (Verknöcherung).
+
+                       Desmale (direkte) Ossifikation
+                       Die desmale oder direkte Ossifikation ist die häufigste Art der Knochenbildung,
+                       allerdings entstehen dabei nur selten ganze Knochen. Der Knochen wird direkt aus
+                       dem embryonalen Bindegewebe gebildet. Es entstehen Bindegewebs-, Deck- und
+                       Belegknochen.
+                       Dabei sammeln und vermehren sich die Mesenchymzellen (Füll- und Stützgewe-
+                       be) an bestimmten Stellen und differenzieren zu Osteoblasten. Diese beginnen
+                       dann mit der Kollagenbildung und der Osteoidsynthese. Sie scheiden das von ih-
+                       nen gebildete Material in die Umgebung ab und mauern sich damit ein. In der sich
+                       bildenden Knochensubstanz bleiben die Zellen durch ihre Fortsätze miteinander in
+                       Verbindung.
+                       Zwischen den Knochenbälkchen, die Osteozyten enthalten, liegt das zell- und ge-
+                       fäßreiche primäre Knochenmark, das sich im Laufe der Zeit in das blutbildende,
+                       sekundäre rote Knochenmark umwandelt.
+
+                       Chondrale (indirekte) Ossifikation
+                       Bei der chondralen Ossifikation wird zunächst ein Vorläufersekelett aus hyalinem
+                       Knorpel gebildet. Die Form des Knorpelmodells entspricht bereits dem endgülti-
+                       gen Knochen, ist jedoch vergleichsweise plumper. Die eigentliche Ossifikation er-
+                       folgt über einen kontinuierlichen Knorpelabbau durch Chondroklasten, bei gleich-
+                       zeitigem Knochenaufbau durch Osteoblasten. Dies ist typisch für die langen und
+                       kurzen Knochen.
+                       Der Vorteil der chondralen Ossifikation: Da Knorpel deutlich schneller gebildet
+                       wird als Knochen, ist er in der Lage schon sehr früh eine, wenn auch eingeschränk-
+                       te, Stützfunktion zu übernehmen.
+                       Man unterscheidet zwischen
+                         § der perichondralen Ossifikation, die von außen erfolgt, indem sich Osteob-
+                            lasten vom Perichondrium abspalten und nach und nach ein Knochengerüst
+                            um den Knorpel aufbauen und
+
+
+
+
+                                                              40
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                          § der enchondralen Ossifikation, bei der die Ossifikation von innen heraus er-
+                             folgt. Im Inneren der späteren Diaphyse wird der Knorpel in einem soge-
+                             nannten primären Verknöcherungszentrum durch Knochen ersetzt. An die-
+                             sen Stellen beginnt der Knorpel zu hypertrophieren und zu verkalken, so
+                             dass Blutgefäße eindringen können, die Osteoblasten und Vorläufer des
+                             Knochenmarks mitbringen.
+                       Der Knorpel wird in der Epiphyse und Diaphyse durch Knochen ersetzt, außer im
+                       Bereich der Epiphysenfuge. Hier wächst der Knochen bis zur Reife (etwa im Alter
+                       von 18 Jahren) weiter.
+
+                       Merke:
+
+                         Die Knochenbildung kann sowohl über
+                         ‒ die desmale bzw. direkte Ossifikation als auch über
+                         ‒ die chondrale bzw. indirekte Ossifikation erfolgen.
+                         Bei der direkten Ossifikation wird Bindegewebe in Knochen umgewandelt.
+                         Bei der indirekten Ossifikation wird zunächst ein hyaliner Knorpel vorgeformt
+                         und dann in Knochen umgewandelt.
+
+
+
+
+                       2.9 Blut
+                       Auch das Blut kann vom entwicklungsgeschichtlichen Standpunkt aus zum Binde-
+                       gewebe gerechnet werden. Es besteht aus einer flüssigen Grundsubstanz, in der
+                       einzelne Zellen schwimmen. Die Fasern kommen in gelöster Form als Fibrinogen
+                       vor und werden erst durch die Blutgerinnung sichtbar.
+
+                       Merke:
+
+                         Bei Blut handelt es sich um flüssiges Bindegewebe, das nur in gelöster Form
+                         vorkommt. Sichtbar wird es in Form von Fibrinfäden bei der Blutgerinnung.
+
+                       Das Bindegewebe ist allgegenwärtig. Deshalb treten viele Bindegewebserkrankun-
+                       gen an zahlreichen Stellen des Körpers gleichzeitig auf. Dies gilt z. B. besonders
+                       für die Erkrankungen des rheumatischen Formenkreises.
+
+
+
+
+                                                                41
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                 1032
+
+
+
+                       Fragen:
+
+
+                       Welche Aufgaben hat das Bindegewebe?
+
+
+
+
+                       Wo kommen elastische Fasern vor? Was unterscheidet sie von kollagenen Fa-
+                       sern?
+
+
+
+
+                       Wo finden sich die Netzwerke der retikulären Fasern?
+
+
+
+
+                       Nennen Sie bitte drei Orte im Körper, an denen Knorpelgewebe vorkommt.
+
+
+
+
+                                                            42
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                       1032
+
+
+
+                       3. Muskelgewebe
+
+                       Die Muskulatur besitzt die Fähigkeit zur Kontraktion, sie kann sich verkürzen und
+                       mechanische Spannung entwickeln. Dies wird durch Myofibrillen im Zytoplasma
+                       ermöglicht sowie durch die Fähigkeit der immer langgestreckten Zellen, chemische
+                       Energie (ATP) in mechanische umzuwandeln. Voraussetzung für die Kontraktion
+                       ist die Reizfähigkeit, in erster Linie handelt es sich um nervöse Reize. Aber auch
+                       mechanische, chemische und thermische Reize können eine Verkürzung nach sich
+                       ziehen. Zudem ist die Leitfähigkeit eines Impulses eine weitere Voraussetzung für
+                       eine Kontraktion.
+                       Man unterscheidet drei Arten von Muskelgeweben:
+                         § quergestreifte Skelettmuskulatur,
+                         § quergestreifte Herzmuskulatur und
+                         § glatte Muskulatur.
+
+
+                       3.1 Quergestreifte Skelettmuskulatur
+                       Ein quergestreifter Skelettmuskel besteht aus langen, vielkernigen Zellen, den
+                       Muskelfasern. Die Kerne der Zellen sind oval und liegen in der Peripherie der Zel-
+                       len.
+                       Neben den Muskelfasern gibt es sogenannte Satellitenzellen, die eine wichtige
+                       Aufgabe bei der Muskelzellregeneration haben. Die Myofibrillen der Fasern beste-
+                       hen hauptsächlich aus Myosin- und Aktinfilamenten. Die Anordnung dieser Myo-
+                       filamente bedingt die mikroskopisch sichtbare Querstreifung der Muskelfasern.
+                       Die Skelettmuskulatur wird der somatischen Muskulatur zugeordnet. Sie
+                           § arbeitet schnell,
+                           § ist an keinen Rhythmus gebunden und
+                           § ist willkürlich.
+                       Mehrere Bindegewebshüllen untergliedern die Muskulatur. Sie dienen als Leit-
+                       struktur für Nerven und Gefäße und halten die Muskelfasern zusammen.
+                       Auch überträgt das Bindegewebe während der Kontraktion entstandene Kräfte auf
+                       die Umgebung. An ihren Enden gehen Skelettmuskeln in der Regel in Sehnen
+                       über.
+                       In den Zellen quergestreifter Muskulatur kommt auch in größerer Menge Glyko-
+                       gen vor, das als Energiedepot dient und während der Muskelarbeit mobilisiert wer-
+                       den kann.
+                       Ein anderes Element im Zytoplasma der Zellen (bzw. Sarkoplasma = Zytoplasma
+                       ohne Myofibrillen) ist der Muskelfarbstoff, das Myoglobin. Er wird im Muskel
+                       selbst gebildet und ist für seine rote Farbe verantwortlich. Er dient als Sauerstoff-
+                       speicher.
+
+
+
+
+                                                                43
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Bei Sauerstoffmangel im Muskel wird Glucose zu Milchsäure verbrannt. Auch da-
+                       bei wird, wenn auch nur wenig, Energie freigesetzt. Diese Milchsäure ist für den
+                       sogenannten Muskelkater mitverantwortlich.
+                       Chemisch enthält die Muskulatur Wasser und feste Stoffe, vor allem organische
+                       wie Proteine, Lipide, Glykogen und Kreatin. Von den anorganischen Stoffen sind
+                       vor allem Kalium und Phosphat zu nennen.
+                       Die Skelettmuskelfasern haben in Übereinstimmung mit ihrem intensiven Stoff-
+                       wechsel eine sehr gute Blutversorgung. Die Gefäße sind so in den Muskel einge-
+                       baut, dass ihre Durchströmung durch die Kontraktion nicht gestört wird.
+                       Die Skelettmuskulatur regeneriert sich nur relativ schlecht. Die Regeneration
+                       geht von den Satellitenzellen aus. Oft jedoch bildet sich an Stellen eines Defektes
+                       eine bindegewebige Narbe.
+
+                       Merke:
+
+                         § Unsere Muskelzellen bestehen aus Aktin- und Myosinfäden.
+                         § Die quergestreifte Muskulatur = Skelettmuskulatur ist unserem Willen unter-
+                           worfen, die Kontraktionen erfolgen schnell und unrhythmisch.
+                         § Die Muskeln sind ermüdbar.
+
+
+
+
+                       3.2 Herzmuskulatur
+                       Die Herzmuskulatur (Myokard) nimmt eine Zwischenstellung zwischen glatter und
+                       quergestreifter Muskulatur ein. Sie arbeitet unwillkürlich, autonom, rhythmisch
+                       und schnell. Sie ermüdet nicht. Das vegetative Nervensystem kann ihre Autonomie
+                       beeinflussen.
+                       Herzmuskelzellen zeigen eine Querstreifung, die der der Skelettmuskulatur ent-
+                       spricht. Jede Zelle besitzt einen, seltener zwei zentral gelegene Kerne.
+                       Die Muskulatur ist von einem zarten, gut durchbluteten Bindegewebe umgeben.
+                       Zudem erkennt man auf der Herzmuskulatur querverlaufende Bänder, die soge-
+                       nannten Glanzstreifen (Grenzen der Herzmuskelzellen). Sie enthalten Gap-junc-
+                       tions, die für eine gleichmäßige Erregungsausbreitung zwischen den Herzmuskel-
+                       zellen sorgen.
+
+
+
+
+                                                               44
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                    1032
+
+
+
+
+                                                      Abb. 18: Herzmuskulatur
+
+
+
+
+                       Die Herzmuskelfasern sind dünner als die Skelettmuskelfasern. Sie verzweigen
+                       sich, so dass ein Netzwerk entsteht. Die Zellen sind eng miteinander verwoben, um
+                       eine gleichzeitige Kontraktion des Muskels zu gewährleisten.
+                       Aufgrund der hohen Anforderungen an den Stoffwechsel der Herzmuskulatur sind
+                       die Mitochondrien viel zahlreicher als in der Skelettmuskulatur, auch Zytoplasma
+                       bzw. Sarkoplasma ist reichlicher vorhanden.
+                       Das Herzmuskelgewebe ist nicht in der Lage, sich zu regenerieren. Untergegange-
+                       nes Herzmuskelgewebe (Infarkt) wird in der Regel durch Bindegewebe ersetzt. Es
+                       entstehen Narben am Herzmuskel.
+
+                       Merke:
+
+                         Beim Herzmuskelgewebe sind die Zellen durch sogenannte Glanzstreifen mit-
+                         einander verbunden. Die Herzmuskulatur ist nicht unserem Willen unterworfen.
+                         Ihre Arbeitsweise ist schnell und rhythmisch. Die Muskeln ermüden nicht.
+
+
+
+
+                       3.3 Glatte Muskulatur
+                       Die glatte Muskulatur arbeitet
+                           § langsam,
+                           § rhythmisch,
+                           § unwillkürlich und autonom.
+                       Ihre Bewegung hängt vom vegetativen und vom enterischen (intramuralen) Ner-
+                       vensystem ab.
+                       Sie kommt in der Wand von Hohlorganen vor, deren Inhalt befördert (Peristaltik)
+                       oder deren Weite reguliert werden soll. Sie findet sich also in der Wandung des
+                       Darms, der Gallenblase, der Luftwege, der Harn- und Geschlechtswege, in den Ge-
+                       fäßen, in der Haut und im Auge.
+
+
+
+
+                                                                45
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                       1032
+
+
+
+                       Auch hier ist die einzelne Muskelzelle eine Faser. Diese Zellen sind spindelförmig
+                       und z. T. verzweigt. Jede Zelle besitzt einen zentral gelegenen, länglichen Zellkern.
+
+
+
+
+                                                      Abb. 19: Isolierte glatte Muskelzellen
+
+
+
+
+                       Die glatte Muskelzelle besitzt zahlreiche Mitochondrien, ein ausgeprägtes raues
+                       endoplasmatisches Retikulum und einen großen Golgi-Apparat. Die glatten Mus-
+                       kelzellen bilden häufig Bündel, die durch dichtes Bindegewebe verbunden werden.
+                       Auch hier ist die Fähigkeit zur Kontraktion an Aktin- und Myosinfilamente gebun-
+                       den. Anders als in der quergestreiften Muskulatur bilden sie hier ein gitterähnliches
+                       Netzwerk.
+                       Wie bereits erwähnt, sind die Kontraktionen relativ langsam. Die glatten Muskel-
+                       zellen können jedoch ohne zu ermüden im kontrahierten Zustand verharren. Sie
+                       sind daher besonders geeignet, einen bestimmten Spannungszustand (Tonus) in der
+                       Wandung von Hohlorganen aufrechtzuerhalten.
+                       Auch glatte Muskelzellen regenerieren nur schlecht. Die Heilung eines Defektes
+                       erfolgt auch hier durch die Bildung einer bindegewebigen Narbe. Auf eine ver-
+                       mehrte Beanspruchung reagiert die glatte Muskulatur mit einer Hypertrophie (Ver-
+                       größerung des Zellvolumens).
+                       Gutartige Geschwülste aus Muskelgewebe bezeichnet man als Myome.
+
+                       Merke:
+
+                         Glattes Muskelgewebe finden wir in den inneren Organen wie z. B. im Magen-
+                         und Darmtrakt. Es arbeitet unwillkürlich, langsam und rhythmisch.
+                         Die Muskeln ermüden nicht.
+
+
+
+
+                                                                       46
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Aufgaben:
+
+
+                       Bitte lesen Sie in Ihrer Fachliteratur (z. B. im Pschyrembel) die Ausführungen
+                       über Hypertrophie, Hyperplasie und Atrophie nach und machen sich dazu Stich-
+                       worte oder recherchieren Sie im Internet über diese Fachbegriffe (z. B. bei Wiki-
+                       pedia).
+
+
+
+
+                       Ordnen Sie bitte den drei Arten der Muskulatur die Begriffe zu:
+
+                                                      Quergestreifte    Quergestreifte
+                                                                                       glatte Muskulatur
+                                                      Skelettmuskulatur Herzmuskulatur
+                        Autonom
+                        (ja/nein)
+                        willkürlich (ja/nein)
+                        rhythmisch (ja/nein)
+                        ermüdbar (ja/nein)
+
+
+
+
+                                                                    47
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       4. Nervengewebe
+
+                       Auch das Nervengewebe kommt überall im Körper vor. Doch im Gegensatz zu den
+                       anderen Geweben bildet es ein Zentralorgan, das Zentralnervensystem (ZNS). Das
+                       ZNS setzt sich aus Gehirn und Rückenmark zusammen. Zudem hat es periphere
+                       Anteile (= peripheres Nervensystem / PNS).
+                       Grundbausteine des Nervensystems sind
+                          § die Nervenzelle (Neuron) und
+                          § die Gliazelle.
+                       Beide bilden eine untrennbare funktionelle Einheit.
+                       Das Nervengewebe dient der schnellen Signalübermittlung und ist an der Kontrolle
+                       und Koordination beinahe aller Körpervorgänge beteiligt.
+
+
+                       4.1 Nervenzellen
+                       Es gibt im Körper des Menschen mehrere Milliarden Nervenzellen. Diese hoch-
+                       spezialisierten Zellen können sich nicht mehr teilen. Das Nervengewebe des ZNS
+                       ist nicht regenerierbar, das des PNS nur bedingt.
+                       Die Nervenzelle besteht
+                          § aus einem Zellkörper (Soma) und
+                          § einem oder mehreren Fortsätzen, bei denen Dendriten und Axone unter-
+                             schieden werden.
+
+                       4.1.1 Aufbau einer Nervenzelle
+
+                       Membran
+                       Die Nervenzellen sind von einer leicht erregbaren Membran umgeben. Diese
+                       Membran hält in Ruhestellung eine unterschiedliche Ionenverteilung zwischen
+                       dem Zytoplasma der Nervenzellen und der Umgebung aufrecht. Dieses Ruhepo-
+                       tenzial (Ruhemembranpotenzial) kann durch einen Reiz verändert werden. Dies
+                       führt zu einer Erregung (Depolarisation), die fortgeleitet werden kann und als Ak-
+                       tionspotenzial bezeichnet wird. Das Aktionspotenzial dient der Informationsüber-
+                       tragung, z. B. von Nervenzelle auf Nervenzelle oder auch von Nervenzelle auf Drü-
+                       sen- oder Muskelzellen.
+
+                       Zellkörper mit dem Zellkern
+                       Der Zellkörper (Soma oder Perikaryon) bildet das Zentrum der Nervenzelle und
+                       enthält den Zellkern. Er kann rund, oval oder eckig sein. Einige Zellkörper sind so
+                       groß, dass man sie mit bloßem Auge erkennen kann. Andere wiederum gehören zu
+                       den kleinsten Zellen des Körpers. Er besitzt alle erforderlichen Organellen, beson-
+                       ders auch für die Proteinbiosynthese. Die meisten Nervenzellen besitzen einen auf-
+                       fällig großen, bläschenförmigen Zellkern mit einem ausgeprägten Nukleolus.
+
+
+
+
+                                                               48
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+                       Dendriten
+                       Dendriten sind relativ kurze, in der Regel baumartig verzweigte Fortsätze des Pe-
+                       rikaryons. Im mittleren Bereich kommen häufig Dornen vor. Das sind Vorwölbun-
+                       gen, an die Axone anderer Zellen herantreten. Dendriten fangen Signale aus der
+                       Umgebung auf und leiten sie zur Soma hin. Zellleib und Dendriten bilden so ge-
+                       meinsam den Rezeptorteil der Nervenzelle.
+
+                       Axon
+                       Das Axon (oder auch Neurit) ist ein einzelner, besonders langer (bis zu 1 m im
+                       menschlichen Körper) zylindrischer Fortsatz einer Nervenzelle, der elektrische Im-
+                       pulse von der Zelle weg zu anderen Zellen hin leitet. Das Axon inklusive der ihm
+                       anliegenden Hüllenstruktur (Gliazellen) wird auch als Nervenfaser bezeichnet. An
+                       ihrem distalen Ende befindet sich meist eine baumartige Verzweigung (Teloden-
+                       dron).
+
+                       Synapse
+                       Die Kontaktstelle zwischen einem Axon und einer folgenden Struktur, wie einem
+                       Dendriten oder dem Zellkörper einer anderen Zelle, wird Synapse genannt.
+                       Die Synapse ist eine Umschaltstelle für die Erregungsübertragung von einer Ner-
+                       venzelle auf die andere (interneurale Synapsen) oder auf eine andere Zielzelle
+                       (Muskelzelle, Drüsenzelle, Sinneszelle).
+                       Es werden
+                          § chemische,
+                          § elektrische und
+                          § gemischte Synapsen
+                       unterschieden.
+                       Beim Menschen kommen fast ausschließlich chemische Synapsen vor. Die Über-
+                       tragung der Nervenimpulse erfolgt hier durch Neurotransmitter. Elektrische und
+                       gemischte Synapsen spielen bei Menschen kaum eine Rolle.
+                       Wichtige Überträgerstoffe sind Acetylcholin und Noradrenalin. Aber auch Amine
+                       wie Adrenalin oder Dopamin werden als Überträgerstoffe benutzt, daneben auch
+                       einige Peptide (Neuropeptide) und etliche Aminosäuren. Sie werden in der Ner-
+                       venzelle gebildet, in Bläschen gespeichert und durch ein eintreffendes elektrisches
+                       Signal (Aktionspotenzial) freigesetzt.
+                       Synapsen setzen sich zusammen aus der präsynaptischen Seite mit synaptischen
+                       Bläschen, Mitochondrien und präsynaptischer Membran, dem synaptischen Spalt
+                       und der postsynaptischen Seite mit postsynaptischer Membran.
+
+                       Merke:
+
+                         Nervenzellen haben die Fähigkeit der Erregungsbildung, Erregungsleitung und
+                         Erregungsverarbeitung.
+                         Nervenzellen können nicht erneuert werden.
+
+
+
+
+                                                               49
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+
+                         Eine Nervenzelle baut sich aus Zellkern, Dendriten, Axon und Synapse auf.
+                         Eine Nervenfaser besteht aus einem Axon und der Gliahülle.
+                         An den Synapsen kommt es mit Hilfe von Transmittern zur Erregungs-übertra-
+                         gung.
+
+
+
+                       4.1.2 Erregungsbildung und -leitung
+                       Wie bereits oben erwähnt, spielt bei der Erregungsbildung und -leitung die Zell-
+                       membran eine Schlüsselrolle. Beide Vorgänge hängen nämlich von Veränderungen
+                       der Membranpermeabilität ab. In Ruhe besteht eine elektrische Potenzialdifferenz
+                       zwischen der Innen- und der Außenseite der Membran. Dies geht auf die ungleiche
+                       Verteilung von Na+- (Natrium), K+- (Kalium) und Cl–Ionen (Chlorid) zurück.
+                       Die besondere Eigenschaft der Nervenzelle besteht nun darin, dass sie bereits auf
+                       schwache Reize mit Änderungen in der Ionenleitfähigkeit der Zellmembran re-
+                       agiert.
+                       Der Einstrom von Na+-Ionen, und der Ausstrom von K+-Ionen wird erhöht. Da der
+                       Na+-Strom größer ist als der K+-Strom wird die ursprünglich negative Innenseite
+                       der Membran relativ positiv (Depolarisation).
+                       Wird dabei ein Schwellenwert, das sog. Schwellenpotenzial, überschritten, so wird
+                       in diesem Neuron ein schnell fortschreitendes Aktionspotenzial (Impuls, Signal)
+                       ausgelöst. Dieser Reiz löst dann entlang des Nervs weitere Depolarisationen aus
+                       und ein elektrischer Impuls läuft die Nervenfaser entlang.
+                       Schließlich erreicht das Aktionspotenzial das Axonende, wo es an den Synapsen
+                       zur Transmitterfreisetzung und damit zur Erregungsübertragung kommt. Dabei
+                       wird das elektrische Signal erst in ein chemisches übersetzt und im subsynapti-
+                       schen Bereich wieder in ein elektrisches Signal verwandelt. Synapsen können im-
+                       mer nur in eine Richtung leiten.
+                       Kurz danach kommt es in der Zelle zur Repolarisation. Die Natrium-Kalium-
+                       Pumpe pumpt das Natrium wieder aus der Zelle heraus und das Kalium wieder in
+                       die Zelle herein.
+                       Das Aktionspotenzial ist also ein konstanter Ablauf von Depolarisation und Repo-
+                       larisation der Membran. Damit ein Aktionspotenzial ausgelöst werden kann, muss
+                       der auslösende Reiz über einem bestimmten Schwellenwert liegen.
+                       Wird ein Reiz wirksam, so wird die Zelle immer in vollem Ausmaß erregt (Alles-
+                       oder-Nichts-Gesetz).
+                       Die Stärke des Reizes wirkt sich auf die Anzahl der erregten Nervenfasern aus,
+                       nicht auf die Höhe des Aktionspotenzials.
+                       Nach einer erfolgten Reizung bleibt der Nerv für eine bestimmte Zeit nicht erreg-
+                       bar. Diese Zeit wird als Refraktärzeit bezeichnet.
+                       Nervenzellen des PNS können sich teilweise wieder regenerieren. Wird der Zell-
+                       leib oder der proximale Anteil des Axons verletzt, geht die Zelle immer zugrunde.
+                       Wird nur das distale Axon beschädigt, stehen die Chancen gut, dass die Zelle über-
+
+
+
+
+                                                              50
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                       lebt. Abschnitte des Axons können wieder nachwachsen. Im ZNS ist dies nicht
+                       möglich.
+
+                       Merke:
+
+                         Die Signalübertragung läuft sowohl auf elektrische als auch auf chemische Wei-
+                         se ab. Bei der Reizleitung gilt das Alles-oder-Nichts-Gesetz.
+                         Die Refraktärzeit ist die Zeitspanne, in der ein Nerv nicht erregbar ist.
+
+
+
+                       Aufgabe:
+                       Versuchen Sie, die chemischen und elektrischen Abläufe bei der Reizübertra-
+                       gung der Nervenzellen zu beschreiben, ohne im Text nachzusehen!
+
+
+
+
+                       4.2 Nervenfasern und Gliazellen
+                       Das Nervengewebe ist nicht in interstitielles Bindegewebe eingelagert, sondern be-
+                       sitzt ein eigenes Hüllgewebe, die Neuroglia. Jede Nervenfaser besteht aus einem
+                       Axon und einer Axonscheide, einer Hülle aus Glia-Zellen. Nur das Anfangsseg-
+                       ment und der Endkolben sind ohne Hülle. Diese Hüllzellen können Lamellen bil-
+                       den, die als Mark oder Myelin bezeichnet werden. Die Gliazellen geben den Ner-
+                       venzellen Halt und versorgen sie mit Nährstoffen.
+                       Markhaltige Nervenfasern kommen im peripheren Nervensystem vor, aber auch im
+                       ZNS. Bei diesen markhaltigen Nervenfasern ist die Schwann-Zelle (eine besondere
+                       Art der Glia-Zelle) mehrmals um das Axon gewunden und bildet so eine gut isolie-
+                       rende Fett-Eiweiß-Schicht.
+                       Die Erweiterungen des Interzellularraumes zwischen zwei Schwann-Zellen werden
+                       als Ranvier-Schnürringe bezeichnet. Diese Ranvier-Schnürringe bedingen eine
+                       saltatorische Erregungsleitung in markhaltigen Nervenfasern:
+                       Der Impuls springt von einem Schnürring zum anderen. Dadurch kommt eine hohe
+                       Leitungsgeschwindigkeit zustande. Je größer die eine Faser umgebenden Myelinla-
+                       mellen und je größer die Abstände zwischen den Ranvier-Schnürringen sind, umso
+                       schneller wird der Impuls übertragen.
+                       Neben den Axonen, die von Myelinscheiden umgeben sind, kommen sowohl im
+                       peripheren Nervensystem als auch im ZNS Axone ohne Markumhüllung vor. Sie
+                       können trotzdem von Glia-Zellen umgeben sein. Marklosen Nervenfasern fehlen
+                       die Ranvier-Schnürringe, dadurch ist die Leitungsgeschwindigkeit niedriger als bei
+                       den markhaltigen Nervenfasern. Zudem ist die kontinuierliche Erregungsleitung
+                       weit energieaufwendiger als die saltatorische.
+
+
+
+
+                                                                 51
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                      1032
+
+
+
+                       Gliazellen kommen im ZNS und im peripheren Nervensystem vor. Sie sind viel
+                       zahlreicher und kleiner als Nervenzellen. Gemeinsames Kennzeichen aller Gliazel-
+                       len ist, dass sie zeitlebens ihre Teilungsfähigkeit behalten. Gliazellen bilden kein
+                       Aktionspotential und besitzen auch keine Synapsen. Wie bereits erwähnt, sind sie
+                       jedoch für die Erhaltung und Lebensfähigkeit der Nervenzellen unerlässlich. Sie
+                       erfüllen sowohl Aufgaben im metabolischen Bereich als auch in der Abwehr.
+
+                       Merke:
+
+                         Gliazellen kann man auch als „Nervenkitt“ bezeichnen. Als Myelinscheiden (=
+                         markhaltige Axonumhüllungen) sorgen sie gemeinsam mit den Ranvier-Schnür-
+                         ringen im Rahmen der saltatorischen Erregungsleitung für eine schnelle Reiz-
+                         übertragung.
+
+
+
+
+                       Fragen:
+
+
+                       Wie ist eine Nervenzelle aufgebaut?
+
+
+
+
+                       Welche Funktion haben die Gliazellen?
+
+
+
+
+                       Welche Besonderheit gilt für Nervenzellen im Gegensatz zu anderen Zellen?
+
+
+
+
+                                                               52
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                        1032
+
+
+
+                       Beantwortung der Zwischenfragen
+                       Auflösung der Aufgabe:
+
+                                        Quergestreifte                      Quergestreifte glatte Mus-
+                                        Skelettmuskulatur                   Herzmuskulatur kulatur
+                                        Nein, die Impulse zur Kontraktion
+                        Autonom
+                                        stammen aus dem Zentralnerven-      autonom          autonom
+                        (ja/nein)
+                                        system (Gehirn und Rückenmark)
+                        willkürlich
+                                    willkürlich                             unwillkürlich    unwillkürlich
+                        (ja/nein)
+                        rhythmisch Nein, ist an keinen Rhythmus ge-
+                                                                            rhythmisch       rhythmisch
+                        (ja/nein)  bunden
+                        ermüdbar                                                             nicht ermüd-
+                                        ja                                  nicht ermüdbar
+                        (ja/nein)                                                            bar
+
+
+
+
+                       Frage: Durch welche Eigenschaft kann das Epithelgewebe seine Schutzfunktion
+                       besonders gut wahrnehmen?
+                       Antwort: Die Epithelzellen bilden einen sehr engen Verbund und sind so mitein-
+                       ander verbunden, dass sie eine enge biologische Einheit bilden. Je nach Ort und
+                       Aufgabe sind sie mit Besonderheiten wie Enzymen, Bürstensäumen oder Mikrovil-
+                       li ausgestattet, um ihren speziellen Anforderungen gewachsen zu sein. An beson-
+                       ders beanspruchten Stellen verhornt die oberste Schicht um einen besseren Schutz
+                       zu gewährleisten (z. B. Fußsohlen).
+
+
+                       Frage: Welche schleimhäutigen Strukturen werden von einschichtigem, welche
+                       von mehrreihigem Epithelgewebe ausgekleidet?
+                       Antwort: Einschichtiges Plattenepithel finden wir als Auskleidung in den Blutge-
+                       fäßen sowie in im Brust- und Bauchfell.
+                       Mehrreihiges Epithel finden wir in der Luftröhre, den Bronchien, in den Nasen-
+                       höhlen und im Nebenhodengang.
+
+
+                       Frage: Welche Epithelzellen im Körper haben die größte Neubildungsrate?
+                       Antwort: Die größte Neubildungsrate von Epithelzellen findet im Magen-Darm-
+                       trakt statt (wenige Tage). Die Hauterneuerung der Epidermis vollzeiht sich alle 28
+                       bis 30 Tage.
+
+
+
+
+                                                                 53
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                    1032
+
+
+
+                       Frage: Welche Zellverbindung verschließt den Interzellularraum nicht?
+                       Antwort: Es handelt sich um spezielle Haftverbindungen, die man auch als Haft-
+                       platten (Desmosomen) bezeichnet. Die Haftplatten verschiedener Zellen liegen
+                       sich gegenüber und verbinden sich ohne dabei den Interzellularraum zu verschlie-
+                       ßen.
+
+
+                       Frage: Welche Verbindung zwischen Zellen gewährleistet einen Informationsaus-
+                       tausch?
+                       Antwort: Es handelt sich um kommunizierende Verbindungen, die sogenannten
+                       „Gap Junctions“, die aufgrund kanalförmiger Verbindungen mit Nachbarzellen in
+                       Kontakt stehen. Gap Junctions dienen sowohl dem Informationsaustausch als auch
+                       der Ernährung der Zelle.
+
+
+                       Frage: Wie werden die exokrinen Drüsen klassifiziert??
+                       Antwort: Sie werden nach
+                          § Lokalisation der Drüsen,
+                          § Beschaffenheit des Sekretes,
+                          § Art der Sekretabgabe,
+                          § Form des Drüsengewebes.
+                       unterschieden.
+
+
+                       Frage: Was unterscheidet exokrine von endokrinen Drüsen?
+                       Antwort: Exokrine Drüsen stehen über ihren Ausführungsgang mit der freien
+                       Oberfläche in Verbindung, an die sie ihr Sekret abgeben.
+                       Endokrine Drüsen geben ihre Hormone direkt in die Blutbahn ab.
+
+
+                       Frage: Wie unterscheiden sich azinöse von tubulösen Drüsen?
+                       Antwort: Azinöse Drüsen bilden die Endstücke zahlreicher zusammengesetzter
+                       Drüsen. Ihr besonderes Merkmal sind die bläschenartigen Erweiterungen der End-
+                       stücke. Tubulöse Drüsen haben eine gestreckte Form und besitzen ein schlauchför-
+                       miges Endstück.
+
+
+                       Frage: Welche allgemeinen Aufgaben hat das Bindegewebe?
+                       Antwort: Das Bindegewebe ist das verbindende und stützende Element unseres
+                       Körpers. Es hält Organformen aufrecht, ist Wasserspeicher und Schutzhülle. Au-
+                       ßerdem dient es als Gleit- und Verschiebeschicht. Im Bindegewebe spielen sich zu-
+                       dem viele Abwehrreaktionen ab.
+
+
+
+
+                                                              54
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                     1032
+
+
+
+
+                       Frage: Wo kommen elastische Fasern vor? Was unterscheidet sie von kollagenen
+                       Fasern?
+                       Antwort: Elastische Fasern findet man u. a. in der Aorta, in den Arterien, in der
+                       Lunge sowie im Knorpel von Ohr und Nase.
+                       Elastische Fasern bilden Fasernetze von unterschiedlichem Durchmesser. Hervor-
+                       zuheben ist ihre Elastizität. Kollagene Fasern dagegen sind fast undehnbar, besit-
+                       zen aber dafür eine hohe Flexibilität und Zugfestigkeit.
+
+
+                       Frage: Wo finden sich die Netzwerke der retikulären Fasern?
+                       Antwort: Die zarten Netzwerke der retikulären Fasern finden wir in den Kapilla-
+                       ren, in Fettzellen, Muskel- und Nervenfasern sowie in den Nierenkanälchen und
+                       den Drüsenendstücken.
+
+
+                       Frage: Nennen Sie bitte drei Orte im Körper, wo Knorpelgewebe vorkommt.
+                       Antwort: Knorpelgewebe finden wir u. a. in den Gelenkenden der Knochen, in der
+                       Ohrmuschel und der Ohrtrompete sowie in der Nasenscheidewand, in den Bronchi-
+                       en und der Luftröhre.
+
+
+                       Frage: Wie ist eine Nervenzelle aufgebaut?
+                       Antwort: Eine Nervenzelle besteht aus einem Zellleib mit mehreren Fortsätzen =
+                       Dendriten. Weiterhin besitzt sie ein Axon bzw. Neurit zur Reizweiterleitung. Am
+                       Ende des Axons befinden sich so genannte Synapsen als Kontaktstelle zur nächs-
+                       ten Nervenzelle.
+
+
+                       Frage: Welche Funktion haben die Gliazellen?
+                       Antwort: Gliazellen haben eine Stütz-, Isolier- und Nährfunktion.
+
+
+                       Frage: Welche Besonderheit gilt für Nervenzellen im Gegensatz zu anderen Zel-
+                       len?
+                       Antwort: Bei Nervenzellen findet keine Zellteilung statt. Von daher ist eine Er-
+                       neuerung der Nervenzellen im Gegensatz zu anderen Zellen nicht möglich. Aus-
+                       nahme: Wird der distale Teil eines Axons einer Nervenzelle im PNS beschädigt
+                       oder abgetrennt, kann es neu gebildet werden.
+
+
+
+
+                                                              55
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                                               1032
+
+
+
+                       Abbildungsverzeichnis
+
+                       Abbildungsnummer Titel                                                       Quelle/Copy-
+                                                                                                    right
+
+                       Abb. 1                  Verankerung eines Epithels auf der Basalmembran      Eigenes Bild –
+                                               (hier Darmepithel) und dem ernährenden Bindegewebe   K.W.
+
+                       Abb. 2                  Einschichtiges Epithel                               Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 3                  Mehrreihiges Epithel                                 Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 4                  Mehrschichtiges verhorntes Plattenepithel            Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 5                  Becherzellen der Darmschleimhaut                     Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 6                  Seröse Drüse                                         Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 7                  Muköse Drüse                                         Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 8                  Gemischte Drüse                                      Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 9                  Merokrine Drüse                                      Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 10                 Apokrine Sekretion                                   Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 11                 Holokrine Sekretion                                  Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 12                 Tubulöse, alveoläre, azinöse Drüsen                  Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 13                 Blutgefäß im lockeren Bindegewebe mit einigen sog.   Eigenes Bild –
+                                               „Freien Zellen“                                      K.W.
+
+                       Abb. 14                 Sehne                                                Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 15                 Fettgewebezellen                                     Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 16                 Runde bzw. ovale Form von Knorpelzellen              Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 17                 Längsschnitt eines Röhrenknochens                    Eigenes Bild –
+                                                                                                    K.W.
+
+                       Abb. 18                 Herzmuskulatur                                       Eigenes Bild –
+                                                                                                    K.W.
+
+
+
+
+                                                                        56
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+                       Histologie (Gewebelehre)                                          1032
+
+
+
+
+                       Abb. 19                 Isolierte glatte Muskelzellen   Eigenes Bild –
+                                                                               K.W.
+
+
+
+
+                                                                         57
+Rebekka Ziegler - 96589 - rebekka@ziegler-asperg.de
+
