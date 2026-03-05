@@ -636,9 +636,48 @@ button:disabled {
   box-shadow: 0 0 0 1px rgba(121, 21, 21, 0.28);
 }
 
+.plant-growth-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: #dde4ec;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.plant-growth-fill {
+  height: 100%;
+  background: #4a9b5e;
+  transition: width 0.5s ease;
+  min-width: 0;
+}
+
+.plant-growth-bar.is-withered .plant-growth-fill {
+  background: #b79063;
+}
+
+.plant-growth-bar.is-seed .plant-growth-fill {
+  background: #b0c4d8;
+}
+
+.plant-growth-label {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  font-family: monospace;
+  font-weight: 600;
+  color: #223;
+  pointer-events: none;
+  line-height: 1;
+}
+
 .plant-cooldown-hint {
   position: absolute;
-  top: 4px;
+  top: 14px;
   right: 6px;
   font-size: 0.72rem;
   font-weight: 600;
@@ -803,6 +842,8 @@ button:disabled {
 }
 
 /* ── Changelog modal ── */
+.kg-changelog-overlay[hidden] { display: none; }
+
 .kg-changelog-overlay {
   position: fixed;
   inset: 0;

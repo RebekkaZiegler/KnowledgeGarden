@@ -11,13 +11,15 @@ const PHASE2_WRONG_SCORE = 10;
 const PHASE2_MAX_WRONG_PER_QUESTION = 3;
 const STOP_WORDS = new Set(["und", "der", "die", "das", "des", "den", "dem", "mit", "von", "im", "in", "am", "an", "zu", "zur", "für"]);
 
-const CHANGELOG_VERSION = "0.2";
+const CHANGELOG_VERSION = "0.3";
 const CHANGELOG_KEY = `kg_changelog_seen_${CHANGELOG_VERSION}`;
 const CHANGELOG = [
   { type: "fix",     text: "Dünger im Normalmodus kostenlos – Cooldown überspringen verbraucht keinen Dünger mehr" },
   { type: "fix",     text: "HP nach Kampfniederlage auf 1 zurückgesetzt – kein Softlock mehr möglich" },
   { type: "fix",     text: "Verwelkung direkt nach fehlgeschlagener Ernte berechnet" },
   { type: "fix",     text: "Alte Speicherstände: fehlende Boss-Felder werden beim Laden automatisch ergänzt" },
+  { type: "fix",     text: "\"Verstanden\"-Button im Was-ist-neu-Fenster schließt das Fenster jetzt korrekt" },
+  { type: "improve", text: "Wachstumsbalken unter jeder Pflanze im Hauptmenü – Fortschritt auf einen Blick" },
   { type: "improve", text: "Cooldown-Timer für alle Pflanzen sichtbar, nicht nur die ausgewählte" },
   { type: "improve", text: "Spielerfigur läuft schneller in der Weltansicht" },
   { type: "improve", text: "Detailpanel breiter und Fragentext besser lesbar (mehr Platz, höhere Zeilenhöhe)" },
@@ -1183,6 +1185,9 @@ function renderPlants() {
     const tooltipPhase = escapeHtmlAttr(String(plantState.phase));
     const tooltipReady = escapeHtmlAttr(String(Math.floor(plantState.readiness)));
     const tooltipCooldown = escapeHtmlAttr(cooldownText);
+    const growthPct = visual.phase === "phase1" ? 0 : Math.round(stageRatio * 100);
+    const growthLabel = visual.withered ? "Verwelkt" : visual.phase === "phase1" ? "Saat" : growthPct >= 100 ? "Erntereif!" : growthPct + "%";
+    const barClass = visual.withered ? " is-withered" : visual.phase === "phase1" ? " is-seed" : "";
     return `
       <div class="plant-entry ${rowClass}">
         <button class="plant-row${selected}" data-plant="${plantState.id}" data-plant-tip="1" data-tip-name="${tooltipName}" data-tip-status="${tooltipStatus}" data-tip-phase="${tooltipPhase}" data-tip-ready="${tooltipReady}" data-tip-cooldown="${tooltipCooldown}">
@@ -1191,6 +1196,7 @@ function renderPlants() {
         <button class="plant-remove" data-plant-remove="${plantState.id}" title="Entfernen">X</button>
       </div>
       <div class="plant-visual" data-plant-visual="${plantState.id}" data-plant-tip="1" data-tip-name="${tooltipName}" data-tip-status="${tooltipStatus}" data-tip-phase="${tooltipPhase}" data-tip-ready="${tooltipReady}" data-tip-cooldown="${tooltipCooldown}">
+        <div class="plant-growth-bar${barClass}"><div class="plant-growth-fill" style="width:${growthPct}%"></div><span class="plant-growth-label">${growthLabel}</span></div>
         <div class="plant-visual-bed${visual.soilFilled ? " has-soil" : ""}${visual.soilDark ? " is-watered" : ""}"></div>
         ${visual.hasSeedling ? "<div class='plant-sprout'></div>" : ""}
         ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
