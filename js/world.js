@@ -215,7 +215,7 @@
       this.player = sprite;
       this.player.body.setCollideWorldBounds(true);
       this.player.body.setDrag(1200, 1200);
-      this.player.body.setMaxVelocity(170, 170);
+      this.player.body.setMaxVelocity(270, 270);
       this.physics.world.setBounds(10, 10, 940, 520);
     }
 
@@ -233,7 +233,7 @@
     update() {
       if (!this.player || !this.player.body) return;
       this.refreshBedZones(false);
-      const speed = 155;
+      const speed = 240;
       const left = this.cursors.left.isDown || this.wasd.left.isDown;
       const right = this.cursors.right.isDown || this.wasd.right.isDown;
       const up = this.cursors.up.isDown || this.wasd.up.isDown;

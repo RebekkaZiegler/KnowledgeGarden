@@ -11,6 +11,19 @@ const PHASE2_WRONG_SCORE = 10;
 const PHASE2_MAX_WRONG_PER_QUESTION = 3;
 const STOP_WORDS = new Set(["und", "der", "die", "das", "des", "den", "dem", "mit", "von", "im", "in", "am", "an", "zu", "zur", "für"]);
 
+const CHANGELOG_VERSION = "0.2";
+const CHANGELOG_KEY = `kg_changelog_seen_${CHANGELOG_VERSION}`;
+const CHANGELOG = [
+  { type: "fix",     text: "Dünger im Normalmodus kostenlos – Cooldown überspringen verbraucht keinen Dünger mehr" },
+  { type: "fix",     text: "HP nach Kampfniederlage auf 1 zurückgesetzt – kein Softlock mehr möglich" },
+  { type: "fix",     text: "Verwelkung direkt nach fehlgeschlagener Ernte berechnet" },
+  { type: "fix",     text: "Alte Speicherstände: fehlende Boss-Felder werden beim Laden automatisch ergänzt" },
+  { type: "improve", text: "Cooldown-Timer für alle Pflanzen sichtbar, nicht nur die ausgewählte" },
+  { type: "improve", text: "Spielerfigur läuft schneller in der Weltansicht" },
+  { type: "improve", text: "Detailpanel breiter und Fragentext besser lesbar (mehr Platz, höhere Zeilenhöhe)" },
+  { type: "improve", text: "Alle Browser-Popups durch In-Game-Toast-Benachrichtigungen ersetzt" }
+];
+
 let state = loadState();
 let selectedPlantId = null;
 let harvestSession = null;
@@ -51,6 +64,7 @@ const PLANT_LABELS = buildPlantLabels();
 bindEvents();
 renderAll();
 startCooldownTicker();
+maybeShowChangelog();
 
 function normalizeExplanation(text) {
   return String(text || "")
@@ -89,11 +103,72 @@ function tfFeedback(question, _userAnswer) {
   return question.answer === true ? stmt : `Falsch: ${stmt}`;
 }
 
+function showChangelog() {
+  let overlay = document.getElementById("kg-changelog-overlay");
+  if (overlay) {
+    overlay.hidden = false;
+    return;
+  }
+  overlay = document.createElement("div");
+  overlay.id = "kg-changelog-overlay";
+  overlay.className = "kg-changelog-overlay";
+
+  const items = CHANGELOG.map((c) =>
+    `<li class="kg-cl-item kg-cl-item--${c.type}">${escapeHtmlText(c.text)}</li>`
+  ).join("");
+
+  const modal = document.createElement("div");
+  modal.className = "kg-changelog-modal";
+  modal.innerHTML = `
+    <div class="kg-cl-header">
+      <span class="kg-cl-title">Was ist neu?</span>
+      <span class="kg-cl-version">Version ${escapeHtmlText(CHANGELOG_VERSION)}</span>
+    </div>
+    <ul class="kg-cl-list">${items}</ul>
+    <div class="kg-cl-footer">
+      <button id="kg-changelog-close">Verstanden</button>
+    </div>
+  `;
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  document.getElementById("kg-changelog-close").addEventListener("click", closeChangelog);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeChangelog(); });
+}
+
+function closeChangelog() {
+  const overlay = document.getElementById("kg-changelog-overlay");
+  if (overlay) overlay.hidden = true;
+  localStorage.setItem(CHANGELOG_KEY, "1");
+}
+
+function maybeShowChangelog() {
+  if (!localStorage.getItem(CHANGELOG_KEY)) showChangelog();
+}
+
+function showToast(message, type) {
+  let toast = document.getElementById("kg-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "kg-toast";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.className = "kg-toast" + (type ? " kg-toast--" + type : "");
+  toast.hidden = false;
+  clearTimeout(toast._kgTimer);
+  toast._kgTimer = setTimeout(function () { toast.hidden = true; }, 3500);
+}
+
 function bindEvents() {
   els.saveBtn.addEventListener("click", () => {
     saveState();
-    alert("Gespeichert.");
+    showToast("Gespeichert.", "success");
   });
+
+  const changelogBtn = document.getElementById("changelog-btn");
+  if (changelogBtn) changelogBtn.addEventListener("click", showChangelog);
 
   els.exportBtn.addEventListener("click", () => {
     exportStateToFile();
@@ -134,7 +209,7 @@ function bindEvents() {
 
 function setActiveBed(bedId) {
   if (bedId && !canActivateBedForPlanting(bedId)) {
-    alert(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`);
+    showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error");
     return;
   }
   state.activeBedId = bedId || null;
@@ -254,6 +329,7 @@ function normalizeLoadedState(inputState) {
     if (!bedState.enemyProgress) bedState.enemyProgress = {};
     if (!bedState.wrongInCombat) bedState.wrongInCombat = {};
     if (bedState.bossAvailable === undefined) bedState.bossAvailable = false;
+    if (bedState.bossDefeated === undefined) bedState.bossDefeated = false;
   });
   return s;
 }
@@ -309,7 +385,7 @@ function importStateFromFile(file) {
     const text = String(reader.result || "");
     const parsed = parseImportedPayload(text);
     if (!parsed.ok) {
-      alert(`Import fehlgeschlagen: ${parsed.reason}`);
+      showToast(`Import fehlgeschlagen: ${parsed.reason}`, "error");
       return;
     }
 
@@ -324,10 +400,10 @@ function importStateFromFile(file) {
     labelSession = null;
     saveState();
     renderAll();
-    alert("Import erfolgreich.");
+    showToast("Import erfolgreich.", "success");
   };
   reader.onerror = () => {
-    alert("Import fehlgeschlagen: Datei konnte nicht gelesen werden.");
+    showToast("Import fehlgeschlagen: Datei konnte nicht gelesen werden.", "error");
   };
   reader.readAsText(file, "utf-8");
 }
@@ -751,11 +827,11 @@ function renderSeedLibrary() {
         }
       } else {
         if (!canActivateBedForPlanting(bedId)) {
-          alert(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`);
+          showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error");
           return;
         }
         if (bedState.activePlantIds.length >= 4) {
-          alert("Maximal 4 Pflanzen koennen pro Beet gleichzeitig aktiv sein.");
+          showToast("Maximal 4 Pflanzen können pro Beet gleichzeitig aktiv sein.", "error");
           return;
         }
         preparePlantForNewCycle(bedState.plants[plantId]);
@@ -815,11 +891,11 @@ function synthesizeHybrid(hybridId) {
   if (!hybrid) return;
   const pack = getPackState();
   const bedState = getBedState();
-  if (!bedState) { alert("Kein aktives Beet ausgewählt."); return; }
-  if (!canActivateBedForPlanting(bedState.id)) { alert(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`); return; }
-  if (bedState.activePlantIds.length >= 4) { alert("Beet ist voll (4/4). Ernte zuerst eine Pflanze."); return; }
-  if (pack.player.fruits < 2) { alert("Nicht genug Früchte (benötigt: 2)."); return; }
-  if (!isHybridSourceUnlocked(hybrid)) { alert("Quellpflanzen noch nicht vollständig geerntet."); return; }
+  if (!bedState) { showToast("Kein aktives Beet ausgewählt.", "error"); return; }
+  if (!canActivateBedForPlanting(bedState.id)) { showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error"); return; }
+  if (bedState.activePlantIds.length >= 4) { showToast("Beet ist voll (4/4). Ernte zuerst eine Pflanze.", "error"); return; }
+  if (pack.player.fruits < 2) { showToast("Nicht genug Früchte (benötigt: 2).", "error"); return; }
+  if (!isHybridSourceUnlocked(hybrid)) { showToast("Quellpflanzen noch nicht vollständig geerntet.", "error"); return; }
   pack.player.fruits -= 2;
   if (!pack.lab.discoveredHybrids.includes(hybridId)) pack.lab.discoveredHybrids.push(hybridId);
   if (!bedState.plants[hybridId]) bedState.plants[hybridId] = createEmptyPlantState(hybridId);
@@ -830,10 +906,10 @@ function synthesizeHybrid(hybridId) {
 
 function plantHybrid(hybridId) {
   const bedState = getBedState();
-  if (!bedState) { alert("Kein aktives Beet ausgewählt."); return; }
-  if (!canActivateBedForPlanting(bedState.id)) { alert(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`); return; }
-  if (bedState.activePlantIds.includes(hybridId)) { alert("Hybridpflanze ist bereits im Beet."); return; }
-  if (bedState.activePlantIds.length >= 4) { alert("Beet ist voll (4/4). Ernte zuerst eine Pflanze."); return; }
+  if (!bedState) { showToast("Kein aktives Beet ausgewählt.", "error"); return; }
+  if (!canActivateBedForPlanting(bedState.id)) { showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error"); return; }
+  if (bedState.activePlantIds.includes(hybridId)) { showToast("Hybridpflanze ist bereits im Beet.", "error"); return; }
+  if (bedState.activePlantIds.length >= 4) { showToast("Beet ist voll (4/4). Ernte zuerst eine Pflanze.", "error"); return; }
   if (!bedState.plants[hybridId]) bedState.plants[hybridId] = createEmptyPlantState(hybridId);
   bedState.activePlantIds.push(hybridId);
   saveState();
@@ -983,7 +1059,7 @@ function renderPlayer() {
     <div>XP: <strong>${player.xp}</strong></div>
     <div>HP: <strong>${player.currentHp}/${player.maxHp}</strong></div>
     <div>Früchte: <strong>${player.fruits}</strong></div>
-    <div>Dünger: <strong>${player.fertilizer}</strong></div>
+    <div>Dünger: <strong>${isDevFastMode() ? player.fertilizer : "∞"}</strong></div>
   `;
   els.cooldownInfo.textContent = `Aktueller Cooldown: ${cooldownSeconds}s`;
   els.curriculumStatus.textContent = `Curriculum-Fortschritt: ${curriculum.harvested}/${curriculum.total} Pflanzen mindestens einmal geerntet${curriculum.complete ? " (vollständig)" : ""}`;
@@ -1122,7 +1198,7 @@ function renderPlants() {
         ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}</div>` : ""}
         ${visual.phase !== "phase1" ? `<div class="plant-tip-bud${visual.withered ? " is-withered" : ""}" style="--bud-y:${stemFill}px;"></div>` : ""}
         <div class="plant-fruits">${fruitDots}</div>
-        ${(locked && isSelected) ? `<div class="plant-cooldown-hint">${remainingSec}s</div>` : ""}
+        ${locked ? `<div class="plant-cooldown-hint">${remainingSec}s</div>` : ""}
       </div>
     `;
   });
@@ -1250,7 +1326,7 @@ function renderPlants() {
       const bs = getBedState();
       if (!bs || !Array.isArray(bs.activePlantIds)) return;
       if (!canActivateBedForPlanting(bs.id)) {
-        alert(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`);
+        showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error");
         return;
       }
       if (bs.activePlantIds.includes(plantId) || bs.activePlantIds.length >= 4) return;
@@ -1481,7 +1557,7 @@ function renderPlantDetail() {
     <div>Bereitschafts-Defizit: ${Math.floor(readinessDebt)} (Ziel: 0)</div>
     <div class="row">${actions}</div>
     <div class="row">
-      <button id="use-fertilizer-btn" ${!onCooldown ? "disabled" : ""}>Dünger nutzen, Cooldown überspringen (${secsLeft}s)</button>
+      <button id="use-fertilizer-btn" ${!onCooldown ? "disabled" : ""}>${isDevFastMode() ? `Dünger nutzen (${secsLeft}s)` : `Cooldown überspringen (${secsLeft}s)`}</button>
       <button id="start-harvest-btn" ${(!harvestable || onCooldown) ? "disabled" : ""}>${onCooldown ? `Ernte gesperrt (${secsLeft}s)` : "Ernte starten"}</button>
     </div>
     ${onCooldown ? `<div class="muted">Cooldown läuft: ${secsLeft}s (${cooldownProgressPct}%)</div>` : ""}
@@ -1498,12 +1574,14 @@ function renderPlantDetail() {
   });
 
   document.getElementById("use-fertilizer-btn").addEventListener("click", () => {
-    const player = getPackState().player;
-    if (player.fertilizer <= 0) {
-      alert("Kein Dünger mehr verfügbar.");
-      return;
+    if (isDevFastMode()) {
+      const player = getPackState().player;
+      if (player.fertilizer <= 0) {
+        showToast("Kein Dünger mehr verfügbar.", "error");
+        return;
+      }
+      player.fertilizer -= 1;
     }
-    player.fertilizer -= 1;
     plantState.cooldownUntil = null;
     saveState();
     renderAll();
@@ -1755,7 +1833,7 @@ function startHarvest(plantId) {
   const now = Date.now();
   if (plantState.cooldownUntil && now < plantState.cooldownUntil) {
     const sec = Math.ceil((plantState.cooldownUntil - now) / 1000);
-    alert(`Ernte noch gesperrt. Cooldown: ${sec}s`);
+    showToast(`Ernte noch gesperrt. Cooldown: ${sec}s`, "error");
     return;
   }
   const content = getPlantContent(plantId);
@@ -1838,7 +1916,7 @@ function finalizeHarvest() {
     harvestSession = null;
     addXp(5);
     pack.stats.harvestSuccesses += 1;
-    alert(`Ernte bestanden (${Math.round(rate * 100)}%). +${fruitsGained * 2} Früchte`);
+    showToast(`Ernte bestanden (${Math.round(rate * 100)}%). +${fruitsGained * 2} Früchte`, "success");
   } else {
     const plantContent = getPlantContent(harvestSession.plantId);
     ensurePhase2Tracking(plantContent, plantState);
@@ -1848,9 +1926,10 @@ function finalizeHarvest() {
       }
     });
     computePhase2Readiness(plantContent, plantState);
+    evaluateWither(plantContent, plantState);
     plantState.readinessActionsUsed = 0;
     plantState.status = "growing";
-    alert(`Ernte nicht bestanden (${Math.round(rate * 100)}%). Defizit für Vertiefung wurde wiederhergestellt.`);
+    showToast(`Ernte nicht bestanden (${Math.round(rate * 100)}%). Defizit wurde wiederhergestellt.`);
   }
 
   harvestSession = null;
@@ -1862,7 +1941,7 @@ function maybeUnlockMoreBedSlots() {
   const p = getBedProgress();
   if (p.unlockSlots >= SEED_BEDS.length) return;
   p.unlockSlots += 1;
-  alert(`Boss besiegt. +1 Beet-Slot freigeschaltet (${p.unlockSlots} gesamt).`);
+  showToast(`Boss besiegt! +1 Beet-Slot freigeschaltet (${p.unlockSlots} gesamt).`, "success");
 }
 
 function buildEnemyPool(bedContent) {
@@ -1945,14 +2024,14 @@ function nextCombatQuestion() {
       addXp(10);
       saveState();
       combatSession = null;
-      alert("Boss besiegt! Du hast alle Fragen dieses Beetes gemeistert. +10 XP");
+      showToast("Boss besiegt! Alle Fragen gemeistert. +10 XP", "success");
       renderAll();
       return;
     }
     if (player.fruits <= 0) {
       combatSession = null;
       saveState();
-      alert("Keine Früchte mehr! Rückzug aus dem Boss-Kampf. Ernte mehr Pflanzen und versuche es erneut.");
+      showToast("Keine Früchte mehr! Rückzug aus Boss-Kampf.", "error");
       renderAll();
       return;
     }
@@ -1963,7 +2042,7 @@ function nextCombatQuestion() {
       hardResetCombat(state.activeBedId);
       combatSession = null;
       saveState();
-      alert("Keine Früchte mehr! Kampffortschritt wird zurückgesetzt. Ernte Pflanzen um Munition aufzufuellen.");
+      showToast("Keine Früchte mehr! Kampffortschritt zurückgesetzt.", "error");
       renderAll();
       return;
     }
@@ -2146,6 +2225,12 @@ function resolveCombatAnswer(answer) {
     fb.textContent = `Fehler. HP: ${player.currentHp}/${player.maxHp}.${feedbackText ? " " + feedbackText : ""}`;
   }
 
+  const defeated = player.currentHp <= 0;
+  if (defeated) {
+    player.currentHp = 1;
+    combatSession = null;
+    getPackState().stats.combatsLost += 1;
+  }
   saveState();
   renderPlayer();
 
@@ -2153,9 +2238,9 @@ function resolveCombatAnswer(answer) {
   actionRow.className = "row";
   const continueBtn = document.createElement("button");
 
-  if (player.currentHp <= 0) {
-    combatSession = null;
-    continueBtn.textContent = "Niederlage - Rückzug";
+  if (defeated) {
+    showToast("Niederlage! HP auf 1 wiederhergestellt.", "error");
+    continueBtn.textContent = "Niederlage – Rückzug";
     continueBtn.addEventListener("click", () => renderAll());
   } else {
     continueBtn.textContent = "Weiter";
