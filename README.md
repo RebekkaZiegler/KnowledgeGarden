@@ -1,7 +1,9 @@
-﻿# KnowledgeGarden
+# KnowledgeGarden
 
-KnowledgeGarden is a browser-based learning RPG prototype.  
+KnowledgeGarden is a browser-based learning RPG prototype.
 You learn topics by growing plants, test yourself through harvest/combat questions, and unlock more content over time.
+
+Current version: **0.4** — Heilpraktiker Pack
 
 ## Requirements
 
@@ -47,72 +49,99 @@ Then open:
   npm run check
   ```
 
+## UI layout
+
+The game uses a two-panel layout:
+
+- **Left panel** (always visible): player stats, heal button, selected plant info and questions
+- **Garden room** (center): topic shelves, each showing growing plants in pots — all topics visible at once
+- **Bottom nav bar**: Pflanzen (catalog), Kampf (combat), Labor (lab), Einstellungen (settings)
+
+No movement or world navigation — everything is accessible directly from the garden view.
+
 ## Core game loop
 
-1. Select/activate a bed from the Seed area.
-2. Plant seeds into active beds.
-3. Grow plants through learning phases.
-4. Harvest plants to gain fruits.
-5. Spend fruits in combat to unlock progression.
-6. Use lab/combinations as features unlock.
+1. Click an empty pot on a topic shelf to plant a seed (opens filtered catalog).
+2. Grow the plant through Phase 1 (3 setup steps with lesson + question) and Phase 2 (watering/trimming/fertilizing, each with a question).
+3. Once all Phase 2 questions are learned and the cooldown expires, harvest the plant.
+4. Harvest requires **all questions correct** — wrong answers go back to Phase 2 proportionally.
+5. Harvested plants reward fruits (×2 per correct answer).
+6. Spend fruits in combat to unlock progression.
+7. Synthesize hybrid plants in the Lab once both source plants are harvested.
 
 ## Core mechanics
 
 ### 1) Plant lifecycle
 
 - **Phase 1 (Setup):**
-  - Steps: Soil -> Seed -> First watering
-  - Each step uses learning content + a true/false check.
+  - Steps: Soil → Seed → First watering
+  - Each step shows lesson text first, then a true/false question.
+  - Retry immediately on wrong answer — no progress until correct.
 - **Phase 2 (Practice):**
-  - Action-based learning cycles (question-driven)
-  - Cooldown between actions
-  - Plant growth visualization updates over time
+  - 3 actions: water (Wässern), trim (Beschneiden), fertilize (Düngen)
+  - Each action asks a harvest question; correct = learned, wrong = stays in queue
+  - Cooldown between actions (5 min normal / 10 s dev mode)
+  - 3 wrong answers on one question → plant withers
+  - All questions learned → plant ready to harvest
 - **Harvest:**
-  - Unlocked once learning requirements are met
-  - Correct answers reward fruits
-  - Harvested state is tracked for progression
+  - All harvest questions asked once in random order
+  - All must be answered correctly — any wrong → only those questions reset to Phase 2
+  - Success: fruits earned, plant removed from bed, `harvestedOnce` flagged permanently
 
-### 2) Bed and seed states
+### 2) Plant colors
 
-Seed entries are color-coded to show progression:
+Each topic has a distinct color scheme (stem + fruit):
+- Zytologie: orange
+- Histologie: blue/purple
+- Knochenlehre: grey-green
+- Muskellehre: red
+- Atmungssystem: teal
 
-- **Red:** not harvested yet
-- **Yellow:** currently planted in a bed
-- **Green:** harvested at least once
-
-There is an active-bed limit, and unlocked slots increase with progression.
+Hybrid plants inherit stem color from source 1 and fruit color from source 2.
 
 ### 3) Combat and boss flow
 
-- Combat consumes fruits as a resource.
-- Correct answers advance combat progress.
-- Boss logic unlocks after normal enemy progression in a bed.
-- Defeating bosses unlocks additional bed capacity/progression.
+- Fruit cost: 1 fruit per answer attempt
+- Correct: +1 XP, enemy marked defeated
+- Wrong: -1 HP, question queued for boss
+- Fruits = 0: hard reset of combat progress
+- HP = 0: retreat, no reset
+- All enemies defeated → boss fight (wrong questions + random fill to min. 5)
+- Boss win: +1 bed slot unlocked
 
-### 4) Save system
+### 4) Lab / Hybrids
 
-- Local save via browser storage.
-- Export/Import save file (JSON) supported in settings.
+- Unlocked after harvesting plants from 2 different topic beds
+- Each hybrid requires 2 specific source plants to be harvested
+- Lab shows ✓/✗ status per required plant; locked hybrids show a hint button
+- Synthesis costs 2 fruits; once discovered, replanting is free
 
-## Controls / UI
+### 5) Save system
 
-- Move in world: `WASD` or arrow keys
-- Interact in world zones: `E`
-- Open/close settings panel: `Esc`
-- Plant interactions are available by clicking plants in the bed view/world.
+- Local save via browser storage (`localStorage`)
+- Export/Import save file (JSON) available in settings
+- Dev mode: fast cooldown toggle in settings
+
+## Controls
+
+- Click a pot to select a plant or add a new one
+- Click action buttons (💧 ✂️ 🌿 🧪) in the left panel or above the selected pot
+- Bottom nav bar for Katalog / Kampf / Labor / Einstellungen
+- Esc closes modals
 
 ## Project structure
 
-- `index.html` - app shell
-- `styles.css` - UI/game styling
-- `js/content.js` - content pack data (questions/plants)
-- `js/game.js` - core game logic and UI rendering
-- `js/world.js` - Phaser world scene and room interactions
-- `scripts/serve.js` - static local server
-- `scripts/run.js` - local server + app-window launcher
+- `index.html` — app shell
+- `styles.css` — UI/game styling
+- `js/content.js` — content pack data (questions, plants, hybrids, label exercises)
+- `js/game.js` — core game logic and UI rendering
+- `js/world.js` — legacy Phaser world scene (inactive)
+- `scripts/serve.js` — static local server
+- `scripts/run.js` — local server + app-window launcher
+- `docs/` — project overview, playtest checklist, ideas
 
 ## Notes
 
 - This is an MVP/prototype under active iteration.
-- Some UI text/content is German by design.
+- UI text and content is German by design (Heilpraktiker learning content).
 - If a push fails with auth issues, ensure the correct GitHub account/credentials are used.

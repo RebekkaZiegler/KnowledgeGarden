@@ -30,19 +30,20 @@ const BED_PLANT_COLORS = {
 };
 const DEFAULT_PLANT_COLORS = { stemHi: "#7fc98a", stemLo: "#2f6b3d", fruitHi: "#ff8f8f", fruitLo: "#cf2f2f" };
 
-const CHANGELOG_VERSION = "0.3";
+const CHANGELOG_VERSION = "0.4";
 const CHANGELOG_KEY = `kg_changelog_seen_${CHANGELOG_VERSION}`;
 const CHANGELOG = [
-  { type: "fix",     text: "Dünger im Normalmodus kostenlos – Cooldown überspringen verbraucht keinen Dünger mehr" },
-  { type: "fix",     text: "HP nach Kampfniederlage auf 1 zurückgesetzt – kein Softlock mehr möglich" },
-  { type: "fix",     text: "Verwelkung direkt nach fehlgeschlagener Ernte berechnet" },
-  { type: "fix",     text: "Alte Speicherstände: fehlende Boss-Felder werden beim Laden automatisch ergänzt" },
-  { type: "fix",     text: "\"Verstanden\"-Button im Was-ist-neu-Fenster schließt das Fenster jetzt korrekt" },
-  { type: "improve", text: "Wachstumsbalken unter jeder Pflanze im Hauptmenü – Fortschritt auf einen Blick" },
-  { type: "improve", text: "Cooldown-Timer für alle Pflanzen sichtbar, nicht nur die ausgewählte" },
-  { type: "improve", text: "Spielerfigur läuft schneller in der Weltansicht" },
-  { type: "improve", text: "Detailpanel breiter und Fragentext besser lesbar (mehr Platz, höhere Zeilenhöhe)" },
-  { type: "improve", text: "Alle Browser-Popups durch In-Game-Toast-Benachrichtigungen ersetzt" }
+  { type: "new",     text: "Neues Garten-Layout: alle Themenbeete gleichzeitig sichtbar (Plant Tycoon-Stil), kein Weltnavigieren mehr nötig" },
+  { type: "new",     text: "Jedes Thema hat eigene Pflanzenfarben – Zytologie orange, Histologie blau, Knochen graugrün, Muskeln rot, Atmung türkis" },
+  { type: "new",     text: "Hybridpflanzen übernehmen Stammfarbe von Elternteil 1 und Fruchtfarbe von Elternteil 2" },
+  { type: "new",     text: "Labor zeigt jetzt für jeden Hybriden welche Quellpflanzen noch fehlen (✓/✗), gesperrte Hybride haben einen Hinweis-Button" },
+  { type: "new",     text: "Beet-Statistiken pro Regal: gepflanzt, geerntet, gelernte/falsche/offene Fragen" },
+  { type: "improve", text: "Ernte: alle Fragen müssen richtig beantwortet werden – falsche Fragen gehen gezielt zurück in Phase 2, keine Pauschalstrafe mehr" },
+  { type: "improve", text: "Pflanzen-Katalog zeigt beim Klick auf leeren Topf nur Pflanzen des passenden Themas" },
+  { type: "improve", text: "Pflanzenzweige wachsen jetzt alternierend links/rechts, Früchte sitzen korrekt an den Astspitzen" },
+  { type: "fix",     text: "Phase-2-Fragen mit MC-Format wurden als 'undefined' angezeigt – behoben" },
+  { type: "fix",     text: "Wachstumsbalken stieg fälschlicherweise bei falschen Antworten – behoben" },
+  { type: "fix",     text: "5 Fragen hatten mehrere richtige Antworten in Einzelauswahl-Format – korrigiert" }
 ];
 
 let state = loadState();
