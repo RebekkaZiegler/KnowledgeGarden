@@ -1,4 +1,4 @@
-﻿const SAVE_KEY = "kg_rpg_mvp_v4";
+﻿const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
 const HARVEST_PASS_RATE = 0.7;
@@ -10,6 +10,25 @@ const PHASE2_UNSEEN_SCORE = 20;
 const PHASE2_WRONG_SCORE = 10;
 const PHASE2_MAX_WRONG_PER_QUESTION = 3;
 const STOP_WORDS = new Set(["und", "der", "die", "das", "des", "den", "dem", "mit", "von", "im", "in", "am", "an", "zu", "zur", "für"]);
+const POT_COLORS = {
+  zytologie: "#c97d3a",
+  histologie_1032: "#4e7db8",
+  knochenlehre_1033: "#8a7a5a",
+  muskellehre_1034: "#c44d4d",
+  atmungssystem_1035: "#4aabb0",
+  hybrid: "#8e5ab8"
+};
+
+// Per-bed plant color schemes: stemHi/stemLo = stem+branch gradient, fruitHi/fruitLo = fruit dots
+// Hybrids inherit stem from source bed 1, fruit from source bed 2
+const BED_PLANT_COLORS = {
+  zytologie:     { stemHi: "#c8903a", stemLo: "#7a4e18", fruitHi: "#f0c840", fruitLo: "#b08010" },
+  histologie:    { stemHi: "#78b0e0", stemLo: "#2850a0", fruitHi: "#b080f0", fruitLo: "#6030c0" },
+  knochenlehre:  { stemHi: "#a8b890", stemLo: "#5a6a48", fruitHi: "#d8c060", fruitLo: "#908020" },
+  muskellehre:   { stemHi: "#d87878", stemLo: "#903030", fruitHi: "#f05050", fruitLo: "#c01010" },
+  atmungssystem: { stemHi: "#70d0d8", stemLo: "#247878", fruitHi: "#88d0f8", fruitLo: "#2878b8" },
+};
+const DEFAULT_PLANT_COLORS = { stemHi: "#7fc98a", stemLo: "#2f6b3d", fruitHi: "#ff8f8f", fruitLo: "#cf2f2f" };
 
 const CHANGELOG_VERSION = "0.3";
 const CHANGELOG_KEY = `kg_changelog_seen_${CHANGELOG_VERSION}`;
@@ -32,6 +51,7 @@ let harvestSession = null;
 let phase2Session = null;
 let combatSession = null;
 let expandedSeedCatalogBedId = null;
+let catalogFilterBedId = null;
 let phase1ShowingLesson = false;
 let labelSession = null;
 let uiViewMode = "full";
@@ -40,15 +60,13 @@ let lastFaviconSignature = "";
 
 const els = {
   playerStats: document.getElementById("player-stats"),
-  bedTitle: document.getElementById("bed-title"),
-  bedTabs: document.getElementById("bed-tabs"),
-  seedProgress: document.getElementById("seed-progress"),
   seedLibrary: document.getElementById("seed-library"),
   curriculumStatus: document.getElementById("curriculum-status"),
   devModeBtn: document.getElementById("dev-mode-btn"),
   cooldownInfo: document.getElementById("cooldown-info"),
-  plantsList: document.getElementById("plants-list"),
   plantDetail: document.getElementById("plant-detail"),
+  leftPanelVisual: document.getElementById("left-panel-visual"),
+  gardenRoom: document.getElementById("garden-room"),
   saveBtn: document.getElementById("save-btn"),
   exportBtn: document.getElementById("export-btn"),
   importBtn: document.getElementById("import-btn"),
@@ -266,7 +284,7 @@ function buildBedsState() {
 
 function createInitialState() {
   return {
-    version: 1,
+    version: 2,
     settings: {
       devFastMode: false
     },
@@ -284,8 +302,8 @@ function createInitialState() {
           studyMode: "normal"
         },
         bedProgress: {
-          unlockSlots: INITIAL_UNLOCK_SLOTS,
-          unlockedBedIds: []
+          unlockSlots: SEED_BEDS.length,
+          unlockedBedIds: SEED_BEDS.map((b) => b.id)
         },
         beds: buildBedsState(),
         lab: {
@@ -308,7 +326,7 @@ function loadState() {
   if (!raw) return createInitialState();
   try {
     const parsed = JSON.parse(raw);
-    if (!parsed || parsed.version !== 1) return createInitialState();
+    if (!parsed || parsed.version !== 2) return createInitialState();
     return normalizeLoadedState(parsed);
   } catch (_) {
     return createInitialState();
@@ -319,6 +337,12 @@ function normalizeLoadedState(inputState) {
   const s = inputState || createInitialState();
   const pack = s.packs?.[s.activePackId];
   if (!pack || !pack.beds) return s;
+  // Migration: unlock all beds (remove slot gating)
+  if (!pack.bedProgress) pack.bedProgress = { unlockSlots: SEED_BEDS.length, unlockedBedIds: [] };
+  pack.bedProgress.unlockSlots = SEED_BEDS.length;
+  SEED_BEDS.forEach((b) => {
+    if (!pack.bedProgress.unlockedBedIds.includes(b.id)) pack.bedProgress.unlockedBedIds.push(b.id);
+  });
   if (!pack.lab) pack.lab = { discoveredHybrids: [] };
   const hybridIds = PACK_CONTENT.lab.hybrids.map((h) => h.id);
   PACK_CONTENT.beds.forEach((bed) => {
@@ -327,6 +351,11 @@ function normalizeLoadedState(inputState) {
     const validIds = [...bed.plants.map((p) => p.id), ...hybridIds];
     const current = Array.isArray(bedState.activePlantIds) ? bedState.activePlantIds : [];
     bedState.activePlantIds = current.filter((id) => validIds.includes(id)).slice(0, 4);
+    // Migration: add missing plant states for plants added to content.js after save was made
+    if (!bedState.plants) bedState.plants = {};
+    bed.plants.forEach((p) => {
+      if (!bedState.plants[p.id]) bedState.plants[p.id] = createEmptyPlantState(p.id);
+    });
     // Migration: add new combat fields if missing in older saves
     if (!bedState.enemyProgress) bedState.enemyProgress = {};
     if (!bedState.wrongInCombat) bedState.wrongInCombat = {};
@@ -374,8 +403,8 @@ function parseImportedPayload(raw) {
   }
 
   const candidate = parsed.state && typeof parsed.state === "object" ? parsed.state : parsed;
-  if (!candidate || candidate.version !== 1 || !candidate.packs || !candidate.activePackId) {
-    return { ok: false, reason: "Kein kompatibler Spielstand (Version 1) gefunden." };
+  if (!candidate || candidate.version !== 2 || !candidate.packs || !candidate.activePackId) {
+    return { ok: false, reason: "Kein kompatibler Spielstand (Version 2) gefunden." };
   }
 
   return { ok: true, state: normalizeLoadedState(candidate) };
@@ -637,8 +666,7 @@ function computePhase2Readiness(plantContent, plantState) {
   for (const q of plantContent.harvestQuestions) {
     const stat = plantState.phase2Questions[q.id];
     if (stat.status === "learned") continue;
-    if (stat.status === "wrong") total += PHASE2_WRONG_SCORE;
-    else total += PHASE2_UNSEEN_SCORE;
+    total += PHASE2_UNSEEN_SCORE; // wrong answers hold the same debt as unseen — bar only grows on correct answers
   }
   plantState.readiness = total;
   return total;
@@ -720,18 +748,30 @@ function unlockCombatIfNeeded() {
 }
 
 function renderSeedLibrary() {
+  if (!els.seedLibrary) return;
   const progress = getBedProgress();
-  els.seedProgress.textContent = `Freigeschaltete Beete: ${progress.unlockedBedIds.length}/${progress.unlockSlots} Slots belegt | Aktive Beete (mit Pflanzen): ${getActiveBedsWithPlantsCount()}/${MAX_ACTIVE_BEDS}`;
+  const seedProgress = document.getElementById("seed-progress");
+  if (seedProgress) seedProgress.textContent = `Freigeschaltete Beete: ${progress.unlockedBedIds.length}/${progress.unlockSlots} Slots belegt | Aktive Beete (mit Pflanzen): ${getActiveBedsWithPlantsCount()}/${MAX_ACTIVE_BEDS}`;
 
   const canUnlock = progress.unlockedBedIds.length < progress.unlockSlots;
   const pack = getPackState();
-  const rows = SEED_BEDS.map((bed) => {
+  const bedsToShow = catalogFilterBedId ? SEED_BEDS.filter((b) => b.id === catalogFilterBedId) : SEED_BEDS;
+  const filterHint = catalogFilterBedId ? `<div class="muted" style="margin-bottom:0.5rem">Zeige nur: <strong>${bedsToShow[0]?.title || catalogFilterBedId}</strong></div>` : "";
+  const rows = bedsToShow.map((bed) => {
     const unlocked = isBedUnlocked(bed.id);
     const isOpen = expandedSeedCatalogBedId === bed.id;
     const activeIds = getActivePlantIdsForBed(bed.id);
     const activeCount = activeIds.length;
     const harvestedCount = bed.plants.filter((p) => pack.beds[bed.id]?.plants?.[p.id]?.harvestedOnce).length;
-    const plantRows = isOpen ? bed.plants.map((plant) => {
+    const sortedPlants = isOpen ? [...bed.plants].sort((a, b) => {
+      const aActive = activeIds.includes(a.id);
+      const bActive = activeIds.includes(b.id);
+      const aHarvested = !!pack.beds[bed.id]?.plants?.[a.id]?.harvestedOnce;
+      const bHarvested = !!pack.beds[bed.id]?.plants?.[b.id]?.harvestedOnce;
+      const rank = (active, harvested) => active ? 2 : harvested ? 1 : 0;
+      return rank(aActive, aHarvested) - rank(bActive, bHarvested);
+    }) : [];
+    const plantRows = isOpen ? sortedPlants.map((plant) => {
       const pState = pack.beds[bed.id]?.plants?.[plant.id];
       if (!pState) return "";
       const isActive = activeIds.includes(plant.id);
@@ -746,24 +786,42 @@ function renderSeedLibrary() {
         : pState.harvestedOnce
           ? "catalog-row--harvested"
           : "catalog-row--not-harvested";
+      const canToggle = unlocked && !isActive && activeCount < 4;
+      const actionBtn = isActive
+        ? `<button data-seed-plant-toggle="${bed.id}::${plant.id}" style="font-size:0.78rem">Entfernen</button>`
+        : canToggle
+          ? `<button data-seed-plant-toggle="${bed.id}::${plant.id}" style="font-size:0.78rem">Einsetzen</button>`
+          : !unlocked
+            ? `<button disabled style="font-size:0.78rem">Beet gesperrt</button>`
+            : `<button disabled style="font-size:0.78rem">Beet voll</button>`;
       return `
         <div class="catalog-row ${harvestClass}">
           <span>${label}</span>
           <span class="status-chip ${status.tone}">${status.text}</span>
           <span class="muted">Modul ${moduleCodeFromBedId(bed.id)}</span>
+          ${actionBtn}
         </div>
       `;
     }).join("") : "";
     if (unlocked) {
-      const activeBtnLabel = state.activeBedId === bed.id ? "Aktives Beet" : "Beet wählen";
+      const activeBtnLabel = state.activeBedId === bed.id ? "Aktives Beet ✓" : "Beet wählen";
+      const miniVisuals = activeIds.map((pid) => {
+        const pState = pack.beds[bed.id]?.plants?.[pid];
+        const pContent = bed.plants.find((p) => p.id === pid);
+        if (!pState || !pContent) return "";
+        const plantContent = getPlantContent(pid);
+        const visualHtml = buildPlantVisualHtml(pState, plantContent, "plant-visual--mini");
+        return `<div class="bed-mini-item" data-mini-plant="${pid}" data-mini-bed="${bed.id}">${visualHtml}<div class="bed-mini-label">${escapeHtmlText(pContent.title)}</div></div>`;
+      }).filter(Boolean).join("");
       return `
         <div class="list">
           <div class="row">
             <strong>${bed.title}</strong>
             <button data-seed-activate="${bed.id}">${activeBtnLabel}</button>
             <button data-seed-catalog="${bed.id}">${isOpen ? "Sorten ausblenden" : "Sorten anzeigen"}</button>
-            <span class="muted">Im Beet: ${activeCount}/4 | Samentypen geerntet: ${harvestedCount}/${bed.plants.length}</span>
+            <span class="muted">Im Beet: ${activeCount}/4 | Geerntet: ${harvestedCount}/${bed.plants.length}</span>
           </div>
+          ${miniVisuals ? `<div class="bed-mini-row">${miniVisuals}</div>` : ""}
           ${isOpen ? `<div class="list">${plantRows}</div>` : ""}
         </div>
       `;
@@ -779,7 +837,7 @@ function renderSeedLibrary() {
       </div>
     `;
   });
-  els.seedLibrary.innerHTML = rows.join("");
+  els.seedLibrary.innerHTML = filterHint + rows.join("");
 
   els.seedLibrary.querySelectorAll("[data-seed-unlock]").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -791,12 +849,26 @@ function renderSeedLibrary() {
       if (!state.activeBedId) state.activeBedId = bedId;
       saveState();
       renderAll();
+      closeModal("modal-catalog");
     });
   });
 
   els.seedLibrary.querySelectorAll("[data-seed-activate]").forEach((btn) => {
     btn.addEventListener("click", () => {
       setActiveBed(btn.getAttribute("data-seed-activate"));
+      closeModal("modal-catalog");
+    });
+  });
+
+  els.seedLibrary.querySelectorAll("[data-mini-plant]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const bedId = el.getAttribute("data-mini-bed");
+      const plantId = el.getAttribute("data-mini-plant");
+      setActiveBed(bedId);
+      selectedPlantId = plantId;
+      phase2Session = null;
+      harvestSession = null;
+      showMainUi({ mode: "compact", section: "beds" });
     });
   });
 
@@ -828,6 +900,11 @@ function renderSeedLibrary() {
           state.activeBedId = null;
         }
       } else {
+        if (!isBedUnlocked(bedId)) {
+          showToast("Beet zuerst freischalten.", "error");
+          return;
+        }
+        if (bedState.activePlantIds.includes(plantId)) return;
         if (!canActivateBedForPlanting(bedId)) {
           showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error");
           return;
@@ -838,6 +915,10 @@ function renderSeedLibrary() {
         }
         preparePlantForNewCycle(bedState.plants[plantId]);
         bedState.activePlantIds.push(plantId);
+        saveState();
+        renderAll();
+        closeModal("modal-catalog");
+        return;
       }
 
       saveState();
@@ -847,24 +928,7 @@ function renderSeedLibrary() {
 }
 
 function renderBedTabs() {
-  const visible = getWorldVisibleBeds();
-
-  if (visible.length === 0) {
-    els.bedTabs.innerHTML = `<span class="muted">Keine aktiven Beete. Wähle ein Beet im Seed-Menue.</span>`;
-    return;
-  }
-
-  const tabs = visible.map((bed) => {
-    const activeClass = bed.id === state.activeBedId ? " tab-btn--active" : "";
-    return `<button class="tab-btn${activeClass}" data-bed-tab="${bed.id}">${bed.title}</button>`;
-  }).join("");
-
-  els.bedTabs.innerHTML = tabs;
-  els.bedTabs.querySelectorAll("[data-bed-tab]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      setActiveBed(btn.getAttribute("data-bed-tab"));
-    });
-  });
+  // No-op: bed tabs replaced by garden shelf rows in new layout
 }
 
 function isHybridSourceUnlocked(hybrid) {
@@ -941,10 +1005,16 @@ function renderLab() {
     const sourcesUnlocked = isHybridSourceUnlocked(hybrid);
     const canSynthesize = sourcesUnlocked && !isDiscovered && !isActive && hasBed && !isFull && pack.player.fruits >= 2;
     const canPlant = isDiscovered && !isActive && hasBed && !isFull;
-    const sourceModules = (hybrid.sources || []).map((src) => {
-      const m = src.split("::")[0].match(/_(\d{4})$/);
-      return m ? m[1] : src.split("::")[0];
-    }).join(" + ");
+
+    const sourceParts = (hybrid.sources || []).map((src) => {
+      const [bedId, plantId] = src.split("::");
+      const bed = SEED_BEDS.find((b) => b.id === bedId);
+      const plant = bed?.plants.find((p) => p.id === plantId);
+      const harvested = pack.beds[bedId]?.plants?.[plantId]?.harvestedOnce === true;
+      const plantName = plant?.title || plantId;
+      const bedName = bed?.title || bedId;
+      return `<span class="lab-source${harvested ? " lab-source--ok" : ""}">${harvested ? "✓" : "✗"} ${plantName} <span class="muted">(${bedName})</span></span>`;
+    });
 
     let statusChip = "";
     let actionBtn = "";
@@ -960,12 +1030,15 @@ function renderLab() {
       statusChip = `<span class="status-chip idle">Gesperrt</span>`;
     }
     const isRevealed = isDiscovered || sourcesUnlocked;
+    const sourcesHtml = isRevealed
+      ? `<div class="lab-sources">${sourceParts.join("")}</div>`
+      : `<details class="lab-hint"><summary>Hinweis</summary><div class="lab-sources">${sourceParts.join("")}</div></details>`;
     return `
       <div class="catalog-row catalog-row--hybrid">
         <span>${isRevealed ? hybrid.title : "???"}</span>
         ${statusChip}
-        ${isRevealed ? `<span class="muted">Quellen: ${sourceModules}</span>` : ""}
         ${actionBtn}
+        ${sourcesHtml}
       </div>
     `;
   }).join("");
@@ -983,19 +1056,284 @@ function renderLab() {
 
 function renderAll() {
   unlockCombatIfNeeded();
-  renderSeedLibrary();
-  renderLab();
-  renderBedTabs();
-
-  const active = getActiveBedContent();
-  els.bedTitle.textContent = active ? `Beet: ${active.title}` : "Beet: keines ausgewählt";
-
   renderPlayer();
   renderHealArea();
-  renderPlants();
-  renderPlantDetail();
-  renderCombat();
+  renderGardenRoom();
+  renderLeftPanel();
   updateReactiveFavicon();
+}
+
+// Pot accent colors: defined at top of file (before initialization) to avoid TDZ crash
+
+function getPotColor(bedId) {
+  const id = String(bedId || "").toLowerCase();
+  for (const key of Object.keys(POT_COLORS)) {
+    if (id.includes(key)) return POT_COLORS[key];
+  }
+  return "#8a5a30";
+}
+
+function getBedPlantColors(bedId) {
+  const id = String(bedId || "").toLowerCase();
+  for (const key of Object.keys(BED_PLANT_COLORS)) {
+    if (id.includes(key)) return BED_PLANT_COLORS[key];
+  }
+  return DEFAULT_PLANT_COLORS;
+}
+
+function getPlantColorScheme(content) {
+  if (!content) return DEFAULT_PLANT_COLORS;
+  // Hybrid: stem+branch from source bed 1, fruits from source bed 2
+  if (content.sources && content.sources.length >= 2) {
+    const s1 = getBedPlantColors(content.sources[0].split("::")[0]);
+    const s2 = getBedPlantColors(content.sources[1].split("::")[0]);
+    return { stemHi: s1.stemHi, stemLo: s1.stemLo, fruitHi: s2.fruitHi, fruitLo: s2.fruitLo };
+  }
+  // Regular plant: find its bed
+  for (const bed of PACK_CONTENT.beds) {
+    if (bed.plants.some((p) => p.id === content.id)) return getBedPlantColors(bed.id);
+  }
+  return DEFAULT_PLANT_COLORS;
+}
+
+function computeShelfStats(bed, bedState) {
+  const plants = bed.plants || [];
+  const totalPlants = plants.length;
+  const activePlantIds = bedState.activePlantIds || [];
+  const planted = activePlantIds.length;
+  let harvested = 0, qLearned = 0, qWrong = 0, qTotal = 0;
+  plants.forEach((p) => {
+    const ps = bedState.plants?.[p.id];
+    if (ps?.harvestedOnce) harvested++;
+    const qs = p.harvestQuestions || [];
+    qTotal += qs.length;
+    qs.forEach((q) => {
+      const stat = ps?.phase2Questions?.[q.id]?.status;
+      if (stat === "learned") qLearned++;
+      else if (stat === "wrong") qWrong++;
+    });
+  });
+  const qOpen = qTotal - qLearned - qWrong;
+  return { totalPlants, planted, harvested, qLearned, qWrong, qOpen, qTotal };
+}
+
+function renderGardenRoom() {
+  if (!els.gardenRoom) return;
+  const pack = getPackState();
+  const unlockedIds = new Set(getBedProgress().unlockedBedIds);
+  const MAX_POTS = 4;
+
+  const html = PACK_CONTENT.beds.map((bed) => {
+    if (!unlockedIds.has(bed.id)) return "";
+    const bedState = pack.beds[bed.id] || {};
+    const activePlantIds = bedState.activePlantIds || [];
+    const potColor = getPotColor(bed.id);
+
+    const pots = [];
+    // Active plants first
+    for (let i = 0; i < MAX_POTS; i++) {
+      const plantId = activePlantIds[i];
+      if (plantId) {
+        const plantState = bedState.plants?.[plantId] || {};
+        const content = bed.plants.find((p) => p.id === plantId);
+        const isSelected = selectedPlantId === plantId && state.activeBedId === bed.id;
+        const label = content ? (content.title || plantId) : plantId;
+        const visualHtml = content ? buildPlantVisualHtml(plantState, content, "plant-visual--garden") : "";
+
+        // Build tool buttons for this plant
+        const toolsHtml = buildPotToolsHtml(plantState, content, plantId, bed.id);
+
+        pots.push(`
+          <div class="garden-pot has-plant${isSelected ? " is-selected" : ""}"
+               data-plant-id="${plantId}" data-bed-id="${bed.id}"
+               style="--pot-color:${potColor}"
+               title="${label}">
+            ${visualHtml}
+            ${isSelected ? toolsHtml : ""}
+          </div>`);
+      } else {
+        // Empty pot slot — show + if there are unplanted plants available
+        const hasAvailable = bed.plants.some((p) => !activePlantIds.includes(p.id));
+        if (hasAvailable) {
+          pots.push(`
+            <div class="garden-pot garden-pot--empty"
+                 data-add-bed="${bed.id}"
+                 style="--pot-color:${potColor}"
+                 title="Pflanze einsetzen">
+              <div class="empty-pot"></div>
+              <span class="empty-pot-plus">+</span>
+            </div>`);
+        } else {
+          pots.push(`
+            <div class="garden-pot garden-pot--empty garden-pot--locked"
+                 style="--pot-color:${potColor}">
+              <div class="empty-pot"></div>
+            </div>`);
+        }
+      }
+    }
+
+    const isActiveBed = state.activeBedId === bed.id;
+    const stats = computeShelfStats(bed, bedState);
+    const statsHtml = `
+      <div class="shelf-stats">
+        <span class="shelf-stat" title="Aktiv eingepflanzt">🌱 ${stats.planted}/${stats.totalPlants}</span>
+        <span class="shelf-stat" title="Mindestens einmal geerntet">🌾 ${stats.harvested}/${stats.totalPlants}</span>
+        <span class="shelf-stat shelf-stat--learned" title="Fragen gelernt">✓ ${stats.qLearned}/${stats.qTotal}</span>
+        ${stats.qWrong > 0 ? `<span class="shelf-stat shelf-stat--wrong" title="Fragen falsch beantwortet">✗ ${stats.qWrong}</span>` : ""}
+        ${stats.qOpen > 0 ? `<span class="shelf-stat shelf-stat--open" title="Fragen noch nicht beantwortet">… ${stats.qOpen}</span>` : ""}
+      </div>`;
+    return `
+      <div class="garden-shelf${isActiveBed ? " garden-shelf--active" : ""}" data-bed-id="${bed.id}"
+           style="${isActiveBed ? `--shelf-color:${potColor}` : ""}">
+        <div class="garden-shelf-header">
+          <div class="garden-shelf-label">${bed.title}</div>
+          ${statsHtml}
+        </div>
+        <div class="garden-shelf-pots">${pots.join("")}</div>
+      </div>`;
+  }).join("");
+
+  els.gardenRoom.innerHTML = html || `<div class="muted" style="padding:2rem">Keine Beete freigeschaltet. Öffne den Pflanzenkatalog, um zu beginnen.</div>`;
+
+  // Click handlers
+  els.gardenRoom.querySelectorAll(".garden-pot.has-plant").forEach((el) => {
+    el.addEventListener("click", () => {
+      const plantId = el.getAttribute("data-plant-id");
+      const bedId = el.getAttribute("data-bed-id");
+      selectPlantInGarden(plantId, bedId);
+    });
+  });
+
+  els.gardenRoom.querySelectorAll("[data-add-bed]").forEach((el) => {
+    el.addEventListener("click", () => {
+      const bedId = el.getAttribute("data-add-bed");
+      openCatalogModal(bedId);
+    });
+  });
+
+  // Phase2 tool buttons inside pot-tools
+  els.gardenRoom.querySelectorAll("[data-pot-p2]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const plantId = btn.closest("[data-plant-id]").getAttribute("data-plant-id");
+      const bedId = btn.closest("[data-bed-id]").getAttribute("data-bed-id");
+      state.activeBedId = bedId;
+      selectedPlantId = plantId;
+      startPhase2Action(plantId, parseInt(btn.getAttribute("data-pot-p2"), 10));
+    });
+  });
+
+  els.gardenRoom.querySelectorAll("[data-pot-harvest]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const plantId = btn.closest("[data-plant-id]").getAttribute("data-plant-id");
+      const bedId = btn.closest("[data-bed-id]").getAttribute("data-bed-id");
+      state.activeBedId = bedId;
+      selectedPlantId = plantId;
+      saveState();
+      startHarvest(plantId);
+      renderAll();
+    });
+  });
+
+  els.gardenRoom.querySelectorAll("[data-pot-skip]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const plantId = btn.closest("[data-plant-id]").getAttribute("data-plant-id");
+      const bedId = btn.closest("[data-bed-id]").getAttribute("data-bed-id");
+      state.activeBedId = bedId;
+      selectedPlantId = plantId;
+      skipCooldownWithFertilizer(plantId);
+    });
+  });
+}
+
+function buildPotToolsHtml(plantState, content, plantId, bedId) {
+  if (!content) return "";
+  const phase = plantState.phase || "phase1";
+  const isLocked = plantState.locked && Date.now() < (plantState.lockedUntil || 0);
+
+  if (phase === "phase2" || phase === "phase2_final") {
+    const phase2 = content.phase2 || [];
+    const toolBtns = phase2.map((action, idx) => {
+      const icon = getActionIcon(action.type);
+      const done = (plantState.phase2Progress || [])[idx]?.done;
+      const disabledAttr = (isLocked || done) ? " disabled" : "";
+      return `<button class="pot-tool-btn${done ? " pot-tool-btn--done" : ""}"
+        data-pot-p2="${idx}"${disabledAttr}
+        title="${action.type}">${icon}</button>`;
+    }).join("");
+
+    const canHarvest = phase === "phase2_final" && !isLocked;
+    const harvestBtn = canHarvest
+      ? `<button class="pot-harvest-btn" data-pot-harvest="1" title="Ernte starten">🌾</button>`
+      : "";
+
+    const canSkip = isLocked && (getPackState().player?.fertilizer > 0 || !isDevFastMode());
+    const skipBtn = canSkip
+      ? `<button class="pot-tool-btn pot-tool-btn--skip" data-pot-skip="1" title="Cooldown überspringen">🧪</button>`
+      : "";
+
+    return `<div class="pot-tools">${toolBtns}${harvestBtn}${skipBtn}</div>`;
+  }
+
+  if (phase === "phase3") {
+    return `<div class="pot-tools"><button class="pot-harvest-btn" data-pot-harvest="1" title="Ernte starten">🌾</button></div>`;
+  }
+
+  return "";
+}
+
+function selectPlantInGarden(plantId, bedId) {
+  if (selectedPlantId === plantId && state.activeBedId === bedId) {
+    // Deselect on second click
+    selectedPlantId = null;
+    saveState();
+    renderAll();
+    return;
+  }
+  state.activeBedId = bedId;
+  selectedPlantId = plantId;
+  phase2Session = null;
+  harvestSession = null;
+  labelSession = null;
+  saveState();
+  renderAll();
+  // Scroll left panel to top so question is visible
+  const lp = document.getElementById("left-panel");
+  if (lp) lp.scrollTop = lp.scrollHeight;
+}
+
+function skipCooldownWithFertilizer(plantId) {
+  const bedState = getBedState();
+  const plantState = bedState?.plants?.[plantId];
+  if (!plantState) return;
+  if (isDevFastMode()) {
+    const player = getPackState().player;
+    if (player.fertilizer <= 0) {
+      showToast("Kein Dünger mehr verfügbar.", "error");
+      return;
+    }
+    player.fertilizer -= 1;
+  }
+  plantState.cooldownUntil = null;
+  saveState();
+  renderAll();
+}
+
+function renderLeftPanel() {
+  if (!els.plantDetail) return;
+  // Clear the separate visual slot — renderPlantDetail() embeds the visual itself
+  if (els.leftPanelVisual) els.leftPanelVisual.innerHTML = "";
+
+  if (!selectedPlantId || !state.activeBedId) {
+    els.plantDetail.innerHTML = "Keine Pflanze ausgewählt.<br><br>Klicke eine Pflanze im Garten an.";
+    return;
+  }
+
+  // renderPlantDetail() renders directly into els.plantDetail and binds its own events
+  renderPlantDetail();
 }
 
 function moduleCodeFromBedId(bedId) {
@@ -1087,7 +1425,113 @@ function getCurriculumProgress() {
   };
 }
 
+function getActionIcon(type) {
+  const t = (type || "").toLowerCase();
+  if (t === "water" || t.includes("wässern") || t.includes("giess") || t.includes("gieß") || t.includes("giessen")) return "💧";
+  if (t === "fertilize" || t.includes("düngen") || t.includes("dünger")) return "🌿";
+  if (t === "trim" || t.includes("beschneiden") || t.includes("trimmen") || t.includes("schneid")) return "✂️";
+  if (t === "magic" || t.includes("magie") || t.includes("zauber")) return "🧪";
+  if (t.includes("beobachten")) return "👁";
+  if (t.includes("beschriften") || t.includes("etikettieren")) return "🏷";
+  return "🌱";
+}
+
+function buildPlantVisualHtml(plantState, content, extraClass) {
+  if (!plantState || !content) return "";
+  const now = Date.now();
+  const cooldownMs = getCooldownMs();
+  const locked = plantState.cooldownUntil && now < plantState.cooldownUntil;
+  const remainingMs = locked ? plantState.cooldownUntil - now : 0;
+  const remainingSec = locked ? Math.ceil(remainingMs / 1000) : 0;
+  const progressPct = locked ? Math.max(0, Math.min(100, Math.round(((cooldownMs - remainingMs) / cooldownMs) * 100))) : 100;
+  if (plantState.phase1Completed) {
+    computePhase2Readiness(content, plantState);
+  }
+  const visual = getPlantVisualState(content, plantState);
+  const cooldownFillPct = locked ? progressPct : 100;
+  const fillProgress = Math.max(0, Math.min(1, cooldownFillPct / 100));
+  const growthScale = Math.max(0.45, Math.min(1.8, Number(visual.growth || 1)));
+  const phase2Actions = Math.max(1, Number((content.phase2 || []).length || 1));
+  const usedActions = Math.max(0, Math.min(phase2Actions, Number(plantState.readinessActionsUsed || 0)));
+  const stagedProgress = locked
+    ? Math.max(0, Math.min(phase2Actions, (usedActions - 1) + fillProgress))
+    : usedActions;
+  const stageRatio = visual.phase === "phase1"
+    ? 0
+    : Math.max(0, Math.min(1, stagedProgress / phase2Actions));
+  const stemMax = Math.round(42 + (growthScale * 38));
+  const stemFill = Math.max(10, Math.round(stemMax * (0.12 + (stageRatio * 0.88))));
+  const fullBranches = Math.max(0, Math.floor(stagedProgress + 0.0001));
+  const growingBranchIdx = (locked && usedActions > 0) ? Math.max(0, usedActions - 1) : -1;
+  const currentBranchGrowth = (growingBranchIdx >= 0) ? fillProgress : 1;
+  const branchSpecs = new Array(phase2Actions).fill(0).map((_, i) => ({
+    y: 0.24 + (((i + 1) / (phase2Actions + 1)) * 0.64),
+    rot: (i % 2 === 0 ? -1 : 1) * (22 + ((i % 3) * 5)),
+    len: 14 + ((i % 4) * 3)
+  }));
+  const branchHtml = visual.phase === "phase1" ? "" : branchSpecs.map((b, i) => {
+    let grow = 0;
+    if (i < fullBranches) grow = 1;
+    else if (i === growingBranchIdx) grow = Math.max(0.18, currentBranchGrowth);
+    if (grow <= 0) return "";
+    const by = Math.round(stemFill * b.y);
+    const bl = Math.max(6, Math.round(b.len * grow));
+    const isLeft = b.rot < 0;
+    // Left branches: positive angle around right-center = upper-left
+    // Right branches: negative angle around left-center = upper-right
+    const brDeg = isLeft ? Math.abs(b.rot) : -Math.abs(b.rot);
+    return `<span class="plant-branch${isLeft ? " plant-branch--left" : ""}${visual.withered ? " is-withered" : ""}" style="--by:${by}px;--br:${brDeg}deg;--bl:${bl}px;"></span>`;
+  }).join("");
+  const harvestReady = plantState.phase1Completed && (plantState.readiness || 0) <= 0;
+  const fruitTotalRaw = Math.min(18, Math.max(0, Number(visual.fruitCount || 0)));
+  const fruitTotal = (visual.phase === "phase3" || visual.phase === "phase2_final") ? fruitTotalRaw : 0;
+  const fruitOpacity = visual.phase === "phase2_final" ? (0.45 + (fillProgress * 0.55)) : 1;
+  // Fruits anchor only on branches (not stem tip) so they appear naturally on the plant
+  const fruitAnchors = [];
+  branchSpecs.forEach((b, i) => {
+    let grow = 0;
+    if (i < fullBranches) grow = 1;
+    else if (i === growingBranchIdx) grow = Math.max(0.18, currentBranchGrowth);
+    if (grow <= 0) return;
+    const by = Math.round(stemFill * b.y);
+    const bl = Math.max(6, Math.round(b.len * grow));
+    const dir = b.rot >= 0 ? 1 : -1;
+    fruitAnchors.push({ x: Math.round(dir * (4 + bl * 0.65)), y: Math.round(by + 2 + bl * 0.3) });
+    fruitAnchors.push({ x: Math.round(dir * (2 + bl * 0.35)), y: Math.round(by + 6) });
+  });
+  if (fruitAnchors.length === 0) fruitAnchors.push({ x: 0, y: Math.round(stemFill * 0.7) });
+  const fruitDots = fruitTotal > 0
+    ? new Array(fruitTotal).fill(0).map((_, i) => {
+      const anchor = fruitAnchors[i % Math.max(1, fruitAnchors.length)];
+      const jitterX = Math.round(Math.sin((i + 1) * 2.17) * 2);
+      const jitterY = Math.round(Math.cos((i + 1) * 1.73) * 2);
+      const fx = Math.round(anchor.x + jitterX);
+      const fy = Math.round(anchor.y + jitterY);
+      return `<span class="plant-fruit-dot" style="--fx:${fx}px;--fy:${fy}px;--fo:${fruitOpacity.toFixed(2)};"></span>`;
+    }).join("")
+    : "";
+  const growthPct = visual.phase === "phase1" ? 0 : harvestReady ? 100 : Math.round(stageRatio * 100);
+  const growthLabel = visual.withered ? "Verwelkt" : visual.phase === "phase1" ? "Saat" : (growthPct >= 100 && !locked) ? "✦ Reif" : growthPct + "%";
+  const barClass = visual.withered ? " is-withered" : visual.phase === "phase1" ? " is-seed" : "";
+  const classAttr = "plant-visual" + (extraClass ? " " + extraClass : "");
+  const colors = getPlantColorScheme(content);
+  const colorStyle = `--stem-hi:${colors.stemHi};--stem-lo:${colors.stemLo};--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};`;
+  return `
+    <div class="${classAttr}" data-plant-visual="${plantState.id}" style="${colorStyle}">
+      <div class="plant-growth-bar${barClass}"><div class="plant-growth-fill" style="width:${growthPct}%"></div><span class="plant-growth-label">${growthLabel}</span></div>
+      <div class="plant-visual-bed${visual.soilFilled ? " has-soil" : ""}${visual.soilDark ? " is-watered" : ""}"></div>
+      ${visual.hasSeedling ? "<div class='plant-sprout'></div>" : ""}
+      ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
+      ${visual.phase !== "phase1" ? `<div class="plant-stem${visual.withered ? " is-withered" : ""}" style="--stem-fill:${stemFill}px;"></div>` : ""}
+      ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}</div>` : ""}
+      <div class="plant-fruits">${fruitDots}</div>
+      ${locked ? `<div class="plant-cooldown-hint">${remainingSec}s</div>` : ""}
+    </div>
+  `;
+}
+
 function renderPlants() {
+  if (!els.plantsList) return; // replaced by renderGardenRoom() in new layout
   const bedState = getBedState();
   if (!bedState) {
     els.plantsList.innerHTML = `<div class="muted">Wähle im Seed-Menue ein Beet aus und pflanze dort Samen.</div>`;
@@ -1114,97 +1558,23 @@ function renderPlants() {
     const remainingSec = locked ? Math.ceil(remainingMs / 1000) : 0;
     const progressPct = locked ? Math.max(0, Math.min(100, Math.round(((cooldownMs - remainingMs) / cooldownMs) * 100))) : 100;
     const selected = selectedPlantId === plantState.id ? " selected" : "";
-    const isSelected = selectedPlantId === plantState.id;
     const label = getCurrentPlantLabel(plantState.id, content.title);
-    const rowClass = plantState.harvestedOnce ? "plant-entry--mastered" : "plant-entry--planted";
-    const visual = getPlantVisualState(content, plantState);
-    const cooldownFillPct = locked ? progressPct : 100;
-    const fillProgress = Math.max(0, Math.min(1, cooldownFillPct / 100));
-    const growthScale = Math.max(0.45, Math.min(1.8, Number(visual.growth || 1)));
-    const phase2Actions = Math.max(1, Number((content.phase2 || []).length || 1));
-    const usedActions = Math.max(0, Math.min(phase2Actions, Number(plantState.readinessActionsUsed || 0)));
-    const stagedProgress = locked
-      ? Math.max(0, Math.min(phase2Actions, (usedActions - 1) + fillProgress))
-      : usedActions;
-    const stageRatio = visual.phase === "phase1"
-      ? 0
-      : Math.max(0, Math.min(1, stagedProgress / phase2Actions));
-    const stemMax = Math.round(42 + (growthScale * 38));
-    const stemFill = Math.max(10, Math.round(stemMax * (0.12 + (stageRatio * 0.88))));
-    const fullBranches = Math.max(0, Math.floor(stagedProgress + 0.0001));
-    const growingBranchIdx = (locked && usedActions > 0) ? Math.max(0, usedActions - 1) : -1;
-    const currentBranchGrowth = (growingBranchIdx >= 0) ? fillProgress : 1;
-    const branchSpecs = new Array(phase2Actions).fill(0).map((_, i) => ({
-      y: 0.24 + (((i + 1) / (phase2Actions + 1)) * 0.64),
-      rot: (i % 2 === 0 ? -1 : 1) * (22 + ((i % 3) * 5)),
-      len: 14 + ((i % 4) * 3)
-    }));
-    const branchHtml = visual.phase === "phase1" ? "" : branchSpecs.map((b, i) => {
-      let grow = 0;
-      if (i < fullBranches) grow = 1;
-      else if (i === growingBranchIdx) grow = Math.max(0.18, currentBranchGrowth);
-      if (grow <= 0) return "";
-      const by = Math.round(stemFill * b.y);
-      const bl = Math.max(6, Math.round(b.len * grow));
-      return `<span class="plant-branch${visual.withered ? " is-withered" : ""}" style="--by:${by}px;--br:${b.rot}deg;--bl:${bl}px;"></span>`;
-    }).join("");
-    const fruitTotalRaw = Math.min(18, Math.max(0, Number(visual.fruitCount || 0)));
-    const fruitTotal = (visual.phase === "phase3" || visual.phase === "phase2_final") ? fruitTotalRaw : 0;
-    const fruitOpacity = visual.phase === "phase2_final"
-      ? (0.45 + (fillProgress * 0.55))
-      : 1;
-    const fruitAnchors = [{ x: 0, y: stemFill + 6 }];
-    branchSpecs.forEach((b, i) => {
-      let grow = 0;
-      if (i < fullBranches) grow = 1;
-      else if (i === growingBranchIdx) grow = Math.max(0.18, currentBranchGrowth);
-      if (grow <= 0) return;
-      const by = Math.round(stemFill * b.y);
-      const bl = Math.max(6, Math.round(b.len * grow));
-      const dir = b.rot >= 0 ? 1 : -1;
-      fruitAnchors.push({
-        x: Math.round(dir * (6 + bl * 0.82)),
-        y: Math.round(by + 4 + bl * 0.45)
-      });
-    });
-    const fruitDots = fruitTotal > 0
-      ? new Array(fruitTotal).fill(0).map((_, i) => {
-        const anchor = fruitAnchors[i % Math.max(1, fruitAnchors.length)];
-        const ring = Math.floor(i / fruitAnchors.length);
-        const jitterX = Math.round(Math.sin((i + 1) * 2.17) * (2 + (ring * 1.3)));
-        const jitterY = Math.round(Math.cos((i + 1) * 1.73) * 2 + (ring * 3));
-        const fx = Math.round(anchor.x + jitterX);
-        const fy = Math.round(anchor.y + jitterY);
-        return `<span class="plant-fruit-dot" style="--fx:${fx}px;--fy:${fy}px;--fo:${fruitOpacity.toFixed(2)};"></span>`;
-      }).join("")
-      : "";
-    const statusText = plantState.harvestedOnce ? "Schon geerntet" : "Im Beet";
+    const tone = locked ? "idle" : plantState.harvestedOnce ? "done" : "active";
+    const statusText = locked ? `⏳ ${remainingSec}s` : plantState.harvestedOnce ? "Geerntet" : "Im Beet";
+    const statusText2 = plantState.harvestedOnce ? "Schon geerntet" : "Im Beet";
     const cooldownText = locked ? `${remainingSec}s` : "bereit";
     const tooltipName = escapeHtmlAttr(label);
-    const tooltipStatus = escapeHtmlAttr(statusText);
+    const tooltipStatus = escapeHtmlAttr(statusText2);
     const tooltipPhase = escapeHtmlAttr(String(plantState.phase));
     const tooltipReady = escapeHtmlAttr(String(Math.floor(plantState.readiness)));
     const tooltipCooldown = escapeHtmlAttr(cooldownText);
-    const growthPct = visual.phase === "phase1" ? 0 : Math.round(stageRatio * 100);
-    const growthLabel = visual.withered ? "Verwelkt" : visual.phase === "phase1" ? "Saat" : growthPct >= 100 ? "Erntereif!" : growthPct + "%";
-    const barClass = visual.withered ? " is-withered" : visual.phase === "phase1" ? " is-seed" : "";
     return `
-      <div class="plant-entry ${rowClass}">
-        <button class="plant-row${selected}" data-plant="${plantState.id}" data-plant-tip="1" data-tip-name="${tooltipName}" data-tip-status="${tooltipStatus}" data-tip-phase="${tooltipPhase}" data-tip-ready="${tooltipReady}" data-tip-cooldown="${tooltipCooldown}">
-          <span>${label}</span>
+      <div class="plant-chip-wrap">
+        <button class="plant-chip${selected}" data-plant="${plantState.id}" data-plant-tip="1" data-tip-name="${tooltipName}" data-tip-status="${tooltipStatus}" data-tip-phase="${tooltipPhase}" data-tip-ready="${tooltipReady}" data-tip-cooldown="${tooltipCooldown}">
+          <span class="plant-chip-name">${label}</span>
+          <span class="status-chip ${tone}">${statusText}</span>
         </button>
-        <button class="plant-remove" data-plant-remove="${plantState.id}" title="Entfernen">X</button>
-      </div>
-      <div class="plant-visual" data-plant-visual="${plantState.id}" data-plant-tip="1" data-tip-name="${tooltipName}" data-tip-status="${tooltipStatus}" data-tip-phase="${tooltipPhase}" data-tip-ready="${tooltipReady}" data-tip-cooldown="${tooltipCooldown}">
-        <div class="plant-growth-bar${barClass}"><div class="plant-growth-fill" style="width:${growthPct}%"></div><span class="plant-growth-label">${growthLabel}</span></div>
-        <div class="plant-visual-bed${visual.soilFilled ? " has-soil" : ""}${visual.soilDark ? " is-watered" : ""}"></div>
-        ${visual.hasSeedling ? "<div class='plant-sprout'></div>" : ""}
-        ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
-        ${visual.phase !== "phase1" ? `<div class="plant-stem${visual.withered ? " is-withered" : ""}" style="--stem-fill:${stemFill}px;"></div>` : ""}
-        ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}</div>` : ""}
-        ${visual.phase !== "phase1" ? `<div class="plant-tip-bud${visual.withered ? " is-withered" : ""}" style="--bud-y:${stemFill}px;"></div>` : ""}
-        <div class="plant-fruits">${fruitDots}</div>
-        ${locked ? `<div class="plant-cooldown-hint">${remainingSec}s</div>` : ""}
+        <button class="plant-remove" data-plant-remove="${plantState.id}" title="Entfernen">✕</button>
       </div>
     `;
   });
@@ -1246,15 +1616,6 @@ function renderPlants() {
   els.plantsList.querySelectorAll("[data-plant]").forEach((btn) => {
     btn.addEventListener("click", () => {
       selectedPlantId = btn.getAttribute("data-plant");
-      phase2Session = null;
-      harvestSession = null;
-      renderAll();
-    });
-  });
-
-  els.plantsList.querySelectorAll("[data-plant-visual]").forEach((el) => {
-    el.addEventListener("click", () => {
-      selectedPlantId = el.getAttribute("data-plant-visual");
       phase2Session = null;
       harvestSession = null;
       renderAll();
@@ -1530,7 +1891,8 @@ function renderPlantDetail() {
 
   if (withered) {
     const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
-    els.plantDetail.innerHTML = `
+    const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
+    els.plantDetail.innerHTML = plantVisualHtml + `
       <div><strong>${label}</strong></div>
       <div class="feedback">Pflanze verwelkt: zu viele falsche Antworten bei offenen Fragen.</div>
       <div class="muted">Diese Pflanze muss ab Phase 1 neu gestartet werden.</div>
@@ -1544,32 +1906,35 @@ function renderPlantDetail() {
     return;
   }
 
+  const actionCount = Math.max(1, plantContent.phase2.length || 1);
   const actions = plantContent.phase2.map((a, idx) => {
-    const actionCount = Math.max(1, plantContent.phase2.length || 1);
     const assigned = plantContent.harvestQuestions.filter((_, i) => i % actionCount === idx);
     if (assigned.length === 0) return '';
     const learnedCount = assigned.filter((q) => plantState.phase2Questions[q.id]?.status === "learned").length;
     const hasWrong = assigned.some((q) => plantState.phase2Questions[q.id]?.status === "wrong");
-    const allLearned = learnedCount === assigned.length;
-    const statusLabel = allLearned ? ` [OK]` : hasWrong ? ` [X Wiederholen] ${learnedCount}/${assigned.length}` : ` [${learnedCount}/${assigned.length}]`;
-    return `<button data-p2="${idx}" ${(onCooldown || allLearned) ? "disabled" : ""}>${a.type}: ${a.text}${statusLabel}</button>`;
+    const allLearnedAction = learnedCount === assigned.length;
+    const statusLabel = allLearnedAction ? "OK" : hasWrong ? `⚠ ${learnedCount}/${assigned.length}` : `${learnedCount}/${assigned.length}`;
+    const icon = getActionIcon(a.type);
+    const doneClass = allLearnedAction ? " tool-done" : "";
+    const tipText = escapeHtmlAttr(`${a.type}: ${a.text} [${statusLabel}]`);
+    return `<button class="tool-btn${doneClass}" data-p2="${idx}" ${(onCooldown || allLearnedAction) ? "disabled" : ""} title="${tipText}">
+      <span class="tool-icon">${icon}</span>
+      <span class="tool-label">${a.type}</span>
+      <span class="tool-status">${statusLabel}</span>
+    </button>`;
   }).join("");
   const harvestable = allLearned;
   const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
+  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
 
-  els.plantDetail.innerHTML = `
-    <div><strong>${label}</strong></div>
-    <div>Phase 2 aktiv</div>
-    <div>Bereitschafts-Defizit: ${Math.floor(readinessDebt)} (Ziel: 0)</div>
-    <div class="row">${actions}</div>
-    <div class="row">
-      <button id="use-fertilizer-btn" ${!onCooldown ? "disabled" : ""}>${isDevFastMode() ? `Dünger nutzen (${secsLeft}s)` : `Cooldown überspringen (${secsLeft}s)`}</button>
-      <button id="start-harvest-btn" ${(!harvestable || onCooldown) ? "disabled" : ""}>${onCooldown ? `Ernte gesperrt (${secsLeft}s)` : "Ernte starten"}</button>
+  els.plantDetail.innerHTML = plantVisualHtml + `
+    ${onCooldown ? `<div class="cooldown-track-wrap"><div class="cooldown-track"><div class="cooldown-fill" style="width:${cooldownProgressPct}%"></div></div><div class="muted" style="text-align:center;font-size:0.78rem">⏳ Cooldown: ${secsLeft}s</div></div>` : ""}
+    <div class="tools-row">${actions}</div>
+    <div class="plant-util-row">
+      <button id="use-fertilizer-btn" ${!onCooldown ? "disabled" : ""}>🧪 ${isDevFastMode() ? `Dünger (${secsLeft}s)` : `Cooldown überspringen (${secsLeft}s)`}</button>
+      <button id="start-harvest-btn" class="harvest-btn" ${(!harvestable || onCooldown) ? "disabled" : ""}>🌾 ${onCooldown ? `Gesperrt (${secsLeft}s)` : "Ernte starten"}</button>
     </div>
-    ${onCooldown ? `<div class="muted">Cooldown läuft: ${secsLeft}s (${cooldownProgressPct}%)</div>` : ""}
-    <div class="muted">Jede Aktion trainiert ihren eigenen Fragen-Pool.</div>
-    <div class="muted">Lerne alle Fragen (Defizit = 0), um die Ernte freizuschalten. Defizit: ungesehen = 20, falsch = 10, gelernt = 0.</div>
-    <div class="muted">Cooldown-Modus: ${isDevFastMode() ? "dev (10s)" : "normal (5m)"}</div>
+    <div class="muted detail-hint">Defizit: ${Math.floor(readinessDebt)} (Ziel: 0) | ${isDevFastMode() ? "dev-Cooldown" : "5-min-Cooldown"}</div>
   `;
 
   els.plantDetail.querySelectorAll("[data-p2]").forEach((btn) => {
@@ -1600,25 +1965,24 @@ function renderPlantDetail() {
 
 function renderPhase1(plantContent, plantState) {
   const order = ["soil", "seed", "water"];
-  const labels = { soil: "Boden", seed: "Samen", water: "Erstes Giessen" };
+  const labels = { soil: "🪨 Boden", seed: "🌰 Samen", water: "💧 Erstes Giessen" };
   const nextStep = order.find((s) => !plantState.phase1StepsDone[s]);
   const activeStep = plantState.phase1ActiveStep || null;
+  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
 
   if (!activeStep) {
     const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
     const chips = order.map((s) => {
       const done = plantState.phase1StepsDone[s];
-      return `<span class="muted">${labels[s]}: ${done ? "done" : "pending"}</span>`;
-    }).join(" | ");
+      return `<span class="status-chip ${done ? "done" : "idle"}">${labels[s]}: ${done ? "✓" : "…"}</span>`;
+    }).join(" ");
 
-    els.plantDetail.innerHTML = `
-      <div><strong>${label}</strong></div>
-      <div>Phase-1-Setup</div>
-      <div class="muted">${chips}</div>
+    els.plantDetail.innerHTML = plantVisualHtml + `
+      <div class="plant-phase-chips">${chips}</div>
       <div class="row">
         <button id="start-phase1-step-btn" ${nextStep ? "" : "disabled"}>${nextStep ? `${labels[nextStep]} starten` : "Phase 1 abgeschlossen"}</button>
       </div>
-      <div class="muted">Ablauf: Boden -> Samen -> Erstes Giessen. Erst Lerninhalt lesen, dann Frage beantworten.</div>
+      <div class="muted detail-hint">Boden → Samen → Erstes Giessen. Erst lesen, dann Frage beantworten.</div>
     `;
 
     if (nextStep) {
@@ -1635,10 +1999,10 @@ function renderPhase1(plantContent, plantState) {
   const stepData = plantContent.phase1[activeStep];
   if (!stepData || typeof stepData.statement !== "string") {
     const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
-    els.plantDetail.innerHTML = `
+    els.plantDetail.innerHTML = plantVisualHtml + `
       <div><strong>${label}</strong></div>
       <div class="feedback">Keine Frage für Schritt "${activeStep}" konfiguriert.</div>
-      <div class="row"><button id="phase1-back-btn">Zurueck</button></div>
+      <div class="row"><button id="phase1-back-btn">Zurück</button></div>
     `;
     document.getElementById("phase1-back-btn").addEventListener("click", () => {
       plantState.phase1ActiveStep = null;
@@ -1653,11 +2017,10 @@ function renderPhase1(plantContent, plantState) {
 
   if (phase1ShowingLesson) {
     const explanation = normalizeExplanation(stepData.solution) || stepData.statement;
-    els.plantDetail.innerHTML = `
-      <div><strong>${label}</strong></div>
-      <div>Phase 1: ${labels[activeStep]} - Lerninhalt</div>
+    els.plantDetail.innerHTML = plantVisualHtml + `
+      <div class="muted detail-hint">Phase 1 – ${labels[activeStep]} – Lerninhalt</div>
       <div class="question">${explanation}</div>
-      <div class="muted">Lies den Inhalt durch, dann beantworte die Frage.</div>
+      <div class="muted">Lies durch, dann beantworte die Frage.</div>
       <div class="row"><button id="phase1-to-question-btn">Weiter zur Frage</button></div>
     `;
     document.getElementById("phase1-to-question-btn").addEventListener("click", () => {
@@ -1667,15 +2030,13 @@ function renderPhase1(plantContent, plantState) {
     return;
   }
 
-  els.plantDetail.innerHTML = `
-    <div><strong>${label}</strong></div>
-    <div>Phase 1: ${labels[activeStep]} - Frage</div>
+  els.plantDetail.innerHTML = plantVisualHtml + `
+    <div class="muted detail-hint">Phase 1 – ${labels[activeStep]} – Frage</div>
     <div class="question">${stepData.statement}</div>
     <div class="row">
       <button data-a="true">True</button>
       <button data-a="false">False</button>
     </div>
-    <div class="muted">Sofortige Wiederholung aktiv. Lösung wird nach jedem Versuch angezeigt.</div>
     <div id="phase1-feedback" class="feedback"></div>
   `;
 
@@ -1774,60 +2135,94 @@ function startPhase2Action(plantId, actionIndex) {
 function renderPhase2Question() {
   if (!phase2Session) return;
   const plantContent = getPlantContent(phase2Session.plantId);
-  const label = getCurrentPlantLabel(phase2Session.plantId, plantContent.title);
+  const bedState = getBedState();
+  const plantState = bedState && bedState.plants[phase2Session.plantId];
   const action = plantContent.phase2[phase2Session.actionIndex];
   const q = phase2Session.question;
+  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
+  const hint = `<div class="muted detail-hint">${getActionIcon(action.type)} ${action.type}: ${action.text}</div>`;
 
-  els.plantDetail.innerHTML = `
-    <div><strong>${label}</strong></div>
-    <div>Phase-2-Aktion: ${action.type} (${action.text})</div>
+  function attachContinueAndResolve(fb, ok) {
+    fb.classList.add(ok ? "feedback--correct" : "feedback--wrong");
+    const actionRow = document.createElement("div");
+    actionRow.className = "row";
+    const continueBtn = document.createElement("button");
+    continueBtn.textContent = "Weiter";
+    actionRow.appendChild(continueBtn);
+    fb.insertAdjacentElement("afterend", actionRow);
+    continueBtn.addEventListener("click", () => {
+      const bs = getBedState();
+      const pid = phase2Session.plantId;
+      const aidx = phase2Session.actionIndex;
+      const pContent = getPlantContent(pid);
+      const pState = bs.plants[pid];
+      ensurePhase2Tracking(pContent, pState);
+      const qStat = pState.phase2Questions[q.id];
+      qStat.askedCount += 1;
+      if (ok) {
+        qStat.status = "learned";
+      } else {
+        qStat.status = "wrong";
+        qStat.wrongCount += 1;
+        markWeakpoint(pid, q.id);
+      }
+      computePhase2Readiness(pContent, pState);
+      evaluateWither(pContent, pState);
+      phase2Session = null;
+      usePhase2Action(pid, aidx);
+    });
+  }
+
+  if (q.type === "mc") {
+    const shuffled = shuffle([...q.options.map((o, i) => ({ ...o, origIdx: i }))]);
+    phase2Session.shuffledOptions = shuffled;
+    const letters = ["A", "B", "C", "D"];
+    const optHtml = shuffled.map((o, i) =>
+      `<button class="mc-option" data-p2mc="${i}">${letters[i]}) ${o.text}</button>`
+    ).join("");
+    els.plantDetail.innerHTML = plantVisualHtml + hint + `
+      <div class="question">${q.question}</div>
+      <div class="mc-options">${optHtml}</div>
+      <div id="phase2-feedback" class="feedback"></div>
+    `;
+    els.plantDetail.querySelectorAll("[data-p2mc]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-p2mc"), 10);
+        const chosen = phase2Session.shuffledOptions[idx];
+        const ok = Boolean(chosen && chosen.correct);
+        const fb = document.getElementById("phase2-feedback");
+        const expl = q.explanation ? ` ${q.explanation}` : "";
+        const correctText = (phase2Session.shuffledOptions.find((o) => o.correct) || {}).text || "";
+        fb.textContent = ok ? `Richtig!${expl}` : `Falsch. Richtig: ${correctText}.${expl}`;
+        els.plantDetail.querySelectorAll("[data-p2mc]").forEach((b) => {
+          const i = parseInt(b.getAttribute("data-p2mc"), 10);
+          if (phase2Session.shuffledOptions[i]?.correct) b.classList.add("mc-correct");
+          else if (i === idx) b.classList.add("mc-wrong");
+          b.disabled = true;
+        });
+        attachContinueAndResolve(fb, ok);
+      });
+    });
+    return;
+  }
+
+  // true_false
+  els.plantDetail.innerHTML = plantVisualHtml + hint + `
     <div class="question">${q.statement}</div>
     <div class="row">
-      <button data-p2a="true">True</button>
-      <button data-p2a="false">False</button>
+      <button data-p2a="true">Richtig</button>
+      <button data-p2a="false">Falsch</button>
     </div>
     <div id="phase2-feedback" class="feedback"></div>
   `;
-
   els.plantDetail.querySelectorAll("[data-p2a]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const answer = btn.getAttribute("data-p2a") === "true";
       const ok = answer === q.answer;
       const fb = document.getElementById("phase2-feedback");
       fb.textContent = tfFeedback(q, answer);
-      fb.classList.add(ok ? "feedback--correct" : "feedback--wrong");
       els.plantDetail.querySelectorAll("[data-p2a]").forEach((b) => b.setAttribute("disabled", "disabled"));
-
-      const actionRow = document.createElement("div");
-      actionRow.className = "row";
-      const continueBtn = document.createElement("button");
-      continueBtn.textContent = "Weiter";
-      actionRow.appendChild(continueBtn);
-      fb.insertAdjacentElement("afterend", actionRow);
-
-      continueBtn.addEventListener("click", () => {
-        const bedState = getBedState();
-        const pid = phase2Session.plantId;
-        const aidx = phase2Session.actionIndex;
-        const pContent = getPlantContent(pid);
-        const pState = bedState.plants[pid];
-        ensurePhase2Tracking(pContent, pState);
-
-        const qStat = pState.phase2Questions[q.id];
-        qStat.askedCount += 1;
-        if (ok) {
-          qStat.status = "learned";
-        } else {
-          qStat.status = "wrong";
-          qStat.wrongCount += 1;
-          markWeakpoint(pid, q.id);
-        }
-        computePhase2Readiness(pContent, pState);
-        evaluateWither(pContent, pState);
-
-        phase2Session = null;
-        usePhase2Action(pid, aidx);
-      });
+      attachContinueAndResolve(fb, ok);
     });
   });
 }
@@ -1847,7 +2242,8 @@ function startHarvest(plantId) {
     plantId,
     questions: shuffle([...content.harvestQuestions]),
     index: 0,
-    correct: 0
+    correct: 0,
+    wrongIds: []
   };
   renderHarvestQuestion();
 }
@@ -1855,42 +2251,85 @@ function startHarvest(plantId) {
 function renderHarvestQuestion() {
   const q = harvestSession.questions[harvestSession.index];
   const progress = `${harvestSession.index + 1}/${harvestSession.questions.length}`;
-  els.plantDetail.innerHTML = `
-    <div><strong>Ernte</strong> (${progress})</div>
+  const bedState = getBedState();
+  const plantState = bedState && bedState.plants[harvestSession.plantId];
+  const plantContent = getPlantContent(harvestSession.plantId);
+  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
+
+  function advanceHarvest() {
+    harvestSession.index += 1;
+    if (harvestSession.index >= harvestSession.questions.length) finalizeHarvest();
+    else renderHarvestQuestion();
+  }
+
+  function attachContinueBtn(fb) {
+    const actionRow = document.createElement("div");
+    actionRow.className = "row";
+    const continueBtn = document.createElement("button");
+    continueBtn.textContent = "Weiter";
+    continueBtn.addEventListener("click", advanceHarvest);
+    actionRow.appendChild(continueBtn);
+    fb.insertAdjacentElement("afterend", actionRow);
+  }
+
+  if (q.type === "mc") {
+    const shuffled = shuffle([...q.options.map((o, i) => ({ ...o, origIdx: i }))]);
+    harvestSession.shuffledOptions = shuffled;
+    const letters = ["A", "B", "C", "D"];
+    const optHtml = shuffled.map((o, i) =>
+      `<button class="mc-option" data-oi="${i}">${letters[i]}) ${o.text}</button>`
+    ).join("");
+    els.plantDetail.innerHTML = plantVisualHtml + `
+      <div class="muted detail-hint">🌾 Ernte (${progress})</div>
+      <div class="question">${q.question}</div>
+      <div class="mc-options">${optHtml}</div>
+      <div id="harvest-feedback" class="feedback"></div>
+    `;
+    els.plantDetail.querySelectorAll(".mc-option").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-oi"), 10);
+        const chosen = harvestSession.shuffledOptions[idx];
+        const ok = Boolean(chosen && chosen.correct);
+        if (ok) harvestSession.correct += 1;
+        else { harvestSession.wrongIds.push(q.id); markWeakpoint(harvestSession.plantId, q.id); }
+        const fb = document.getElementById("harvest-feedback");
+        const correctText = (harvestSession.shuffledOptions.find((o) => o.correct) || {}).text || "";
+        const expl = q.explanation ? ` ${q.explanation}` : "";
+        fb.textContent = ok ? `Richtig!${expl}` : `Falsch. Richtig: ${correctText}.${expl}`;
+        fb.classList.add(ok ? "feedback--correct" : "feedback--wrong");
+        els.plantDetail.querySelectorAll(".mc-option").forEach((b) => {
+          const i = parseInt(b.getAttribute("data-oi"), 10);
+          if (harvestSession.shuffledOptions[i]?.correct) b.classList.add("mc-correct");
+          else if (i === idx) b.classList.add("mc-wrong");
+          b.disabled = true;
+        });
+        attachContinueBtn(fb);
+      });
+    });
+    return;
+  }
+
+  // true/false
+  els.plantDetail.innerHTML = plantVisualHtml + `
+    <div class="muted detail-hint">🌾 Ernte (${progress})</div>
     <div class="question">${q.statement}</div>
     <div class="row">
-      <button data-h="true">True</button>
-      <button data-h="false">False</button>
+      <button data-h="true">Richtig</button>
+      <button data-h="false">Falsch</button>
     </div>
     <div id="harvest-feedback" class="feedback"></div>
   `;
-
   els.plantDetail.querySelectorAll("[data-h]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const answer = btn.getAttribute("data-h") === "true";
       const ok = answer === q.answer;
-      if (ok) {
-        harvestSession.correct += 1;
-      } else {
-        markWeakpoint(harvestSession.plantId, q.id);
-      }
+      if (ok) harvestSession.correct += 1;
+      else { harvestSession.wrongIds.push(q.id); markWeakpoint(harvestSession.plantId, q.id); }
       const fb = document.getElementById("harvest-feedback");
       fb.textContent = tfFeedback(q, answer);
       fb.classList.add(ok ? "feedback--correct" : "feedback--wrong");
       els.plantDetail.querySelectorAll("[data-h]").forEach((b) => b.setAttribute("disabled", "disabled"));
-
-      const actionRow = document.createElement("div");
-      actionRow.className = "row";
-      const continueBtn = document.createElement("button");
-      continueBtn.textContent = "Weiter";
-      actionRow.appendChild(continueBtn);
-      fb.insertAdjacentElement("afterend", actionRow);
-
-      continueBtn.addEventListener("click", () => {
-        harvestSession.index += 1;
-        if (harvestSession.index >= harvestSession.questions.length) finalizeHarvest();
-        else renderHarvestQuestion();
-      });
+      attachContinueBtn(fb);
     });
   });
 }
@@ -1901,10 +2340,11 @@ function finalizeHarvest() {
   const pack = getPackState();
   const plantState = bedState.plants[harvestSession.plantId];
   const total = harvestSession.questions.length;
-  const rate = harvestSession.correct / total;
+  const wrongCount = harvestSession.wrongIds.length;
   pack.stats.harvestAttempts += 1;
 
-  if (rate >= HARVEST_PASS_RATE) {
+  if (wrongCount === 0) {
+    // All correct → harvest success
     pack.player.fruits += harvestSession.correct * 2;
     plantState.harvestedOnce = true;
     plantState.status = "completed";
@@ -1922,20 +2362,24 @@ function finalizeHarvest() {
     harvestSession = null;
     addXp(5);
     pack.stats.harvestSuccesses += 1;
-    showToast(`Ernte bestanden (${Math.round(rate * 100)}%). +${fruitsGained * 2} Früchte`, "success");
+    showToast(`Ernte bestanden! Alle ${total} Fragen richtig. +${fruitsGained * 2} Früchte`, "success");
   } else {
+    // Some wrong → only reset wrong questions, plant back to phase 2
     const plantContent = getPlantContent(harvestSession.plantId);
     ensurePhase2Tracking(plantContent, plantState);
-    Object.values(plantState.phase2Questions).forEach((stat) => {
-      if (stat.status === "learned") {
-        stat.status = "wrong";
+    harvestSession.wrongIds.forEach((qId) => {
+      if (plantState.phase2Questions[qId]) {
+        plantState.phase2Questions[qId].status = "wrong";
       }
     });
     computePhase2Readiness(plantContent, plantState);
     evaluateWither(plantContent, plantState);
-    plantState.readinessActionsUsed = 0;
+    // Bar shows proportion of correct answers (e.g. 4/6 correct → 67%)
+    const phase2ActionCount = Math.max(1, plantContent.phase2.length || 1);
+    plantState.readinessActionsUsed = phase2ActionCount * (total - wrongCount) / total;
+    plantState.cooldownUntil = null;
     plantState.status = "growing";
-    showToast(`Ernte nicht bestanden (${Math.round(rate * 100)}%). Defizit wurde wiederhergestellt.`);
+    showToast(`${wrongCount} von ${total} Fragen falsch – Pflanze zurück in Phase 2.`);
   }
 
   harvestSession = null;
@@ -1987,11 +2431,9 @@ function hardResetCombat(bedId) {
 function buildBossQueue(bedContent, bedState) {
   const allQ = buildEnemyPool(bedContent);
   const wrongQ = allQ.filter((q) => bedState.wrongInCombat[q.id]);
-  if (wrongQ.length >= 5) return shuffle(wrongQ);
-  const correctQ = allQ.filter((q) => bedState.enemyProgress[q.id] && !bedState.wrongInCombat[q.id]);
-  const needed = 5 - wrongQ.length;
-  const filler = shuffle(correctQ).slice(0, needed);
-  return shuffle([...wrongQ, ...filler]);
+  // Any wrong answers → fight exactly those; all correct → 5 random from full pool
+  if (wrongQ.length > 0) return shuffle(wrongQ);
+  return shuffle([...allQ]).slice(0, 5);
 }
 
 function startCombat(phase) {
@@ -2068,7 +2510,7 @@ function renderBossPreview(bedContent, bedState) {
   const player = getPackState().player;
   const allQ = buildEnemyPool(bedContent);
   const wrongQ = allQ.filter((q) => bedState.wrongInCombat[q.id]);
-  const queueSize = Math.max(5, wrongQ.length);
+  const queueSize = wrongQ.length > 0 ? wrongQ.length : 5;
   const weakPlantIds = [...new Set(wrongQ.map((q) => q.plantId))];
   const weakNames = weakPlantIds.map((pid) => {
     const p = bedContent.plants.find((pl) => pl.id === pid);
@@ -2078,8 +2520,8 @@ function renderBossPreview(bedContent, bedState) {
     ? `<div class="feedback">Warnung: Du hast nur ${player.fruits} Früchte, brauchst ${queueSize}. Ernte mehr Pflanzen für mehr Munition!</div>`
     : `<div class="muted">Munition genügend: ${player.fruits} Früchte (benötigt mindestens ${queueSize})</div>`;
   const weakSection = wrongQ.length > 0
-    ? `<div><strong>${wrongQ.length} Falschantworten im Boss-Kampf</strong></div><div class="muted">Schwache Themen: ${weakNames.join(", ")}</div>`
-    : `<div class="muted">Keine Fehler-Fragen. Boss wird mit ${queueSize} zufälligen Fragen aufgefüllt.</div>`;
+    ? `<div><strong>${wrongQ.length} falsch beantwortete Fragen – diese kommen jetzt als Boss-Fragen.</strong></div><div class="muted">Schwache Themen: ${weakNames.join(", ")}</div>`
+    : `<div class="muted">Alles richtig! Boss stellt 5 zufällige Fragen aus dem Themenpool.</div>`;
   els.combatDetail.innerHTML = `
     <div><strong>Boss-Kampf Vorbereitung</strong></div>
     <div>Fragen: <strong>${queueSize}</strong></div>
@@ -2126,19 +2568,50 @@ function renderCombat() {
     if (q.type === "mc") {
       const shuffled = shuffle([...q.options.map((o, i) => ({ ...o, origIdx: i }))]);
       combatSession.shuffledOptions = shuffled;
-      const letters = ["A", "B", "C", "D"];
-      const optHtml = shuffled.map((o, i) =>
-        `<button class="mc-option" data-oi="${i}">${letters[i]}) ${o.text}</button>`
-      ).join("");
-      els.combatDetail.innerHTML = `
-        <div><strong>${phaseLabel}</strong></div>
-        <div class="question">${q.question}</div>
-        <div class="mc-options">${optHtml}</div>
-        <div id="combat-feedback" class="feedback"></div>
-      `;
-      els.combatDetail.querySelectorAll(".mc-option").forEach((btn) => {
-        btn.addEventListener("click", () => resolveCombatAnswer(parseInt(btn.getAttribute("data-oi"), 10)));
-      });
+      const letters = ["A", "B", "C", "D", "E"];
+      const correctCount = q.options.filter((o) => o.correct).length;
+      const isMultiSelect = correctCount > 1;
+      combatSession.isMultiSelect = isMultiSelect;
+      if (isMultiSelect) {
+        combatSession.selectedIndices = new Set();
+        const optHtml = shuffled.map((o, i) =>
+          `<button class="mc-option mc-option--toggle" data-oi="${i}">${letters[i]}) ${o.text}</button>`
+        ).join("");
+        els.combatDetail.innerHTML = `
+          <div><strong>${phaseLabel}</strong></div>
+          <div class="muted" style="font-size:0.8rem;margin-bottom:0.3rem">Mehrere Antworten möglich – alle zutreffenden auswählen</div>
+          <div class="question">${q.question}</div>
+          <div class="mc-options">${optHtml}</div>
+          <div class="row"><button id="combat-submit-btn">Abschicken</button></div>
+          <div id="combat-feedback" class="feedback"></div>
+        `;
+        els.combatDetail.querySelectorAll(".mc-option--toggle").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const idx = parseInt(btn.getAttribute("data-oi"), 10);
+            if (combatSession.selectedIndices.has(idx)) {
+              combatSession.selectedIndices.delete(idx);
+              btn.classList.remove("mc-option--selected");
+            } else {
+              combatSession.selectedIndices.add(idx);
+              btn.classList.add("mc-option--selected");
+            }
+          });
+        });
+        document.getElementById("combat-submit-btn").addEventListener("click", () => resolveMultiSelectCombatAnswer());
+      } else {
+        const optHtml = shuffled.map((o, i) =>
+          `<button class="mc-option" data-oi="${i}">${letters[i]}) ${o.text}</button>`
+        ).join("");
+        els.combatDetail.innerHTML = `
+          <div><strong>${phaseLabel}</strong></div>
+          <div class="question">${q.question}</div>
+          <div class="mc-options">${optHtml}</div>
+          <div id="combat-feedback" class="feedback"></div>
+        `;
+        els.combatDetail.querySelectorAll(".mc-option").forEach((btn) => {
+          btn.addEventListener("click", () => resolveCombatAnswer(parseInt(btn.getAttribute("data-oi"), 10)));
+        });
+      }
     } else {
       els.combatDetail.innerHTML = `
         <div><strong>${phaseLabel}</strong></div>
@@ -2185,33 +2658,12 @@ function renderCombat() {
   }
 }
 
-function resolveCombatAnswer(answer) {
-  if (!combatSession || !combatSession.currentQuestion) return;
+function applyCombatOutcome(ok, feedbackText) {
   const bedState = getBedState();
   const player = getPackState().player;
   const q = combatSession.currentQuestion;
   const fb = document.getElementById("combat-feedback");
 
-  // Determine correctness
-  let ok, feedbackText;
-  if (q.type === "mc") {
-    const chosen = combatSession.shuffledOptions[answer];
-    ok = chosen && chosen.correct === true;
-    const correctText = (combatSession.shuffledOptions.find((o) => o.correct) || {}).text || "";
-    feedbackText = ok ? "" : `Richtige Antwort: ${correctText}`;
-    els.combatDetail.querySelectorAll(".mc-option").forEach((b) => {
-      const idx = parseInt(b.getAttribute("data-oi"), 10);
-      if (combatSession.shuffledOptions[idx]?.correct) b.classList.add("mc-correct");
-      else if (idx === answer) b.classList.add("mc-wrong");
-      b.disabled = true;
-    });
-  } else {
-    ok = answer === q.answer;
-    feedbackText = tfFeedback(q, answer);
-    els.combatDetail.querySelectorAll("[data-c]").forEach((b) => b.setAttribute("disabled", "disabled"));
-  }
-
-  // Apply outcome
   if (ok) {
     player.fruits -= 1;
     addXp(1);
@@ -2243,7 +2695,6 @@ function resolveCombatAnswer(answer) {
   const actionRow = document.createElement("div");
   actionRow.className = "row";
   const continueBtn = document.createElement("button");
-
   if (defeated) {
     showToast("Niederlage! HP auf 1 wiederhergestellt.", "error");
     continueBtn.textContent = "Niederlage – Rückzug";
@@ -2252,9 +2703,50 @@ function resolveCombatAnswer(answer) {
     continueBtn.textContent = "Weiter";
     continueBtn.addEventListener("click", () => nextCombatQuestion());
   }
-
   actionRow.appendChild(continueBtn);
   fb.insertAdjacentElement("afterend", actionRow);
+}
+
+function resolveCombatAnswer(answer) {
+  if (!combatSession || !combatSession.currentQuestion) return;
+  const q = combatSession.currentQuestion;
+  let ok, feedbackText;
+  if (q.type === "mc") {
+    const chosen = combatSession.shuffledOptions[answer];
+    ok = Boolean(chosen && chosen.correct);
+    const correctText = (combatSession.shuffledOptions.find((o) => o.correct) || {}).text || "";
+    feedbackText = ok ? "" : `Richtige Antwort: ${correctText}`;
+    els.combatDetail.querySelectorAll(".mc-option").forEach((b) => {
+      const idx = parseInt(b.getAttribute("data-oi"), 10);
+      if (combatSession.shuffledOptions[idx]?.correct) b.classList.add("mc-correct");
+      else if (idx === answer) b.classList.add("mc-wrong");
+      b.disabled = true;
+    });
+  } else {
+    ok = answer === q.answer;
+    feedbackText = tfFeedback(q, answer);
+    els.combatDetail.querySelectorAll("[data-c]").forEach((b) => b.setAttribute("disabled", "disabled"));
+  }
+  applyCombatOutcome(ok, feedbackText);
+}
+
+function resolveMultiSelectCombatAnswer() {
+  if (!combatSession || !combatSession.currentQuestion) return;
+  const opts = combatSession.shuffledOptions;
+  const selected = combatSession.selectedIndices || new Set();
+  // Correct = every correct option is selected AND no wrong option is selected
+  const ok = selected.size > 0 && opts.every((o, i) => o.correct ? selected.has(i) : !selected.has(i));
+  const correctTexts = opts.filter((o) => o.correct).map((o) => o.text).join(" | ");
+  const feedbackText = ok ? "" : `Richtig wären: ${correctTexts}`;
+  const submitBtn = document.getElementById("combat-submit-btn");
+  if (submitBtn) submitBtn.disabled = true;
+  els.combatDetail.querySelectorAll(".mc-option--toggle").forEach((b) => {
+    const idx = parseInt(b.getAttribute("data-oi"), 10);
+    if (opts[idx]?.correct) b.classList.add("mc-correct");
+    else if (selected.has(idx)) b.classList.add("mc-wrong");
+    b.disabled = true;
+  });
+  applyCombatOutcome(ok, feedbackText);
 }
 
 function shuffle(arr) {
@@ -2269,16 +2761,15 @@ function shuffle(arr) {
 
 function startCooldownTicker() {
   setInterval(() => {
-    if (!getBedState()) return;
     if (document.activeElement?.id === "seed-add-select") return;
-    renderPlants();
+    renderGardenRoom();
     if (!selectedPlantId) return;
     if (harvestSession || combatSession) return;
     const bedState = getBedState();
     const plant = bedState?.plants[selectedPlantId];
     const now = Date.now();
     if (plant && plant.cooldownUntil && now < plant.cooldownUntil) {
-      renderPlantDetail();
+      renderLeftPanel();
     }
     updateReactiveFavicon();
   }, 1000);
@@ -2392,6 +2883,15 @@ function updateReactiveFavicon() {
 
   const link = ensureFaviconLink();
   link.href = canvas.toDataURL("image/png");
+
+  const preview = document.getElementById("favicon-preview");
+  if (preview) {
+    const pctx = preview.getContext("2d");
+    if (pctx) {
+      pctx.clearRect(0, 0, 32, 32);
+      pctx.drawImage(canvas, 0, 0);
+    }
+  }
 }
 
 function clearPanelFocus() {
@@ -2413,28 +2913,12 @@ function setElementHidden(id, hidden) {
   el.hidden = hidden;
 }
 
-function setWorldVisible(visible) {
-  const worldRoot = document.getElementById("world-root");
-  if (!worldRoot) return;
-  worldRoot.classList.toggle("world-hidden", !visible);
+function setWorldVisible(_visible) {
+  // No-op: world view is always visible in new Plant Tycoon layout
 }
 
-function applyPlayerPanelFilter(mode, section) {
-  const showSeed = mode !== "compact" || section === "seed";
-  const showLab = mode !== "compact" || section === "lab";
-  const showCore = mode !== "compact";
-
-  setElementHidden("player-stats", !showCore);
-  setElementHidden("heal-area", !showCore);
-  setElementHidden("cooldown-info", !showCore);
-  setElementHidden("curriculum-status", !showCore);
-  setElementHidden("seed-heading", !showSeed);
-  setElementHidden("bed-tabs", !showSeed);
-  setElementHidden("seed-progress", !showSeed);
-  setElementHidden("seed-library", !showSeed);
-  setElementHidden("lab-heading", !showLab);
-  setElementHidden("lab-status", !showLab);
-  setElementHidden("lab-list", !showLab);
+function applyPlayerPanelFilter(_mode, _section) {
+  // No-op: panel visibility handled by modals in new layout
 }
 
 function setUiPanelMode(mode, section) {
@@ -2475,40 +2959,17 @@ function setUiPanelMode(mode, section) {
   if (expandBtn) expandBtn.hidden = false;
 }
 
-function showMainUi(opts) {
-  const mode = opts && opts.mode ? opts.mode : "full";
-  const section = opts && opts.section ? opts.section : "seed";
-  const root = document.getElementById("app-ui");
-  if (!root) return;
-  root.classList.remove("ui-hidden");
-  root.classList.toggle("layout--compact", mode === "compact");
-  root.classList.remove("compact-section-seed", "compact-section-lab", "compact-section-beds", "compact-section-detail", "compact-section-combat", "compact-section-settings");
-  if (mode === "compact") root.classList.add(`compact-section-${section}`);
-  setWorldVisible(mode !== "compact");
-  uiViewMode = mode;
-  uiViewSection = section;
-  setUiPanelMode(mode, section);
+function showMainUi(_opts) {
+  // No-op: new layout always shows the garden room
+  renderAll();
 }
 
 function hideMainUi() {
-  const root = document.getElementById("app-ui");
-  if (!root) return;
-  root.classList.add("ui-hidden");
-  root.classList.remove("layout--compact");
-  root.classList.remove("compact-section-seed", "compact-section-lab", "compact-section-beds", "compact-section-detail", "compact-section-combat", "compact-section-settings");
-  setWorldVisible(true);
-  uiViewMode = "full";
-  uiViewSection = "seed";
-  setUiPanelMode("full", "seed");
-  clearPanelFocus();
+  // No-op: garden room always visible
 }
 
-function focusSectionPanel(section) {
-  clearPanelFocus();
-  const panel = getPanelForSection(section);
-  if (!panel) return;
-  panel.classList.add("panel--focus");
-  panel.scrollIntoView({ behavior: "smooth", block: "start" });
+function focusSectionPanel(_section) {
+  // No-op: no panel focus in new layout
 }
 
 function openFromWorld(target) {
@@ -2518,32 +2979,43 @@ function openFromWorld(target) {
   } else {
     renderAll();
   }
-  showMainUi({ mode: "compact", section: t.section || "seed" });
-  requestAnimationFrame(() => focusSectionPanel(t.section || "seed"));
 }
 
 function openPlantFromWorld(bedId, plantId) {
   if (!bedId || !plantId) return;
-  const pack = getPackState();
-  const bedState = pack?.beds?.[bedId];
-  if (!bedState || !Array.isArray(bedState.activePlantIds)) return;
-  if (!bedState.activePlantIds.includes(plantId)) return;
-
-  state.activeBedId = bedId;
-  selectedPlantId = plantId;
-  phase2Session = null;
-  harvestSession = null;
-  combatSession = null;
-  labelSession = null;
-  saveState();
-  renderAll();
-  showMainUi({ mode: "compact", section: "beds" });
-  requestAnimationFrame(() => focusSectionPanel("detail"));
+  selectPlantInGarden(plantId, bedId);
 }
 
 function openSettingsPage() {
-  showMainUi({ mode: "compact", section: "settings" });
-  requestAnimationFrame(() => focusSectionPanel("settings"));
+  openModal("modal-settings");
+}
+
+// ── Modal helpers ──────────────────────────────────────────────────────────
+function openModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.hidden = false;
+}
+
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (el) el.hidden = true;
+}
+
+function openCatalogModal(filterBedId) {
+  catalogFilterBedId = filterBedId || null;
+  if (filterBedId) expandedSeedCatalogBedId = filterBedId;
+  renderSeedLibrary();
+  openModal("modal-catalog");
+}
+
+function openCombatModal() {
+  renderCombat();
+  openModal("modal-combat");
+}
+
+function openLabModal() {
+  renderLab();
+  openModal("modal-lab");
 }
 
 window.KG_UI = {
@@ -2555,61 +3027,51 @@ window.KG_UI = {
   getWorldBeds: () => getWorldVisibleBeds(),
   getWorldBedDetails: () => getWorldBedDetails(),
   getAllBeds: () => PACK_CONTENT.beds.map((b) => ({ id: b.id, title: b.title })),
-  getActiveBedId: () => state.activeBedId,
-  getCombatWorldState: () => {
-    const bedState = getBedState();
-    const player = getPackState().player;
-    return {
-      hasActiveBed: Boolean(bedState),
-      combatUnlocked: Boolean(bedState && bedState.combatUnlocked),
-      bossReady: Boolean(bedState && bedState.bossAvailable && !bedState.bossDefeated),
-      fruits: player ? player.fruits : 0
-    };
-  },
-  getLabWorldState: () => {
-    const p = getLabUnlockProgress();
-    return {
-      unlocked: isLabUnlocked(),
-      bedsWithHarvest: p.bedsWithHarvest,
-      requiredBeds: p.requiredBeds
-    };
-  }
+  getActiveBedId: () => state.activeBedId
 };
 
-const closeUiBtn = document.getElementById("close-ui-btn");
-if (closeUiBtn) {
-  closeUiBtn.addEventListener("click", () => {
-    hideMainUi();
-  });
-}
+// ── Bottom nav + modal triggers ────────────────────────────────────────────
+const openCatalogBtn = document.getElementById("open-catalog-btn");
+if (openCatalogBtn) openCatalogBtn.addEventListener("click", () => openCatalogModal(null));
 
-const expandUiBtn = document.getElementById("expand-ui-btn");
-if (expandUiBtn) {
-  expandUiBtn.addEventListener("click", () => {
-    showMainUi({ mode: "full" });
-    clearPanelFocus();
-  });
-}
+const openCombatBtn = document.getElementById("open-combat-btn");
+if (openCombatBtn) openCombatBtn.addEventListener("click", openCombatModal);
+
+const openLabBtn = document.getElementById("open-lab-btn");
+if (openLabBtn) openLabBtn.addEventListener("click", openLabModal);
 
 const toggleSettingsBtn = document.getElementById("toggle-settings-btn");
-if (toggleSettingsBtn) {
-  toggleSettingsBtn.addEventListener("click", () => {
-    openSettingsPage();
-  });
-}
+if (toggleSettingsBtn) toggleSettingsBtn.addEventListener("click", openSettingsPage);
 
+// Modal close buttons
+const closeSettingsBtn = document.getElementById("close-settings-btn");
+if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => closeModal("modal-settings"));
+
+const closeCatalogBtn = document.getElementById("close-catalog-btn");
+if (closeCatalogBtn) closeCatalogBtn.addEventListener("click", () => { catalogFilterBedId = null; closeModal("modal-catalog"); });
+
+const closeCombatBtn = document.getElementById("close-combat-btn");
+if (closeCombatBtn) closeCombatBtn.addEventListener("click", () => closeModal("modal-combat"));
+
+const closeLabBtn = document.getElementById("close-lab-btn");
+if (closeLabBtn) closeLabBtn.addEventListener("click", () => closeModal("modal-lab"));
+
+// Click outside modal to close
+document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) overlay.hidden = true;
+  });
+});
+
+// Esc key: close any open modal, or open settings
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
-  const uiRoot = document.getElementById("app-ui");
-  if (!uiRoot || uiRoot.classList.contains("ui-hidden")) {
+  const openModal = document.querySelector(".modal-overlay:not([hidden])");
+  if (openModal) {
+    openModal.hidden = true;
+  } else {
     openSettingsPage();
-    return;
   }
-  if (uiViewMode === "compact" && uiViewSection === "settings") {
-    hideMainUi();
-    return;
-  }
-  openSettingsPage();
 });
 
 

@@ -49,7 +49,7 @@ function openAppWindow(url) {
   const exe = findBrowserExecutable();
   if (exe) {
     try {
-      spawn(exe, [`--app=${url}`, "--window-size=980,760"], {
+      spawn(exe, [`--app=${url}`, "--window-size=1440,900"], {
         detached: true,
         stdio: "ignore"
       }).unref();

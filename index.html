@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,8 +10,14 @@
   <header>
     <h1>Knowledge Garden RPG</h1>
     <p>MVP 0.1 - Heilpraktiker</p>
+    <div id="player-stats" class="stats header-stats"></div>
+    <div id="heal-area"></div>
+    <div id="header-info">
+      <span id="cooldown-info" class="header-info-item muted"></span>
+      <span id="curriculum-status" class="header-info-item muted"></span>
+    </div>
     <div class="icon-legend-wrap">
-      <button id="favicon-legend-btn" class="icon-legend-btn" type="button" aria-label="Bedeutung der Spiel-Icon Farben">i Spiel-Icon</button>
+      <canvas id="favicon-preview" width="32" height="32" aria-label="Spiel-Icon – Bedeutung der Farben" role="img"></canvas>
       <div class="icon-legend-tooltip" role="tooltip">
         <div><strong>Spiel-Icon Farben</strong></div>
         <div><span class="legend-dot legend-dot--red"></span> Rot: Kampf bereit</div>
@@ -21,21 +27,32 @@
     </div>
   </header>
 
-  <section id="world-root" class="world-root">
-    <div id="phaser-game" class="world-canvas"></div>
-    <div class="world-hud">
-      <div id="world-prompt" class="world-prompt">Bewege dich mit WASD oder Pfeiltasten.</div>
-      <button id="open-ui-btn">UI anzeigen</button>
-    </div>
-  </section>
+  <div id="garden-layout">
 
-  <main id="app-ui" class="layout ui-hidden">
-    <div class="ui-toolbar">
-      <button id="toggle-settings-btn">Einstellungen (Esc)</button>
-      <button id="expand-ui-btn">Alles anzeigen</button>
-      <button id="close-ui-btn">Zur Weltansicht</button>
-    </div>
-    <section id="panel-settings" class="panel" hidden>
+    <!-- Left panel: always visible (Plant Tycoon style) -->
+    <aside id="left-panel">
+      <div class="left-panel-divider"></div>
+      <div id="left-panel-visual"></div>
+      <div id="plant-detail" class="detail">Keine Pflanze ausgewählt.<br><br>Klicke eine Pflanze im Garten an.</div>
+    </aside>
+
+    <!-- Garden room: topic shelves with plant pots, rendered by renderGardenRoom() -->
+    <main id="garden-room"></main>
+
+  </div>
+
+  <!-- Bottom navigation bar -->
+  <nav id="bottom-nav">
+    <button id="open-catalog-btn">📚 Pflanzen</button>
+    <button id="open-combat-btn">⚔️ Kampf</button>
+    <button id="open-lab-btn">🔬 Labor</button>
+    <button id="toggle-settings-btn">⚙ Einstellungen</button>
+    <button id="quick-reset-btn" class="danger" onclick="if(confirm('Speicher wirklich löschen?')){localStorage.clear();location.reload();}">🗑 Reset</button>
+  </nav>
+
+  <!-- Settings modal -->
+  <div id="modal-settings" class="modal-overlay" hidden>
+    <div class="modal-box">
       <h2>Einstellungen</h2>
       <div id="settings-row" class="row">
         <button id="dev-mode-btn">Dev-Cooldown: Aus</button>
@@ -47,41 +64,41 @@
       </div>
       <input id="import-file-input" type="file" accept="application/json,.json" style="display:none">
       <div class="muted">Mit Esc wieder schließen.</div>
-    </section>
-    <section id="panel-player" class="panel">
-      <h2>Spieler</h2>
-      <div id="player-stats" class="stats"></div>
-      <div id="heal-area"></div>
-      <div id="cooldown-info" class="muted"></div>
-      <div id="curriculum-status" class="muted"></div>
-      <h3 id="seed-heading">Seed-Beete</h3>
-      <div id="bed-tabs" class="tabs"></div>
-      <div id="seed-progress" class="muted"></div>
+      <button id="close-settings-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- Seed catalog modal -->
+  <div id="modal-catalog" class="modal-overlay" hidden>
+    <div class="modal-box modal-box--wide">
+      <h2>Pflanzen-Katalog</h2>
       <div id="seed-library" class="list"></div>
-      <h3 id="lab-heading">Labor</h3>
-      <div id="lab-status" class="muted"></div>
-      <div id="lab-list" class="list"></div>
-    </section>
+      <button id="close-catalog-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
 
-    <section id="panel-beds" class="panel">
-      <h2 id="bed-title">Bed</h2>
-      <div id="plants-list" class="list"></div>
-    </section>
-
-    <section id="panel-detail" class="panel">
-      <h2>Pflanzendetails</h2>
-      <div id="plant-detail" class="detail">Wähle eine Pflanze zum Starten.</div>
-    </section>
-
-    <section id="panel-combat" class="panel">
+  <!-- Combat modal -->
+  <div id="modal-combat" class="modal-overlay" hidden>
+    <div class="modal-box">
       <h2>Kampf</h2>
       <div id="combat-status">Kampf gesperrt. Ernte zuerst mindestens eine Pflanze.</div>
       <div class="row">
         <button id="start-combat-btn">Kampf starten</button>
       </div>
       <div id="combat-detail" class="detail"></div>
-    </section>
-  </main>
+      <button id="close-combat-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- Lab modal -->
+  <div id="modal-lab" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <h2>Labor</h2>
+      <div id="lab-status" class="muted"></div>
+      <div id="lab-list" class="list"></div>
+      <button id="close-lab-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
 
   <script src="./js/content.js"></script>
   <script>
@@ -115,8 +132,5 @@
     })();
   </script>
   <script src="./js/game.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js"></script>
-  <script src="./js/world.js"></script>
 </body>
 </html>
-

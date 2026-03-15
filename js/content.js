@@ -2,31 +2,31 @@
 function makePlant(id, title, context, n) {
   const qBase = `${id}_${n}`;
   const harvestQuestions = [
-    { id: `${qBase}_h1`, type: "true_false", statement: `${title} ist als eigenstaendiger Lernbereich im Curriculum erfasst.`, answer: true },
-    { id: `${qBase}_h2`, type: "true_false", statement: `${title} hat keinen Bezug zu den Grundlagen von ${context}.`, answer: false },
-    { id: `${qBase}_h3`, type: "true_false", statement: `${title} sollte mindestens einmal sicher gelernt und abgeprueft werden.`, answer: true }
+    { id: `${qBase}_h1`, type: "true_false", statement: `${title} ist ein eigenstaendiges anatomisch-physiologisches Thema mit eigener Terminologie und Systematik.`, answer: true },
+    { id: `${qBase}_h2`, type: "true_false", statement: `${title} hat keinen inhaltlichen Bezug zu den Grundlagen von ${context}.`, answer: false },
+    { id: `${qBase}_h3`, type: "true_false", statement: `Ein sicheres Verstaendnis von ${title} erfordert das Kennen der wesentlichen Begriffe, Strukturen und Funktionsprinzipien dieses Themas.`, answer: true }
   ];
   const bossQuestions = [
-    { id: `${qBase}_b1`, type: "true_false", statement: `${title} gehoert zum Pflichtkanon dieses Studienbriefs.`, answer: true }
+    { id: `${qBase}_b1`, type: "true_false", statement: `Fuer das Verstaendnis von ${context} ist ${title} ein unverzichtbarer Grundbaustein.`, answer: true }
   ];
   return {
     id,
     title,
     phase1: {
       soil: {
-        statement: `${title} ist ein relevantes Thema im Studienbrief ${context}.`,
+        statement: `${title} ist ein eigenstaendiges anatomisch-physiologisches Teilgebiet von ${context} mit klar abgrenzbaren Strukturen und Funktionen.`,
         answer: true,
-        solution: "Korrekt. Dieses Thema ist Teil der verbindlichen Lernstruktur."
+        solution: "Korrekt. Jedes anatomische Teilgebiet hat eigene Strukturen, Begriffe und Funktionsprinzipien, die systematisch erarbeitet werden koennen."
       },
       seed: {
-        statement: `${title} kann fuer die Heilpraktiker-Pruefung vollstaendig ignoriert werden.`,
+        statement: `${title} laesst sich vollstaendig durch Auswendiglernen einzelner Fakten ohne Verstaendnis der zugrundeliegenden Prinzipien beherrschen.`,
         answer: false,
-        solution: "Korrekt. Das Thema gehoert in den Lernumfang und sollte mindestens einmal sicher beherrscht werden."
+        solution: "Falsch. Nachhaltiges Lernen anatomischer Themen erfordert das Verstaendnis von Zusammenhaengen – Struktur erklaert Funktion, und Funktion erklaert klinische Bedeutung."
       },
       water: {
-        statement: `Ein solides Verstaendnis von ${title} verbessert die sichere Einordnung von ${context}.`,
+        statement: `Ein solides Verstaendnis der Strukturen und Funktionen von ${title} erleichtert die Einordnung verwandter Themen in ${context}.`,
         answer: true,
-        solution: "Korrekt. Genau dafuer dient die Phase-1-Grundlage."
+        solution: "Korrekt. Anatomische Themen sind vernetzt: Wer Strukturen und ihre Funktionen versteht, kann Zusammenhaenge zu benachbarten Themen leichter herstellen."
       }
     },
     phase2: [
@@ -86,28 +86,43 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "zb_h1", type: "true_false", statement: "Die Zelle ist die kleinste lebensfaehige Funktionseinheit.", answer: true, explanation: "Die Zelle besitzt alle Grundeigenschaften des Lebens: Stoffwechsel, Wachstum, Reizbarkeit und Fortpflanzung. Kein kleineres Teilstueck – weder eine Organelle noch ein Molekuel – erfuellt diese Bedingungen eigenstaendig." },
-      { id: "zb_h2", type: "true_false", statement: "Der Zellbegriff hat keinen Bezug zur Vermehrungsfaehigkeit.", answer: false, explanation: "Vermehrungsfaehigkeit (Reproduktion) ist eine der Kerneigenschaften des Lebens und damit ein wesentliches Merkmal der Zelle. Zellteilung – ob durch Mitose oder Meiose – ist der biologische Ausdruck dieser Eigenschaft." },
-      { id: "zb_h3", type: "true_false", statement: "Aus Zellverbaenden entstehen Gewebe.", answer: true, explanation: "Gleichartig differenzierte Zellen schliessen sich zu Zellverbaenden zusammen, die als Gewebe bezeichnet werden. Gewebe ist damit die naechsthoere Organisationsebene ueber der Einzelzelle und Grundlage aller Organe des Koerpers." },
-      { id: "zb_h4", type: "true_false", statement: "Die Zelle ist die kleinste Einheit, die alle Grundeigenschaften des Lebens aufweist.", answer: true, explanation: "Zu den Grundeigenschaften des Lebens zaehlen Stoffwechsel, Wachstum, Reizbarkeit und Reproduktion – all diese Eigenschaften koennen nur auf der Ebene der vollstaendigen Zelle, nicht auf Organellen-Ebene, verwirklicht werden." },
-      { id: "zb_h5", type: "true_false", statement: "Einzeller koennen nicht als vollstaendige Organismen betrachtet werden.", answer: false, explanation: "Einzeller wie Amöben, Paramecien oder Bakterien sind vollstaendige Organismen, die alle Lebensfunktionen in einer einzigen Zelle vereinen – von Ernaehrung und Bewegung bis zur Fortpflanzung. Sie sind der Beweis, dass die Zelle die kleinste lebensfahige Einheit ist." },
-      { id: "zb_h6", type: "true_false", statement: "Der Begriff Zytologie bezeichnet die Wissenschaft von den Zellen und ihrer Struktur.", answer: true, explanation: "Zytologie (griech. kytos = Zelle, logos = Lehre) ist der Teilbereich der Biologie, der sich mit Aufbau, Funktion, Entwicklung und Geschichte der Zelle befasst. Sie bildet die Grundlage fuer Histologie, Physiologie und Pathologie." }
+      { id: "zb_h1", type: "mc", question: "Welche Gruppe benennt korrekt die vier Grundeigenschaften des Lebens, die jede Zelle besitzen muss?", options: [
+        { text: "Stoffwechsel, Wachstum, Reizbarkeit und Reproduktion", correct: true },
+        { text: "Atmung, Wachstum, Erregbarkeit und Verdauung", correct: false },
+        { text: "Stoffwechsel, Magnetismus, Reproduktion und Bewegung", correct: false },
+        { text: "Zellteilung, Osmoregulation, Reizbarkeit und Atmung", correct: false }
+      ], explanation: "Die vier Grundeigenschaften des Lebens – Stoffwechsel, Wachstum, Reizbarkeit und Reproduktion – muss jede Zelle besitzen. Kein subzellulaeres Element (Organelle, Molekuel) erfuellt alle vier gleichzeitig." },
+      { id: "zb_h2", type: "mc", question: "Was bezeichnen die Begriffe Morphologie und Physiologie im Zellkontext?", options: [
+        { text: "Morphologie = Aufbau/Form der Zelle; Physiologie = Funktion/Prozesse der Zelle", correct: true },
+        { text: "Morphologie = Funktion; Physiologie = Aufbau", correct: false },
+        { text: "Morphologie = Zellkern; Physiologie = Zytoplasma", correct: false },
+        { text: "Beide Begriffe bezeichnen dasselbe – den Zellstoffwechsel", correct: false }
+      ], explanation: "Der Zellbegriff verbindet Morphologie (griech. morphe = Form: Aufbau, Groesse, Gestalt der Zelle) mit Physiologie (griech. physis = Natur: Funktion, Stoffwechsel, Prozesse). Struktur erklaert Funktion – das Kernprinzip der Zytologie." },
+      { id: "zb_h3", type: "true_false", statement: "Die Organisationsebenen von der Zelle bis zum Organismus lauten: Zelle → Gewebe → Organ → Organsystem → Organismus.", answer: true, explanation: "Diese Hierarchie ist das Grundprinzip biologischer Organisation: Gleichartig differenzierte Zellen bilden Gewebe, Gewebe organisieren sich zu Organen, Organe zu Organsystemen und diese zusammen zum Organismus." },
+      { id: "zb_h4", type: "true_false", statement: "Virionen (Viren) gelten als kleinste lebensfaehige Einheiten, da sie sich reproduzieren koennen.", answer: false, explanation: "Viren sind keine Zellen und gelten nicht als lebensfaehig: Sie besitzen keinen eigenen Stoffwechsel und koennen sich nur unter Nutzung der Replikationsmaschinerie einer Wirtszelle vermehren. Sie erfuellen nicht alle vier Grundeigenschaften des Lebens eigenstaendig." },
+      { id: "zb_h5", type: "true_false", statement: "Einzeller wie Amöben oder Paramecien sind vollstaendige Organismen, die alle Lebensfunktionen in einer Zelle vereinen.", answer: true, explanation: "Protozoen (tierische Einzeller) wie Amöben und Paramecien erledigen Ernaehrung, Bewegung, Reizaufnahme und Fortpflanzung in einer einzigen Zelle – ohne Gewebeverband. Sie belegen, dass die Zelle selbst die kleinste lebensfaehige Einheit ist." },
+      { id: "zb_h6", type: "mc", question: "In welche Kategorie des hierarchischen Aufbaus ist 'Leber' einzuordnen?", options: [
+        { text: "Organ (besteht aus mehreren Gewebetypen)", correct: true },
+        { text: "Gewebe (gleichartige Zellen mit gemeinsamer Funktion)", correct: false },
+        { text: "Organsystem (funktionell verknuepfte Organe)", correct: false },
+        { text: "Zelle (kleinste Einheit)", correct: false }
+      ], explanation: "Die Leber ist ein Organ: Sie besteht aus mehreren Gewebetypen (Leberparenchymzellen/Hepatozyten, Bindegewebe, Gefaesse, Gallengaenge). Das Verdauungssystem waere dagegen das Organsystem, zu dem die Leber gehoert." }
     ],
     bossQuestions: [
-      { id: "zb_b1", type: "true_false", statement: "Zellbegriff und Gewebebegriff sind in 1031 direkt verknuepft.", answer: true }
+      { id: "zb_b1", type: "true_false", statement: "Zell- und Gewebebegriff sind funktionell verknuepft: Gewebe sind organisierte Verbaende gleichartig differenzierter Zellen mit gemeinsamer Funktion.", answer: true }
     ],
     combatQuestions: [
-      { id: "zb_mc1", type: "mc", question: "Welche Aussage zur Definition der Zelle ist korrekt?", options: [
-        { text: "Die Zelle ist die kleinste lebensfaehige Funktionseinheit des Organismus.", correct: true },
-        { text: "Zellen koennen nicht zu Geweben zusammengeschlossen werden.", correct: false },
-        { text: "Der Zellbegriff bezieht sich nur auf tierische Organismen.", correct: false },
-        { text: "Zytologie beschreibt ausschliesslich die Zellform, nicht die Funktion.", correct: false }
+      { id: "zb_mc1", type: "mc", question: "Welche Aussagen zur biologischen Organisationshierarchie sind korrekt?", options: [
+        { text: "Zellen bilden Gewebe, Gewebe bilden Organe", correct: true },
+        { text: "Organe sind kleiner als Gewebe", correct: false },
+        { text: "Gleichartig differenzierte Zellen bilden einen Gewebeverband", correct: true },
+        { text: "Ein Organismus besteht aus maximal einem Organsystem", correct: false }
       ]},
-      { id: "zb_mc2", type: "mc", question: "Was entsteht aus Verbaenden gleichartig differenzierter Zellen?", options: [
-        { text: "Gewebe", correct: true },
-        { text: "Chromosomen", correct: false },
-        { text: "Organellen", correct: false },
-        { text: "Enzyme", correct: false }
+      { id: "zb_mc2", type: "mc", question: "Warum gelten Viren nicht als lebende Zellen?", options: [
+        { text: "Sie besitzen keinen eigenen Stoffwechsel und koennen sich nur in Wirtszellen vermehren", correct: true },
+        { text: "Sie sind zu gross fuer eine Zelle", correct: false },
+        { text: "Sie besitzen keine Nukleinsaeuren", correct: false },
+        { text: "Sie fehlen in prokaryonten Organismen", correct: false }
       ]}
     ]
   }),
@@ -126,34 +141,61 @@ const ZYTOLOGIE_1031_PLANTS = [
         solution: "Erythrozyten sind nur etwa 7 µm gross und bikonkav geformt, Nervenzellen koennen mit ihren Auslaeufern Meter lang sein. Diese extreme Vielfalt spiegelt die verschiedenartigen Aufgaben der Zellen im Koerper wider."
       },
       water: {
-        statement: "Im Studienbrief wird die Eizelle als groesste Zelle des Organismus genannt.",
+        statement: "Die Eizelle (Ovum) ist mit etwa 120 Mikrometern Durchmesser die groesste menschliche Zelle und damit gerade noch mit blossem Auge erkennbar.",
         answer: true,
         solution: "Die Eizelle (Ovum) ist die groesste menschliche Zelle mit einem Durchmesser von etwa 120 Mikrometern und damit gerade noch mit blossem Auge sichtbar. Die meisten anderen Koerperzellen sind dagegen nur mikroskopisch erkennbar."
       }
     },
     harvestQuestions: [
-      { id: "zf_h1", type: "true_false", statement: "Zellform und Zellgroesse sind funktionell mit den Aufgaben der Zelle verknuepft.", answer: true, explanation: "Die Form einer Zelle ist kein Zufall, sondern Ausdruck ihrer Spezialisierung: Epithelzellen sind flach fuer die Oberflaechenbedeckung, Muskelfasern spindelfoermig fuer Kontraktion, und Erythrozyten bikonkav fuer maximale Haemoglobin-Kapazitaet und Verformbarkeit in engen Kapillaren." },
-      { id: "zf_h2", type: "true_false", statement: "Nervenzellen und Muskelzellen werden als besonders kurz und breit beschrieben.", answer: false, explanation: "Nervenzellen sind aufgrund ihrer Leitungsaufgabe oft extrem lang ausgezogen – ein einzelnes Axon kann im Menschen ueber einen Meter lang sein. Muskelzellen sind spindelfoermig und ebenfalls laengsgestreckt, um Zugkraefte entlang ihrer Laengsachse zu entwickeln." },
-      { id: "zf_h3", type: "true_false", statement: "Die Formenvielfalt der Zellen ist ein Grundthema der Zytologie.", answer: true, explanation: "Die Zytologie beschreibt und erklaert die ausserordentliche morphologische Vielfalt von Zellen, die von der kugeligen Eizelle ueber die bikonkave Blutscheibe bis zum meterlangen Axon reicht. Diese Formenvielfalt ist direkte Konsequenz funktioneller Spezialisierung." },
-      { id: "zf_h4", type: "true_false", statement: "Die menschliche Eizelle gilt als groesste Zelle des menschlichen Koerpers.", answer: true, explanation: "Die Eizelle (Ovum) hat einen Durchmesser von ca. 120 Mikrometern und ist damit gerade noch mit blossem Auge sichtbar – die groesste Zelle im menschlichen Koerper. Ihre Groesse ist notwendig, da sie Naehrstoffvorrate fuer die fruehe Embryonalentwicklung enthaelt." },
-      { id: "zf_h5", type: "true_false", statement: "Erythrozyten haben eine laengliche, staebartige Form.", answer: false, explanation: "Reife Erythrozyten sind bikonkave Scheiben (beidseitig eingedellt) mit einem Durchmesser von ca. 7–8 Mikrometern. Diese Form maximiert die Oberflaeche fuer den Gasaustausch und ermoeglicht die Verformung beim Passieren enger Kapillaren." },
-      { id: "zf_h6", type: "true_false", statement: "Nervenzellen koennen aufgrund ihrer Leitungsaufgabe besonders lang ausgezogen sein.", answer: true, explanation: "Nervenzellen muessen elektrische Signale ueber weite Strecken leiten – vom Rueckenmark bis in die Zehen koennen einzelne Axone ueber einen Meter lang sein. Diese aussergewoehnliche Laenge ist eine direkte strukturelle Anpassung an die Informationsleitungsfunktion." }
+      { id: "zf_h1", type: "mc", question: "Welchen Durchmesser hat die Eizelle (Ovum) als groesste menschliche Zelle?", options: [
+        { text: "Ca. 120 Mikrometer", correct: true },
+        { text: "Ca. 7–8 Mikrometer", correct: false },
+        { text: "Ca. 1–2 Mikrometer", correct: false },
+        { text: "Ca. 500 Mikrometer", correct: false }
+      ], explanation: "Die Eizelle hat ca. 120 µm Durchmesser und ist damit gerade noch mit blossem Auge sichtbar. Zum Vergleich: Erythrozyten sind ca. 7–8 µm (bikonkave Scheiben), Bakterien ca. 1–2 µm." },
+      { id: "zf_h2", type: "mc", question: "Welche Zellform erleichtert die Verformbarkeit beim Durchqueren enger Kapillaren?", options: [
+        { text: "Bikonkave Scheibenform (Erythrozyten)", correct: true },
+        { text: "Kugelige Form (Lymphozyten)", correct: false },
+        { text: "Spindelform (Muskelfasern)", correct: false },
+        { text: "Pseudopodienform (Makrophagen)", correct: false }
+      ], explanation: "Die bikonkave Scheibenform der Erythrozyten ist eine spezifische Anpassung: Sie maximiert die Diffusionsoberflaeche fuer den Gasaustausch und ermoeglicht die extreme Verformbarkeit beim Passieren von Kapillaren mit nur 3–4 µm Durchmesser – kleiner als der Erythrozyt selbst." },
+      { id: "zf_h3", type: "true_false", statement: "Thrombozyten sind keine vollstaendigen Zellen, sondern kernlose Membranfragmente, die von Megakaryozyten im Knochenmark abgeschnuert werden.", answer: true, explanation: "Thrombozyten entstehen durch Fragmentierung von Megakaryozyten im Knochenmark. Sie besitzen keinen Zellkern, keine DNA und koennen sich nicht teilen. Trotzdem sind sie lebenswichtige Zellstrukturen fuer die Haemostase (Blutgerinnung)." },
+      { id: "zf_h4", type: "true_false", statement: "Reife Erythrozyten besitzen Mitochondrien fuer ihre ATP-Versorgung.", answer: false, explanation: "Reife Erythrozyten besitzen weder Mitochondrien noch einen Zellkern. Sie gewinnen ATP ausschliesslich aus der anaeroben Glykolyse. Dieser Verzicht auf Organellen ist funktionell sinnvoll: Er schafft Platz fuer maximale Haemoglobinbeladung." },
+      { id: "zf_h5", type: "mc", question: "Warum koennen motorische Nervenzellen (Motoneuronen) Axone von ueber einem Meter Laenge ausbilden?", options: [
+        { text: "Weil ihre Signaluebertragungsfunktion eine physische Verbindung zwischen weit entfernten Strukturen erfordert", correct: true },
+        { text: "Weil sie durch rasante Zellteilung immer laenger werden", correct: false },
+        { text: "Weil sie alle anderen Organellen in den Axonfortsatz auslagern", correct: false },
+        { text: "Weil sie die einzigen Zellen ohne Ruhemembranpotential sind", correct: false }
+      ], explanation: "Motoneuronen muessen elektrische Signale vom Rueckenmark bis zu Muskeln in den Extremitaeten leiten – z.B. das Axon des N. ischiadicus vom Rueckenmark bis zur Wadenmuskulatur. Diese Funktion erfordert eine physische Kontinuitaet von >1 m." },
+      { id: "zf_h6", type: "true_false", statement: "Glatte Muskelzellen sind spindelfoermig und besitzen einen zentral gelegenen ovalen Kern, waehrend Skelettmuskelfasern mehrere randstaendige Kerne aufweisen.", answer: true, explanation: "Die histologische Unterscheidung ist pruefungsrelevant: Glatte Muskelzellen – spindelfoermig, ein zentraler Kern. Skelettmuskelfasern – lang ausgezogen, viele randstaendige Kerne (polynodt, da durch Zellfusion entstanden). Herzmuskelzellen – quer gestreift, ein zentraler Kern." }
     ],
     bossQuestions: [
-      { id: "zf_b1", type: "true_false", statement: "In 1031 wird die Zelle nicht als Einheitsform, sondern als stark variable Struktur dargestellt.", answer: true }
+      { id: "zf_b1", type: "true_false", statement: "Zellen haben keine einheitliche Form: Ihre Gestalt ist stark variabel und spiegelt direkt ihre jeweilige Funktion wider.", answer: true }
     ],
     combatQuestions: [
-      { id: "zf_mc1", type: "mc", question: "Welche Zelle gilt als die groesste Zelle im menschlichen Koerper?", options: [
-        { text: "Die Eizelle (Ovum)", correct: true },
-        { text: "Der Erythrozyt", correct: false },
-        { text: "Der Osteoblast", correct: false },
-        { text: "Der Lymphozyt", correct: false }
+      { id: "zf_mc1", type: "mc", question: "Welche Aussagen zu Erythrozyten sind korrekt?", options: [
+        { text: "Sie haben bikonkave Scheibenform und ca. 7–8 µm Durchmesser", correct: true },
+        { text: "Sie besitzen keinen Zellkern", correct: true },
+        { text: "Sie gewinnen ATP durch anaerobe Glykolyse", correct: true },
+        { text: "Sie enthalten Mitochondrien zur oxidativen Phosphorylierung", correct: false }
       ]},
-      { id: "zf_mc2", type: "mc", question: "Warum koennen Nervenzellen besonders lang ausgezogen sein?", options: [
-        { text: "Wegen ihrer Leitungsaufgabe ueber weite Strecken", correct: true },
-        { text: "Wegen ihrer Faehigkeit zur schnellen Zellteilung", correct: false },
-        { text: "Weil sie alle Organellen des Koerpers enthalten muessen", correct: false },
-        { text: "Wegen ihrer kugeligen Grundstruktur", correct: false }
+      { id: "zf_mc2", type: "mc", question: "Welche Zelle hat den groessten Durchmesser aller menschlichen Zellen?", options: [
+        { text: "Eizelle (Ovum, ca. 120 µm)", correct: true },
+        { text: "Makrophage (ca. 20 µm)", correct: false },
+        { text: "Erythrozyt (ca. 7–8 µm)", correct: false },
+        { text: "Neutrophiler Granulozyt (ca. 12 µm)", correct: false }
+      ]},
+      { id: "zf_mc3", type: "mc", question: "Welche Zellformen sind den genannten Zelltypen korrekt zugeordnet?", options: [
+        { text: "Erythrozyt – bikonkave Scheibe", correct: true },
+        { text: "Glatte Muskelzelle – spindelfoermig mit zentralem Kern", correct: true },
+        { text: "Nervenzelle – kugelig ohne Fortsaetze", correct: false },
+        { text: "Skelettmuskelfaser – spindelfoermig mit zentralem Kern", correct: false }
+      ]},
+      { id: "zf_mc4", type: "mc", question: "Welche Zellform ist typisch fuer Epithelzellen, die eine Grenzflaeche bedecken?", options: [
+        { text: "Flach (platt), um moeglichst viel Flaeche abzudecken", correct: true },
+        { text: "Spindelfoermig, um Kontraktionskraefte zu erzeugen", correct: false },
+        { text: "Kuboidal mit langen Auslaeufern fuer die Signalleitung", correct: false },
+        { text: "Bikonkav, um die Sauerstoffkapazitaet zu maximieren", correct: false }
       ]}
     ]
   }),
@@ -178,28 +220,38 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "pe_h1", type: "true_false", statement: "Bakterien werden als prokaryonte Zellen eingeordnet.", answer: true, explanation: "Bakterien sind typische Prokaryoten: Ihre DNA liegt als kreisfoermiges Chromosom frei im Zytoplasma, ohne von einer Kernmembran abgegrenzt zu sein. Darueber hinaus fehlen ihnen membranumschlossene Organellen wie Mitochondrien oder Golgi-Apparat." },
-      { id: "pe_h2", type: "true_false", statement: "Eukaryonte Zellen sind grundsaetzlich kernlos.", answer: false, explanation: "Das Gegenteil ist richtig: Eukaryoten sind durch einen membranbegrenzten Zellkern (Nukleus) definiert. Zu den Eukaryoten zaehlen alle vielzelligen Lebewesen – Tiere, Pflanzen, Pilze – sowie viele Einzeller. Kernlosigkeit ist ein Merkmal der Prokaryoten." },
-      { id: "pe_h3", type: "true_false", statement: "Der Zellkern ist ein Hauptkriterium der Einteilung prokaryont/eukaryont.", answer: true, explanation: "Das An- oder Fehlen eines membranbegrenzten Zellkerns ist das entscheidende Kriterium dieser fundamentalen Einteilung aller Lebewesen. Pro- (= vor) und Eu- (= wahr) im Bezug auf Karyon (= Kern) beschreiben genau diesen Unterschied." },
-      { id: "pe_h4", type: "true_false", statement: "Prokaryonte Zellen besitzen keinen membranbegrenzten Zellkern.", answer: true, explanation: "Bei Prokaryoten liegt die DNA als nucleoid bezeichnete Region frei im Zytoplasma, ohne von einer Doppelmembran (Kernhuelle) umschlossen zu sein. Dadurch laufen Transkription (DNA zu mRNA) und Translation (mRNA zu Protein) im selben Zellraum gleichzeitig ab." },
-      { id: "pe_h5", type: "true_false", statement: "Pilze gehoeren zu den prokaryonten Organismen.", answer: false, explanation: "Pilze sind Eukaryoten: Ihre Zellen besitzen einen membranbegrenzten Zellkern, Mitochondrien und andere Organellen. Gemeinsam mit Tieren und Pflanzen bilden sie das Reich der Eukaryota. Nur Bakterien und Archaeen sind Prokaryoten." },
-      { id: "pe_h6", type: "true_false", statement: "Reife Erythrozyten des Menschen sind kernlos, entstammen aber eukaryone Vorlaeuferzellen.", answer: true, explanation: "Reife Erythrozyten stossen ihren Zellkern waehrend der Reifung im Knochenmark aus, um mehr Platz fuer Haemoglobin zu schaffen. Ihre Vorlaeuferzellen (Erythroblasten) sind jedoch eukaryonte Zellen mit vollstaendigem Zellkern – kernlos zu sein ist ein Reifungsprodukt, kein prokaryontes Merkmal." }
+      { id: "pe_h1", type: "mc", question: "Welche Strukturen fehlen Prokaryoten, die Eukaryoten besitzen?", options: [
+        { text: "Membranbegrenzter Zellkern", correct: true },
+        { text: "Mitochondrien", correct: true },
+        { text: "Golgi-Apparat", correct: true },
+        { text: "Ribosomen (70S-Typ vorhanden, kein Unterschied)", correct: false }
+      ], explanation: "Prokaryoten fehlen: membranbegrenzter Zellkern (Nukleoid frei im Zytoplasma), Mitochondrien, Golgi-Apparat, ER. Ribosomen haben Prokaryoten zwar auch, aber prokaryonte Ribosomen sind kleiner (70S) als eukaryonte (80S) – pruefungsrelevanter Unterschied fuer Antibiotika-Wirkung." },
+      { id: "pe_h2", type: "true_false", statement: "Bei Prokaryoten laeufen Transkription und Translation gleichzeitig im selben Zellraum ab.", answer: true, explanation: "Da Prokaryoten keine Kernhuelle besitzen, kann ein Ribosom an die mRNA binden und mit der Translation beginnen, waehrend die RNA-Polymerase die mRNA noch transkribiert (sog. Kopplungsprinzip). Bei Eukaryoten sind Transkription (im Kern) und Translation (im Zytoplasma) raeumlich getrennt." },
+      { id: "pe_h3", type: "mc", question: "Welche Organismengruppen gehoeren zu den Prokaryoten?", options: [
+        { text: "Bakterien und Archaeen", correct: true },
+        { text: "Pilze", correct: false },
+        { text: "Pflanzen", correct: false },
+        { text: "Protisten (Einzeller wie Amöben)", correct: false }
+      ], explanation: "Prokaryoten umfassen nur zwei Domänen: Bacteria und Archaea. Alle anderen – Tiere, Pflanzen, Pilze und Protisten – sind Eukaryoten. Diese Zweiteilung ist die fundamentalste Klassifikation der Lebewelt." },
+      { id: "pe_h4", type: "true_false", statement: "Prokaryonte Zellen besitzen keinen membranbegrenzten Zellkern – ihre DNA liegt als Nucleoid frei im Zytoplasma.", answer: true, explanation: "Bei Prokaryoten liegt die zirkulaere chromosomale DNA als Nucleoid (keine Kernhuelle) im Zytoplasma. Zusaetzlich koennen kleine ringfoermige DNA-Stuecke (Plasmide) vorhanden sein. Das Fehlen der Kernhuelle ist das Definitionsmerkmal der Prokaryoten." },
+      { id: "pe_h5", type: "true_false", statement: "Pilze sind Prokaryoten und deshalb besonders empfindlich gegenueber bakteriziden Antibiotika.", answer: false, explanation: "Pilze sind Eukaryoten – sie haben membranumschlossene Zellkerne, Mitochondrien und 80S-Ribosomen wie menschliche Zellen. Antibiotika, die auf prokaryonte Strukturen (70S-Ribosomen, Peptidoglykan-Zellwand) abzielen, wirken daher nicht gegen Pilze. Pilzinfektionen erfordern Antimykotika." },
+      { id: "pe_h6", type: "true_false", statement: "Reife Erythrozyten des Menschen sind kernlos, entstammen aber eukaryon Vorlaeuferzellen.", answer: true, explanation: "Erythroblasten (Vorlaeuferzellen) sind eukaryonte Zellen mit vollstaendigem Kern. Im Laufe der Erythropoese im Knochenmark stossen reifende Erythrozyten ihren Kern aus – das Endprodukt (reifer Erythrozyt) ist kernlos, aber kein Prokaryot, da der Kernverlust ein Reifungsergebnis ist." }
     ],
     bossQuestions: [
       { id: "pe_b1", type: "true_false", statement: "Ausnahmen bei Saeugetierzellen widerlegen nicht das eukaryonte Grundprinzip.", answer: true }
     ],
     combatQuestions: [
-      { id: "pe_mc1", type: "mc", question: "Was ist das Hauptmerkmal, das Prokaryonten von Eukaryonten unterscheidet?", options: [
-        { text: "Das Fehlen eines membranbegrenzten Zellkerns bei Prokaryonten", correct: true },
-        { text: "Die Groesse der Zelle: Prokaryonten sind immer groesser", correct: false },
-        { text: "Prokaryonten besitzen keine Ribosomen", correct: false },
-        { text: "Eukaryonten koennen sich nicht teilen", correct: false }
-      ]},
-      { id: "pe_mc2", type: "mc", question: "Welche Aussage ueber reife Erythrozyten des Menschen trifft zu?", options: [
-        { text: "Sie sind kernlos, entstammen aber eukaryon Vorlaeuferzellen", correct: true },
-        { text: "Sie sind prokaryonte Zellen ohne Zellkern", correct: false },
-        { text: "Sie besitzen einen besonders grossen Zellkern", correct: false },
-        { text: "Sie teilen sich zeitlebens durch Mitose", correct: false }
+      { id: "pe_mc1", type: "mc", question: "Welche Merkmalskombination beschreibt korrekt Prokaryoten (im Unterschied zu Eukaryoten)?", options: [
+        { text: "Kein Zellkern, 70S-Ribosomen, keine membranumschlossenen Organellen", correct: true },
+        { text: "Zellkern vorhanden, 70S-Ribosomen, Mitochondrien vorhanden", correct: false },
+        { text: "Kein Zellkern, 80S-Ribosomen, Golgi-Apparat vorhanden", correct: false },
+        { text: "Kein Zellkern, 70S-Ribosomen, Mitochondrien vorhanden", correct: false }
+      ], explanation: "Prokaryoten haben kein membranumschlossenes Zellkern-Aequivalent (Nucleoid), verwenden 70S-Ribosomen (Ziel fuer Antibiotika) und besitzen keine membranumschlossenen Organellen wie Mitochondrien oder Golgi-Apparat." },
+      { id: "pe_mc2", type: "mc", question: "Warum wirken viele Antibiotika nicht gegen Pilzinfektionen?", options: [
+        { text: "Weil Pilze Eukaryoten mit 80S-Ribosomen sind – eukaryonte wie menschliche Zellen", correct: true },
+        { text: "Weil Pilze keine Zellwand besitzen", correct: false },
+        { text: "Weil Pilze prokaryonte Zellen ohne Zellkern sind", correct: false },
+        { text: "Weil Antibiotika ausschliesslich auf Viren wirken", correct: false }
       ]}
     ]
   }),
@@ -224,28 +276,38 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "zd_h1", type: "true_false", statement: "Spezialisierte Zellen koennen Aufgaben wirksamer erfuellen.", answer: true, explanation: "Durch Differenzierung exprimiert jede Zelle nur den fuer ihre Aufgabe relevanten Teil des Genoms. Dadurch kann sie ihre Funktion hocheffizient ausfuehren – eine Muskelzelle etwa ist optimal auf Kraftentwicklung ausgerichtet, eine Druesen­zelle auf Sekretion." },
-      { id: "zd_h2", type: "true_false", statement: "Zelldifferenzierung spielt fuer Gewebeorganisation keine Rolle.", answer: false, explanation: "Zelldifferenzierung ist die Voraussetzung jeder Gewebebildung: Gleichartig differenzierte Zellen lagern sich zu funktionellen Verbaenden zusammen und bilden so die vier Grundgewebetypen (Epithel, Binde-, Muskel- und Nervengewebe)." },
-      { id: "zd_h3", type: "true_false", statement: "Differenzierung und Funktionszuordnung sind in 1031 eng gekoppelt.", answer: true, explanation: "Das Prinzip 'Form folgt Funktion' gilt auf zellulaerer Ebene: Jede Differenzierungsstufe geht mit strukturellen Veraenderungen einher, die genau der spezifischen Funktion dienen – z.B. Entwicklung von Myofibrillen in Muskelzellen oder Myelinscheide in Nervenzellen." },
-      { id: "zd_h4", type: "true_false", statement: "Hoch differenzierte Zellen wie Nervenzellen haben oft nur eingeschraenkte Teilungsfaehigkeit.", answer: true, explanation: "Je staerker eine Zelle spezialisiert ist, desto weniger Ressourcen und zellulare Maschinerie stehen fuer Zellteilung zur Verfuegung. Ausgereifte Nervenzellen sind postmitotisch – sie teilen sich nach der Entwicklung nicht mehr, was erklaert, warum Hirnschäden schwer zu regenerieren sind." },
-      { id: "zd_h5", type: "true_false", statement: "Alle differenzierten Zellen koennen sich jederzeit selbststaendig in undifferenzierte Stammzellen zurueckverwandeln.", answer: false, explanation: "Normale somatische Zellen verlieren im Laufe der Differenzierung ihre Pluripotenz dauerhaft. Eine spontane Entdifferenzierung findet unter normalen Bedingungen nicht statt; nur unter experimentellen Bedingungen (z.B. Yamanaka-Faktoren) lassen sich Zellen kuenstlich reprogrammieren." },
+      { id: "zd_h1", type: "mc", question: "Welche vier Grundgewebetypen entstehen aus der Zelldifferenzierung?", options: [
+        { text: "Epithel, Binde- und Stuetzgewebe, Muskelgewebe, Nervengewebe", correct: true },
+        { text: "Knochen, Knorpel, Blut und Lymphe", correct: false },
+        { text: "Druesen-, Endothel-, Parenchym- und Stammzellgewebe", correct: false },
+        { text: "Mesenchym, Ektoderm, Entoderm und Mesoderm", correct: false }
+      ], explanation: "Die vier Grundgewebetypen sind: Epithelgewebe (Bedeckung, Sekretion), Binde- und Stuetzgewebe (Stoff-Transport, Halt), Muskelgewebe (Kontraktion), Nervengewebe (Erregungsleitung). Alle anderen Gewebe (Knochen, Knorpel, Blut) sind spezialisierte Unterformen des Bindegewebes." },
+      { id: "zd_h2", type: "true_false", statement: "Beim Prozess der Zelldifferenzierung veraendert sich der DNA-Gehalt der Zelle.", answer: false, explanation: "Die DNA-Sequenz bleibt bei der Differenzierung unveraendert – jede Koerperzelle enthaelt denselben diploiden Chromosomensatz. Was sich aendert, ist das Genexpressionsmuster: Nur bestimmte Gene werden in einer Leberzelle, nur andere in einer Muskelzelle abgelesen (epigenetische Regulation)." },
+      { id: "zd_h3", type: "true_false", statement: "Pluripotente Stammzellen koennen sich zu jedem Gewebetyp differenzieren, nicht aber zu extra-embryonalem Gewebe.", answer: true, explanation: "Pluripotente Zellen (z.B. embryonale Stammzellen, iPS-Zellen) koennen alle somatischen Gewebetypen bilden. Im Gegensatz dazu koennen totipotente Zellen (z.B. befruchtete Eizelle, fruehe Blastomeren) auch Placenta und Trophoblast bilden. Multipotente Stammzellen (z.B. haematopoetische) koennen nur eine begrenzte Zahl von Zelltypen bilden." },
+      { id: "zd_h4", type: "true_false", statement: "Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie teilen sich nach der Entwicklung nicht mehr.", answer: true, explanation: "Postmitotische Zellen wie ausgereifte Neuronen haben den Zellzyklus dauerhaft verlassen. Das erklaert, warum Hirnschäden und Rueckenmarksverletzungen nur schwer zu regenerieren sind – verlorene Neuronen koennen nicht durch Zellteilung ersetzt werden. Nur bestimmte Stammzellnischen im Gehirn (z.B. Hippokampus) behalten eine begrenzte Neurogenese." },
+      { id: "zd_h5", type: "mc", question: "Was bezeichnet man als 'Totipotenz' einer Zelle?", options: [
+        { text: "Die Faehigkeit, alle Zelltypen einschliesslich extra-embryonalem Gewebe zu bilden", correct: true },
+        { text: "Die Faehigkeit, sich unbegrenzt zu teilen", correct: false },
+        { text: "Die Faehigkeit, mehrere Gewebetypen, aber kein extra-embryonales Gewebe zu bilden", correct: false },
+        { text: "Die Faehigkeit zur Zellteilung ohne DNA-Replikation", correct: false }
+      ], explanation: "Totipotenz: Fähigkeit zur Bildung aller Zelltypen (Soma + extra-embryonal wie Plazenta) – nur befruchtete Eizelle und fruehe Blastomeren. Pluripotenz: alle somatischen Typen, kein extra-embryonal (embryonale Stammzellen). Multipotenz: begrenzte Typen (z.B. haematopoetische Stammzellen)." },
       { id: "zd_h6", type: "true_false", statement: "Zelldifferenzierung ist Voraussetzung fuer die Ausbildung spezialisierter Organe und Gewebe.", answer: true, explanation: "Organe sind aus mehreren Gewebetypen zusammengesetzt, und Gewebe bestehen aus differenzierten Zellen. Ohne Differenzierung gaebe es nur undifferenzierte Zellmassen ohne spezifische Funktion – die Entstehung komplexer Organe wie Herz oder Leber waere unmoeglich." }
     ],
     bossQuestions: [
       { id: "zd_b1", type: "true_false", statement: "Der Gewebebegriff baut auf dem Prinzip differenzierter Zellverbaende auf.", answer: true }
     ],
     combatQuestions: [
-      { id: "zd_mc1", type: "mc", question: "Was bedeutet Zelldifferenzierung?", options: [
-        { text: "Spezialisierung von Zellen auf bestimmte Aufgaben", correct: true },
-        { text: "Die Fusion von zwei Zellen zu einer groesseren Einheit", correct: false },
-        { text: "Die Faehigkeit aller Koerperzellen, sich jederzeit in Stammzellen zurueckzuverwandeln", correct: false },
-        { text: "Ausschliesslich die Groessenzunahme von Zellen", correct: false }
+      { id: "zd_mc1", type: "mc", question: "Welche Aussagen zur Zelldifferenzierung sind korrekt?", options: [
+        { text: "Die DNA-Sequenz bleibt bei der Differenzierung unveraendert", correct: true },
+        { text: "Differenzierung veraendert das Genexpressionsmuster, nicht die DNA", correct: true },
+        { text: "Pluripotente Stammzellen koennen alle somatischen Zelltypen bilden", correct: true },
+        { text: "Hoch differenzierte Neuronen teilen sich regelmaessig im Erwachsenenalter", correct: false }
       ]},
-      { id: "zd_mc2", type: "mc", question: "Warum haben hoch differenzierte Zellen wie Nervenzellen oft eingeschraenkte Teilungsfaehigkeit?", options: [
-        { text: "Weil Spezialisierung mit dem Verlust von Teilungskapazitaeten einhergeht", correct: true },
-        { text: "Weil sie zu gross fuer eine Zellteilung sind", correct: false },
-        { text: "Weil sie keinen Zellkern besitzen", correct: false },
-        { text: "Weil Differenzierung immer sofort zur Apoptose fuehrt", correct: false }
+      { id: "zd_mc2", type: "mc", question: "Welche Reihenfolge der Differenzierungspotenz ist korrekt (hoechste zuerst)?", options: [
+        { text: "Totipotenz → Pluripotenz → Multipotenz", correct: true },
+        { text: "Multipotenz → Pluripotenz → Totipotenz", correct: false },
+        { text: "Pluripotenz → Totipotenz → Multipotenz", correct: false },
+        { text: "Alle drei Begriffe bezeichnen dasselbe", correct: false }
       ]}
     ]
   }),
@@ -270,28 +332,43 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "zm_h1", type: "true_false", statement: "Aktive und passive Transportvorgaenge ueberwinden die Diffusionsbarriere der Membran.", answer: true, explanation: "Passive Transportvorgaenge (Diffusion, Osmose, erleichterte Diffusion) nutzen vorhandene Konzentrations- oder Ladungsgradienten ohne Energieverbrauch. Aktiver Transport (z.B. Na⁺/K⁺-ATPase) pumpt Ionen gegen den Gradienten und benoetigt dafuer ATP." },
-      { id: "zm_h2", type: "true_false", statement: "Die Unversehrtheit der Zellmembran ist fuer den Zellbestand unerheblich.", answer: false, explanation: "Die Zellmembran ist die Grenze zwischen Intra- und Extrazellulärraum und reguliert alle Ein- und Ausstroemung von Stoffen. Eine beschaedigte Membran fuehrt zum Verlust des Zellinnenmilieus, zur Hemmung aller membranabhaengigen Prozesse und letztendlich zum Zelltod." },
-      { id: "zm_h3", type: "true_false", statement: "Selektive Permeabilitaet bedeutet, dass nur ausgewaehlte Substanzen passieren.", answer: true, explanation: "Die Lipidschicht der Membran ist nur fuer unpolare Molekuele (O2, CO2, Fettsaeuren) frei passierbar. Geladene Ionen und grosse Molekuele wie Glukose benoetigen spezifische Kanalproteine oder Carrier, was die Zelle in die Lage versetzt, ihren Stoffaustausch praezise zu kontrollieren." },
-      { id: "zm_h4", type: "true_false", statement: "Die Zellmembran besteht aus einer Doppelschicht von Lipiden mit eingelagerten Proteinen.", answer: true, explanation: "Das Fluid-Mosaik-Modell beschreibt die Membran als Phospholipid-Doppelschicht, in die Proteine eingebettet sind: Integralproteine (durchspannen die Membran als Kanaele oder Transporter) und periphere Proteine (sitzen aussen als Rezeptoren oder Enzyme). Diese Zusammensetzung ermoeglicht gleichzeitig Stabilitaet und Funktionalitaet." },
-      { id: "zm_h5", type: "true_false", statement: "Pinozytose bezeichnet die Aufnahme fester Partikel durch Einfalten der Membran.", answer: false, explanation: "Pinozytose (griech. pinein = trinken) bezeichnet die Aufnahme fluessiger Vesikel durch Membraneinfalten – die Zelle 'trinkt' also fluessige Inhalte. Die Aufnahme fester Partikel wird dagegen als Phagozytose (griech. phagein = fressen) bezeichnet, z.B. durch Makrophagen." },
-      { id: "zm_h6", type: "true_false", statement: "Osmose ist der passive Wassertransport durch eine semipermeable Membran entlang eines Konzentrationsgradienten.", answer: true, explanation: "Osmose ist die Bewegung von Wasser vom Bereich niedrigerer Geloestkonzentration (hoehe Wasseraktivitaet) zum Bereich hoeherer Geloestkonzentration (niedrigere Wasseraktivitaet). Da Wasser die semipermeable Membran frei passieren kann, geloeste Teilchen aber nicht, entsteht durch Osmose ein Druckunterschied (osmotischer Druck)." }
+      { id: "zm_h1", type: "mc", question: "Welche Substanzen koennen die Lipiddoppelschicht ohne Transportproteine frei passieren?", options: [
+        { text: "Sauerstoff (O2) und Kohlendioxid (CO2)", correct: true },
+        { text: "Natriumionen (Na+)", correct: false },
+        { text: "Glukose", correct: false },
+        { text: "ATP", correct: false }
+      ], explanation: "Kleine unpolare Molekuele wie O2, CO2 und Fettsaeuren loesen sich in der Lipidschicht und passieren frei. Geladene Ionen (Na+, K+, Cl-) benoetigen Ionenkanaele, Glukose einen GLUT-Transporter, und grosse Molekuele wie Proteine werden per Endo-/Exozytose transportiert." },
+      { id: "zm_h2", type: "mc", question: "Was beschreibt die Na+/K+-ATPase?", options: [
+        { text: "Eine Pumpe, die 3 Na+ aus der Zelle und 2 K+ in die Zelle transportiert (unter ATP-Verbrauch)", correct: true },
+        { text: "Eine Pumpe, die ATP aus der Zelle exportiert", correct: false },
+        { text: "Einen passiven Kanal fuer Na+ und K+ entlang des Konzentrationsgradienten", correct: false },
+        { text: "Ein Enzym, das ATP aus Glukose synthetisiert", correct: false }
+      ], explanation: "Die Na+/K+-ATPase ist eine aktive Ionenpumpe: Pro ATP-Molekuel werden 3 Na+ aus der Zelle gepumpt und 2 K+ in die Zelle. Dadurch entsteht das Ruhemembranpotential (ca. -70 mV) und der hohe intrazellulaere K+-Gehalt. Sie verbraucht ca. 20–40% des zellularen ATP." },
+      { id: "zm_h3", type: "true_false", statement: "Der Unterschied zwischen erleichterter Diffusion und aktivem Transport liegt im Energieverbrauch: Erleichterte Diffusion ist passiv, aktiver Transport verbraucht ATP.", answer: true, explanation: "Erleichterte Diffusion (z.B. Glukose durch GLUT-Transporter) laeuft entlang des Konzentrationsgradienten ohne Energieverbrauch ab. Aktiver Transport (z.B. Na+/K+-ATPase) pumpt Molekuele gegen ihren Gradienten und benoetigt ATP. Beide verwenden Transportproteine." },
+      { id: "zm_h4", type: "true_false", statement: "Phagozytose und Pinozytose sind beides Formen der Endozytose, unterscheiden sich aber in der Groesse des aufgenommenen Materials.", answer: true, explanation: "Endozytose ist der Oberbegriff fuer die Aufnahme von Material durch Einstuelpen der Membran. Phagozytose (griech. phagein = fressen) nimmt grosse feste Partikel auf (Bakterien, Zelltrümmer) – durch spezialisierte Zellen wie Makrophagen. Pinozytose (griech. pinein = trinken) nimmt kleine Fluessigkeitstropfen auf – in fast allen Zelltypen." },
+      { id: "zm_h5", type: "mc", question: "Was versteht man unter dem 'Fluid-Mosaik-Modell' der Zellmembran?", options: [
+        { text: "Die Membran ist eine bewegliche Phospholipid-Doppelschicht mit eingelagerten, lateral beweglichen Proteinen", correct: true },
+        { text: "Die Membran ist starr und unveraenderlich wie eine Glasplatte", correct: false },
+        { text: "Die Membran besteht ausschliesslich aus Proteinen ohne Lipide", correct: false },
+        { text: "Die Proteine sind fest verankert und koennen sich nicht seitlich bewegen", correct: false }
+      ], explanation: "Das Fluid-Mosaik-Modell (Singer & Nicolson 1972) beschreibt die Membran als fluessig-kristallines Gebilde: Phospholipide bewegen sich lateral (Fluiditaet), Proteine sitzen wie Mosaiksteine in dieser Schicht und koennen sich ebenfalls bewegen. Diese Flexibilitaet erklaert die dynamische Anpassung der Membranfunktion." },
+      { id: "zm_h6", type: "true_false", statement: "Osmose ist der passive Wassertransport durch eine semipermeable Membran entlang eines Konzentrationsgradienten.", answer: true, explanation: "Osmose ist die Nettobewegung von Wasser von der Seite mit niedrigerer Geloestkonzentration (hohe Wasseraktivitaet) zur Seite mit hoeherer Geloestkonzentration. Bei Erythrozyten in hyperosmolarer Loesung tritt Wasser aus → Zelle schrumpft (Krenation). In hypoosmolarer Loesung tritt Wasser ein → Zelle schwillt (Lyse-Risiko)." }
     ],
     bossQuestions: [
       { id: "zm_b1", type: "true_false", statement: "Zellabgrenzung und Stofftransport sind gleichrangige Kernfunktionen der Zellmembran.", answer: true }
     ],
     combatQuestions: [
-      { id: "zm_mc1", type: "mc", question: "Aus welchen Hauptbestandteilen besteht die Zellmembran?", options: [
-        { text: "Aus einer Lipiddoppelschicht mit eingelagerten Proteinen", correct: true },
-        { text: "Aus einer einfachen Proteinschicht ohne Lipide", correct: false },
-        { text: "Aus Kollagenfasern und Elastin", correct: false },
-        { text: "Aus Kohlenhydraten und Nukleinsaeuren", correct: false }
+      { id: "zm_mc1", type: "mc", question: "Welche Transportprozesse sind passiv (kein ATP-Verbrauch)?", options: [
+        { text: "Einfache Diffusion (z.B. O2, CO2)", correct: true },
+        { text: "Erleichterte Diffusion (z.B. Glukose durch GLUT)", correct: true },
+        { text: "Osmose (Wassertransport)", correct: true },
+        { text: "Na+/K+-ATPase", correct: false }
       ]},
-      { id: "zm_mc2", type: "mc", question: "Was bedeutet selektive Permeabilitaet der Zellmembran?", options: [
-        { text: "Nur bestimmte Stoffe koennen die Membran passieren", correct: true },
-        { text: "Die Membran ist fuer alle Stoffe gleichermassen durchlaessig", correct: false },
-        { text: "Die Membran ist vollstaendig undurchlaessig", correct: false },
-        { text: "Nur Wasser kann die Membran passieren", correct: false }
+      { id: "zm_mc2", type: "mc", question: "Was bewirkt die Na+/K+-ATPase pro Transportzyklus?", options: [
+        { text: "3 Na+ aus der Zelle, 2 K+ in die Zelle – unter Verbrauch von 1 ATP", correct: true },
+        { text: "2 Na+ in die Zelle, 3 K+ aus der Zelle", correct: false },
+        { text: "ATP-Synthese durch Na+-Rueckstrom", correct: false },
+        { text: "Gleichmaessige Verteilung von Na+ und K+ ohne ATP-Verbrauch", correct: false }
       ]}
     ]
   }),
@@ -316,28 +393,43 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "zo_h1", type: "true_false", statement: "Die funktionelle Arbeitsteilung in der Zelle wird ueber Organellen organisiert.", answer: true, explanation: "Organellen sind spezialisierte Kompartimente innerhalb der Zelle, die bestimmte biochemische Aufgaben uebernehmen: Mitochondrien (Energiegewinnung), Ribosomen (Proteinsynthese), Golgi-Apparat (Sortierung und Sekretion), Lysosomen (Abbau). Diese Arbeitsteilung ermoeglicht hocheffiziente parallele Prozesse." },
-      { id: "zo_h2", type: "true_false", statement: "Ribosomen sind nicht an Proteinsyntheseprozessen beteiligt.", answer: false, explanation: "Ribosomen sind die zentralen Orte der Translation: Hier wird die mRNA-Sequenz in eine Aminosaeurekette uebersetzt. Membrangebundene Ribosomen am rauen ER produzieren Sekret- und Membranproteine, freie Ribosomen im Zytosol produzieren zytosolische Proteine." },
-      { id: "zo_h3", type: "true_false", statement: "Das Zusammenspiel der Organellen ist Voraussetzung fuer stabile Zellfunktion.", answer: true, explanation: "Die Organellen sind funktionell vernetzt: Ribosomen am rauen ER produzieren Proteine, die das ER faltet und modifiziert, der Golgi-Apparat verpackt und adressiert sie, und Lysosomen bauen fehlerhafte Proteine ab. Stoerungen in einem Glied dieser Kette beeintraechtigen das gesamte System." },
-      { id: "zo_h4", type: "true_false", statement: "Mitochondrien besitzen eine eigene DNS und koennen sich eigenstaendig teilen.", answer: true, explanation: "Mitochondrien haben eine eigene zirkulaere DNA (mtDNA), eigene Ribosomen und teilen sich durch binaere Teilung – aehnlich wie Bakterien. Dies stuetzt die Endosymbiosetheorie, nach der Mitochondrien evolutionaer aus freilebenden Bakterien entstanden sind, die in groessere Zellen aufgenommen wurden." },
-      { id: "zo_h5", type: "true_false", statement: "Das glatte endoplasmatische Retikulum ist primaer fuer die Proteinsynthese zustaendig.", answer: false, explanation: "Das glatte ER (ohne Ribosomen) ist hauptsaechlich fuer Lipidsynthese, Steroidhormonsynthese und Entgiftungsreaktionen zustaendig. Die Proteinsynthese findet am rauen ER statt, das Ribosomen auf seiner Aussenseite traegt und so strukturell von glattem ER unterschieden werden kann." },
-      { id: "zo_h6", type: "true_false", statement: "Der Golgi-Apparat ist u. a. fuer die Bildung von Lysosomen verantwortlich.", answer: true, explanation: "Der Golgi-Apparat modifiziert und sortiert Proteine aus dem ER und schickt sie an ihre Zielorte. Lysosomen entstehen als Blaeschenvesikel am trans-Golgi-Netzwerk, gefuellt mit sauren Hydrolasen, die zellulaere Abfallstoffe und aufgenommene Partikel abbauen koennen." }
+      { id: "zo_h1", type: "mc", question: "Welche Organelle ist hauptverantwortlich fuer die ATP-Synthese durch oxidative Phosphorylierung?", options: [
+        { text: "Mitochondrium", correct: true },
+        { text: "Golgi-Apparat", correct: false },
+        { text: "Ribosom", correct: false },
+        { text: "Lysosom", correct: false }
+      ], explanation: "Mitochondrien produzieren ATP durch oxidative Phosphorylierung in der inneren Membran (Cristae). Die Elektronentransportkette pumpt H+-Ionen, die ATP-Synthase antreiben. Pro Glukosemolekuel entstehen ca. 30–32 ATP. Das Ribosom ist fuer Proteinsynthese, der Golgi fuer Sortierung, Lysosomen fuer den Abbau zustaendig." },
+      { id: "zo_h2", type: "mc", question: "Welche Organelle ist fuer die Lipidsynthese und Steroidhormonsynthese hauptsaechlich verantwortlich?", options: [
+        { text: "Glattes endoplasmatisches Retikulum (glattes ER)", correct: true },
+        { text: "Raues endoplasmatisches Retikulum (raues ER)", correct: false },
+        { text: "Ribosom", correct: false },
+        { text: "Peroxisom", correct: false }
+      ], explanation: "Das glatte ER (ohne Ribosomen) ist Ort der Lipidsynthese, Steroidhormonsynthese und des Fremdstoffabbaus (Detoxifikation, v.a. in der Leber). Das raue ER (mit Ribosomen) ist primaer fuer Proteinsynthese und -faltung von Sekretproteinen zustaendig." },
+      { id: "zo_h3", type: "true_false", statement: "Lysosomen enthalten saure Hydrolasen und bauen zelleigene und aufgenommene Makromolekuele ab.", answer: true, explanation: "Lysosomen haben einen sauren Innen-pH (ca. 4,5–5) und enthalten ueber 50 verschiedene Hydrolasen (Lipasen, Proteasen, Nukleasen). Sie bauen aufgenommene Partikel (Phagosomen) und beschaedigte Organellen (Autophagie) ab. Ein Mangel an lysosomalen Enzymen fuehrt zu sog. lysosomalen Speicherkrankheiten." },
+      { id: "zo_h4", type: "true_false", statement: "Mitochondrien besitzen eine eigene zirkulaere DNA (mtDNA) und 70S-Ribosomen – Belege fuer ihre bakterielle Herkunft.", answer: true, explanation: "Die Endosymbiosetheorie (Lynn Margulis) erklaert die Mitochondrien als evolutionare Nachfahren alphaproteobakterieller Endosymbionten. Belege: eigene zirkulaere DNA (wie Bakterien), 70S-Ribosomen (wie Prokaryoten), binaere Teilung, maternale Vererbung der mtDNA, und doppelte Membran." },
+      { id: "zo_h5", type: "mc", question: "Was ist der Unterschied zwischen freien und membrangebundenen Ribosomen?", options: [
+        { text: "Freie Ribosomen synthetisieren zytosolische Proteine; membrangebundene am rauen ER Sekret- und Membranproteine", correct: true },
+        { text: "Membrangebundene Ribosomen sind groesser und produzieren mehr Proteine", correct: false },
+        { text: "Freie Ribosomen sitzen ausschliesslich im Zellkern", correct: false },
+        { text: "Es gibt keinen funktionellen Unterschied", correct: false }
+      ], explanation: "Freie Ribosomen im Zytosol produzieren Proteine, die in der Zelle bleiben (Zytoskelettproteine, Enzyme des Zytosols). Membrangebundene Ribosomen am rauen ER produzieren Proteine, die sekretiert werden (Antikörper, Hormone) oder in Membranen integriert werden (Rezeptoren, Transporter)." },
+      { id: "zo_h6", type: "true_false", statement: "Der Golgi-Apparat modifiziert Proteine aus dem ER durch Glykosilierung und leitet sie an ihren Zielort (trans-Golgi-Sortierung).", answer: true, explanation: "Der Golgi-Apparat empfaengt Vesikel vom ER (cis-Golgi), modifiziert Proteine (Zuckeranbau = Glykosilierung, Phosphorylierung) und sortiert sie am trans-Golgi auf Zielorte: Lysosomen, Sekretionsvesikel fuer Exozytose oder direkt zur Plasmamembran. Ohne Golgi wuerden Proteine unkontrolliert in der Zelle verteilt." }
     ],
     bossQuestions: [
       { id: "zo_b1", type: "true_false", statement: "Das Zellplasma ist kein passiver Fuellraum, sondern funktioneller Reaktionsraum mit Organellen.", answer: true }
     ],
     combatQuestions: [
-      { id: "zo_mc1", type: "mc", question: "Welche Funktion hat das Mitochondrium in der Zelle?", options: [
-        { text: "Es ist das Kraftwerk der Zelle und produziert ATP durch Zellatmung", correct: true },
-        { text: "Es ist primaer fuer die Proteinsynthese zustaendig", correct: false },
-        { text: "Es verteilt Sekrete an die Zelloberflaehe", correct: false },
-        { text: "Es enthaelt die Erbinformation der Zelle", correct: false }
+      { id: "zo_mc1", type: "mc", question: "Welche Organellen sind korrekt ihrer Hauptfunktion zugeordnet?", options: [
+        { text: "Mitochondrium – oxidative Phosphorylierung (ATP)", correct: true },
+        { text: "Lysosom – Abbau durch saure Hydrolasen", correct: true },
+        { text: "Golgi-Apparat – Proteinsortierung und Glykosilierung", correct: true },
+        { text: "Glattes ER – Proteinsynthese", correct: false }
       ]},
-      { id: "zo_mc2", type: "mc", question: "Was unterscheidet das raue vom glatten endoplasmatischen Retikulum?", options: [
-        { text: "Das raue ER traegt Ribosomen und ist an der Proteinsynthese beteiligt", correct: true },
-        { text: "Das glatte ER produziert mehr Proteine als das raue ER", correct: false },
-        { text: "Nur das glatte ER kommt in menschlichen Zellen vor", correct: false },
-        { text: "Beide Typen sind morphologisch und funktionell identisch", correct: false }
+      { id: "zo_mc2", type: "mc", question: "Warum stuetzt die mitochondriale DNA die Endosymbiosetheorie?", options: [
+        { text: "Weil mtDNA zirkulaer ist und 70S-Ribosomen besitzt wie Bakterien", correct: true },
+        { text: "Weil Mitochondrien-DNA identisch mit der Kern-DNA ist", correct: false },
+        { text: "Weil Mitochondrien keine eigene DNA besitzen", correct: false },
+        { text: "Weil die mtDNA linear wie eukaryonte Chromosomen ist", correct: false }
       ]}
     ]
   }),
@@ -356,34 +448,44 @@ const ZYTOLOGIE_1031_PLANTS = [
         solution: "Der Kern enthaelt die Erbinformation und steuert zentrale Prozesse."
       },
       water: {
-        statement: "Im Studienbrief wird die Form und Lage von Zellkernen als variabel beschrieben.",
+        statement: "Form und Lage des Zellkerns sind je nach Zelltyp variabel: Erythrozyten sind kernlos, Neutrophile haben mehrlappige Kerne, Muskelzellen haben periphere laengliche Kerne.",
         answer: true,
         solution: "Die Form und Lage von Zellkernen variiert je nach Zelltyp: Erythrozyten sind kernlos, Neutrophile haben mehrlappige Kerne, Muskelzellen haben periphere laengliche Kerne. Diese Variabilitaet ist Ausdruck unterschiedlicher Genaktivitaet und Funktion."
       }
     },
     harvestQuestions: [
-      { id: "zk_h1", type: "true_false", statement: "Der Zellkern enthaelt genetische Information.", answer: true, explanation: "Der Zellkern beherbergt die gesamte genomische DNA der Zelle, verpackt in Chromosomen. Diese DNA enthaelt alle Bauplaene fuer Proteine und regulatorische Sequenzen und wird bei der Zellteilung vollstaendig verdoppelt und gleichmaessig auf die Tochterzellen verteilt." },
-      { id: "zk_h2", type: "true_false", statement: "Alle menschlichen Zellen besitzen zwingend genau einen Zellkern.", answer: false, explanation: "Es gibt wichtige Ausnahmen: Reife Erythrozyten sind kernlos (kein Kern nach Reifung), Skelettmuskelfasern sind vielkernig (mehrere Kerne in einer langen Faser durch Zellfusion), und Megakaryozyten im Knochenmark sind vielkernig, bevor sie Blutplaettchen abschniehren." },
-      { id: "zk_h3", type: "true_false", statement: "Kernstruktur und Kernfunktion sind fuer Zellteilung und Regulation zentral.", answer: true, explanation: "Der Kern ist das Steuerzentrum: Bei der Zellteilung wird die DNA aus dem Kern freigesetzt, verdoppelt und auf die Tochterkerne verteilt. Im Ruhezustand steuert er durch differentielle Genexpression, welche Proteine die Zelle in welcher Menge produziert." },
-      { id: "zk_h4", type: "true_false", statement: "Der menschliche Zellkern enthaelt 46 Chromosomen, eingeteilt in 23 Paare.", answer: true, explanation: "Der diploide Chromosomensatz des Menschen (2n = 46) besteht aus 22 Paaren von Autosomen und einem Paar Geschlechtschromosomen (XX bei Frauen, XY bei Maennern). Jedes Paar besteht aus einem muetterlichen und einem vaeterlichen Chromosom." },
-      { id: "zk_h5", type: "true_false", statement: "Chromatin ist genetisch inaktives Reservematerial im Zellkern ohne Funktion.", answer: false, explanation: "Chromatin ist der funktionelle Zustand der DNA im Kern: Euchromatin ist aufgelockert und transkriptionsaktiv, Heterochromatin ist kondensiert und weitgehend inaktiv. Der Verdichtungsgrad des Chromatins reguliert also, welche Gene aktiv sind – Chromatin ist damit ein zentrales Regulationswerkzeug der Zelle." },
-      { id: "zk_h6", type: "true_false", statement: "Der Nukleolus ist ein Bestandteil des Zellkerns und enthaelt DNS, RNS und Proteine.", answer: true, explanation: "Der Nukleolus ist eine nicht-membranumschlossene Struktur im Kern, die aus DNA-Abschnitten (rDNA-Gene), ribosomaler RNA und Proteinen besteht. Er ist der Hauptort der ribosomalen RNA-Synthese und der Zusammensetzung ribosomaler Untereinheiten." }
+      { id: "zk_h1", type: "mc", question: "Was unterscheidet Euchromatin von Heterochromatin?", options: [
+        { text: "Euchromatin ist aufgelockert und transkriptionsaktiv; Heterochromatin ist kondensiert und weitgehend inaktiv", correct: true },
+        { text: "Euchromatin ist nur in der Mitose sichtbar; Heterochromatin immer", correct: false },
+        { text: "Heterochromatin enthaelt RNA; Euchromatin nur DNA", correct: false },
+        { text: "Beide sind funktionell identisch", correct: false }
+      ], explanation: "Euchromatin ('echtes Chromatin') ist aufgelockert und zugaenglich fuer RNA-Polymerase – Gene hier werden aktiv transkribiert. Heterochromatin ist dicht kondensiert und transcriptionsarm. Die Umwandlung zwischen beiden Zustaenden reguliert Genexpression (epigenetische Regulation)." },
+      { id: "zk_h2", type: "true_false", statement: "Die Kernporen (nuclear pore complex, NPC) kontrollieren den selektiven Transport zwischen Kern und Zytoplasma.", answer: true, explanation: "Kernporen sind grosse Proteinkomplexe (~120 nm) in der Kernhuelle. Kleine Molekuele diffundieren frei; grosse Molekuele (Proteine >40 kDa, mRNA) werden aktiv durch Importine/Exportine unter GTP-Verbrauch transportiert. mRNA verlasst den Kern durch Kernporen; Transkriptionsfaktoren werden aktiv importiert." },
+      { id: "zk_h3", type: "true_false", statement: "Skelettmuskelfasern sind vielkernig, weil sie durch Fusion mehrerer Myoblasten entstehen.", answer: true, explanation: "Skelettmuskelfasern entstehen embryonal durch Fusion vieler Myoblasten (Myogenese). Das Ergebnis ist eine polynukleaere Riesenzelle mit bis zu mehreren hundert randstaendigen Kernen. Diese Vielkernigkeit ist normal und wichtig fuer die koordinierte Proteinexpression in der langen Faser." },
+      { id: "zk_h4", type: "true_false", statement: "Der menschliche Zellkern enthaelt 46 Chromosomen, davon 44 Autosomen und 2 Gonosomen (Geschlechtschromosomen).", answer: true, explanation: "46 Chromosomen in 23 Paaren: 22 Autosomenpaare (Koerperchromosomen, nummeriert 1–22) und 1 Gonosomenpaar (Geschlechtschromosomen: XX bei Frauen, XY bei Maennern). Jedes Paar besteht aus einem maternalen und einem paternalen homologen Chromosom." },
+      { id: "zk_h5", type: "mc", question: "Wo werden die Untereinheiten der Ribosomen assembliert?", options: [
+        { text: "Im Nukleolus (innerhalb des Zellkerns)", correct: true },
+        { text: "Im rauen ER", correct: false },
+        { text: "Im Golgi-Apparat", correct: false },
+        { text: "Im Zytosol frei floating", correct: false }
+      ], explanation: "Der Nukleolus ist eine kernplasmische Struktur (ohne Membran), die rDNA-Gene enthaelt. Hier werden ribosomale RNA (rRNA) transkribiert und mit ribosomalen Proteinen zu 40S- und 60S-Untereinheiten (bei Eukaryoten) vorassembliert, die dann durch Kernporen ins Zytoplasma exportiert werden." },
+      { id: "zk_h6", type: "true_false", statement: "Chromatin ist genetisch inaktives Reservematerial im Zellkern ohne Funktion.", answer: false, explanation: "Chromatin ist der funktionelle Zustand der DNA im Kern: Euchromatin ist aufgelockert und transkriptionsaktiv, Heterochromatin ist kondensiert und weitgehend inaktiv. Der Verdichtungsgrad des Chromatins reguliert also, welche Gene aktiv sind – Chromatin ist damit ein zentrales Regulationswerkzeug der Zelle." }
     ],
     bossQuestions: [
       { id: "zk_b1", type: "true_false", statement: "Die Bedeutung des Zellkerns reicht ueber reine Morphologie hinaus in die funktionelle Zellsteuerung.", answer: true }
     ],
     combatQuestions: [
-      { id: "zk_mc1", type: "mc", question: "Wie viele Chromosomen besitzt eine normale menschliche Koerperzelle?", options: [
-        { text: "46 Chromosomen in 23 Paaren", correct: true },
-        { text: "23 Chromosomen in haploider Form", correct: false },
-        { text: "48 Chromosomen in 24 Paaren", correct: false },
-        { text: "92 Chromosomen nach der DNA-Replikation", correct: false }
+      { id: "zk_mc1", type: "mc", question: "Welche Aussagen zum Zellkern sind korrekt?", options: [
+        { text: "Der Kern enthaelt 46 Chromosomen in diploiden Koerperzellen", correct: true },
+        { text: "Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv", correct: true },
+        { text: "Kernporen kontrollieren den Transport zwischen Kern und Zytoplasma", correct: true },
+        { text: "Der Nukleolus ist von einer eigenen Membran umschlossen", correct: false }
       ]},
-      { id: "zk_mc2", type: "mc", question: "Welche Funktion hat der Nukleolus im Zellkern?", options: [
-        { text: "Er ist an der Bildung von ribosomaler RNS beteiligt", correct: true },
-        { text: "Er speichert ATP fuer die Zellteilung", correct: false },
-        { text: "Er ist fuer die Lipidsynthese zustaendig", correct: false },
-        { text: "Er bildet die Kernmembran", correct: false }
+      { id: "zk_mc2", type: "mc", question: "Warum sind Skelettmuskelfasern vielkernig?", options: [
+        { text: "Weil sie embryonal durch Fusion vieler Myoblasten entstehen", correct: true },
+        { text: "Weil sie sich durch Mitose extrem stark teilen", correct: false },
+        { text: "Weil jeder Abschnitt der Faser einen eigenen Kern benoetigt wie ein eigener Organismus", correct: false },
+        { text: "Weil Skelettmuskelfasern prokaryonte Zellen sind", correct: false }
       ]}
     ]
   }),
@@ -408,28 +510,43 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "sw_h1", type: "true_false", statement: "Enzyme sind fuer viele zellulaere Stoffwechselprozesse bedeutsam.", answer: true, explanation: "Enzyme sind biologische Katalysatoren, die biochemische Reaktionen in der Zelle um viele Groessenordnungen beschleunigen, ohne selbst verbraucht zu werden. Fast jeder Schritt des Zellstoffwechsels – von der Glykolyse bis zur DNA-Replikation – ist enzymabhaengig." },
-      { id: "sw_h2", type: "true_false", statement: "Wasser spielt im Zellstoffwechsel keine relevante Rolle.", answer: false, explanation: "Wasser macht 60–70 % der Zellmasse aus und ist unverzichtbares Loesungsmittel, Transportmedium und direkter Reaktionspartner in Hydrolyse- und Kondensationsreaktionen. Ohne Wasser kann keine biochemische Reaktion in der Zelle stattfinden." },
-      { id: "sw_h3", type: "true_false", statement: "Energiegewinnung ist funktionell mit Stoffwechselwegen verknuepft.", answer: true, explanation: "ATP als universelle Energiewaehrung der Zelle wird durch katabole Stoffwechselprozesse erzeugt: Glykolyse im Zytosol, Zitratzyklus und oxidative Phosphorylierung in den Mitochondrien. Diese Energie treibt anabole Prozesse (Proteinsynthese, Zellteilung) und aktive Transportvorgaenge an." },
+      { id: "sw_h1", type: "mc", question: "In welchem Kompartiment der Zelle findet die Glykolyse statt?", options: [
+        { text: "Im Zytosol (Zytoplasma)", correct: true },
+        { text: "In der Mitochondrienmatrix", correct: false },
+        { text: "Im Zellkern", correct: false },
+        { text: "Im rauen ER", correct: false }
+      ], explanation: "Die Glykolyse (Abbau von Glukose zu Pyruvat) findet ausschliesslich im Zytosol statt – bei Prokaryoten wie Eukaryoten. Der Zitratzyklus (Pyruvat-Weiterverarbeitung) und die oxidative Phosphorylierung (Atmungskette) sind dagegen auf die Mitochondrien beschraenkt." },
+      { id: "sw_h2", type: "mc", question: "Wie viele ATP-Molekuele entstehen netto aus einem Glukosemolekuel bei der aeroben Glykolyse (Gesamtbilanz)?", options: [
+        { text: "Ca. 30–32 ATP (bei vollstaendiger Oxidation inkl. Atmungskette)", correct: true },
+        { text: "2 ATP (nur Glykolyse ohne Atmungskette)", correct: false },
+        { text: "38 ATP (veraltete Schaetzung ohne Membranverluste)", correct: false },
+        { text: "Keines – Glykolyse verbraucht ATP", correct: false }
+      ], explanation: "Glykolyse allein ergibt netto 2 ATP. Der Zitratzyklus und die oxidative Phosphorylierung liefern den Rest. Moderne Werte liegen bei ca. 30–32 ATP (fruehere 36–38 waren Schaetzungen ohne Membranpotentialverluste). Bei anaerober Glykolyse entstehen nur 2 ATP." },
+      { id: "sw_h3", type: "true_false", statement: "Essentielle Aminosaeuren koennen vom Koerper nicht selbst synthetisiert werden und muessen mit der Nahrung aufgenommen werden.", answer: true, explanation: "Von den 20 proteinogenen Aminosaeuren sind beim gesunden Erwachsenen 8 essentiell (Valin, Leucin, Isoleucin, Methionin, Threonin, Phenylalanin, Tryptophan, Lysin) – d.h. der Koerper kann sie nicht selbst herstellen. 2 weitere gelten als semi-essentiell in bestimmten Lebensphasen (Arginin, Histidin)." },
       { id: "sw_h4", type: "true_false", statement: "Katabolismus bezeichnet den abbauenden, Anabolismus den aufbauenden Teil des Stoffwechsels.", answer: true, explanation: "Katabolismus umfasst alle abbauenden Reaktionen (Glykolyse, Lipolyse, Proteolyse), bei denen komplexe Molekuele aufgespalten und Energie freigesetzt wird. Anabolismus umfasst aufbauende Reaktionen (Proteinsynthese, Glykogensynthese), die Energie verbrauchen und neue Biomolekuele erzeugen." },
-      { id: "sw_h5", type: "true_false", statement: "Alle Aminosaeuren koennen vom menschlichen Koerper selbst hergestellt werden.", answer: false, explanation: "Von den 20 proteinogenen Aminosaeuren sind 8 (beim Erwachsenen) essenziell: Sie koennen vom Koerper nicht selbst synthetisiert werden und muessen mit der Nahrung aufgenommen werden. Dazu gehoeren z.B. Leucin, Isoleucin, Valin, Lysin und Tryptophan." },
-      { id: "sw_h6", type: "true_false", statement: "Die Proteinsynthese verlaeuft ueber den Weg DNS → mRNS → Ribosom → Protein.", answer: true, explanation: "Dieser Weg entspricht dem zentralen Dogma der Molekularbiologie: Transkription (im Zellkern: DNA wird in mRNA umgeschrieben) und Translation (am Ribosom: mRNA wird in eine Aminosaeurekette uebersetzt). Die Sequenz der mRNA bestimmt dabei eindeutig die Sequenz des entstehenden Proteins." }
+      { id: "sw_h5", type: "mc", question: "Welche Schritte umfasst das 'zentrale Dogma der Molekularbiologie'?", options: [
+        { text: "Replikation (DNA→DNA), Transkription (DNA→RNA), Translation (RNA→Protein)", correct: true },
+        { text: "Replikation, Osmose, Glykolyse", correct: false },
+        { text: "Transkription (RNA→DNA), Translation (Protein→RNA)", correct: false },
+        { text: "Nur Translation (DNA direkt zu Protein)", correct: false }
+      ], explanation: "Das zentrale Dogma (Crick 1958): Replikation = DNA wird zu DNA verdoppelt; Transkription = DNA wird im Kern zu mRNA umgeschrieben (durch RNA-Polymerase); Translation = mRNA wird am Ribosom zu Protein uebersetzt. Reverse Transkription (RNA→DNA) ist moeglich durch Retroviren, aber nicht der Standardweg." },
+      { id: "sw_h6", type: "true_false", statement: "Beim Zitratzyklus (Krebszyklus) wird Pyruvat direkt weiterverarbeitet, ohne vorherige Umwandlung.", answer: false, explanation: "Pyruvat (aus der Glykolyse) wird zuerst durch den Pyruvat-Dehydrogenase-Komplex zu Acetyl-CoA umgewandelt (oxidative Decarboxylierung, mit CO2-Freisetzung und NADH-Gewinnung). Erst Acetyl-CoA tritt in den Zitratzyklus ein. Diese Umwandlung ist ein eigener regulierter Schritt in der Mitochondrienmatrix." }
     ],
     bossQuestions: [
       { id: "sw_b1", type: "true_false", statement: "Stoffwechselkompetenz ist Grundvoraussetzung fuer das Verstaendnis zellulaerer Physiologie.", answer: true }
     ],
     combatQuestions: [
-      { id: "sw_mc1", type: "mc", question: "In welcher Reihenfolge verlaeuft die Proteinsynthese in der Zelle?", options: [
-        { text: "DNS → mRNS → Ribosom → Protein", correct: true },
-        { text: "mRNS → DNS → Ribosom → Protein", correct: false },
-        { text: "Ribosom → DNS → tRNS → Protein", correct: false },
-        { text: "Protein → DNS → mRNS → Ribosom", correct: false }
+      { id: "sw_mc1", type: "mc", question: "Welche Stoffwechselwege laufen in der Mitochondrienmatrix ab?", options: [
+        { text: "Zitratzyklus (Krebszyklus)", correct: true },
+        { text: "Oxidative Phosphorylierung (in der inneren Membran)", correct: true },
+        { text: "Glykolyse", correct: false },
+        { text: "Proteinsynthese am Ribosom", correct: false }
       ]},
-      { id: "sw_mc2", type: "mc", question: "Was bezeichnet der Begriff Katabolismus?", options: [
-        { text: "Den abbauenden Teil des Stoffwechsels, bei dem Energie freigesetzt wird", correct: true },
-        { text: "Den aufbauenden Teil des Stoffwechsels", correct: false },
-        { text: "Ausschliesslich den anaeroben Energiestoffwechsel", correct: false },
-        { text: "Die Gesamtheit aller enzymatischen Reaktionen", correct: false }
+      { id: "sw_mc2", type: "mc", question: "Welche Aussagen zu essentiellen Aminosaeuren sind korrekt?", options: [
+        { text: "Sie koennen vom Koerper nicht selbst synthetisiert werden", correct: true },
+        { text: "Es gibt 8 essentielle Aminosaeuren beim gesunden Erwachsenen", correct: true },
+        { text: "Leucin und Tryptophan gehoeren dazu", correct: true },
+        { text: "Alle 20 Aminosaeuren sind essentiell", correct: false }
       ]}
     ]
   }),
@@ -454,28 +571,43 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "mi_h1", type: "true_false", statement: "Mitose ist die haeufigste im Koerper vorkommende Form der Zellteilung.", answer: true, explanation: "Mitose dient dem Wachstum, der Gewebereparatur und der Erneuerung kurzlebiger Zellen (z.B. Blutzellen, Darmepithel). Im gesamten Organismus finden pro Tag Milliarden Mitosen statt, waehrend Meiose nur in den Keimdruesengeweben vorkommt." },
-      { id: "mi_h2", type: "true_false", statement: "Interphase zaehlt als klassische Mitosephase zwischen Pro- und Metaphase.", answer: false, explanation: "Die Interphase ist der Zeitraum zwischen zwei Zellteilungen – hier werden DNA repliziert und zellulaere Strukturen verdoppelt. Die eigentlichen Mitosephasen sind Prophase, Metaphase, Anaphase und Telophase; die Interphase gehoert nicht zu diesen Kernphasen der Teilung." },
-      { id: "mi_h3", type: "true_false", statement: "Mitose dient der verlustlosen Weitergabe genetischer Information.", answer: true, explanation: "Bei der Mitose wird die gesamte DNA zuerst in der Interphase verdoppelt (DNA-Replikation) und dann durch den Spindelapparat gleichmaessig auf beide Tochterkerne verteilt. Beide Tochterzellen erhalten somit eine vollstaendige, identische Kopie des Erbguts." },
-      { id: "mi_h4", type: "true_false", statement: "Die vier Phasen der Mitose sind Prophase, Metaphase, Anaphase und Telophase.", answer: true, explanation: "In der Prophase kondensieren Chromosomen und verschwindet die Kernhuelle; in der Metaphase richten sich Chromosomen in der Aequatorialplatte aus; in der Anaphase werden Schwesterchromatiden zu den Polen gezogen; in der Telophase bilden sich neue Zellkerne und die Zytokinese teilt die Zelle." },
-      { id: "mi_h5", type: "true_false", statement: "In der Interphase findet die eigentliche Kernteilung der Mitose statt.", answer: false, explanation: "Die Interphase ist die Phase zwischen zwei Zellteilungen, in der die Zelle waechst und ihre DNA repliziert. Die eigentliche Kernteilung (Karyokinese) findet in den vier Mitosephasen (Pro-, Meta-, Ana-, Telophase) statt, gefolgt von der Zellteilung (Zytokinese)." },
+      { id: "mi_h1", type: "mc", question: "Was geschieht in der Anaphase der Mitose?", options: [
+        { text: "Schwesterchromatiden werden durch Spindelfasern zu den gegenueberliegenden Zellpolen gezogen", correct: true },
+        { text: "Chromosomen richten sich in der Aequatorialplatte aus", correct: false },
+        { text: "Die Kernhuelle loest sich auf und Chromosomen kondensieren", correct: false },
+        { text: "Neue Zellkerne und Zellmembranen bilden sich", correct: false }
+      ], explanation: "Anaphase: Centromere werden durch Kohaesin-Spaltung getrennt, Motorproteine (Kinesin, Dynein) ziehen die Schwesterchromatiden aktiv zu den gegenueberliegenden Polen. Jede Tochterzelle erhaelt einen vollstaendigen Chromosomensatz. Metaphase = Ausrichtung in Aequatorialplatte; Prophase = Kondensation + Kernhuellenaufloesung; Telophase = neue Kerne." },
+      { id: "mi_h2", type: "mc", question: "Was wird in der Interphase (G2-Phase) fuer die Mitose vorbereitet?", options: [
+        { text: "Die replizierte DNA wird auf Fehler geprueft und Zellorganellen werden verdoppelt", correct: true },
+        { text: "Die Kernteilung findet statt", correct: false },
+        { text: "Chromosomen kondensieren und die Kernhuelle loest sich auf", correct: false },
+        { text: "Schwesterchromatiden werden zu den Polen gezogen", correct: false }
+      ], explanation: "Die Interphase gliedert sich in G1 (Zellwachstum), S-Phase (DNA-Replikation) und G2 (Wachstum, Vorbereitung: Proteine fuer Spindelapparat werden synthetisiert, DNA-Schaeden werden repariert). Die eigentliche Kernteilung (Karyokinese) beginnt erst in der Prophase." },
+      { id: "mi_h3", type: "true_false", statement: "Der Spindelapparat der Mitose besteht aus Mikrotubuli, die von Zentrosomen ausgehen.", answer: true, explanation: "Der Spindelapparat (mitotische Spindel) besteht aus Mikrotubuli, die von den zwei Zentrosomen (Zellpolen) ausgehen. Kinetochor-Mikrotubuli verbinden sich mit den Kinetochoren der Chromosomen und ziehen sie in der Anaphase auseinander. Der Spindelapparat ist der molekulare Motor der Chromosomentrennung." },
+      { id: "mi_h4", type: "true_false", statement: "Die Zytokinese (Zellteilung) beginnt waehrend der Telophase und trennt das Zytoplasma.", answer: true, explanation: "Zytokinese und Karyokinese (Kernteilung) sind getrennte Prozesse: Die Karyokinese (Prophasn bis Telophase) teilt den Kern, die Zytokinese teilt danach das Zytoplasma. In tierischen Zellen geschieht dies durch einen kontraktilen Ring aus Aktin und Myosin II (Furche); in Pflanzenzellen durch eine Zellplatte." },
+      { id: "mi_h5", type: "mc", question: "Was ist der wichtigste Unterschied zwischen Karyokinese und Zytokinese?", options: [
+        { text: "Karyokinese = Kernteilung; Zytokinese = Zellteilung (Zytoplasmatrennung)", correct: true },
+        { text: "Karyokinese = Zellteilung; Zytokinese = Kernteilung", correct: false },
+        { text: "Beide Begriffe bezeichnen dasselbe", correct: false },
+        { text: "Karyokinese findet nur bei der Meiose statt", correct: false }
+      ], explanation: "Karyokinese (griech. karyon = Kern) bezeichnet die Teilung des Zellkerns durch die Mitosephasen. Zytokinese (griech. kytos = Zelle, kinein = bewegen) bezeichnet die anschliessende Teilung des Zytoplasmas. Beide sind notwendig fuer die vollstaendige Zellteilung; in manchen Geweben (z.B. fruehem Embryo) kann Karyokinese ohne Zytokinese ablaufen." },
       { id: "mi_h6", type: "true_false", statement: "Nach vollstaendiger Mitose besitzen beide Tochterzellen denselben diploiden Chromosomensatz wie die Mutterzelle.", answer: true, explanation: "Da die DNA in der Interphase vollstaendig repliziert und dann durch die Mitosephasen exakt auf beide Tochterkerne verteilt wird, enthalten beide Tochterzellen den vollstaendigen diploiden Chromosomensatz (2n = 46) der Mutterzelle. Dies sichert genetische Stabilitaet." }
     ],
     bossQuestions: [
       { id: "mi_b1", type: "true_false", statement: "Bei der Mitose entstehen zwei identische Tochterzellen mit gleichem Erbgut.", answer: true }
     ],
     combatQuestions: [
-      { id: "mi_mc1", type: "mc", question: "In welcher Reihenfolge verlaufen die Phasen der Mitose?", options: [
-        { text: "Prophase → Metaphase → Anaphase → Telophase", correct: true },
-        { text: "Prophase → Anaphase → Metaphase → Telophase", correct: false },
-        { text: "Metaphase → Prophase → Anaphase → Telophase", correct: false },
-        { text: "Interphase → Prophase → Metaphase → Telophase", correct: false }
+      { id: "mi_mc1", type: "mc", question: "Welche Ereignisse sind der jeweiligen Mitosephase korrekt zugeordnet?", options: [
+        { text: "Prophase: Chromosomenkondensation und Kernhuellenaufloesung", correct: true },
+        { text: "Metaphase: Ausrichtung der Chromosomen in der Aequatorialplatte", correct: true },
+        { text: "Anaphase: Trennung der Schwesterchromatiden zu den Zellpolen", correct: true },
+        { text: "Anaphase: Bildung neuer Kernhuellenl", correct: false }
       ]},
-      { id: "mi_mc2", type: "mc", question: "Welches Ergebnis hat eine vollstaendige Mitose?", options: [
-        { text: "Zwei erbgleiche diploide Tochterzellen", correct: true },
-        { text: "Vier haploide Tochterzellen", correct: false },
-        { text: "Zwei haploide, genetisch verschiedene Tochterzellen", correct: false },
-        { text: "Eine diploide und eine haploide Tochterzelle", correct: false }
+      { id: "mi_mc2", type: "mc", question: "Was ist korrekt bezueglich des Spindelapparats?", options: [
+        { text: "Er besteht aus Mikrotubuli, die von Zentrosomen ausgehen", correct: true },
+        { text: "Er zieht Chromosomen in der Anaphase zu den Zellpolen", correct: true },
+        { text: "Er besteht aus Aktinfilamenten", correct: false },
+        { text: "Er bildet sich in der Interphase, nicht waehrend der Mitose", correct: false }
       ]}
     ]
   }),
@@ -500,10 +632,20 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "me_h1", type: "true_false", statement: "Die Meiose reduziert den Chromosomensatz fuer die Keimzellenbildung.", answer: true, explanation: "Die Meiose halbiert den diploiden Chromosomensatz (2n = 46) auf den haploiden Satz (n = 23). Diese Reduktion ist zwingend notwendig, damit bei der Befruchtung – wenn Ei- und Samenzelle fusionieren – wieder der diploide Chromosomensatz entsteht und nicht jede Generation die doppelte Chromosomenzahl traegt." },
-      { id: "me_h2", type: "true_false", statement: "Nach Meiose sind die Tochterzellen untereinander genetisch identisch.", answer: false, explanation: "Durch zwei Mechanismen entstehen genetisch verschiedene Tochterzellen: Crossing-over in Prophase I tauscht Gensegmente zwischen homologen Chromosomen aus, und die zufaellige Verteilung der homologen Chromosomen (Independent Assortment) in Meiose I erzeugt 2²³ verschiedene Kombinationsmoeglichkeiten." },
-      { id: "me_h3", type: "true_false", statement: "Crossing-over traegt zur genetischen Vielfalt bei.", answer: true, explanation: "Crossing-over (reziproker Austausch von Chromosomensegmenten zwischen homologen Chromosomen in Prophase I) rekombiniert Allele auf einem Chromosom neu. Zusammen mit der zufaelligen Verteilung der Chromosomensaetze in Meiose I sorgt es fuer die ausserordentliche genetische Vielfalt von Keimzellen." },
-      { id: "me_h4", type: "true_false", statement: "Die Meiose besteht aus zwei aufeinanderfolgenden Teilungsschritten.", answer: true, explanation: "Meiose I (Reduktionsteilung) trennt die homologen Chromosomenpaare und halbiert die Chromosomenzahl. Meiose II (aequationale Teilung, aehnlich der Mitose) trennt die Schwesterchromatiden. Zusammen entstehen aus einer diploiden Zelle vier haploide Tochterzellen." },
+      { id: "me_h1", type: "mc", question: "Was ist der zentrale Unterschied zwischen Meiose I und Meiose II?", options: [
+        { text: "Meiose I trennt homologe Chromosomen (Reduktion); Meiose II trennt Schwesterchromatiden (wie Mitose)", correct: true },
+        { text: "Meiose I und II sind identische Teilungen", correct: false },
+        { text: "Meiose I trennt Schwesterchromatiden; Meiose II trennt homologe Chromosomen", correct: false },
+        { text: "Nur Meiose I ist eine echte Teilung; Meiose II ist eine Zellverschmelzung", correct: false }
+      ], explanation: "Meiose I (Reduktionsteilung): Homologe Chromosomenpaare (Bivalente) werden getrennt → Chromosomenzahl halbiert (2n→n). Meiose II (aequationale Teilung): Schwesterchromatiden werden wie bei der Mitose getrennt. Ergebnis: aus 1 diploiden Zelle entstehen 4 haploide Zellen." },
+      { id: "me_h2", type: "mc", question: "Was bezeichnet man als 'Synapsis' in der Prophase I?", options: [
+        { text: "Die paarweise Anlagerung homologer Chromosomen (Bivalentbildung) mit Ausbildung des Synaptonemalkomplexes", correct: true },
+        { text: "Die Trennung der Schwesterchromatiden", correct: false },
+        { text: "Die Aufloesung der Kernhuelle", correct: false },
+        { text: "Die Ausrichtung der Chromosomen in der Aequatorialplatte", correct: false }
+      ], explanation: "In der Prophase I der Meiose lagern sich homologe Chromosomenpaare zusammen (Synapsis), verbunden durch den Synaptonemalkomplex. An Chiasmata (Ueberkreuzungsstellen) findet das Crossing-over statt. Jedes Paar bildet ein Bivalent (Tetrade) aus vier Chromatiden." },
+      { id: "me_h3", type: "true_false", statement: "Durch Crossing-over und unabhaengige Verteilung in Meiose I koennen theoretisch 2^23 verschiedene Gametenkombinationen entstehen.", answer: true, explanation: "Jedes der 23 Chromosomenpaare kann in zwei Orientierungen in der Metaphaseplatte aufgestellt werden (Independent Assortment), was 2^23 ≈ 8,4 Millionen Kombinationen erzeugt. Zusaetzlich bewirkt Crossing-over genetische Rekombination innerhalb von Chromosomen. Zusammen erklaert das die immense genetische Vielfalt." },
+      { id: "me_h4", type: "true_false", statement: "Zwischen Meiose I und Meiose II gibt es keine vollstaendige DNA-Replikation.", answer: true, explanation: "Die Interkinese zwischen Meiose I und II ist sehr kurz – keine vollstaendige S-Phase mit DNA-Replikation. Das ist ein wichtiger Unterschied zur Mitose: Bei der Meiose wird DNA nur einmal (vor Meiose I) repliziert, aber zweimal geteilt. Deshalb entstehen haploide Zellen." },
       { id: "me_h5", type: "true_false", statement: "Bei Meiose I bleibt die Chromosomenzahl unveraendert erhalten.", answer: false, explanation: "Meiose I ist die Reduktions­teilung: Hier werden die 23 Paare homologer Chromosomen getrennt, sodass jede Tochterzelle nur noch 23 Chromosomen (aber noch je zwei Schwesterchromatiden) erhaelt – die Chromosomenzahl wird also von 46 auf 23 halbiert." },
       { id: "me_h6", type: "true_false", statement: "Das Crossing-over findet in der Prophase I der Meiose statt.", answer: true, explanation: "In der Prophase I der Meiose lagern sich homologe Chromosomen im Tetrade-Stadium zusammen (Synapsis). An Chiasma genannten Ueberkreuzungsstellen werden homologe DNA-Segmente ausgetauscht. Dieser Austausch erzeugt Chromosomen mit neuen Allelkombinationen und damit genetische Vielfalt." }
     ],
@@ -511,17 +653,17 @@ const ZYTOLOGIE_1031_PLANTS = [
       { id: "me_b1", type: "true_false", statement: "Mitose und Meiose unterscheiden sich grundlegend in Ziel, Ergebnis und Zelltypbezug.", answer: true }
     ],
     combatQuestions: [
-      { id: "me_mc1", type: "mc", question: "Welches Ergebnis hat die Meiose?", options: [
-        { text: "Vier haploide, genetisch verschiedene Tochterzellen", correct: true },
-        { text: "Zwei diploide, erbgleiche Tochterzellen", correct: false },
-        { text: "Vier diploide Tochterzellen", correct: false },
-        { text: "Zwei haploide, erbgleiche Tochterzellen", correct: false }
-      ]},
-      { id: "me_mc2", type: "mc", question: "Wann findet das Crossing-over statt?", options: [
-        { text: "In der Prophase I der Meiose", correct: true },
-        { text: "In der Metaphase II der Meiose", correct: false },
-        { text: "In der Anaphase I der Meiose", correct: false },
-        { text: "Waehrend der Interphase vor der Meiose", correct: false }
+      { id: "me_mc1", type: "mc", question: "Welche Aussage beschreibt korrekt die Unterschiede der Meiose gegenueber der Mitose?", options: [
+        { text: "Meiose: 4 haploide Zellen, Crossing-over in Prophase I, nur in Keimdrüsen, zwei Teilungsrunden", correct: true },
+        { text: "Meiose: 2 haploide Zellen, kein Crossing-over, in allen Koerperzellen, eine Teilungsrunde", correct: false },
+        { text: "Meiose: 4 diploide Zellen, Crossing-over in Prophase II, nur in Keimdrüsen, eine Teilungsrunde", correct: false },
+        { text: "Meiose: 2 diploide Zellen, Crossing-over, in allen Koerperzellen, zwei Teilungsrunden", correct: false }
+      ], explanation: "Meiose unterscheidet sich durch: (1) 4 haploide Tochterzellen statt 2 diploide, (2) Crossing-over in Prophase I als Quelle genetischer Vielfalt, (3) Ablauf nur in Keimdrüsen, (4) zwei aufeinanderfolgende Teilungsrunden (Meiose I und II)." },
+      { id: "me_mc2", type: "mc", question: "Was sind die beiden Quellen genetischer Vielfalt bei der Meiose?", options: [
+        { text: "Crossing-over (Prophase I) und unabhaengige Chromosomensegregation (Metaphase I)", correct: true },
+        { text: "DNA-Replikation und Zellkernaufloesung", correct: false },
+        { text: "Karyokinese und Zytokinese", correct: false },
+        { text: "Centrosom-Spaltung und Membranfusion", correct: false }
       ]}
     ]
   }),
@@ -530,7 +672,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     title: "Chromosomenabberationen",
     phase1: {
       soil: {
-        statement: "Chromosomenabberationen werden im Studienbrief als eigenes Kapitel behandelt.",
+        statement: "Chromosomenaberrationen entstehen durch Fehler bei der Zellteilung, bei denen Chromosomen nicht korrekt getrennt oder verteilt werden (Non-Disjunction).",
         answer: true,
         solution: "Chromosomenabberationen entstehen durch Fehler bei der Zellteilung, wenn Chromosomen nicht korrekt getrennt oder verteilt werden (Non-Disjunction). Bei numerischen Aberrationen weicht die Gesamtzahl der Chromosomen vom Normalwert 46 ab, z. B. bei Trisomien (47 Chromosomen)."
       },
@@ -546,28 +688,43 @@ const ZYTOLOGIE_1031_PLANTS = [
       }
     },
     harvestQuestions: [
-      { id: "ca_h1", type: "true_false", statement: "Numerische Chromosomenabberationen betreffen die Anzahl von Chromosomen.", answer: true, explanation: "Bei numerischen Chromosomenaberrationen weicht die Gesamtzahl der Chromosomen vom Normalwert 46 ab. Trisomien (47 Chromosomen) entstehen durch Non-Disjunction waehrend der Meiose, bei der ein Chromosomenpaar nicht korrekt getrennt wird und beide in eine Tochterzelle wandern." },
-      { id: "ca_h2", type: "true_false", statement: "Klinefelter- und Turner-Syndrom sind Beispiele fuer gonosomale numerische Aberrationen.", answer: true, explanation: "Gonosomale Aberrationen betreffen die Geschlechtschromosomen: Turner-Syndrom (45, X0) hat nur ein X-Chromosom statt zwei, Klinefelter-Syndrom (47, XXY) hat ein zusaetzliches X-Chromosom. Beide entstehen durch fehlerhafte Chromosomentrennung in der Meiose der Eltern." },
-      { id: "ca_h3", type: "true_false", statement: "Chromosomenabberationen sind fuer die zellulaere Vererbungslehre ohne Relevanz.", answer: false, explanation: "Chromosomenaberrationen sind ein zentrales Thema der Genetik und Vererbungslehre. Sie erklaeren Erbkrankheiten, Fertilitaetsstoerungen und Fehlgeburten. Die sichere Unterscheidung von autosomalen und gonosomalen Aberrationen ist pruefungsrelevant." },
+      { id: "ca_h1", type: "mc", question: "Welchen Karyotyp hat das Klinefelter-Syndrom?", options: [
+        { text: "47, XXY", correct: true },
+        { text: "45, X0", correct: false },
+        { text: "47, XY+21", correct: false },
+        { text: "46, XY", correct: false }
+      ], explanation: "Klinefelter-Syndrom: 47, XXY – betroffene Maenner haben ein zusaetzliches X-Chromosom. Klinisch: Hochwuchs, Gynaekomastie, Hodensatrophie, Infertilitaet. Turner-Syndrom: 45, X0 (ein X fehlt) – betrifft Frauen. Down-Syndrom: 47, +21 (Trisomie 21)." },
+      { id: "ca_h2", type: "mc", question: "Was ist 'Non-Disjunction' und wann tritt sie auf?", options: [
+        { text: "Fehlerhafte Chromosomentrennung in der Meiose, sodass beide homologen Chromosomen in eine Tochterzelle wandern", correct: true },
+        { text: "Spontane Mutation einzelner Gene ohne Chromosomenzahlveraenderung", correct: false },
+        { text: "Vollstaendiger Verlust eines Chromosoms durch Strahlung", correct: false },
+        { text: "Fusion zweier Chromosomen (Robertson-Translokation)", correct: false }
+      ], explanation: "Non-Disjunction (nicht-Trennung): In Meiose I oder II oder Mitose werden Chromosomen nicht korrekt auf Tochterzellen verteilt. Meiose-I-Fehler: beide homologen Chromosomen wandern in dieselbe Zelle. Meiose-II-Fehler: Schwesterchromatiden wandern zusammen. Ergebnis: Tochterzellen mit zu viel oder zu wenig Chromosomen." },
+      { id: "ca_h3", type: "true_false", statement: "Strukturelle Chromosomenaberrationen veraendern die Struktur, nicht die Anzahl von Chromosomen.", answer: true, explanation: "Strukturelle Aberrationen entstehen durch Chromosomenbrueche und fehlerhafte Reparatur. Typen: Deletion (Stueck fehlt), Duplikation (Stueck doppelt), Inversion (Stueck umgedreht), Translokation (Stueck auf anderem Chromosom). Sie koennen zu Genunterschreitungen oder -ueberdosierungen fuehren." },
       { id: "ca_h4", type: "true_false", statement: "Das Down-Syndrom ist eine autosomale Trisomie des Chromosoms 21.", answer: true, explanation: "Trisomie 21 entsteht durch Non-Disjunction in der Meiose: Ein Elternteil gibt eine Keimzelle mit zwei Chromosomen 21 ab. Das befruchtete Ei hat dann drei Chromosomen 21 (Trisomie) statt zwei, was zu charakteristischen Merkmalen und intellektuellen Einschraenkungen fuehren kann." },
-      { id: "ca_h5", type: "true_false", statement: "Das Turner-Syndrom (Monosomie X) zaehlt zu den autosomalen Aberrationen.", answer: false, explanation: "Das Turner-Syndrom (Karyotyp 45, X0) betrifft die Geschlechtschromosomen, ist also eine gonosomale Aberration. Autosomale Aberrationen betreffen die Chromosomenpaare 1–22 (Autosomen); das Turner-Syndrom betrifft dagegen das 23. Paar (Gonosomen/Geschlechtschromosomen)." },
-      { id: "ca_h6", type: "true_false", statement: "Bei einer Trisomie ist ein Chromosom dreifach vorhanden, die Gesamtzahl betraegt 47.", answer: true, explanation: "Normale Koerperzellen haben 46 Chromosomen (diploider Satz). Bei einer Trisomie ist durch fehlerhafte Meiose ein Chromosom dreifach vertreten statt zweifach. Die Gesamtzahl erhoht sich dadurch auf 47. Bekannte Trisomien sind Trisomie 21 (Down), 18 (Edwards) und 13 (Patau)." }
+      { id: "ca_h5", type: "true_false", statement: "Das Turner-Syndrom (Karyotyp 45, X0) ist die einzige lebensfaehige menschliche Monosomie.", answer: true, explanation: "Monosomien der Autosomen (Verlust eines Autosoms) sind in aller Regel letal und fuehren zur Fehlgeburt. Monosomie X (Turner, 45, X0) ist die einzige lebensfaehige Monosomie, da ein X-Chromosom ausreicht. Klinisch: Kleinwuchs, Gonadendysgenesie, Infertilitaet, Pterygium colli." },
+      { id: "ca_h6", type: "mc", question: "Welche drei Trisomien fuer Autosomen sind mit dem Leben vereinbar?", options: [
+        { text: "Trisomie 21 (Down), Trisomie 18 (Edwards), Trisomie 13 (Patau)", correct: true },
+        { text: "Trisomie 1, 2, 3 als haeufigstes Vorkommen", correct: false },
+        { text: "Trisomie X, Trisomie Y und XXY sind autosomal", correct: false },
+        { text: "Alle Trisomien sind mit dem Leben vereinbar", correct: false }
+      ], explanation: "Trisomie 21 (Down), 18 (Edwards-Syndrom, schwerste Fehlbildungen, meist Fruehtod) und 13 (Patau-Syndrom, schwere Fehlbildungen) sind die einzigen autosomalenTrisomien, die ueberlebt werden koennen. Alle anderen autosomalenTrisomien fuehren zur Fehlgeburt oder Stillgeburt." }
     ],
     bossQuestions: [
       { id: "ca_b1", type: "true_false", statement: "Das Verstaendnis numerischer Aberrationen setzt sichere Grundlagen in Mitose/Meiose voraus.", answer: true }
     ],
     combatQuestions: [
-      { id: "ca_mc1", type: "mc", question: "Welches Syndrom ist eine autosomale Trisomie des Chromosoms 21?", options: [
-        { text: "Down-Syndrom (Trisomie 21)", correct: true },
-        { text: "Klinefelter-Syndrom (XXY)", correct: false },
-        { text: "Turner-Syndrom (Monosomie X)", correct: false },
-        { text: "Patau-Syndrom (Trisomie 13)", correct: false }
+      { id: "ca_mc1", type: "mc", question: "Welche Karyotypen und Syndrome sind korrekt zugeordnet?", options: [
+        { text: "47, XXY – Klinefelter-Syndrom", correct: true },
+        { text: "45, X0 – Turner-Syndrom", correct: true },
+        { text: "47, +21 – Down-Syndrom", correct: true },
+        { text: "47, +18 – Klinefelter-Syndrom", correct: false }
       ]},
-      { id: "ca_mc2", type: "mc", question: "Was charakterisiert eine numerische Chromosomenaberration?", options: [
-        { text: "Eine veraenderte Anzahl von Chromosomen (z. B. 45 oder 47 statt 46)", correct: true },
-        { text: "Eine Veraenderung der Chromosomenstruktur ohne Zahlaenderung", correct: false },
-        { text: "Ein Austausch genetischen Materials zwischen nicht-homologen Chromosomen", correct: false },
-        { text: "Eine Mutation einzelner Gene ohne Bezug zur Chromosomenzahl", correct: false }
+      { id: "ca_mc2", type: "mc", question: "Was unterscheidet numerische von strukturellen Chromosomenaberrationen?", options: [
+        { text: "Numerisch = Aenderung der Chromosomenzahl; strukturell = Aenderung der Chromosomenstruktur bei gleicher Zahl", correct: true },
+        { text: "Numerisch = nur Gonosomen betroffen; strukturell = nur Autosomen betroffen", correct: false },
+        { text: "Beide Begriffe bezeichnen dieselbe Art von Aberration", correct: false },
+        { text: "Strukturelle Aberrationen sind nie klinisch relevant", correct: false }
       ]}
     ]
   })
@@ -578,28 +735,43 @@ const HISTOLOGIE_1032_PLANTS = [
     id: "zellverbindungen",
     title: "Zellverbindungen",
     phase1: {
-      soil: { statement: "In 1032 werden Adhaesionskontakte, Tight Junctions und Gap Junctions unterschieden.", answer: true, solution: "Die drei Verbindungstypen haben verschiedene Aufgaben: Adhaesionskontakte (z.B. Desmosomen) geben mechanischen Halt, Tight Junctions dichten den Interzellularraum ab und verhindern parazellulaere Diffusion, Gap Junctions ermöglichen direkten Stoffaustausch zwischen Zellen." },
+      soil: { statement: "Adhaesionskontakte, Tight Junctions und Gap Junctions sind drei strukturell und funktionell verschiedene Typen von Zellverbindungen.", answer: true, solution: "Die drei Verbindungstypen haben verschiedene Aufgaben: Adhaesionskontakte (z.B. Desmosomen) geben mechanischen Halt, Tight Junctions dichten den Interzellularraum ab und verhindern parazellulaere Diffusion, Gap Junctions ermöglichen direkten Stoffaustausch zwischen Zellen." },
       seed: { statement: "Alle Zellverbindungen haben dieselbe Funktion und sind histologisch nicht unterscheidbar.", answer: false, solution: "Die drei Verbindungstypen haben klar unterschiedliche Aufgaben: Tight Junctions dichten den Interzellularraum ab, Adhaesionskontakte (Desmosomen) geben mechanischen Halt, Gap Junctions ermöglichen direkten Stoff- und Signalaustausch zwischen Nachbarzellen." },
       water: { statement: "Gap Junctions dienen dem Signal- und Stoffaustausch zwischen Zellen.", answer: true, solution: "Gap Junctions sind Kanalproteine (Connexone), die benachbarte Zellen direkt verbinden und den Austausch kleiner Molekuele (Ionen, cAMP, Metaboliten) ermoglichen. Dadurch koennen z.B. Herzmuskelzellen elektrische Signale direkt weitergeben und koordiniert schlagen." }
     },
     harvestQuestions: [
-      { id: "hi_zv_h1", type: "true_false", statement: "Tight Junctions dichten den Raum zwischen Zellen weitgehend ab.", answer: true, explanation: "Tight Junctions (Zonulae occludentes) bestehen aus Transmembranproteinen (Claudine, Occludin), die den parazellullaeren Spalt fast vollstaendig verschliessen. Dadurch koennen Ionen und Molekuele nicht unkontrolliert zwischen Epithelzellen hindurchdiffundieren – entscheidend z.B. fuer die Barrierefunktion im Darmepithel und an der Blut-Hirn-Schranke." },
-      { id: "hi_zv_h2", type: "true_false", statement: "Desmosomen sind primaer Kommunikationskanaele fuer Ionen.", answer: false, explanation: "Desmosomen (Maculae adhaerentes) sind mechanische Haftstrukturen, keine Kommunikationskanaele. Sie verankern Keratin-Intermediarfilamente zwischen benachbarten Zellen und verleihen Geweben Zugfestigkeit – besonders ausgepraegt in Haut und Herzmuskel. Kommunikation erfolgt dagegen durch Gap Junctions." },
-      { id: "hi_zv_h3", type: "true_false", statement: "Gap Junctions koennen kleine Molekuele passieren lassen.", answer: true, explanation: "Gap Junctions bestehen aus Connexon-Kanaelen (je 6 Connexin-Proteine), die benachbarte Zellen direkt verbinden. Molekuele bis ca. 1 kDa koennen passieren: Ionen, cAMP, IP3, Glukose. Im Herzmuskel ermoeglicht dies die direkte elektrische Kopplung, die ein koordiniertes Zusammenziehen sicherstellt." }
+      { id: "hi_zv_h1", type: "mc", question: "Welche Proteine bilden die strukturelle Grundlage von Tight Junctions?", options: [
+        { text: "Claudine und Occludin", correct: true },
+        { text: "Connexin (Connexone)", correct: false },
+        { text: "Keratin und Desmoplakin", correct: false },
+        { text: "Kollagen Typ IV und Laminin", correct: false }
+      ], explanation: "Tight Junctions bestehen aus Transmembranproteinen: Claudine (verschiedene Subtypen regulieren Selektivitaet) und Occludin sind die Hauptbausteine. Connexine bilden Gap Junctions. Keratin und Desmoplakin gehoeren zu Desmosomen. Kollagen IV/Laminin sind Basalmembranbestandteile." },
+      { id: "hi_zv_h2", type: "mc", question: "Was koennen Gap Junctions passieren lassen – was koennen sie NICHT durchlassen?", options: [
+        { text: "Durchlassbar: Ionen, cAMP, kleine Molekuele bis ca. 1 kDa; NICHT: Proteine und DNA", correct: true },
+        { text: "Durchlassbar: Proteine und DNA; NICHT: Ionen", correct: false },
+        { text: "Durchlassbar: nichts – Gap Junctions dichten nur ab", correct: false },
+        { text: "Durchlassbar: alle Molekuele ohne Groesspenlimit", correct: false }
+      ], explanation: "Gap Junctions (aus Connexonen: je 6 Connexin-Proteine) erlauben den Durchtritt von Molekuelen bis ca. 1 kDa: Ionen (Na+, K+, Ca2+), cAMP, IP3, Glukose, Aminosaeuren. Proteine (>1 kDa) koennen nicht passieren. Im Herzmuskel koppeln Gap Junctions die Erregung elektrisch zwischen Kardiomyozyten." },
+      { id: "hi_zv_h3", type: "mc", question: "Welches Intermediarfilament verankern Desmosomen in benachbarten Zellen?", options: [
+        { text: "Keratin (Zytokeratin)", correct: true },
+        { text: "Aktin", correct: false },
+        { text: "Vimentin", correct: false },
+        { text: "Mikrotubuli", correct: false }
+      ], explanation: "Desmosomen (Maculae adhaerentes) verbinden Keratin-Intermediarfilamente benachbarter Zellen ueber Desmoplakin und Desmoglein/Desmocollin. Sie verleihen epithelialen Geweben (Haut, Herzmuskel) Zugfestigkeit. Autoantikörper gegen Desmoglein fuehren zur Pemphigus vulgaris (blasenbildende Hauterkrankung)." }
     ],
     bossQuestions: [{ id: "hi_zv_b1", type: "true_false", statement: "Die funktionelle Trennung von Haftung, Abdichtung und Kommunikation ist ein Kernpunkt der Histologie.", answer: true }],
     combatQuestions: [
-      { id: "hi_zv_mc1", type: "mc", question: "Welche Zellverbindung dient dem direkten Signal- und Stoffaustausch zwischen benachbarten Zellen?", options: [
-        { text: "Gap Junction", correct: true },
-        { text: "Tight Junction", correct: false },
-        { text: "Desmosom", correct: false },
-        { text: "Adhaerens-Junction", correct: false }
+      { id: "hi_zv_mc1", type: "mc", question: "Welche Zellverbindungen und ihre Hauptproteine sind korrekt zugeordnet?", options: [
+        { text: "Tight Junction – Claudin und Occludin", correct: true },
+        { text: "Gap Junction – Connexin", correct: true },
+        { text: "Desmosom – Keratin (verankert durch Desmoplakin)", correct: true },
+        { text: "Adhaerens-Junction – Connexin", correct: false }
       ]},
-      { id: "hi_zv_mc2", type: "mc", question: "Welche Funktion haben Tight Junctions?", options: [
-        { text: "Sie dichten den parazellullaeren Raum zwischen Epithelzellen ab", correct: true },
-        { text: "Sie ermoeglichen den Ionenaustausch zwischen Zellen", correct: false },
-        { text: "Sie stellen mechanische Haftverbindungen ohne Abdichtfunktion dar", correct: false },
-        { text: "Sie verbinden Zellen mit der extrazellullaeren Matrix", correct: false }
+      { id: "hi_zv_mc2", type: "mc", question: "Welche Zellverbindung ist an der Blut-Hirn-Schranke fuer die Abdichtung verantwortlich?", options: [
+        { text: "Tight Junctions zwischen Gehirn-Endothelzellen", correct: true },
+        { text: "Gap Junctions", correct: false },
+        { text: "Desmosomen", correct: false },
+        { text: "Adhaerens-Junctions", correct: false }
       ]}
     ]
   }),
@@ -612,23 +784,28 @@ const HISTOLOGIE_1032_PLANTS = [
       water: { statement: "Epithelgewebe dient u. a. Schutz, Stoffaustausch und Reizaufnahme.", answer: true, solution: "Die Funktionsvielfalt des Epithelgewebes erklaert sich aus seinen Untertypen: Plattenepithel schuetzt mechanisch (Haut), Saelenepithel mit Mikrovilli resorbiert Naehrstoffe (Darm), Flimmerepithel transportiert Sekrete (Atemwege), Sinnesepithel nimmt Reize wahr (Riechschleimhaut)." }
     },
     harvestQuestions: [
-      { id: "hi_ep_h1", type: "true_false", statement: "Epithelzellen bilden meist enge Zellverbaende mit schmalen Interzellularraeumen.", answer: true, explanation: "Epithelzellen sind durch verschiedene Zellverbindungen (Tight Junctions, Adhaerens-Junctions, Desmosomen) fest miteinander verbunden. Dieser enge Zellverband ist die Grundlage der Barrierefunktion: Er verhindert unkontrollierten Durchtritt von Stoffen zwischen den Zellen (parazellulaerer Weg)." },
-      { id: "hi_ep_h2", type: "true_false", statement: "Epithelien sind generell stark gefaesshaltig.", answer: false, explanation: "Epithelien sind grundsaetzlich avaskularaer – sie enthalten keine eigenen Blutgefaesse. Die Versorgung mit Sauerstoff und Naehrstoffen erfolgt durch Diffusion aus dem darunterliegenden vaskularisierten Bindegewebe durch die Basalmembran. Dies limitiert auch die maximale Epitheldicke." },
-      { id: "hi_ep_h3", type: "true_false", statement: "Epithelzellen besitzen einen apikalen und einen basalen Pol.", answer: true, explanation: "Epithelzellen sind polar aufgebaut: Der apikale Pol (zur freien Oberflaeche hin) traegt oft Spezialisierungen wie Mikrovilli (Resorption), Kinozilien (Schleim­transport) oder Stereovilli. Der basale Pol liegt der Basalmembran an und stellt die Verbindung zum darunterliegenden Bindegewebe her." }
+      { id: "hi_ep_h1", type: "mc", question: "Welche Zellverbindungen halten Epithelzellen zusammen? (eine Antwort)", options: [
+        { text: "Tight Junctions, Adhaerens-Junctions und Desmosomen", correct: true },
+        { text: "Synapsen und Gap Junctions ausschliesslich", correct: false },
+        { text: "Kollagenfasern zwischen den Zellen", correct: false },
+        { text: "Nur Desmosomen, keine anderen Verbindungen", correct: false }
+      ], explanation: "Epithelzellen sind durch drei Haupttypen von Zellverbindungen verbunden: Tight Junctions (dichten parazellulären Weg ab), Adhaerens-Junctions (mechanische Kopplung) und Desmosomen (Zugkräfte). Zusammen bilden sie den festen Zellverband." },
+      { id: "hi_ep_h2", type: "true_false", statement: "Die Basalmembran enthält hauptsächlich Kollagen Typ IV und Laminin.", answer: true, explanation: "Die Basalmembran besteht vor allem aus Kollagen Typ IV (Netzwerk) und Laminin (Verankerung der Epithelzellen). Dazu kommen Perlecan (Heparansulfat-Proteoglykan) und Nidogen. Kollagen Typ I findet sich dagegen im Bindegewebe, nicht in der Basalmembran." },
+      { id: "hi_ep_h3", type: "true_false", statement: "Epithelgewebe ernaehrt sich durch Diffusion aus dem darunterliegenden Bindegewebe, da es keine eigenen Blutgefaesse besitzt.", answer: true, explanation: "Epithelien sind avaskular – keine eigenen Blutgefaesse. Saeuerstoff und Naehrstoffe diffundieren aus den Kapillaren des subepithelial gelegenen Bindegewebes durch die Basalmembran. Die maximale Epitheldicke wird dadurch durch die Diffusionsstrecke begrenzt (mehrschichtige Epithelien koennen trotzdem dick sein, da die Basalzellen nah an den Kapillaren liegen)." }
     ],
-    bossQuestions: [{ id: "hi_ep_b1", type: "true_false", statement: "Epithelgewebe ist fuer Grenzflaechenfunktionen des Koerpers zentral.", answer: true }],
+    bossQuestions: [{ id: "hi_ep_b1", type: "true_false", statement: "Tight Junctions verhindern den parazellulären Durchtritt von Ionen und kleinen Molekülen.", answer: true }],
     combatQuestions: [
-      { id: "hi_ep_mc1", type: "mc", question: "Was ist ein typisches Merkmal von Epithelgewebe?", options: [
-        { text: "Enger Zellverband mit schmalen Interzellularraeumen und keine eigenen Blutgefaesse", correct: true },
-        { text: "Starke Vaskularisierung durch eigene Kapillaren", correct: false },
-        { text: "Ueberwiegend lockere Anordnung mit viel Interzellularsubstanz", correct: false },
-        { text: "Fehlende Regenerationsfaehigkeit", correct: false }
-      ]},
-      { id: "hi_ep_mc2", type: "mc", question: "Welche der folgenden Aufgaben hat Epithelgewebe NICHT?", options: [
-        { text: "Kraftuebertragung an Gelenken", correct: true },
-        { text: "Schutz der Koerperoberflaechen", correct: false },
-        { text: "Stoffaustausch und Resorption", correct: false },
-        { text: "Reizaufnahme (Sinnesepithel)", correct: false }
+      { id: "hi_ep_mc1", type: "mc", question: "Welche Antwort benennt korrekt die drei Grundtypen von Epithelgewebe?", options: [
+        { text: "Deckepithel, Druesenepithel und Sinnesepithel", correct: true },
+        { text: "Deckepithel, Stuetzepithel und Druesenepithel", correct: false },
+        { text: "Sinnesepithel, Stuetzepithel und Bindegewebe", correct: false },
+        { text: "Druesenepithel, Muskelepithel und Sinnesepithel", correct: false }
+      ], explanation: "Die drei Grundtypen des Epithelgewebes sind: Deckepithel (Oberflaechenschutz und -auskleidung), Druesenepithel (Sekretion) und Sinnesepithel (Reizaufnahme). Stuetzepithel ist kein anerkannter eigener Epitheltyp." },
+      { id: "hi_ep_mc2", type: "mc", question: "Welche Aussage zur Ernaehrung von Epithelgewebe ist korrekt?", options: [
+        { text: "Diffusion aus dem subepithelial gelegenen Bindegewebe durch die Basalmembran", correct: true },
+        { text: "Eigene Kapillaren innerhalb des Epithelverbands", correct: false },
+        { text: "Resorption direkt aus dem Organlumen", correct: false },
+        { text: "Ernaehrung erfolgt ausschliesslich ueber Lymphgefaesse", correct: false }
       ]}
     ]
   }),
@@ -641,22 +818,33 @@ const HISTOLOGIE_1032_PLANTS = [
       water: { statement: "Die Unterteilung in einschichtig, mehrreihig und mehrschichtig ist ein Grundschema.", answer: true, solution: "Einschichtige Epithelien (alle Zellen beruehren die Basalmembran) kommen z.B. als Endothel in Gefaessen vor, mehrreihige (alle an Basalmembran, aber verschieden hoch) als Flimmerepithel in den Atemwegen, mehrschichtige (nur die unterste Lage an der Basalmembran) als Schutzepithel der Haut und Schleimhaeute." }
     },
     harvestQuestions: [
-      { id: "hi_od_h1", type: "true_false", statement: "Einschichtige Epithelien bestehen aus einer Zelllage.", answer: true, explanation: "Beim einschichtigen Epithel beruehren alle Zellen die Basalmembran und haben gleichzeitig Kontakt zur freien Oberflaeche. Diese duenne Schicht optimiert den Stoffaustausch (z.B. als Endothel in Blutkapillaren) oder die Resorption (z.B. einschichtiges Saelenepithel im Duenndarm mit Mikrovilli)." },
-      { id: "hi_od_h2", type: "true_false", statement: "Mehrschichtige Epithelien bestehen immer aus nur einer Zelllage.", answer: false, explanation: "Mehrschichtige Epithelien bestehen aus mehreren Zelllagen uebereinander, wobei nur die unterste Lage (Stratum basale) die Basalmembran beruehrt. Diese Mehrschichtigkeit bietet mechanischen Schutz, z.B. mehrschichtiges verhorntes Plattenepithel der Haut oder unverhorntes an der Mundschleimhaut." }
-    ],
-    bossQuestions: [{ id: "hi_od_b1", type: "true_false", statement: "Die korrekte Schichtungszuordnung ist eine histologische Basisleistung.", answer: true }],
-    combatQuestions: [
-      { id: "hi_od_mc1", type: "mc", question: "Was kennzeichnet ein einschichtiges Epithel?", options: [
-        { text: "Alle Zellen beruehren die Basalmembran und haben Kontakt zur freien Oberflaeche", correct: true },
-        { text: "Es besteht aus mindestens drei Zelllagen uebereinander", correct: false },
-        { text: "Nur die oberste Zellschicht hat Kontakt zur Basalmembran", correct: false },
-        { text: "Es kommt ausschliesslich in druesigen Organen vor", correct: false }
-      ]},
-      { id: "hi_od_mc2", type: "mc", question: "Welchem Epitheltyp entspricht die Auskleidung der Blutgefaesse (Endothel)?", options: [
-        { text: "Einfachem Plattenepithel", correct: true },
-        { text: "Mehrschichtigem verhornten Plattenepithel", correct: false },
-        { text: "Mehrreihigem Flimmerepithel", correct: false },
+      { id: "hi_od_h1", type: "mc", question: "Welcher Epitheltyp kleidet Blut- und Lymphgefaesse aus?", options: [
+        { text: "Einschichtiges Plattenepithel (Endothel)", correct: true },
+        { text: "Mehrschichtiges verhorntes Plattenepithel", correct: false },
+        { text: "Mehrreihiges Flimmerepithel", correct: false },
         { text: "Uebergangsepithel (Urothel)", correct: false }
+      ], explanation: "Die Gefaessinnenwand (Endothel) besteht aus einschichtigem Plattenepithel – duenn genug fuer Diffusion, glatt genug fuer laminaere Stroemung. Einschichtig bedeutet: eine Zelllage, alle Zellen an der Basalmembran." },
+      { id: "hi_od_h2", type: "true_false", statement: "Das Uebergangsepithel (Urothel) der Harnblase kann seine Schichtdicke je nach Fuellungszustand veraendern.", answer: true, explanation: "Urothel ist eine Sonderform: Bei leerer Harnblase erscheint es mehrschichtig (5-6 Lagen), bei voller Blase dehnt es sich und wirkt fast einschichtig. Die charakteristischen Deckzellen (Umbrella-Zellen) erlauben diese Verformbarkeit. Dies erklaert den Namen Uebergangsepithel." },
+      { id: "hi_od_h3", type: "true_false", statement: "Mehrreihiges Epithel ist dasselbe wie mehrschichtiges Epithel.", answer: false, explanation: "Beim mehrreihigen Epithel beruehren ALLE Zellen die Basalmembran – nur die Kerne liegen auf unterschiedlichen Hoehen, was mehrschichtig wirkt (Pseudostratifizierung). Beim mehrschichtigen Epithel berührt nur die unterste Lage (Stratum basale) die Basalmembran. Klassisches mehrreihiges Beispiel: Flimmerepithel der Atemwege." }
+    ],
+    bossQuestions: [{ id: "hi_od_b1", type: "mc", question: "Welche Epithelformen sind einander korrekt zugeordnet?", options: [
+      { text: "Endothel = einschichtiges Plattenepithel", correct: true },
+      { text: "Atemwegsepithel = mehrreihiges Flimmerepithel", correct: true },
+      { text: "Harnblasenepithel = Uebergangsepithel (Urothel)", correct: true },
+      { text: "Hauteepidermis = einschichtiges Saelenepithel", correct: false }
+    ]}],
+    combatQuestions: [
+      { id: "hi_od_mc1", type: "mc", question: "Welche Aussagen zum mehrreihigen Epithel sind korrekt?", options: [
+        { text: "Alle Zellen beruehren die Basalmembran", correct: true },
+        { text: "Kerne liegen auf verschiedenen Hoehen (Pseudostratifizierung)", correct: true },
+        { text: "Nur die unterste Zellreihe beruehrt die Basalmembran", correct: false },
+        { text: "Es kommt typischerweise in der Harnblase vor", correct: false }
+      ]},
+      { id: "hi_od_mc2", type: "mc", question: "Welcher Epitheltyp ist fuer mechanische Belastung (z.B. Haut, Mundhoehleschleimhaut) am besten geeignet?", options: [
+        { text: "Mehrschichtiges Plattenepithel", correct: true },
+        { text: "Einschichtiges Plattenepithel", correct: false },
+        { text: "Mehrreihiges Flimmerepithel", correct: false },
+        { text: "Einschichtiges Wuerfelepithel", correct: false }
       ]}
     ]
   }),
@@ -669,21 +857,36 @@ const HISTOLOGIE_1032_PLANTS = [
       water: { statement: "Druesenepithel besitzt eine hohe Regenerationsfaehigkeit und kann sich bei Bedarf erneuern.", answer: true, solution: "Druesenepithel besitzt eine hohe Regenerationsfaehigkeit, da Druesen bei Verletzung oder Erkrankung rasch wiederhergestellt werden muessen. Teilungsaktive Stammzellen und Basalzellen im Druesenepithel ermöglichen diese kontinuierliche Erneuerung." }
     },
     harvestQuestions: [
-      { id: "hi_dr_h1", type: "true_false", statement: "Exokrine Druesen geben ihr Sekret ueber Ausfuehrungssysteme ab.", answer: true, explanation: "Exokrine Druesen leiten ihr Sekret ueber Ausfuehrungsgaenge auf Koerperoberflaechen oder in Hohlorgane – im Gegensatz zu endokrinen Druesen, die Hormone direkt ins Blut abgeben. Beispiele sind Speicheldruesen, Bauchspeicheldruese (exokriner Anteil), Schweis­sdruesen und Talgdruesen." },
-      { id: "hi_dr_h2", type: "true_false", statement: "Sekretbildung ist fuer Druesenepithel funktionell unerheblich.", answer: false, explanation: "Sekretbildung ist die Kernfunktion des Druesenepithels. Druesen­zellen sind hochspezialisiert auf Synthese und gezielte Abgabe von Sekreten: Enzyme fuer die Verdauung, Hormone fuer die Regulierung, Schleim fuer Schutz und Befeuchtung. Morphologie und Stoffwechsel der Druesenzellen sind vollstaendig auf diese Aufgabe ausgerichtet." },
-      { id: "hi_dr_h3", type: "true_false", statement: "Die Art der Sekretabgabe ist ein relevantes Differenzierungsmerkmal.", answer: true, explanation: "Exokrine Druesen werden nach dem Sekretionsmodus eingeteilt: Merokrine Sekretion (Vesikelexozytose, kein Zellverlust, z.B. Bauchspeicheldruese), apokrine Sekretion (Abschnuerung des apikalen Zellpols, z.B. Milchdruese) und holokrine Sekretion (gesamte Zelle wird Sekret, z.B. Talgdruese)." }
+      { id: "hi_dr_h1", type: "mc", question: "Welche Sekretionsart nutzt Vesikelexozytose ohne Verlust von Zellmaterial?", options: [
+        { text: "Merokrine (ekkrine) Sekretion", correct: true },
+        { text: "Apokrine Sekretion", correct: false },
+        { text: "Holokrine Sekretion", correct: false },
+        { text: "Endokrine Sekretion", correct: false }
+      ], explanation: "Merokrin (ekkrin) = Vesikel verschmelzen mit der Zellmembran, Sekret wird ausgeschuettet, Zelle bleibt intakt. Beispiel: Bauchspeicheldruese, Schweissdruesen. Apokrin: Abschnuerung des Zellapex (z.B. Milchdruese). Holokrin: gesamte Zelle wird zum Sekret (z.B. Talgdruese)." },
+      { id: "hi_dr_h2", type: "true_false", statement: "Die Talgdruese ist ein Beispiel fuer holokrine Sekretion.", answer: true, explanation: "Bei der holokrinen Sekretion wird die gesamte Druesenzelle zum Sekret: Die Zelle fuellt sich mit Lipiden, stirbt ab und wird komplett abgegeben (Talg). Die Regeneration erfolgt durch Proliferation von Basalzellen. Dies steht im Gegensatz zur merokrine Sekretion (Vesikelexozytose, Zelle intakt) und apokrinen Sekretion (nur Zellapex abgetrennt)." },
+      { id: "hi_dr_h3", type: "mc", question: "Die Milchdruese nutzt welchen Sekretionsmodus?", options: [
+        { text: "Apokrine Sekretion fuer den Fettanteil", correct: true },
+        { text: "Merokrine Sekretion fuer den Proteinanteil", correct: true },
+        { text: "Holokrine Sekretion", correct: false },
+        { text: "Ausschliesslich endokrine Sekretion", correct: false }
+      ], explanation: "Die Milchdruese verwendet beide Sekretionswege: Fette werden apokrin abgegeben (Abschnuerung lipidgefuellter Zellvorsprünge), Proteine (Kasein, Lactalbumin) werden merokrin via Vesikelexozytose sekretiert. Holokrin verwendet die Milchdruese nicht." }
     ],
-    bossQuestions: [{ id: "hi_dr_b1", type: "true_false", statement: "Funktionelle Druesenklassifikation ist fuer histologisches Verstaendnis essenziell.", answer: true }],
+    bossQuestions: [{ id: "hi_dr_b1", type: "mc", question: "Ordne Druese und Sekretionsmodus korrekt zu: Welche Paare stimmen?", options: [
+      { text: "Talgdruese – holokrin", correct: true },
+      { text: "Bauchspeicheldruese (exokrin) – merokrin", correct: true },
+      { text: "Milchdruese – apokrin (Fett) und merokrin (Protein)", correct: true },
+      { text: "Schweissdruese – holokrin", correct: false }
+    ]}],
     combatQuestions: [
-      { id: "hi_dr_mc1", type: "mc", question: "Was unterscheidet exokrine von endokrinen Druesen?", options: [
-        { text: "Exokrine Druesen geben ihr Sekret ueber Ausfuehrungsganege nach aussen ab", correct: true },
+      { id: "hi_dr_mc1", type: "mc", question: "Welche Aussagen zum Unterschied exokrin vs. endokrin sind korrekt?", options: [
+        { text: "Exokrine Druesen besitzen Ausfuehrungsgaenge", correct: true },
+        { text: "Endokrine Druesen geben Hormone direkt ins Blut ab", correct: true },
         { text: "Exokrine Druesen geben Sekret direkt ins Blut ab", correct: false },
-        { text: "Endokrine Druesen haben immer Ausfuehrungsganege", correct: false },
-        { text: "Exokrine Druesen produzieren ausschliesslich Hormone", correct: false }
+        { text: "Endokrine Druesen haben immer Ausfuehrungsgaenge", correct: false }
       ]},
       { id: "hi_dr_mc2", type: "mc", question: "Welche Sekretionsart bezeichnet das vollstaendige Abtrennen des apikalen Zellpols mit Sekretinhalt?", options: [
-        { text: "Holokrine Sekretion", correct: true },
-        { text: "Apokrine Sekretion", correct: false },
+        { text: "Apokrine Sekretion", correct: true },
+        { text: "Holokrine Sekretion", correct: false },
         { text: "Merokrine (ekkrine) Sekretion", correct: false },
         { text: "Endokrine Sekretion", correct: false }
       ]}
@@ -693,28 +896,43 @@ const HISTOLOGIE_1032_PLANTS = [
     id: "sinnesepithel_myoepithel",
     title: "Sinnesepithel und Myoepithel",
     phase1: {
-      soil: { statement: "Sinnesepithel dient der Reizaufnahme.", answer: true, solution: "Sinnesepithel enthalt spezialisierte Sinneszellen, die Reize aus der Umwelt in elektrische Signale umwandeln, die dann an Nervenzellen weitergeleitet werden. Beispiele: Riechepithel in der Nasenhoehlel, Haarzellen im Innenohr, Photorezeptoren in der Retina." },
-      seed: { statement: "Myoepithelzellen haben keine funktionelle Naehe zur glatten Muskulatur.", answer: false, solution: "Myoepithelzellen werden mit glatten Muskel-Eigenschaften verglichen." },
+      soil: { statement: "Sinnesepithel dient der Reizaufnahme.", answer: true, solution: "Sinnesepithel enthaelt spezialisierte Sinneszellen, die Reize aus der Umwelt in elektrische Signale umwandeln, die dann an Nervenzellen weitergeleitet werden. Beispiele: Riechepithel in der Nasenhoehle (chemische Reize), Haarzellen im Innenohr (Schall- und Gleichgewichtsreize), Photorezeptoren in der Retina (Lichtreize)." },
+      seed: { statement: "Myoepithelzellen haben keine funktionelle Naehe zur glatten Muskulatur.", answer: false, solution: "Diese Aussage ist falsch. Myoepithelzellen besitzen kontraktile Aktinfilamente und koennen sich aehnlich wie glatte Muskelzellen zusammenziehen. Sie umschliessen Druesenazini (z.B. in Schweiss-, Speichel- und Milchdruesen) und pressen bei Kontraktion das Sekret aktiv aus – daher ihr Name: myoepithelial = muskelaehliche Epithelzellen." },
       water: { statement: "Myoepithelzellen koennen die Sekretabgabe durch kontraktile Eigenschaften unterstuetzen.", answer: true, solution: "Myoepithelzellen umschliessen Druesenazini und koennen sich durch ihre Aktinfilamente aehnlich wie glatte Muskelzellen zusammenziehen. Durch diese Kontraktion wird das Druesensekret aktiv ausgepresst – z.B. in Schweiss- und Milchdruesen bei der Laktation." }
     },
     harvestQuestions: [
-      { id: "hi_sm_h1", type: "true_false", statement: "Sinneszellen in Epithelverbaenden sind an Reizweiterleitung beteiligt.", answer: true, explanation: "Sinneszellen des Sinnesepithels (z.B. Haarzellen des Innenohrs, Riechzellen der Nasenschleimhaut, Photorezeptoren der Netzhaut) wandeln physikalische oder chemische Reize in elektrische Signale um, die ueber afferente Nervenfasern an das Gehirn weitergeleitet werden." },
-      { id: "hi_sm_h2", type: "true_false", statement: "Myoepithelzellen sind rein passive Stuetzzellen ohne funktionelle Aktivitaet.", answer: false, explanation: "Myoepithelzellen besitzen kontraktile Aktinfilamente und koennen sich aehnlich wie glatte Muskelzellen zusammenziehen. Durch ihre Kontraktion pressen sie Druesenazini aus und unterstuetzen so aktiv die Sekretabgabe – z.B. beim Milchschiessen in der Brustdruese oder in Schweissdruesen." },
-      { id: "hi_sm_h3", type: "true_false", statement: "Sinnes- und Myoepithel sind spezialisierte Epithelformen.", answer: true, explanation: "Beide repraesentieren Sonderformen des Epithels mit aussergewoehnlichen Eigenschaften: Sinnesepithel ist auf Reizwahrnehmung spezialisiert (Umwandlung physikalischer/chemischer in elektrische Signale), Myoepithel verbindet epitheliale Herkunft mit kontraktilen Eigenschaften und unterstuetzt Druesenfunktionen." }
+      { id: "hi_sm_h1", type: "mc", question: "In welchen Druesen kommen Myoepithelzellen typischerweise vor?", options: [
+        { text: "Schweissdruesen, Speicheldruesen und Milchdruese", correct: true },
+        { text: "Ausschliesslich in der Schilddruese", correct: false },
+        { text: "In der Bauchspeicheldruese (endokriner Teil)", correct: false },
+        { text: "Nur in Lymphknoten", correct: false }
+      ], explanation: "Myoepithelzellen kommen in Druesen vor, wo aktives Auspressen des Sekrets noetig ist: Schweiss- und Speicheldruesen, Milchdruese (Laktation). Sie umschliessen die Azini wie ein Korb und pressen bei Kontraktion (durch Aktinfilamente) das Sekret in die Ausfuehrungsgaenge." },
+      { id: "hi_sm_h2", type: "mc", question: "Welches sind Beispiele fuer Sinnesepithel?", options: [
+        { text: "Haarzellen im Innenohr", correct: true },
+        { text: "Photorezeptoren in der Retina", correct: true },
+        { text: "Riechzellen der Nasenschleimhaut", correct: true },
+        { text: "Endothelzellen der Blutkapillaren", correct: false }
+      ], explanation: "Sinnesepithel wandelt spezifische Reize in elektrische Signale um: Haarzellen im Innenohr (Schall/Gleichgewicht), Photorezeptoren der Retina (Licht), Riechzellen der Nasenschleimhaut (chemische Reize). Endothel ist dagegen einfaches Plattenepithel ohne Sinneszellenfunktion." },
+      { id: "hi_sm_h3", type: "true_false", statement: "Myoepithelzellen haben epithelialen Ursprung, besitzen aber kontraktile Filamente wie glatte Muskelzellen.", answer: true, explanation: "Myoepithelzellen stammen entwicklungsgeschichtlich aus dem Ekto- oder Entoderm (Epithelgewebe), haben aber kontraktile Aktinfilamente erworben. Sie verbinden zwei Gewebeeigenschaften: Lage im Epithelverband + Kontraktionsfaehigkeit. Das macht sie zu einer Hybridform – klassisches Pruefungsthema." }
     ],
-    bossQuestions: [{ id: "hi_sm_b1", type: "true_false", statement: "Die funktionelle Spezialisierung des Epithels geht ueber reine Oberflaechenbedeckung hinaus.", answer: true }],
+    bossQuestions: [{ id: "hi_sm_b1", type: "mc", question: "Welche Aussagen zu Myoepithelzellen sind korrekt?", options: [
+      { text: "Sie besitzen kontraktile Aktinfilamente", correct: true },
+      { text: "Sie unterstuetzen die Sekretabgabe in Druesen durch Kontraktion", correct: true },
+      { text: "Sie bilden die Basalmembran", correct: false },
+      { text: "Sie nehmen Reize aus der Umwelt wahr", correct: false }
+    ]}],
     combatQuestions: [
-      { id: "hi_sm_mc1", type: "mc", question: "Welche Funktion haben Myoepithelzellen?", options: [
-        { text: "Sie unterstuetzen durch Kontraktion die Sekretabgabe in Druesen", correct: true },
-        { text: "Sie nehmen Reize aus der Umwelt wahr", correct: false },
-        { text: "Sie bilden die Basalmembran des Epithels", correct: false },
-        { text: "Sie sind ausschliesslich passive Stuetzzellen ohne Aktivitaet", correct: false }
+      { id: "hi_sm_mc1", type: "mc", question: "Was unterscheidet Myoepithelzellen von anderen Epithelzellen?", options: [
+        { text: "Sie besitzen kontraktile Aktinfilamente und koennen sich zusammenziehen", correct: true },
+        { text: "Sie sind die einzigen Epithelzellen mit Basalmembrananbindung", correct: false },
+        { text: "Sie sezernieren Hormone direkt ins Blut", correct: false },
+        { text: "Sie sind kernlos wie Erythrozyten", correct: false }
       ]},
-      { id: "hi_sm_mc2", type: "mc", question: "Wofuer sind Sinneszellen in Epithelverbaenden zustaendig?", options: [
-        { text: "Fuer Reizwahrnehmung und -weiterleitung an das Nervensystem", correct: true },
-        { text: "Fuer die Sekretion von Enzymen", correct: false },
-        { text: "Fuer die mechanische Stabilisierung des Verbandes", correct: false },
-        { text: "Ausschliesslich fuer Zellteilung und Regeneration", correct: false }
+      { id: "hi_sm_mc2", type: "mc", question: "Welche Sinnesepithelien und ihre Reizqualitaeten sind korrekt zugeordnet?", options: [
+        { text: "Haarzellen Innenohr – Schall- und Gleichgewichtsreize", correct: true },
+        { text: "Riechepithel Nasenschleimhaut – chemische Reize", correct: true },
+        { text: "Photorezeptoren Retina – Lichtreize", correct: true },
+        { text: "Makulazellen der Haut – Temperaturreize (korrekte Bezeichnung)", correct: false }
       ]}
     ]
   }),
@@ -727,23 +945,33 @@ const HISTOLOGIE_1032_PLANTS = [
       water: { statement: "Es wird zwischen ortsstaendigen und freien Bindegewebszellen unterschieden.", answer: true, solution: "Ortsstaendige Bindegewebszellen wie Fibroblasten leben dauerhaft in der Matrix und produzieren z.B. Kollagen. Freie Zellen wie Mastzellen, Makrophagen und Granulozyten wandern ein und ausueben hauptsaechlich Immunfunktionen, bevor sie weiterwandern oder absterben." }
     },
     harvestQuestions: [
-      { id: "hi_bg_h1", type: "true_false", statement: "Interzellularsubstanz ist ein Schluesselmerkmal des Bindegewebes.", answer: true, explanation: "Die extrazellulaere Matrix (Interzellularsubstanz) des Bindegewebes besteht aus Faserproteinen (Kollagen, Elastin, retikulaere Fasern) und Grundsubstanz (Proteoglykane, Glykosaminoglykane). Ihr Zusammensetzungsverhaeltnis bestimmt die mechanischen Eigenschaften: viel Kollagen = Zugfestigkeit, viel Elastin = Rueckfederung." },
-      { id: "hi_bg_h2", type: "true_false", statement: "Bindegewebe liegt nur an Koerperoberflaechen und nie im Inneren.", answer: false, explanation: "Bindegewebe ist das weitest verbreitete Gewebe des Koerpers und kommt ueberall vor: Es fuellt den Raum zwischen Organen, bildet Kapseln um Organe, bildet Fascien und Sehnen, und bildet als spezialisiertes Bindegewebe Knochen, Knorpel und Blut. Oberflaechenbedeckung ist dagegen Aufgabe des Epithels." },
-      { id: "hi_bg_h3", type: "true_false", statement: "Formen wie lockeres und straffes Bindegewebe werden differenziert betrachtet.", answer: true, explanation: "Lockeres Bindegewebe (viel Grundsubstanz, wenige ungeordnete Fasern) fuellt Raeume zwischen Organen und ermoeglicht Verschieblichkeit. Straffes Bindegewebe (viele dicht geordnete Kollagenfasern) bildet zugfeste Strukturen wie Sehnen und Baender und widersteht mechanischer Belastung in einer Hauptzugrichtung." }
+      { id: "hi_bg_h1", type: "mc", question: "Welche Fasertypen kommen in der Bindegewebsmatrix vor?", options: [
+        { text: "Kollagenfasern (Zugfestigkeit)", correct: true },
+        { text: "Elastische Fasern (Rueckstellkraft)", correct: true },
+        { text: "Retikulaere Fasern (Kollagen Typ III, feines Netzwerk)", correct: true },
+        { text: "Myofibrillen (Aktin/Myosin)", correct: false }
+      ], explanation: "Die ECM des Bindegewebes enthaelt drei Fasertypen: Kollagenfasern (Typ I: Zugfestigkeit in Sehnen; Typ II: Knorpel; Typ IV: Basalmembran), elastische Fasern (Elastin + Fibrillin: Rueckstellkraft in Lunge, Gefaessen) und retikulaere Fasern (Kollagen Typ III: feines Netzwerk in Lymphknoten, Leber). Myofibrillen gehoeren zum Muskelgewebe." },
+      { id: "hi_bg_h2", type: "mc", question: "Welche Hauptfunktion haben Fibroblasten?", options: [
+        { text: "Synthese von Kollagen und anderen extrazellulaaeren Matrixkomponenten", correct: true },
+        { text: "Phagozytose von Bakterien und Zelltrueammern", correct: false },
+        { text: "Produktion von Histamin bei allergischen Reaktionen", correct: false },
+        { text: "Antikörperproduktion", correct: false }
+      ], explanation: "Fibroblasten sind die ortsstaendigen Hauptzellen des Bindegewebes. Sie synthetisieren Kollagen, Elastin und Proteoglykane (Matrixkomponenten) und halten so die Bindegewebsstruktur aufrecht. Bei Verletzungen werden sie zu Fibroblasten stimuliert und bilden Narbengewebe. Makrophagen phagozytieren, Mastzellen produzieren Histamin, Plasmazellen produzieren Antikörper." },
+      { id: "hi_bg_h3", type: "true_false", statement: "Straffes geflechtartiges Bindegewebe unterscheidet sich von straffem parallelfaserigem Bindegewebe durch die Faseranordnung.", answer: true, explanation: "Straffes parallelfaseriges Bindegewebe (Sehnen, Baender) hat Kollagenfasern in einer Hauptzugrichtung angeordnet – ideal fuer uniaxiale Zugkraefte. Straffes geflechtartiges Bindegewebe (Lederhaut der Haut, Periost) hat Fasern in mehrere Richtungen geflochten – widersteht Zug aus allen Richtungen." }
     ],
     bossQuestions: [{ id: "hi_bg_b1", type: "true_false", statement: "Die Matrix-Zell-Relation ist fuer das Verstaendnis von Bindegewebe grundlegend.", answer: true }],
     combatQuestions: [
-      { id: "hi_bg_mc1", type: "mc", question: "Was ist ein charakteristisches Merkmal von Bindegewebe?", options: [
-        { text: "Relativ wenige Zellen in viel Interzellularsubstanz (Matrix)", correct: true },
-        { text: "Dichter Zellverband ohne Interzellularsubstanz wie im Epithel", correct: false },
-        { text: "Fehlende Blutversorgung und Avaskulaaritaet", correct: false },
-        { text: "Ausschliessliche Lage an Koerperoberflaechen", correct: false }
+      { id: "hi_bg_mc1", type: "mc", question: "Welche Kollagentypen sind den genannten Strukturen korrekt zugeordnet?", options: [
+        { text: "Kollagen Typ I – Sehnen, Knochen (Zugfestigkeit)", correct: true },
+        { text: "Kollagen Typ II – hyaliner Knorpel", correct: true },
+        { text: "Kollagen Typ IV – Basalmembran", correct: true },
+        { text: "Kollagen Typ I – Basalmembran", correct: false }
       ]},
-      { id: "hi_bg_mc2", type: "mc", question: "Welche der folgenden Zellen ist eine ortstaendige Bindegewebszelle?", options: [
-        { text: "Fibroblast", correct: true },
-        { text: "Neutrophiler Granulozyt", correct: false },
-        { text: "Erythrozyt", correct: false },
-        { text: "Thrombozyt", correct: false }
+      { id: "hi_bg_mc2", type: "mc", question: "Was sind ortsstaendige (sessile) Bindegewebszellen (mehrere koennen korrekt sein)?", options: [
+        { text: "Fibroblast (Matrixsynthese)", correct: true },
+        { text: "Mastzelll (Histamin, Allergie)", correct: true },
+        { text: "Neutrophiler Granulozyt (wandert ein, kurzlebig)", correct: false },
+        { text: "Thrombozyt (Blutgerinnung)", correct: false }
       ]}
     ]
   }),
@@ -751,28 +979,38 @@ const HISTOLOGIE_1032_PLANTS = [
     id: "knorpelgewebe",
     title: "Knorpelgewebe",
     phase1: {
-      soil: { statement: "In 1032 werden hyaliner, elastischer Knorpel und Faserknorpel unterschieden.", answer: true, solution: "Die drei Knorpeltypen unterscheiden sich in ihrer Zusammensetzung und ihren Eigenschaften: Hyaliner Knorpel (blaeulich-weiss, glaettste Gelenkflaechen), elastischer Knorpel (gelblich, biegsam durch Elastinfasern z.B. Ohrmuschel) und Faserknorpel (groesste Zugfestigkeit durch dicke Kollagenfasern z.B. Bandscheiben)." },
+      soil: { statement: "Knorpelgewebe wird in drei histologisch unterscheidbare Typen eingeteilt: hyaliner Knorpel (Gelenkflaechen), elastischer Knorpel (Ohrmuschel) und Faserknorpel (Bandscheiben) – jeder mit charakteristischer Struktur und Funktion.", answer: true, solution: "Die drei Knorpeltypen unterscheiden sich in ihrer Zusammensetzung und ihren Eigenschaften: Hyaliner Knorpel (blaeulich-weiss, glaettste Gelenkflaechen), elastischer Knorpel (gelblich, biegsam durch Elastinfasern z.B. Ohrmuschel) und Faserknorpel (groesste Zugfestigkeit durch dicke Kollagenfasern z.B. Bandscheiben)." },
       seed: { statement: "Knorpelgewebe wird histologisch nicht weiter unterteilt.", answer: false, solution: "Knorpelgewebe wird in drei klar unterscheidbare Typen eingeteilt, die sich histologisch in Fasergehalt, Matrixzusammensetzung und Farbgebung unterscheiden. Diese Unterschiede erklaeren die verschiedenen Lokalisationen und mechanischen Eigenschaften der Knorpeltypen im Koerper." },
       water: { statement: "Die Knorpeltypen unterscheiden sich funktionell und strukturell.", answer: true, solution: "Hyaliner Knorpel mit seiner glatten Oberflaeche ist ideal fuer druckbelastete Gelenkflaechen, elastischer Knorpel fuer Strukturen die biegsam sein muessen (Ohrmuschel, Epiglottis), und Faserknorpel fuer hohe Zugbelastung (Bandscheiben, Menisken). Form folgt Funktion." }
     },
     harvestQuestions: [
-      { id: "hi_kg_h1", type: "true_false", statement: "Hyaliner Knorpel ist ein eigener histologischer Knorpeltyp.", answer: true, explanation: "Hyaliner Knorpel ist der haeu­figste Knorpeltyp: blaeulich-weiss, glasartig erscheinend (griech. hyalos = Glas), mit reichlich Kollagen Typ II in einer gelartigen Grundsubstanz. Er kleidet Gelenkflaechen aus, bildet die Rippenknorpel und ist Ausgangsmaterial der enchondralen Ossifikation." },
-      { id: "hi_kg_h2", type: "true_false", statement: "Elastischer Knorpel und Faserknorpel sind identische Begriffe.", answer: false, explanation: "Elastischer Knorpel enthaelt neben Kollagen Typ II viele elastische Fasern, ist gelblich-transkludent und biegsam (z.B. Ohrmuschel, Epiglottis). Faserknorpel dagegen enthaelt dicke Kollagen-Typ-I-Buendel, ist mechanisch sehr zugfest und befindet sich an Stellen hoher Druckbelastung (Bandscheiben, Menisken, Symphyse)." },
-      { id: "hi_kg_h3", type: "true_false", statement: "Die Knorpeltypisierung ist fuer Funktionsdeutung relevant.", answer: true, explanation: "Die Knorpeltypen haben je nach Zusammensetzung unterschiedliche biomechanische Eigenschaften: Hyaliner Knorpel gleitet gut und federt Druck ab (Gelenkflaechen), elastischer Knorpel federt und biegt sich ohne zu brechen (Ohrmuschel), Faserknorpel widersteht Zugkraeften und Druck (Bandscheiben)." }
+      { id: "hi_kg_h1", type: "mc", question: "Welcher Kollagentyp ist der Hauptbestandteil von hyalinem Knorpel?", options: [
+        { text: "Kollagen Typ II", correct: true },
+        { text: "Kollagen Typ I", correct: false },
+        { text: "Kollagen Typ III", correct: false },
+        { text: "Kollagen Typ IV", correct: false }
+      ], explanation: "Hyaliner Knorpel enthaelt primaer Kollagen Typ II in einer gelartigen, glykosaminoglykanreichen Grundsubstanz (Aggrekan, Hyaluronsaeure). Kollagen Typ I findet sich in Faserknorpel, Knochen und Sehnen. Kollagen Typ IV ist in der Basalmembran." },
+      { id: "hi_kg_h2", type: "mc", question: "Wo im Koerper findet man Faserknorpel?", options: [
+        { text: "Bandscheiben (Nucleus pulposus + Anulus fibrosus), Menisken und Symphysis pubica", correct: true },
+        { text: "Ohrmuschel und Epiglottis", correct: false },
+        { text: "Gelenkflaechen grosser Gelenke (Knie, Hufte)", correct: false },
+        { text: "Rippenknorpel und Nasenruecken", correct: false }
+      ], explanation: "Faserknorpel (viele dicke Kollagen-Typ-I-Buendel, wenig Grundsubstanz) kommt an Stellen vor, die hohe Druckbelastung und Zugkraefte aushalten muessen: Bandscheiben, Menisken, Symphysis pubica, Insertionstellen von Sehnen. Ohrmuschel und Epiglottis: elastischer Knorpel. Gelenkflaechen: hyaliner Knorpel." },
+      { id: "hi_kg_h3", type: "true_false", statement: "Knorpelgewebe ist avaskular – die Ernaehrung der Chondrozyten erfolgt durch Diffusion.", answer: true, explanation: "Knorpelgewebe besitzt keine Blutgefaesse (avaskular). Chondrozyten erhalten Naehrstoffe und Sauerstoff durch Diffusion aus dem Perichondrium oder (bei Gelenkknorpel) aus der Synovialfluessigkeit. Diese avaskulaere Natur erklaert, warum Knorpeldefekte sehr schlecht heilen." }
     ],
     bossQuestions: [{ id: "hi_kg_b1", type: "true_false", statement: "Die sichere Unterscheidung der Knorpeltypen gehoert zum Histologie-Grundwissen.", answer: true }],
     combatQuestions: [
-      { id: "hi_kg_mc1", type: "mc", question: "Welcher Knorpeltyp kleidet die meisten Gelenkflaechen aus?", options: [
-        { text: "Hyaliner Knorpel", correct: true },
-        { text: "Faserknorpel", correct: false },
-        { text: "Elastischer Knorpel", correct: false },
-        { text: "Fibroser Knorpel", correct: false }
+      { id: "hi_kg_mc1", type: "mc", question: "Welche Knorpeltypen sind den genannten Lokalisationen korrekt zugeordnet?", options: [
+        { text: "Hyaliner Knorpel – Gelenkflaechen, Rippenknorpel, Wachstumsplatte", correct: true },
+        { text: "Elastischer Knorpel – Ohrmuschel, Epiglottis", correct: true },
+        { text: "Faserknorpel – Bandscheiben, Menisken, Symphysis pubica", correct: true },
+        { text: "Faserknorpel – Gelenkflaechen grosser Gelenke", correct: false }
       ]},
-      { id: "hi_kg_mc2", type: "mc", question: "Wo findet man vor allem elastischen Knorpel?", options: [
-        { text: "In der Ohrmuschel und im Kehldeckel (Epiglottis)", correct: true },
-        { text: "In den Bandscheiben der Wirbelsaeule", correct: false },
-        { text: "An den Gelenkflaechen grosser Gelenke", correct: false },
-        { text: "Im Rippen-Brustbein-Uebergang", correct: false }
+      { id: "hi_kg_mc2", type: "mc", question: "Warum heilen Knorpelschaeden schlecht?", options: [
+        { text: "Weil Knorpelgewebe avaskular ist und Chondrozyten nur eingeschraenkt proliferieren", correct: true },
+        { text: "Weil Knorpelgewebe reichlich Blutgefaesse hat, die die Regeneration stoeren", correct: false },
+        { text: "Weil Chondrozyten keine Kollagensynthese betreiben koennen", correct: false },
+        { text: "Weil Knorpelgewebe aus Prokaryoten besteht", correct: false }
       ]}
     ]
   }),
@@ -782,26 +1020,36 @@ const HISTOLOGIE_1032_PLANTS = [
     phase1: {
       soil: { statement: "Knochengewebe wird histologisch als spezialisiertes Binde- und Stuetzgewebe eingeordnet.", answer: true, solution: "Knochengewebe ist ein spezialisiertes hartes Bindegewebe, das sich durch seine mineralisierte Matrix aus Kollagenfasern und Hydroxylapatit von anderen Bindegeweben unterscheidet. Trotz seiner Haerte ist es lebendiges Gewebe mit aktiven Zellen: Osteoblasten (Aufbau), Osteozyten (Erhalt) und Osteoklasten (Abbau)." },
       seed: { statement: "Knochenzellen spielen fuer Aufbau und Erhalt des Knochengewebes keine Rolle.", answer: false, solution: "Knochenzellen sind der Kern des Knochenlebens: Osteoblasten produzieren neue Knochenmatrix (Kollagen + Mineralisation), Osteozyten erhalten als eingemauerte Zellen das Gewebe durch Naehrstoffaustausch ueber Kanaelchen, Osteoklasten bauen auf Signal hin gealterte Matrix gezielt ab." },
-      water: { statement: "Die Osteogenese (Knochenentwicklung) wird als eigener Lernpunkt dargestellt.", answer: true, solution: "Osteogenese kann direkt aus Bindegewebe verlaufen (desmale Ossifikation, z.B. Schaedelknochen) oder ueber eine Knorpelvorlaeuferstufe (enchondrale Ossifikation, z.B. lange Roehrenknochen). Beide Wege enden mit der Mineralisation der Knochenmatrix durch Osteoblasten." }
+      water: { statement: "Bei der desmalen Ossifikation entsteht Knochen direkt aus mesenchymalem Bindegewebe, ohne Knorpelvorlaeuferstufe.", answer: true, solution: "Osteogenese kann direkt aus Bindegewebe verlaufen (desmale Ossifikation, z.B. Schaedelknochen) oder ueber eine Knorpelvorlaeuferstufe (enchondrale Ossifikation, z.B. lange Roehrenknochen). Beide Wege enden mit der Mineralisation der Knochenmatrix durch Osteoblasten." }
     },
     harvestQuestions: [
-      { id: "hi_kn_h1", type: "true_false", statement: "Knochengewebe gehoert zu den Stuetzgeweben.", answer: true, explanation: "Knochengewebe ist ein hochspezialisiertes mineralisiertes Bindegewebe und gehoert zusammen mit Knorpelgewebe zu den Stuetzgeweben. Seine Haerte verdankt es der Einlagerung von Hydroxylapatit (Calciumphosphat) in ein Geruest aus Kollagen Typ I, wodurch es sowohl druck- als auch zugfest wird." },
-      { id: "hi_kn_h2", type: "true_false", statement: "Knochenentwicklung ist kein histologisches Thema.", answer: false, explanation: "Knochenentwicklung (Osteogenese) ist ein zentrales histologisches Thema: Desmale Ossifikation (direkte Knochenbildung aus Bindegewebe, z.B. Schaedelknochen) und enchondrale Ossifikation (ueber eine Knorpelvorlaeuferstufe, z.B. lange Roehrenknochen) beschreiben beide wie und wo Osteoblasten Knochen bilden." },
-      { id: "hi_kn_h3", type: "true_false", statement: "Knochenzellen sind ein eigener Unterpunkt in 1032.", answer: true, explanation: "Knochengewebe wird durch drei Zelltypen aufgebaut und erhalten: Osteoblasten (Aufbau durch Kollagen­synthese und Mineralisation), Osteozyten (eingemauerte ehemalige Osteoblasten, erhalten das Gewebe durch Naehrstoffaustausch), und Osteoklasten (mehrkernige Riesenzellen, bauen Knochen durch Salzsaeuresekretion ab)." }
+      { id: "hi_kn_h1", type: "mc", question: "Wie unterscheiden sich Osteoblasten von Osteozyten?", options: [
+        { text: "Osteoblasten sind aktiv knochenbildende Zellen; Osteozyten sind eingemauerte ehemalige Osteoblasten im reifen Knochen", correct: true },
+        { text: "Osteoblasten bauen Knochen ab; Osteozyten bauen ihn auf", correct: false },
+        { text: "Osteozyten haben keine Verbindung zu Nachbarzellen", correct: false },
+        { text: "Beide Zelltypen sind identisch", correct: false }
+      ], explanation: "Osteoblasten (auf der Knochenoberflaeche) synthetisieren Kollagen Typ I und Osteoid, das dann mineralisiert wird. Wenn sie von Knochenmatrix eingemauert werden, differenzieren sie zu Osteozyten – ruhenden Erhaltungszellen. Osteozyten kommunizieren ueber Kanaelchen (Canaliculi) mit Gap Junctions untereinander." },
+      { id: "hi_kn_h2", type: "mc", question: "Durch welchen Mechanismus bauen Osteoklasten Knochen ab?", options: [
+        { text: "Sie sezernieren Salzsaeure (HCl) und lysosomale Enzyme, die die Knochenmatrix loesen", correct: true },
+        { text: "Sie absorbieren Knochenmatrix durch Phagozytose der gesamten Matrix", correct: false },
+        { text: "Sie produzieren Kollagen Typ I fuer den Abbau", correct: false },
+        { text: "Sie stimulieren Chondrozyten zur Knorpeldegeneration", correct: false }
+      ], explanation: "Osteoklasten sind mehrkernige Riesenzellen (aus Monozyten-Vorlaeufern). Sie bilden auf der Knochenoberflaeche eine versiegelte 'Resorptionszone' (Howship-Lakunen) und sezernieren dort Protonen (HCl, pH ~4) durch die Ruffled Border und lysosomale Proteasen (Cathepsin K), die Hydroxylapatit und Kollagen abbauen." },
+      { id: "hi_kn_h3", type: "true_false", statement: "Lamellenknochen hat im Osteon konzentrisch um den Havers-Kanal angeordnete Lamellen aus mineralisierten Kollagenfasern.", answer: true, explanation: "Lamellenknochen (reifer Knochen) ist strukturell aus Osteonen (Havers-Systemen) aufgebaut: konzentrische Lamellen aus Kollagen Typ I mit Hydroxylapatit umringen einen zentralen Havers-Kanal (mit Blutgefaessen und Nerven). Diese Struktur verleiht maximale Stabilitaet bei geringem Gewicht – eine geniale biomechanische Loesung." }
     ],
     bossQuestions: [{ id: "hi_kn_b1", type: "true_false", statement: "Knochenhistologie verbindet Zelltypen, Matrix und Entwicklungsprozesse.", answer: true }],
     combatQuestions: [
-      { id: "hi_kn_mc1", type: "mc", question: "Welche Zellen bauen aktiv Knochensubstanz ab?", options: [
-        { text: "Osteoklasten", correct: true },
-        { text: "Osteoblasten", correct: false },
-        { text: "Osteozyten", correct: false },
-        { text: "Fibroblasten", correct: false }
+      { id: "hi_kn_mc1", type: "mc", question: "Welche Aussagen zu den drei Knochenzellypen sind korrekt?", options: [
+        { text: "Osteoblasten – Knochenaufbau durch Osteoid-Synthese und Mineralisation", correct: true },
+        { text: "Osteozyten – eingemauerte ehemalige Osteoblasten, Erhalt des Knochens", correct: true },
+        { text: "Osteoklasten – mehrkernige Riesenzellen, Knochenabbau durch Saeuresekretion", correct: true },
+        { text: "Osteoblasten – Knochenabbau durch Salzsaeure-Sekretion", correct: false }
       ]},
-      { id: "hi_kn_mc2", type: "mc", question: "Was sind die Hauptbestandteile der Knochenmatrix?", options: [
-        { text: "Hydroxylapatit (Calciumphosphat) und Kollagenfasern", correct: true },
-        { text: "Elastin und Kollagen Typ III", correct: false },
-        { text: "Hyaluronsaeure und Proteoglykane", correct: false },
-        { text: "Glykogen und Lipide", correct: false }
+      { id: "hi_kn_mc2", type: "mc", question: "Was sind die Hauptbestandteile der mineralisierten Knochenmatrix?", options: [
+        { text: "Kollagen Typ I (organisch) und Hydroxylapatit Ca10(PO4)6(OH)2 (anorganisch)", correct: true },
+        { text: "Elastin und Hyaluronsaeure", correct: false },
+        { text: "Kollagen Typ II und Kalziumkarbonat", correct: false },
+        { text: "Glykogen und Chondroitin", correct: false }
       ]}
     ]
   }),
@@ -814,22 +1062,33 @@ const HISTOLOGIE_1032_PLANTS = [
       water: { statement: "Die gewebliche Betrachtung von Blut dient dem Verstaendnis von Zell- und Matrixanteilen.", answer: true, solution: "Wenn man Blut als Gewebe betrachtet, wird der Vergleich mit anderen Bindegeweben moeglich: zelliger Anteil (Erythrozyten, Leukozyten, Thrombozyten) vs. fluessige Matrix (Plasma). So wird verstaendlich, warum z.B. Leukozytenveraenderungen wie bei Leukaemie als Gewebeerkrankungen eingeordnet werden." }
     },
     harvestQuestions: [
-      { id: "hi_bl_h1", type: "true_false", statement: "Blut wird in der Histologie als spezialisiertes Gewebe betrachtet.", answer: true, explanation: "Blut wird als fluessiges Bindegewebe klassifiziert: Es besteht aus zellularen Elementen (Erythrozyten, Leukozyten, Thrombozyten) in einer fluessigen Interzellularsubstanz (Blutplasma). Diese Einordnung ermoeglicht den systematischen Vergleich mit anderen Bindegeweben und verbindet Haematologie mit der Gewebelehre." },
-      { id: "hi_bl_h2", type: "true_false", statement: "Die Gewebelehre ignoriert Blut vollstaendig.", answer: false, explanation: "Blut wird explizit in der Histologie behandelt, da es die Kriterien eines Bindegewebes erfuellt: Zellen (Erythrozyten, Leukozyten, Thrombozyten) in einer Matrix (Plasma). Aus dieser histologischen Einordnung laesst sich verstehen, warum Blutkrankheiten als Gewebserkrankungen konzeptionell eingeordnet werden." }
+      { id: "hi_bl_h1", type: "mc", question: "Welche Leukozytentypen gehoeren zu den Granulozyten?", options: [
+        { text: "Neutrophile, Eosinophile und Basophile", correct: true },
+        { text: "Lymphozyten und Monozyten", correct: false },
+        { text: "Erythrozyten und Thrombozyten", correct: false },
+        { text: "Makrophagen und dendritische Zellen", correct: false }
+      ], explanation: "Leukozyten werden eingeteilt in: Granulozyten (koerniges Zytoplasma) – neutrophile (55–70%, Phagozytose), eosinophile (2–4%, Parasitenabwehr, Allergie) und basophile (0,5–1%, Histaminfreisetzung); sowie agranulaere Leukozyten: Lymphozyten (25–35%, adaptive Immunantwort) und Monozyten (3–8%, Vorlaeuferzellen der Makrophagen)." },
+      { id: "hi_bl_h2", type: "mc", question: "Was ist der Haematokrit und welcher Normalwert gilt fuer Maenner?", options: [
+        { text: "Der Erythrozytenanteil am Gesamtblutvolumen; Maenner: ca. 40–52%", correct: true },
+        { text: "Die Anzahl der Leukozyten pro Mikroliter Blut; Maenner: 4000–11000", correct: false },
+        { text: "Der Haemoglobingehalt des Blutes; Maenner: 14–18 g/dl", correct: false },
+        { text: "Der Plasmaanteil am Blutvolumen; ca. 55–60%", correct: false }
+      ], explanation: "Haematokrit (Hkt) = Volumenanteil der Erythrozyten am Gesamtblut (%). Maenner: 40–52%, Frauen: 37–47%. Ein niedriger Hkt deutet auf Anaemie hin, ein hoher auf Polyglobulie oder Dehydratation. Leukozyten und Thrombozyten machen nur <1% des Blutvolumens aus." },
+      { id: "hi_bl_h3", type: "true_false", statement: "Thrombozyten entstehen durch Abschnuerung von Megakaryozyten im Knochenmark und haben keine DNS.", answer: true, explanation: "Megakaryozyten (riesige polynukleaere Zellen im Knochenmark) schnueren Tausende von Thrombozyten ab. Diese sind kernlos (keine DNA) und ca. 2–4 µm gross. Sie initiieren die primaere Haemostase durch Adhaesion an Gefaesslaesionen und Aggregation. Lebensdauer: ca. 8–12 Tage." }
     ],
     bossQuestions: [{ id: "hi_bl_b1", type: "true_false", statement: "Die Einordnung von Blut als Gewebe erweitert das Verstaendnis klassischer Histologie.", answer: true }],
     combatQuestions: [
-      { id: "hi_bl_mc1", type: "mc", question: "Welchen Anteil am Blutvolumen nehmen die Erythrozyten ein (Haematokrit)?", options: [
-        { text: "Ca. 40–45 %", correct: true },
-        { text: "Ca. 10–15 %", correct: false },
-        { text: "Ca. 60–70 %", correct: false },
-        { text: "Ca. 25–30 %", correct: false }
+      { id: "hi_bl_mc1", type: "mc", question: "Welche Zelltypen und ihre Funktionen sind korrekt zugeordnet?", options: [
+        { text: "Neutrophile Granulozyten – primaere Phagozytose von Bakterien", correct: true },
+        { text: "Eosinophile Granulozyten – Abwehr von Parasiten und allergischen Reaktionen", correct: true },
+        { text: "Lymphozyten (B-Zellen) – Antikörperproduktion", correct: true },
+        { text: "Erythrozyten – Phagozytose von Bakterien", correct: false }
       ]},
-      { id: "hi_bl_mc2", type: "mc", question: "Welche Aufgabe haben Thrombozyten?", options: [
-        { text: "Blutgerinnung und Wundverschluss", correct: true },
-        { text: "Sauerstofftransport im Blut", correct: false },
-        { text: "Abwehr von Bakterien durch Phagozytose", correct: false },
-        { text: "Antikörperproduktion", correct: false }
+      { id: "hi_bl_mc2", type: "mc", question: "Was beschreibt der Begriff 'Differentialblutbild'?", options: [
+        { text: "Die prozentuale Aufteilung der Leukozytentypen (Neutrophile, Lymphozyten, Monozyten, Eosinophile, Basophile)", correct: true },
+        { text: "Die Messung des Haematokrits", correct: false },
+        { text: "Die Groesse und Form der Erythrozyten", correct: false },
+        { text: "Den Fibrinogengehalt des Plasmas", correct: false }
       ]}
     ]
   }),
@@ -837,27 +1096,38 @@ const HISTOLOGIE_1032_PLANTS = [
     id: "muskelgewebe",
     title: "Muskelgewebe",
     phase1: {
-      soil: { statement: "In 1032 werden quergestreifte Skelettmuskulatur, Herzmuskulatur und glatte Muskulatur unterschieden.", answer: true, solution: "Die drei Muskeltypen werden histologisch klar unterschieden: Skelettmuskulatur mit randstaendigen Kernen und deutlicher Querstreifung, Herzmuskulatur mit zentralem Kern und Glanzstreifen zwischen Zellen, glatte Muskulatur ohne Streifung und mit zentralem spindelfoermigem Kern." },
+      soil: { statement: "Muskelgewebe wird histologisch in drei Typen eingeteilt: quergestreifte Skelettmuskulatur (periphere Kerne, deutliche Streifung), Herzmuskulatur (zentraler Kern, Glanzstreifen) und glatte Muskulatur (zentraler Spindelkern, keine Streifung).", answer: true, solution: "Die drei Muskeltypen werden histologisch klar unterschieden: Skelettmuskulatur mit randstaendigen Kernen und deutlicher Querstreifung, Herzmuskulatur mit zentralem Kern und Glanzstreifen zwischen Zellen, glatte Muskulatur ohne Streifung und mit zentralem spindelfoermigem Kern." },
       seed: { statement: "Muskelgewebe wird in der Histologie nicht nach Typen untergliedert.", answer: false, solution: "Die histologische Unterscheidung der Muskeltypen ist fundamental: Querstreifung sichtbar oder nicht, Kernlage zentral oder peripher, Glanzstreifen vorhanden oder nicht. Aus diesen Merkmalen laesst sich Funktion und Innervationstyp ableiten." },
       water: { statement: "Histologische Merkmale der Muskeltypen stehen in Zusammenhang mit ihren Funktionen.", answer: true, solution: "Quergestreifte Skelettmuskulatur zeigt histologisch Streifen durch regelmassige Sarkomeranordnung und ist willkuerlich steuerbar; glatte Muskulatur hat keine Streifen und kontrahiert langsam und ausdauernd. Herzmuskulatur kombiniert Querstreifung (wie Skelettmuskel) mit unwillkuerlicher Steuerung (wie glatte Muskulatur)." }
     },
     harvestQuestions: [
-      { id: "hi_mg_h1", type: "true_false", statement: "Herzmuskulatur wird als eigener Muskeltyp betrachtet.", answer: true, explanation: "Herzmuskulatur ist histologisch quergestreift wie Skelettmuskel (durch Sarkomerstruktur), aber unwillkuerlich gesteuert wie glatte Muskulatur. Zusaetzlich verbinden Glanzstreifen (Disci intercalares) mit Gap Junctions benachbarte Herzmuskelzellen, sodass elektrische Erregung direkt weitergeleitet werden kann." },
-      { id: "hi_mg_h2", type: "true_false", statement: "Glatte Muskulatur und quergestreifte Skelettmuskulatur sind histologisch identisch.", answer: false, explanation: "Skelettmuskulatur zeigt deutliche Querstreifung durch regelmaessige Sarkomeranordnung, hat randstaendige Kerne und ist willkuerlich steuerbar. Glatte Muskulatur hat keine sichtbare Streifung, einen zentral gelegenen ovalen Kern und kontrahiert langsam und ausdauernd unter autonomer Kontrolle." }
+      { id: "hi_mg_h1", type: "mc", question: "Welche Merkmalskombination ist spezifisch fuer die Herzmuskulatur?", options: [
+        { text: "Querstreifung, unwillkuerliche Steuerung und Disci intercalares mit Gap Junctions", correct: true },
+        { text: "Querstreifung, willkuerliche Steuerung und randstaendige Kerne", correct: false },
+        { text: "Keine Querstreifung, unwillkuerliche Steuerung und Disci intercalares", correct: false },
+        { text: "Querstreifung, unwillkuerliche Steuerung, aber keine Disci intercalares", correct: false }
+      ], explanation: "Herzmuskulatur kombiniert: Querstreifung durch Sarkomere (wie Skelettmuskel) + unwillkuerliche Steuerung (wie glatte Muskulatur) + Disci intercalares (Glanzstreifen: Adhaerens-Junctions fuer mechanische Kopplung und Gap Junctions fuer elektrische Kopplung) + zentraler Kern." },
+      { id: "hi_mg_h2", type: "mc", question: "Welches Protein bildet die dunklen A-Banden im Sarkomer der Skelettmuskulatur?", options: [
+        { text: "Myosin (dicke Filamente)", correct: true },
+        { text: "Aktin (duenne Filamente)", correct: false },
+        { text: "Troponin", correct: false },
+        { text: "Titin", correct: false }
+      ], explanation: "Im Sarkomer (strukturelle Einheit des Muskels): A-Banden (anisotrop = dunkel im Lichtmikroskop) = Myosin (dicke Filamente, 10–15 nm). I-Banden (isotrop = hell) = nur Aktin (duenne Filamente, 5–7 nm). Die Querstreifung entsteht durch die regelmaessige Anordnung dieser Filamente im Sarkomer." },
+      { id: "hi_mg_h3", type: "true_false", statement: "Glatte Muskelzellen koennen sich langsam und ausdauernd ohne Ermuedung kontrahieren, was sie fuer Hohlorgane besonders geeignet macht.", answer: true, explanation: "Glatte Muskulatur nutzt einen anderen Kontraktionsmechanismus als Skelettmuskel: langsame Myosin-Querbrueckenzyklen (Latchzustand) erlauben Dauerkontraktionen mit sehr wenig ATP-Verbrauch. Diese Eigenschaft ist ideal fuer Dauertonus in Gefaessen, Blasenapex, Darmmotilitaet." }
     ],
     bossQuestions: [{ id: "hi_mg_b1", type: "true_false", statement: "Muskelhistologie ist ohne sichere Typunterscheidung nicht belastbar.", answer: true }],
     combatQuestions: [
-      { id: "hi_mg_mc1", type: "mc", question: "Was kennzeichnet glatte Muskulatur histologisch und funktionell?", options: [
-        { text: "Keine Querstreifung, unwillkuerliche Steuerung", correct: true },
-        { text: "Querstreifung, willkuerliche Steuerung", correct: false },
-        { text: "Querstreifung, unwillkuerliche Steuerung", correct: false },
-        { text: "Keine Querstreifung, willkuerliche Steuerung", correct: false }
+      { id: "hi_mg_mc1", type: "mc", question: "Welche histologischen Merkmale unterscheiden die drei Muskeltypen?", options: [
+        { text: "Skelett: randstaendige Kerne, deutliche Querstreifung, willkuerlich", correct: true },
+        { text: "Herz: zentraler Kern, Querstreifung, Disci intercalares, unwillkuerlich", correct: true },
+        { text: "Glatt: zentraler ovaler Kern, keine Streifung, unwillkuerlich", correct: true },
+        { text: "Herz: randstaendige Kerne, keine Streifung, unwillkuerlich", correct: false }
       ]},
-      { id: "hi_mg_mc2", type: "mc", question: "Welches histologische Merkmal ist typisch fuer die Herzmuskulatur?", options: [
-        { text: "Glanzstreifen (Disci intercalares) zwischen den Herzmuskelzellen", correct: true },
-        { text: "Mehrere randstaendige Zellkerne pro Faser wie in Skelettmuskeln", correct: false },
-        { text: "Fehlen von Myofibrillen", correct: false },
-        { text: "Vollstaendige willkuerliche Steuerbarkeit", correct: false }
+      { id: "hi_mg_mc2", type: "mc", question: "Was ermoeglicht die elektrische Kopplung der Herzmuskelzellen?", options: [
+        { text: "Gap Junctions in den Disci intercalares", correct: true },
+        { text: "Motorische Endplatten wie bei Skelettmuskeln", correct: false },
+        { text: "Spannungsgesteuerte Natriumkanaele ohne Zell-Zell-Kontakt", correct: false },
+        { text: "Myelinisierte Nervenfasern", correct: false }
       ]}
     ]
   }),
@@ -870,22 +1140,33 @@ const HISTOLOGIE_1032_PLANTS = [
       water: { statement: "Der Aufbau der Nervenzelle ist Grundlage fuer das Verstaendnis ihrer Funktion.", answer: true, solution: "Die Nervenzelle besteht aus Soma (Zellkoerper mit Kern), Dendriten (Signalempfaenger) und Axon (Signalleiter). Diese Struktur erklaert direkt die Funktion: Dendriten empfangen Signale, das Axon leitet Aktionspotentiale zur naechsten Synapse weiter." }
     },
     harvestQuestions: [
-      { id: "hi_ng_h1", type: "true_false", statement: "Gliazellen und Nervenfasern sind Teil der histologischen Betrachtung des Nervengewebes.", answer: true, explanation: "Nervengewebe besteht aus zwei Hauptkomponenten: Neuronen (Nervenzellen mit Soma, Dendriten und Axon) und Gliazellen (Astrozyten, Oligodendrozyten, Mikroglia, Schwann-Zellen). Gliazellen stuetzen, isolieren (Myelinisierung) und versorgen die Neuronen und sind mengenmassig weit haeufiger als Neuronen." },
-      { id: "hi_ng_h2", type: "true_false", statement: "Nervengewebe wird in 1032 ohne Bezug zur Erregungsleitung dargestellt.", answer: false, explanation: "Erregungsbildung und -leitung sind die Kernfunktionen des Nervengewebes und koennen nicht ohne Bezug zur histologischen Struktur erklaert werden: Die Myelinscheide um Axone ermoeglicht die saltatorische Erregungsleitung, Synapsen vermitteln die Uebertragung auf benachbarte Zellen." }
+      { id: "hi_ng_h1", type: "mc", question: "Welche Gliazelltypen kommen im zentralen Nervensystem (ZNS) vor?", options: [
+        { text: "Astrozyten, Oligodendrozyten und Mikroglia", correct: true },
+        { text: "Schwann-Zellen und Satellitenzellen", correct: false },
+        { text: "Nur Astrozyten", correct: false },
+        { text: "Thrombozyten und Erythrozyten", correct: false }
+      ], explanation: "ZNS-Gliazellen: Astrozyten (Stuetze, Blut-Hirn-Schranke, K+-Pufferung), Oligodendrozyten (Myelinisierung im ZNS – ein Oligodendrozyt kann bis zu 50 Axone myelinisieren), Mikroglia (immunaktive Makrophagen des ZNS). Schwann-Zellen myelinisieren dagegen nur im peripheren Nervensystem (PNS) – ein Schwann-Zell-Segment pro Axon." },
+      { id: "hi_ng_h2", type: "mc", question: "Was bezeichnet man als 'saltatorische Erregungsleitung'?", options: [
+        { text: "Sprungartige Weiterleitung des Aktionspotentials von Ranvier-Schnuerring zu Ranvier-Schnuerring", correct: true },
+        { text: "Kontinuierliche Ausbreitung des Aktionspotentials entlang dem gesamten Axon ohne Unterbrechung", correct: false },
+        { text: "Erregungsleitung rueckwaerts vom Soma zum Dendriten", correct: false },
+        { text: "Leitung durch elektrische Synapsen ohne Neurotransmitter", correct: false }
+      ], explanation: "Saltatorische Leitung (lat. saltare = springen): Aktionspotentiale entstehen nur an den nichtmyelinisierten Ranvier-Schnuerringen (Luecken in der Myelinscheide), nicht unter der Myelinscheide. Dies beschleunigt die Leitung erheblich (bis 120 m/s) und spart Energie, da weniger Membranflaeche depolarisiert werden muss." },
+      { id: "hi_ng_h3", type: "true_false", statement: "Das Ruhemembranpotential einer typischen Nervenzelle betraegt ca. -70 mV (innen negativ).", answer: true, explanation: "Das Ruhemembranpotential (-70 mV) entsteht durch: ungleiche Ionenverteilung (hohe K+ innen, hohe Na+ aussen), Kaliumleckkanaele (K+ stroemt aus), und die Na+/K+-ATPase (haelt den Gradienten aufrecht). Innen ist es negativ, weil K+-Ausstrom mehr negative Ladungen zuruecklaesst." }
     ],
     bossQuestions: [{ id: "hi_ng_b1", type: "true_false", statement: "Nervengewebe erfordert das Zusammendenken von Zellaufbau, Leitungsfunktion und Stuetzstrukturen.", answer: true }],
     combatQuestions: [
-      { id: "hi_ng_mc1", type: "mc", question: "Welche Aussage zu Gliazellen trifft zu?", options: [
-        { text: "Sie stuetzen, ernaehren und isolieren Nervenzellen", correct: true },
-        { text: "Sie sind fuer die Erregungsleitung direkt zustaendig", correct: false },
-        { text: "Sie kommen im peripheren Nervensystem nicht vor", correct: false },
-        { text: "Sie besitzen Axone zur Reizweiterleitung", correct: false }
+      { id: "hi_ng_mc1", type: "mc", question: "Welche Gliazelltypen und ihre Funktionen sind korrekt zugeordnet?", options: [
+        { text: "Oligodendrozyten – Myelinisierung im ZNS", correct: true },
+        { text: "Schwann-Zellen – Myelinisierung im PNS", correct: true },
+        { text: "Mikroglia – Immunzellen des ZNS (ZNS-Makrophagen)", correct: true },
+        { text: "Astrozyten – Erregungsleitung durch Aktionspotentiale", correct: false }
       ]},
-      { id: "hi_ng_mc2", type: "mc", question: "Was beschreibt das Aktionspotential einer Nervenzelle?", options: [
-        { text: "Die kurzzeitige Umkehr des Membranpotentials bei Erregung", correct: true },
-        { text: "Die dauerhafte Depolarisation der Nervenzellmembran", correct: false },
-        { text: "Den Ruhezustand der Nervenzelle ohne Reizweiterleitung", correct: false },
-        { text: "Die Hemmung der Signalweiterleitung an der Synapse", correct: false }
+      { id: "hi_ng_mc2", type: "mc", question: "Was unterscheidet myelinisierte von nicht-myelinisierten Axonen?", options: [
+        { text: "Myelinisierte Axone leiten schneller durch saltatorische Erregungsleitung", correct: true },
+        { text: "Myelinisierte Axone sind duenner und leiten langsamer", correct: false },
+        { text: "Nicht-myelinisierte Axone leiten schneller als myelinisierte", correct: false },
+        { text: "Myelinisierung kommt nur im PNS vor", correct: false }
       ]}
     ]
   })
@@ -901,23 +1182,33 @@ const KNOCHENLEHRE_1033_PLANTS = [
       water: { statement: "Osteoblasten und Osteoklasten sind zentrale Zelltypen des Knochenstoffwechsels.", answer: true, solution: "Osteoblasten synthetisieren Kollagen und initiieren die Mineralisation der Knochenmatrix – sie sind die Aufbauexperten. Osteoklasten loesen Knochensubstanz durch Saeuresekretion und lysosomale Enzyme auf. Das Gleichgewicht beider Zelltypen bestimmt die Knochendichte." }
     },
     harvestQuestions: [
-      { id: "ko_st_h1", type: "true_false", statement: "Knochen passt sich funktionell an mechanische Beanspruchung an.", answer: true, explanation: "Nach dem Wolff'schen Gesetz orientiert sich der Knochenumbau an der einwirkenden mechanischen Belastung: Mehr belastete Bereiche werden durch verstaerkte Osteoblastenaktivitaet verdichtet, wenig belastete Bereiche durch Osteoklasten abgebaut. Dieses Prinzip erklaert Knochenverlust bei Immobilitaet und Aufbau bei Training." },
-      { id: "ko_st_h2", type: "true_false", statement: "Im Knochenstoffwechsel gibt es ausschliesslich Aufbauprozesse.", answer: false, explanation: "Knochenstoffwechsel ist ein dynamisches Gleichgewicht aus Auf- und Abbau: Osteoblasten bauen neue Matrix auf, Osteoklasten bauen alte oder beschaedigte Matrix ab. Dieses ständige Remodelling erneuert den gesamten Knochen beim Erwachsenen etwa alle 10 Jahre vollstaendig." },
-      { id: "ko_st_h3", type: "true_false", statement: "Auf- und Abbau sind fuer Erhalt und Anpassung des Knochensystems wichtig.", answer: true, explanation: "Der Knochen dient nicht nur als mechanische Stuetze, sondern auch als Kalziumspeicher fuer den Organismus. Osteoklasten koennen auf hormonelle Signale (Parathormon) hin Kalzium aus dem Knochen freisetzen, wenn der Blutkalziumspiegel faellt – ein lebensnotwendiger Regulationsmechanismus." }
+      { id: "ko_st_h1", type: "mc", question: "Was besagt das Wolff'sche Gesetz?", options: [
+        { text: "Knochen baut sich entsprechend einwirkender mechanischer Belastung um: Zuglinien werden durch Trabekelausrichtung gespiegelt", correct: true },
+        { text: "Knochen verliert immer an Masse, unabhaengig von Belastung", correct: false },
+        { text: "Osteoblasten sind inaktiv bei mechanischer Belastung", correct: false },
+        { text: "Knochen reagiert nur auf hormonelle, nicht auf mechanische Reize", correct: false }
+      ], explanation: "Das Wolff'sche Gesetz (Julius Wolff, 1892): Knochen passt seine Struktur (Trabekelarchitektur, Kortikalisdicke) an die einwirkenden Kraefte an. Belastungslinien werden durch Trabekel im Inneren des Knochens gespiegelt. Astronauten verlieren Knochenmasse in der Schwerelosigkeit; Sportler bauen Knochen auf – ein direkter Beweis fuer dieses Gesetz." },
+      { id: "ko_st_h2", type: "mc", question: "Welches Hormon stimuliert den Knochenabbau (erhoehte Osteoklasenaktivitaet)?", options: [
+        { text: "Parathormon (PTH)", correct: true },
+        { text: "Calcitonin", correct: false },
+        { text: "Oestrogen", correct: false },
+        { text: "Insulin", correct: false }
+      ], explanation: "Parathormon (PTH, aus Nebenschilddruesen) stimuliert bei Hypokalzaemie die Osteoklasten (indirekt ueber RANKL-Signalweg), was Kalzium aus dem Knochen freisetzt und den Blutkalziumspiegel anhebt. Calcitonin (aus C-Zellen der Schilddruese) hemmt dagegen Osteoklasten. Oestrogen schuetzt vor Knochenverlust (erklaert Osteoporose nach Menopause)." },
+      { id: "ko_st_h3", type: "true_false", statement: "Der menschliche Knochen wird im Erwachsenenalter vollstaendig innerhalb von ca. 10 Jahren durch Remodelling erneuert.", answer: true, explanation: "Knochenremodelling ist ein lebenslanger Prozess: Pro Jahr wird ca. 10% des gesamten Knochengewebes durch koordinierte Osteoklastenresorption und Osteoblastenneubildung (Remodelling-Einheiten) erneuert. Damit wird der gesamte Knochen etwa alle 10 Jahre vollstaendig ausgetauscht – vergleichbar einer staendigen Materialerneuerung." }
     ],
     bossQuestions: [{ id: "ko_st_b1", type: "true_false", statement: "Knochenstoffwechsel ist ein dynamischer, lebenslanger Prozess.", answer: true }],
     combatQuestions: [
-      { id: "ko_st_mc1", type: "mc", question: "Welche Zellen sind fuer den Knochenaufbau zustaendig?", options: [
-        { text: "Osteoblasten", correct: true },
-        { text: "Osteoklasten", correct: false },
-        { text: "Osteozyten", correct: false },
-        { text: "Chondroblasten", correct: false }
+      { id: "ko_st_mc1", type: "mc", question: "Welche Hormone regulieren den Knochenstoffwechsel und wie?", options: [
+        { text: "Parathormon (PTH) – erhoehte Osteoklasenaktivitaet, Kalziumfreisetzung", correct: true },
+        { text: "Calcitonin – hemmt Osteoklasten, senkt Blutkalzium", correct: true },
+        { text: "Oestrogen – schuetzt Knochen vor Abbau", correct: true },
+        { text: "Insulin – ist der Hauptregulator des Knochenstoffwechsels", correct: false }
       ]},
-      { id: "ko_st_mc2", type: "mc", question: "Was bewirkt koerperliche Belastung auf den Knochen?", options: [
-        { text: "Sie stimuliert den Knochenaufbau durch mechanische Reize", correct: true },
-        { text: "Sie fuehrt ausschliesslich zu Knochenabbau", correct: false },
-        { text: "Sie hat keinen Einfluss auf den Knochenstoffwechsel", correct: false },
-        { text: "Sie hemmt die Osteoblastenaktivitaet dauerhaft", correct: false }
+      { id: "ko_st_mc2", type: "mc", question: "Was erklaert den Knochenverlust bei Astronauten in der Schwerelosigkeit?", options: [
+        { text: "Fehlende mechanische Belastung → reduzierte Osteoblastenaktivitaet gemaess Wolff'schem Gesetz", correct: true },
+        { text: "Ueberschuss an Parathormon im Weltall", correct: false },
+        { text: "Vitamin-D-Mangel durch fehlende UV-Strahlung", correct: false },
+        { text: "Inhibition der Osteoklasten durch kosmische Strahlung", correct: false }
       ]}
     ]
   }),
@@ -930,23 +1221,33 @@ const KNOCHENLEHRE_1033_PLANTS = [
       water: { statement: "Knochenumbau dient der funktionellen Anpassung an Belastung.", answer: true, solution: "Das Wolff'sche Gesetz beschreibt, wie Knochen seine Struktur staendig an einwirkende Kraefte anpasst: Mehr belastete Bereiche werden verdichtet, wenig belastete werden abgebaut. Dieser koordinierte Umbau durch Osteoblasten und Osteoklasten erklaert z.B. Knochenverlust bei Immobilitaet und Aufbau bei koerperlichem Training." }
     },
     harvestQuestions: [
-      { id: "ko_bau_h1", type: "true_false", statement: "Knochenumbau kombiniert aufbauende und abbauende Prozesse.", answer: true, explanation: "Knochenumbau (Remodelling) laeuft in strukturierten Einheiten ab: Zuerst aktivieren Osteoklasten und hoehlen Tunnel in den alten Knochen (Resorption), dann wandern Osteoblasten ein und fuellen den Hohlraum mit neuer Knochenmatrix (Formation). Dieses koordinierte Zusammenspiel erneuert staendig alten durch neuen Knochen." },
-      { id: "ko_bau_h2", type: "true_false", statement: "Ohne Knochenabbau waere die Bildung von Markraeumen funktionell unproblematisch.", answer: false, explanation: "Die Markhoehlel im Schaft der Roehrenknochen entsteht und bleibt nur durch aktiven Knochenabbau durch Osteoklasten erhalten. Ohne Abbau wuerden die Markraeume durch Knochenmasse ausgefuellt und koennte kein blutbildendes Knochenmark (rotes Mark) oder Fettmark (gelbes Mark) darin Platz finden." },
-      { id: "ko_bau_h3", type: "true_false", statement: "Knochenumbau ist fuer die Anpassung an veränderte Beanspruchung relevant.", answer: true, explanation: "Bei veraenderter mechanischer Belastung – z.B. nach Fraktur, Immobilisierung oder intensivem Sport – passt sich der Knochen durch veraendertes Remodelling an: Kraftlinien werden durch Trabekelausrichtung in der Spongiosa gespiegelt, und die Kortikalisdicke veraendert sich entsprechend der Langzeitbelastung." }
+      { id: "ko_bau_h1", type: "mc", question: "Was ist der Unterschied zwischen desmaler und enchondraler Ossifikation?", options: [
+        { text: "Desmal: direkte Knochenbildung aus Mesenchym; enchondral: Knochenbildung ueber eine Knorpelvorlaeuferstufe", correct: true },
+        { text: "Desmal: nur in den Extremitaeten; enchondral: nur im Schaedel", correct: false },
+        { text: "Beide Formen sind identisch – der Name ist nur verschieden", correct: false },
+        { text: "Enchondral: direkte Knochenbildung; desmal: ueber Knorpelvorlaeuferstufe", correct: false }
+      ], explanation: "Desmale Ossifikation (griech. desmos = Band): Osteoblasten differenzieren direkt aus Mesenchymzellen und bilden Knochen ohne Knorpelvorlaefer. Beispiele: Schedelknochen (Frontal-, Parietale), Klavikula, Gesichtsknochen. Enchondrale Ossifikation: Knorpelmodell wird durch Knochen ersetzt; Beispiele: alle langen Roehrenknochen, Beckenknochen, Rippen." },
+      { id: "ko_bau_h2", type: "mc", question: "Was bezeichnet die 'periostale Ossifikation' beim Dickenwachstum?", options: [
+        { text: "Knochenaufbau unter dem Periost durch Osteoblasten auf der Knochenoberflaeche", correct: true },
+        { text: "Knochenabbau in der Markhoehle durch Osteoklasten", correct: false },
+        { text: "Verknorpelung des Periosts bei Frakturheilung", correct: false },
+        { text: "Knochenbildung in der Epiphysenfuge", correct: false }
+      ], explanation: "Das Laengenwachstum erfolgt enchondral in der Epiphysenfuge. Das Dickenwachstum (Apposition) erfolgt periosteal: Osteoblasten unter dem Periost legen konzentrisch neue Knochenlamellen auf die Knochenoberflaeche. Gleichzeitig bauen Osteoklasten endosteal ab, um die Markhoehlengrösse beizubehalten." },
+      { id: "ko_bau_h3", type: "true_false", statement: "Bei der Frakturheilung wird immer zuerst Geflechtknochen gebildet, der spaeter zu Lamellenknochen umgebaut wird.", answer: true, explanation: "Frakturheilung verlaeuft in Phasen: Haematom → Granulationsgewebe → Kallus (periostaler Kallus aus Faserknorpel, spaeter Geflechtknochen) → Umbau zu Lamellenknochen. Geflechtknochen ist schnell aber schwaecher (ungeordnete Kollagenfasern); Lamellenknochen ist stark und biomechanisch optimiert (geordnete konzentrische Lamellen)." }
     ],
     bossQuestions: [{ id: "ko_bau_b1", type: "true_false", statement: "Aufbau und Abbau sind gleichermassen Teil physiologischer Knochenvorgaenge.", answer: true }],
     combatQuestions: [
-      { id: "ko_bau_mc1", type: "mc", question: "Welcher Knochenbildungstyp entsteht direkt aus Mesenchym ohne Knorpelvorlaeuferstufe?", options: [
-        { text: "Desmale (direkte) Ossifikation", correct: true },
-        { text: "Enchondrale Ossifikation", correct: false },
-        { text: "Perichondrale Ossifikation", correct: false },
-        { text: "Periostale Ossifikation", correct: false }
+      { id: "ko_bau_mc1", type: "mc", question: "Welche Knochen entstehen durch desmale (membranoeser) Ossifikation?", options: [
+        { text: "Schaedelknochen (Stirn-, Scheitel-, Hinterhauptsknochen)", correct: true },
+        { text: "Lange Roehrenknochen (Femur, Humerus)", correct: false },
+        { text: "Rippen und Brustbein", correct: false },
+        { text: "Beckenknochen", correct: false }
       ]},
-      { id: "ko_bau_mc2", type: "mc", question: "Welches Hormon hemmt den Knochenabbau durch Hemmung der Osteoklasten?", options: [
-        { text: "Calcitonin", correct: true },
-        { text: "Parathormon (PTH)", correct: false },
-        { text: "Cortisol", correct: false },
-        { text: "Insulin", correct: false }
+      { id: "ko_bau_mc2", type: "mc", question: "Welche Phasen der Frakturheilung verlaufen in korrekter Reihenfolge?", options: [
+        { text: "Haematom → Granulationsgewebe → Kallus (Geflechtknochen) → Lamellenknochen", correct: true },
+        { text: "Lamellenknochen → Geflechtknochen → Kallus → Haematom", correct: false },
+        { text: "Direkte Ossifikation ohne Knorpelphase bei allen Knochen", correct: false },
+        { text: "Haematom → sofortige Lamellenknochenbildung ohne Zwischenschritte", correct: false }
       ]}
     ]
   }),
@@ -959,23 +1260,33 @@ const KNOCHENLEHRE_1033_PLANTS = [
       water: { statement: "Wachstum und Heilung beginnen haeufig mit Geflechtknochen als frueher Strukturform.", answer: true, solution: "Geflechtknochen entsteht bei schnellem Knochenaufbau (Wachstum, Frakturheilung) und hat ungeordnete Kollagenfasern. Er wird spaeter durch belastungsfesteren lamellären Knochen mit parallel ausgerichteten Kollagenfasern ersetzt." }
     },
     harvestQuestions: [
-      { id: "ko_w_h1", type: "true_false", statement: "Die Epiphysenfuge ist fuer das Laengenwachstum relevant.", answer: true, explanation: "Die Epiphysenfuge (Wachstumsplatte, Physis) ist eine Knorpelzone zwischen Epi- und Diaphyse der langen Roehrenknochen. Hier teilen sich Chondrozyten proliferierend, der Knorpel wird anschliessend durch Osteoblasten verknochert, und der Knochen wird laenger. Mit Abschluss der Pubertaet verschliesst sich die Fuge dauerhaft." },
-      { id: "ko_w_h2", type: "true_false", statement: "Knochenwachstum erfolgt unabhaengig von funktioneller Belastung.", answer: false, explanation: "Mechanische Belastung stimuliert ueber piezoelektrische Effekte und Dehnungsreize die Osteoblastenaktivitaet und foerdert das Dickenwachstum. Schwerelosigkeit oder Immobilitaet fuehren dagegen zu Knochenabbau (z.B. Astronauten, Bettlaegerige). Das Laengenwachstum wird zusaetzlich durch Wachstumshormon und IGF-1 gesteuert." },
+      { id: "ko_w_h1", type: "mc", question: "Welche Zonen der Epiphysenfuge gibt es in korrekter Reihenfolge (von Epiphyse zur Diaphyse)?", options: [
+        { text: "Reservezone → Proliferationszone → Hypertrophiezone → Verkalkungszone", correct: true },
+        { text: "Verkalkungszone → Proliferationszone → Reservezone", correct: false },
+        { text: "Nur zwei Zonen: Wachstumszone und Knochenzone", correct: false },
+        { text: "Reservezone → Verkalkungszone → Hypertrophiezone → Proliferationszone", correct: false }
+      ], explanation: "Die Epiphysenfuge (Physis) hat histologisch vier Zonen: 1. Reservezone (ruhende Chondrozyten), 2. Proliferationszone (Zellteilung, Saeulenbau), 3. Hypertrophiezone (Zellgroessenzunahme, Matrix-Mineralisation), 4. Verkalkungszone (Apoptose der Chondrozyten, Knochenmatrix-Einlagerung durch Osteoblasten)." },
+      { id: "ko_w_h2", type: "mc", question: "Welches Hormon ist der wichtigste Stimulator des Laengenwachstums?", options: [
+        { text: "Wachstumshormon (STH/GH) – wirkt ueber IGF-1", correct: true },
+        { text: "Parathormon (PTH)", correct: false },
+        { text: "Cortisol", correct: false },
+        { text: "Aldosteron", correct: false }
+      ], explanation: "Wachstumshormon (STH = Somatotropin) wird von der Hypophyse ausgeschuettet und stimuliert die Leber zur Produktion von IGF-1 (Insulin-like Growth Factor 1). IGF-1 stimuliert Chondrozytenproliferation in der Epiphysenfuge. Mangel: Kleinwuchs (hypophysaerer Nanismus). Ueberschuss vor Fugenschluss: Gigantismus; nach Fugenschluss: Akromegalie." },
       { id: "ko_w_h3", type: "true_false", statement: "Knochenwachstum und Knochenumbau sind funktionell gekoppelt.", answer: true, explanation: "Waehrend das Laengenwachstum in den Epiphysenfugen stattfindet, muss gleichzeitig das Knochendurchmesserwachstum (periostales Dickenwachstum) mit koordiniertem endostalem Abbau kombiniert werden, um die Proportionen und Markhoehlengrösse beizubehalten. Wachstum ohne Umbau wuerde zu massiven, schweren Knochen ohne Markhoehlel fuehren." }
     ],
     bossQuestions: [{ id: "ko_w_b1", type: "true_false", statement: "Knochenwachstum ist ohne biomechanischen Kontext nicht vollstaendig erklaerbar.", answer: true }],
     combatQuestions: [
-      { id: "ko_w_mc1", type: "mc", question: "Wo findet das Laengenwachstum langer Knochen statt?", options: [
-        { text: "In der Epiphysenfuge (Wachstumsplatte)", correct: true },
-        { text: "Im Periost der Diaphyse", correct: false },
-        { text: "Im Knochenmark der Epiphyse", correct: false },
-        { text: "An der Gelenkknorpeloberflaehe", correct: false }
+      { id: "ko_w_mc1", type: "mc", question: "Welche Faktoren steuern das Laengenwachstum der Knochen?", options: [
+        { text: "Wachstumshormon und IGF-1", correct: true },
+        { text: "Schilddruesenhormone (T3, T4)", correct: true },
+        { text: "Sexualhormone (Oestrogen/Testosteron – foerdern und spaeter verschliessen Epiphysenfugen)", correct: true },
+        { text: "Calcitonin (haupstimulator des Laengenwachstums)", correct: false }
       ]},
-      { id: "ko_w_mc2", type: "mc", question: "Wann schliesst sich die Epiphysenfuge beim Menschen?", options: [
-        { text: "Mit Abschluss der Pubertaet (ca. 18–25 Jahre)", correct: true },
-        { text: "Im Alter von 10 Jahren", correct: false },
-        { text: "Bereits im Kleinkindalter (2–4 Jahre)", correct: false },
-        { text: "Die Epiphysenfuge bleibt lebenslang offen", correct: false }
+      { id: "ko_w_mc2", type: "mc", question: "Was ist der radiologische Befund beim Epiphysenfugenschluss?", options: [
+        { text: "Die Epiphysenfuge ist als helle (radioluzente) Linie zwischen Epi- und Diaphyse nicht mehr sichtbar", correct: true },
+        { text: "Die Epiphysenfuge verbreitert sich und wird radiopak (weiss)", correct: false },
+        { text: "Epiphysen und Diaphyse trennen sich im Roentgenbild", correct: false },
+        { text: "Epiphysenfugen sind im Roentgenbild nie sichtbar", correct: false }
       ]}
     ]
   }),
@@ -988,9 +1299,24 @@ const KNOCHENLEHRE_1033_PLANTS = [
       water: { statement: "Achsen und Ebenen werden genutzt, um Bewegungen standardisiert zuzuordnen.", answer: true, solution: "Sagittalebene und Frontalache erlauben Flexion/Extension, Frontalebene und Sagittalache erlauben Ab-/Adduktion, Transversalebene und Vertikalache erlauben Rotation. Diese Systematik macht es moeglich, jede Koerperbewegung eindeutig zu benennen und zu vergleichen." }
     },
     harvestQuestions: [
-      { id: "ko_lb_h1", type: "true_false", statement: "Koerperebenen und Achsen helfen bei der systematischen Bewegungsbeschreibung.", answer: true, explanation: "Ohne Ebenen und Achsen kann keine Bewegungsrichtung eindeutig benannt werden. Die Sagittalebene und Frontalebene definieren die Raumrichtungen, die jeweiligen Achsen (frontal, sagittal, vertikal) legen die Drehpunkte der Gelenkbewegungen fest." },
-      { id: "ko_lb_h2", type: "true_false", statement: "Richtungsbezeichnungen werden in der Anatomie nicht standardisiert verwendet.", answer: false, explanation: "Anatomische Richtungsbezeichnungen sind international standardisiert: 'kranial' (kopfwaerts), 'kaudal' (fusswaerts), 'anterior/ventral' (vorne), 'posterior/dorsal' (hinten), 'medial' (zur Mitte), 'lateral' (zur Seite). Diese Standardisierung verhindert Missverstaendnisse unabhaengig von Koerperposition oder Sprache." },
-      { id: "ko_lb_h3", type: "true_false", statement: "Ohne Lagebezeichnungen entstehen leicht Zuordnungsfehler in Anatomiefragen.", answer: true, explanation: "Begriffe wie 'oben' oder 'vorne' sind koerperpositionsabhaengig und damit mehrdeutig. 'Kranial' und 'anterior' bleiben dagegen immer eindeutig, egal ob eine Person steht, liegt oder haengt. Praezise Lagebezeichnungen sind daher unerlasslich fuer jede anatomische Beschreibung." }
+      { id: "ko_lb_h1", type: "mc", question: "Welche Koerperebene teilt den Koerper in eine rechte und eine linke Haelfte?", options: [
+        { text: "Sagittalebene (Medianebene als Sonderfall)", correct: true },
+        { text: "Frontalebene (Koronarebene)", correct: false },
+        { text: "Transversalebene (Horizontalebene)", correct: false },
+        { text: "Diagonalebene", correct: false }
+      ], explanation: "Die Sagittalebene verlaeuft von anterior nach posterior und teilt den Koerper in rechte und linke Haelfte. Die Medianebene ist die mittlere Sagittalebene. Die Frontalebene teilt in ventral/dorsal, die Transversalebene in kranial/kaudal." },
+      { id: "ko_lb_h2", type: "mc", question: "Was bedeuten die Lagebezeichnungen 'proximal' und 'distal'?", options: [
+        { text: "Proximal = rumpfnah; distal = rumpffern (v.a. an Extremitaeten)", correct: true },
+        { text: "Proximal = oberflaechennah; distal = tief gelegen", correct: false },
+        { text: "Proximal = vorne; distal = hinten", correct: false },
+        { text: "Proximal = kopfwaerts; distal = fusswaerts", correct: false }
+      ], explanation: "Proximal (lat. proximus = nah) bezeichnet die rumpfnahe Lage an Extremitaeten: die Schulter ist proximal des Ellenbogens. Distal (lat. distans = entfernt) bezeichnet die rumpfferne Lage: die Hand ist distal des Ellenbogens. Die Begriffe sind relational, nicht absolut." },
+      { id: "ko_lb_h3", type: "mc", question: "Um welche Achse erfolgt Flexion und Extension?", options: [
+        { text: "Transversalachse (Querachse) – Bewegung in der Sagittalebene", correct: true },
+        { text: "Sagittalachse – Bewegung in der Frontalebene", correct: false },
+        { text: "Vertikalachse – Bewegung in der Transversalebene", correct: false },
+        { text: "Frontalebene selbst ohne zugehoerige Achse", correct: false }
+      ], explanation: "Flexion/Extension: Sagittalebene, Transversalachse (z.B. Kniebeugung). Abduktion/Adduktion: Frontalebene, Sagittalachse (z.B. Arm seitlich heben). Rotation: Transversalebene, Vertikalachse (z.B. Kopfdrehen). Jede Bewegungsebene hat ihre zugehoerige Drehachse." }
     ],
     bossQuestions: [{ id: "ko_lb_b1", type: "true_false", statement: "Anatomische Orientierungssprache ist Kernwerkzeug im Bewegungsapparat.", answer: true }],
     combatQuestions: [
@@ -1012,14 +1338,29 @@ const KNOCHENLEHRE_1033_PLANTS = [
     id: "knochenformen",
     title: "Knochenformen",
     phase1: {
-      soil: { statement: "1033 unterscheidet platte, lange, kurze und unregelmaessige Knochen.", answer: true, solution: "Die vier Knochentypen – lang (z.B. Femur), kurz (z.B. Handwurzelknochen), platt (z.B. Schaedelplatten) und unregelmaessig (z.B. Wirbel) – spiegeln verschiedene Belastungsprofile und Funktionen wider. Die Knochenform ist immer Ausdruck der mechanischen Anforderungen an den jeweiligen Knochen." },
+      soil: { statement: "Knochen werden nach ihrer Form in vier Typen eingeteilt: lange Knochen (z.B. Femur), kurze Knochen (z.B. Handwurzel), platte Knochen (z.B. Schaedelplatten) und unregelmaessige Knochen (z.B. Wirbel).", answer: true, solution: "Die vier Knochentypen – lang (z.B. Femur), kurz (z.B. Handwurzelknochen), platt (z.B. Schaedelplatten) und unregelmaessig (z.B. Wirbel) – spiegeln verschiedene Belastungsprofile und Funktionen wider. Die Knochenform ist immer Ausdruck der mechanischen Anforderungen an den jeweiligen Knochen." },
       seed: { statement: "Wirbel werden den langen Roehrenknochen zugeordnet.", answer: false, solution: "Wirbel gelten als unregelmaessige Knochen." },
       water: { statement: "Arme und Beine enthalten typische lange Knochen (Roehrenknochen).", answer: true, solution: "Roehrenknochen wie Femur, Humerus oder Tibia besitzen eine robuste Diaphyse (Schaft) aus Kompakta, die Biegekraefte abfaengt, und Epiphysen mit Spongiosa fuer die kraftverteilende Verbindung zu Gelenken. Diese Bauweise vereint Stabilitaet mit relativ geringem Gewicht." }
     },
     harvestQuestions: [
-      { id: "ko_fo_h1", type: "true_false", statement: "Hand- und Fusswurzelknochen sind Beispiele fuer kurze Knochen.", answer: true, explanation: "Kurze Knochen haben annaehernd gleiche Ausdehnung in alle Raumrichtungen und bieten hohe Stabilitaet bei geringer Bewegungsreichweite. Handwurzelknochen (z.B. Kahnbein, Mondbein) und Fusswurzelknochen (z.B. Fersenbein, Sprungbein) sind die klassischen Beispiele." },
-      { id: "ko_fo_h2", type: "true_false", statement: "Platte Knochen enthalten im Erwachsenenalter niemals rotes Knochenmark.", answer: false, explanation: "Platte Knochen wie Brustbein, Schulterblatt und Schaedelplatten enthalten auch im Erwachsenenalter rotes Knochenmark und gehoeren damit zu den haematopoetisch aktiven Knochen. Das unterscheidet sie von langen Roehrenknochen, deren Diaphyse im Erwachsenenalter gelbes Fettmark enthaelt." },
-      { id: "ko_fo_h3", type: "true_false", statement: "Die Knochenform hat Bezug zu Funktion und Belastungsprofil.", answer: true, explanation: "Lange Knochen sind fuer Hebelkraefte bei Bewegungen optimiert, kurze Knochen fuer Druckkraefteverteilung in gelenknahen Regionen, platte Knochen fuer flaechigen Organschutz und Muskelbefestigung. Die Form ist stets Ausdruck der biomechanischen Anforderungen." }
+      { id: "ko_fo_h1", type: "mc", question: "Was ist das Kennzeichen langer Roehrenknochen (z.B. Femur) im Vergleich zu kurzen Knochen?", options: [
+        { text: "Deutlich laengere als breite Form mit Diaphyse und zwei Epiphysen", correct: true },
+        { text: "Annaehernd gleiche Ausdehnung in alle Raumrichtungen", correct: false },
+        { text: "Sehr duenne Plattenform mit ueberwiegend Spongiosa", correct: false },
+        { text: "Unregelmassige Form ohne erkennbare Systematik", correct: false }
+      ], explanation: "Lange Roehrenknochen (Os longum) haben eine ausgepragte Diaphyse (Schaft) aus kompakter Kortikalis, zwei Epiphysen und eine Markhoehle mit Fettmark (Erwachsene). Beispiele: Femur, Humerus, Tibia, Fibula, Radius, Ulna. Die Laenge ueberwiegt die Breite deutlich." },
+      { id: "ko_fo_h2", type: "mc", question: "Warum enthalten platte Knochen wie Brustbein und Schulterblatt auch im Erwachsenenalter rotes Knochenmark?", options: [
+        { text: "Weil platte Knochen haematopoetisch aktiv sind und Blutbildung stattfindet", correct: true },
+        { text: "Weil platte Knochen keine Markhoehle haben und stattdessen gelbes Mark speichern", correct: false },
+        { text: "Weil platte Knochen keine Knochenzellen enthalten", correct: false },
+        { text: "Weil rotes Mark nur in der Kindheit vorhanden ist und im Erwachsenenalter fehlt", correct: false }
+      ], explanation: "Platte Knochen (Ossa plana) wie Sternum, Skapula, Ossa cranii enthalten auch im Erwachsenenalter rotes Knochenmark in ihrer Spongiosa (Diploe bei Schaedelknochen). Im Gegensatz dazu wird die Diaphyse langer Roehrenknochen im Erwachsenenalter durch gelbes Fettmark ersetzt. Klinisch wichtig: Knochenmarkpunktion am Sternum oder Beckenkamm." },
+      { id: "ko_fo_h3", type: "mc", question: "Welchem Knochentyp werden Wirbelkoerper zugeordnet?", options: [
+        { text: "Unregelmaessige Knochen (Ossa irregularia)", correct: true },
+        { text: "Lange Knochen", correct: false },
+        { text: "Kurze Knochen", correct: false },
+        { text: "Platte Knochen", correct: false }
+      ], explanation: "Wirbel haben eine komplexe unregelmaessige Form (Wirbelkoerper + Bogen + Fortsaetze) und passen in keine der anderen Kategorien. Weitere unregelmaessige Knochen: Gesichtsschaedelknochen, Os coxae (Hueftbein). Die Klassifikation 'unregelmaessig' ist ein Sammelbegriff fuer Knochen ohne einfache geometrische Grundform." }
     ],
     bossQuestions: [{ id: "ko_fo_b1", type: "true_false", statement: "Die sichere Typzuordnung von Knochenformen ist pruefungsrelevant.", answer: true }],
     combatQuestions: [
@@ -1046,9 +1387,24 @@ const KNOCHENLEHRE_1033_PLANTS = [
       water: { statement: "Die Untergliederung in Neurocranium und Viscerocranium gehoert zur Schaedelbetrachtung.", answer: true, solution: "Der Schaedel gliedert sich in Neurocranium (Hirnschaedel, 8 Knochen zum Schutz des Gehirns) und Viscerocranium (Gesichtsschaedel, 14 Knochen fuer Kauapparat und Sinnesorgane). Diese Zweiteilung hilft, Schaedelknochen topographisch und funktionell einzuordnen." }
     },
     harvestQuestions: [
-      { id: "ko_as_h1", type: "true_false", statement: "Das Achsenskelett bildet die zentrale knoecherne Leitstruktur des Koerpers.", answer: true, explanation: "Das Achsenskelett umfasst Schaedel, Wirbelsaeule, Rippen und Brustbein. Es bildet die Koerperachse, traegt den Rumpf, schuetzt lebenswichtige Organe (Gehirn, Rueckenmark, Herz, Lunge) und dient als Ansatzpunkt fuer Guertelskelette und Rippen." },
-      { id: "ko_as_h2", type: "true_false", statement: "Der Brustkorb wird nicht dem Achsenskelett zugeordnet.", answer: false, explanation: "Der Brustkorb aus Rippen, Brustbein und Brustwirbeln ist ein wesentlicher Bestandteil des Achsenskeletts. Er umschliesst Herz und Lunge und ist aktiv an der Atemmechanik beteiligt." },
-      { id: "ko_as_h3", type: "true_false", statement: "Schaedel- und Wirbelsaeulenwissen sind zentrale Bausteine im Achsenskelett-Kapitel.", answer: true, explanation: "Schaedel (mit Unterteilung in Neurocranium/Viscerocranium und 22 Einzelknochen) und Wirbelsaeule (33-34 Wirbel in 5 Abschnitten) sind die komplexesten Strukturen des Achsenskeletts mit den meisten pruefungsrelevanten Details zu Topographie, Funktion und Schutzaufgaben." }
+      { id: "ko_as_h1", type: "mc", question: "In wie viele Knochen unterteilt sich der Schaedel und wie heissen die beiden Hauptabschnitte?", options: [
+        { text: "22 Knochen: Neurocranium (Hirnschaedel, 8) und Viscerocranium (Gesichtsschaedel, 14)", correct: true },
+        { text: "8 Knochen: vier Schaedelknochen und vier Gesichtsknochen", correct: false },
+        { text: "Ein einziger Knochen, der beim Erwachsenen vollstaendig verwachsen ist", correct: false },
+        { text: "14 Knochen: Neurocranium hat 10, Viscerocranium hat 4", correct: false }
+      ], explanation: "Der Schaedel besteht aus 22 Einzelknochen: das Neurocranium (Hirnschaedel) umfasst 8 Knochen (z.B. Os frontale, Os parietale, Os occipitale, Os temporale, Os sphenoidale) und bildet den Schutzraum fuer das Gehirn. Das Viscerocranium (Gesichtsschaedel) umfasst 14 Knochen und bildet den Kauapparat und die Eingangsstrukturen der Atemwege." },
+      { id: "ko_as_h2", type: "mc", question: "Wie viele Rippenpaare hat der Mensch und wie viele sind echte Rippen (Costae verae)?", options: [
+        { text: "12 Rippenpaare; die ersten 7 sind echte Rippen (direkter Kontakt zum Sternum)", correct: true },
+        { text: "10 Rippenpaare; alle sind echte Rippen", correct: false },
+        { text: "12 Rippenpaare; die ersten 10 sind echte Rippen", correct: false },
+        { text: "14 Rippenpaare; nur die letzten 2 sind falsche Rippen", correct: false }
+      ], explanation: "Der Brustkorb hat 12 Rippenpaare: Costae verae (echte Rippen, 1–7): direkter Knorpelansatz am Sternum. Costae spuriae (falsche Rippen, 8–10): verbinden sich ueber gemeinsamen Knorpel mit Rippe 7. Costae fluctuantes (freie Rippen, 11–12): keine sternale Verbindung. Das Brustbein (Sternum) besteht aus Manubrium, Corpus und Processus xiphoideus." },
+      { id: "ko_as_h3", type: "mc", question: "Welche Organe werden primaer durch das Achsenskelett geschuetzt?", options: [
+        { text: "Gehirn (Schaedel), Rueckenmark (Wirbelsaeule), Herz und Lunge (Brustkorb)", correct: true },
+        { text: "Leber und Nieren (Wirbelsaeule), Magen (Brustkorb)", correct: false },
+        { text: "Hirn und Milz (Schaedel), Blase (Wirbelsaeule)", correct: false },
+        { text: "Ausschliesslich Gehirn und Rueckenmark – kein Schutz des Herzens", correct: false }
+      ], explanation: "Das Achsenskelett hat eine doppelte Funktion: Tragstruktur und Organschutz. Schaedel schuetzt Gehirn und Hirnstamm, Wirbelsaeule schuetzt Rueckenmark im Spinalkanal, Brustkorb (Rippen + Sternum + BWS) schuetzt Herz und Lunge. Der Bauchraum wird vom Achsenskelett nicht knochern umschlossen – dort dienen Muskeln als Schutz." }
     ],
     bossQuestions: [{ id: "ko_as_b1", type: "true_false", statement: "Achsenskelettfragen verbinden Topographie, Schutzfunktion und Statik.", answer: true }],
     combatQuestions: [
@@ -1072,14 +1428,29 @@ const KNOCHENLEHRE_1033_PLANTS = [
     phase1: {
       soil: { statement: "Die Wirbelsaeule besteht aus Wirbeln und Bandscheiben und hat sowohl tragende als auch schuetzende Aufgaben.", answer: true, solution: "Die Wirbelsaeule besteht aus 33–34 Wirbeln in fuenf Abschnitten (7 HWS, 12 BWS, 5 LWS, Sakrum, Steissbein), verbunden durch Bandscheiben und Baender. Bandscheiben aus Faserring (Anulus fibrosus) und Gallertkern (Nucleus pulposus) fungieren als Stossdaempfer und ermöglichen gleichzeitig Beweglichkeit." },
       seed: { statement: "Bandscheiben sind fuer Funktion und Beweglichkeit der Wirbelsaeule bedeutungslos.", answer: false, solution: "Bandscheiben sind unverzichtbar fuer die Funktion der Wirbelsaeule: Sie federn axiale Druckkraefte ab, geben den Wirbelkoerpern Abstand und ermöglichen durch ihre Verformbarkeit Beugung, Streckung und Rotation." },
-      water: { statement: "Besonderheiten und Baender der Wirbelsaeule sind eigene Lernunterpunkte.", answer: true, solution: "Die Wirbelsaeule wird durch mehrere Bandsysteme stabilisiert: Das Lig. longitudinale anterius entlang der Vorderflaeche, das Lig. longitudinale posterius im Spinalkanal, und die Ligg. flava zwischen den Wirbelboegen. Diese Baender begrenzen Ueberdehnung und sichern die Stabilitaet der Wirbelsaeule." }
+      water: { statement: "Die Wirbelsaeule wird durch laengs verlaufende Baender wie Lig. longitudinale anterius und Lig. longitudinale posterius gegen Ueberdehnung stabilisiert.", answer: true, solution: "Die Wirbelsaeule wird durch mehrere Bandsysteme stabilisiert: Das Lig. longitudinale anterius entlang der Vorderflaeche, das Lig. longitudinale posterius im Spinalkanal, und die Ligg. flava zwischen den Wirbelboegen. Diese Baender begrenzen Ueberdehnung und sichern die Stabilitaet der Wirbelsaeule." }
     },
     harvestQuestions: [
-      { id: "ko_ws_h1", type: "true_false", statement: "Bandscheiben tragen zur funktionellen Leistungsfaehigkeit der Wirbelsaeule bei.", answer: true, explanation: "Bandscheiben aus Anulus fibrosus (Faserring) und Nucleus pulposus (Gallertkern) federn Druckkraefte ab, geben Wirbelkoerpern Abstand und ermöglichen durch ihre Verformbarkeit Bewegungen. Ohne Bandscheiben waere die Wirbelsaeule starr und druckempfindlich." },
-      { id: "ko_ws_h2", type: "true_false", statement: "Wirbelsaeulenbaender spielen fuer Stabilitaet keine Rolle.", answer: false, explanation: "Die Wirbelsaeule wird durch mehrere Bandsysteme stabilisiert: Lig. longitudinale anterius und posterius verlaufen laengs der Wirbelkoerper, die Ligg. flava verbinden die Wirbelboegen. Diese Baender begrenzen Ueberdehnung und sichern die Stellung der Wirbel zueinander." },
-      { id: "ko_ws_h3", type: "true_false", statement: "Funktion und Besonderheiten der Wirbelsaeule sind eng verknuepft.", answer: true, explanation: "Die Wirbelsaeule kombiniert scheinbar widersprüchliche Anforderungen: Stabilitaet fuer Lastaufnahme und Schutz des Rueckenmarks einerseits, Beweglichkeit fuer Alltagsbewegungen andererseits. Diese duale Funktion erklaert die komplexe Kombination aus Wirbelkoerpern, Bandscheiben und Baendern." }
+      { id: "ko_ws_h1", type: "mc", question: "Aus welchen zwei Anteilen besteht eine Bandscheibe (Discus intervertebralis)?", options: [
+        { text: "Anulus fibrosus (Faserring aussen) und Nucleus pulposus (Gallertkern innen)", correct: true },
+        { text: "Periost (aussen) und Spongiosa (innen)", correct: false },
+        { text: "Kompakta (aussen) und Hyalinknorpel (innen)", correct: false },
+        { text: "Elastin (aussen) und Kollagen (innen)", correct: false }
+      ], explanation: "Die Bandscheibe besteht aus: Anulus fibrosus – konzentrischer Faserring aus Kollagen Typ I fuer Zugfestigkeit; Nucleus pulposus – wasserreicher Gallertkern (80% Wasser, Aggrekan) der den Druck puffernd verteilt. Bei Bandscheibenvorfall prolabiert der Nucleus durch einen Riss im Anulus und kann Nervenwurzeln komprimieren." },
+      { id: "ko_ws_h2", type: "mc", question: "Welche physiologischen Kruemmungen hat die Wirbelsaeule (sagittale Sicht)?", options: [
+        { text: "HWS und LWS: Lordose (nach vorne); BWS und Sakrum: Kyphose (nach hinten)", correct: true },
+        { text: "Alle Abschnitte zeigen gleichmaessige Kyphose nach hinten", correct: false },
+        { text: "Die Wirbelsaeule ist im Idealfall gerade ohne Kruemmungen", correct: false },
+        { text: "HWS: Kyphose; LWS: Lordose; BWS: Lordose", correct: false }
+      ], explanation: "Die Wirbelsaeule hat im Seitenbild ein S-foermiges Doppelkurvenmodell: Zervikallordose + Brustkyphose + Lendenlordose + Sakralkyphose. Diese Kruemmungen erhoehen die Stabilitaet (federnd) und Belastungskapazitaet. Pathologische Kruemmungen: Skoliose (seitlich), verstaerkte Kyphose (Rundrucken), verstaerkte Lordose (Hohlkreuz)." },
+      { id: "ko_ws_h3", type: "mc", question: "An welcher Hoehe des Rueckenmarks endet das Rueckenmark selbst beim Erwachsenen?", options: [
+        { text: "Auf Hoehe LWK 1–2 (Conus medullaris); danach folgt die Cauda equina", correct: true },
+        { text: "Auf Hoehe SWK 1 (bis zum Steissbein)", correct: false },
+        { text: "Auf Hoehe BWK 12 genau", correct: false },
+        { text: "Das Rueckenmark fuellt den gesamten Wirbelkanal bis zum Os sacrum", correct: false }
+      ], explanation: "Das Rueckenmark endet beim Erwachsenen am Conus medullaris auf Hoehe LWK 1-2. Kaudal davon verlaufen die langen Nervenwurzeln (L2-S5) als Cauda equina ('Pferdeschweif') im Liquorraum. Klinisch relevant: Lumbalpunktion unterhalb LWK 3/4 trifft keine Rueckenmarkstruktur mehr." }
     ],
-    bossQuestions: [{ id: "ko_ws_b1", type: "true_false", statement: "Das Wirbelsaeulenkapitel verlangt das Zusammenspiel von Struktur, Stabilitaet und Beweglichkeit.", answer: true }],
+    bossQuestions: [{ id: "ko_ws_b1", type: "true_false", statement: "Die Wirbelsaeule vereint strukturelle Stabilitaet durch Wirbelkoerper und Baender mit Beweglichkeit durch Bandscheiben und Gelenke, waehrend sie gleichzeitig das Rueckenmark schuetzt.", answer: true }],
     combatQuestions: [
       { id: "ko_ws_mc1", type: "mc", question: "Welche Funktion haben die Bandscheiben der Wirbelsaeule?", options: [
         { text: "Stossdaempfung und Ermoeglichung von Beweglichkeit zwischen Wirbelkoerpern", correct: true },
@@ -1101,12 +1472,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
     phase1: {
       soil: { statement: "Das Extremitaetenskelett umfasst Schulterguertel, obere Extremitaet, Beckenguertel und untere Extremitaet.", answer: true, solution: "Das Extremitaetenskelett verbindet ueber Guertelsysteme die Gliedmassen mit dem Achsenskelett. Schulterguertel (Klavikula + Skapula) und Beckenguertel sind die Verbindungsstellen, ueber die Kraefte zwischen Rumpf und Extremitaeten uebertragen werden." },
       seed: { statement: "Schulterguertel und Beckenguertel haben keinen Bezug zur Kraftuebertragung.", answer: false, solution: "Gurtelsysteme sind funktionell zentrale Verbindungselemente: Der Schulterguertel ermoeglicht die grosse Bewegungsreichweite des Arms, der Beckenguertel uebertraegt das Koerpergewicht auf die Beine und stabilisiert den Rumpf beim Gehen." },
-      water: { statement: "Obere und untere Extremitaet werden mit Knochen und Gelenken differenziert betrachtet.", answer: true, solution: "Obere Extremitaet: Humerus, Radius/Ulna, Hand- und Fingerknochen mit Schulter-, Ellenbogen- und Handgelenk. Untere Extremitaet: Femur, Tibia/Fibula, Fuss- und Zehenknochen mit Hueft-, Knie- und Sprungelenk. Jeder Abschnitt hat spezifische Gelenktypen fuer seinen Bewegungsumfang." }
+      water: { statement: "Zur oberen Extremitaet gehoeren Humerus, Radius, Ulna und Handknochen; zur unteren Extremitaet Femur, Tibia, Fibula und Fussknochen.", answer: true, solution: "Obere Extremitaet: Humerus, Radius/Ulna, Hand- und Fingerknochen mit Schulter-, Ellenbogen- und Handgelenk. Untere Extremitaet: Femur, Tibia/Fibula, Fuss- und Zehenknochen mit Hueft-, Knie- und Sprungelenk. Jeder Abschnitt hat spezifische Gelenktypen fuer seinen Bewegungsumfang." }
     },
     harvestQuestions: [
-      { id: "ko_ex_h1", type: "true_false", statement: "Schulter- und Beckenguertel sind Bestandteil des Extremitaetenskeletts.", answer: true, explanation: "Das Extremitaetenskelett gliedert sich in Guertelskelette (Schulterguertel: Klavikula + Skapula; Beckenguertel: Os coxae) und freie Extremitaeten. Die Guertelskelette verbinden die Gliedmassen mit dem Achsenskelett und uebertragen Kraefte zwischen Rumpf und Extremitaeten." },
-      { id: "ko_ex_h2", type: "true_false", statement: "Femur, Unterschenkel und Fussknochen gehoeren zur oberen Extremitaet.", answer: false, explanation: "Femur (Oberschenkelknochen), Tibia/Fibula (Unterschenkelknochen) und Fussknochen gehoeren zur unteren Extremitaet. Zur oberen Extremitaet gehoeren Humerus (Oberarm), Radius/Ulna (Unterarm) und die Handknochen." },
-      { id: "ko_ex_h3", type: "true_false", statement: "Das Extremitaetenskelett verbindet Stabilitaet mit Bewegungsfunktion.", answer: true, explanation: "Die langen Roehrenknochen der Extremitaeten bieten durch Kompakta-Diaphyse und spongiöse Epiphysen hohe Stabilitaet bei geringem Gewicht. Die Gelenke zwischen diesen Knochen erlauben die Bewegungsfreiheitsgrade fuer Greifen, Laufen und Stehen." }
+      { id: "ko_ex_h1", type: "mc", question: "Welche zwei Knochen bilden den Schulterguertel?", options: [
+        { text: "Klavikula (Schluesselbein) und Skapula (Schulterblatt)", correct: true },
+        { text: "Humerus und Skapula", correct: false },
+        { text: "Sternum und Klavikula", correct: false },
+        { text: "Skapula und erster Rippenknorpel", correct: false }
+      ], explanation: "Der Schulterguertel (Cingulum membri superioris) besteht aus Klavikula und Skapula. Die Klavikula ist das einzige knoecherne Band zwischen Schulterguertel und Achsenskelett (Sternoklavikulargelenk). Die Skapula liegt dorsal am Thorax und bildet mit dem Humerus das Schultergelenk (Articulatio humeri)." },
+      { id: "ko_ex_h2", type: "mc", question: "Was ist das Os coxae und woraus besteht es?", options: [
+        { text: "Das Hueftbein, das aus Os ilium, Os ischii und Os pubis verwachsen ist", correct: true },
+        { text: "Das Hueftbein, das aus Femur und Acetabulum besteht", correct: false },
+        { text: "Ein anderer Name fuer den Oberschenkelknochen (Femur)", correct: false },
+        { text: "Der Sakralknochen (Kreuzbein) als Teil des Beckenringes", correct: false }
+      ], explanation: "Das Os coxae (Hueftbein) entsteht durch Verwachsung dreier Knochen: Os ilium (Darmbein, oben), Os ischii (Sitzbein, hinten-unten) und Os pubis (Schambein, vorne). Beide Os coxae verbinden sich vorne an der Symphyse und hinten mit dem Sacrum zu dem knoehernen Beckenring." },
+      { id: "ko_ex_h3", type: "mc", question: "Welcher Knochen bildet die Verbindung zwischen Oberschenkel und Unterschenkel?", options: [
+        { text: "Das Kniegelenk zwischen Femur, Tibia und Patella", correct: true },
+        { text: "Die Fibula als Hauptlasttrageknochen des Unterschenkels", correct: false },
+        { text: "Der Talus (Sprungbein) als Verbindung zwischen Ober- und Unterschenkel", correct: false },
+        { text: "Direkter Kontakt zwischen Femur und Fibula", correct: false }
+      ], explanation: "Das Kniegelenk (Art. genus) verbindet Femur (Oberschenkel), Tibia (Haupt-Lasttrageknochen des Unterschenkels) und Patella (Kniescheibe, als Sesambein im M. quadriceps-Sehne). Die Fibula bildet keine Kniegelenkflaeche, sondern liegt lateral der Tibia und dient als Muskeln-Ansatz und Austauschorgan fuer Sprunggelenk (Malleolus lateralis)." }
     ],
     bossQuestions: [{ id: "ko_ex_b1", type: "true_false", statement: "Topographisches Denken ist im Extremitaetenskelett unverzichtbar.", answer: true }],
     combatQuestions: [
@@ -1128,14 +1514,29 @@ const KNOCHENLEHRE_1033_PLANTS = [
     id: "gelenke_grundlagen",
     title: "Gelenke: Grundlagen",
     phase1: {
-      soil: { statement: "1033 unterscheidet unechte Gelenke (Synarthrosen) und echte Gelenke (Diarthrosen).", answer: true, solution: "Synarthrosen (unechte Gelenke) wie Schaedelnaethe oder die Symphyse erlauben kaum Bewegung und haben keine Gelenkhoehlel. Diarthrosen (echte Gelenke) besitzen eine mit Synovia gefuellte Gelenkhoehlel, einen Gelenkknorpel und eine Kapsel, was variable Bewegungen ermoeglicht." },
+      soil: { statement: "Gelenke werden grundlegend in Synarthrosen (unechte Gelenke ohne Gelenkhoehle, z.B. Schaedelnaethe) und Diarthrosen (echte Gelenke mit Gelenkhoehle, Knorpel und Kapsel) eingeteilt.", answer: true, solution: "Synarthrosen (unechte Gelenke) wie Schaedelnaethe oder die Symphyse erlauben kaum Bewegung und haben keine Gelenkhoehlel. Diarthrosen (echte Gelenke) besitzen eine mit Synovia gefuellte Gelenkhoehlel, einen Gelenkknorpel und eine Kapsel, was variable Bewegungen ermoeglicht." },
       seed: { statement: "Synarthrosen sind die frei beweglichsten Gelenkformen.", answer: false, solution: "Freiere Beweglichkeit ist typisch fuer Diarthrosen." },
       water: { statement: "Die Gelenkklassifikation dient der funktionellen Bewegungszuordnung.", answer: true, solution: "Die Einteilung in Synarthrosen und Diarthrosen ist die Basis fuer das Verstaendnis aller spezifischen Gelenkformen. Aus dem Vorhandensein einer Gelenkhoehlel und dem Gelenktyp laesst sich unmittelbar ableiten, welche Bewegungen anatomisch moeglich und welche blockiert sind." }
     },
     harvestQuestions: [
-      { id: "ko_gk_h1", type: "true_false", statement: "Diarthrosen sind echte Gelenke.", answer: true, explanation: "Diarthrosen besitzen alle Charakteristika eines freien Gelenks: Gelenkhoehlel mit Synovia, hyalinen Gelenkknorpel auf den Gelenkflaechen, eine Gelenkkapsel (Stratum fibrosum aussen, Synovialmembran innen) und gegebenenfalls Zusatzstrukturen wie Menisken oder Bursen." },
-      { id: "ko_gk_h2", type: "true_false", statement: "Synarthrosen und Diarthrosen sind nur alternative Namen fuer denselben Gelenktyp.", answer: false, explanation: "Synarthrosen und Diarthrosen sind grundlegend verschiedene Gelenktypen: Synarthrosen (z.B. Schaedelnaethe, Symphyse) haben keine Gelenkhoehlel und erlauben kaum oder keine Bewegung. Diarthrosen besitzen eine Gelenkhoehlel mit Synovia und sind frei beweglich." },
-      { id: "ko_gk_h3", type: "true_false", statement: "Die Grundklassifikation der Gelenke ist fuer Bewegungsanalyse relevant.", answer: true, explanation: "Aus der Klassifikation – Synarthrose (unbeweglich) vs. Diarthrose (frei beweglich) – laesst sich direkt ableiten, ob und wie sich ein Gelenk bewegen laesst. Diarthrosen werden weiter nach Gelenkform und Bewegungsachsen unterteilt (Kugel-, Scharnier-, Sattelgelenk etc.)." }
+      { id: "ko_gk_h1", type: "mc", question: "Welche Strukturen gehoeren zwingend zu einem echten Gelenk (Diarthrose)?", options: [
+        { text: "Gelenkknorpel, Gelenkhoehlel (mit Synovia) und Gelenkkapsel", correct: true },
+        { text: "Periost, Sehnen und Muskeln", correct: false },
+        { text: "Knochen, Knorpelgewebe und Muskeln ohne Gelenkhoehle", correct: false },
+        { text: "Nur Gelenkknorpel – Kapsel ist optional", correct: false }
+      ], explanation: "Eine Diarthrose hat als Mindestanforderung: Gelenkknorpel (schmierloses, avaskular ernaehrtes Gleitlager), Gelenkspalt/-hoehle (gefuellt mit Synovia), Gelenkkapsel (Stratum fibrosum aussen, Membrana synovialis innen). Menisken, Disci, Bursen und extrakapsulare Baender sind moegliche Zusatzstrukturen je nach Gelenktyp." },
+      { id: "ko_gk_h2", type: "mc", question: "Was ist die Funktion der Gelenkfluessigkeit (Synovia)?", options: [
+        { text: "Reibungsminderung, Naehrstoffversorgung des Gelenkknorpels und Stossdaempfung", correct: true },
+        { text: "Produktion von Antikörpern bei Gelenkinfektion", correct: false },
+        { text: "Direkte Druckuebertragung zwischen den Gelenkpartnern", correct: false },
+        { text: "Mineralisation des Knorpelgewebes mit Hydroxylapatit", correct: false }
+      ], explanation: "Synovia (Gelenkfluessigkeit) hat drei Funktionen: 1. Schmierung (Reibungskoeffizient Gelenk < Eis auf Eis), 2. Ernaehrung des Gelenkknorpels durch Diffusion (avaskular!), 3. Stossdaempfung als viskoe Fluessigkeit. Produziert von der Membrana synovialis. Bei Gelenkentzuendung steigt die Synoviamenge (Gelenkerguss)." },
+      { id: "ko_gk_h3", type: "mc", question: "Welches ist ein Beispiel fuer eine Synarthrose (unechtes Gelenk)?", options: [
+        { text: "Schaedelnaethe (Suturae cranii)", correct: true },
+        { text: "Kniegelenk (Art. genus)", correct: false },
+        { text: "Schultergelenk (Art. humeri)", correct: false },
+        { text: "Hueftgelenk (Art. coxae)", correct: false }
+      ], explanation: "Synarthrosen erlauben kaum oder keine Bewegung. Beispiele: Schaedelnaethe (Suturae: bindegewebige Verbindung beim Kind, knoehernd beim Erwachsenen), Symphyse (Faserknorpel), Syndesmose (Bindegewebe: distale Tibiofibularverbindung). Alle Diarthrosen haben eine echte Gelenkhoehle und sind frei beweglich." }
     ],
     bossQuestions: [{ id: "ko_gk_b1", type: "true_false", statement: "Ohne Synarthrose/Diarthrose-Grundschema bleiben viele Gelenkfragen unscharf.", answer: true }],
     combatQuestions: [
@@ -1157,14 +1558,29 @@ const KNOCHENLEHRE_1033_PLANTS = [
     id: "gelenkarten",
     title: "Gelenkarten",
     phase1: {
-      soil: { statement: "1033 behandelt verschiedene Gelenkarten wie Kugel-, Ei- und weitere Gelenkformen.", answer: true, solution: "Echte Gelenke werden nach Gelenkkopf-Form und Bewegungsmoeglichkeit eingeteilt: Kugelgelenk (3 Achsen, z.B. Schulter), Scharniergelenk (1 Achse, z.B. Knie), Sattelgelenk (2 Achsen, z.B. Daumensattelgelenk). Jede Gelenkform erlaubt bestimmte Bewegungsrichtungen und begrenzt andere." },
+      soil: { statement: "Echte Gelenke werden nach der Form ihres Gelenkkopfes eingeteilt: Kugelgelenk (3 Bewegungsachsen, z.B. Schulter), Scharniergelenk (1 Achse, z.B. Knie) und Sattelgelenk (2 Achsen, z.B. Daumen).", answer: true, solution: "Echte Gelenke werden nach Gelenkkopf-Form und Bewegungsmoeglichkeit eingeteilt: Kugelgelenk (3 Achsen, z.B. Schulter), Scharniergelenk (1 Achse, z.B. Knie), Sattelgelenk (2 Achsen, z.B. Daumensattelgelenk). Jede Gelenkform erlaubt bestimmte Bewegungsrichtungen und begrenzt andere." },
       seed: { statement: "Gelenkarten unterscheiden sich nur namentlich, nicht in Bewegungsmoeglichkeiten.", answer: false, solution: "Gelenkform und Bewegungsumfang sind direkt verknuepft: Das Kugelgelenk (z.B. Schulter) erlaubt Bewegungen in alle drei Raumachsen, das Scharniergelenk (z.B. Knie) nur Flexion und Extension um eine Achse. Die Form ist also der anatomische Ausdruck der Bewegungsfunktion." },
       water: { statement: "Die Gelenkform ist ein Schluessel zur Ableitung moeglicher Bewegungen.", answer: true, solution: "Das Schultergelenk ist als Kugelgelenk in alle Richtungen beweglich, das Kniegelenk als Scharniergelenk nur in Beugung/Streckung. Aus der Gelenkform laesst sich also direkt ableiten, welche Bewegungen anatomisch moeglich sind und welche blockiert werden." }
     },
     harvestQuestions: [
-      { id: "ko_ga_h1", type: "true_false", statement: "Die Gelenkart beeinflusst den moeglichen Bewegungsumfang.", answer: true, explanation: "Kugelgelenke (z.B. Schulter) erlauben drei Freiheitsgrade, Scharniergelenke (z.B. Ellenbogen) nur einen. Die anatomische Form des Gelenkkopfs und der Gelenkpfanne bestimmt unmittelbar, welche Bewegungen moeglich sind und welche mechanisch blockiert werden." },
-      { id: "ko_ga_h2", type: "true_false", statement: "Kugelgelenk und Eigelenk sind funktionell vollstaendig identisch.", answer: false, explanation: "Kugelgelenke (z.B. Schulter, Hueftgelenk) erlauben Bewegungen in alle drei Raumachsen. Eigelenke (z.B. Handgelenk, Atlantookzipitalgelenk) erlauben nur zwei Achsen, weil eine ovale statt kugelfoermige Gelenkflaeche die dritte Achse (Rotation) verhindert." },
-      { id: "ko_ga_h3", type: "true_false", statement: "Die sichere Gelenktypisierung hilft bei klinischen Bewegungsfragen.", answer: true, explanation: "Klinische Fragen nach Bewegungseinschraenkungen setzen das Wissen voraus, welche Freiheitsgrade ein Gelenk normalerweise hat. Ist die Aussenrotation des Schultergelenks (Kugelgelenk) eingeschraenkt, ist das pathologisch; das Ellenbogengelenk (Scharniergelenk) hat keine Rotation – das ist normal." }
+      { id: "ko_ga_h1", type: "mc", question: "Wie viele Bewegungsachsen hat ein Sattelgelenk und welches ist ein klassisches Beispiel?", options: [
+        { text: "Zwei Achsen (biaxial); Beispiel: Daumensattelgelenk (Art. carpometacarpalis pollicis)", correct: true },
+        { text: "Drei Achsen; Beispiel: Schultergelenk", correct: false },
+        { text: "Eine Achse; Beispiel: Kniegelenk", correct: false },
+        { text: "Keine Achsen; dient nur der Stossdaempfung", correct: false }
+      ], explanation: "Das Sattelgelenk (Articulatio sellaris) hat zwei konvex-konkave Gelenkflaechen (sattelfoermig), die zwei Bewegungsachsen erlauben: Flexion/Extension + Abduktion/Adduktion. Das klassische Beispiel ist das Daumensattelgelenk, das die Opposition des Daumens (Greifen) ermoeglicht. Kein axiales Gleiten/Rotation moeglich." },
+      { id: "ko_ga_h2", type: "mc", question: "Was unterscheidet das Kugelgelenk der Schulter vom Kugelgelenk der Hueft in Bezug auf Stabilitaet und Mobilitaet?", options: [
+        { text: "Schulter: flache Pfanne = groessere Mobilitaet, aber weniger Stabilitaet; Hueft: tiefe Pfanne = stabiler, aber weniger mobil", correct: true },
+        { text: "Schulter und Hueft sind vollstaendig identisch in Form und Stabilitaet", correct: false },
+        { text: "Hueft: groessere Mobilitaet als Schulter; Schulter: stabiler durch Acetabulum", correct: false },
+        { text: "Schulter hat mehr Freiheitsgrade als Hueft, daher auch stabiler", correct: false }
+      ], explanation: "Schultergelenk: flache Pfanne (Cavitas glenoidalis), Kopf ueberragt Pfanne 3:1 → groesste Mobilitaet des Koerpers (3 Achsen, 6 Freiheitsgrade), aber Stabilisierung abhaengig von Rotatorenmanschette und Baendern. Hueftgelenk: tiefe Pfanne (Acetabulum umschliessen den Kopf zu 2/3) → Stabilitaet fuer Lastaufnahme, weniger Bewegungsumfang." },
+      { id: "ko_ga_h3", type: "mc", question: "Ein Zapfengelenk (Radgelenk) erlaubt welche Bewegung?", options: [
+        { text: "Nur Rotation um die Laengsachse des Knochens", correct: true },
+        { text: "Flexion und Extension um eine Querachse", correct: false },
+        { text: "Abduktion und Adduktion in der Frontalebene", correct: false },
+        { text: "Alle Bewegungen wie ein Kugelgelenk", correct: false }
+      ], explanation: "Das Zapfengelenk (Articulatio trochoidea) hat einen zylindrischen Zapfen, der in einem Knochenring dreht – nur Rotation um die Laengsachse ist moeglich (uniaxial). Beispiele: proximales und distales Radioulnargelenk (Unterarmdrehung: Pronation/Supination), Atlantoaxialgelenk (Kopfrotation)." }
     ],
     bossQuestions: [{ id: "ko_ga_b1", type: "true_false", statement: "Gelenkarten verbinden morphologische Form mit biomechanischer Funktion.", answer: true }],
     combatQuestions: [
@@ -1194,9 +1610,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Muskelarbeit ist neben Bewegung auch fuer Haltung und Waermebildung relevant.", answer: true, solution: "Neben der Bewegungserzeugung hat Skelettmuskulatur zwei weitere wichtige Aufgaben: Gelenkstabilisierung durch aktiven Muskeltonus und Waermeproduktion durch den Energiestoffwechsel bei Kontraktion. Bis zu 70 % der Koerpereigenwaerme wird durch Muskelaktivitaet erzeugt." }
     },
     harvestQuestions: [
-      { id: "mu_allg_h1", type: "true_false", statement: "Muskulatur ist ein zentraler Bestandteil des aktiven Bewegungsapparates.", answer: true, explanation: "Skelettmuskulatur erzeugt durch Kontraktion aktiv Kraft und Bewegung – im Gegensatz zum passiven Bewegungsapparat (Knochen, Baender, Gelenkkapseln), der nur Bewegungen erlaubt oder begrenzt, aber sie nicht selbst erzeugt. Muskeln sind die einzigen bewegungserzeugenden Strukturen." },
-      { id: "mu_allg_h2", type: "true_false", statement: "Muskeln haben ausschliesslich Bewegungsfunktion und keine Haltefunktion.", answer: false, explanation: "Skelettmuskeln stabilisieren Gelenke durch permanenten niedrigschwelligen Muskeltonus. Ohne diesen Tonus wuerden viele Gelenke subluxieren. Zusaetzlich erzeugt Muskelaktivitaet Koerperwaerme als Nebenprodukt – bis zu 70% der Koerpereigenwaerme stammt aus Muskelarbeit." },
-      { id: "mu_allg_h3", type: "true_false", statement: "Kontraktion ist das grundlegende Funktionsprinzip von Muskelgewebe.", answer: true, explanation: "Alle Muskelzellen (Skelett-, Herz- und glatte Muskulatur) beruhen auf demselben Grundprinzip: Aktin und Myosin gleiten durch ATP-Hydrolyse aneinander vorbei und verkuerzen das Sarkomer. Dieser Gleitfilamentmechanismus ist das universelle Konstruktionsprinzip aller Muskelzelltypen." }
+      { id: "mu_allg_h1", type: "mc", question: "Welcher Anteil der Koerpereigenwaerme wird durch Muskelarbeit erzeugt?", options: [
+        { text: "Bis zu 70% der Koerpereigenwaerme stammt aus Muskelaktivitaet", correct: true },
+        { text: "Weniger als 10% – Hauptwaermequelle ist die Leber", correct: false },
+        { text: "Exakt 50% – Muskel und Leber teilen sich die Waermeproduktion gleichmaessig", correct: false },
+        { text: "Muskeln produzieren keine Waerme, sondern nur Bewegung", correct: false }
+      ], explanation: "Skelettmuskeln sind der groesste Waermeproduzent des Koerpers: Bei Muskelkontraktion werden ca. 70-75% der freigesetzten chemischen Energie als Waerme abgegeben, nur 25-30% fuer mechanische Arbeit genutzt. Das erklaert, warum koerperliche Aktivitaet bei Kaelte waermt und warum Fieber oft mit Muskelzittern einhergeht." },
+      { id: "mu_allg_h2", type: "mc", question: "Was bezeichnet man als 'aktiven' im Unterschied zum 'passiven' Bewegungsapparat?", options: [
+        { text: "Aktiv = Muskeln (Kraft erzeugend); passiv = Knochen, Baender, Gelenkkapseln (Kraft uebertragend/begrenzend)", correct: true },
+        { text: "Aktiv = alle willkuerlichen Bewegungen; passiv = alle Reflexbewegungen", correct: false },
+        { text: "Aktiv = obere Extremitaet; passiv = untere Extremitaet", correct: false },
+        { text: "Aktiv und passiv sind nur unterschiedliche Bezeichnungen fuer dasselbe", correct: false }
+      ], explanation: "Passiver Bewegungsapparat: Knochen (Hebel), Baender (Fuehrung/Begrenzung), Gelenkkapseln (Sicherung) – koennen selbst keine Kraft erzeugen. Aktiver Bewegungsapparat: Skelettmuskulatur – kann durch Kontraktion aktiv Kraefte entwickeln und Gelenke bewegen. Beide Systeme arbeiten zusammen: Ohne passiven Apparat keine koordinierte Kraftuebertragung." },
+      { id: "mu_allg_h3", type: "mc", question: "Welches molekulare Prinzip liegt allen Muskelkontraktionen (Skelett, Herz, glatt) zugrunde?", options: [
+        { text: "Gleitfilamentmechanismus: ATP-getriebenes Gleiten von Aktin und Myosin", correct: true },
+        { text: "Quellungsreaktion von Proteinen durch Wasseraufnahme", correct: false },
+        { text: "Elektrostatische Anziehung der Zellmembranen", correct: false },
+        { text: "Enzymatische Spaltung von Kollagenfasern durch Proteasen", correct: false }
+      ], explanation: "Der Gleitfilamentmechanismus (Huxley, 1954) ist das universelle Prinzip aller Muskulatur: Myosinkoepfe binden ATP, hydrolysieren es, bewegen sich ('Power Stroke') und ziehen das Aktinfilament. Das Sarkomer verkuerzt sich, ohne dass die Filamente selbst kuerzer werden. Dieses Prinzip gilt fuer Skelett-, Herz- und glatte Muskulatur gleichermassen." }
     ],
     bossQuestions: [{ id: "mu_allg_b1", type: "true_false", statement: "Allgemeine Muskellehre verbindet Bewegung, Stabilisierung und Stoffwechselbezug.", answer: true }],
     combatQuestions: [
@@ -1223,9 +1654,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Bindegewebige Huelle und Gefaess-Nerven-Versorgung sind Teil des Muskelaufbaus.", answer: true, solution: "Der Muskel als Organ beinhaltet mehr als nur Muskelfasern: Bindegewebshüllen (Epi-/Peri-/Endomysium) schützen und trennen die Faserbuendel, Blutgefaesse versorgen die Muskelfasern mit O2 und Naehrstoffen, und Nervenfasern uebertragen die motorischen Impulse zur Kontraktion." }
     },
     harvestQuestions: [
-      { id: "mu_auf_h1", type: "true_false", statement: "Der Muskelaufbau folgt einem funktionellen Hierarchiemodell.", answer: true, explanation: "Das hierarchische Modell (Muskel → Muskelfaserbuendel → Muskelfaser → Myofibrille → Sarkomer) erklaert sowohl die Kraftentwicklung als auch die Kraftdosierung: Durch Rekrutierung unterschiedlich vieler Muskelfaserbuendel und Feuerfrequenz der motorischen Einheiten kann die Kraft praezise reguliert werden." },
-      { id: "mu_auf_h2", type: "true_false", statement: "Aktin und Myosin sind fuer Muskelkontraktion irrelevant.", answer: false, explanation: "Aktin (duenne Filamente) und Myosin (dicke Filamente) sind die molekularen Akteure der Muskelkontraktion. Im Gleitfilamentmodell ziehen Myosinkoepfe am Aktinfilament und verkuerzen das Sarkomer. Ohne diese Proteine ist Muskelkontraktion auf zellulaerer Ebene unmoeglich." },
-      { id: "mu_auf_h3", type: "true_false", statement: "Struktur und Funktion des Muskels sind direkt miteinander verknuepft.", answer: true, explanation: "Die Bindegewebshüllen (Epi-/Peri-/Endomysium) buendeln die Kraft der Einzelfasern und leiten sie in die Sehnen weiter. Die hierarchische Strukturierung ermoeglicht sowohl die Kraftentwicklung als auch praezise Bewegungsdosierung." }
+      { id: "mu_auf_h1", type: "mc", question: "Welche Bindegewebshuellen umgeben den Skelettmuskel auf verschiedenen Ebenen?", options: [
+        { text: "Epimysium (Muskel gesamt), Perimysium (Faserbuendel), Endomysium (Einzelfaser)", correct: true },
+        { text: "Periost (aussen), Endost (innen) und Perichondrium (Mitte)", correct: false },
+        { text: "Faszie (Muskel), Tendon (Faserbuendel), Sarkolemm (Filamente)", correct: false },
+        { text: "Epineurium, Perineurium und Endoneurium", correct: false }
+      ], explanation: "Die drei Bindegewebshuellen des Skelettmuskels: Epimysium – umhuellt den gesamten Muskel (entspricht der Faszie); Perimysium – umhuellt Muskelfaserbuendel (Faszikel); Endomysium – umhuellt jede einzelne Muskelfaser und enthaelt Kapillaren und Nervenendigungen. Alle drei laufen in die Sehne zusammen und uebertragen die Kontraktionskraft auf den Knochen." },
+      { id: "mu_auf_h2", type: "mc", question: "Was ist ein Sarkomer und wo beginnt und endet es?", options: [
+        { text: "Die kleinste kontraktile Einheit des Muskels; von Z-Scheibe zu Z-Scheibe", correct: true },
+        { text: "Eine einzelne Myofibrille; von M-Linie zu M-Linie", correct: false },
+        { text: "Ein Muskelfaserbuendel; entspricht einer motorischen Einheit", correct: false },
+        { text: "Das gesamte Sarkoplasmatische Retikulum einer Muskelfaser", correct: false }
+      ], explanation: "Das Sarkomer ist die Grundeinheit der Kontraktion und liegt zwischen zwei Z-Scheiben (Z = Zwischenscheibe). Aufbau: I-Bande (nur Aktin, hell), A-Bande (Myosin + Aktin ueberlappend, dunkel), H-Zone (nur Myosin, mittig), M-Linie (Verankerung der Myosinfilamente). Bei Kontraktion verschwindet die H-Zone und die Z-Scheiben naehern sich an." },
+      { id: "mu_auf_h3", type: "mc", question: "Wie wird die Kontraktionskraft eines Muskels von der Muskelfaser auf den Knochen uebertragen?", options: [
+        { text: "Ueber Myofibrillen → Endomysium → Perimysium → Epimysium → Sehne → Knochen", correct: true },
+        { text: "Direkt ueber die Zellmembran (Sarkolemm) in den Knochen ohne Bindegewebe", correct: false },
+        { text: "Ueber Nerven, die die Kontraktion auf den Knochen uebertragen", correct: false },
+        { text: "Nur ueber das Periost des Ursprungsknochens ohne Sehne", correct: false }
+      ], explanation: "Die mechanische Kraftkette: Myofibrillen verkuerzen das Sarkomer → Kraft wird auf Sarkolemm uebertragen → Endomysium buendelt Einzelfaserkraefte → Perimysium buendelt Faserbuendel → Epimysium leitet in Sehne → Sehne verankert am Periost des Knochens. Die Bindegewebshuellen sind nicht nur Schutz, sondern essenzielle Kraftuebertragungsstrukturen." }
     ],
     bossQuestions: [{ id: "mu_auf_b1", type: "true_false", statement: "Ein belastbares Muskelverstaendnis braucht Makro- und Mikroaufbau gemeinsam.", answer: true }],
     combatQuestions: [
@@ -1252,9 +1698,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Isometrische und isotonische Arbeitsweisen gehoeren zur funktionellen Betrachtung.", answer: true, solution: "Bei isometrischer Arbeit kontrahiert der Muskel ohne Laengenaenderung (z.B. Halten einer Last), bei isotonischer Arbeit veraendert er seine Laenge bei gleichbleibender Spannung (z.B. Heben einer Last). Diese Unterscheidung erklaert, warum verschiedene Belastungsformen unterschiedlich trainierbar sind." }
     },
     harvestQuestions: [
-      { id: "mu_fk_h1", type: "true_false", statement: "Kontraktilitaet beschreibt die Faehigkeit des Muskels, aktiv Kraft zu entwickeln.", answer: true, explanation: "Kontraktilitaet ist die herausragende Eigenschaft der Muskulatur: Der Muskel kann durch nervale Erregung aktiv Kraft entwickeln und sich verkuerzen. Dieser Vorgang beruht auf dem ATP-getriebenen Querbrueckenzyklus zwischen Aktin und Myosin im Sarkomer." },
-      { id: "mu_fk_h2", type: "true_false", statement: "Elastizitaet und Dehnbarkeit sind fuer Muskelfunktion bedeutungslos.", answer: false, explanation: "Elastizitaet (Rueckkehr zur Ausgangslange nach Dehnung) und Dehnbarkeit (passive Laengenzunahme) sind entscheidend fuer Alltagsbewegungen. Ohne Elastizitaet wuerden Muskeln nach Dehnung dauerhaft verlaengert bleiben; ohne Dehnbarkeit wuerden Antagonisten die Bewegungen des Agonisten behindern." },
-      { id: "mu_fk_h3", type: "true_false", statement: "Funktionelle Charakteristika sind Grundlage fuer Trainings- und Belastungsfragen.", answer: true, explanation: "Isometrische Arbeit (Laenge konstant, Spannung steigt) trainiert andere Eigenschaften als isotonische Arbeit (Spannung konstant, Laenge aendert sich). Das Verstaendnis dieser Arbeitsweisen erklaert, warum Krafttraining, Ausdauertraining und Dehnen unterschiedliche physiologische Adaptationen ausloesen." }
+      { id: "mu_fk_h1", type: "mc", question: "Was unterscheidet konzentrische von exzentrischer Muskelarbeit?", options: [
+        { text: "Konzentrisch: Muskel verkuerzt sich bei Kraftentwicklung; exzentrisch: Muskel verlaengert sich bei Kraftentwicklung (abbremsendes Kontrahieren)", correct: true },
+        { text: "Konzentrisch = isometrisch; exzentrisch = isotonisch", correct: false },
+        { text: "Exzentrisch bedeutet, der Muskel kontrahiert gegen Widerstand ohne Laengenveraenderung", correct: false },
+        { text: "Konzentrisch und exzentrisch sind Synonyme fuer denselben Vorgang", correct: false }
+      ], explanation: "Konzentrische Arbeit: Muskel verkuerzt sich, erzeugte Kraft uebersteigt die Last (z.B. Arm heben = M. biceps konzentrisch). Exzentrische Arbeit: Muskel verlaengert sich kontrolliert unter Spannung, Last uebersteigt die Muskelkraft (z.B. Arm senken = M. biceps exzentrisch). Exzentrische Arbeit erzeugt mehr Mikrotraumen (Muskelkater!) und ist metabolisch effizienter." },
+      { id: "mu_fk_h2", type: "mc", question: "Was ist das Kraft-Laengen-Verhaeltnis des Muskels?", options: [
+        { text: "Ein Muskel entwickelt die maximale Kraft bei optimaler Vordehnungslaenge (Ruhelaenge) – zu kurz oder zu lang reduziert die Kraft", correct: true },
+        { text: "Je kuerzer ein Muskel, desto mehr Kraft kann er entwickeln", correct: false },
+        { text: "Die Kraft ist unabhaengig von der aktuellen Muskellaenge", correct: false },
+        { text: "Je laenger ein Muskel ist, desto staerker kontrahiert er", correct: false }
+      ], explanation: "Das Kraft-Laengen-Diagramm zeigt: maximale Kraft bei Ruhelaenge (optimale Aktin-Myosin-Ueberlappung im Sarkomer). Bei starker Verkuerzung: Myosinfilamente stossen an Z-Scheiben, weniger effektive Querbruecken. Bei starker Dehnung: minimale Aktin-Myosin-Ueberlappung. Klinisch relevant: Kontraktur-Muskeln koennen keine Kraft bei normaler Gelenklage entwickeln." },
+      { id: "mu_fk_h3", type: "mc", question: "Was beschreibt die Kraft-Frequenz-Beziehung bei Muskelkontraktion?", options: [
+        { text: "Mit steigender Stimulationsfrequenz steigt die Muskelkraft: Einzelzuckung → Tetanus (vollstaendiger oder unvollstaendiger)", correct: true },
+        { text: "Mit steigender Frequenz sinkt die Kraft durch Ermüdung sofort", correct: false },
+        { text: "Frequenz hat keinen Einfluss auf die Muskelkraft – nur die Amplitude zaehlt", correct: false },
+        { text: "Bei Tetanus ist die Kraft geringer als bei Einzelzuckungen", correct: false }
+      ], explanation: "Einzelzuckung: ein Aktionspotential → kurze Kontraktion. Bei schneller Folge (unvollstaendiger Tetanus): Kontraktionen summieren sich (Treppe). Bei hoher Frequenz (vollstaendiger Tetanus): die Einzelzuckungen verschmelzen zur glatten Dauerkontrak­tion mit maximaler Kraft. Tetanische Kontraktionen sind 3-4x staerker als Einzelzuckungen." }
     ],
     bossQuestions: [{ id: "mu_fk_b1", type: "true_false", statement: "Muskeleigenschaften erklaeren, warum gleiche Lasten unterschiedlich verarbeitet werden.", answer: true }],
     combatQuestions: [
@@ -1281,9 +1742,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Motorische Einheit bedeutet: ein Motoneuron und alle von ihm versorgten Muskelfasern.", answer: true, solution: "Die motorische Einheit ist die kleinste Steuerungseinheit des Muskels: Ein Motoneuron kann wenige (Feinmotorik, z.B. Augenmuskel: ~5 Fasern) bis tausende Muskelfasern (Grobmotorik, z.B. Beinmuskeln) versorgen. Je kleiner die Einheit, desto praeziser die Dosierbarkeit der Kraft." }
     },
     harvestQuestions: [
-      { id: "mu_in_h1", type: "true_false", statement: "Die motorische Endplatte vermittelt die Signaluebertragung vom Nerv auf die Muskelfaser.", answer: true, explanation: "An der motorischen Endplatte (neuromuskulaere Synapse) wird das elektrische Signal des Motoneurons chemisch uebertragen: Acetylcholin wird ausgeschuettet, bindet an Rezeptoren der Muskelfaser und loest dort ein Aktionspotenzial aus, das schliesslich die Kontraktion einleitet." },
-      { id: "mu_in_h2", type: "true_false", statement: "Motorische Einheiten spielen fuer die Kraftdosierung keine Rolle.", answer: false, explanation: "Motorische Einheiten sind das Grundprinzip der Kraftdosierung: Durch Rekrutierung unterschiedlich vieler motorischer Einheiten und Aenderung der Feuerfrequenz reguliert das Nervensystem die Muskelkraft stufenlos. Feinmotorische Muskeln (Augen, ~5 Fasern/Einheit) ermöglichen praezise Kontrolle, Grossmuskeln (Bein, hunderte Fasern/Einheit) viel Kraft." },
-      { id: "mu_in_h3", type: "true_false", statement: "Innervation ist fuer koordinierte Muskelarbeit unverzichtbar.", answer: true, explanation: "Koordination erfordert praezises zeitliches und raeumliches Zusammenspiel vieler Muskeln. Das Nervensystem steuert, welche Muskeln wann und wie stark kontrahieren – Agonisten und Antagonisten werden aufeinander abgestimmt. Ohne Innervation wuerde diese Koordination sofort zusammenbrechen." }
+      { id: "mu_in_h1", type: "mc", question: "Welcher Neurotransmitter wird an der motorischen Endplatte ausgeschuettet und an welchen Rezeptoren bindet er?", options: [
+        { text: "Acetylcholin (ACh) – bindet an nikotinische ACh-Rezeptoren der Muskelfaser", correct: true },
+        { text: "Noradrenalin – bindet an adrenerge Rezeptoren", correct: false },
+        { text: "Glutamat – bindet an NMDA-Rezeptoren", correct: false },
+        { text: "GABA – bindet an GABA-A-Rezeptoren und hemmt die Kontraktion", correct: false }
+      ], explanation: "An der neuromuskulaeren Synapse (motorische Endplatte) wird Acetylcholin (ACh) aus prasynaptischen Vesikeln ausgeschuettet. ACh bindet an nikotinische ACh-Rezeptoren (nAChR) auf dem Sarkolemm → Na+-Einstrom → Endplattenpotential → Aktionspotential → Kontraktion. Curare blockiert nAChR (Pfeilgift/Anaesthesie). Acetylcholinesterase spaltet ACh sofort nach der Bindung." },
+      { id: "mu_in_h2", type: "mc", question: "Was ist Innervationsverhaeltnis und was sagt es ueber die Muskelpraezision aus?", options: [
+        { text: "Anzahl der Muskelfasern pro Motoneuron: klein (z.B. 5:1 Augenmuskel) = praezise; gross (z.B. 1000:1 M. gastrocnemius) = kraftvoll aber grob", correct: true },
+        { text: "Anzahl der Motoneuronen pro Muskel: mehr Neuronen = mehr Kraft", correct: false },
+        { text: "Das Verhaeltnis von Agonist zu Antagonist in einem Gelenk", correct: false },
+        { text: "Die Anzahl der Synapsen pro Nervenendigung an der Endplatte", correct: false }
+      ], explanation: "Innervationsverhaeltnis = Anzahl Muskelfasern / Motoneuron. Kleine Einheiten (Augenmuskel ~3-5 Fasern): maximale Feinmotorik. Grosse Einheiten (M. gastrocnemius bis 2000 Fasern): viel Kraft, wenig Praezision. Das Nervensystem dosiert Kraft durch 'Rekrutierung' (mehr Einheiten) und 'Feuerrate' (hoehere Frequenz) – beide Mechanismen erhoehen die Muskelkraft." },
+      { id: "mu_in_h3", type: "mc", question: "Was loest die Weiterleitung des Aktionspotentials in der Muskelfaser ins Innere aus?", options: [
+        { text: "T-Tubuli leiten das AP in die Tiefe → Kalziumfreisetzung aus dem Sarkoplasmatischen Retikulum", correct: true },
+        { text: "Das AP breitet sich nur auf der Zelloberflaehe aus und erreicht nicht die Myofibrillen", correct: false },
+        { text: "Direkte Nervenstimulation jeder einzelnen Myofibrille durch Nervenfasern", correct: false },
+        { text: "Kalziumeinstrom aus dem extrazellulaerem Raum durch spannungsgesteuerte Kanaele", correct: false }
+      ], explanation: "Die T-Tubuli (Einstuelpungen des Sarkolemms) leiten das Aktionspotential tief in die Muskelfaser bis zu den Myofibrillen. An den Triaden (T-Tubulus + zwei SR-Terminals) loest das AP die Ca2+-Freisetzung aus dem Sarkoplasmatischen Retikulum (SR) aus. Ca2+ bindet an Troponin C → Tropomyosin verschiebt sich → Aktinbindungsstellen frei → Querbrueckenzyklus startet." }
     ],
     bossQuestions: [{ id: "mu_in_b1", type: "true_false", statement: "Nervenansteuerung und Muskelantwort muessen als funktionelle Einheit gelernt werden.", answer: true }],
     combatQuestions: [
@@ -1310,9 +1786,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Belastungsdauer und Intensitaet beeinflussen, welche Energiesysteme dominieren.", answer: true, solution: "Kurze intensive Belastung (Sprint) nutzt primaer anaerobe Systeme (Kreatinphosphat, Glykolyse), laengere moderate Belastung (Ausdauer) setzt zunehmend auf aerobe Fettverbrennung. Dieses Umschalten erklaert, warum Ermuedung und Laktatanstieg bei verschiedenen Belastungsarten unterschiedlich verlaufen." }
     },
     harvestQuestions: [
-      { id: "mu_er_h1", type: "true_false", statement: "ATP ist die direkte Energiequelle der Muskelkontraktion.", answer: true, explanation: "ATP ist der einzige direkt nutzbare Energietraeger fuer den Myosin-Querbrueckenzyklus. Da der ATP-Vorrat im Muskel nur fuer wenige Kontraktionen reicht, muss ATP staendig resynthetisiert werden – aus Kreatinphosphat (sehr schnell), Glykolyse (schnell) oder aerober Verbrennung (langsam, aber dauerhaft)." },
-      { id: "mu_er_h2", type: "true_false", statement: "Muskelstoffwechsel ist fuer Ermuedung und Leistungsprofil irrelevant.", answer: false, explanation: "Muskelstoffwechsel erklaert direkt die Ermuedungsphysiologie: Laktatanstieg bei intensiver Belastung senkt den pH-Wert und hemmt Enzymaktivitaeten. Die Energiereserven (Kreatinphosphat, Glykogen) bestimmen, wie lange intensive Leistung aufrechterhalten werden kann." },
-      { id: "mu_er_h3", type: "true_false", statement: "Energiesysteme werden je nach Belastungsart unterschiedlich genutzt.", answer: true, explanation: "Das anaerob-alaktazide System (Kreatinphosphat) liefert sofort Energie fuer ca. 6-10 Sekunden. Das anaerob-laktazide System (Glykolyse) haelt 30-90 Sekunden. Das aerobe System (Oxidation von Glukose/Fetten) dominiert bei Dauerbelastung. Dieses Umschalten erklaert unterschiedliche Belastungsprofile im Sport." }
+      { id: "mu_er_h1", type: "mc", question: "Wie lange liefert das Kreatinphosphatsystem (anaerob-alaktazid) Energie?", options: [
+        { text: "Ca. 6–10 Sekunden (fuer maximale Kraftstoesse wie Sprint oder Gewichtheben)", correct: true },
+        { text: "Ca. 2–4 Minuten (fuer mittlere Belastungen)", correct: false },
+        { text: "Unbegrenzt, solange Fettsaeuren verfuegbar sind", correct: false },
+        { text: "30–90 Sekunden (entspricht der Glykolyse-Dauer)", correct: false }
+      ], explanation: "Das Kreatinphosphatsystem (Phosphagensystem): Kreatinphosphat (KP) uebertraegt sofort Phosphatgruppe auf ADP → ATP. Reaktion: KP + ADP → Kreatin + ATP. Kapazitaet: 6–10 Sekunden maximaler Intensitaet. Kein Laktat (alaktazid). Nach dem Sprint wird KP in der Erholungsphase durch aerobe Oxidation nachgeladen (Sauerstoffschuld)." },
+      { id: "mu_er_h2", type: "mc", question: "Welche Substrate werden vorrangig bei Ausdauerbelastungen (>30 Minuten, niedriger Intensitaet) verbrannt?", options: [
+        { text: "Fettsaeuren (Betaoxidation) – liefern mehr ATP pro Mol, aber langsamer als Kohlenhydrate", correct: true },
+        { text: "Ausschliesslich Glukose aus Blutglukose", correct: false },
+        { text: "Kreatinphosphat – unbegrenzte Reserve im Muskel", correct: false },
+        { text: "Proteine (Aminosaeuren) als Hauptenergiequelle", correct: false }
+      ], explanation: "Bei langen, moderaten Belastungen: Fettsaeuren dominieren. Fettsaeuren liefern mehr ATP pro Mol (z.B. Palmitinsaeure: 129 ATP) als Glukose (38 ATP), aber langsamer (benoetigter O2-Verbrauch hoeher pro ATP). Bei intensiver Belastung wird auf Kohlenhydrate umgeschaltet (glykolytisch). Dieses Substrat-Umschalten erklaert den 'Fettverbrennungspuls' im Ausdauertraining." },
+      { id: "mu_er_h3", type: "mc", question: "Was ist der Laktat-Schwellenwert (anaerobe Schwelle) und welche physiologische Bedeutung hat er?", options: [
+        { text: "Die Intensitaet, bei der die Laktatproduktion die -elimination uebersteigt: oberhalb steigt der Laktatgehalt schnell an", correct: true },
+        { text: "Die maximale Sauerstoffaufnahme (VO2max) des Athleten", correct: false },
+        { text: "Die minimale Belastung, bei der der Muskel beginnt ATP zu verbrauchen", correct: false },
+        { text: "Der Punkt, an dem Glukose vollstaendig durch Fette ersetzt wird", correct: false }
+      ], explanation: "Anaerobe Schwelle: Unterhalb → Laktat wird produziert und abgebaut (Gleichgewicht). Oberhalb → Laktat steigt exponentiell an (pH sinkt, Enzymhemmung, Ermuedung). Trainierte Ausdauersportler haben eine hoehere Schwelle, weil ihre Muskeln mehr Typ-I-Fasern (aerob) und mehr Mitochondrien haben. Klinische Relevanz: Laktatmessung bei Belastungstests." }
     ],
     bossQuestions: [{ id: "mu_er_b1", type: "true_false", statement: "Muskelfunktion laesst sich ohne Grundlagen der Energiebereitstellung nicht sicher erklaeren.", answer: true }],
     combatQuestions: [
@@ -1339,9 +1830,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Skelettmuskulatur ist willkuerlich steuerbar, glatte Muskulatur ueberwiegend nicht.", answer: true, solution: "Skelettmuskulatur wird durch somatische Motoneuronen gesteuert und unterliegt dem bewussten Willen. Glatte Muskulatur (Darm, Gefaesse) wird durch das autonome Nervensystem und Hormone reguliert – das erklaert, warum wir Verdauungsbewegungen oder Gefaessweite nicht direkt willentlich kontrollieren koennen." }
     },
     harvestQuestions: [
-      { id: "mu_art_h1", type: "true_false", statement: "Skelettmuskulatur ist quer gestreift.", answer: true, explanation: "Die Querstreifung der Skelettmuskulatur entsteht durch die regelmaessige Anordnung von Aktin und Myosin in Sarkomeren: Dunkle A-Banden (Myosin) und helle I-Banden (Aktin) wechseln sich regelmaessig ab und erzeugen das charakteristische Streifenmuster im Lichtmikroskop." },
-      { id: "mu_art_h2", type: "true_false", statement: "Glatte Muskulatur ist typischerweise willentlich steuerbar wie Skelettmuskeln.", answer: false, explanation: "Glatte Muskulatur in Hohlorganen (Darm, Blutgefaesse, Harnblase) wird durch das autonome Nervensystem und Hormone gesteuert, nicht durch den somatischen Willen. Wir koennen Darmperistaltik oder Gefaessweite nicht direkt willentlich kontrollieren." },
-      { id: "mu_art_h3", type: "true_false", statement: "Herzmuskel besitzt sowohl Gemeinsamkeiten als auch Unterschiede zur Skelettmuskulatur.", answer: true, explanation: "Herzmuskulatur ist histologisch quergestreift wie Skelettmuskulatur, aber unwillkuerlich gesteuert wie glatte Muskulatur. Darueber hinaus haben Herzmuskelzellen Glanzstreifen (Disci intercalares) mit Gap Junctions, die eine synchrone Erregungsausbreitung im ganzen Herz ermoeglichen." }
+      { id: "mu_art_h1", type: "mc", question: "Welche Muskeleigenschaft ist spezifisch fuer die Herzmuskulatur und unterscheidet sie von Skelett- UND glatter Muskulatur?", options: [
+        { text: "Automatismus: Herzmuskelzellen koennen autonom Aktionspotentiale generieren (Schrittmacher)", correct: true },
+        { text: "Querstreifung – fehlt bei glatter Muskulatur und Herz", correct: false },
+        { text: "Willkuerliche Steuerung durch somatische Motoneuronen", correct: false },
+        { text: "Kernlage peripher – wie in Skelettmuskel, nicht wie glatte Muskulatur", correct: false }
+      ], explanation: "Herzmuskel-spezifische Eigenschaft: Automatismus (Autorhythmizitaet). Spezialisierte Herzmuskelzellen (Sinusknoten, AV-Knoten) generieren autonom Aktionspotentiale ohne externe Nerveninnervation. Skelettmuskel: kein Automatismus (braucht Motoneuron). Glatte Muskulatur: teils autonom (Darmnervensystem), aber nicht so ausgepraegt. Disci intercalares + Gap Junctions ermoeglichen die synchrone Erregungsausbreitung." },
+      { id: "mu_art_h2", type: "mc", question: "Warum verlauft die Kontraktion glatter Muskulatur langsamer als Skelettmuskulatur?", options: [
+        { text: "Glatte Muskulatur hat langsamere Myosin-Isoformen (MLCK-Regulation statt Troponin-Regulation)", correct: true },
+        { text: "Glatte Muskulatur hat weniger ATP als Skelettmuskulatur", correct: false },
+        { text: "Glatte Muskulatur hat keine Myosinfilamente und kontrahiert anders", correct: false },
+        { text: "Die Querstreifung fehlt, daher keine Sarkomerverkürzung moeglich", correct: false }
+      ], explanation: "Regulationsunterschied: Skelettmuskel → Troponin-Tropomyosin-System (schnell, Ca2+-empfindlich). Glatte Muskulatur → Myosin-Leichtketten-Kinase (MLCK) phosphoryliert Myosin nach Ca2+-Calmodulin-Aktivierung (langsamer). Glatte Muskulatur nutzt den 'Latchzustand' fuer Dauerkontraktionen mit sehr wenig ATP – ideal fuer Gefaesstonus und Darmperistaltik." },
+      { id: "mu_art_h3", type: "mc", question: "Warum haben Skelettmuskelfasern randstaendige Kerne, Herzmuskelzellen aber nur einen zentralen Kern?", options: [
+        { text: "Skelettmuskelfasern sind mehrkernige Synzytien (aus Myoblastenfusion), Herzmuskelzellen sind echte Einzelzellen mit einem Kern", correct: true },
+        { text: "Beides sind Synzytien, nur die Kernlage ist eine Zufaelligkeit der Entwicklung", correct: false },
+        { text: "Herzmuskelzellen sind kernlos wie Erythrozyten", correct: false },
+        { text: "Skelettmuskeln haben zentrale Kerne, Herzmuskelzellen haben randstaendige", correct: false }
+      ], explanation: "Skelettmuskelfasern entstehen durch Fusion vieler Myoblasten → mehrkernige Synzytien (Faserlaenge bis 30 cm, hunderte Kerne randstaendig unter dem Sarkolemm). Herzmuskelzellen sind Einzelzellen (ca. 100 µm), verbunden durch Disci intercalares. Dieser Unterschied in der Zellentwicklung erklaert auch die unterschiedliche Regenerationsfaehigkeit: Skelettmuskel kann repariert werden (aus Satellitenzellen), Herzmuskel kaum." }
     ],
     bossQuestions: [{ id: "mu_art_b1", type: "true_false", statement: "Eine saubere Abgrenzung der Muskelarten ist fuer Physiologie- und Pathologiefragen zentral.", answer: true }],
     combatQuestions: [
@@ -1368,9 +1874,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Muskelwirkung wird funktionell ueber Ursprung, Ansatz und Zugrichtung erklaert.", answer: true, solution: "Ursprung (meist am weniger beweglichen Knochen) und Ansatz (am beweglichen Knochen) bestimmen die Zugrichtung des Muskels. Durch die Lage von Ursprung und Ansatz relativ zum Gelenk laesst sich die Bewegungsrichtung und der Hebelarm ableiten." }
     },
     harvestQuestions: [
-      { id: "mu_bew_h1", type: "true_false", statement: "Abduktion und Adduktion sind gegenlaeufige Bewegungen.", answer: true, explanation: "Abduktion (vom Koerper weg) und Adduktion (zur Koerpermitte hin) sind antagonistische Bewegungen in der Frontalebene um eine sagittale Achse. Agonist und Antagonist muessen aufeinander abgestimmt sein: Beim Arm-Heben (Abduktion) muss der Adduktor aktiv nachgeben." },
-      { id: "mu_bew_h2", type: "true_false", statement: "Die Zugrichtung eines Muskels hat keinen Einfluss auf die Bewegungswirkung.", answer: false, explanation: "Die Zugrichtung ist der entscheidende Faktor: Liegt Ursprung kaudal und Ansatz kranial des Gelenks, fuehrt Kontraktion zu Flexion; liegt er ventral, fuehrt er zu Extension oder Rotation. Ein geringfuegig veraenderter Ansatzpunkt kann die Bewegungswirkung komplett veraendern." },
-      { id: "mu_bew_h3", type: "true_false", statement: "Bewegungsbegriffe dienen der standardisierten funktionellen Beschreibung.", answer: true, explanation: "Standardisierte Bewegungsbegriffe (Flexion, Extension, Abduktion, Adduktion, Rotation, Pronation, Supination etc.) ermöglichen praezise klinische Befunderhebung und Kommunikation. 'Eingeschraenkte Aussenrotation des Schultergelenks' ist anatomisch praezise und klinisch sofort verwertbar." }
+      { id: "mu_bew_h1", type: "mc", question: "Was sind Supination und Pronation, und wo finden diese Bewegungen hauptsaechlich statt?", options: [
+        { text: "Supination = Auswaertsdrehung des Unterarms (Handflaeche nach oben); Pronation = Einwaertsdrehung. Statt im Radioulnargelenk", correct: true },
+        { text: "Supination = Plantarflexion; Pronation = Dorsalextension am Fuss", correct: false },
+        { text: "Supination = Adduktion des Daumens; Pronation = Abduktion", correct: false },
+        { text: "Beide Begriffe bezeichnen Kniebewegungen in der Transversalebene", correct: false }
+      ], explanation: "Supination (lat. supinus = rueckwaertsgelehnt): Unterarm dreht nach aussen, Handflaehe zeigt nach oben/vorne. Pronation (lat. pronus = nach vorne gebeugt): Unterarm dreht nach innen, Handflaeche zeigt nach unten. Beide Bewegungen erfolgen im proximalen und distalen Radioulnargelenk durch Rotation der Speiche (Radius) um die Elle (Ulna). M. supinator und M. biceps (Supination), M. pronator teres und M. pronator quadratus (Pronation)." },
+      { id: "mu_bew_h2", type: "mc", question: "Was bedeutet Dorsalextension und Plantarflexion am Fuss?", options: [
+        { text: "Dorsalextension = Fuss zieht nach oben (Richtung Schienbein); Plantarflexion = Fuss drueckt nach unten (Zehenspitze nach unten)", correct: true },
+        { text: "Dorsalextension = Fuss dreht nach innen (Inversion); Plantarflexion = nach aussen", correct: false },
+        { text: "Beide Begriffe bezeichnen Rotationsbewegungen im Kniegelenk", correct: false },
+        { text: "Dorsalextension = Kniebeugung; Plantarflexion = Kniestreckung", correct: false }
+      ], explanation: "Dorsalextension (Dorsiflexion): Fuss hebt hoch (Zehenspitzen heben, Ferse bleibt). M. tibialis anterior. Plantarflexion: Fuss drueckt nach unten (Zehenststand, Treten). M. gastrocnemius + M. soleus (Wadenmuskulatur). Klinisch: Plantarflexion bei Schlaganfall (Spitzfuss) oder Peronaeuslahmung (= fehlende Dorsalextension → Steppergang)." },
+      { id: "mu_bew_h3", type: "mc", question: "Was ist Zirkumduktion und bei welchem Gelenktyp ist sie moeglich?", options: [
+        { text: "Kreisbewegung eines Koerperteils durch Kombination von Flex./Extension + Ab-/Adduktion – moeglich bei Kugelgelenken und Sattelgelenken", correct: true },
+        { text: "Rotation um die Laengsachse eines Knochens – nur bei Zapfengelenken", correct: false },
+        { text: "Gleichzeitige Beugung beider Extremitaeten – kein spezifischer Gelenktyp", correct: false },
+        { text: "Seitliche Neigung der Wirbelsaeule – moeglich bei Bandscheiben", correct: false }
+      ], explanation: "Zirkumduktion = kegelfoermige Kreisbewegung eines Gliedmassensegments: entsteht durch sequenzielle Kombination Flexion → Abduktion → Extension → Adduktion. Voraussetzung: mindestens 2 Bewegungsachsen = Kugelgelenk (Schulter, Hueft) oder Sattelgelenk (Daumensattelgelenk). Im Scharniergelenk (Knie) ist Zirkumduktion nicht moeglich." }
     ],
     bossQuestions: [{ id: "mu_bew_b1", type: "true_false", statement: "Klinische Bewegungsbefunde lassen sich nur mit korrekter Bewegungsnomenklatur sauber deuten.", answer: true }],
     combatQuestions: [
@@ -1397,9 +1918,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Kaumuskeln sind fuer Kraftentwicklung bei der Nahrungszerkleinerung zentral.", answer: true, solution: "Die Kaumuskulatur – M. masseter, M. temporalis und Mm. pterygoidei, alle innerviert durch N. trigeminus (V3) – erzeugt die Bisskraft und fuehrt Kieferschluss, Mahlbewegungen und Protraktion aus. Der M. masseter gilt als einer der staerksten Muskeln relativ zu seiner Groesse im ganzen Koerper." }
     },
     harvestQuestions: [
-      { id: "mu_kopf_h1", type: "true_false", statement: "Mimische Muskulatur ist eng mit Gesichtsbewegungen verknuepft.", answer: true, explanation: "Die mimische Muskulatur unterscheidet sich von anderen Skelettmuskeln: Statt Knochen-Knochen inserieren die Muskeln in Haut und Unterhautgewebe und bewegen damit direkt die Gesichtshaut. Alle werden durch N. facialis (VII) innerviert – eine Fazialisparese fuehrt zum halbseitigen Ausfall der Mimik." },
-      { id: "mu_kopf_h2", type: "true_false", statement: "Kaumuskeln spielen bei Kieferbewegungen keine Rolle.", answer: false, explanation: "Die Kaumuskulatur erzeugt alle Kieferbewegungen: M. masseter und M. temporalis fuehren den Kieferschluss aus, Mm. pterygoidei ermöglichen Mahlbewegungen und Unterkieferprotraktion. Der M. masseter gilt als einer der staerksten Muskeln des Koerpers relativ zu seiner Groesse." },
-      { id: "mu_kopf_h3", type: "true_false", statement: "Topographisches Verstaendnis ist fuer die Kopfmuskulatur wichtig.", answer: true, explanation: "Fuer klinische Fragen (Fazialisparese, Kaustoerungen, Trigeminusneuralgie) muss bekannt sein, welche Muskeln wo liegen, welchen Nerv sie empfangen und welche Bewegungen sie ausfuehren. Die Kopfmuskeln sind eng mit N. facialis (VII, mimisch) und N. trigeminus V3 (Kaumuskulatur) verknuepft." }
+      { id: "mu_kopf_h1", type: "mc", question: "Was unterscheidet die mimische Muskulatur strukturell von anderen Skelettmuskeln?", options: [
+        { text: "Sie inseriert in Haut/Unterhautgewebe statt Knochen-zu-Knochen – ermoeglicht direkte Gesichtshautbewegung", correct: true },
+        { text: "Sie ist aus glattem Muskelgewebe aufgebaut, nicht aus quergestreiftem", correct: false },
+        { text: "Sie wird vom N. trigeminus innerviert, nicht vom N. facialis", correct: false },
+        { text: "Sie hat keine Motorische Endplatte, sondern arbeitet autonom", correct: false }
+      ], explanation: "Mimische Muskeln (M. orbicularis oculi, M. zygomaticus, M. buccinator etc.) haben ihren Ursprung am Knochen oder Gesichtsschaedel, ihren Ansatz aber in der Gesichtshaut. Kontraktion bewegt die Haut – das erzeugt Ausdruck. Alle sind vom N. facialis (CN VII) innerviert. Fazialisparese → ipsilateral: kein Lidschluss, Stirnrunzeln nicht moeglich, Mundwinkel haengt herab." },
+      { id: "mu_kopf_h2", type: "mc", question: "Welche vier Muskeln bilden die Kaumuskulatur und welchem Hirnnerv unterliegen sie?", options: [
+        { text: "M. masseter, M. temporalis, M. pterygoideus medialis, M. pterygoideus lateralis – alle N. trigeminus (V3, Pars mandibularis)", correct: true },
+        { text: "M. masseter, M. buccinator, M. temporalis – alle N. facialis (VII)", correct: false },
+        { text: "M. geniohyoideus, M. mylohyoideus, M. digastricus – alle N. trigeminus (V3)", correct: false },
+        { text: "M. masseter, M. sternocleidomastoideus, M. trapezius – alle N. accessorius (XI)", correct: false }
+      ], explanation: "Kaumuskulatur = vier Muskeln, alle motorisch durch N. mandibularis (V3) versorgt: M. masseter (Kieferschluss, staerkster Kaumuskel), M. temporalis (Kieferschluss + Retraktion), M. pterygoideus medialis (Kieferschluss, Protraktion), M. pterygoideus lateralis (Mundoeffnung, Mahlbewegung). Klinisch: Trigeminusneuralgie (V3) → starke Kieferschmerzen; Bruxismus (Knirschen)." },
+      { id: "mu_kopf_h3", type: "mc", question: "Ein Patient kann nach einem Schlaganfall die Stirn auf der betroffenen Seite nicht mehr runzeln. Welcher Hirnnerv ist geschaedigt?", options: [
+        { text: "N. facialis (VII) – periphere Laesion oder zentrale Laesion mit Stirnbeteiligung", correct: true },
+        { text: "N. trigeminus (V) – sensibel fuer Gesicht, motorisch fuer Kaumuskulatur", correct: false },
+        { text: "N. hypoglossus (XII) – motorisch fuer Zunge", correct: false },
+        { text: "N. glossopharyngeus (IX) – Schluck- und Gaumenmuskulatur", correct: false }
+      ], explanation: "Der N. facialis (VII) innerviert die gesamte mimische Muskulatur inkl. M. frontalis (Stirnrunzeln). Periphere Fazialisparese: komplett ipsilaterale Lahmung (Stirn, Auge, Mund). Zentrale Fazialisparese (z.B. Schlaganfall): nur untere Gesichtshaelfte betroffen, Stirn gespart (bilaterale kortikale Versorgung des M. frontalis). Diese Unterscheidung ist klinisch entscheidend fuer die Lokalisation der Schaedigung." }
     ],
     bossQuestions: [{ id: "mu_kopf_b1", type: "true_false", statement: "Kopfmuskelthemen verbinden Funktion, Innervation und klinische Relevanz.", answer: true }],
     combatQuestions: [
@@ -1426,9 +1962,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Teile der Thoraxmuskulatur haben wesentliche Funktionen in der Atemmechanik.", answer: true, solution: "Die Mm. intercostales externi heben die Rippen bei der Einatmung (Thoraxerweiterung), die Mm. intercostales interni senken sie bei forc­ierter Ausatmung. Bei hohem Atemzug­volumen aktiviert der Koerper Atemhilfsmuskeln: M. sternocleidomastoideus und Mm. scaleni heben den Brustkorb zusaetzlich an." }
     },
     harvestQuestions: [
-      { id: "mu_rumpf_h1", type: "true_false", statement: "Rumpfmuskulatur ist fuer Haltungskontrolle wesentlich.", answer: true, explanation: "Die tiefen autochthonen Rueckenmuskeln halten die Wirbelsaeule segmental aufgerichtet und sind auch in Ruhe aktiv (Grundtonus). Waehrend Bewegungen stabilisieren diese Muskeln die Wirbelsegmente reflexartig, bevor oberflaechennahe Schichten die eigentliche Bewegung ausfuehren." },
-      { id: "mu_rumpf_h2", type: "true_false", statement: "Bauchmuskeln haben keinen Einfluss auf Rumpfbewegungen.", answer: false, explanation: "Bauchmuskeln fuehren verschiedene Rumpfbewegungen aus: M. rectus abdominis bewirkt Rumpfflexion, Mm. obliqui ermöglichen Rotation und seitliche Neigung. Zusaetzlich erhoehen alle Bauchmuskeln bei Kontraktion den Bauchinnendruck (Bauchpresse), wichtig fuer Defaekation, Miktion und Entbindung." },
-      { id: "mu_rumpf_h3", type: "true_false", statement: "Rumpfmuskelwissen ist auch fuer atembezogene Fragen relevant.", answer: true, explanation: "Mm. intercostales externi heben die Rippen bei Inspiration. Bei forcierter Ausatmung ziehen Bauchmuskeln und Mm. intercostales interni die Rippen aktiv nach unten. Atemhilfsmuskeln (M. sternocleidomastoideus, Mm. scaleni) werden bei Atemnot hinzugeschaltet." }
+      { id: "mu_rumpf_h1", type: "mc", question: "Was versteht man unter 'autochthoner Rueckenmuskulatur' und welche Funktion hat sie?", options: [
+        { text: "Die tiefen, am Wirbel selbst entspringenden Rueckenmuskeln (z.B. M. erector spinae) zur segmentalen Stabilisierung und Aufrichtung der Wirbelsaeule", correct: true },
+        { text: "Die oberflaechennahen Muskeln wie M. trapezius, die von der Schulter auf den Ruecken ziehen", correct: false },
+        { text: "Alle Muskeln des Thorax einschliesslich der Interkostalmuskeln", correct: false },
+        { text: "Nur die Bauchmuskeln als Antagonisten der Rueckenstrecker", correct: false }
+      ], explanation: "Autochthone Rueckenmuskulatur (= 'eigenstaendige' Rueckenmuskeln): stammen aus den Myotomen der Wirbelsegmente und werden durch dorsale Rami der Spinalnerven innerviert. Tiefer Anteil (M. multifidus, Mm. rotatores): segmentale Stabilisierung einzelner Wirbelgelenke. Oberflaeche (M. erector spinae, M. longissimus): Aufrichtung der Wirbelsaeule. Klinisch: Chronischer Rueckenschmerz oft durch Schwaeche dieser Muskeln." },
+      { id: "mu_rumpf_h2", type: "mc", question: "Welche Funktion hat der M. transversus abdominis, der tiefste Bauchmuskel?", options: [
+        { text: "Stabilisierung der Lendenwirbelsaeule durch Druckerhoehung im Bauchraum (Bauchpresse) – kein Beugeeffekt auf den Rumpf", correct: true },
+        { text: "Rumpfbeugung (Flexion) als staerkster Bauchmuskel", correct: false },
+        { text: "Rumpfrotation ipsilateral wie M. obliquus externus", correct: false },
+        { text: "Anheben des Zwerchfells waehrend der Inspiration", correct: false }
+      ], explanation: "M. transversus abdominis: tief liegend, verlaeuft quer (transversal). Beim Anspannen erzeugt er eine 'korsettartige' Kompression des Bauchraums → erhoeht intraabdominellen Druck → stabilisiert die LWS von ventral. Er hat praktisch keinen Beugeeffekt auf den Rumpf. Klinisch: Wichtigster Stabilisierungsmuskel bei Rueckenschmerz; Kinesiotaping, Physiotherapie zielen oft auf diesen Muskel ab." },
+      { id: "mu_rumpf_h3", type: "mc", question: "Welche Bauchmuskeln fuehren Rumpfrotation aus und wie?", options: [
+        { text: "M. obliquus externus abdominis ipsilateral + M. obliquus internus kontralateral = Rotation zur Gegenseite", correct: true },
+        { text: "M. rectus abdominis (beidseitig) fuehrt Rotation aus", correct: false },
+        { text: "Ausschliesslich M. transversus abdominis rotiert den Rumpf", correct: false },
+        { text: "M. obliquus externus und internus wirken immer gleichseitig = Rotation zur gleichen Seite", correct: false }
+      ], explanation: "Rumpfrotation: M. obliquus externus abdominis einer Seite + M. obliquus internus der GEGENSEITE kontrahieren gemeinsam → Rotation zur Gegenseite des externus (oder zur gleichen Seite des internus). Beispiel: Drehung nach rechts = rechts externus + links internus. Diese diagonale Muskelpaare erklaeren, warum Rumpfrotation eine koordinierte bilaterale Muskelaktivitaet ist." }
     ],
     bossQuestions: [{ id: "mu_rumpf_b1", type: "true_false", statement: "Funktion der Rumpfmuskulatur ergibt sich aus dem Zusammenspiel vieler Muskelgruppen.", answer: true }],
     combatQuestions: [
@@ -1455,9 +2006,24 @@ const MUSKELLEHRE_1034_PLANTS = [
       water: { statement: "Auch in den Extremitaeten gilt das Prinzip aus Ursprung, Ansatz und Bewegungswirkung.", answer: true, solution: "Jeder Extremitaetenmuskel laesst sich funktionell erschliessen ueber: Ursprung (proximaler Knochen), Ansatz (distaler Knochen), ueberspielte Gelenke und Zugrichtung. Daraus ergibt sich unmittelbar die primaere Bewegungswirkung – z.B. M. biceps brachii: Ursprung Schulterblatt, Ansatz Radius, Wirkung Ellbogenflexion + Supination." }
     },
     harvestQuestions: [
-      { id: "mu_ext_h1", type: "true_false", statement: "Schulter- und Hueftregion enthalten funktionell komplexe Muskelgruppen.", answer: true, explanation: "Schulter und Hueftgelenk sind Kugelgelenke mit vielen Freiheitsgraden – entsprechend komplex ist die Muskelarchitektur. Die Rotatorenmanschette (M. supraspinatus, infraspinatus, teres minor, subscapularis) stabilisiert das Schultergelenk; die Gesaessmuskulatur (Mm. glutei) stabilisiert das Becken und steuert Hueftbewegungen." },
-      { id: "mu_ext_h2", type: "true_false", statement: "Die Beinmuskulatur ist fuer Fortbewegung nur von untergeordneter Bedeutung.", answer: false, explanation: "Die Beinmuskulatur ist die kraftreichste des Koerpers: M. quadriceps femoris streckt das Knie (Treppensteigen, Aufstehen), M. gluteus maximus extendiert die Hueftgelenke und bremst den Koerperschwerpunkt beim Gehen. Diese Muskeln tragen das Koerpergewicht und erzeugen die Vorwaertsbewegung." },
-      { id: "mu_ext_h3", type: "true_false", statement: "Regionale Muskelkenntnis ist fuer klinische Funktionspruefung relevant.", answer: true, explanation: "Klinische Muskelfunktionspruefungen pruefen gezielt einzelne Muskeln oder Muskelgruppen auf Kraft und Koordination. Dabei muss bekannt sein, welcher Muskel welche Bewegung ausfuehrt und welchem Nerv er unterliegt – z.B. M. deltoideus (Schulterabduktion, N. axillaris)." }
+      { id: "mu_ext_h1", type: "mc", question: "Welche vier Muskeln bilden die Rotatorenmanschette der Schulter und welche gemeinsame Funktion haben sie?", options: [
+        { text: "M. supraspinatus, M. infraspinatus, M. teres minor, M. subscapularis – stabilisieren den Humeruskopf in der Pfanne", correct: true },
+        { text: "M. deltoideus, M. biceps brachii, M. triceps brachii, M. pectoralis major", correct: false },
+        { text: "M. trapezius, M. serratus anterior, M. latissimus dorsi, M. rhomboideus", correct: false },
+        { text: "M. supraspinatus, M. teres major, M. coracobrachialis, M. deltoideus", correct: false }
+      ], explanation: "Die Rotatorenmanschette (SITS-Muskeln): Supraspinatus (Abduktion), Infraspinatus (Aussenrotation), Teres minor (Aussenrotation), Subscapularis (Innenrotation). Gemeinsame Funktion: Kompression des Humeruskopfs in die Glenoidpfanne – Sicherung des instabilen Schultergelenks. Klinisch: Rotatorenmanschettenriss (haeufig M. supraspinatus) → schmerzhafter Bogenstreckentest positiv." },
+      { id: "mu_ext_h2", type: "mc", question: "Was ist die Hauptfunktion des M. gluteus maximus?", options: [
+        { text: "Extension und Aussenrotation im Hueftgelenk – wichtig beim Treppensteigen, Aufstehen und Laufen", correct: true },
+        { text: "Abduktion im Hueftgelenk – Seitstabilisierung beim Gehen", correct: false },
+        { text: "Innenrotation des Oberschenkels – Gangbild-Kontrolle", correct: false },
+        { text: "Kniebeugung als Hintermuskel des Oberschenkels", correct: false }
+      ], explanation: "M. gluteus maximus ist der groesste und kraftvollste Gesaessmuskel. Hauptfunktion: Hueftextension (vom Boden aufstehen, Treppen steigen, bergauf gehen) + Aussenrotation. Innervation: N. gluteus inferior. M. gluteus medius und minimus: Abduktion und Innenrotation (Seitstabilisierung beim Einbeinstand – Trendelenburg-Hinken bei Laesion). Klinisch: M. gluteus maximus ist nach Knieoperation oft der schwaeche Wiederherstellungsmuskel." },
+      { id: "mu_ext_h3", type: "mc", question: "Welcher Nerv innerviert den M. biceps brachii und welche Bewegungen fuehrt dieser Muskel aus?", options: [
+        { text: "N. musculocutaneus – Ellenbogenflexion UND Supination des Unterarms", correct: true },
+        { text: "N. radialis – Ellenbogenextension", correct: false },
+        { text: "N. medianus – Fingerflexion und Unterarmflexion", correct: false },
+        { text: "N. ulnaris – Handgelenkflexion und Ulnardeviation", correct: false }
+      ], explanation: "M. biceps brachii: Ursprung am Schulterblatt (Caput longum: Tuberculum supraglenoidale; Caput breve: Processus coracoideus), Ansatz an Tuberositas radii. Funktion: Ellenbogenflexion (Hauptfunktion) + Unterarmsupination (weil Ansatz an Radius: dreht den Radius nach aussen). Innervation: N. musculocutaneus (C5-C6). N. radialis: Triceps (Extension). N. medianus: Flexoren volar." }
     ],
     bossQuestions: [{ id: "mu_ext_b1", type: "true_false", statement: "Extremitaetenmuskulatur verlangt die Verknuepfung von Topographie und Bewegungsfunktion.", answer: true }],
     combatQuestions: [
@@ -1488,9 +2054,24 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       water: { statement: "Der eigentliche Ort des Gasaustauschs ist die Lunge, nicht die luftleitenden Atmungsorgane.", answer: true, solution: "Nase, Rachen, Kehlkopf, Trachea und Bronchien leiten nur Luft, ohne selbst am Gasaustausch beteiligt zu sein. Der Gasaustausch findet ausschliesslich in den ca. 300 Millionen Alveolen der Lunge statt, die mit ihrer duennen Membran und grossen Flaeche (50–100 m²) ideal fuer Diffusion sind." }
     },
     harvestQuestions: [
-      { id: "at_ue_h1", type: "true_false", statement: "Die Nase gehoert zu den oberen Atemwegen.", answer: true, explanation: "Die oberen Atemwege umfassen Nase (mit Nasenmuscheln und -nebenhoehllen), Nasopharynx und Mundhoehlein ihrer Funktion als Atemweg. Sie konditionieren die Atemluft (Waermung, Befeuchtung, Filtration), bevor sie die unteren Atemwege erreicht." },
-      { id: "at_ue_h2", type: "true_false", statement: "Bronchien und Bronchiolen gehoeren zu den oberen Atemwegen.", answer: false, explanation: "Bronchien und Bronchiolen gehoeren zu den unteren Atemwegen. Die Grenze liegt am Kehlkopf. Zu den unteren Atemwegen zaehlen: Kehlkopf (Larynx), Luftroehre (Trachea) und der gesamte Bronchialbaum bis zu den Alveolen." },
-      { id: "at_ue_h3", type: "true_false", statement: "Am Kehlkopf (Larynx) befindet sich der Uebergang von den oberen zu den unteren Atemwegen.", answer: true, explanation: "Der Kehlkopf (Larynx) bildet die anatomische Grenze zwischen oberen und unteren Atemwegen. Er hat zwei Schluessselfunktionen: Schutz der unteren Atemwege beim Schlucken (Epiglottis) und Stimmbildung (Phonation durch Schwingung der Stimmbaender)." }
+      { id: "at_ue_h1", type: "mc", question: "Wie viele Alveolen hat die menschliche Lunge ungefaehr und welche Austauschflaeche bieten sie?", options: [
+        { text: "Ca. 300 Millionen Alveolen mit einer Gesamtaustauschflaeche von 50–100 m²", correct: true },
+        { text: "Ca. 10.000 Alveolen mit ca. 2 m² Austauschflaeche", correct: false },
+        { text: "Ca. 3 Millionen Alveolen mit ca. 10 m² Austauschflaeche", correct: false },
+        { text: "Unbegrenzt viele Alveolen – die Flaeche variiert stark nach Lungenfuellung", correct: false }
+      ], explanation: "Ca. 300 Millionen Alveolen ergeben durch ihre winzige Groesse (Durchmesser 200–300 µm) eine Gesamtflaeche von 50–100 m² – dem Quadratmeterwert eines Tennisplatzes. Diese enorme Flaeche bei minimaler Diffusionsstrecke (<0,5 µm Membrandicke) ist der physikalische Schluessel zum effizienten Gasaustausch." },
+      { id: "at_ue_h2", type: "mc", question: "Was bezeichnet der Begriff 'anatomischer Totraum' beim Atmungssystem?", options: [
+        { text: "Die luftleitenden Atemwege (Nase bis Bronchiolen), in denen kein Gasaustausch stattfindet – ca. 150 ml", correct: true },
+        { text: "Die nicht beluefteten Alveolen in der Lunge (alveolaerer Totraum)", correct: false },
+        { text: "Das Residualvolumen, das nach maximaler Ausatmung verbleibt", correct: false },
+        { text: "Der Raum zwischen Pleura visceralis und parietalis", correct: false }
+      ], explanation: "Anatomischer Totraum (ca. 150 ml): Luftvolumen in Nase, Rachen, Kehlkopf, Trachea und Bronchiolen – hier findet kein Gasaustausch statt. Beim normalen Atemzug (500 ml) gelangen daher nur ca. 350 ml Frischluft in die Alveolen. Klinisch: Flache Atmung erhoeht den relativen Totraumanteil → weniger effektiver Gasaustausch." },
+      { id: "at_ue_h3", type: "mc", question: "Welche drei Hauptfunktionen hat das Atmungssystem ausser dem Gasaustausch?", options: [
+        { text: "Waerme- und Feuchtigkeitsregulierung der Atemluft, Schutzfunktion (Filterung/Reinigung), Phonation (Stimmbildung)", correct: true },
+        { text: "Blutdruckregulation, Hormonproduktion und Verdauungsunterstuetzung", correct: false },
+        { text: "Haematopoese (Blutbildung), Lymphproduktion und Immunglobulinsekretion", correct: false },
+        { text: "Osmolaritaetsregulation, Elektrolytbalance und Nierenunterstuetzung", correct: false }
+      ], explanation: "Das Atmungssystem hat neben dem Gasaustausch weitere Funktionen: Konditionierung der Atemluft (Waermung auf 37°C, Befeuchtung auf 100% rel. Feuchte, Filtration durch Nasenhaare/Schleimhaut), Schutzfunktion (mukoziliaere Clearance, Husten/Niesen-Reflex) und Phonation (Stimmbaender im Kehlkopf). Ausserdem ist die Lunge am Saeure-Basen-Haushalt beteiligt (CO2-Abgabe)." }
     ],
     bossQuestions: [{ id: "at_ue_b1", type: "true_false", statement: "Das Atmungssystem wird in obere und untere Atemwege unterteilt, die unterschiedliche Strukturen umfassen.", answer: true }],
     combatQuestions: [
@@ -1699,7 +2280,12 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
     harvestQuestions: [
       { id: "at_ap_h1", type: "true_false", statement: "Waehrend der Exspiration entspannt sich das Diaphragma und woelbt sich in thorakaler Richtung nach oben.", answer: true, explanation: "In Ruhe ist die Ausatmung passiv: Das Diaphragma entspannt sich und woelbt sich durch elastische Retraktionskraefte nach oben zurueck. Dadurch verkleinert sich das Thoraxvolumen, der Druck steigt und Luft stroemt passiv aus der Lunge heraus." },
       { id: "at_ap_h2", type: "true_false", statement: "Die ausgeatmete Luft enthaelt denselben Sauerstoffgehalt wie die eingeatmete Luft von ca. 21%.", answer: false, explanation: "Eingeatmete Luft enthaelt ca. 21% O2, ausgeatmete nur noch ca. 16%. Ca. 5% des eingeatmeten Sauerstoffs wird vom Koerper verbraucht. Umgekehrt steigt der CO2-Gehalt von 0,04% (Aussenluft) auf ca. 4% in der ausgeatmeten Luft." },
-      { id: "at_ap_h3", type: "true_false", statement: "Das Atemzentrum befindet sich in der Medulla oblongata und steuert den Grundrhythmus der Atmung.", answer: true, explanation: "Das Atemzentrum in der Medulla oblongata (preBötzinger-Komplex) generiert autonom den Grundrhythmus der Atmung, der auch im Schlaf und Koma weiterlaeuft. Es wird durch Chemorezeptoren (CO2, O2, pH) moduliert und kann durch kortikale Einfluesse willkuerlich ueberlagert werden." }
+      { id: "at_ap_h3", type: "mc", question: "Was ist der 'Boyle-Mariotte-Effekt' beim Atemvorgang: wie veraendert sich der Alveolardruck bei Inspiration?", options: [
+        { text: "Der Alveolardruck sinkt unter den Atmosphaerendruck (ca. -1 bis -3 cmH2O) → Luft stroemt ein", correct: true },
+        { text: "Der Alveolardruck steigt bei Inspiration, damit Luft hineingepresst werden kann", correct: false },
+        { text: "Der Alveolardruck bleibt konstant – Luftstrom entsteht durch Saugwirkung der Lunge", correct: false },
+        { text: "Der Alveolardruck entspricht immer exakt dem Atmosphaerendruck", correct: false }
+      ], explanation: "Nach Boyle-Mariotte (p1V1 = p2V2): Wenn das Thoraxvolumen durch Kontraktion von Diaphragma und Interkostalmuskeln zunimmt, sinkt der Druck in der Lunge unter den Atmosphaerendruck (ca. -1 bis -3 cmH2O bei normaler Inspiration). Dieser Druckgradient treibt Luft von aussen passiv in die Alveolen. Bei Exspiration: Volumen sinkt → Druck steigt → Luft stroemt heraus." }
     ],
     bossQuestions: [{ id: "at_ap_b1", type: "true_false", statement: "Die Lungenventilation besteht aus dem rhythmischen Wechsel zwischen aktiver Inspiration und passiver Exspiration in Ruhe.", answer: true }],
     combatQuestions: [
@@ -1842,7 +2428,7 @@ const HEILPRAKTIKER_HYBRIDS = [
     title: "Histologie der Atemmuskulatur",
     contextHint: "Verbindung von Muskelhistologie (1032) und Atemmuskulatur (1035)",
     phase1: {
-      soil: { statement: "Das Diaphragma und die Mm. intercostales gehoeren histologisch zur quergestreiften Skelettmuskulatur.", answer: true, solution: "Korrekt. Atemmuskulatur ist quergestreifte Skelettmuskulatur, erklaert durch 1032 und konkretisiert durch 1035." },
+      soil: { statement: "Das Diaphragma und die Mm. intercostales gehoeren histologisch zur quergestreiften Skelettmuskulatur.", answer: true, solution: "Korrekt. Diaphragma und Interkostalmuskeln sind quergestreifte Skelettmuskulatur mit charakteristischen Querstreifen und unterliegen sowohl willkuerlicher als auch reflektorischer Steuerung ueber das somatische Nervensystem." },
       seed: { statement: "Die Atemmuskulatur besteht aus glatter Muskulatur, die ausschliesslich autonom und ohne bewusste Steuerung arbeitet.", answer: false, solution: "Falsch. Diaphragma und Intercostalmuskeln sind quergestreifte Skelettmuskulatur, sowohl willkuerlich als auch reflektorisch steuerbar." },
       water: { statement: "Die histologische Einordnung der Atemmuskulatur als Skelettmuskulatur erklaert, warum sie sowohl reflektorisch als auch willkuerlich steuerbar ist.", answer: true, solution: "Genau. Quergestreifte Skelettmuskulatur unterliegt dem somatischen Nervensystem, also willkuerlicher und reflektorischer Kontrolle." }
     },
@@ -1851,7 +2437,21 @@ const HEILPRAKTIKER_HYBRIDS = [
       { id: "hyb_hA_h2", type: "true_false", statement: "Der M. sternocleidomastoideus gehoert zur inspiratorisch wirkenden Atemhilfsmuskulatur.", answer: true, explanation: "Der M. sternocleidomastoideus hebt bei beidseitiger Kontraktion das Brustbein und wirkt damit inspiratorisch. Er wird bei Atemnot und intensiver koerperlicher Belastung hinzugeschaltet. Ein sichtbar angespannter Sternocleidomastoideus ist ein klinisches Zeichen von Atemnot." },
       { id: "hyb_hA_h3", type: "true_false", statement: "Das Diaphragma ist histologisch quergestreifte Skelettmuskulatur.", answer: true, explanation: "Das Diaphragma besteht aus quergestreiften Skelettmuskelfasern – trotz seiner unwillkuerlichen Atemfunktion. Das ermoeglicht sowohl reflektorische (durch das Atemzentrum) als auch willkuerliche Steuerung (Sprechen, Singen, Tauchen). Diese Doppelsteuerung erklaert seine funktionelle Vielseitigkeit." }
     ],
-    bossQuestions: [{ id: "hyb_hA_b1", type: "true_false", statement: "Atemmuskulatur (Diaphragma, Mm. intercostales) besteht histologisch aus quergestreifter Skelettmuskulatur und unterliegt sowohl willkuerlicher als auch reflektorischer Steuerung.", answer: true }]
+    bossQuestions: [{ id: "hyb_hA_b1", type: "true_false", statement: "Atemmuskulatur (Diaphragma, Mm. intercostales) besteht histologisch aus quergestreifter Skelettmuskulatur und unterliegt sowohl willkuerlicher als auch reflektorischer Steuerung.", answer: true }],
+    combatQuestions: [
+      { id: "hyb_hA_mc1", type: "mc", question: "Welchem histologischen Muskeltyp gehoert das Zwerchfell an und was folgt daraus fuer seine Steuerung?", options: [
+        { text: "Quergestreifte Skelettmuskulatur – willkuerliche UND reflektorische Steuerung moeglich", correct: true },
+        { text: "Glatte Muskulatur – ausschliesslich autonome, unwillkuerliche Steuerung", correct: false },
+        { text: "Herzmuskulatur – autonomer Rhythmus ohne nervale Steuerung", correct: false },
+        { text: "Quergestreifte Skelettmuskulatur – ausschliesslich willkuerliche Steuerung", correct: false }
+      ], explanation: "Das Zwerchfell ist quergestreifte Skelettmuskulatur und unterliegt dem somatischen Nervensystem (N. phrenicus). Diese Einordnung erklaert, warum es sowohl reflektorisch (Atemzentrum) als auch willkuerlich (Sprechen, Singen, Tauchen) steuerbar ist." },
+      { id: "hyb_hA_mc2", type: "mc", question: "Warum koennen Menschen die Atmung kurzzeitig willkuerlich anhalten oder vertiefen?", options: [
+        { text: "Das Zwerchfell ist quergestreifte Skelettmuskulatur und unterliegt dem somatischen Nervensystem", correct: true },
+        { text: "Die Atemmuskulatur besteht aus glatter Muskulatur mit vegetativer Innervation", correct: false },
+        { text: "Das Atemzentrum in der Medulla oblongata ist willkuerlich abschaltbar", correct: false },
+        { text: "Der N. phrenicus entspringt aus dem autonomen Nervensystem", correct: false }
+      ], explanation: "Da Zwerchfell und Interkostalmuskeln quergestreifte Skelettmuskulatur sind, koennen kortikale Motoneuronen die Atemtiefe und -frequenz willkuerlich modulieren. Gleichzeitig laeuft die Grundatmung ueber das Atemzentrum automatisch weiter." }
+    ]
   }), { locked: true, sources: ["histologie_1032::muskelgewebe", "atmungssystem_1035::atemmuskulatur"] }),
 
   Object.assign(makeDetailedPlant({
@@ -1861,14 +2461,28 @@ const HEILPRAKTIKER_HYBRIDS = [
     phase1: {
       soil: { statement: "Das Atemzentrum in der Medulla oblongata steuert die Atemmuskulatur ueber efferente Nervenfasern.", answer: true, solution: "Das Atemzentrum (preBötzinger-Komplex in der Medulla oblongata) generiert rhythmische Impulse und sendet sie ueber efferente Motoneuronen an Zwerchfell (N. phrenicus) und Interkostalmuskeln. Dieses Zusammenspiel verbindet die Neurophysiologie der Nervenleitung direkt mit der Atemmechanik." },
       seed: { statement: "Atemsteuerung und Nervengewebe sind vollstaendig voneinander unabhaengig: das Atemzentrum arbeitet ohne nervale Strukturen.", answer: false, solution: "Das Atemzentrum besteht aus Nervenzellen und leitet Impulse ueber Nervenfasern weiter. Nervengewebe ist die Grundlage jeder Atemsteuerung." },
-      water: { statement: "Dehnungsrezeptoren in den Alveolen leiten Signale ueber afferente Nervenfasern an das Atemzentrum weiter, was den Hering-Breuer-Reflex ausloest.", answer: true, solution: "Genau. Dieser Reflex verbindet mechanische Lungenreize (1035) mit nervaler Signalleitung (1032)." }
+      water: { statement: "Dehnungsrezeptoren in den Alveolen leiten Signale ueber afferente Nervenfasern an das Atemzentrum weiter, was den Hering-Breuer-Reflex ausloest.", answer: true, solution: "Genau. Dehnungsrezeptoren in der Lunge nehmen mechanische Reize auf und leiten sie ueber afferente Nervenfasern an das Atemzentrum in der Medulla oblongata weiter, wo die Inspiration reflektorisch gehemmt wird (Hering-Breuer-Reflex)." }
     },
     harvestQuestions: [
       { id: "hyb_nA_h1", type: "true_false", statement: "Der Zellaufbau der Nervenzelle ist fuer die Funktionsdeutung relevant.", answer: true, explanation: "Dendriten empfangen Signale, der Axonhuegel integriert sie, das Axon leitet Aktionspotenziale weiter – diese Zellstruktur erklaert, wie das Atemzentrum rhythmische Impulse generiert und an die Atemmuskulatur weiterleitet. Ohne das Verstaendnis der Nervenzellarchitektur bleibt die Atemsteuerung unverstehbar." },
       { id: "hyb_nA_h2", type: "true_false", statement: "Der Hering-Breuer-Reflex begrenzt das Inspirationsvolumen und verhindert die Ueberdehnung der Lunge.", answer: true, explanation: "Beim Hering-Breuer-Reflex messen Dehnungsrezeptoren in der Bronchialwand das Lungenvolumen. Bei ausreichender Dehnung senden sie Signale ueber afferente Vagusfasern an das Atemzentrum, das daraufhin die Inspiration beendet und die Exspiration einleitet. Der Reflex schuetzt die Lunge vor Ueberdehnung." },
       { id: "hyb_nA_h3", type: "true_false", statement: "Das Atemzentrum in der Medulla oblongata nutzt Nervenzellen zur Weiterleitung von Atemimpulsen an die Diaphragmamuskulatur.", answer: true, explanation: "Die Motoneuronen des Atemzentrums senden ihre Impulse ueber den N. phrenicus (C3-C5) zum Diaphragma. Bei Rueckenmarksverletzungen oberhalb C3 ist die Atemmuskulatur vollstaendig gelahmt und Beatmung wird lebensnotwendig – ein direktes Beispiel fuer die klinische Bedeutung dieser nervalen Verbindung." }
     ],
-    bossQuestions: [{ id: "hyb_nA_b1", type: "true_false", statement: "Chemorezeptoren leiten Veraenderungen von O2, CO2 und pH-Wert ueber afferente Nervenfasern an das Atemzentrum in der Medulla oblongata weiter.", answer: true }]
+    bossQuestions: [{ id: "hyb_nA_b1", type: "true_false", statement: "Chemorezeptoren leiten Veraenderungen von O2, CO2 und pH-Wert ueber afferente Nervenfasern an das Atemzentrum in der Medulla oblongata weiter.", answer: true }],
+    combatQuestions: [
+      { id: "hyb_nA_mc1", type: "mc", question: "Welche Struktur generiert den rhythmischen Atemantrieb und wohin sendet sie ihre Impulse?", options: [
+        { text: "Atemzentrum in der Medulla oblongata – Impulse ueber den N. phrenicus zum Zwerchfell", correct: true },
+        { text: "Hypothalamus – Impulse ueber den N. vagus zum Zwerchfell", correct: false },
+        { text: "Kleinhirn – koordiniert die Atemfrequenz ueber Motoneuronen", correct: false },
+        { text: "Motorischer Cortex – direkte Impulse ohne Beteiligung der Medulla oblongata", correct: false }
+      ], explanation: "Das praeBötzinger-Areal in der Medulla oblongata generiert den Atemrhythmus. Die Impulse werden ueber efferente Motoneuronen (N. phrenicus, C3-C5) an das Zwerchfell und die Interkostalmuskeln weitergeleitet." },
+      { id: "hyb_nA_mc2", type: "mc", question: "Was passiert bei einer vollstaendigen Rueckenmarksverletzung auf Hoehe C2 mit der Atemfunktion?", options: [
+        { text: "Atemstillstand, da der N. phrenicus (entspringt C3-C5) unterbrochen ist", correct: true },
+        { text: "Keine Beeintraechtigung, da das Atemzentrum weiterarbeitet", correct: false },
+        { text: "Nur Thoraxmuskeln gelahmt, das Zwerchfell bleibt funktionsfaehig", correct: false },
+        { text: "Atemstillstand durch direkte Schaedigung des Atemzentrums", correct: false }
+      ], explanation: "Der N. phrenicus entspringt auf Hoehe C3-C5. Eine Verletzung oberhalb C3 unterbricht diese Bahn zum Zwerchfell vollstaendig – Beatmung wird lebenserhaltend notwendig. Das Atemzentrum selbst ist intakt, kann aber keine Impulse mehr weiterleiten." }
+    ]
   }), { locked: true, sources: ["histologie_1032::nervengewebe", "atmungssystem_1035::atemsteuerung"] }),
 
   Object.assign(makeDetailedPlant({
@@ -1876,7 +2490,7 @@ const HEILPRAKTIKER_HYBRIDS = [
     title: "Sauerstofftransport im Blut",
     contextHint: "Verbindung von Blut als Gewebe (1032) und Gasaustausch (1035)",
     phase1: {
-      soil: { statement: "Blut als spezialisiertes Gewebe ist das Transportmedium, das nach dem Gasaustausch in den Alveolen den Sauerstoff zu den Koerperzellen befoerdert.", answer: true, solution: "Korrekt. 1032 definiert Blut als Gewebe, 1035 beschreibt den Gasaustausch in den Alveolen, der diesen Transport erst benoetigt." },
+      soil: { statement: "Blut als spezialisiertes Gewebe ist das Transportmedium, das nach dem Gasaustausch in den Alveolen den Sauerstoff zu den Koerperzellen befoerdert.", answer: true, solution: "Korrekt. Blut ist ein spezialisiertes fluessiges Bindegewebe. Seine Erythrozyten nehmen in den Lungenalveolen Sauerstoff auf (Haemoglobin-Bindung) und transportieren ihn zu den Koerperzellen, wo Sauerstoff abgegeben und CO2 aufgenommen wird." },
       seed: { statement: "Sauerstoff wird nach dem Gasaustausch direkt im Blutplasma geloest transportiert, ohne Beteiligung von Blutzellen.", answer: false, solution: "Der groesste Teil des Sauerstoffs wird an Haemoglobin in den Erythrozyten gebunden, nicht frei im Plasma geloest." },
       water: { statement: "Der Gasaustausch in den Alveolen und der anschliessende Sauerstofftransport durch Erythrozyten bilden zusammen die aeussere Atmung.", answer: true, solution: "Genau. Aeussere Atmung = Gasaustausch (Lunge) plus Transport (Blut als Gewebe)." }
     },
@@ -1885,7 +2499,21 @@ const HEILPRAKTIKER_HYBRIDS = [
       { id: "hyb_sB_h2", type: "true_false", statement: "Fuer den Uebertritt von Sauerstoff aus der Luft in das Blut sind Ventilation, Diffusion und Perfusion entscheidend.", answer: true, explanation: "Drei Voraussetzungen fuer effizienten Gasaustausch: V = Ventilation (Luft muss die Alveolen erreichen), Diffusion (Gasaustausch durch die Membran), Q = Perfusion (Blut muss die Alveolen umspuelen). Stoerungen in einer dieser Komponenten reduzieren die O2-Aufnahme erheblich." },
       { id: "hyb_sB_h3", type: "true_false", statement: "Erythrozyten sind der zellulaere Traeger des Sauerstoffs im Blut nach dem Gasaustausch in den Alveolen.", answer: true, explanation: "Erythrozyten binden O2 an Haemoglobin (je Haemoglobin-Molekuel 4 O2). Nur ca. 3% des O2 werden physikalisch im Plasma geloest. Der Haemoglobin-Transport ist damit etwa 30-mal effizienter. Die Oxyhaemoglobin-Dissoziationskurve beschreibt, wie Haemoglobin O2 in der Lunge aufnimmt und im Gewebe abgibt." }
     ],
-    bossQuestions: [{ id: "hyb_sB_b1", type: "true_false", statement: "Blut als spezialisiertes Gewebe (Erythrozyten) und Gasaustausch (Diffusion in Alveolen) sind direkt verknuepft: ohne funktionelles Blutgewebe kein Sauerstofftransport.", answer: true }]
+    bossQuestions: [{ id: "hyb_sB_b1", type: "true_false", statement: "Blut als spezialisiertes Gewebe (Erythrozyten) und Gasaustausch (Diffusion in Alveolen) sind direkt verknuepft: ohne funktionelles Blutgewebe kein Sauerstofftransport.", answer: true }],
+    combatQuestions: [
+      { id: "hyb_sB_mc1", type: "mc", question: "Wie wird Sauerstoff nach dem Gasaustausch in den Alveolen im Blut hauptsaechlich transportiert?", options: [
+        { text: "Gebunden an Haemoglobin in den Erythrozyten (ca. 97% des O2-Gehalts)", correct: true },
+        { text: "Frei geloest im Blutplasma", correct: false },
+        { text: "Gebunden an Albumin im Blutplasma", correct: false },
+        { text: "Als Bikarbonat (HCO3-) chemisch gebunden", correct: false }
+      ], explanation: "Ca. 97% des Sauerstoffs wird an Haemoglobin in den Erythrozyten gebunden, nur ca. 3% sind physikalisch im Plasma geloest. Der Haemoglobin-Transport ist ca. 30-mal effizienter als der reine Plasmatransport." },
+      { id: "hyb_sB_mc2", type: "mc", question: "Welche drei Faktoren sind Voraussetzung fuer einen effizienten alveolaren Gasaustausch?", options: [
+        { text: "Ventilation (Luftzufuhr), Diffusion (Membranpassage) und Perfusion (Blutfluss)", correct: true },
+        { text: "Ventilation, Resorption und Exkretion", correct: false },
+        { text: "Perfusion, Osmose und aktiver Transport", correct: false },
+        { text: "Diffusion, Filtration und Sekretion", correct: false }
+      ], explanation: "Effizienter Gasaustausch erfordert: V (Ventilation) = Frischluft erreicht die Alveolen, D (Diffusion) = Gase passieren die alveolaere Membran, Q (Perfusion) = Blut umspuelt die Alveolen. Stoerungen in einer dieser drei Groessen reduzieren die Oxygenierung erheblich." }
+    ]
   }), { locked: true, sources: ["histologie_1032::blut", "atmungssystem_1035::gasaustausch"] }),
 
   Object.assign(makeDetailedPlant({
@@ -1893,16 +2521,30 @@ const HEILPRAKTIKER_HYBRIDS = [
     title: "Respiratorisches Epithel",
     contextHint: "Verbindung von Oberflaechenepithel (1032) und Luftroehre (1035)",
     phase1: {
-      soil: { statement: "Das mehrreihige Flimmerepithel der Trachea ist ein spezialisiertes Oberflaechenepithel der Atemwege.", answer: true, solution: "Korrekt. 1032 beschreibt die Klasse der Oberflaechenepithelien, 1035 nennt das Flimmerepithel als Auskleidung der Trachea." },
-      seed: { statement: "Das Flimmerepithel der Atemwege ist strukturell mit dem einfachen Plattenepithel identisch und hat keine Schutzfunktion.", answer: false, solution: "Mehrreihiges Flimmerepithel und einfaches Plattenepithel sind strukturell verschieden. Die Flimmerhaarchen und Becherzellen ermoeglichen aktive Reinigung." },
-      water: { statement: "Die Schichtung und Zellausstattung des respiratorischen Epithels (Flimmerhaarchen, Becherzellen) erklaert seine Selbstreinigungsfunktion fuer die Atemwege.", answer: true, solution: "Genau. Struktur erklaert Funktion: das ist der Kerngedanke dieses Hybrids." }
+      soil: { statement: "Das mehrreihige Flimmerepithel der Trachea ist ein spezialisiertes Oberflaechenepithel der Atemwege.", answer: true, solution: "Korrekt. Das mehrreihige Flimmerepithel gehoert zur Klasse der Oberflaechenepithelien. Es kleidet die Trachea und die Bronchien aus und schuetzt die Atemwege durch den mukoziliaeren Transport: Becherzellen produzieren Schleim, Flimmerhaerchen transportieren ihn mit Fremdkoerpern nach oben." },
+      seed: { statement: "Das Flimmerepithel der Atemwege ist strukturell mit dem einfachen Plattenepithel identisch und hat keine Schutzfunktion.", answer: false, solution: "Diese Aussage ist falsch. Das mehrreihige Flimmerepithel der Atemwege unterscheidet sich grundlegend vom einfachen Plattenepithel: Es ist mehrreihig (alle Zellen an der Basalmembran, aber unterschiedlich hoch), enthaelt Becherzellen (Schleimproduktion) und Flimmerhaarchen (Transport nach oben). Diese Struktur ist die Grundlage des mukoziliaeren Selbstreinigungssystems." },
+      water: { statement: "Die Schichtung und Zellausstattung des respiratorischen Epithels (Flimmerhaarchen, Becherzellen) erklaert seine Selbstreinigungsfunktion fuer die Atemwege.", answer: true, solution: "Struktur und Funktion sind direkt verknuepft: Becherzellen produzieren einen Schleimfilm, der eingeatmete Partikel und Keime bindet. Die Flimmerhaarchen schlagen koordiniert in Richtung Rachen und transportieren den Schleim mit den eingeschlossenen Partikeln nach oben (mukoziliaere Clearance). Bei Rauchern werden die Flimmerhaarchen geschaedigt, was den chronischen Raucherhustenerklaert." }
     },
     harvestQuestions: [
       { id: "hyb_rE_h1", type: "true_false", statement: "Die Schichtungsform des Epithels steht im Bezug zur Funktion.", answer: true, explanation: "Einschichtiges Plattenepithel (z.B. Alveolen) erlaubt schnelle Diffusion durch minimale Wanddicke. Mehrschichtiges Plattenepithel (Haut, Mundschleimhaut) bietet Schutzmechanismus. Mehrreihiges Flimmerepithel (Trachea) vereint Schleimhautschutz mit aktiver Selbstreinigung. Die Schichtung folgt stets dem funktionellen Bedarf." },
       { id: "hyb_rE_h2", type: "true_false", statement: "Das Flimmerepithel der Trachea transportiert Schwebeteilchen in Richtung Lunge.", answer: false, explanation: "Das Flimmerepithel transportiert Partikel und Schleim von der Lunge weg – in Richtung Rachen zum Aushusten oder Verschlucken. Dieses mukoziliaere Clearance-System schuetzt die Lunge vor Partikeln und Keimen. Wenn Flimmerhaarchen durch Rauchen geschaedigt werden, versagt dieser Schutz." },
       { id: "hyb_rE_h3", type: "true_false", statement: "Das mehrreihige Flimmerepithel der Trachea gehoert zum Oberflaechenepithel und uebernimmt eine aktive Selbstreinigungsfunktion fuer die Atemwege.", answer: true, explanation: "Das mehrreihige Flimmerepithel (Epithelium pseudostratificatum columnare ciliatum) mit Becherzellen ist der Standardtyp des respiratorischen Epithels. Becherzellen produzieren Schleim, Flimmerhaarchen transportieren ihn mit Keimen und Partikeln nach oben – das mukoziliaere System ist die erste mechanische Abwehrlinie der Atemwege." }
     ],
-    bossQuestions: [{ id: "hyb_rE_b1", type: "true_false", statement: "Respiratorisches Epithel (mehrreihiges Flimmerepithel) verbindet histologische Epithelklassifikation mit der Schutzfunktion der Atemwege.", answer: true }]
+    bossQuestions: [{ id: "hyb_rE_b1", type: "true_false", statement: "Respiratorisches Epithel (mehrreihiges Flimmerepithel) verbindet histologische Epithelklassifikation mit der Schutzfunktion der Atemwege.", answer: true }],
+    combatQuestions: [
+      { id: "hyb_rE_mc1", type: "mc", question: "Welches Epithel kleidet die Trachea aus und welche Funktion hat es?", options: [
+        { text: "Mehrreihiges Flimmerepithel mit Becherzellen – mukoziliaere Selbstreinigung", correct: true },
+        { text: "Einschichtiges Plattenepithel – schnelle Gasdiffusion", correct: false },
+        { text: "Mehrschichtiges Plattenepithel – mechanischer Schutz", correct: false },
+        { text: "Einschichtiges Zylinderepithel ohne Flimmerhaarchen – Absorption", correct: false }
+      ], explanation: "Die Trachea ist mit mehrreihigem Flimmerepithel (Epithelium pseudostratificatum columnare ciliatum) ausgekleidet. Becherzellen produzieren Schleim, der Partikel und Keime einschliessen. Flimmerhaarchen transportieren diesen Schleim nach oben (mukoziliaere Clearance)." },
+      { id: "hyb_rE_mc2", type: "mc", question: "In welche Richtung transportieren die Flimmerhaarchen des Trachealepithels den Schleim?", options: [
+        { text: "Richtung Rachen – Schleim mit Partikeln und Keimen wird ausgehusten oder geschluckt", correct: true },
+        { text: "Richtung Lunge – eingeatmete Luft wird in die Alveolen gelenkt", correct: false },
+        { text: "Bidirektional – abwechselnd Richtung Lunge und Rachen", correct: false },
+        { text: "Richtung Lunge – Schleim wird zu den Alveolen transportiert", correct: false }
+      ], explanation: "Die Flimmerhaarchen schlagen koordiniert rachenwarts (kranial). Schleim mit eingeschlossenen Partikeln und Keimen wird nach oben transportiert und abgeschluckt oder ausgehusten. Rauchen schaedigt dieses System – sichtbar am produktiven Raucherhusten." }
+    ]
   }), { locked: true, sources: ["histologie_1032::oberflaechenepithel", "atmungssystem_1035::trachea"] })
 ];
 
