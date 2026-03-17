@@ -89,7 +89,7 @@ maybeShowChangelog();
 
 function normalizeExplanation(text) {
   return String(text || "")
-    .replace(/^\s*(Korrekt\.?|Richtig\.?|Falsch\.?)\s*/i, "")
+    .replace(/^\s*(Diese Aussage ist (falsch|korrekt|richtig)\.?\s*|Korrekt\.?|Richtig\.?|Falsch\.?)\s*/i, "")
     .trim();
 }
 
