@@ -1036,46 +1036,56 @@ function isLabUnlocked() {
   return p.bedsWithHarvest >= p.requiredBeds;
 }
 
+function getHybridBedState() {
+  return getPackState()?.beds?.["hybrid"] || null;
+}
+
+function unlockHybridBed() {
+  const pack = getPackState();
+  if (!pack.bedProgress.unlockedBedIds.includes("hybrid")) {
+    pack.bedProgress.unlockedBedIds.push("hybrid");
+  }
+}
+
 function synthesizeHybrid(hybridId) {
   const hybrid = PACK_CONTENT.lab.hybrids.find((h) => h.id === hybridId);
   if (!hybrid) return;
   const pack = getPackState();
-  const bedState = getBedState();
-  if (!bedState) { showToast("Kein aktives Beet ausgewählt.", "error"); return; }
-  if (!canActivateBedForPlanting(bedState.id)) { showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error"); return; }
-  if (bedState.activePlantIds.length >= 4) { showToast("Beet ist voll (4/4). Ernte zuerst eine Pflanze.", "error"); return; }
+  const hybridBed = getHybridBedState();
+  if (!hybridBed) return;
+  if (hybridBed.activePlantIds.length >= 4) { showToast("Hybridbeet ist voll (4/4). Ernte zuerst eine Hybridpflanze.", "error"); return; }
   if (pack.player.fruits < 2) { showToast("Nicht genug Früchte (benötigt: 2).", "error"); return; }
   if (!isHybridSourceUnlocked(hybrid)) { showToast("Quellpflanzen noch nicht vollständig geerntet.", "error"); return; }
   pack.player.fruits -= 2;
   if (!pack.lab.discoveredHybrids.includes(hybridId)) pack.lab.discoveredHybrids.push(hybridId);
-  if (!bedState.plants[hybridId]) bedState.plants[hybridId] = createEmptyPlantState(hybridId);
-  bedState.activePlantIds.push(hybridId);
+  unlockHybridBed();
+  if (!hybridBed.plants[hybridId]) hybridBed.plants[hybridId] = createEmptyPlantState(hybridId);
+  hybridBed.activePlantIds.push(hybridId);
   saveState();
   renderAll();
 }
 
 function plantHybrid(hybridId) {
-  const bedState = getBedState();
-  if (!bedState) { showToast("Kein aktives Beet ausgewählt.", "error"); return; }
-  if (!canActivateBedForPlanting(bedState.id)) { showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete mit Pflanzen gleichzeitig.`, "error"); return; }
-  if (bedState.activePlantIds.includes(hybridId)) { showToast("Hybridpflanze ist bereits im Beet.", "error"); return; }
-  if (bedState.activePlantIds.length >= 4) { showToast("Beet ist voll (4/4). Ernte zuerst eine Pflanze.", "error"); return; }
-  if (!bedState.plants[hybridId]) bedState.plants[hybridId] = createEmptyPlantState(hybridId);
-  bedState.activePlantIds.push(hybridId);
+  const hybridBed = getHybridBedState();
+  if (!hybridBed) return;
+  unlockHybridBed();
+  if (hybridBed.activePlantIds.includes(hybridId)) { showToast("Hybridpflanze ist bereits im Beet.", "error"); return; }
+  if (hybridBed.activePlantIds.length >= 4) { showToast("Hybridbeet ist voll (4/4). Ernte zuerst eine Hybridpflanze.", "error"); return; }
+  if (!hybridBed.plants[hybridId]) hybridBed.plants[hybridId] = createEmptyPlantState(hybridId);
+  hybridBed.activePlantIds.push(hybridId);
   saveState();
   renderAll();
 }
 
 function renderLab() {
   const pack = getPackState();
-  const bedState = getBedState();
   const hybrids = PACK_CONTENT.lab.hybrids;
   if (!pack) { els.labList.innerHTML = ""; return; }
   const labUnlocked = isLabUnlocked();
   const unlockProg = getLabUnlockProgress();
-  const activeIds = bedState?.activePlantIds || [];
+  const hybridBed = getHybridBedState();
+  const activeIds = hybridBed?.activePlantIds || [];
   const isFull = activeIds.length >= 4;
-  const hasBed = Boolean(bedState);
 
   if (!labUnlocked) {
     els.labStatus.textContent = `Labor gesperrt: ${unlockProg.bedsWithHarvest}/${unlockProg.requiredBeds} Beete mit mindestens 1 Ernte`;
@@ -1087,8 +1097,8 @@ function renderLab() {
     const isActive = activeIds.includes(hybrid.id);
     const isDiscovered = pack.lab.discoveredHybrids.includes(hybrid.id);
     const sourcesUnlocked = isHybridSourceUnlocked(hybrid);
-    const canSynthesize = sourcesUnlocked && !isDiscovered && !isActive && hasBed && !isFull && pack.player.fruits >= 2;
-    const canPlant = isDiscovered && !isActive && hasBed && !isFull;
+    const canSynthesize = sourcesUnlocked && !isDiscovered && !isActive && !isFull && pack.player.fruits >= 2;
+    const canPlant = isDiscovered && !isActive && !isFull;
 
     const sourceParts = (hybrid.sources || []).map((src) => {
       const [bedId, plantId] = src.split("::");
@@ -1181,7 +1191,10 @@ function getPlantColorScheme(content) {
 }
 
 function computeShelfStats(bed, bedState) {
-  const plants = bed.plants || [];
+  const pack = getPackState();
+  const plants = bed.id === "hybrid"
+    ? PACK_CONTENT.lab.hybrids.filter((h) => pack.lab.discoveredHybrids.includes(h.id))
+    : (bed.plants || []);
   const totalPlants = plants.length;
   const activePlantIds = bedState.activePlantIds || [];
   const planted = activePlantIds.length;
@@ -1219,7 +1232,9 @@ function renderGardenRoom() {
       const plantId = activePlantIds[i];
       if (plantId) {
         const plantState = bedState.plants?.[plantId] || {};
-        const content = bed.plants.find((p) => p.id === plantId);
+        const content = bed.id === "hybrid"
+          ? PACK_CONTENT.lab.hybrids.find((h) => h.id === plantId)
+          : bed.plants.find((p) => p.id === plantId);
         const isSelected = selectedPlantId === plantId && state.activeBedId === bed.id;
         const label = content ? (content.title || plantId) : plantId;
         const visualHtml = content ? buildPlantVisualHtml(plantState, content, "plant-visual--garden") : "";
@@ -1237,7 +1252,8 @@ function renderGardenRoom() {
           </div>`);
       } else {
         // Empty pot slot — show + if there are unplanted plants available
-        const hasAvailable = bed.plants.some((p) => !activePlantIds.includes(p.id));
+        // Hybrid bed: hybrids are added via lab synthesis, not from catalog
+        const hasAvailable = bed.id !== "hybrid" && bed.plants.some((p) => !activePlantIds.includes(p.id));
         if (hasAvailable) {
           pots.push(`
             <div class="garden-pot garden-pot--empty"

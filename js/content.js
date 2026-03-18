@@ -2884,6 +2884,11 @@ const PACK_CONTENT = {
       id: "atmungssystem_1035",
       title: "Atmungssystem (1035)",
       plants: ATMUNGSSYSTEM_1035_PLANTS
+    },
+    {
+      id: "hybrid",
+      title: "Hybride",
+      plants: []
     }
   ]
 };
