@@ -839,15 +839,22 @@ function renderSeedLibrary() {
 
   const canUnlock = progress.unlockedBedIds.length < progress.unlockSlots;
   const pack = getPackState();
-  const bedsToShow = catalogFilterBedId ? SEED_BEDS.filter((b) => b.id === catalogFilterBedId) : SEED_BEDS;
+  // Hybrid bed only visible once at least one hybrid is discovered
+  const bedsToShowAll = catalogFilterBedId ? SEED_BEDS.filter((b) => b.id === catalogFilterBedId) : SEED_BEDS;
+  const bedsToShow = bedsToShowAll.filter((b) => b.id !== "hybrid" || pack.lab.discoveredHybrids.length > 0);
   const filterHint = catalogFilterBedId ? `<div class="muted" style="margin-bottom:0.5rem">Zeige nur: <strong>${bedsToShow[0]?.title || catalogFilterBedId}</strong></div>` : "";
   const rows = bedsToShow.map((bed) => {
+    const isHybridBed = bed.id === "hybrid";
+    // For hybrid bed: use discovered hybrids as the plant list
+    const effectivePlants = isHybridBed
+      ? PACK_CONTENT.lab.hybrids.filter((h) => pack.lab.discoveredHybrids.includes(h.id))
+      : bed.plants;
     const unlocked = isBedUnlocked(bed.id);
     const isOpen = expandedSeedCatalogBedId === bed.id;
     const activeIds = getActivePlantIdsForBed(bed.id);
     const activeCount = activeIds.length;
-    const harvestedCount = bed.plants.filter((p) => pack.beds[bed.id]?.plants?.[p.id]?.harvestedOnce).length;
-    const sortedPlants = isOpen ? [...bed.plants].sort((a, b) => {
+    const harvestedCount = effectivePlants.filter((p) => pack.beds[bed.id]?.plants?.[p.id]?.harvestedOnce).length;
+    const sortedPlants = isOpen ? [...effectivePlants].sort((a, b) => {
       const aActive = activeIds.includes(a.id);
       const bActive = activeIds.includes(b.id);
       const aHarvested = !!pack.beds[bed.id]?.plants?.[a.id]?.harvestedOnce;
@@ -863,7 +870,7 @@ function renderSeedLibrary() {
         ? { text: "Im Beet", tone: "active" }
         : pState.harvestedOnce
           ? { text: "Geerntet", tone: "done" }
-          : { text: "Nicht gepflanzt", tone: "bad" };
+          : { text: "Synthetisiert", tone: "bad" };
       const label = getPlantLabel(bed.id, plant.id, plant.title);
       const harvestClass = isActive
         ? "catalog-row--planted"
@@ -878,11 +885,12 @@ function renderSeedLibrary() {
           : !unlocked
             ? `<button disabled style="font-size:0.78rem">Beet gesperrt</button>`
             : `<button disabled style="font-size:0.78rem">Beet voll</button>`;
+      const moduleLabel = isHybridBed ? `<span class="muted">Hybrid</span>` : `<span class="muted">Modul ${moduleCodeFromBedId(bed.id)}</span>`;
       return `
         <div class="catalog-row ${harvestClass}">
           <span>${label}</span>
           <span class="status-chip ${status.tone}">${status.text}</span>
-          <span class="muted">Modul ${moduleCodeFromBedId(bed.id)}</span>
+          ${moduleLabel}
           ${actionBtn}
         </div>
       `;
@@ -891,9 +899,11 @@ function renderSeedLibrary() {
       const activeBtnLabel = state.activeBedId === bed.id ? "Aktives Beet ✓" : "Beet wählen";
       const miniVisuals = activeIds.map((pid) => {
         const pState = pack.beds[bed.id]?.plants?.[pid];
-        const pContent = bed.plants.find((p) => p.id === pid);
+        const pContent = isHybridBed
+          ? PACK_CONTENT.lab.hybrids.find((h) => h.id === pid)
+          : bed.plants.find((p) => p.id === pid);
         if (!pState || !pContent) return "";
-        const plantContent = getPlantContent(pid);
+        const plantContent = getPlantContentByBed(bed.id, pid);
         const visualHtml = buildPlantVisualHtml(pState, plantContent, "plant-visual--mini");
         return `<div class="bed-mini-item" data-mini-plant="${pid}" data-mini-bed="${bed.id}">${visualHtml}<div class="bed-mini-label">${escapeHtmlText(pContent.title)}</div></div>`;
       }).filter(Boolean).join("");
@@ -903,7 +913,7 @@ function renderSeedLibrary() {
             <strong>${bed.title}</strong>
             <button data-seed-activate="${bed.id}">${activeBtnLabel}</button>
             <button data-seed-catalog="${bed.id}">${isOpen ? "Sorten ausblenden" : "Sorten anzeigen"}</button>
-            <span class="muted">Im Beet: ${activeCount}/4 | Geerntet: ${harvestedCount}/${bed.plants.length}</span>
+            <span class="muted">Im Beet: ${activeCount}/4 | Geerntet: ${harvestedCount}/${effectivePlants.length}</span>
           </div>
           ${miniVisuals ? `<div class="bed-mini-row">${miniVisuals}</div>` : ""}
           ${isOpen ? `<div class="list">${plantRows}</div>` : ""}
