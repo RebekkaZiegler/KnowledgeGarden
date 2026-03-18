@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Knowledge Garden RPG - MVP 0.4</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -43,11 +45,13 @@
 
   <!-- Bottom navigation bar -->
   <nav id="bottom-nav">
-    <button id="open-catalog-btn">📚 Pflanzen</button>
-    <button id="open-combat-btn">⚔️ Kampf</button>
-    <button id="open-lab-btn">🔬 Labor</button>
-    <button id="toggle-settings-btn">⚙ Einstellungen</button>
-    <button id="quick-reset-btn" class="danger" onclick="if(confirm('Speicher wirklich löschen?')){localStorage.clear();location.reload();}">🗑 Reset</button>
+    <button id="open-catalog-btn">Pflanzen</button>
+    <button id="open-combat-btn">Kampf</button>
+    <button id="open-lab-btn">Labor</button>
+    <button id="toggle-settings-btn">Einstellungen</button>
+    <button id="mute-music-btn" title="Musik stumm schalten">♪</button>
+    <button id="mute-sfx-btn" title="Soundeffekte stumm schalten">♪♩</button>
+    <button id="quick-reset-btn" class="danger" onclick="if(confirm('Speicher wirklich löschen?')){localStorage.clear();location.reload();}">Reset</button>
   </nav>
 
   <!-- Settings modal -->
@@ -63,6 +67,10 @@
         <button id="changelog-btn">Was ist neu?</button>
       </div>
       <input id="import-file-input" type="file" accept="application/json,.json" style="display:none">
+      <div class="volume-settings">
+        <label>♪ Musik<input id="music-volume" type="range" min="0" max="100" value="10"></label>
+        <label>♪♩ Soundeffekte<input id="sfx-volume" type="range" min="0" max="100" value="100"></label>
+      </div>
       <div class="muted">Mit Esc wieder schließen.</div>
       <button id="close-settings-btn" class="modal-close-btn">Schließen</button>
     </div>

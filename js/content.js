@@ -781,7 +781,7 @@ const HISTOLOGIE_1032_PLANTS = [
     phase1: {
       soil: { statement: "Epithelien bedecken äussere und innere Körperoberflächen.", answer: true, solution: "Epithelgewebe bildet den enger Zellverband mit minimalen Interzellularräumen und besitzt keine eigenen Blutgefässe – die Ernährung erfolgt durch Diffusion aus dem darunterliegenden Bindegewebe. Es bedeckt sowohl die Aussenoberfläche (Haut) als auch sämtliche inneren Hohlräume und Organe." },
       seed: { statement: "Epithelgewebe ist ausschliesslich Drüsengewebe.", answer: false, solution: "Epithelgewebe umfasst drei Grundtypen: Deckepithel (Schutz und Barriere, z.B. Haut), Drüsenepithel (Sekretbildung, z.B. Speicheldrüsen) und Sinnesepithel (Reizaufnahme, z.B. Riechepithel). Jeder Typ ist strukturell auf seine Funktion ausgerichtet." },
-      water: { statement: "Epithelgewebe dient u. a. Schutz, Stoffaustausch und Reizaufnahme.", answer: true, solution: "Die Funktionsvielfalt des Epithelgewebes erklärt sich aus seinen Untertypen: Plattenepithel schützt mechanisch (Haut), Sälenepithel mit Mikrovilli resorbiert Nährstoffe (Darm), Flimmerepithel transportiert Sekrete (Atemwege), Sinnesepithel nimmt Reize wahr (Riechschleimhaut)." }
+      water: { statement: "Epithelgewebe dient u. a. Schutz, Stoffaustausch und Reizaufnahme.", answer: true, solution: "Die Funktionsvielfalt des Epithelgewebes erklärt sich aus seinen Untertypen: Plattenepithel schützt mechanisch (Haut), Säulenepithel mit Mikrovilli resorbiert Nährstoffe (Darm), Flimmerepithel transportiert Sekrete (Atemwege), Sinnesepithel nimmt Reize wahr (Riechschleimhaut)." }
     },
     harvestQuestions: [
       { id: "hi_ep_h1", type: "mc", question: "Welche Zellverbindungen halten Epithelzellen zusammen? (eine Antwort)", options: [
@@ -814,7 +814,7 @@ const HISTOLOGIE_1032_PLANTS = [
     title: "Oberflächen-/Deckepithel",
     phase1: {
       soil: { statement: "Deckepithel kleidet Körperoberflächen und viele Hohlräume aus.", answer: true, solution: "Deckepithel (Oberflächenepithel) dient dem Schutz und der Abgrenzung: Es bedeckt die Körperoberfläche (Haut), kleidet innere Hohlorgane aus (Darm, Harnblase) und überzieht Blut- und Lymphgefässe als Endothel. Damit ist es das am weitesten verbreitete Epithelgewebe." },
-      seed: { statement: "Deckepithel ist für Resorption und Sekretion grundsätzlich ungeeignet.", answer: false, solution: "Deckepithel ist je nach Typ hochspezialisiert: Einschichtiges Sälenepithel mit Mikrovilli resorbiert Nährstoffe im Darm, mehrschichtiges Plattenepithel schützt mechanisch (Haut), Flimmerepithel der Atemwege transportiert Schleim aktiv nach aussen." },
+      seed: { statement: "Deckepithel ist für Resorption und Sekretion grundsätzlich ungeeignet.", answer: false, solution: "Deckepithel ist je nach Typ hochspezialisiert: Einschichtiges Säulenepithel mit Mikrovilli resorbiert Nährstoffe im Darm, mehrschichtiges Plattenepithel schützt mechanisch (Haut), Flimmerepithel der Atemwege transportiert Schleim aktiv nach aussen." },
       water: { statement: "Die Unterteilung in einschichtig, mehrreihig und mehrschichtig ist ein Grundschema.", answer: true, solution: "Einschichtige Epithelien (alle Zellen berühren die Basalmembran) kommen z.B. als Endothel in Gefässen vor, mehrreihige (alle an Basalmembran, aber verschieden hoch) als Flimmerepithel in den Atemwegen, mehrschichtige (nur die unterste Lage an der Basalmembran) als Schutzepithel der Haut und Schleimhäute." }
     },
     harvestQuestions: [
@@ -833,7 +833,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { text: "Harnblasenepithel = Übergangsepithel (Urothel)", correct: false },
       { text: "Hautepidermis = einschichtiges Säulenepithel", correct: true }
     ], explanation: "Die falsche Zuordnung ist D: Die Hautepidermis besteht aus mehrschichtigem verhorntem Plattenepithel – nicht aus einschichtigem Säulenepithel. Die anderen Zuordnungen stimmen: Endothel = einschichtiges Plattenepithel (Diffusion), Atemwegsepithel = mehrreihiges Flimmerepithel (Schutzfunktion), Harnblase = Übergangsepithel (dehnbar)." }
-    }],
+    ],
     combatQuestions: [
       { id: "hi_od_mc1", type: "mc", question: "Welche Aussagen zum mehrreihigen Epithel sind korrekt?", options: [
         { text: "Alle Zellen berühren die Basalmembran", correct: true },
@@ -878,7 +878,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { text: "Milchdrüse – apokrin (Fett) und merokrin (Protein)", correct: false },
       { text: "Schweissdrüse – holokrin", correct: true }
     ], explanation: "Die falsche Zuordnung ist D: Schweissdrüsen sekretieren merokrin (Vesikelexozytose, Zelle bleibt intakt) – nicht holokrin. Holokrin ist die Talgdrüse (gesamte Zelle wird zum Sekret). Alle anderen Zuordnungen sind korrekt." }
-    }],
+    ],
     combatQuestions: [
       { id: "hi_dr_mc1", type: "mc", question: "Welche Aussagen zum Unterschied exokrin vs. endokrin sind korrekt?", options: [
         { text: "Exokrine Drüsen besitzen Ausführungsgänge", correct: true },
@@ -923,7 +923,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { text: "Sie nehmen Umweltreize wahr wie Sinneszellen", correct: false },
       { text: "Sie sind kernlos und können sich nicht erneuern", correct: false }
     ], explanation: "Myoepithelzellen besitzen kontraktile Aktinfilamente (wie glatte Muskelzellen) und umschliessen Drüsenazini. Bei Kontraktion pressen sie das Sekret aktiv aus. Sie bilden NICHT die Basalmembran und sind KEINE Sinneszellen." }
-    }],
+    ],
     combatQuestions: [
       { id: "hi_sm_mc1", type: "mc", question: "Was unterscheidet Myoepithelzellen von anderen Epithelzellen?", options: [
         { text: "Sie besitzen kontraktile Aktinfilamente und können sich zusammenziehen", correct: true },

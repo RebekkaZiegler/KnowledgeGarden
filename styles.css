@@ -12,6 +12,22 @@
   box-sizing: border-box;
 }
 
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 150, 120, 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 150, 120, 0.65);
+}
+
 html, body {
   height: 100%;
   min-width: 700px;
@@ -19,7 +35,9 @@ html, body {
 
 body {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text);
   background: var(--bg);
   display: flex;
@@ -30,7 +48,10 @@ body {
 header {
   flex-shrink: 0;
   padding: 0.45rem 1rem;
-  background: var(--panel);
+  background:
+    linear-gradient(rgba(10, 14, 12, 0.72), rgba(10, 14, 12, 0.72)),
+    url('assets/backgrounds/Bottom Nav Bar.png') center center / cover no-repeat,
+    var(--panel);
   border-bottom: 1px solid var(--line);
   display: flex;
   align-items: center;
@@ -150,7 +171,10 @@ header p {
 #left-panel {
   flex: 1 1 auto;
   min-width: 300px;
-  background: var(--panel);
+  background:
+    linear-gradient(rgba(14, 20, 16, 0.45), rgba(14, 20, 16, 0.45)),
+    url('assets/backgrounds/Left Panel Background.png') center top / cover no-repeat,
+    var(--panel);
   border-right: 1px solid var(--line);
   display: flex;
   flex-direction: column;
@@ -176,8 +200,8 @@ header p {
   flex: 0 0 420px;
   overflow-y: auto;
   background:
-    repeating-conic-gradient(#1c2b1c 0% 25%, #172417 0% 50%) 0 0/48px 48px;
-  padding: 1rem;
+    url('assets/backgrounds/Garden Room Wall Background.png') center bottom / cover;
+  padding: 1rem 1rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -185,11 +209,13 @@ header p {
 
 /* ── Shelf rows ── */
 .garden-shelf {
-  background: linear-gradient(180deg, #2d1f0e 0%, #3d2912 60%, #2a1c0a 100%);
+  background:
+    url('assets/backgrounds/Shelf Plank.png') center bottom / 100% 35px no-repeat,
+    linear-gradient(180deg, rgba(45,31,14,0.25) 0%, rgba(61,41,18,0.25) 60%, rgba(42,28,10,0.25) 100%);
   border-radius: 6px;
-  border: 2px solid #4a3018;
-  padding: 0.5rem 0.75rem 0.75rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07);
+  border: 2px solid rgba(74, 48, 24, 0.5);
+  padding: 0.6rem 0.75rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .garden-shelf--active {
@@ -207,6 +233,10 @@ header p {
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-bottom: 0.5rem;
+  background: rgba(15, 9, 3, 0.82);
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  margin: -0.1rem -0.1rem 0.5rem;
 }
 
 .garden-shelf-label {
@@ -240,7 +270,7 @@ header p {
 
 .garden-shelf-pots {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.4rem;
   align-items: flex-end;
   flex-wrap: wrap;
 }
@@ -270,39 +300,34 @@ header p {
 
 /* Pot accent color stripe at bottom */
 .garden-pot::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  width: 48px;
-  height: 6px;
-  background: var(--pot-color, #8a5a30);
-  border-radius: 0 0 4px 4px;
-  opacity: 0.75;
-  pointer-events: none;
+  content: none;
 }
 
 /* Empty pot visual */
 .empty-pot {
-  width: 44px;
-  height: 52px;
-  background: conic-gradient(from 180deg, #5e3818, #7a4e26, #5e3818);
-  border-radius: 4px 4px 8px 8px;
-  border: 2px solid #3d2510;
-  opacity: 0.4;
+  width: 70px;
+  height: 150px;
+  background: url('assets/backgrounds/pot.png') center bottom / contain no-repeat;
+  border: none;
+  border-radius: 0;
+  opacity: 0.65;
   position: relative;
 }
 
 .empty-pot::before {
-  content: '';
-  display: block;
+  display: none;
+}
+
+/* Pot image inside plant visual */
+.plant-pot-img {
   position: absolute;
-  top: -8px;
-  left: -5px;
-  right: -5px;
-  height: 8px;
-  background: #7a5230;
-  border-radius: 2px 2px 0 0;
-  border: 1px solid #4d3218;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Tool popup above pot */
@@ -421,15 +446,46 @@ header p {
 /* Plant visual sizes */
 .plant-visual--garden {
   height: 150px;
-  width: 52px;
+  width: 70px;
+}
+
+/* Align garden plant to soil level */
+.plant-visual--garden .plant-stem,
+.plant-visual--garden .plant-stem-track {
+  bottom: 58px;
+}
+.plant-visual--garden .plant-branch {
+  bottom: calc(58px + var(--by, 0px));
+}
+.plant-visual--garden .plant-fruit-dot {
+  bottom: 58px;
 }
 
 .plant-visual--large {
-  height: 180px;
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto 0.5rem;
+  /* zoom scales everything together: pot, stem, branches, bar */
+  zoom: 1.8;
+  height: 105px;
+  width: 152px;
+  margin: 0.8rem auto 0.3rem;
   cursor: default;
+}
+
+/* pot image stays at default size — zoom handles the rest */
+.plant-visual--large .plant-pot-img {
+  bottom: 0;
+  width: 130px;
+}
+
+/* Raise plant to soil level (top of pot, ~85% up from pot bottom) */
+.plant-visual--large .plant-stem,
+.plant-visual--large .plant-stem-track {
+  bottom: 58px;
+}
+.plant-visual--large .plant-branch {
+  bottom: calc(62px + var(--by, 0px));
+}
+.plant-visual--large .plant-fruit-dot {
+  bottom: 58px;
 }
 
 .plant-visual--mini {
@@ -443,8 +499,11 @@ header p {
 /* ── Bottom navigation bar ── */
 #bottom-nav {
   flex-shrink: 0;
-  height: 52px;
-  background: var(--panel);
+  height: 68px;
+  background:
+    linear-gradient(rgba(10, 14, 12, 0.72), rgba(10, 14, 12, 0.72)),
+    url('assets/backgrounds/Bottom Nav Bar.png') center center / cover no-repeat,
+    var(--panel);
   border-top: 1px solid var(--line);
   display: flex;
   align-items: center;
@@ -456,7 +515,37 @@ header p {
 #bottom-nav button {
   flex: 1;
   max-width: 160px;
-  font-size: 0.85rem;
+  height: 52px;
+  font-size: 1rem;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  background: url('assets/backgrounds/button.png') center center / 100% 100% no-repeat;
+  border: none;
+  border-radius: 0;
+  color: #1a0f00;
+  padding: 0 0.6rem;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+  text-shadow: none;
+}
+
+#bottom-nav button:hover:enabled {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+#bottom-nav button:active:enabled {
+  transform: translateY(1px);
+  filter: brightness(0.9);
+}
+
+#bottom-nav button.danger {
+  filter: hue-rotate(300deg) saturate(1.5);
+}
+
+#bottom-nav button.danger:hover:enabled {
+  filter: hue-rotate(300deg) saturate(1.5) brightness(1.15);
 }
 
 /* ── Modal overlays ── */
@@ -492,6 +581,26 @@ header p {
   width: 100%;
 }
 
+.volume-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.volume-settings label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.volume-settings input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 /* ── General UI elements ── */
 h2 {
   margin-top: 0;
@@ -514,6 +623,15 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  width: 100%;
+}
+
+#plant-detail .row {
+  justify-content: center;
+}
+
+#plant-detail .row button {
+  flex: 0 1 auto;
 }
 
 .tabs {
@@ -550,6 +668,7 @@ button {
   border-radius: 8px;
   padding: 0.42rem 0.6rem;
   cursor: pointer;
+  text-align: center;
 }
 
 select {
@@ -572,6 +691,53 @@ button:disabled {
 .danger {
   border-color: #5a2020;
   color: var(--danger);
+}
+
+/* ── In-game action/answer buttons use button.png ── */
+#plant-detail button:not(.tool-btn):not(.mc-option) {
+  background: url('assets/backgrounds/button.png') center center / 100% 100% no-repeat;
+  border: none;
+  border-radius: 0;
+  color: #1a0f00;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 900;
+  font-size: 0.82rem;
+  padding: 0.5rem 1.1rem;
+  min-height: 40px;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+  text-shadow: none;
+  text-align: center;
+}
+
+#plant-detail button:not(.tool-btn):not(.mc-option):hover:enabled {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+  border: none;
+}
+
+#plant-detail button:not(.tool-btn):not(.mc-option):disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#plant-detail button.harvest-btn {
+  font-size: 0.88rem;
+  padding: 0.55rem 1.4rem;
+}
+
+/* mute buttons in nav — smaller, icon only */
+#mute-music-btn,
+#mute-sfx-btn {
+  flex: 0 0 72px !important;
+  max-width: 72px !important;
+  font-size: 1rem;
+  padding: 0 !important;
+}
+
+#mute-music-btn.muted-active,
+#mute-sfx-btn.muted-active {
+  filter: grayscale(1) brightness(0.6);
 }
 
 .list {
@@ -603,6 +769,18 @@ button:disabled {
   gap: 0.55rem;
 }
 
+#plant-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 0.75rem;
+  text-align: center;
+  width: 100%;
+  gap: 0.4rem;
+  flex: 1;
+}
+
 .question {
   border: 1px dashed var(--line);
   border-radius: 8px;
@@ -610,10 +788,12 @@ button:disabled {
   background: #181f1c;
   line-height: 1.65;
   word-break: break-word;
+  font-size: 1rem;
 }
 
 .feedback {
-  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 .feedback--correct { color: #6bc87e; }
 .feedback--wrong { color: #e07070; }
@@ -621,39 +801,57 @@ button:disabled {
 .mc-options {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.4rem;
   margin: 0.5rem 0;
+  width: 100%;
 }
 
 .mc-option {
-  text-align: left;
-  padding: 0.4rem 0.6rem;
-  border: 1px solid var(--line);
-  background: #1c2824;
-  border-radius: 6px;
+  text-align: center;
+  width: auto;
+  min-width: 40%;
+  max-width: 90%;
+  white-space: normal !important;
+  overflow: visible !important;
+  height: auto !important;
+  word-break: break-word;
+  padding: 0.5rem 2.2rem;
+  border: none;
+  border-radius: 0;
   cursor: pointer;
   font-size: 0.9rem;
+  background: url('assets/backgrounds/button_long.png') center center / 100% 100% no-repeat;
+  color: #1a0f00;
+  font-weight: 400;
+}
+
+.mc-option.mc-option--short {
+  background: url('assets/backgrounds/button.png') center center / 100% 100% no-repeat;
+  min-width: 0;
+  max-width: 65%;
+  padding: 0.5rem 1.4rem;
+  text-align: center;
 }
 
 .mc-option:hover:enabled {
-  background: #1a2435;
-  border-color: var(--accent);
+  filter: brightness(1.15);
+  transform: translateY(-1px);
 }
 
 .mc-correct {
-  background: #1a2e1e !important;
-  border-color: #3a7040 !important;
+  filter: brightness(1.1) drop-shadow(0 0 6px rgba(80, 200, 100, 0.7)) !important;
+  color: #1a0f00 !important;
 }
 
 .mc-wrong {
-  background: #2e1618 !important;
-  border-color: #8a3030 !important;
+  filter: brightness(0.85) drop-shadow(0 0 6px rgba(220, 60, 60, 0.6)) !important;
+  color: #1a0f00 !important;
 }
 
 .mc-option--toggle.mc-option--selected {
-  background: #1a2e40 !important;
-  border-color: var(--accent) !important;
-  color: var(--fg);
+  filter: brightness(1.1) drop-shadow(0 0 6px rgba(80, 160, 220, 0.7)) !important;
+  color: #1a0f00 !important;
 }
 
 .cooldown-track {
@@ -778,9 +976,9 @@ button:disabled {
 .plant-visual {
   position: relative;
   height: 152px;
-  border: 1px dashed #2d3a35;
+  border: none;
   border-radius: 8px;
-  background: #171f1c;
+  background: transparent;
   overflow: hidden;
   cursor: pointer;
 }
@@ -987,65 +1185,36 @@ button:disabled {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
-.plant-growth-bar {
+
+/* ── Plant ready indicators — static glow + stars, per-bed colour ── */
+.plant-sparkle--harvest {
+  filter: drop-shadow(0 0 8px var(--fruit-hi)) drop-shadow(0 0 18px var(--stem-hi));
+}
+
+.plant-sparkle--harvest::before,
+.plant-sparkle--harvest::after {
+  content: '✦';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 12px;
-  background: #1e2a26;
-  z-index: 3;
-  overflow: hidden;
-}
-
-.plant-growth-fill {
-  height: 100%;
-  background: #4a9b5e;
-  transition: width 0.5s ease;
-  min-width: 0;
-}
-
-.plant-growth-bar.is-withered .plant-growth-fill {
-  background: #b79063;
-}
-
-.plant-growth-bar.is-seed .plant-growth-fill {
-  background: #4a6880;
-}
-
-.plant-growth-label {
-  position: absolute;
-  left: 4px;
-  right: 4px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.6rem;
-  font-family: monospace;
-  font-weight: 600;
-  color: #90a8a0;
+  font-size: 1rem;
+  color: var(--fruit-hi);
   pointer-events: none;
-  line-height: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
-  text-align: right;
+  z-index: 10;
 }
 
-.plant-growth-bar:has(.plant-growth-label:not(:empty)) .plant-growth-label {
-  color: #90a8a0;
+.plant-sparkle--harvest::before {
+  top: 18%;
+  left: 6%;
 }
 
-.plant-cooldown-hint {
-  position: absolute;
-  top: 14px;
-  right: 6px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: #a0b8b0;
-  background: rgba(14, 22, 18, 0.85);
-  border-radius: 6px;
-  padding: 0 4px;
+.plant-sparkle--harvest::after {
+  top: 12%;
+  right: 6%;
 }
+
+.plant-sparkle--action {
+  filter: drop-shadow(0 0 7px var(--stem-hi));
+}
+
 
 .plant-hover-tooltip {
   position: fixed;
@@ -1233,21 +1402,22 @@ button:disabled {
 }
 
 .tool-btn {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15rem;
-  padding: 0.55rem 0.8rem;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: #1e2825;
-  min-width: 64px;
+  gap: 0;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  min-width: unset;
   cursor: pointer;
 }
 
-.tool-btn:hover:enabled {
-  border-color: var(--accent);
-  background: #1a2c20;
+.tool-btn:hover:enabled .tool-img {
+  filter: brightness(1.15) drop-shadow(0 0 4px rgba(100,200,130,0.5));
+  transform: scale(1.07);
 }
 
 .tool-btn:disabled {
@@ -1259,9 +1429,40 @@ button:disabled {
   opacity: 0.35;
 }
 
+.tool-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.15s, filter 0.15s;
+}
+
+.tool-btn .tool-status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: rgba(0,0,0,0.6);
+  color: #e8f0ea;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 6px;
+  line-height: 1.3;
+  pointer-events: none;
+}
+
 .tool-icon {
   font-size: 1.6rem;
   line-height: 1;
+}
+
+.tool-icon--overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 1.4rem;
+  pointer-events: none;
 }
 
 .tool-label {
@@ -1284,14 +1485,7 @@ button:disabled {
 }
 
 .harvest-btn {
-  background: var(--accent) !important;
-  color: #fff !important;
-  border-color: var(--accent) !important;
-  font-weight: 600;
-}
-
-.harvest-btn:hover:enabled {
-  background: #2f7040 !important;
+  font-weight: 700;
 }
 
 .harvest-btn:disabled {
