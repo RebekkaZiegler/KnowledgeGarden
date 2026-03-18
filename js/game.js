@@ -66,7 +66,7 @@ let sfxVolume = 1.0;
 const sfxCache = {};
 const prevPlantSoundStates = {}; // plantId → { harvestable, cooldownDone }
 
-const bgMusic = new Audio("assets/music/Home Beyond the Vale _ Fantasy Celtic Ambience _ Relaxing Music [No Ads].mp3");
+const bgMusic = new Audio("assets/music/backgroundmusic.mp3");
 bgMusic.loop = true;
 bgMusic.volume = 0.10;
 let bgMusicStarted = false;
