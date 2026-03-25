@@ -60,7 +60,7 @@ function makeDetailedPlant(def) {
     ],
     harvestQuestions: def.harvestQuestions || [],
     bossQuestions: def.bossQuestions || [],
-    combatQuestions: def.combatQuestions || []
+    cleaningQuestions: def.cleaningQuestions || []
   };
 }
 
@@ -111,7 +111,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "zb_b1", type: "true_false", statement: "Zell- und Gewebebegriff sind funktionell verknüpft: Gewebe sind organisierte Verbände gleichartig differenzierter Zellen mit gemeinsamer Funktion.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "zb_mc1", type: "mc", question: "Welche Aussagen zur biologischen Organisationshierarchie sind korrekt?", options: [
         { text: "Zellen bilden Gewebe, Gewebe bilden Organe", correct: true },
         { text: "Organe sind kleiner als Gewebe", correct: false },
@@ -172,7 +172,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "zf_b1", type: "true_false", statement: "Zellen haben keine einheitliche Form: Ihre Gestalt ist stark variabel und spiegelt direkt ihre jeweilige Funktion wider.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "zf_mc1", type: "mc", question: "Welche Aussagen zu Erythrozyten sind korrekt?", options: [
         { text: "Sie haben bikonkave Scheibenform und ca. 7–8 µm Durchmesser", correct: true },
         { text: "Sie besitzen keinen Zellkern", correct: true },
@@ -240,7 +240,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "pe_b1", type: "true_false", statement: "Ausnahmen bei Säugetierzellen widerlegen nicht das eukaryonte Grundprinzip.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "pe_mc1", type: "mc", question: "Welche Merkmalskombination beschreibt korrekt Prokaryoten (im Unterschied zu Eukaryoten)?", options: [
         { text: "Kein Zellkern, 70S-Ribosomen, keine membranumschlossenen Organellen", correct: true },
         { text: "Zellkern vorhanden, 70S-Ribosomen, Mitochondrien vorhanden", correct: false },
@@ -296,7 +296,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "zd_b1", type: "true_false", statement: "Der Gewebebegriff baut auf dem Prinzip differenzierter Zellverbände auf.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "zd_mc1", type: "mc", question: "Welche Aussagen zur Zelldifferenzierung sind korrekt?", options: [
         { text: "Die DNA-Sequenz bleibt bei der Differenzierung unverändert", correct: true },
         { text: "Differenzierung verändert das Genexpressionsmuster, nicht die DNA", correct: true },
@@ -357,7 +357,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "zm_b1", type: "true_false", statement: "Zellabgrenzung und Stofftransport sind gleichrangige Kernfunktionen der Zellmembran.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "zm_mc1", type: "mc", question: "Welche Transportprozesse sind passiv (kein ATP-Verbrauch)?", options: [
         { text: "Einfache Diffusion (z.B. O2, CO2)", correct: true },
         { text: "Erleichterte Diffusion (z.B. Glukose durch GLUT)", correct: true },
@@ -418,7 +418,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "zo_b1", type: "true_false", statement: "Das Zellplasma ist kein passiver Füllraum, sondern funktioneller Reaktionsraum mit Organellen.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "zo_mc1", type: "mc", question: "Welche Organellen sind korrekt ihrer Hauptfunktion zugeordnet?", options: [
         { text: "Mitochondrium – oxidative Phosphorylierung (ATP)", correct: true },
         { text: "Lysosom – Abbau durch saure Hydrolasen", correct: true },
@@ -474,7 +474,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "zk_b1", type: "true_false", statement: "Die Bedeutung des Zellkerns reicht über reine Morphologie hinaus in die funktionelle Zellsteuerung.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "zk_mc1", type: "mc", question: "Welche Aussagen zum Zellkern sind korrekt?", options: [
         { text: "Der Kern enthält 46 Chromosomen in diploiden Körperzellen", correct: true },
         { text: "Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv", correct: true },
@@ -535,7 +535,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "sw_b1", type: "true_false", statement: "Stoffwechselkompetenz ist Grundvoraussetzung für das Verständnis zellulärer Physiologie.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "sw_mc1", type: "mc", question: "Welche Stoffwechselwege laufen in der Mitochondrienmatrix ab?", options: [
         { text: "Zitratzyklus (Krebszyklus)", correct: true },
         { text: "Oxidative Phosphorylierung (in der inneren Membran)", correct: true },
@@ -596,7 +596,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "mi_b1", type: "true_false", statement: "Bei der Mitose entstehen zwei identische Tochterzellen mit gleichem Erbgut.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mi_mc1", type: "mc", question: "Welche Ereignisse sind der jeweiligen Mitosephase korrekt zugeordnet?", options: [
         { text: "Prophase: Chromosomenkondensation und Kernhüllenauflösung", correct: true },
         { text: "Metaphase: Ausrichtung der Chromosomen in der Äquatorialplatte", correct: true },
@@ -652,7 +652,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "me_b1", type: "true_false", statement: "Mitose und Meiose unterscheiden sich grundlegend in Ziel, Ergebnis und Zelltypbezug.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "me_mc1", type: "mc", question: "Welche Aussage beschreibt korrekt die Unterschiede der Meiose gegenüber der Mitose?", options: [
         { text: "Meiose: 4 haploide Zellen, Crossing-over in Prophase I, nur in Keimdrüsen, zwei Teilungsrunden", correct: true },
         { text: "Meiose: 2 haploide Zellen, kein Crossing-over, in allen Körperzellen, eine Teilungsrunde", correct: false },
@@ -713,7 +713,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     bossQuestions: [
       { id: "ca_b1", type: "true_false", statement: "Das Verständnis numerischer Aberrationen setzt sichere Grundlagen in Mitose/Meiose voraus.", answer: true }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ca_mc1", type: "mc", question: "Welche Karyotypen und Syndrome sind korrekt zugeordnet?", options: [
         { text: "47, XXY – Klinefelter-Syndrom", correct: true },
         { text: "45, X0 – Turner-Syndrom", correct: true },
@@ -760,7 +760,7 @@ const HISTOLOGIE_1032_PLANTS = [
       ], explanation: "Desmosomen (Maculä adhärentes) verbinden Keratin-Intermediarfilamente benachbarter Zellen über Desmoplakin und Desmoglein/Desmocollin. Sie verleihen epithelialen Geweben (Haut, Herzmuskel) Zugfestigkeit. Autoantikörper gegen Desmoglein führen zur Pemphigus vulgaris (blasenbildende Hauterkrankung)." }
     ],
     bossQuestions: [{ id: "hi_zv_b1", type: "true_false", statement: "Die funktionelle Trennung von Haftung, Abdichtung und Kommunikation ist ein Kernpunkt der Histologie.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_zv_mc1", type: "mc", question: "Welche Zellverbindungen und ihre Hauptproteine sind korrekt zugeordnet?", options: [
         { text: "Tight Junction – Claudin und Occludin", correct: true },
         { text: "Gap Junction – Connexin", correct: true },
@@ -794,7 +794,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { id: "hi_ep_h3", type: "true_false", statement: "Epithelgewebe ernährt sich durch Diffusion aus dem darunterliegenden Bindegewebe, da es keine eigenen Blutgefässe besitzt.", answer: true, explanation: "Epithelien sind avaskular – keine eigenen Blutgefässe. Säuerstoff und Nährstoffe diffundieren aus den Kapillaren des subepithelial gelegenen Bindegewebes durch die Basalmembran. Die maximale Epitheldicke wird dadurch durch die Diffusionsstrecke begrenzt (mehrschichtige Epithelien können trotzdem dick sein, da die Basalzellen nah an den Kapillaren liegen)." }
     ],
     bossQuestions: [{ id: "hi_ep_b1", type: "true_false", statement: "Tight Junctions verhindern den parazellulären Durchtritt von Ionen und kleinen Molekülen.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_ep_mc1", type: "mc", question: "Welche Antwort benennt korrekt die drei Grundtypen von Epithelgewebe?", options: [
         { text: "Deckepithel, Drüsenepithel und Sinnesepithel", correct: true },
         { text: "Deckepithel, Stützepithel und Drüsenepithel", correct: false },
@@ -834,7 +834,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { text: "Hautepidermis = einschichtiges Säulenepithel", correct: true }
     ], explanation: "Die falsche Zuordnung ist D: Die Hautepidermis besteht aus mehrschichtigem verhorntem Plattenepithel – nicht aus einschichtigem Säulenepithel. Die anderen Zuordnungen stimmen: Endothel = einschichtiges Plattenepithel (Diffusion), Atemwegsepithel = mehrreihiges Flimmerepithel (Schutzfunktion), Harnblase = Übergangsepithel (dehnbar)." }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_od_mc1", type: "mc", question: "Welche Aussagen zum mehrreihigen Epithel sind korrekt?", options: [
         { text: "Alle Zellen berühren die Basalmembran", correct: true },
         { text: "Kerne liegen auf verschiedenen Höhen (Pseudostratifizierung)", correct: true },
@@ -879,7 +879,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { text: "Schweissdrüse – holokrin", correct: true }
     ], explanation: "Die falsche Zuordnung ist D: Schweissdrüsen sekretieren merokrin (Vesikelexozytose, Zelle bleibt intakt) – nicht holokrin. Holokrin ist die Talgdrüse (gesamte Zelle wird zum Sekret). Alle anderen Zuordnungen sind korrekt." }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_dr_mc1", type: "mc", question: "Welche Aussagen zum Unterschied exokrin vs. endokrin sind korrekt?", options: [
         { text: "Exokrine Drüsen besitzen Ausführungsgänge", correct: true },
         { text: "Endokrine Drüsen geben Hormone direkt ins Blut ab", correct: true },
@@ -924,7 +924,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { text: "Sie sind kernlos und können sich nicht erneuern", correct: false }
     ], explanation: "Myoepithelzellen besitzen kontraktile Aktinfilamente (wie glatte Muskelzellen) und umschliessen Drüsenazini. Bei Kontraktion pressen sie das Sekret aktiv aus. Sie bilden NICHT die Basalmembran und sind KEINE Sinneszellen." }
     ],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_sm_mc1", type: "mc", question: "Was unterscheidet Myoepithelzellen von anderen Epithelzellen?", options: [
         { text: "Sie besitzen kontraktile Aktinfilamente und können sich zusammenziehen", correct: true },
         { text: "Sie sind die einzigen Epithelzellen mit Basalmembrananbindung", correct: false },
@@ -963,7 +963,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { id: "hi_bg_h3", type: "true_false", statement: "Straffes geflechtartiges Bindegewebe unterscheidet sich von straffem parallelfaserigem Bindegewebe durch die Faseranordnung.", answer: true, explanation: "Straffes parallelfaseriges Bindegewebe (Sehnen, Bänder) hat Kollagenfasern in einer Hauptzugrichtung angeordnet – ideal für uniaxiale Zugkräfte. Straffes geflechtartiges Bindegewebe (Lederhaut der Haut, Periost) hat Fasern in mehrere Richtungen geflochten – widersteht Zug aus allen Richtungen." }
     ],
     bossQuestions: [{ id: "hi_bg_b1", type: "true_false", statement: "Die Matrix-Zell-Relation ist für das Verständnis von Bindegewebe grundlegend.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_bg_mc1", type: "mc", question: "Welche Kollagentypen sind den genannten Strukturen korrekt zugeordnet?", options: [
         { text: "Kollagen Typ I – Sehnen, Knochen (Zugfestigkeit)", correct: true },
         { text: "Kollagen Typ II – hyaliner Knorpel", correct: true },
@@ -1002,7 +1002,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { id: "hi_kg_h3", type: "true_false", statement: "Knorpelgewebe ist avaskular – die Ernährung der Chondrozyten erfolgt durch Diffusion.", answer: true, explanation: "Knorpelgewebe besitzt keine Blutgefässe (avaskular). Chondrozyten erhalten Nährstoffe und Sauerstoff durch Diffusion aus dem Perichondrium oder (bei Gelenkknorpel) aus der Synovialflüssigkeit. Diese avaskuläre Natur erklärt, warum Knorpeldefekte sehr schlecht heilen." }
     ],
     bossQuestions: [{ id: "hi_kg_b1", type: "true_false", statement: "Die sichere Unterscheidung der Knorpeltypen gehört zum Histologie-Grundwissen.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_kg_mc1", type: "mc", question: "Welche Knorpeltypen sind den genannten Lokalisationen korrekt zugeordnet?", options: [
         { text: "Hyaliner Knorpel – Gelenkflächen, Rippenknorpel, Wachstumsplatte", correct: true },
         { text: "Elastischer Knorpel – Ohrmuschel, Epiglottis", correct: true },
@@ -1041,7 +1041,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { id: "hi_kn_h3", type: "true_false", statement: "Lamellenknochen hat im Osteon konzentrisch um den Havers-Kanal angeordnete Lamellen aus mineralisierten Kollagenfasern.", answer: true, explanation: "Lamellenknochen (reifer Knochen) ist strukturell aus Osteonen (Havers-Systemen) aufgebaut: konzentrische Lamellen aus Kollagen Typ I mit Hydroxylapatit umringen einen zentralen Havers-Kanal (mit Blutgefässen und Nerven). Diese Struktur verleiht maximale Stabilität bei geringem Gewicht – eine geniale biomechanische Lösung." }
     ],
     bossQuestions: [{ id: "hi_kn_b1", type: "true_false", statement: "Knochenhistologie verbindet Zelltypen, Matrix und Entwicklungsprozesse.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_kn_mc1", type: "mc", question: "Welche Aussagen zu den drei Knochenzellypen sind korrekt?", options: [
         { text: "Osteoblasten – Knochenaufbau durch Osteoid-Synthese und Mineralisation", correct: true },
         { text: "Osteozyten – eingemauerte ehemalige Osteoblasten, Erhalt des Knochens", correct: true },
@@ -1080,7 +1080,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { id: "hi_bl_h3", type: "true_false", statement: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten im Knochenmark und haben keine DNS.", answer: true, explanation: "Megakaryozyten (riesige polynukleäre Zellen im Knochenmark) schnüren Tausende von Thrombozyten ab. Diese sind kernlos (keine DNA) und ca. 2–4 µm gross. Sie initiieren die primäre Hämostase durch Adhäsion an Gefässläsionen und Aggregation. Lebensdauer: ca. 8–12 Tage." }
     ],
     bossQuestions: [{ id: "hi_bl_b1", type: "true_false", statement: "Die Einordnung von Blut als Gewebe erweitert das Verständnis klassischer Histologie.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_bl_mc1", type: "mc", question: "Welche Zelltypen und ihre Funktionen sind korrekt zugeordnet?", options: [
         { text: "Neutrophile Granulozyten – primäre Phagozytose von Bakterien", correct: true },
         { text: "Eosinophile Granulozyten – Abwehr von Parasiten und allergischen Reaktionen", correct: true },
@@ -1119,7 +1119,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { id: "hi_mg_h3", type: "true_false", statement: "Glatte Muskelzellen können sich langsam und ausdauernd ohne Ermüdung kontrahieren, was sie für Hohlorgane besonders geeignet macht.", answer: true, explanation: "Glatte Muskulatur nutzt einen anderen Kontraktionsmechanismus als Skelettmuskel: langsame Myosin-Querbrückenzyklen (Latchzustand) erlauben Dauerkontraktionen mit sehr wenig ATP-Verbrauch. Diese Eigenschaft ist ideal für Dauertonus in Gefässen, Blasenapex, Darmmotilität." }
     ],
     bossQuestions: [{ id: "hi_mg_b1", type: "true_false", statement: "Muskelhistologie ist ohne sichere Typunterscheidung nicht belastbar.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_mg_mc1", type: "mc", question: "Welche histologischen Merkmale unterscheiden die drei Muskeltypen?", options: [
         { text: "Skelett: randständige Kerne, deutliche Querstreifung, willkürlich", correct: true },
         { text: "Herz: zentraler Kern, Querstreifung, Disci intercalares, unwillkürlich", correct: true },
@@ -1158,7 +1158,7 @@ const HISTOLOGIE_1032_PLANTS = [
       { id: "hi_ng_h3", type: "true_false", statement: "Das Ruhemembranpotential einer typischen Nervenzelle beträgt ca. -70 mV (innen negativ).", answer: true, explanation: "Das Ruhemembranpotential (-70 mV) entsteht durch: ungleiche Ionenverteilung (hohe K+ innen, hohe Na+ aussen), Kaliumleckkanäle (K+ strömt aus), und die Na+/K+-ATPase (hält den Gradienten aufrecht). Innen ist es negativ, weil K+-Ausstrom mehr negative Ladungen zurücklässt." }
     ],
     bossQuestions: [{ id: "hi_ng_b1", type: "true_false", statement: "Nervengewebe erfordert das Zusammendenken von Zellaufbau, Leitungsfunktion und Stützstrukturen.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hi_ng_mc1", type: "mc", question: "Welche Gliazelltypen und ihre Funktionen sind korrekt zugeordnet?", options: [
         { text: "Oligodendrozyten – Myelinisierung im ZNS", correct: true },
         { text: "Schwann-Zellen – Myelinisierung im PNS", correct: true },
@@ -1200,7 +1200,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       { id: "ko_st_h3", type: "true_false", statement: "Der menschliche Knochen wird im Erwachsenenalter vollständig innerhalb von ca. 10 Jahren durch Remodelling erneuert.", answer: true, explanation: "Knochenremodelling ist ein lebenslanger Prozess: Pro Jahr wird ca. 10% des gesamten Knochengewebes durch koordinierte Osteoklastenresorption und Osteoblastenneubildung (Remodelling-Einheiten) erneuert. Damit wird der gesamte Knochen etwa alle 10 Jahre vollständig ausgetauscht – vergleichbar einer ständigen Materialerneuerung." }
     ],
     bossQuestions: [{ id: "ko_st_b1", type: "true_false", statement: "Knochenstoffwechsel ist ein dynamischer, lebenslanger Prozess.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_st_mc1", type: "mc", question: "Welche Hormone regulieren den Knochenstoffwechsel und wie?", options: [
         { text: "Parathormon (PTH) – erhöhte Osteoklasenaktivität, Kalziumfreisetzung", correct: true },
         { text: "Calcitonin – hemmt Osteoklasten, senkt Blutkalzium", correct: true },
@@ -1239,7 +1239,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       { id: "ko_bau_h3", type: "true_false", statement: "Bei der Frakturheilung wird immer zuerst Geflechtknochen gebildet, der später zu Lamellenknochen umgebaut wird.", answer: true, explanation: "Frakturheilung verläuft in Phasen: Hämatom → Granulationsgewebe → Kallus (periostaler Kallus aus Faserknorpel, später Geflechtknochen) → Umbau zu Lamellenknochen. Geflechtknochen ist schnell aber schwächer (ungeordnete Kollagenfasern); Lamellenknochen ist stark und biomechanisch optimiert (geordnete konzentrische Lamellen)." }
     ],
     bossQuestions: [{ id: "ko_bau_b1", type: "true_false", statement: "Aufbau und Abbau sind gleichermassen Teil physiologischer Knochenvorgänge.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_bau_mc1", type: "mc", question: "Welche Knochen entstehen durch desmale (membranöser) Ossifikation?", options: [
         { text: "Schädelknochen (Stirn-, Scheitel-, Hinterhauptsknochen)", correct: true },
         { text: "Lange Röhrenknochen (Femur, Humerus)", correct: false },
@@ -1278,7 +1278,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       { id: "ko_w_h3", type: "true_false", statement: "Knochenwachstum und Knochenumbau sind funktionell gekoppelt.", answer: true, explanation: "Während das Längenwachstum in den Epiphysenfugen stattfindet, muss gleichzeitig das Knochendurchmesserwachstum (periostales Dickenwachstum) mit koordiniertem endostalem Abbau kombiniert werden, um die Proportionen und Markhöhlengrösse beizubehalten. Wachstum ohne Umbau würde zu massiven, schweren Knochen ohne Markhöhlel führen." }
     ],
     bossQuestions: [{ id: "ko_w_b1", type: "true_false", statement: "Knochenwachstum ist ohne biomechanischen Kontext nicht vollständig erklärbar.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_w_mc1", type: "mc", question: "Welche Faktoren steuern das Längenwachstum der Knochen?", options: [
         { text: "Wachstumshormon und IGF-1", correct: true },
         { text: "Schilddrüsenhormone (T3, T4)", correct: true },
@@ -1322,7 +1322,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       ], explanation: "Flexion/Extension: Sagittalebene, Transversalachse (z.B. Kniebeugung). Abduktion/Adduktion: Frontalebene, Sagittalachse (z.B. Arm seitlich heben). Rotation: Transversalebene, Vertikalachse (z.B. Kopfdrehen). Jede Bewegungsebene hat ihre zugehörige Drehachse." }
     ],
     bossQuestions: [{ id: "ko_lb_b1", type: "true_false", statement: "Anatomische Orientierungssprache ist Kernwerkzeug im Bewegungsapparat.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_lb_mc1", type: "mc", question: "Was bedeutet 'kranial'?", options: [
         { text: "Kopfwärts, in Richtung Schädel", correct: true },
         { text: "Fusswärts, in Richtung Unterschenkel", correct: false },
@@ -1366,7 +1366,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       ], explanation: "Wirbel haben eine komplexe unregelmässige Form (Wirbelkörper + Bogen + Fortsätze) und passen in keine der anderen Kategorien. Weitere unregelmässige Knochen: Gesichtsschädelknochen, Os coxä (Hüftbein). Die Klassifikation 'unregelmässig' ist ein Sammelbegriff für Knochen ohne einfache geometrische Grundform." }
     ],
     bossQuestions: [{ id: "ko_fo_b1", type: "true_false", statement: "Die sichere Typzuordnung von Knochenformen ist prüfungsrelevant.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_fo_mc1", type: "mc", question: "Welchem Knochentyp entspricht der Oberschenkelknochen (Femur)?", options: [
         { text: "Langer Knochen (Röhrenknochen)", correct: true },
         { text: "Kurzer Knochen", correct: false },
@@ -1410,7 +1410,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       ], explanation: "Das Achsenskelett hat eine doppelte Funktion: Tragstruktur und Organschutz. Schädel schützt Gehirn und Hirnstamm, Wirbelsäule schützt Rückenmark im Spinalkanal, Brustkorb (Rippen + Sternum + BWS) schützt Herz und Lunge. Der Bauchraum wird vom Achsenskelett nicht knochern umschlossen – dort dienen Muskeln als Schutz." }
     ],
     bossQuestions: [{ id: "ko_as_b1", type: "true_false", statement: "Achsenskelettfragen verbinden Topographie, Schutzfunktion und Statik.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_as_mc1", type: "mc", question: "Welche Strukturen gehören zum Achsenskelett?", options: [
         { text: "Schädel, Wirbelsäule und knöcherner Brustkorb", correct: true },
         { text: "Schulterblatt, Schlüsselbein und Rippen", correct: false },
@@ -1454,7 +1454,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       ], explanation: "Das Rückenmark endet beim Erwachsenen am Conus medullaris auf Höhe LWK 1-2. Kaudal davon verlaufen die langen Nervenwurzeln (L2-S5) als Cauda equina ('Pferdeschweif') im Liquorraum. Klinisch relevant: Lumbalpunktion unterhalb LWK 3/4 trifft keine Rückenmarkstruktur mehr." }
     ],
     bossQuestions: [{ id: "ko_ws_b1", type: "true_false", statement: "Die Wirbelsäule vereint strukturelle Stabilität durch Wirbelkörper und Bänder mit Beweglichkeit durch Bandscheiben und Gelenke, während sie gleichzeitig das Rückenmark schützt.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_ws_mc1", type: "mc", question: "Welche Funktion haben die Bandscheiben der Wirbelsäule?", options: [
         { text: "Stossdämpfung und Ermöglichung von Beweglichkeit zwischen Wirbelkörpern", correct: true },
         { text: "Knochenernährung und Blutversorgung der Wirbelkörper", correct: false },
@@ -1498,7 +1498,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       ], explanation: "Das Kniegelenk (Art. genus) verbindet Femur (Oberschenkel), Tibia (Haupt-Lasttrageknochen des Unterschenkels) und Patella (Kniescheibe, als Sesambein im M. quadriceps-Sehne). Die Fibula bildet keine Kniegelenkfläche, sondern liegt lateral der Tibia und dient als Muskeln-Ansatz und Austauschorgan für Sprunggelenk (Malleolus lateralis)." }
     ],
     bossQuestions: [{ id: "ko_ex_b1", type: "true_false", statement: "Topographisches Denken ist im Extremitätenskelett unverzichtbar.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_ex_mc1", type: "mc", question: "Welche Knochen gehören zur unteren Extremität?", options: [
         { text: "Femur, Tibia, Fibula und Fusswurzelknochen", correct: true },
         { text: "Humerus, Radius, Ulna und Handwurzelknochen", correct: false },
@@ -1542,7 +1542,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       ], explanation: "Synarthrosen erlauben kaum oder keine Bewegung. Beispiele: Schädelnäthe (Suturä: bindegewebige Verbindung beim Kind, knöhernd beim Erwachsenen), Symphyse (Faserknorpel), Syndesmose (Bindegewebe: distale Tibiofibularverbindung). Alle Diarthrosen haben eine echte Gelenkhöhle und sind frei beweglich." }
     ],
     bossQuestions: [{ id: "ko_gk_b1", type: "true_false", statement: "Ohne Synarthrose/Diarthrose-Grundschema bleiben viele Gelenkfragen unscharf.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_gk_mc1", type: "mc", question: "Was unterscheidet echte Gelenke (Diarthrosen) von unechten Gelenken (Synarthrosen)?", options: [
         { text: "Diarthrosen besitzen einen Gelenkspalt mit Gelenkflüssigkeit", correct: true },
         { text: "Synarthrosen ermöglichen die grösste Beweglichkeit", correct: false },
@@ -1586,7 +1586,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
       ], explanation: "Das Zapfengelenk (Articulatio trochoidea) hat einen zylindrischen Zapfen, der in einem Knochenring dreht – nur Rotation um die Längsachse ist möglich (uniaxial). Beispiele: proximales und distales Radioulnargelenk (Unterarmdrehung: Pronation/Supination), Atlantoaxialgelenk (Kopfrotation)." }
     ],
     bossQuestions: [{ id: "ko_ga_b1", type: "true_false", statement: "Gelenkarten verbinden morphologische Form mit biomechanischer Funktion.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "ko_ga_mc1", type: "mc", question: "Welches Gelenk erlaubt Bewegungen in allen Raumebenen (mehrachsig)?", options: [
         { text: "Kugelgelenk (z. B. Schultergelenk)", correct: true },
         { text: "Scharniergelenk (z. B. Kniegelenk)", correct: false },
@@ -1633,7 +1633,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Der Gleitfilamentmechanismus (Huxley, 1954) ist das universelle Prinzip aller Muskulatur: Myosinköpfe binden ATP, hydrolysieren es, bewegen sich ('Power Stroke') und ziehen das Aktinfilament. Das Sarkomer verkürzt sich, ohne dass die Filamente selbst kürzer werden. Dieses Prinzip gilt für Skelett-, Herz- und glatte Muskulatur gleichermassen." }
     ],
     bossQuestions: [{ id: "mu_allg_b1", type: "true_false", statement: "Allgemeine Muskellehre verbindet Bewegung, Stabilisierung und Stoffwechselbezug.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_allg_mc1", type: "mc", question: "Welche Funktion hat die Skelettmuskulatur NEBEN der Bewegungserzeugung?", options: [
         { text: "Wärmebildung und Gelenkstabilisierung", correct: true },
         { text: "Filtration von Blut", correct: false },
@@ -1677,7 +1677,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Die mechanische Kraftkette: Myofibrillen verkürzen das Sarkomer → Kraft wird auf Sarkolemm übertragen → Endomysium bündelt Einzelfaserkräfte → Perimysium bündelt Faserbündel → Epimysium leitet in Sehne → Sehne verankert am Periost des Knochens. Die Bindegewebshüllen sind nicht nur Schutz, sondern essenzielle Kraftübertragungsstrukturen." }
     ],
     bossQuestions: [{ id: "mu_auf_b1", type: "true_false", statement: "Ein belastbares Muskelverständnis braucht Makro- und Mikroaufbau gemeinsam.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_auf_mc1", type: "mc", question: "In welcher Reihenfolge ist der Skelettmuskel hierarchisch aufgebaut?", options: [
         { text: "Muskel → Muskelfaserbündel → Muskelfaser → Myofibrille → Sarkomer", correct: true },
         { text: "Myofibrille → Muskelfaser → Muskelfaserbündel → Muskel → Sarkomer", correct: false },
@@ -1721,7 +1721,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Einzelzuckung: ein Aktionspotential → kurze Kontraktion. Bei schneller Folge (unvollständiger Tetanus): Kontraktionen summieren sich (Treppe). Bei hoher Frequenz (vollständiger Tetanus): die Einzelzuckungen verschmelzen zur glatten Dauerkontrak­tion mit maximaler Kraft. Tetanische Kontraktionen sind 3-4x stärker als Einzelzuckungen." }
     ],
     bossQuestions: [{ id: "mu_fk_b1", type: "true_false", statement: "Muskeleigenschaften erklären, warum gleiche Lasten unterschiedlich verarbeitet werden.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_fk_mc1", type: "mc", question: "Was beschreibt isometrische Muskelarbeit?", options: [
         { text: "Kraftentfaltung bei gleichbleibender Muskellänge (ohne Bewegung)", correct: true },
         { text: "Kraftentfaltung mit gleichbleibender Muskelspannung", correct: false },
@@ -1765,7 +1765,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Die T-Tubuli (Einstülpungen des Sarkolemms) leiten das Aktionspotential tief in die Muskelfaser bis zu den Myofibrillen. An den Triaden (T-Tubulus + zwei SR-Terminals) löst das AP die Ca2+-Freisetzung aus dem Sarkoplasmatischen Retikulum (SR) aus. Ca2+ bindet an Troponin C → Tropomyosin verschiebt sich → Aktinbindungsstellen frei → Querbrückenzyklus startet." }
     ],
     bossQuestions: [{ id: "mu_in_b1", type: "true_false", statement: "Nervenansteuerung und Muskelantwort müssen als funktionelle Einheit gelernt werden.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_in_mc1", type: "mc", question: "Was versteht man unter einer motorischen Einheit?", options: [
         { text: "Ein Motoneuron und alle von ihm versorgten Muskelfasern", correct: true },
         { text: "Ein Muskel mit all seinen Nerven und Gefässen", correct: false },
@@ -1809,7 +1809,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Anaerobe Schwelle: Unterhalb → Laktat wird produziert und abgebaut (Gleichgewicht). Oberhalb → Laktat steigt exponentiell an (pH sinkt, Enzymhemmung, Ermüdung). Trainierte Ausdauersportler haben eine höhere Schwelle, weil ihre Muskeln mehr Typ-I-Fasern (aerob) und mehr Mitochondrien haben. Klinische Relevanz: Laktatmessung bei Belastungstests." }
     ],
     bossQuestions: [{ id: "mu_er_b1", type: "true_false", statement: "Muskelfunktion lässt sich ohne Grundlagen der Energiebereitstellung nicht sicher erklären.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_er_mc1", type: "mc", question: "Was ist die direkte Energiequelle der Muskelkontraktion?", options: [
         { text: "ATP (Adenosintriphosphat)", correct: true },
         { text: "Glukose", correct: false },
@@ -1853,7 +1853,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Skelettmuskelfasern entstehen durch Fusion vieler Myoblasten → mehrkernige Synzytien (Faserlänge bis 30 cm, hunderte Kerne randständig unter dem Sarkolemm). Herzmuskelzellen sind Einzelzellen (ca. 100 µm), verbunden durch Disci intercalares. Dieser Unterschied in der Zellentwicklung erklärt auch die unterschiedliche Regenerationsfähigkeit: Skelettmuskel kann repariert werden (aus Satellitenzellen), Herzmuskel kaum." }
     ],
     bossQuestions: [{ id: "mu_art_b1", type: "true_false", statement: "Eine saubere Abgrenzung der Muskelarten ist für Physiologie- und Pathologiefragen zentral.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_art_mc1", type: "mc", question: "Welche Muskelart ist histologisch quergestreift UND unwillkürlich gesteuert?", options: [
         { text: "Herzmuskulatur", correct: true },
         { text: "Skelettmuskulatur", correct: false },
@@ -1897,7 +1897,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Zirkumduktion = kegelförmige Kreisbewegung eines Gliedmassensegments: entsteht durch sequenzielle Kombination Flexion → Abduktion → Extension → Adduktion. Voraussetzung: mindestens 2 Bewegungsachsen = Kugelgelenk (Schulter, Hüft) oder Sattelgelenk (Daumensattelgelenk). Im Scharniergelenk (Knie) ist Zirkumduktion nicht möglich." }
     ],
     bossQuestions: [{ id: "mu_bew_b1", type: "true_false", statement: "Klinische Bewegungsbefunde lassen sich nur mit korrekter Bewegungsnomenklatur sauber deuten.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_bew_mc1", type: "mc", question: "Was bezeichnet Abduktion?", options: [
         { text: "Bewegung eines Körperteils von der Körpermitte weg", correct: true },
         { text: "Bewegung eines Körperteils zur Körpermitte hin", correct: false },
@@ -1941,7 +1941,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Der N. facialis (VII) innerviert die gesamte mimische Muskulatur inkl. M. frontalis (Stirnrunzeln). Periphere Fazialisparese: komplett ipsilaterale Lahmung (Stirn, Auge, Mund). Zentrale Fazialisparese (z.B. Schlaganfall): nur untere Gesichtshälfte betroffen, Stirn gespart (bilaterale kortikale Versorgung des M. frontalis). Diese Unterscheidung ist klinisch entscheidend für die Lokalisation der Schädigung." }
     ],
     bossQuestions: [{ id: "mu_kopf_b1", type: "true_false", statement: "Kopfmuskelthemen verbinden Funktion, Innervation und klinische Relevanz.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_kopf_mc1", type: "mc", question: "Welchem Hirnnerv unterliegt die mimische Muskulatur?", options: [
         { text: "Nervus facialis (VII)", correct: true },
         { text: "Nervus trigeminus (V)", correct: false },
@@ -1985,7 +1985,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Rumpfrotation: M. obliquus externus abdominis einer Seite + M. obliquus internus der GEGENSEITE kontrahieren gemeinsam → Rotation zur Gegenseite des externus (oder zur gleichen Seite des internus). Beispiel: Drehung nach rechts = rechts externus + links internus. Diese diagonale Muskelpaare erklären, warum Rumpfrotation eine koordinierte bilaterale Muskelaktivität ist." }
     ],
     bossQuestions: [{ id: "mu_rumpf_b1", type: "true_false", statement: "Funktion der Rumpfmuskulatur ergibt sich aus dem Zusammenspiel vieler Muskelgruppen.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_rumpf_mc1", type: "mc", question: "Welche Muskeln gehören zur primären inspiratorischen Atemhilfsmuskulatur?", options: [
         { text: "M. sternocleidomastoideus und Mm. scaleni", correct: true },
         { text: "M. rectus abdominis und M. obliquus externus", correct: false },
@@ -2029,7 +2029,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "M. biceps brachii: Ursprung am Schulterblatt (Caput longum: Tuberculum supraglenoidale; Caput breve: Processus coracoideus), Ansatz an Tuberositas radii. Funktion: Ellenbogenflexion (Hauptfunktion) + Unterarmsupination (weil Ansatz an Radius: dreht den Radius nach aussen). Innervation: N. musculocutaneus (C5-C6). N. radialis: Triceps (Extension). N. medianus: Flexoren volar." }
     ],
     bossQuestions: [{ id: "mu_ext_b1", type: "true_false", statement: "Extremitätenmuskulatur verlangt die Verknüpfung von Topographie und Bewegungsfunktion.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "mu_ext_mc1", type: "mc", question: "Welcher Muskel ist der stärkste Kniestrecker?", options: [
         { text: "M. quadriceps femoris", correct: true },
         { text: "M. biceps femoris", correct: false },
@@ -2077,7 +2077,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       ], explanation: "Das Atmungssystem hat neben dem Gasaustausch weitere Funktionen: Konditionierung der Atemluft (Wärmung auf 37°C, Befeuchtung auf 100% rel. Feuchte, Filtration durch Nasenhaare/Schleimhaut), Schutzfunktion (mukoziliäre Clearance, Husten/Niesen-Reflex) und Phonation (Stimmbänder im Kehlkopf). Ausserdem ist die Lunge am Säure-Basen-Haushalt beteiligt (CO2-Abgabe)." }
     ],
     bossQuestions: [{ id: "at_ü_b1", type: "true_false", statement: "Das Atmungssystem wird in obere und untere Atemwege unterteilt, die unterschiedliche Strukturen umfassen.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_ü_mc1", type: "mc", question: "Welche Strukturen gehören zu den OBEREN Atemwegen?", options: [
         { text: "Nase, Nasennebenhöhllen und Rachenraum", correct: true },
         { text: "Trachea und Hauptbronchien", correct: false },
@@ -2107,7 +2107,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_nnh_h3", type: "true_false", statement: "Die inneren Öffnungen der Nase in den Rachenraum werden als Choanä bezeichnet.", answer: true, explanation: "Die Choanä sind die hinteren Öffnungen der Nasenhöhle in den Nasopharynx (Epipharynx). Im Gegensatz dazu sind die Nares die äusseren Nasenöfffnungen. Eine angeborene Choanalatresie führt beim Neugeborenen zu Atembehinderung, da Neugeborene obligate Nasenatmer sind." }
     ],
     bossQuestions: [{ id: "at_nnh_b1", type: "true_false", statement: "Nasennebenhöhllen dienen u.a. der Gewichtsverminderung des Schädels, als Resonanzraum und zur Vergrösserung der Schleimhautoberfläch.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_nnh_mc1", type: "mc", question: "Welche vier Nasennebenhöhllen werden unterschieden?", options: [
         { text: "Stirnhöhlel, Keilbeinhöhlel, Siebbeinzellen und Kieferhöhlel", correct: true },
         { text: "Stirnhöhlel, Schläfenhöhlel, Kieferhöhlel und Wangenhöhlel", correct: false },
@@ -2137,7 +2137,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_ra_h3", type: "true_false", statement: "Tonsilla pharyngea, Tonsilla palatina und Tonsilla lingualis gehören zum Waldeyer-Rachenring.", answer: true, explanation: "Der Waldeyer-Rachenring bildet eine ringförmige Immunbarriere: Rachenmandel (adenoide Vegetationen im Dach des Epipharynx), Gaumenmandeln (seitlich im Mesopharynx) und Zungenmandel (Zungenbasis). Sie filtern Keime aus Atemluft und Nahrung und gehören zum lymphatischen System." }
     ],
     bossQuestions: [{ id: "at_ra_b1", type: "true_false", statement: "Im Mesopharynx befindet sich die Kreuzung von Luft- und Speiseweg, was ihn funktionell einzigartig macht.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_ra_mc1", type: "mc", question: "Welcher Abschnitt des Rachens ist die Kreuzungsstelle von Luft- und Speiseweg?", options: [
         { text: "Mesopharynx (Pars oralis)", correct: true },
         { text: "Epipharynx (Pars nasalis)", correct: false },
@@ -2167,7 +2167,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_kk_h3", type: "true_false", statement: "Die Stimmritze (Rima glottidis) befindet sich zwischen den falschen Stimmbändern.", answer: false, explanation: "Die Stimmritze (Rima glottidis) liegt zwischen den echten Stimmbändern (Plicä vocales), nicht zwischen den falschen Stimmbändern (Plicä vestibulares). Die falschen Stimmbänder befinden sich kranial der echten und bilden das Vestibulum laryngis." }
     ],
     bossQuestions: [{ id: "at_kk_b1", type: "true_false", statement: "Der Kehldeckelknorpel (Epiglottis) verhindert beim Schlucken die Aspiration von Nahrung in die Trachea.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_kk_mc1", type: "mc", question: "Welcher Knorpel des Kehlkopfes ist der grösste?", options: [
         { text: "Schildknorpel (Cartilago thyroidea)", correct: true },
         { text: "Ringknorpel (Cartilago cricoidea)", correct: false },
@@ -2196,7 +2196,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_tr_h2", type: "true_false", statement: "Die Bifurcatio tracheä bezeichnet die Teilung der Trachea in linken und rechten Hauptbronchus.", answer: true, explanation: "Die Bifurcatio tracheä liegt auf Höhe des 5. Brustwirbels und teilt die Trachea in rechten und linken Hauptbronchus. Der rechte ist steiler angewinkelt (ca. 25°) als der linke (ca. 45°) – deshalb gelangen aspirierte Fremdkörper häufiger in die rechte Lunge." }
     ],
     bossQuestions: [{ id: "at_tr_b1", type: "true_false", statement: "Der Paries membranaceus (hintere Wand der Trachea) besteht aus Bändern mit eingelagerten Muskelfasern.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_tr_mc1", type: "mc", question: "Aus welchem Knorpeltyp bestehen die Knorpelspangen der Trachea?", options: [
         { text: "Hyalinem Knorpel", correct: true },
         { text: "Elastischem Knorpel", correct: false },
@@ -2226,7 +2226,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_br_h3", type: "true_false", statement: "Die Alveolarwand besteht aus mehrschichtigem Plattenepithel.", answer: false, explanation: "Die Alveolarwand besteht aus einschichtigem Plattenepithel (Pneumozyten Typ I für Gasaustausch, Typ II für Surfactant-Produktion), nicht mehrschichtigem. Ein mehrschichtiges Epithel würde die Diffusionsstrecke für O2 und CO2 erheblich verlängern und den Gasaustausch behindern." }
     ],
     bossQuestions: [{ id: "at_br_b1", type: "true_false", statement: "Etwa 300 Millionen Alveolen bilden eine Gesamtaustauschfläche von 50 bis 100 Quadratmetern.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_br_mc1", type: "mc", question: "Wie viele Lappenbronchien hat die rechte Lunge?", options: [
         { text: "Drei (für Ober-, Mittel- und Unterlappen)", correct: true },
         { text: "Zwei (für Ober- und Unterlappen)", correct: false },
@@ -2256,7 +2256,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_lu_h3", type: "true_false", statement: "Am Lungenhilus treten sowohl Arterien als auch Venen in die Lunge ein.", answer: false, explanation: "Am Lungenhilus treten ein: Hauptbronchus, A. pulmonalis (sauerstoffarmes Blut) und Lymphgefässe. Die Pulmonalvenen (sauerstoffreiches Blut) verlassen die Lunge am Hilus – sie treten aus, nicht ein. Alle vier Pulmonalvenen münden in den linken Herzvorhof." }
     ],
     bossQuestions: [{ id: "at_lu_b1", type: "true_false", statement: "Der Pleuraspalt ist mit seröser Flüssigkeit gefüllt und ermöglicht durch Adhäsionskräfte die atemabhängige Lungenbewegung.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_lu_mc1", type: "mc", question: "Wie viele Lappen hat die rechte Lunge?", options: [
         { text: "Drei (Ober-, Mittel- und Unterlappen)", correct: true },
         { text: "Zwei (Ober- und Unterlappen)", correct: false },
@@ -2291,7 +2291,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       ], explanation: "Nach Boyle-Mariotte (p1V1 = p2V2): Wenn das Thoraxvolumen durch Kontraktion von Diaphragma und Interkostalmuskeln zunimmt, sinkt der Druck in der Lunge unter den Atmosphärendruck (ca. -1 bis -3 cmH2O bei normaler Inspiration). Dieser Druckgradient treibt Luft von aussen passiv in die Alveolen. Bei Exspiration: Volumen sinkt → Druck steigt → Luft strömt heraus." }
     ],
     bossQuestions: [{ id: "at_ap_b1", type: "true_false", statement: "Die Lungenventilation besteht aus dem rhythmischen Wechsel zwischen aktiver Inspiration und passiver Exspiration in Ruhe.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_ap_mc1", type: "mc", question: "Was geschieht während der Inspiration (Einatmung)?", options: [
         { text: "Das Diaphragma kontrahiert und flacht ab, der Thoraxraum vergrössert sich", correct: true },
         { text: "Das Diaphragma entspannt sich und wölbt sich nach oben", correct: false },
@@ -2320,7 +2320,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_am_h2", type: "true_false", statement: "Das Diaphragma wirkt ausschliesslich inspiratorisch und hat keine Funktion bei der Ausatmung.", answer: false, explanation: "Das Diaphragma ist der Hauptatemmuskel für die Inspiration, hat aber auch passiven Anteil bei der Ausatmung: Es entspannt sich und gibt durch seine Rückstellkraft Energie frei, die den Thorax verkleinert. Aktiv exspiratorisch wird es nur bei forcierter Ausatmung (Pressen, Husten, Niesen)." }
     ],
     bossQuestions: [{ id: "at_am_b1", type: "true_false", statement: "Diaphragma und M. intercostales externi gehören zu den primären Atemmuskeln und wirken inspiratorisch.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_am_mc1", type: "mc", question: "Welche Muskeln wirken primär inspiratorisch?", options: [
         { text: "Diaphragma und Mm. intercostales externi", correct: true },
         { text: "Mm. intercostales interni und M. rectus abdominis", correct: false },
@@ -2349,7 +2349,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_ga_h3", type: "true_false", statement: "Die Diffusionskapazität beschreibt die Fähigkeit der Lunge zur Aufnahme von Kohlendioxid aus der Luft.", answer: false, explanation: "Die Diffusionskapazität (DLCO) beschreibt die Fähigkeit der Lunge, Gase (v.a. O2) aus der Alveolarluft ins Blut aufzunehmen. CO2 wird im Gegenteil aus dem Blut in die Alveolarluft abgegeben. Die DLCO ist klinisch relevant, z.B. vermindert bei Lungenfibrose oder Lungenemphysem." }
     ],
     bossQuestions: [{ id: "at_ga_b1", type: "true_false", statement: "Äussere und innere Atmung beschreiben zwei verschiedene Orte des Gasaustauschs: Lunge-Blut und Blut-Körperzellen.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_ga_mc1", type: "mc", question: "Durch welchen Mechanismus findet der Gasaustausch in der Lunge statt?", options: [
         { text: "Durch Diffusion entlang von Partialdruckunterschieden", correct: true },
         { text: "Durch aktiven Transport mit Energieverbrauch", correct: false },
@@ -2379,7 +2379,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_lv_h3", type: "true_false", statement: "Das inspiratorische Reservevolumen (2-3 l) und das exspiratorische Reservevolumen (1,5 l) sind gleich gross.", answer: false, explanation: "Das inspiratorische Reservevolumen (IRV, ca. 2,5 l) ist deutlich grösser als das exspiratorische Reservevolumen (ERV, ca. 1,5 l). Der Thorax kann durch Muskelkraft weiter eingeatmet als ausgeatmet werden, weshalb mehr Inspirationsreserve als Exspirationsreserve besteht." }
     ],
     bossQuestions: [{ id: "at_lv_b1", type: "true_false", statement: "Nur etwa 60% der eingeatmeten Luftmenge gelangt tatsächlich in die Alveolen; der Rest verbleibt im Totraum.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_lv_mc1", type: "mc", question: "Wie gross ist das normale Atemzugvolumen eines Erwachsenen in Ruhe?", options: [
         { text: "Ca. 500 ml", correct: true },
         { text: "Ca. 1500 ml", correct: false },
@@ -2408,7 +2408,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
       { id: "at_as_h3", type: "true_false", statement: "Eine Abnahme der Sauerstoffkonzentration im Blut führt zu einer Verlangsamung der Atemfrequenz.", answer: false, explanation: "Eine Abnahme der Sauerstoffkonzentration (Hypoxämie) führt zu einer Steigerung, nicht Verlangsamung der Atemfrequenz. Periphere Chemorezeptoren in den Karotis- und Aortakörperchen reagieren auf sinkenden O2-Partialdruck und signalisieren dem Atemzentrum, mehr Atemarbeit zu leisten." }
     ],
     bossQuestions: [{ id: "at_as_b1", type: "true_false", statement: "An der chemischen Atemsteuerung sind Sauerstoff, Kohlendioxid und der pH-Wert des Blutes als Regelgrössen beteiligt.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "at_as_mc1", type: "mc", question: "Welche drei Regelgrössen steuern das Atemzentrum chemisch?", options: [
         { text: "O2-Partialdruck, CO2-Partialdruck und pH-Wert des Blutes", correct: true },
         { text: "Temperatur, Osmolarität und Glukosegehalt des Blutes", correct: false },
@@ -2441,7 +2441,7 @@ const HEILPRAKTIKER_HYBRIDS = [
       { id: "hyb_hA_h3", type: "true_false", statement: "Das Diaphragma ist histologisch quergestreifte Skelettmuskulatur.", answer: true, explanation: "Das Diaphragma besteht aus quergestreiften Skelettmuskelfasern – trotz seiner unwillkürlichen Atemfunktion. Das ermöglicht sowohl reflektorische (durch das Atemzentrum) als auch willkürliche Steuerung (Sprechen, Singen, Tauchen). Diese Doppelsteuerung erklärt seine funktionelle Vielseitigkeit." }
     ],
     bossQuestions: [{ id: "hyb_hA_b1", type: "true_false", statement: "Atemmuskulatur (Diaphragma, Mm. intercostales) besteht histologisch aus quergestreifter Skelettmuskulatur und unterliegt sowohl willkürlicher als auch reflektorischer Steuerung.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hyb_hA_mc1", type: "mc", question: "Welchem histologischen Muskeltyp gehört das Zwerchfell an und was folgt daraus für seine Steuerung?", options: [
         { text: "Quergestreifte Skelettmuskulatur – willkürliche UND reflektorische Steuerung möglich", correct: true },
         { text: "Glatte Muskulatur – ausschliesslich autonome, unwillkürliche Steuerung", correct: false },
@@ -2472,7 +2472,7 @@ const HEILPRAKTIKER_HYBRIDS = [
       { id: "hyb_nA_h3", type: "true_false", statement: "Das Atemzentrum in der Medulla oblongata nutzt Nervenzellen zur Weiterleitung von Atemimpulsen an die Diaphragmamuskulatur.", answer: true, explanation: "Die Motoneuronen des Atemzentrums senden ihre Impulse über den N. phrenicus (C3-C5) zum Diaphragma. Bei Rückenmarksverletzungen oberhalb C3 ist die Atemmuskulatur vollständig gelahmt und Beatmung wird lebensnotwendig – ein direktes Beispiel für die klinische Bedeutung dieser nervalen Verbindung." }
     ],
     bossQuestions: [{ id: "hyb_nA_b1", type: "true_false", statement: "Chemorezeptoren leiten Veränderungen von O2, CO2 und pH-Wert über afferente Nervenfasern an das Atemzentrum in der Medulla oblongata weiter.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hyb_nA_mc1", type: "mc", question: "Welche Struktur generiert den rhythmischen Atemantrieb und wohin sendet sie ihre Impulse?", options: [
         { text: "Atemzentrum in der Medulla oblongata – Impulse über den N. phrenicus zum Zwerchfell", correct: true },
         { text: "Hypothalamus – Impulse über den N. vagus zum Zwerchfell", correct: false },
@@ -2503,7 +2503,7 @@ const HEILPRAKTIKER_HYBRIDS = [
       { id: "hyb_sB_h3", type: "true_false", statement: "Erythrozyten sind der zelluläre Träger des Sauerstoffs im Blut nach dem Gasaustausch in den Alveolen.", answer: true, explanation: "Erythrozyten binden O2 an Hämoglobin (je Hämoglobin-Molekül 4 O2). Nur ca. 3% des O2 werden physikalisch im Plasma gelöst. Der Hämoglobin-Transport ist damit etwa 30-mal effizienter. Die Oxyhämoglobin-Dissoziationskurve beschreibt, wie Hämoglobin O2 in der Lunge aufnimmt und im Gewebe abgibt." }
     ],
     bossQuestions: [{ id: "hyb_sB_b1", type: "true_false", statement: "Blut als spezialisiertes Gewebe (Erythrozyten) und Gasaustausch (Diffusion in Alveolen) sind direkt verknüpft: ohne funktionelles Blutgewebe kein Sauerstofftransport.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hyb_sB_mc1", type: "mc", question: "Wie wird Sauerstoff nach dem Gasaustausch in den Alveolen im Blut hauptsächlich transportiert?", options: [
         { text: "Gebunden an Hämoglobin in den Erythrozyten (ca. 97% des O2-Gehalts)", correct: true },
         { text: "Frei gelöst im Blutplasma", correct: false },
@@ -2534,7 +2534,7 @@ const HEILPRAKTIKER_HYBRIDS = [
       { id: "hyb_rE_h3", type: "true_false", statement: "Das mehrreihige Flimmerepithel der Trachea gehört zum Oberflächenepithel und übernimmt eine aktive Selbstreinigungsfunktion für die Atemwege.", answer: true, explanation: "Das mehrreihige Flimmerepithel (Epithelium pseudostratificatum columnare ciliatum) mit Becherzellen ist der Standardtyp des respiratorischen Epithels. Becherzellen produzieren Schleim, Flimmerhaarchen transportieren ihn mit Keimen und Partikeln nach oben – das mukoziliäre System ist die erste mechanische Abwehrlinie der Atemwege." }
     ],
     bossQuestions: [{ id: "hyb_rE_b1", type: "true_false", statement: "Respiratorisches Epithel (mehrreihiges Flimmerepithel) verbindet histologische Epithelklassifikation mit der Schutzfunktion der Atemwege.", answer: true }],
-    combatQuestions: [
+    cleaningQuestions: [
       { id: "hyb_rE_mc1", type: "mc", question: "Welches Epithel kleidet die Trachea aus und welche Funktion hat es?", options: [
         { text: "Mehrreihiges Flimmerepithel mit Becherzellen – mukoziliäre Selbstreinigung", correct: true },
         { text: "Einschichtiges Plattenepithel – schnelle Gasdiffusion", correct: false },

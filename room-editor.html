@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room Item Editor — Knowledge Garden</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #1a1a2e; color: #e0e0e0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+    /* ── Top bar ── */
+    #topbar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 12px; background: #16213e;
+      border-bottom: 1px solid #0f3460; flex-shrink: 0; flex-wrap: wrap;
+    }
+    #topbar h1 { font-size: 0.9rem; font-weight: 700; color: #e94560; white-space: nowrap; margin-right: 4px; }
+    #topbar label { font-size: 0.72rem; color: #aaa; white-space: nowrap; }
+    #topbar input[type="text"], #topbar select {
+      background: #0f3460; border: 1px solid #e94560; color: #fff;
+      padding: 3px 7px; border-radius: 4px; font-size: 0.78rem;
+    }
+    #topbar input[type="text"] { width: 160px; }
+    .tb-sep { width: 1px; height: 22px; background: #0f3460; margin: 0 2px; }
+
+    button {
+      background: #e94560; color: #fff; border: none;
+      padding: 4px 11px; border-radius: 4px; cursor: pointer;
+      font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+    }
+    button:hover { background: #c73652; }
+    button.sec { background: #0f3460; border: 1px solid #555; }
+    button.sec:hover { background: #1a4a80; }
+    button.ghost { background: transparent; border: 1px solid #444; color: #aaa; }
+    button.ghost:hover { border-color: #e94560; color: #e94560; }
+    button.danger { background: #5c1a1a; border: 1px solid #e94560; color: #ff8888; }
+    button.danger:hover { background: #8b2222; }
+    button.active-mode { background: #c77dff; }
+
+    /* ── Layout ── */
+    #main { display: flex; flex: 1; overflow: hidden; }
+
+    /* ── Canvas ── */
+    #canvas-wrap {
+      flex: 1; position: relative; overflow: auto;
+      background: #111; cursor: crosshair;
+    }
+    #room-bg {
+      display: block; width: 100%; height: auto;
+      pointer-events: none; user-select: none;
+    }
+    #bg-placeholder {
+      position: absolute; inset: 0; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; color: #333; font-size: 0.85rem; pointer-events: none;
+    }
+    #bg-placeholder span { font-size: 3rem; }
+
+    /* ── Room items ── */
+    .room-item {
+      position: absolute;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      transition: border-color 0.1s;
+      transform: translate(-50%, -50%);
+    }
+    .room-item:hover { border-color: rgba(255,255,255,0.4); }
+    .room-item.selected { border-color: #e94560; box-shadow: 0 0 0 2px rgba(233,69,96,0.5); }
+    .room-item img { display: block; width: 100%; height: auto; pointer-events: none; user-select: none; }
+    .room-item .item-placeholder {
+      width: 100%; min-width: 60px; min-height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 600; color: #fff; text-align: center;
+      border-radius: 5px; padding: 6px;
+    }
+    .room-item .item-label {
+      position: absolute; top: calc(100% + 3px); left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85); color: #fff;
+      font-size: 0.65rem; font-weight: 600; padding: 2px 6px; border-radius: 3px;
+      white-space: nowrap; pointer-events: none;
+    }
+    .room-item.type-container { border-style: dashed; }
+    .room-item.type-container:not(.selected) { border-color: rgba(199,125,255,0.4); }
+    .room-item.type-container.selected { border-color: #c77dff; }
+
+    /* Preview toggle */
+    .room-item.show-clean .dirty-img { display: none; }
+    .room-item.show-clean .clean-img { display: block !important; }
+    .room-item .clean-img { display: none; }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      width: 270px; background: #16213e;
+      border-left: 1px solid #0f3460;
+      display: flex; flex-direction: column; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .sb-head {
+      padding: 9px 13px; background: #0f3460;
+      font-size: 0.78rem; font-weight: 700; color: #e94560; flex-shrink: 0;
+    }
+    #item-form {
+      padding: 10px 13px; overflow-y: auto; flex: 1;
+      display: flex; flex-direction: column; gap: 9px;
+    }
+    #item-form.disabled { opacity: 0.35; pointer-events: none; }
+    .field { display: flex; flex-direction: column; gap: 3px; }
+    .field label { font-size: 0.68rem; color: #999; }
+    .field input, .field select, .field textarea {
+      background: #0d0d1a; border: 1px solid #333; color: #e0e0e0;
+      padding: 4px 7px; border-radius: 4px; font-size: 0.75rem;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: #e94560; }
+    .field textarea { resize: vertical; min-height: 38px; }
+
+    .field-row { display: flex; gap: 6px; }
+    .field-row .field { flex: 1; }
+
+    .img-preview {
+      margin-top: 3px; border-radius: 4px; overflow: hidden;
+      background: #0d0d1a; border: 1px solid #222;
+      min-height: 40px; display: flex; align-items: center; justify-content: center;
+    }
+    .img-preview img { max-width: 100%; max-height: 80px; display: block; }
+    .img-preview .no-img { font-size: 0.65rem; color: #444; }
+
+    .type-btns { display: flex; gap: 6px; }
+    .type-btns button { flex: 1; }
+
+    #width-val { color: #e94560; font-weight: 700; }
+
+    .section-divider {
+      border: none; border-top: 1px solid #0f3460;
+      margin: 2px 0;
+    }
+
+    /* Item list at bottom of sidebar */
+    #item-list-wrap { border-top: 1px solid #0f3460; flex-shrink: 0; max-height: 180px; overflow-y: auto; }
+    .il-item {
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 13px; cursor: pointer; border-left: 3px solid transparent;
+      font-size: 0.73rem;
+    }
+    .il-item:hover { background: #0f3460; }
+    .il-item.active { background: #0f3460; border-left-color: #e94560; }
+    .il-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+    .il-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .il-type { font-size: 0.6rem; color: #666; }
+
+    /* Export */
+    #export-bar {
+      padding: 9px 13px; border-top: 1px solid #0f3460;
+      display: flex; flex-direction: column; gap: 6px; flex-shrink: 0;
+    }
+    #export-bar .row { display: flex; gap: 6px; }
+    #export-bar .row button { flex: 1; }
+    #export-status { font-size: 0.68rem; color: #4caf50; min-height: 1em; text-align: center; }
+  </style>
+</head>
+<body>
+
+<div id="topbar">
+  <h1>🛋 Room Editor</h1>
+  <div class="tb-sep"></div>
+  <label>Raum:</label>
+  <input type="text" id="room-name" value="Schlafzimmer" />
+  <label>Bett:</label>
+  <select id="bed-select">
+    <option value="zytologie_1031">Zytologie</option>
+    <option value="histologie_1032">Histologie</option>
+    <option value="knochenlehre_1033">Knochenlehre</option>
+    <option value="muskellehre_1034">Muskellehre</option>
+    <option value="atmungssystem_1035">Atmungssystem</option>
+  </select>
+  <div class="tb-sep"></div>
+  <label>Hintergrund:</label>
+  <input type="text" id="bg-input" placeholder="assets/images/rooms/schlafzimmer.png" />
+  <button class="sec" onclick="loadBg()">Laden</button>
+  <button class="sec" onclick="pickBg()">📁</button>
+  <div class="tb-sep"></div>
+  <button class="ghost" onclick="togglePreview()">👁 Clean-Vorschau</button>
+  <div class="tb-sep"></div>
+  <button class="sec" onclick="loadJson()">JSON laden</button>
+</div>
+
+<input type="file" id="file-bg" accept="image/*" style="display:none" />
+<input type="file" id="file-img" accept="image/*" style="display:none" />
+
+<div id="main">
+
+  <div id="canvas-wrap">
+    <img id="room-bg" src="" alt="" style="display:none" />
+    <div id="bg-placeholder">
+      <span>🛋</span>
+      <p>Hintergrundbild laden, dann auf den Raum klicken um Items zu platzieren</p>
+    </div>
+  </div>
+
+  <div id="sidebar">
+    <div class="sb-head">Item-Eigenschaften</div>
+
+    <div id="item-form" class="disabled">
+
+      <div class="field">
+        <label>Bezeichnung</label>
+        <input type="text" id="f-label" placeholder="z.B. Staubfleck" oninput="updateField('label', this.value)" />
+      </div>
+
+      <div class="field">
+        <label>Typ</label>
+        <div class="type-btns">
+          <button id="type-flat" onclick="setType('flat')">Einfach</button>
+          <button id="type-container" class="sec" onclick="setType('container')">Container</button>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <div class="field">
+        <label>Schmutziges Bild (Pfad oder 📁)</label>
+        <div class="field-row">
+          <div class="field" style="flex:1">
+            <input type="text" id="f-dirty-path" placeholder="assets/images/items/..." oninput="updateField('dirtyImg', this.value); refreshItemImage()" />
+          </div>
+          <button class="sec" style="padding:4px 8px" onclick="pickImg('dirty')">📁</button>
+        </div>
+        <div class="img-preview" id="dirty-preview"><span class="no-img">kein Bild</span></div>
+      </div>
+
+      <div class="field">
+        <label>Sauberes Bild (Pfad oder 📁)</label>
+        <div class="field-row">
+          <div class="field" style="flex:1">
+            <input type="text" id="f-clean-path" placeholder="assets/images/items/..." oninput="updateField('cleanImg', this.value)" />
+          </div>
+          <button class="sec" style="padding:4px 8px" onclick="pickImg('clean')">📁</button>
+        </div>
+        <div class="img-preview" id="clean-preview"><span class="no-img">kein Bild</span></div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <div class="field">
+        <label>Fragen-ID  <span style="color:#555;font-size:0.62rem">(aus cleaningQuestions in content.js)</span></label>
+        <input type="text" id="f-qid" placeholder="z.B. zb_mc1" oninput="updateField('questionId', this.value)" />
+      </div>
+
+      <div class="field">
+        <label>Breite: <span id="width-val">10</span>%</label>
+        <input type="range" id="f-width" min="2" max="50" value="10"
+          oninput="document.getElementById('width-val').textContent=this.value; updateField('width', +this.value); refreshItemSize()" />
+      </div>
+
+      <button class="danger" onclick="deleteSelected()">🗑 Item löschen</button>
+
+    </div>
+
+    <div id="item-list-wrap">
+      <div id="item-list"></div>
+    </div>
+
+    <div id="export-bar">
+      <div class="row">
+        <button onclick="copyJson()">📋 Kopieren</button>
+        <button class="sec" onclick="downloadJson()">💾 Download</button>
+      </div>
+      <div id="export-status"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+// ── State ──────────────────────────────────────────────────
+let items = [];
+let selectedId = null;
+let nextId = 1;
+let bgSrc = "";
+let placingMode = true; // always true — click empty = place, click item = select
+const previewUrls = {}; // itemId -> { dirty: blobUrl, clean: blobUrl }
+let previewClean = false;
+
+const COLORS = {
+  flat: "#e94560",
+  container: "#c77dff"
+};
+
+// ── Background ─────────────────────────────────────────────
+function loadBg() {
+  bgSrc = document.getElementById("bg-input").value.trim();
+  applyBg(bgSrc);
+}
+
+function pickBg() {
+  document.getElementById("file-bg").onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    bgSrc = file.name;
+    document.getElementById("bg-input").value = file.name;
+    applyBg(url);
+  };
+  document.getElementById("file-bg").click();
+}
+
+function applyBg(src) {
+  const img = document.getElementById("room-bg");
+  img.src = src;
+  img.style.display = "block";
+  document.getElementById("bg-placeholder").style.display = "none";
+}
+
+// ── Mode ───────────────────────────────────────────────────
+
+function togglePreview() {
+  previewClean = !previewClean;
+  document.querySelectorAll(".room-item").forEach(el => {
+    el.classList.toggle("show-clean", previewClean);
+  });
+}
+
+// ── Canvas click = place item ──────────────────────────────
+document.getElementById("canvas-wrap").addEventListener("click", function(e) {
+  if (!placingMode) return;
+  if (e.target.closest(".room-item")) return;
+  const r = this.getBoundingClientRect();
+  const x = +((e.clientX - r.left) / r.width  * 100).toFixed(2);
+  const y = +((e.clientY - r.top)  / r.height * 100).toFixed(2);
+  const item = {
+    id: nextId++,
+    label: `Item ${items.length + 1}`,
+    type: "flat",
+    x, y,
+    width: 10,
+    dirtyImg: "",
+    cleanImg: "",
+    questionId: ""
+  };
+  items.push(item);
+  renderAll();
+  selectItem(item.id);
+});
+
+// ── Select ─────────────────────────────────────────────────
+function selectItem(id) {
+  selectedId = id;
+  renderAll();
+  const item = items.find(i => i.id === id);
+  const form = document.getElementById("item-form");
+  if (!item) { form.classList.add("disabled"); return; }
+  form.classList.remove("disabled");
+  document.getElementById("f-label").value = item.label;
+  document.getElementById("f-dirty-path").value = item.dirtyImg || "";
+  document.getElementById("f-clean-path").value = item.cleanImg || "";
+  document.getElementById("f-qid").value = item.questionId || "";
+  document.getElementById("f-width").value = item.width;
+  document.getElementById("width-val").textContent = item.width;
+  setTypeUI(item.type);
+  updateImgPreviews(item);
+  const li = document.querySelector(`.il-item[data-id="${id}"]`);
+  if (li) li.scrollIntoView({ block: "nearest" });
+}
+
+function setType(type) {
+  const item = items.find(i => i.id === selectedId);
+  if (!item) return;
+  item.type = type;
+  setTypeUI(type);
+  renderAll();
+}
+
+function setTypeUI(type) {
+  document.getElementById("type-flat").className = type === "flat" ? "" : "sec";
+  document.getElementById("type-container").className = type === "container" ? "active-mode" : "sec";
+}
+
+function updateField(field, value) {
+  const item = items.find(i => i.id === selectedId);
+  if (!item) return;
+  item[field] = value;
+  // update label in list
+  if (field === "label") {
+    const li = document.querySelector(`.il-item[data-id="${selectedId}"] .il-label`);
+    if (li) li.textContent = value;
+  }
+}
+
+function updateImgPreviews(item) {
+  setPreview("dirty-preview", item.dirtyImg);
+  setPreview("clean-preview", item.cleanImg);
+}
+
+function setPreview(elId, src) {
+  const el = document.getElementById(elId);
+  if (src) {
+    el.innerHTML = `<img src="${src}" onerror="this.parentNode.innerHTML='<span class=no-img>Bild nicht gefunden</span>'" />`;
+  } else {
+    el.innerHTML = `<span class="no-img">kein Bild</span>`;
+  }
+}
+
+// ── Image picker ───────────────────────────────────────────
+let _pickingFor = null;
+function pickImg(which) {
+  _pickingFor = which;
+  document.getElementById("file-img").onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const suggestedPath = `assets/images/items/${file.name}`;
+    const field = _pickingFor === "dirty" ? "f-dirty-path" : "f-clean-path";
+    const dataField = _pickingFor === "dirty" ? "dirtyImg" : "cleanImg";
+    document.getElementById(field).value = suggestedPath;
+    updateField(dataField, suggestedPath);
+    // store blob URL for live preview — independent of whether file is copied yet
+    const url = URL.createObjectURL(file);
+    if (!previewUrls[selectedId]) previewUrls[selectedId] = {};
+    previewUrls[selectedId][_pickingFor] = url;
+    const previewId = _pickingFor === "dirty" ? "dirty-preview" : "clean-preview";
+    document.getElementById(previewId).innerHTML = `<img src="${url}" />`;
+    // re-render the canvas item with the blob URL
+    renderCanvasItems();
+  };
+  document.getElementById("file-img").click();
+}
+
+// ── Refresh selected item visuals ──────────────────────────
+function refreshItemImage() {
+  const item = items.find(i => i.id === selectedId);
+  if (!item) return;
+  const el = document.querySelector(`.room-item[data-id="${selectedId}"]`);
+  if (!el) return;
+  renderItemContent(el, item);
+}
+
+function refreshItemSize() {
+  const item = items.find(i => i.id === selectedId);
+  if (!item) return;
+  const el = document.querySelector(`.room-item[data-id="${selectedId}"]`);
+  if (el) el.style.width = `${item.width}%`;
+}
+
+// ── Delete ─────────────────────────────────────────────────
+function deleteSelected() {
+  items = items.filter(i => i.id !== selectedId);
+  selectedId = null;
+  document.getElementById("item-form").classList.add("disabled");
+  renderAll();
+}
+
+// ── Render ─────────────────────────────────────────────────
+function renderAll() {
+  renderCanvasItems();
+  renderItemList();
+}
+
+function renderItemContent(el, item) {
+  const preview = previewUrls[item.id] || {};
+  const dirtySrc = preview.dirty || item.dirtyImg;
+  const cleanSrc = preview.clean || item.cleanImg;
+  if (dirtySrc) {
+    el.innerHTML = `
+      <img class="dirty-img" src="${dirtySrc}" onerror="this.style.display='none'" />
+      ${cleanSrc ? `<img class="clean-img" src="${cleanSrc}" />` : ""}
+      <div class="item-label">${item.label}</div>`;
+  } else {
+    const color = COLORS[item.type] || "#555";
+    const icon = item.type === "container" ? "📦" : "📌";
+    el.innerHTML = `
+      <div class="item-placeholder" style="background:${color}44;border:2px dashed ${color}">${icon}<br>${item.label}</div>
+      <div class="item-label">${item.label}</div>`;
+  }
+}
+
+function renderCanvasItems() {
+  document.querySelectorAll(".room-item").forEach(el => el.remove());
+  const wrap = document.getElementById("canvas-wrap");
+  items.forEach(item => {
+    const el = document.createElement("div");
+    el.className = `room-item type-${item.type}` + (item.id === selectedId ? " selected" : "") + (previewClean ? " show-clean" : "");
+    el.dataset.id = item.id;
+    el.style.left  = `${item.x}%`;
+    el.style.top   = `${item.y}%`;
+    el.style.width = `${item.width}%`;
+    renderItemContent(el, item);
+    el.addEventListener("click", e => { e.stopPropagation(); selectItem(item.id); });
+    el.addEventListener("mousedown", startDrag);
+    wrap.appendChild(el);
+  });
+}
+
+function renderItemList() {
+  const list = document.getElementById("item-list");
+  list.innerHTML = "";
+  if (!items.length) {
+    list.innerHTML = `<div style="padding:10px 13px;font-size:0.68rem;color:#444;">Noch keine Items.</div>`;
+    return;
+  }
+  items.forEach(item => {
+    const color = COLORS[item.type] || "#555";
+    const el = document.createElement("div");
+    el.className = "il-item" + (item.id === selectedId ? " active" : "");
+    el.dataset.id = item.id;
+    el.innerHTML = `
+      <div class="il-dot" style="background:${color}"></div>
+      <span class="il-label">${item.label}</span>
+      <span class="il-type">${item.type}</span>`;
+    el.addEventListener("click", () => { if (!placingMode || true) selectItem(item.id); });
+    list.appendChild(el);
+  });
+}
+
+// ── Drag ───────────────────────────────────────────────────
+let dragging = null;
+function startDrag(e) {
+  e.preventDefault(); e.stopPropagation();
+  dragging = +e.currentTarget.dataset.id;
+  selectItem(dragging);
+  const wrap = document.getElementById("canvas-wrap");
+  function onMove(e) {
+    const r = wrap.getBoundingClientRect();
+    const x = +Math.max(0, Math.min(100, (e.clientX - r.left) / r.width  * 100)).toFixed(2);
+    const y = +Math.max(0, Math.min(100, (e.clientY - r.top)  / r.height * 100)).toFixed(2);
+    const item = items.find(i => i.id === dragging);
+    if (!item) return;
+    item.x = x; item.y = y;
+    const el = document.querySelector(`.room-item[data-id="${dragging}"]`);
+    if (el) { el.style.left = `${x}%`; el.style.top = `${y}%`; }
+  }
+  function onUp() {
+    dragging = null;
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("mouseup", onUp);
+  }
+  document.addEventListener("mousemove", onMove);
+  document.addEventListener("mouseup", onUp);
+}
+
+// ── JSON ───────────────────────────────────────────────────
+function buildJson() {
+  return JSON.stringify({
+    bedId: document.getElementById("bed-select").value,
+    roomName: document.getElementById("room-name").value,
+    background: bgSrc || document.getElementById("bg-input").value,
+    items: items.map(({ id, ...rest }) => rest)
+  }, null, 2);
+}
+
+function copyJson() {
+  navigator.clipboard.writeText(buildJson()).then(() => showStatus("✓ Kopiert"));
+}
+
+function downloadJson() {
+  const name = (document.getElementById("room-name").value || "room").toLowerCase().replace(/\s+/g, "_");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([buildJson()], { type: "application/json" }));
+  a.download = `room-${name}.json`;
+  a.click();
+  showStatus(`✓ room-${name}.json gespeichert`);
+}
+
+function loadJson() {
+  const input = document.createElement("input");
+  input.type = "file"; input.accept = ".json";
+  input.onchange = e => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        const data = JSON.parse(ev.target.result);
+        document.getElementById("room-name").value = data.roomName || "";
+        document.getElementById("bed-select").value = data.bedId || "";
+        if (data.background) {
+          bgSrc = data.background;
+          document.getElementById("bg-input").value = bgSrc;
+          applyBg(bgSrc);
+        }
+        items = []; nextId = 1;
+        (data.items || []).forEach(it => {
+          items.push({ id: nextId++, ...it });
+        });
+        renderAll();
+        showStatus("✓ Geladen");
+      } catch(err) { alert("Fehler: " + err.message); }
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+  input.click();
+}
+
+function showStatus(msg) {
+  const el = document.getElementById("export-status");
+  el.textContent = msg;
+  setTimeout(() => el.textContent = "", 3000);
+}
+
+renderAll();
+</script>
+</body>
+</html>

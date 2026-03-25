@@ -25,7 +25,7 @@ Engine, Inhalte, Kampfsystem und Garten-UI sind vollständig implementiert. Spie
 - 108 MC-Kampffragen (2 pro Pflanze, inkl. alle 4 Hybride)
 - HP-Regeneration: Beschriften-Minispiel (17 Übungen, Diagramme + Bilder)
 - **Kampfsystem (Enemy-per-Question):**
-  - Alle harvestQuestions + combatQuestions = 1 Gegner pro Frage
+  - Alle harvestQuestions + cleaningQuestions = 1 Gegner pro Frage
   - Früchte = Munition (nur durch Ernte: ×2 pro korrekter Antwort)
   - Falsche Antwort = -1 HP + Gegner flieht (Frage für Boss vorgemerkt)
   - 0 Früchte im Normalkampf = Hard Reset des Kampffortschritts
@@ -43,7 +43,12 @@ Engine, Inhalte, Kampfsystem und Garten-UI sind vollständig implementiert. Spie
 1. Playtest: vollständiger Loop (Früchte-Balance, Gegner-Schwierigkeit, Ernte-Härte)
 2. UI/UX-Feinschliff und Content-QA nach Playtest
    - Ablauf/Template: `docs/PLAYTEST_CHECKLIST.md`
-3. Pixel-Grafik Layer (optional, spätere Phase)
+3. **Kampfsystem-Redesign → Reinigung/Neighborhood Cleanup** (vollständig ausgearbeitet in `docs/IDEAS.md §3`)
+   - "Kampf"-Tab wird zu "Räume" / Reinigungssystem
+   - 34 Orte (Zuhause + Nachbarschaft), Frontansicht, klickbare Items
+   - Drag-and-Drop Editor für Asset-Platzierung
+   - Wartet auf Asset-Erstellung
+4. Pixel-Grafik Layer (optional, spätere Phase)
 
 ---
 
@@ -72,7 +77,7 @@ Langzeit-Vision: mehrere Packs (z.B. Warhammer Lore, Schullehrplan), jeder als e
 - Lerninteraktionen lassen Pflanzen wachsen
 - Ernte = Wissenstest (100% korrekt erforderlich)
 - Früchte = Munition
-- Kampf = Hochdrucktest
+- Kampf → Reinigung = Hochdrucktest (geplantes Redesign, siehe IDEAS.md §3)
 - Labor = kuratorisch-themenübergreifende Integration
 - Verrottung = Vergessen (optional, spätere Phase)
 
@@ -114,7 +119,7 @@ Beete werden als Regale im Garten dargestellt — alle gleichzeitig sichtbar.
 Jede Pflanze ist ein prüfbares Konzept mit:
 - `phase1`: soil/seed/water (T/F + solution)
 - `harvestQuestions`: T/F oder MC mit `explanation`
-- `combatQuestions`: MC mit 4 Optionen
+- `cleaningQuestions`: MC mit 4 Optionen
 
 ---
 
@@ -157,7 +162,7 @@ Zweck: Hochdruckvalidierung. Fruchtknappheit erzeugt natürlichen Druck zum erne
 
 ### Gegner-Pool
 
-- Alle `harvestQuestions` + `combatQuestions` aller Pflanzen des Beetes
+- Alle `harvestQuestions` + `cleaningQuestions` aller Pflanzen des Beetes
 - 1 Gegner pro Frage; unbesiegte Gegner werden bevorzugt
 
 ### Normalkampf
@@ -216,7 +221,7 @@ Designregel: diagnostisch, nie beschämend.
 
 - Freischaltung: mindestens 1 Ernte aus 2 verschiedenen Beeten
 - Keine Zufallsmechanik — nur kuratierte, vordefinierte Hybriden
-- 4 Hybriden definiert mit eigenen harvestQuestions und combatQuestions
+- 4 Hybriden definiert mit eigenen harvestQuestions und cleaningQuestions
 - Hybridfarben: Stammfarbe von Elternteil 1, Fruchtfarbe von Elternteil 2
 - Labor-Screen: zeigt ✓/✗ Erntestatus pro benötigter Quellpflanze; Hinweis-Button für gesperrte Hybride
 
@@ -231,11 +236,14 @@ Designregel: diagnostisch, nie beschämend.
 - Löscht nie Errungenschaften oder XP
 - Spieler-wählbarer Modus: Aus / Sanft / Streng
 
-### 11.2 Verschmutzung und Reinigung
+### 11.2 Verschmutzung und Reinigung → Kampfsystem-Redesign
 
-- Kosmetischer Umgebungszustand
-- Reinigung via Lernmikrotasks
-- Gibt kosmetische Währung
+Vollständig ausgearbeitet in `docs/IDEAS.md §3`. Ersetzt das aktuelle Kampfsystem thematisch:
+- 34 Orte in Zuhause + Nachbarschaft (Frontansicht)
+- Klickbare Unordnungs-Items mit dirty/clean Zuständen
+- Ratten → Rattenkäfig, Insekten → Terrarium (wholesome!)
+- Trophäenraum als Fortschritts-Showcase
+- Drag-and-Drop Editor für Asset-Platzierung
 
 ### 11.3 Town Hub
 
@@ -262,7 +270,7 @@ Jeder Pack definiert in `content.js`:
 - Phase-1-Inhalt (soil/seed/water mit `solution`)
 - Phase-2-Aktionen
 - `harvestQuestions` (T/F oder MC + `explanation`)
-- `combatQuestions` (MC, 4 Optionen)
+- `cleaningQuestions` (MC, 4 Optionen)
 - Hybriden (mit `sources` = zwei Quellpflanzen)
 - Label-Übungen (SVG-Diagramme oder Bilder mit Beschriftungszonen)
 

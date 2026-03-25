@@ -282,7 +282,7 @@ function bindEvents() {
     renderAll();
   });
 
-  els.startCombatBtn.addEventListener("click", () => startCombat("normal"));
+  if (els.startCombatBtn) els.startCombatBtn.addEventListener("click", () => startCombat("normal"));
 
   const muteMusicBtn = document.getElementById("mute-music-btn");
   const muteSfxBtn = document.getElementById("mute-sfx-btn");
@@ -896,6 +896,7 @@ function renderSeedLibrary() {
       `;
     }).join("") : "";
     if (unlocked) {
+      const bedStats = computeShelfStats(bed, pack.beds[bed.id] || {});
       const activeBtnLabel = state.activeBedId === bed.id ? "Aktives Beet ✓" : "Beet wählen";
       const miniVisuals = activeIds.map((pid) => {
         const pState = pack.beds[bed.id]?.plants?.[pid];
@@ -913,7 +914,7 @@ function renderSeedLibrary() {
             <strong>${bed.title}</strong>
             <button data-seed-activate="${bed.id}">${activeBtnLabel}</button>
             <button data-seed-catalog="${bed.id}">${isOpen ? "Sorten ausblenden" : "Sorten anzeigen"}</button>
-            <span class="muted">Im Beet: ${activeCount}/4 | Geerntet: ${harvestedCount}/${effectivePlants.length}</span>
+            <span class="muted">🌱 ${bedStats.planted}/4 · 🌾 ${bedStats.harvested}/${bedStats.totalPlants} · ✓ ${bedStats.qLearned}/${bedStats.qTotal}${bedStats.qWrong > 0 ? ` · ✗ ${bedStats.qWrong}` : ""}</span>
           </div>
           ${miniVisuals ? `<div class="bed-mini-row">${miniVisuals}</div>` : ""}
           ${isOpen ? `<div class="list">${plantRows}</div>` : ""}
@@ -1230,8 +1231,22 @@ function renderGardenRoom() {
   const unlockedIds = new Set(getBedProgress().unlockedBedIds);
   const MAX_POTS = 4;
 
-  const html = PACK_CONTENT.beds.map((bed) => {
-    if (!unlockedIds.has(bed.id)) return "";
+  // Show at most 3 beds: active bed first, then beds with plants, then fill from unlocked
+  const allUnlocked = PACK_CONTENT.beds.filter(b => unlockedIds.has(b.id));
+  const gardenBeds = [];
+  if (state.activeBedId) {
+    const ab = allUnlocked.find(b => b.id === state.activeBedId);
+    if (ab) gardenBeds.push(ab);
+  }
+  allUnlocked.forEach(b => {
+    if (gardenBeds.length < 3 && !gardenBeds.some(x => x.id === b.id) && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
+      gardenBeds.push(b);
+  });
+  for (let i = allUnlocked.length - 1; i >= 0 && gardenBeds.length < 3; i--) {
+    if (!gardenBeds.some(x => x.id === allUnlocked[i].id)) gardenBeds.push(allUnlocked[i]);
+  }
+
+  const html = gardenBeds.map((bed) => {
     const bedState = pack.beds[bed.id] || {};
     const activePlantIds = bedState.activePlantIds || [];
     const potColor = getPotColor(bed.id);
@@ -1304,7 +1319,11 @@ function renderGardenRoom() {
       </div>`;
   }).join("");
 
-  els.gardenRoom.innerHTML = html || `<div class="muted" style="padding:2rem">Keine Beete freigeschaltet. Öffne den Pflanzenkatalog, um zu beginnen.</div>`;
+  const hiddenCount = allUnlocked.length - gardenBeds.length;
+  const hiddenHint = hiddenCount > 0
+    ? `<div class="garden-hidden-hint">${hiddenCount} weiteres Kapitel im Pflanzenkatalog</div>`
+    : "";
+  els.gardenRoom.innerHTML = (html || `<div class="muted" style="padding:2rem">Keine Beete freigeschaltet. Öffne den Pflanzenkatalog, um zu beginnen.</div>`) + hiddenHint;
 
   // Click handlers
   els.gardenRoom.querySelectorAll(".garden-pot.has-plant").forEach((el) => {
@@ -1548,9 +1567,9 @@ function getActionIcon(type) {
 
 function getActionImg(type) {
   const t = (type || "").toLowerCase();
-  if (t === "water" || t.includes("wässern") || t.includes("giess") || t.includes("gieß") || t.includes("giessen")) return "assets/backgrounds/Watring can.png";
-  if (t === "fertilize" || t.includes("düngen") || t.includes("dünger")) return "assets/backgrounds/fertilizer.png";
-  if (t === "trim" || t.includes("beschneiden") || t.includes("trimmen") || t.includes("schneid")) return "assets/backgrounds/garden shears.png";
+  if (t === "water" || t.includes("wässern") || t.includes("giess") || t.includes("gieß") || t.includes("giessen")) return "assets/images/Watring can.png";
+  if (t === "fertilize" || t.includes("düngen") || t.includes("dünger")) return "assets/images/fertilizer.png";
+  if (t === "trim" || t.includes("beschneiden") || t.includes("trimmen") || t.includes("schneid")) return "assets/images/garden shears.png";
   return null;
 }
 
@@ -1637,10 +1656,10 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const colorStyle = `--stem-hi:${colors.stemHi};--stem-lo:${colors.stemLo};--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};`;
   const potSrc = (() => {
     const steps = plantState.phase1StepsDone || {};
-    if (plantState.phase1Completed || visual.phase !== 'phase1') return 'assets/backgrounds/pot ready to grow.png';
-    if (steps.seed) return 'assets/backgrounds/pot seed.png';
-    if (steps.soil) return 'assets/backgrounds/pot soil.png';
-    return 'assets/backgrounds/pot.png';
+    if (plantState.phase1Completed || visual.phase !== 'phase1') return 'assets/images/pot ready to grow.png';
+    if (steps.seed) return 'assets/images/pot seed.png';
+    if (steps.soil) return 'assets/images/pot soil.png';
+    return 'assets/images/pot.png';
   })();
   return `
     <div class="${classAttr}" data-plant-visual="${plantState.id}" style="${colorStyle}">
@@ -2043,7 +2062,7 @@ function renderPlantDetail() {
     const tipText = escapeHtmlAttr(`${a.type}: ${a.text} [${statusLabel}]`);
     const btnInner = imgSrc
       ? `<img src="${imgSrc}" class="tool-img" alt="${a.type}"><span class="tool-status">${statusLabel}</span>`
-      : `<img src="assets/backgrounds/button.png" class="tool-img" alt="${a.type}"><span class="tool-icon tool-icon--overlay">${icon}</span><span class="tool-status">${statusLabel}</span>`;
+      : `<img src="assets/images/button.png" class="tool-img" alt="${a.type}"><span class="tool-icon tool-icon--overlay">${icon}</span><span class="tool-status">${statusLabel}</span>`;
     return `<button class="tool-btn${doneClass}" data-p2="${idx}" ${(onCooldown || allLearnedAction) ? "disabled" : ""} title="${tipText}">${btnInner}</button>`;
   }).join("");
   const harvestable = allLearned;
@@ -2542,7 +2561,7 @@ function buildEnemyPool(bedContent) {
   const pool = [];
   bedContent.plants.forEach((plant) => {
     (plant.harvestQuestions || []).forEach((q) => pool.push({ ...q, plantId: plant.id }));
-    (plant.combatQuestions || []).forEach((q) => pool.push({ ...q, plantId: plant.id }));
+    (plant.cleaningQuestions || []).forEach((q) => pool.push({ ...q, plantId: plant.id }));
   });
   return pool;
 }
@@ -3187,6 +3206,596 @@ function openCombatModal() {
   openModal("modal-combat");
 }
 
+// ── Map modal ──────────────────────────────────────────────────────────────
+let mapConfig = null;
+
+async function loadMapConfig() {
+  try {
+    const r = await fetch("map-config.json");
+    if (r.ok) mapConfig = await r.json();
+  } catch (e) {
+    mapConfig = null;
+  }
+}
+
+function openMapModal() {
+  renderMapPins();
+  openModal("modal-map");
+}
+
+function renderMapPins() {
+  if (!mapConfig) return;
+  const img = document.getElementById("map-display");
+  if (img) img.src = mapConfig.mapImage || "map.png";
+
+  // Clear old pins
+  document.querySelectorAll(".map-pin").forEach(p => p.remove());
+
+  const container = document.getElementById("map-container");
+  if (!container) return;
+  const pack = getPackState();
+
+  mapConfig.locations.forEach(loc => {
+    const anyReady = loc.rooms.some(r => {
+      if (!r.bedId) return false;
+      const bs = pack.beds?.[r.bedId];
+      return bs?.combatUnlocked && pack.player?.fruits > 0;
+    });
+    const anyUnlocked = loc.rooms.some(r => {
+      if (!r.bedId) return false;
+      return pack.beds?.[r.bedId]?.combatUnlocked;
+    });
+
+    const pin = document.createElement("button");
+    pin.className = "map-pin" +
+      (anyReady ? " map-pin--ready" : anyUnlocked ? "" : " map-pin--locked");
+    pin.style.left = `${loc.x}%`;
+    pin.style.top  = `${loc.y}%`;
+    pin.innerHTML  = `<span class="map-pin-label">${loc.name}</span>`;
+
+    if (anyUnlocked) {
+      pin.addEventListener("click", () => selectMapLocation(loc));
+    }
+    container.appendChild(pin);
+  });
+
+  // close room picker when clicking map background
+  document.getElementById("map-room-picker").hidden = true;
+}
+
+function selectMapLocation(loc) {
+  if (loc.rooms.length === 1) {
+    enterMapRoom(loc.rooms[0]);
+    return;
+  }
+  // Show room picker
+  const title = document.getElementById("map-room-picker-title");
+  const list  = document.getElementById("map-room-picker-list");
+  title.textContent = loc.name;
+  list.innerHTML = "";
+  loc.rooms.forEach(room => {
+    const btn = document.createElement("button");
+    btn.className = "map-room-btn";
+    btn.textContent = room.name || room.bedId;
+    btn.addEventListener("click", () => enterMapRoom(room));
+    list.appendChild(btn);
+  });
+  document.getElementById("map-room-picker").hidden = false;
+}
+
+function enterMapRoom(room) {
+  if (!room.bedId) return;
+  state.activeBedId = room.bedId;
+  document.getElementById("map-room-picker").hidden = true;
+  closeModal("modal-map");
+  openRoomModal(room);
+}
+
+function openRoomModal(room) {
+  const title = document.getElementById("room-title");
+  if (title) title.textContent = room.name || "Raum";
+  openModal("modal-room");
+  if (room.bedId) openRestaurant(room.bedId);
+}
+
+// ── Restaurant / Praxis System ─────────────────────────────────────────────
+
+const RE_PATIENCE_MS  = 28000;
+const RE_TICK_MS      = 200;
+const RE_MAX_CUST     = 5;
+const RE_SPAWN_BASE   = 9000;
+const RE_COOK_BASE    = 3000;
+const RE_STOCK_BASE   = 12;   // uses before restock needed
+const RE_CLEANER_MS   = 7000; // how often cleaner removes one dirt spot
+
+const RE_INGREDIENTS = [
+  { id: "skewer",  label: "Spieß",   icon: "🍢", satiety: 35, cost: 0, category: "food"  },
+  { id: "water",   label: "Wasser",  icon: "💧", satiety: 10, cost: 0, category: "drink" },
+  { id: "protein", label: "Protein", icon: "🥩", satiety: 28, cost: 3, category: "food"  },
+  { id: "veggy",   label: "Gemüse",  icon: "🥦", satiety: 22, cost: 3, category: "food"  },
+  { id: "carbs",   label: "Beilage", icon: "🍞", satiety: 18, cost: 2, category: "food"  },
+  { id: "sauce",   label: "Sauce",   icon: "🍯", satiety: 12, cost: 2, category: "food"  },
+  { id: "cola",    label: "Cola",    icon: "🥤", satiety: 18, cost: 3, category: "drink" },
+  { id: "beer",    label: "Bier",    icon: "🍺", satiety: 15, cost: 4, category: "drink" },
+  { id: "wine",    label: "Wein",    icon: "🍷", satiety: 22, cost: 5, category: "drink" },
+];
+
+// Predetermined dirt spot positions (% within dining area)
+const RE_DIRT_POS = [
+  {x:18,y:72},{x:47,y:82},{x:71,y:62},{x:28,y:52},{x:62,y:88},
+  {x:82,y:68},{x:38,y:92},{x:57,y:48},{x:12,y:88},{x:77,y:44}
+];
+
+let restaurantSession = null;
+
+function reGetRestaurant(bedId) {
+  const bedState = getPackState().beds[bedId];
+  if (!bedState.restaurant) {
+    bedState.restaurant = { unlockedCooks: 1, unlockedIngredients: ["skewer", "water"], unlockedCleaner: false, questionAnswers: {} };
+    saveState();
+  }
+  // Migrate older saves missing new fields
+  const r = bedState.restaurant;
+  if (!r.unlockedIngredients.includes("water")) r.unlockedIngredients.push("water");
+  if (r.unlockedCleaner === undefined) r.unlockedCleaner = false;
+  if (!r.questionAnswers) r.questionAnswers = {};
+  return r;
+}
+
+// Returns the next question to ask, respecting priority: unseen > wrong > correct (repeat mode only).
+// Returns null if all questions answered correctly and allowRepeat is false.
+function rePickQuestion(bedId, allowRepeat = false) {
+  const bedContent = PACK_CONTENT.beds.find(b => b.id === bedId);
+  const answers = getPackState().beds[bedId].restaurant.questionAnswers || {};
+  const all = [];
+  (bedContent?.plants || []).forEach(p => {
+    (p.harvestQuestions || []).forEach(q => all.push(q));
+    (p.cleaningQuestions || []).forEach(q => all.push(q));
+  });
+  const unseen  = all.filter(q => !answers[q.id]);
+  const wrong   = all.filter(q => answers[q.id] === "wrong");
+  const correct = all.filter(q => answers[q.id] === "correct");
+  let pool;
+  if (unseen.length > 0)                      pool = unseen;
+  else if (wrong.length > 0)                  pool = wrong;
+  else if (allowRepeat && correct.length > 0) pool = correct;
+  else return null;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function reSatiety(restaurant, stocks) {
+  return Math.min(100, restaurant.unlockedIngredients.reduce((s, id) => {
+    if (stocks && (stocks[id] ?? RE_STOCK_BASE) <= 0) return s; // out of stock
+    return s + (RE_INGREDIENTS.find(i => i.id === id)?.satiety || 0);
+  }, 0));
+}
+
+function reSyncCooks() {
+  if (!restaurantSession) return;
+  const n = getPackState().beds[restaurantSession.bedId].restaurant.unlockedCooks;
+  while (restaurantSession.cooks.length < n)
+    restaurantSession.cooks.push({ id: restaurantSession.cooks.length, state: "idle", cookTimer: 0, cookTimerMax: 1, targetId: null, cookIcons: "" });
+}
+
+function openRestaurant(bedId) {
+  stopRestaurant();
+  const bedState = getPackState().beds[bedId];
+  const rc = document.getElementById("room-content");
+  if (!bedState?.combatUnlocked) {
+    if (rc) rc.innerHTML = `<p class="muted" style="text-align:center;padding:2rem 1rem">Ernte alle Pflanzen dieses Beetes, um das Restaurant zu öffnen.</p>`;
+    return;
+  }
+  reGetRestaurant(bedId);
+  restaurantSession = {
+    bedId, cooks: [], customers: [], nextCustomerId: 0,
+    spawnTimer: 1200, totalServed: 0, totalImpatient: 0,
+    paused: false, unlockQ: null, currentUnlocks: [], gameLoopId: null,
+    dirtCount: 0, cleanerTimer: RE_CLEANER_MS,
+    stocks: Object.fromEntries(RE_INGREDIENTS.map(i => [i.id, RE_STOCK_BASE]))
+  };
+  reSyncCooks();
+  restaurantSession.gameLoopId = setInterval(restaurantTick, RE_TICK_MS);
+  reRenderView();
+}
+
+function stopRestaurant() {
+  if (restaurantSession?.gameLoopId) clearInterval(restaurantSession.gameLoopId);
+  restaurantSession = null;
+}
+
+function restaurantTick() {
+  if (!restaurantSession) return;
+  const modal = document.getElementById("modal-room");
+  if (!modal || modal.hidden) { stopRestaurant(); return; }
+  if (restaurantSession.paused) return;
+
+  const session = restaurantSession;
+  const bedState = getPackState().beds[session.bedId];
+  const restaurant = bedState.restaurant;
+
+  // Dirt factors
+  const dirtFactor = session.dirtCount > 5 ? 1.35 : 1.0; // patience drains faster
+  const spawnPenalty = session.dirtCount > 8 ? 1.6 : 1.0; // customers arrive slower
+
+  // Spawn
+  session.spawnTimer -= RE_TICK_MS;
+  if (session.spawnTimer <= 0) {
+    if (session.customers.length < RE_MAX_CUST)
+      session.customers.push({ id: session.nextCustomerId++, state: "waiting", patience: 100, hunger: 0, leaveTimer: 0 });
+    const base = Math.max(4000, RE_SPAWN_BASE - (restaurant.unlockedCooks - 1) * 1500);
+    session.spawnTimer = base * spawnPenalty;
+  }
+
+  // Cleaner
+  if (restaurant.unlockedCleaner && session.dirtCount > 0) {
+    session.cleanerTimer -= RE_TICK_MS;
+    if (session.cleanerTimer <= 0) {
+      session.dirtCount = Math.max(0, session.dirtCount - 1);
+      session.cleanerTimer = RE_CLEANER_MS;
+    }
+  }
+
+  let needsSave = false;
+
+  // Update customers
+  session.customers = session.customers.filter(c => {
+    if (c.state === "waiting") {
+      c.patience -= (RE_TICK_MS / RE_PATIENCE_MS) * 100 * dirtFactor;
+      if (c.patience <= 0) {
+        c.patience = 0; c.state = "leaving_sad"; c.leaveTimer = 900;
+        const p = getPackState().player;
+        if (p.fruits > 0) { p.fruits--; needsSave = true; }
+        session.totalImpatient++;
+        if (Math.random() < 0.4) session.dirtCount++;  // angry customers make extra mess
+      }
+    } else if (c.state === "eating") {
+      c.hunger += (RE_TICK_MS / 5000) * reSatiety(restaurant, session.stocks);
+      if (c.hunger >= 100) { c.state = "leaving_happy"; c.leaveTimer = 900; session.totalServed++; }
+    } else if (c.state === "leaving_happy" || c.state === "leaving_sad") {
+      c.leaveTimer -= RE_TICK_MS;
+      if (c.leaveTimer <= 0) {
+        if (Math.random() < 0.3) session.dirtCount++;  // leaving customers drop dirt
+        return false;
+      }
+    }
+    return true;
+  });
+
+  // Update cooks
+  session.cooks.forEach(cook => {
+    if (cook.state === "cooking") {
+      cook.cookTimer -= RE_TICK_MS;
+      if (cook.cookTimer <= 0) {
+        const t = session.customers.find(c => c.id === cook.targetId);
+        if (t?.state === "being_served") { t.state = "eating"; t.hunger = 0; }
+        cook.state = "idle"; cook.targetId = null;
+      }
+    }
+    if (cook.state === "idle") {
+      const busy = new Set(session.cooks.filter(c => c.id !== cook.id && c.targetId != null).map(c => c.targetId));
+      const t = session.customers.find(c => c.state === "waiting" && !busy.has(c.id));
+      if (t) {
+        // Only use ingredients that are in stock
+        const available = restaurant.unlockedIngredients.filter(id => (session.stocks[id] ?? RE_STOCK_BASE) > 0);
+        t.state = "being_served"; cook.state = "cooking"; cook.targetId = t.id;
+        const ms = RE_COOK_BASE + (available.length - 1) * 500;
+        cook.cookTimer = ms; cook.cookTimerMax = ms;
+        cook.cookIcons = available.map(id => RE_INGREDIENTS.find(i => i.id === id)?.icon || "").join("") || "🍽️";
+        // Decrement stock for each used ingredient
+        available.forEach(id => { session.stocks[id] = Math.max(0, (session.stocks[id] ?? RE_STOCK_BASE) - 1); });
+      }
+    }
+  });
+
+  if (needsSave) { saveState(); renderPlayer(); }
+  reRenderView();
+}
+
+function reRenderView() {
+  if (!restaurantSession) return;
+  if (restaurantSession.paused && restaurantSession.unlockQ) return;
+  const session = restaurantSession;
+  const bedState = getPackState().beds[session.bedId];
+  const restaurant = bedState.restaurant;
+  const reBedContent = PACK_CONTENT.beds.find(b => b.id === session.bedId);
+  const reAllQs = [];
+  (reBedContent?.plants || []).forEach(p => {
+    (p.harvestQuestions || []).forEach(q => reAllQs.push(q));
+    (p.cleaningQuestions || []).forEach(q => reAllQs.push(q));
+  });
+  const reAnswers = restaurant.questionAnswers || {};
+  const reMastered = reAllQs.filter(q => reAnswers[q.id] === "correct").length;
+  const reAllMastered = reAllQs.length > 0 && reMastered === reAllQs.length;
+  const rc = document.getElementById("room-content");
+  if (!rc) return;
+
+  const cooksHtml = session.cooks.map(cook => {
+    const pct = cook.state === "cooking" ? ((1 - cook.cookTimer / cook.cookTimerMax) * 100).toFixed(1) : 0;
+    return `<div class="re-cook${cook.state === "cooking" ? " re-cook--active" : ""}">
+      <div class="re-cook-circle">${cook.state === "cooking" ? cook.cookIcons : "💤"}</div>
+      ${cook.state === "cooking" ? `<div class="re-cook-bar"><div class="re-cook-fill" style="width:${pct}%"></div></div>` : ""}
+    </div>`;
+  }).join("");
+
+  const cleanerHtml = restaurant.unlockedCleaner
+    ? `<div class="re-cook${session.dirtCount > 0 ? " re-cook--active" : ""}">
+         <div class="re-cook-circle">${session.dirtCount > 0 ? "🧹" : "💤"}</div>
+       </div>`
+    : "";
+
+  const customersHtml = session.customers.map(c => {
+    const pat = Math.max(0, c.patience).toFixed(1);
+    const hun = Math.min(100, c.hunger).toFixed(1);
+    const pc = pat > 60 ? "#44cc66" : pat > 30 ? "#ccaa22" : "#cc3333";
+    let face = "😟", cls = "";
+    if      (c.state === "being_served")  { face = "😊"; cls = "re-c--served"; }
+    else if (c.state === "eating")        { face = "😋"; cls = "re-c--eating"; }
+    else if (c.state === "leaving_happy") { face = "😄"; cls = "re-c--gone re-c--happy"; }
+    else if (c.state === "leaving_sad")   { face = "😢"; cls = "re-c--gone re-c--sad"; }
+    return `<div class="re-customer ${cls}">
+      <div class="re-patience"><div class="re-patience-fill" style="width:${pat}%;background:${pc}"></div></div>
+      <div class="re-circle">
+        ${c.state === "eating" ? `<div class="re-hunger-fill" style="height:${hun}%"></div>` : ""}
+        <span class="re-face">${face}</span>
+      </div>
+    </div>`;
+  }).join("");
+
+  // Dirt spots
+  const dirtSpotsHtml = RE_DIRT_POS.slice(0, Math.min(session.dirtCount, RE_DIRT_POS.length))
+    .map(p => `<div class="re-dirt-spot" style="left:${p.x}%;top:${p.y}%"></div>`).join("");
+  const dirtWarning = session.dirtCount > 8
+    ? `<div class="re-dirt-warning">⚠️ Sehr dreckig! Gäste werden ungeduldig.</div>`
+    : session.dirtCount > 4 ? `<div class="re-dirt-warning re-dirt-warning--mild">🟤 Etwas schmutzig…</div>` : "";
+
+  // Stock display
+  const outOfStock = restaurant.unlockedIngredients.filter(id => (session.stocks[id] ?? RE_STOCK_BASE) <= 0);
+  const stockWarningsHtml = outOfStock.map(id => {
+    const ing = RE_INGREDIENTS.find(i => i.id === id);
+    return `<span class="re-stock-warn">${ing?.icon || "📦"} ${ing?.label || id} leer!
+      <button class="re-restock-btn" onclick="startReRestock('${id}')">Nachfüllen</button>
+    </span>`;
+  }).join("");
+
+  // Unlock buttons
+  const player = getPackState().player;
+  const unlocks = [];
+  if (restaurant.unlockedCooks < 3) {
+    const n = restaurant.unlockedCooks + 1;
+    unlocks.push({ type: "cook", value: n, icon: "👨‍🍳", label: `${n}. Koch`, cost: n });
+  }
+  if (!restaurant.unlockedCleaner)
+    unlocks.push({ type: "cleaner", value: true, icon: "🧹", label: "Reinigungskraft", cost: 5 });
+  RE_INGREDIENTS.filter(i => i.cost > 0 && !restaurant.unlockedIngredients.includes(i.id))
+    .forEach(ing => unlocks.push({ type: "ingredient", value: ing.id, icon: ing.icon, label: ing.label, cost: ing.cost }));
+  session.currentUnlocks = unlocks;
+
+  const unlocksHtml = unlocks.length
+    ? unlocks.map((u, i) => {
+        const can = player.fruits >= u.cost;
+        return `<button class="re-unlock-btn${can ? "" : " re-unlock-btn--broke"}" onclick="startReUnlock(${i})"${can ? "" : " disabled"}>
+          ${u.icon} ${u.label} <span class="re-cost">${u.cost} 🍎</span>
+        </button>`;
+      }).join("")
+    : `<span style="font-size:.75rem;color:var(--muted)">Alles freigeschaltet!</span>`;
+  const masteryHtml = reAllQs.length > 0
+    ? reAllMastered
+      ? `<div class="re-mastery re-mastery--done">🏆 ${reMastered}/${reAllQs.length} Fragen gemeistert</div>`
+      : `<div class="re-mastery">${reMastered}/${reAllQs.length} Fragen korrekt beantwortet</div>`
+    : "";
+
+  rc.innerHTML = `
+    <div class="re-layout">
+      <div class="re-kitchen">
+        <div class="re-section-lbl">Küche</div>
+        <div class="re-cooks">${cooksHtml}${cleanerHtml}</div>
+        <div class="re-sat-info">Sättigung: <strong>${reSatiety(restaurant, session.stocks)}%</strong></div>
+      </div>
+      <div class="re-dining" style="position:relative">
+        <div class="re-section-lbl">Gäste</div>
+        <div class="re-customers">${customersHtml || `<span style="font-size:.8rem;color:var(--muted)">Wartet auf Gäste…</span>`}</div>
+        ${dirtSpotsHtml}
+      </div>
+    </div>
+    ${dirtWarning}
+    ${stockWarningsHtml ? `<div class="re-stock-warnings">${stockWarningsHtml}</div>` : ""}
+    <div class="re-stats">✓ ${session.totalServed} bedient · 😞 ${session.totalImpatient} ungeduldig · 🟤 ${session.dirtCount} Dreck</div>
+    <div class="re-upgrades">
+      <div class="re-section-lbl">Verbesserungen</div>
+      ${masteryHtml}
+      <div class="re-unlock-list">${unlocksHtml}</div>
+    </div>
+    <div id="re-question-area"></div>`;
+}
+
+function startReUnlock(idx) {
+  if (!restaurantSession) return;
+  const unlock = restaurantSession.currentUnlocks?.[idx];
+  if (!unlock) return;
+  if (getPackState().player.fruits < unlock.cost) return;
+  restaurantSession.paused = true;
+  const bedId = restaurantSession.bedId;
+  const q = rePickQuestion(bedId);
+  if (!q) { reShowAllDone(unlock); return; }
+  let shuffled = [], isMulti = false;
+  if (q.type !== "true_false") {
+    shuffled = shuffle(q.options.map((o, i) => ({ ...o, origIdx: i })));
+    isMulti = q.options.filter(o => o.correct).length > 1;
+  }
+  restaurantSession.unlockQ = { q, shuffled, isMulti, unlock, selected: new Set() };
+  reRenderQuestion();
+}
+
+function reRenderQuestion() {
+  if (!restaurantSession?.unlockQ) return;
+  const { q, shuffled, isMulti, unlock } = restaurantSession.unlockQ;
+  const area = document.getElementById("re-question-area");
+  if (!area) return;
+  let qHtml;
+  if (q.type === "true_false") {
+    qHtml = `<div class="question">${q.statement}</div>
+      <div class="row">
+        <button class="mc-option" onclick="resolveReAnswer(true)">Wahr</button>
+        <button class="mc-option" onclick="resolveReAnswer(false)">Falsch</button>
+      </div>`;
+  } else if (isMulti) {
+    qHtml = `<div class="question">${q.question}</div>
+      <div class="mc-options">${shuffled.map((o, i) => `<button class="mc-option mc-option--toggle" data-ri="${i}" onclick="toggleReOption(${i})">${o.text}</button>`).join("")}</div>
+      <button class="mc-option" style="margin-top:6px" onclick="resolveReMulti()">Bestätigen</button>`;
+  } else {
+    qHtml = `<div class="question">${q.question}</div>
+      <div class="mc-options">${shuffled.map((o, i) => `<button class="mc-option" data-ri="${i}" onclick="resolveReAnswer(${i})">${o.text}</button>`).join("")}</div>`;
+  }
+  area.innerHTML = `<div class="re-question-panel">
+    <div class="re-question-header">🔓 ${unlock.icon} ${unlock.label} freischalten (${unlock.cost} 🍎)</div>
+    ${qHtml}
+  </div>`;
+}
+
+function toggleReOption(idx) {
+  if (!restaurantSession?.unlockQ) return;
+  const sel = restaurantSession.unlockQ.selected;
+  sel.has(idx) ? sel.delete(idx) : sel.add(idx);
+  document.querySelectorAll("#re-question-area .mc-option--toggle").forEach((b, i) => {
+    b.classList.toggle("mc-option--selected", sel.has(i));
+  });
+}
+
+function resolveReAnswer(answer) {
+  if (!restaurantSession?.unlockQ) return;
+  const { q, shuffled, unlock } = restaurantSession.unlockQ;
+  let ok, feedback;
+  if (q.type === "true_false") {
+    ok = answer === q.answer;
+    feedback = q.explanation || q.solution || "";
+  } else {
+    ok = Boolean(shuffled[answer]?.correct);
+    feedback = q.explanation || "";
+    document.querySelectorAll("#re-question-area .mc-option").forEach((b, i) => {
+      if (shuffled[i]?.correct) b.classList.add("mc-correct");
+      else if (i === answer && !ok) b.classList.add("mc-wrong");
+      b.disabled = true;
+    });
+  }
+  applyReUnlockResult(ok, feedback, unlock);
+}
+
+function resolveReMulti() {
+  if (!restaurantSession?.unlockQ) return;
+  const { q, shuffled, unlock, selected } = restaurantSession.unlockQ;
+  const correctOrig = q.options.map((o, i) => o.correct ? i : -1).filter(i => i >= 0);
+  const selOrig = [...selected].map(i => shuffled[i]?.origIdx);
+  const ok = correctOrig.length === selOrig.length && correctOrig.every(i => selOrig.includes(i));
+  applyReUnlockResult(ok, q.explanation || "", unlock);
+}
+
+function applyReUnlockResult(ok, feedbackText, unlock) {
+  if (!restaurantSession) return;
+  const bedState = getPackState().beds[restaurantSession.bedId];
+  const isRestock = unlock.type === "restock";
+  // Track answer (skip repeat questions to avoid downgrading "correct" back to "wrong")
+  const uq = restaurantSession.unlockQ;
+  if (uq?.q && !uq.isRepeat) {
+    const qa = bedState.restaurant.questionAnswers;
+    if (qa[uq.q.id] !== "correct") qa[uq.q.id] = ok ? "correct" : "wrong";
+    saveState();
+  }
+  if (ok) {
+    if (!isRestock) getPackState().player.fruits -= unlock.cost;
+    if (unlock.type === "cook") bedState.restaurant.unlockedCooks = unlock.value;
+    else if (unlock.type === "ingredient") bedState.restaurant.unlockedIngredients.push(unlock.value);
+    else if (unlock.type === "cleaner") bedState.restaurant.unlockedCleaner = true;
+    else if (isRestock && restaurantSession) restaurantSession.stocks[unlock.value] = RE_STOCK_BASE;
+    if (!isRestock) { saveState(); renderPlayer(); }
+    reSyncCooks();
+  }
+  const area = document.getElementById("re-question-area");
+  const panel = area?.querySelector(".re-question-panel");
+  if (panel) {
+    panel.querySelectorAll(".mc-option").forEach(b => { b.disabled = true; });
+    const fb = document.createElement("div");
+    fb.className = `feedback ${ok ? "feedback--correct" : "feedback--wrong"}`;
+    const successMsg = isRestock
+      ? `✓ ${unlock.icon} ${unlock.label} aufgefüllt!`
+      : `✓ ${unlock.icon} ${unlock.label} freigeschaltet!`;
+    const failMsg = isRestock
+      ? "✗ Falsch — nachfüllen fehlgeschlagen. Versuch es nochmal!"
+      : "✗ Falsch — keine Früchte ausgegeben.";
+    fb.innerHTML = (ok ? successMsg : failMsg) + (feedbackText ? `<br><small>${feedbackText}</small>` : "");
+    const btn = document.createElement("button");
+    btn.className = "mc-option"; btn.style.cssText = "margin-top:6px;display:block";
+    btn.textContent = "Weiter";
+    btn.onclick = () => {
+      restaurantSession.paused = false;
+      restaurantSession.unlockQ = null;
+      reRenderView();
+    };
+    panel.appendChild(fb);
+    panel.appendChild(btn);
+  }
+}
+
+function startReRestock(ingredientId) {
+  if (!restaurantSession || restaurantSession.paused) return;
+  const ing = RE_INGREDIENTS.find(i => i.id === ingredientId);
+  if (!ing) return;
+  const unlock = { type: "restock", value: ingredientId, icon: ing.icon, label: `${ing.label} nachfüllen`, cost: 0 };
+  restaurantSession.paused = true;
+  const bedId = restaurantSession.bedId;
+  const q = rePickQuestion(bedId);
+  if (!q) { reShowAllDone(unlock); return; }
+  let shuffled = [], isMulti = false;
+  if (q.type !== "true_false") {
+    shuffled = shuffle(q.options.map((o, i) => ({ ...o, origIdx: i })));
+    isMulti = q.options.filter(o => o.correct).length > 1;
+  }
+  restaurantSession.unlockQ = { q, shuffled, isMulti, unlock, selected: new Set() };
+  reRenderQuestion();
+}
+
+function reShowAllDone(unlock) {
+  if (!restaurantSession) return;
+  restaurantSession.pendingUnlock = unlock;
+  const area = document.getElementById("re-question-area");
+  if (!area) return;
+  area.innerHTML = `<div class="re-question-panel re-all-done">
+    <div style="font-size:1.6rem;margin-bottom:.3rem">🏆</div>
+    <div><strong>Alle Fragen gemeistert!</strong></div>
+    <div class="muted" style="font-size:.82rem;margin:.5rem 0 .8rem">
+      Du hast alle Fragen dieses Kapitels mindestens einmal richtig beantwortet.<br>
+      Empfehlung: Schalte ein neues Kapitel im Garten frei.
+    </div>
+    <button class="mc-option" onclick="startReRepeat()">Wiederholungsfrage anzeigen</button>
+    <button class="mc-option" style="margin-top:4px" onclick="reCloseQuestion()">Zurück</button>
+  </div>`;
+}
+
+function startReRepeat() {
+  if (!restaurantSession) return;
+  const unlock = restaurantSession.pendingUnlock;
+  if (!unlock) return;
+  const bedId = restaurantSession.bedId;
+  const q = rePickQuestion(bedId, true);
+  if (!q) return;
+  let shuffled = [], isMulti = false;
+  if (q.type !== "true_false") {
+    shuffled = shuffle(q.options.map((o, i) => ({ ...o, origIdx: i })));
+    isMulti = q.options.filter(o => o.correct).length > 1;
+  }
+  restaurantSession.unlockQ = { q, shuffled, isMulti, unlock, selected: new Set(), isRepeat: true };
+  reRenderQuestion();
+}
+
+function reCloseQuestion() {
+  if (!restaurantSession) return;
+  restaurantSession.paused = false;
+  restaurantSession.unlockQ = null;
+  restaurantSession.pendingUnlock = null;
+  reRenderView();
+}
+
+loadMapConfig();
+
 function openLabModal() {
   renderLab();
   openModal("modal-lab");
@@ -3208,8 +3817,13 @@ window.KG_UI = {
 const openCatalogBtn = document.getElementById("open-catalog-btn");
 if (openCatalogBtn) openCatalogBtn.addEventListener("click", () => openCatalogModal(null));
 
-const openCombatBtn = document.getElementById("open-combat-btn");
-if (openCombatBtn) openCombatBtn.addEventListener("click", openCombatModal);
+const openMapBtn = document.getElementById("open-map-btn");
+if (openMapBtn) openMapBtn.addEventListener("click", () => {
+  const bedId = state.activeBedId || getPackState().bedProgress?.unlockedBedIds?.[0];
+  if (!bedId) return;
+  const bedContent = PACK_CONTENT.beds.find(b => b.id === bedId);
+  openRoomModal({ bedId, name: bedContent?.title || "Restaurant" });
+});
 
 const openLabBtn = document.getElementById("open-lab-btn");
 if (openLabBtn) openLabBtn.addEventListener("click", openLabModal);
@@ -3224,8 +3838,11 @@ if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => closeModa
 const closeCatalogBtn = document.getElementById("close-catalog-btn");
 if (closeCatalogBtn) closeCatalogBtn.addEventListener("click", () => { catalogFilterBedId = null; closeModal("modal-catalog"); });
 
-const closeCombatBtn = document.getElementById("close-combat-btn");
-if (closeCombatBtn) closeCombatBtn.addEventListener("click", () => closeModal("modal-combat"));
+const closeRoomBtn = document.getElementById("close-room-btn");
+if (closeRoomBtn) closeRoomBtn.addEventListener("click", () => { stopRestaurant(); closeModal("modal-room"); });
+
+const closeMapBtn = document.getElementById("close-map-btn");
+if (closeMapBtn) closeMapBtn.addEventListener("click", () => closeModal("modal-map"));
 
 const closeLabBtn = document.getElementById("close-lab-btn");
 if (closeLabBtn) closeLabBtn.addEventListener("click", () => closeModal("modal-lab"));
@@ -3233,7 +3850,10 @@ if (closeLabBtn) closeLabBtn.addEventListener("click", () => closeModal("modal-l
 // Click outside modal to close
 document.querySelectorAll(".modal-overlay").forEach((overlay) => {
   overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) overlay.hidden = true;
+    if (e.target === overlay) {
+      if (overlay.id === "modal-room") stopRestaurant();
+      overlay.hidden = true;
+    }
   });
 });
 
@@ -3242,6 +3862,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
   const openModal = document.querySelector(".modal-overlay:not([hidden])");
   if (openModal) {
+    if (openModal.id === "modal-room") stopRestaurant();
     openModal.hidden = true;
   } else {
     openSettingsPage();
