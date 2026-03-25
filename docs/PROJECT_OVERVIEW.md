@@ -6,49 +6,40 @@ Master Overview — Stand: März 2026
 
 ## AKTUELLER STAND (v0.4)
 
-Engine, Inhalte, Kampfsystem und Garten-UI sind vollständig implementiert. Spielschleife läuft durch.
-
-**Fertig:**
-- Plant Tycoon-Stil Garten-UI: alle Themenbeete gleichzeitig sichtbar, kein Weltnavigieren
-- Linkes Panel immer sichtbar: Spielerstatistiken, Heilbereich, Pflanzendetail + Fragen
-- Bottom-Navigationsleiste mit modalen Fenstern: Katalog, Kampf, Labor, Einstellungen
-- 5 Beete, 54 Pflanzen mit echtem Inhalt (Heilpraktiker-Pack)
-- Jedes Thema hat eigene Pflanzenfarben; Hybride mischen Stamm- und Fruchtfarbe der Eltern
-- Phase 1 (Lerninhalt VOR Frage + T/F-Quiz mit Sofort-Wiederholung), Phase 2 (3 Aktionen + Cooldown), Ernte, Kampf
+**Was läuft:**
+- Plant Tycoon-Stil Garten-UI: bis zu 3 aktive Beete gleichzeitig sichtbar
+- Linkes Panel (immer sichtbar): Spielerstatistiken, Heilbereich, Pflanzendetail + Fragen
+- Bottom-Navigationsleiste mit Modalen: Pflanzen-Katalog, Restaurant, Labor, Einstellungen
+- 5 Beete, 54 Pflanzen (+ Hybride) mit echtem Heilpraktiker-Inhalt
+- Farbcodierung pro Thema; Hybride mischen Stamm- und Fruchtfarbe der Elternpflanzen
+- Phase 1 (Lerninhalt VOR Frage + T/F mit Sofort-Wiederholung), Phase 2 (3 Aktionen + Cooldown), Ernte
 - Ernte: 100% korrekt erforderlich — falsche Fragen gehen proportional in Phase 2 zurück
-- Pflanzenzweige wachsen alternierend links/rechts; Früchte sitzen korrekt an den Astspitzen
-- Speichersystem (localStorage), UI auf Deutsch, Katalog mit Farbkodierung
-- Katalog filtert auf das jeweilige Thema wenn von leerem Topf geöffnet
-- Beet-Statistiken pro Regal: gepflanzt, geerntet, gelernte/falsche/offene Fragen
+- Beet-Statistiken im Regal: gepflanzt, geerntet, gelernte/falsche/offene Fragen
+- Katalog filtert auf Thema wenn von leerem Topf geöffnet; zeigt vollständige Stats aller Beete
 - 4 Hybrid-Pflanzendefinitionen + Labor-System (Synthetisieren + Einpflanzen)
-- Labor zeigt ✓/✗ Status pro benötigter Quellpflanze; Hinweis-Button für gesperrte Hybride
-- 108 MC-Kampffragen (2 pro Pflanze, inkl. alle 4 Hybride)
+- Speichersystem (localStorage), Export/Import Spielstand, UI auf Deutsch
 - HP-Regeneration: Beschriften-Minispiel (17 Übungen, Diagramme + Bilder)
-- **Kampfsystem (Enemy-per-Question):**
-  - Alle harvestQuestions + cleaningQuestions = 1 Gegner pro Frage
-  - Früchte = Munition (nur durch Ernte: ×2 pro korrekter Antwort)
-  - Falsche Antwort = -1 HP + Gegner flieht (Frage für Boss vorgemerkt)
-  - 0 Früchte im Normalkampf = Hard Reset des Kampffortschritts
-  - 0 HP = Rückzug ohne Reset
-  - Alle Gegner besiegt → Boss-Vorschau-Screen → Boss-Kampf
-  - Boss: alle falsch beantworteten Fragen (oder 5 random wenn alles korrekt war)
-- **Feedback-System:**
-  - Phase 1: `solution`-Text als Lerninhalt (vor Frage) und als Feedback (nach Antwort)
-  - Phase 2 + Ernte: `explanation`-Feld der Frage als Feedback
-  - Alle 199 harvestQuestions haben `explanation`-Felder (1–2 Sätze, substantieller Inhalt)
-  - Farb-Feedback: grün = richtig, rot = falsch
-- Export/Import Spielstand (JSON-Datei)
+
+**Restaurant-System (v1):**
+- Echtzeit-Minigame: Köche (CSS-Kreise) kochen und servieren automatisch
+- Kunden kommen mit Geduld-Balken; verlassen das Restaurant glücklich oder ungeduldig
+- Dreckflecken (von Kunden hinterlassen), Reinigungskraft als Unlock
+- Zutaten-Vorrat (12 Verwendungen); Nachfüllen kostet eine Frage
+- Neue Köche, Zutaten (Spieß, Protein, Gemüse, Beilage, Sauce, Cola, Bier, Wein),
+  Reinigungskraft über Fragen + Früchte freischaltbar
+- Fragen-Priorität: noch nie gesehen → falsch beantwortet → (Wiederholung wenn alles gemeistert)
+- Trophäen-Anzeige + Empfehlung neues Kapitel wenn alle Fragen gemeistert
 
 **Offen (nach Priorität):**
-1. Playtest: vollständiger Loop (Früchte-Balance, Gegner-Schwierigkeit, Ernte-Härte)
-2. UI/UX-Feinschliff und Content-QA nach Playtest
-   - Ablauf/Template: `docs/PLAYTEST_CHECKLIST.md`
-3. **Kampfsystem-Redesign → Reinigung/Neighborhood Cleanup** (vollständig ausgearbeitet in `docs/IDEAS.md §3`)
-   - "Kampf"-Tab wird zu "Räume" / Reinigungssystem
-   - 34 Orte (Zuhause + Nachbarschaft), Frontansicht, klickbare Items
-   - Drag-and-Drop Editor für Asset-Platzierung
-   - Wartet auf Asset-Erstellung
-4. Pixel-Grafik Layer (optional, spätere Phase)
+1. Playtest: vollständiger Loop (Früchte-Balance, Restaurant-Spielgefühl, Ernte-Härte)
+2. Content-QA nach Playtest — Ablauf: `docs/PLAYTEST_CHECKLIST.md`
+3. **Karten-System**: Nachbarschaftskarte mit Pins → Räume/Orte anklicken
+4. **Reinigungssystem** (vollständig ausgearbeitet in `docs/IDEAS.md §3`)
+   — ersetzt Restaurant langfristig als Hochdruck-Testmechanismus
+   — 34 Orte (Zuhause + Nachbarschaft), Frontansicht, klickbare Items
+   — Wartet auf Asset-Erstellung
+5. Restaurant v2: Menü-Designer, Cocktails, Spa, Naturheilpraxis (siehe `docs/IDEAS.md §4`)
+6. Pixel-Grafik Layer (optional, spätere Phase)
 
 ---
 
@@ -72,13 +63,14 @@ Langzeit-Vision: mehrere Packs (z.B. Warhammer Lore, Schullehrplan), jeder als e
 ## 2. Kernmetapher
 
 - Wissen wächst wie Pflanzen
-- Kapitel sind Beete (Themenregale im Garten)
-- Konzepte sind Pflanzen
+- Kapitel = Beete (Themenregale im Garten)
+- Konzepte = Pflanzen
 - Lerninteraktionen lassen Pflanzen wachsen
 - Ernte = Wissenstest (100% korrekt erforderlich)
-- Früchte = Munition
-- Kampf → Reinigung = Hochdrucktest (geplantes Redesign, siehe IDEAS.md §3)
-- Labor = kuratorisch-themenübergreifende Integration
+- Früchte = Ressource (verdient durch Ernte, verbraucht im Restaurant)
+- Restaurant = entspannter Betrieb + Unlock-System über Fragen
+- Reinigung = Hochdrucktest (geplantes Redesign, siehe `docs/IDEAS.md §3`)
+- Labor = themenübergreifende Integration (Hybride)
 - Verrottung = Vergessen (optional, spätere Phase)
 
 ---
@@ -89,9 +81,8 @@ Langzeit-Vision: mehrere Packs (z.B. Warhammer Lore, Schullehrplan), jeder als e
 
 Ein Pack ist eine vollständig eigenständige Lernwelt mit:
 - Eigenem Garten
-- Eigenem Kampfgebiet
+- Eigenem Restaurant / Reinigungsbereich
 - Eigenem Labor
-- Eigenem Journal
 - Eigenen XP, HP, Früchten, Statistiken
 
 Kein Fortschritt wird zwischen Packs übertragen.
@@ -112,7 +103,7 @@ Kein Fortschritt wird zwischen Packs übertragen.
 ### 4.1 Beet = Kapitel
 
 Jedes Beet hat viele Pflanzen in der Bibliothek, aber maximal 4 aktiv gleichzeitig.
-Beete werden als Regale im Garten dargestellt — alle gleichzeitig sichtbar.
+Im Garten sind maximal 3 Beete gleichzeitig sichtbar. Alle Beete mit ihren Stats sind im Katalog einsehbar.
 
 ### 4.2 Pflanze = Konzept
 
@@ -151,35 +142,31 @@ Jede Pflanze ist ein prüfbares Konzept mit:
 
 ---
 
-## 6. Kampfsystem
+## 6. Restaurant-System
 
-Zweck: Hochdruckvalidierung. Fruchtknappheit erzeugt natürlichen Druck zum erneuten Lernen.
+Zweck: Entspannter Betrieb im Hintergrund + Motivation durch Unlock-Mechanismus.
 
 ### Ressourcen
 
-- **Früchte** = Munition (nur durch Ernte verdient, 1 pro Kampfantwort verbraucht)
-- **HP** = Fehlertoleranz (Regeneration via Beschriften-Minispiel)
+- **Früchte** = Kosten für Unlocks und Nachfüllen (verdient durch Ernte)
+- Fragen aus `harvestQuestions` + `cleaningQuestions` = Währung für Unlocks
 
-### Gegner-Pool
+### Ablauf
 
-- Alle `harvestQuestions` + `cleaningQuestions` aller Pflanzen des Beetes
-- 1 Gegner pro Frage; unbesiegte Gegner werden bevorzugt
+- Köche servieren automatisch; Spieler kann eingreifen durch Unlocks
+- Kunden kommen mit Geduld-Balken; glückliche Kunden = Erfolgsgefühl
+- Zutaten-Vorrat läuft ab → Nachfüllen über Frage + ggf. Früchte
+- Neue Inhalte freischalten: Koch, Zutaten, Reinigungskraft
 
-### Normalkampf
+### Fragen-Priorität
 
-| Ereignis | Folge |
+| Priorität | Kategorie |
 |---|---|
-| Richtige Antwort | -1 Frucht, +1 XP, Gegner als besiegt markiert |
-| Falsche Antwort | -1 HP, Frage für Boss vorgemerkt, Gegner flieht |
-| Früchte = 0 | Hard Reset: enemyProgress + wrongInCombat geleert |
-| HP = 0 | Rückzug, kein Reset |
+| 1 | Noch nie gezeigt |
+| 2 | Falsch beantwortet |
+| 3 | Bereits korrekt (nur in Wiederholungsmodus) |
 
-### Boss-Kampf
-
-- Verfügbar wenn alle Gegner mindestens einmal besiegt (`bossAvailable = true`)
-- Boss-Vorschau zeigt: schwache Themen, Früchtestand, Fragezahl
-- Fragenpool: alle falsch beantworteten Fragen (oder 5 random wenn alles korrekt)
-- Sieg: `bossDefeated = true`, +10 XP, +1 Beet-Slot freigeschaltet
+Wenn alle Fragen korrekt beantwortet: Trophäe + Empfehlung neues Kapitel freischalten.
 
 ---
 
@@ -187,9 +174,9 @@ Zweck: Hochdruckvalidierung. Fruchtknappheit erzeugt natürlichen Druck zum erne
 
 | Ressource | Verdient durch | Verbraucht durch |
 |---|---|---|
-| XP | Phase 1, Ernte, Kampf | Nie (permanent) |
-| Früchte | Ernte (×2 pro korrekte Antwort) | Kampfantworten (1 pro richtig) |
-| HP | Beschriften-Minispiel | Falsche Kampfantworten |
+| XP | Phase 1, Ernte | Nie (permanent) |
+| Früchte | Ernte (×2 pro korrekte Antwort) | Restaurant-Unlocks, Nachfüllen |
+| HP | Beschriften-Minispiel | Zukünftig: Reinigungssystem |
 
 ---
 
@@ -205,13 +192,10 @@ Zweck: Hochdruckvalidierung. Fruchtknappheit erzeugt natürlichen Druck zum erne
 
 ## 9. Schwachpunkte (Weakpoints)
 
-Entstehen bei:
-- Falschen Erntenantworten
-- Falschen Kampfantworten
+Entstehen bei falschen Erntenantworten.
 
 Genutzt für:
 - Priorisierung von Phase-2-Wiederholung
-- Boss-Fragenpool
 
 Designregel: diagnostisch, nie beschämend.
 
@@ -236,16 +220,23 @@ Designregel: diagnostisch, nie beschämend.
 - Löscht nie Errungenschaften oder XP
 - Spieler-wählbarer Modus: Aus / Sanft / Streng
 
-### 11.2 Verschmutzung und Reinigung → Kampfsystem-Redesign
+### 11.2 Reinigung / Neighborhood Cleanup
 
-Vollständig ausgearbeitet in `docs/IDEAS.md §3`. Ersetzt das aktuelle Kampfsystem thematisch:
+Vollständig ausgearbeitet in `docs/IDEAS.md §3`. Löst das Restaurant als Hochdruck-Testmechanismus ab:
 - 34 Orte in Zuhause + Nachbarschaft (Frontansicht)
 - Klickbare Unordnungs-Items mit dirty/clean Zuständen
 - Ratten → Rattenkäfig, Insekten → Terrarium (wholesome!)
 - Trophäenraum als Fortschritts-Showcase
 - Drag-and-Drop Editor für Asset-Platzierung
+- Asset-Anforderungen dokumentiert in `docs/ASSETS_NEEDED.txt`
 
-### 11.3 Town Hub
+### 11.3 Karten-Navigation
+
+- Nachbarschaftskarte mit klickbaren Pins
+- Pin-Zustände: gesperrt / freigeschaltet / gereinigt / Trophäen-Challenge bereit
+- Ersetzt den direkten Restaurant-Button langfristig
+
+### 11.4 Town Hub
 
 - Pixel-Art-Dorf als Hauptmenü
 - Jeder Pack = ein Haus im Dorf

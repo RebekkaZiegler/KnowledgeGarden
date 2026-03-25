@@ -151,7 +151,9 @@ Der "Kampf"-Button in der Navigationsleiste wird zu **"Karte"**. Klick öffnet e
 
 ## 4. Restaurant-System — Ausbau-Ideen
 
-Das Restaurant-System ist implementiert (v1: Koch, Gäste, Geduld-Balken, Dreck, Nachfüllen, Reinigungskraft). Folgende Erweiterungen sind geplant:
+**v1 implementiert:** Koch, Gäste, Geduld-Balken, Dreck, Reinigungskraft, Nachfüllen per Frage,
+Getränke-Unlock (Cola, Bier, Wein), Fragen-Priorität (ungesehen → falsch → Wiederholung),
+Trophäen-Anzeige wenn alle Fragen gemeistert.
 
 ### 4.1 Speisekarte & Gerichte-Designer
 
@@ -161,19 +163,17 @@ Das Restaurant-System ist implementiert (v1: Koch, Gäste, Geduld-Balken, Dreck,
 - Miniatur-Version des Gerichts erscheint im Restaurant (beim Koch, beim Gast)
 - Gerichte-Eintrag in Menü = freigeschaltet über Frage + Früchte
 - Gerichte aus Menü entfernen: kostenlos per Klick
-- Sättigung = Summe der Zutaten, aber Gerichte-Bonus (+10%) für vollständige Kombination
+- Sättigung = Summe der Zutaten, Gerichte-Bonus (+10%) für vollständige Kombination
 
-### 4.2 Getränke-Progression
+### 4.2 Getränke v2
 
-- Wasser (Start, immer vorhanden)
-- Cola (unlock), Bier (unlock), Wein (unlock) — **feste Namen**
 - Getränk erhöht Geduld-Toleranz (+Geduld-Puffer wenn serviert)
-- Später: **Cocktail-System** — Früchte aus dem Garten als Zutaten → eigene Cocktail-Namen
+- **Cocktail-System**: Früchte aus dem Garten als Zutaten → eigene Cocktail-Namen frei wählbar
+- Optische Vielfalt: volle Restaurant-Bestückung soll visuell schön und abwechslungsreich wirken
 
 ### 4.3 Nachfüllen & Lagerbestand
 
-- Zutaten haben Bestand (aktuell: 12 Verwendungen) — bereits implementiert
-- Idee: Lager-Upgrades (größerer Vorrat), kostet Früchte + Frage
+- Lager-Upgrades (größerer Vorrat), kostet Früchte + Frage
 - Bei 0 Bestand: Koch überspringt diese Zutat, Gast bekommt weniger Sättigung
 
 ### 4.4 Folge-Venues (nach Restaurant)
@@ -188,23 +188,13 @@ Das Restaurant-System ist implementiert (v1: Koch, Gäste, Geduld-Balken, Dreck,
 
 - Diverse Kundschaft → verschiedene optische Kreise (Farbe/Muster per CSS, kein Asset)
 - "Volle Restaurant"-Bonus: wenn 5 Gäste gleichzeitig glücklich sind → Bonus-Frucht
-- Schlechte Bewertung (zu viel Dreck, zu viele ungeduldige Gäste) → weniger Gäste kommen für X Sekunden
-- Deko-Unlocks: rein kosmetisch, zeigen Fortschritt (Blumenvase auf Tisch, Gemälde an Wand = CSS-Elemente)
+- Schlechte Bewertung (zu viel Dreck, zu viele ungeduldige Gäste) → weniger Gäste für X Sekunden
+- Deko-Unlocks: rein kosmetisch, zeigen Fortschritt (Blumenvase, Gemälde = CSS-Elemente)
 
 **Status:** v1 implementiert. Alle Punkte hier = Post-v1, keine Umsetzungsverpflichtung.
 
 ---
 
-End of ideas.
-
-
-----
-new idea:
-
-first: update this file XD
-
-sedond:
-
-ideas also: restocking needs to be answered with a question, stuff can run out. so unlocking more is also good cause you dont need to restock that often. we also have water at first but can unlock, cola, different beers, wines etc... and we can maybe give them different optics so a full restaurant is really nice and diverse. i would also like to have the ability to design the meals. like for a pizza, place the sprites on the pizza. for the stew, have a little animation showing the protein and veggy in water or sth. and pls also show the miniature version of the designed food in the restaurant. but everythign, new design new item on menue, costs. removing sth from menue is free, and can be done, by clicking. so we need a menue. when we design sth it comes in a cateogry (like stew, pizza etc) but the name can be freely given. wines beers etc have fixed names. maybe we do sth with cocktails later that has different fruits... so many ideas!
+Ende der Ideen.
 
 Also every customer coming in has a small chance of leaving some drt (just a brown spec with transparency) so at some point we need a cleaner (needs to be unlocked) or else the patience of customers will lower and also there will be less customers coming in

@@ -50,7 +50,6 @@ let state = loadState();
 let selectedPlantId = null;
 let harvestSession = null;
 let phase2Session = null;
-let combatSession = null;
 let expandedSeedCatalogBedId = null;
 let catalogFilterBedId = null;
 let phase1ShowingLesson = false;
@@ -130,9 +129,6 @@ const els = {
   importBtn: document.getElementById("import-btn"),
   importFileInput: document.getElementById("import-file-input"),
   resetBtn: document.getElementById("reset-btn"),
-  startCombatBtn: document.getElementById("start-combat-btn"),
-  combatStatus: document.getElementById("combat-status"),
-  combatDetail: document.getElementById("combat-detail"),
   labStatus: document.getElementById("lab-status"),
   labList: document.getElementById("lab-list"),
   healArea: document.getElementById("heal-area")
@@ -276,13 +272,10 @@ function bindEvents() {
     selectedPlantId = null;
     phase2Session = null;
     harvestSession = null;
-    combatSession = null;
     labelSession = null;
     saveState();
     renderAll();
   });
-
-  if (els.startCombatBtn) els.startCombatBtn.addEventListener("click", () => startCombat("normal"));
 
   const muteMusicBtn = document.getElementById("mute-music-btn");
   const muteSfxBtn = document.getElementById("mute-sfx-btn");
@@ -320,7 +313,6 @@ function setActiveBed(bedId) {
   selectedPlantId = null;
   phase2Session = null;
   harvestSession = null;
-  combatSession = null;
   labelSession = null;
   saveState();
   renderAll();
@@ -1850,9 +1842,8 @@ function renderPlants() {
 function renderHealArea() {
   const player = getPackState().player;
   const hpFull = player.currentHp >= player.maxHp;
-  const inCombat = Boolean(combatSession);
   const inLabel = Boolean(labelSession);
-  const disabled = hpFull || inCombat || inLabel;
+  const disabled = hpFull || inLabel;
   const label = inLabel ? "Heilen läuft..." : hpFull ? "HP voll" : "Heilen (Beschriften)";
   els.healArea.innerHTML = `<div class="row" style="margin-top:0.5rem"><button id="heal-btn" ${disabled ? "disabled" : ""}>${label}</button></div>`;
   const btn = document.getElementById("heal-btn");
@@ -2557,362 +2548,6 @@ function maybeUnlockMoreBedSlots() {
   showToast(`Boss besiegt! +1 Beet-Slot freigeschaltet (${p.unlockSlots} gesamt).`, "success");
 }
 
-function buildEnemyPool(bedContent) {
-  const pool = [];
-  bedContent.plants.forEach((plant) => {
-    (plant.harvestQuestions || []).forEach((q) => pool.push({ ...q, plantId: plant.id }));
-    (plant.cleaningQuestions || []).forEach((q) => pool.push({ ...q, plantId: plant.id }));
-  });
-  return pool;
-}
-
-function pickNextEnemy(enemyPool, bedState) {
-  const undefeated = enemyPool.filter((q) => !bedState.enemyProgress[q.id]);
-  const pool = undefeated.length > 0 ? undefeated : enemyPool;
-  return pool[Math.floor(Math.random() * pool.length)] || null;
-}
-
-function checkAndSetBossAvailable(bedState) {
-  if (bedState.bossAvailable || bedState.bossDefeated) return;
-  const bedContent = getActiveBedContent();
-  if (!bedContent) return;
-  const pool = buildEnemyPool(bedContent);
-  if (pool.length > 0 && pool.every((q) => bedState.enemyProgress[q.id])) {
-    bedState.bossAvailable = true;
-  }
-}
-
-function hardResetCombat(bedId) {
-  const bedState = getPackState().beds[bedId];
-  if (!bedState) return;
-  bedState.enemyProgress = {};
-  bedState.wrongInCombat = {};
-  bedState.bossAvailable = false;
-  saveState();
-}
-
-function buildBossQueue(bedContent, bedState) {
-  const allQ = buildEnemyPool(bedContent);
-  const wrongQ = allQ.filter((q) => bedState.wrongInCombat[q.id]);
-  // Any wrong answers → fight exactly those; all correct → 5 random from full pool
-  if (wrongQ.length > 0) return shuffle(wrongQ);
-  return shuffle([...allQ]).slice(0, 5);
-}
-
-function startCombat(phase) {
-  phase = phase || "normal";
-  const bedContent = getActiveBedContent();
-  const bedState = getBedState();
-  if (!bedContent || !bedState) return;
-  if (!bedState.combatUnlocked) return;
-  const player = getPackState().player;
-
-  if (phase === "boss") {
-    const bossQueue = buildBossQueue(bedContent, bedState);
-    combatSession = { phase: "boss", bossQueue, totalBossQ: bossQueue.length, currentQuestion: null, shuffledOptions: [] };
-  } else {
-    if (player.fruits <= 0) {
-      renderAll();
-      return;
-    }
-    combatSession = { phase: "normal", enemyPool: buildEnemyPool(bedContent), currentQuestion: null, shuffledOptions: [] };
-  }
-  nextCombatQuestion();
-}
-
-function nextCombatQuestion() {
-  if (!combatSession) return;
-  const bedState = getBedState();
-  if (!bedState) { combatSession = null; renderAll(); return; }
-
-  if (combatSession.phase === "boss") {
-    const player = getPackState().player;
-    if (combatSession.bossQueue.length === 0) {
-      bedState.bossDefeated = true;
-      bedState.bossAvailable = false;
-      getPackState().stats.combatsWon += 1;
-      maybeUnlockMoreBedSlots();
-      addXp(10);
-      saveState();
-      combatSession = null;
-      showToast("Boss besiegt! Alle Fragen gemeistert. +10 XP", "success");
-      renderAll();
-      return;
-    }
-    if (player.fruits <= 0) {
-      combatSession = null;
-      saveState();
-      showToast("Keine Früchte mehr! Rückzug aus Boss-Kampf.", "error");
-      renderAll();
-      return;
-    }
-    combatSession.currentQuestion = combatSession.bossQueue.shift();
-  } else {
-    const player = getPackState().player;
-    if (player.fruits <= 0) {
-      hardResetCombat(state.activeBedId);
-      combatSession = null;
-      saveState();
-      showToast("Keine Früchte mehr! Kampffortschritt zurückgesetzt.", "error");
-      renderAll();
-      return;
-    }
-    const q = pickNextEnemy(combatSession.enemyPool, bedState);
-    if (!q) {
-      combatSession = null;
-      renderAll();
-      return;
-    }
-    combatSession.currentQuestion = q;
-  }
-  renderAll();
-}
-
-function renderBossPreview(bedContent, bedState) {
-  if (!bedContent || !bedState) return;
-  const player = getPackState().player;
-  const allQ = buildEnemyPool(bedContent);
-  const wrongQ = allQ.filter((q) => bedState.wrongInCombat[q.id]);
-  const queueSize = wrongQ.length > 0 ? wrongQ.length : 5;
-  const weakPlantIds = [...new Set(wrongQ.map((q) => q.plantId))];
-  const weakNames = weakPlantIds.map((pid) => {
-    const p = bedContent.plants.find((pl) => pl.id === pid);
-    return p ? p.title : pid;
-  });
-  const fruitWarn = player.fruits < queueSize
-    ? `<div class="feedback">Warnung: Du hast nur ${player.fruits} Früchte, brauchst ${queueSize}. Ernte mehr Pflanzen für mehr Munition!</div>`
-    : `<div class="muted">Munition genügend: ${player.fruits} Früchte (benötigt mindestens ${queueSize})</div>`;
-  const weakSection = wrongQ.length > 0
-    ? `<div><strong>${wrongQ.length} falsch beantwortete Fragen – diese kommen jetzt als Boss-Fragen.</strong></div><div class="muted">Schwache Themen: ${weakNames.join(", ")}</div>`
-    : `<div class="muted">Alles richtig! Boss stellt 5 zufällige Fragen aus dem Themenpool.</div>`;
-  els.combatDetail.innerHTML = `
-    <div><strong>Boss-Kampf Vorbereitung</strong></div>
-    <div>Fragen: <strong>${queueSize}</strong></div>
-    ${weakSection}
-    ${fruitWarn}
-    <div class="row">
-      <button id="boss-confirm-btn">Jetzt kämpfen</button>
-      <button id="boss-cancel-btn">Abbrechen</button>
-    </div>
-  `;
-  document.getElementById("boss-confirm-btn").addEventListener("click", () => startCombat("boss"));
-  document.getElementById("boss-cancel-btn").addEventListener("click", () => renderAll());
-}
-
-function renderCombat() {
-  const bedState = getBedState();
-  const player = getPackState().player;
-
-  if (!bedState || !bedState.combatUnlocked) {
-    els.startCombatBtn.disabled = true;
-    els.combatStatus.textContent = bedState
-      ? "Kampf gesperrt. Ernte zuerst alle Pflanzen dieses Beetes."
-      : "Kein Beet ausgewählt.";
-    els.combatDetail.innerHTML = "";
-    return;
-  }
-
-  const bedContent = getActiveBedContent();
-  const enemyPool = bedContent ? buildEnemyPool(bedContent) : [];
-  const defeated = enemyPool.filter((q) => bedState.enemyProgress[q.id]).length;
-  const total = enemyPool.length;
-  const wrongCount = Object.keys(bedState.wrongInCombat).length;
-
-  // Active combat: render question
-  if (combatSession && combatSession.currentQuestion) {
-    els.startCombatBtn.disabled = true;
-    const remaining = combatSession.phase === "boss" ? combatSession.bossQueue.length : null;
-    els.combatStatus.textContent = combatSession.phase === "boss"
-      ? `Boss | Verbleibend: ${remaining} | Früchte: ${player.fruits}`
-      : `Besiegt: ${defeated}/${total} | Falsch: ${wrongCount} | Früchte: ${player.fruits}`;
-
-    const q = combatSession.currentQuestion;
-    const phaseLabel = combatSession.phase === "boss" ? "Boss" : "Gegner";
-    if (q.type === "mc") {
-      const shuffled = shuffle([...q.options.map((o, i) => ({ ...o, origIdx: i }))]);
-      combatSession.shuffledOptions = shuffled;
-      const letters = ["A", "B", "C", "D", "E"];
-      const correctCount = q.options.filter((o) => o.correct).length;
-      const isMultiSelect = correctCount > 1;
-      combatSession.isMultiSelect = isMultiSelect;
-      if (isMultiSelect) {
-        combatSession.selectedIndices = new Set();
-        const optHtml = shuffled.map((o, i) => {
-          const label = `${letters[i]}) ${o.text}`;
-          return `<button class="mc-option mc-option--toggle ${mcBtnClass(label)}" data-oi="${i}">${label}</button>`;
-        }).join("");
-        els.combatDetail.innerHTML = `
-          <div><strong>${phaseLabel}</strong></div>
-          <div class="muted" style="font-size:0.8rem;margin-bottom:0.3rem">Mehrere Antworten möglich – alle zutreffenden auswählen</div>
-          <div class="question">${q.question}</div>
-          <div class="mc-options">${optHtml}</div>
-          <div class="row"><button id="combat-submit-btn">Abschicken</button></div>
-          <div id="combat-feedback" class="feedback"></div>
-        `;
-        els.combatDetail.querySelectorAll(".mc-option--toggle").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const idx = parseInt(btn.getAttribute("data-oi"), 10);
-            if (combatSession.selectedIndices.has(idx)) {
-              combatSession.selectedIndices.delete(idx);
-              btn.classList.remove("mc-option--selected");
-            } else {
-              combatSession.selectedIndices.add(idx);
-              btn.classList.add("mc-option--selected");
-            }
-          });
-        });
-        document.getElementById("combat-submit-btn").addEventListener("click", () => resolveMultiSelectCombatAnswer());
-      } else {
-        const optHtml = shuffled.map((o, i) => {
-          const label = `${letters[i]}) ${o.text}`;
-          return `<button class="mc-option ${mcBtnClass(label)}" data-oi="${i}">${label}</button>`;
-        }).join("");
-        els.combatDetail.innerHTML = `
-          <div><strong>${phaseLabel}</strong></div>
-          <div class="question">${q.question}</div>
-          <div class="mc-options">${optHtml}</div>
-          <div id="combat-feedback" class="feedback"></div>
-        `;
-        els.combatDetail.querySelectorAll(".mc-option").forEach((btn) => {
-          btn.addEventListener("click", () => resolveCombatAnswer(parseInt(btn.getAttribute("data-oi"), 10)));
-        });
-      }
-    } else {
-      els.combatDetail.innerHTML = `
-        <div><strong>${phaseLabel}</strong></div>
-        <div class="question">${q.statement}</div>
-        <div class="row">
-          <button data-c="true">True</button>
-          <button data-c="false">False</button>
-        </div>
-        <div id="combat-feedback" class="feedback"></div>
-      `;
-      els.combatDetail.querySelectorAll("[data-c]").forEach((btn) => {
-        btn.addEventListener("click", () => resolveCombatAnswer(btn.getAttribute("data-c") === "true"));
-      });
-    }
-    return;
-  }
-
-  // No active combat: show status + controls
-  const bossReady = bedState.bossAvailable && !bedState.bossDefeated;
-  let statusParts = [`Besiegt: ${defeated}/${total}`, `Falsch: ${wrongCount}`, `Früchte: ${player.fruits}`];
-  if (bedState.bossDefeated) statusParts.push("Boss besiegt!");
-  else if (bossReady) statusParts.push("Boss bereit!");
-  els.combatStatus.textContent = statusParts.join(" | ");
-
-  if (player.fruits <= 0) {
-    els.startCombatBtn.disabled = true;
-    els.combatDetail.innerHTML = `<div class="feedback">Keine Früchte! Ernte Pflanzen um Munition aufzufuellen.</div>`;
-    return;
-  }
-
-  els.startCombatBtn.disabled = false;
-  if (bossReady) {
-    const queueSize = Math.max(5, wrongCount);
-    els.combatDetail.innerHTML = `
-      <div class="row">
-        <button id="start-boss-btn">Boss bekämpfen (${queueSize} Fragen)</button>
-      </div>
-    `;
-    document.getElementById("start-boss-btn").addEventListener("click", () => {
-      renderBossPreview(getActiveBedContent(), getBedState());
-    });
-  } else {
-    els.combatDetail.innerHTML = "";
-  }
-}
-
-function applyCombatOutcome(ok, feedbackText) {
-  const bedState = getBedState();
-  const player = getPackState().player;
-  const q = combatSession.currentQuestion;
-  const fb = document.getElementById("combat-feedback");
-
-  if (ok) {
-    player.fruits -= 1;
-    addXp(1);
-    if (combatSession.phase === "normal" && bedState) {
-      bedState.enemyProgress[q.id] = true;
-      checkAndSetBossAvailable(bedState);
-    }
-    fb.textContent = `Treffer! Früchte: ${player.fruits}.${feedbackText ? " " + feedbackText : ""}`;
-  } else {
-    player.currentHp -= 1;
-    if (combatSession.phase === "normal" && bedState) {
-      bedState.wrongInCombat[q.id] = true;
-    }
-    if (combatSession.phase === "boss") {
-      combatSession.bossQueue.push(q);
-    }
-    fb.textContent = `Fehler. HP: ${player.currentHp}/${player.maxHp}.${feedbackText ? " " + feedbackText : ""}`;
-  }
-
-  const defeated = player.currentHp <= 0;
-  if (defeated) {
-    player.currentHp = 1;
-    combatSession = null;
-    getPackState().stats.combatsLost += 1;
-  }
-  saveState();
-  renderPlayer();
-
-  const actionRow = document.createElement("div");
-  actionRow.className = "row";
-  const continueBtn = document.createElement("button");
-  if (defeated) {
-    showToast("Niederlage! HP auf 1 wiederhergestellt.", "error");
-    continueBtn.textContent = "Niederlage – Rückzug";
-    continueBtn.addEventListener("click", () => renderAll());
-  } else {
-    continueBtn.textContent = "Weiter";
-    continueBtn.addEventListener("click", () => nextCombatQuestion());
-  }
-  actionRow.appendChild(continueBtn);
-  fb.insertAdjacentElement("afterend", actionRow);
-}
-
-function resolveCombatAnswer(answer) {
-  if (!combatSession || !combatSession.currentQuestion) return;
-  const q = combatSession.currentQuestion;
-  let ok, feedbackText;
-  if (q.type === "mc") {
-    const chosen = combatSession.shuffledOptions[answer];
-    ok = Boolean(chosen && chosen.correct);
-    const correctText = (combatSession.shuffledOptions.find((o) => o.correct) || {}).text || "";
-    feedbackText = ok ? "" : `Richtige Antwort: ${correctText}`;
-    els.combatDetail.querySelectorAll(".mc-option").forEach((b) => {
-      const idx = parseInt(b.getAttribute("data-oi"), 10);
-      if (combatSession.shuffledOptions[idx]?.correct) b.classList.add("mc-correct");
-      else if (idx === answer) b.classList.add("mc-wrong");
-      b.disabled = true;
-    });
-  } else {
-    ok = answer === q.answer;
-    feedbackText = tfFeedback(q, answer);
-    els.combatDetail.querySelectorAll("[data-c]").forEach((b) => b.setAttribute("disabled", "disabled"));
-  }
-  applyCombatOutcome(ok, feedbackText);
-}
-
-function resolveMultiSelectCombatAnswer() {
-  if (!combatSession || !combatSession.currentQuestion) return;
-  const opts = combatSession.shuffledOptions;
-  const selected = combatSession.selectedIndices || new Set();
-  // Correct = every correct option is selected AND no wrong option is selected
-  const ok = selected.size > 0 && opts.every((o, i) => o.correct ? selected.has(i) : !selected.has(i));
-  const correctTexts = opts.filter((o) => o.correct).map((o) => o.text).join(" | ");
-  const feedbackText = ok ? "" : `Richtig wären: ${correctTexts}`;
-  const submitBtn = document.getElementById("combat-submit-btn");
-  if (submitBtn) submitBtn.disabled = true;
-  els.combatDetail.querySelectorAll(".mc-option--toggle").forEach((b) => {
-    const idx = parseInt(b.getAttribute("data-oi"), 10);
-    if (opts[idx]?.correct) b.classList.add("mc-correct");
-    else if (selected.has(idx)) b.classList.add("mc-wrong");
-    b.disabled = true;
-  });
-  applyCombatOutcome(ok, feedbackText);
-}
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i -= 1) {
@@ -2930,7 +2565,7 @@ function startCooldownTicker() {
     renderGardenRoom();
     checkPlantSoundTriggers();
     if (!selectedPlantId) return;
-    if (harvestSession || combatSession) return;
+    if (harvestSession) return;
     const bedState = getBedState();
     const plant = bedState?.plants[selectedPlantId];
     const now = Date.now();
@@ -2974,9 +2609,7 @@ function getFaviconSignal() {
     return {
       activePlants: 0,
       readyLearn: 0,
-      readyHarvest: 0,
-      readyCombat: false,
-      bossReady: false
+      readyHarvest: 0
     };
   }
   let activePlants = 0;
@@ -3012,10 +2645,7 @@ function getFaviconSignal() {
     });
   });
 
-  const activeBed = getBedState();
-  const readyCombat = Boolean(activeBed && activeBed.combatUnlocked && pack.player && pack.player.fruits > 0);
-  const bossReady = Boolean(activeBed && activeBed.bossAvailable && !activeBed.bossDefeated);
-  return { activePlants, readyLearn, readyHarvest, readyCombat, bossReady };
+  return { activePlants, readyLearn, readyHarvest };
 }
 
 function ensureFaviconLink() {
@@ -3031,7 +2661,7 @@ function ensureFaviconLink() {
 
 function updateReactiveFavicon() {
   const signal = getFaviconSignal();
-  const signature = `${signal.activePlants}:${signal.readyLearn}:${signal.readyHarvest}:${signal.readyCombat ? 1 : 0}:${signal.bossReady ? 1 : 0}`;
+  const signature = `${signal.activePlants}:${signal.readyLearn}:${signal.readyHarvest}`;
   if (signature === lastFaviconSignature) return;
   lastFaviconSignature = signature;
 
@@ -3042,10 +2672,9 @@ function updateReactiveFavicon() {
   if (!ctx) return;
 
   const hasActive = signal.activePlants > 0;
-  const hasAnyReady = signal.readyCombat || signal.readyHarvest > 0 || signal.readyLearn > 0;
+  const hasAnyReady = signal.readyHarvest > 0 || signal.readyLearn > 0;
   let dotColor = null;
-  if (signal.readyCombat) dotColor = "#d92d20"; // rot
-  else if (signal.readyHarvest > 0) dotColor = "#ea7a00"; // orange
+  if (signal.readyHarvest > 0) dotColor = "#ea7a00"; // orange
   else if (signal.readyLearn > 0) dotColor = "#2d6cdf"; // blau
 
   const hasReady = hasAnyReady;
@@ -3095,7 +2724,6 @@ function getPanelForSection(section) {
   if (section === "settings") return document.getElementById("panel-settings");
   if (section === "beds") return document.getElementById("panel-beds");
   if (section === "detail") return document.getElementById("panel-detail");
-  if (section === "combat") return document.getElementById("panel-combat");
   // "seed" and "lab" are in the player panel.
   return document.getElementById("panel-player");
 }
@@ -3119,9 +2747,8 @@ function setUiPanelMode(mode, section) {
   const player = document.getElementById("panel-player");
   const beds = document.getElementById("panel-beds");
   const detail = document.getElementById("panel-detail");
-  const combat = document.getElementById("panel-combat");
   const expandBtn = document.getElementById("expand-ui-btn");
-  const panels = [settings, player, beds, detail, combat].filter(Boolean);
+  const panels = [settings, player, beds, detail].filter(Boolean);
 
   panels.forEach((p) => { p.hidden = false; });
   if (settings) settings.hidden = true;
@@ -3139,8 +2766,6 @@ function setUiPanelMode(mode, section) {
     visible.add("panel-detail");
   } else if (section === "detail") {
     visible.add("panel-detail");
-  } else if (section === "combat") {
-    visible.add("panel-combat");
   } else {
     visible.add("panel-player");
   }
@@ -3199,11 +2824,6 @@ function openCatalogModal(filterBedId) {
   if (filterBedId) expandedSeedCatalogBedId = filterBedId;
   renderSeedLibrary();
   openModal("modal-catalog");
-}
-
-function openCombatModal() {
-  renderCombat();
-  openModal("modal-combat");
 }
 
 // ── Map modal ──────────────────────────────────────────────────────────────
