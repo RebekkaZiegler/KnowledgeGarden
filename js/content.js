@@ -60,7 +60,8 @@ function makeDetailedPlant(def) {
     ],
     harvestQuestions: def.harvestQuestions || [],
     bossQuestions: def.bossQuestions || [],
-    cleaningQuestions: def.cleaningQuestions || []
+    cleaningQuestions: def.cleaningQuestions || [],
+    colorOverride: def.colorOverride || null
   };
 }
 
@@ -2548,7 +2549,82 @@ const HEILPRAKTIKER_HYBRIDS = [
         { text: "Richtung Lunge – Schleim wird zu den Alveolen transportiert", correct: false }
       ], explanation: "Die Flimmerhaarchen schlagen koordiniert rachenwarts (kranial). Schleim mit eingeschlossenen Partikeln und Keimen wird nach oben transportiert und abgeschluckt oder ausgehusten. Rauchen schädigt dieses System – sichtbar am produktiven Raucherhusten." }
     ]
-  }), { locked: true, sources: ["histologie_1032::oberflächenepithel", "atmungssystem_1035::trachea"] })
+  }), { locked: true, sources: ["histologie_1032::oberflächenepithel", "atmungssystem_1035::trachea"] }),
+
+  Object.assign(makeDetailedPlant({
+    id: "debug_pebes",
+    title: "Debug Pebes",
+    contextHint: "Debug Hybrid",
+    phase1: {
+      soil: {
+        statement: "Pebes ist ein Hybrid aus Debug Eins und Debug Zwei.",
+        answer: true,
+        solution: "Pebes ist ein Debug-Hybrid, entstanden aus Debug Eins (pinker Stamm, weiße Früchte) und Debug Zwei (schwarzer Stamm, grüne Früchte). Hybride entstehen im Labor, sobald beide Elternpflanzen mindestens einmal geerntet wurden."
+      },
+      seed: {
+        statement: "Hybride können im Labor entdeckt werden.",
+        answer: true,
+        solution: "Hybride werden im Labor synthetisiert, sobald beide Elternpflanzen mindestens einmal geerntet wurden. Der Hybrid übernimmt den Stamm vom ersten Elternteil und die Früchte vom zweiten."
+      },
+      water: {
+        statement: "Hybridpflanzen vereinen die Stammfarbe des ersten und die Fruchtfarbe des zweiten Elternteils.",
+        answer: true,
+        solution: "Bei Hybridpflanzen: Stammfarbe kommt vom ersten Elternteil, Fruchtfarbe vom zweiten. Bei Pebes: Stamm von Debug Eins (pink), Früchte von Debug Zwei (grün). Das ist eine Besonderheit des Kreuzungssystems."
+      }
+    },
+    harvestQuestions: [
+      {
+        id: "dp_h1",
+        type: "true_false",
+        statement: "Pebes ist ein Hybrid aus Debug Eins und Debug Zwei.",
+        answer: true,
+        explanation: "Korrekt. Pebes ist ein Debug-Hybrid aus beiden Testpflanzen."
+      },
+      {
+        id: "dp_h2",
+        type: "mc",
+        question: "Wo werden Hybridpflanzen entdeckt?",
+        options: [
+          { text: "Im Labor, nach Ernte beider Elternpflanzen", correct: true },
+          { text: "Im Pflanzenkatalog nach dem Freischalten", correct: false },
+          { text: "Automatisch zu Spielbeginn", correct: false },
+          { text: "Im Restaurant nach 10 Bestellungen", correct: false }
+        ],
+        explanation: "Hybride werden im Labor entdeckt, sobald beide Elternpflanzen mindestens einmal geerntet wurden."
+      },
+      {
+        id: "dp_h3",
+        type: "true_false",
+        statement: "Pebes übernimmt den Stamm von Debug Eins und die Früchte von Debug Zwei.",
+        answer: true,
+        explanation: "Korrekt. Stamm vom ersten Elternteil (Debug Eins = pink), Früchte vom zweiten (Debug Zwei = grün)."
+      }
+    ],
+    cleaningQuestions: [
+      {
+        id: "dp_mc1",
+        type: "mc",
+        question: "Welche Aussagen über Hybridpflanzen sind korrekt?",
+        options: [
+          { text: "Sie entstehen im Labor", correct: true },
+          { text: "Sie kombinieren Eigenschaften beider Elternpflanzen", correct: true },
+          { text: "Sie ersetzen die Elternpflanzen dauerhaft", correct: false },
+          { text: "Sie haben keine harvestQuestions", correct: false }
+        ]
+      },
+      {
+        id: "dp_mc2",
+        type: "mc",
+        question: "Was trifft auf Debug Pebes zu?",
+        options: [
+          { text: "Hybrid aus Debug Eins und Debug Zwei", correct: true },
+          { text: "Wird im Labor entdeckt", correct: true },
+          { text: "Wird automatisch zu Spielbeginn hinzugefügt", correct: false },
+          { text: "Hat keine Elternpflanzen", correct: false }
+        ]
+      }
+    ]
+  }), { sources: ["debug::debug_eins", "debug::debug_zwei"] })
 ];
 
 const LABEL_EXERCISES = [
@@ -2853,6 +2929,169 @@ const LABEL_EXERCISES = [
   }
 ];
 
+const DEBUG_PLANTS = [
+  makeDetailedPlant({
+    id: "debug_eins",
+    title: "Debug Eins",
+    contextHint: "Debug Beet",
+    colorOverride: { stemHi: "#ff44cc", stemLo: "#cc0099", fruitHi: "#ffffff", fruitLo: "#cccccc" },
+    phase1: {
+      soil: {
+        statement: "Du lebst.",
+        answer: true,
+        solution: "Du lebst. Das ist die wichtigste Voraussetzung für dieses Spiel. Debug Eins ist eine Testpflanze mit pinkem Stamm und weißen Früchten."
+      },
+      seed: {
+        statement: "Diese Pflanze ist eine Testpflanze.",
+        answer: true,
+        solution: "Diese Pflanze ist eine Testpflanze. Sie stellt sicher, dass alle Spielfunktionen korrekt funktionieren – Phase 1, Phase 2, Ernte und Restaurant."
+      },
+      water: {
+        statement: "Debug bedeutet: Spielmechaniken testen.",
+        answer: true,
+        solution: "Debug bedeutet Fehler suchen und beheben. Alle Fragen im Debug-Beet sind einfach und dienen ausschließlich dem Testen. Inhaltlich sind sie nicht prüfungsrelevant."
+      }
+    },
+    phase2: [
+      { type: "water", text: "Testen", readinessGain: 24 },
+      { type: "fertilize", text: "Weiter testen", readinessGain: 22 },
+      { type: "trim", text: "Fertig testen", readinessGain: 20 }
+    ],
+    harvestQuestions: [
+      {
+        id: "de1_h1",
+        type: "true_false",
+        statement: "Du lebst.",
+        answer: true,
+        explanation: "Ja. Du lebst. Debug Eins bestätigt das."
+      },
+      {
+        id: "de1_h2",
+        type: "true_false",
+        statement: "Debug Eins hat einen pinken Stamm.",
+        answer: true,
+        explanation: "Korrekt. Debug Eins: pinker Stamm, weiße Früchte."
+      },
+      {
+        id: "de1_h3",
+        type: "mc",
+        question: "Was ist der Zweck des Debug-Beetes?",
+        options: [
+          { text: "Spielfunktionen testen", correct: true },
+          { text: "Anatomie des Heilpraktikers lernen", correct: false },
+          { text: "Den Garten dauerhaft belegen", correct: false },
+          { text: "Das Restaurant blockieren", correct: false }
+        ],
+        explanation: "Das Debug-Beet dient ausschließlich dem Testen aller Spielmechaniken."
+      }
+    ],
+    cleaningQuestions: [
+      {
+        id: "de1_mc1",
+        type: "mc",
+        question: "Welche Aussagen über das Debug-Beet sind korrekt?",
+        options: [
+          { text: "Es dient dem Testen von Spielfunktionen", correct: true },
+          { text: "Es enthält Testpflanzen ohne Prüfungsrelevanz", correct: true },
+          { text: "Es ist Teil des Heilpraktiker-Curriculums", correct: false },
+          { text: "Es enthält nur eine Pflanze", correct: false }
+        ]
+      },
+      {
+        id: "de1_mc2",
+        type: "mc",
+        question: "Was trifft auf Debug Eins zu?",
+        options: [
+          { text: "Pinker Stamm und weiße Früchte", correct: true },
+          { text: "Sie ist eine Testpflanze", correct: true },
+          { text: "Schwarzer Stamm und grüne Früchte", correct: false },
+          { text: "Sie wächst im Labor", correct: false }
+        ]
+      }
+    ]
+  }),
+  makeDetailedPlant({
+    id: "debug_zwei",
+    title: "Debug Zwei",
+    contextHint: "Debug Beet",
+    colorOverride: { stemHi: "#444444", stemLo: "#111111", fruitHi: "#44ff44", fruitLo: "#118811" },
+    phase1: {
+      soil: {
+        statement: "Du bist bereit.",
+        answer: true,
+        solution: "Du bist bereit. Debug Zwei ist die zweite Testpflanze im Debug-Beet – erkennbar an ihrem schwarzen Stamm und den grünen Früchten."
+      },
+      seed: {
+        statement: "Debug Zwei hat grüne Früchte.",
+        answer: true,
+        solution: "Debug Zwei hat einen schwarzen Stamm und grüne Früchte. Diese Farben unterscheiden sie klar von Debug Eins (pinker Stamm, weiße Früchte)."
+      },
+      water: {
+        statement: "Alle Debug-Pflanzen dienen dem Testen der Spielmechaniken.",
+        answer: true,
+        solution: "Alle Debug-Pflanzen dienen ausschließlich dem Testen. Sie haben keine prüfungsrelevanten Inhalte. Das Debug-Beet eignet sich besonders, um Phase 1, Phase 2, Ernte und das Restaurant auszuprobieren."
+      }
+    },
+    phase2: [
+      { type: "water", text: "Testen", readinessGain: 24 },
+      { type: "fertilize", text: "Weiter testen", readinessGain: 22 },
+      { type: "trim", text: "Fertig testen", readinessGain: 20 }
+    ],
+    harvestQuestions: [
+      {
+        id: "de2_h1",
+        type: "true_false",
+        statement: "Du bist bereit.",
+        answer: true,
+        explanation: "Ja. Du bist bereit. Debug Zwei bestätigt das."
+      },
+      {
+        id: "de2_h2",
+        type: "true_false",
+        statement: "Debug Zwei hat grüne Früchte.",
+        answer: true,
+        explanation: "Korrekt. Debug Zwei: schwarzer Stamm, grüne Früchte."
+      },
+      {
+        id: "de2_h3",
+        type: "mc",
+        question: "Welche Farben hat Debug Zwei?",
+        options: [
+          { text: "Schwarzer Stamm, grüne Früchte", correct: true },
+          { text: "Pinker Stamm, weiße Früchte", correct: false },
+          { text: "Brauner Stamm, rote Früchte", correct: false },
+          { text: "Grüner Stamm, gelbe Früchte", correct: false }
+        ],
+        explanation: "Debug Zwei: schwarzer Stamm, grüne Früchte. Debug Eins: pinker Stamm, weiße Früchte."
+      }
+    ],
+    cleaningQuestions: [
+      {
+        id: "de2_mc1",
+        type: "mc",
+        question: "Welche Aussagen über Debug Zwei sind korrekt?",
+        options: [
+          { text: "Sie hat einen schwarzen Stamm", correct: true },
+          { text: "Sie hat grüne Früchte", correct: true },
+          { text: "Sie hat einen pinken Stamm", correct: false },
+          { text: "Sie ist prüfungsrelevant", correct: false }
+        ]
+      },
+      {
+        id: "de2_mc2",
+        type: "mc",
+        question: "Was trifft auf das Debug-Beet zu?",
+        options: [
+          { text: "Es enthält zwei Testpflanzen", correct: true },
+          { text: "Es dient dem Testen aller Spielmechaniken", correct: true },
+          { text: "Es gehört zum Heilpraktiker-Curriculum", correct: false },
+          { text: "Es hat keine cleaningQuestions", correct: false }
+        ]
+      }
+    ]
+  })
+];
+
 const PACK_CONTENT = {
   packId: "heilpraktiker",
   lab: {
@@ -2884,6 +3123,11 @@ const PACK_CONTENT = {
       id: "atmungssystem_1035",
       title: "Atmungssystem (1035)",
       plants: ATMUNGSSYSTEM_1035_PLANTS
+    },
+    {
+      id: "debug",
+      title: "Debug Beet",
+      plants: DEBUG_PLANTS
     },
     {
       id: "hybrid",
