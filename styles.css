@@ -192,7 +192,9 @@ header p {
 #left-panel-visual {
   display: flex;
   justify-content: center;
-  min-height: 60px;
+  align-items: flex-end;
+  min-height: 150px;
+  flex-shrink: 0;
 }
 
 /* Garden room: 3 fixed beds, no scroll */
@@ -854,12 +856,65 @@ button:disabled {
   line-height: 1.6;
   width: 100%;
   box-sizing: border-box;
-  text-align: left;
+  text-align: center;
   padding: 0 0.3rem;
   word-break: break-word;
 }
 .feedback--correct { color: #6bc87e; }
 .feedback--wrong { color: #e07070; }
+
+.harvest-success-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  text-align: center;
+}
+.harvest-success-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #6bc87e;
+}
+.harvest-success-fruits {
+  font-size: 1rem;
+  color: var(--text);
+  letter-spacing: 0.03em;
+}
+.harvest-success-hint {
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+}
+
+.harvest-success-dot-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  max-width: 160px;
+}
+
+.harvest-fruit-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--fruit-hi, #ff8f8f) 0%, var(--fruit-lo, #cf2f2f) 72%);
+  animation: harvest-fruit-sparkle 1.8s ease-in-out infinite both;
+}
+
+@keyframes harvest-fruit-sparkle {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 3px 1px var(--fruit-hi, #ff8f8f);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.35);
+    box-shadow: 0 0 8px 3px var(--fruit-hi, #ff8f8f);
+    opacity: 1;
+  }
+}
 
 .mc-options {
   display: flex;
@@ -1046,6 +1101,14 @@ button:disabled {
   cursor: pointer;
 }
 
+/* Plant body wrapper: receives opacity/filter effects; pot image stays outside and unaffected */
+.plant-body {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
 .plant-visual-bed {
   position: absolute;
   left: 10%;
@@ -1142,13 +1205,13 @@ button:disabled {
   position: absolute;
   left: 50%;
   bottom: calc(22px + var(--by, 0px));
-  width: 8px;
-  height: 3px;
+  width: 13px;
+  height: 5px;
   transform-origin: left center;
   transform: rotate(15deg);
   border-radius: 0 999px 999px 0;
-  background: linear-gradient(90deg, #7a6040 0%, #b09070 100%);
-  opacity: 0.7;
+  background: linear-gradient(90deg, #4a3018 0%, #7a5830 100%);
+  opacity: 0.9;
 }
 .plant-trim-stub--left {
   left: auto;
@@ -1513,6 +1576,12 @@ button:disabled {
   opacity: 0.35;
 }
 
+/* Not-yet-reached step in the water→fertilize→trim sequence */
+.tool-btn--seq-locked {
+  opacity: 0.18;
+  filter: grayscale(0.6);
+}
+
 .tool-img {
   width: 64px;
   height: 64px;
@@ -1776,29 +1845,236 @@ button:disabled {
 
 /* ── Restaurant / Praxis System ──────────────────────────────────────────── */
 
-.re-layout {
-  display: flex;
-  gap: 10px;
-  padding: 10px 12px;
-  background: linear-gradient(180deg, #221a14 0%, #1a1510 60%, #130f0a 100%);
-  border-radius: 8px;
-  border: 1px solid #3a2e24;
-  min-height: 130px;
-  align-items: flex-start;
-}
-
-.re-kitchen {
-  width: 100px;
+/* ── Restaurant Scene ─────────────────────────────────── */
+.re-scene {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #d4b896;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+  border: 2px solid #8a6840;
   flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
 }
 
-.re-dining {
-  flex: 1;
-  min-width: 0;
+.re-kitchen-bg {
+  position: absolute;
+  left: 0; top: 0;
+  width: 28%;
+  height: 100%;
+  background: #b89870;
+}
+
+.re-wall-divider {
+  position: absolute;
+  left: 28%; top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to right, #5a3a1a, #7a5030, #5a3a1a);
+  z-index: 3;
+}
+
+.re-door-gap {
+  position: absolute;
+  left: 28%; bottom: 16%;
+  width: 6px;
+  height: 24%;
+  background: #d4b896;
+  z-index: 4;
+}
+
+.re-kitchen-sign {
+  position: absolute;
+  left: 14%; top: 6%;
+  transform: translateX(-50%);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(0,0,0,0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.re-counter {
+  position: absolute;
+  left: 2%; top: 50%;
+  transform: translateY(-50%);
+  width: 22%;
+  height: 28%;
+  background: linear-gradient(135deg, #9a6030, #7a4820);
+  border-radius: 4px;
+  border: 2px solid #5a3010;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  z-index: 2;
+}
+.re-counter::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px; right: 3px;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+
+.re-entrance-arch {
+  position: absolute;
+  right: 0; bottom: 8%;
+  width: 16px; height: 44px;
+  background: linear-gradient(to right, #8a6840, #6a4820);
+  border-radius: 3px 0 0 3px;
+  z-index: 2;
+}
+
+.re-table {
+  position: absolute;
+  width: 36px; height: 36px;
+  background: radial-gradient(circle at 35% 35%, #9a6840, #6a4010);
+  border-radius: 50%;
+  border: 2px solid #4a2c08;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.35);
+  z-index: 2;
+}
+.re-table::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+
+.re-sprite {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  transition: left 0.32s linear, top 0.32s linear;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.re-sprite--leaving {
+  transition: left 1.0s linear, top 1.0s linear;
+  opacity: 0.5;
+}
+
+.re-sprite--cooking {
+  animation: re-cook-wiggle 0.45s ease-in-out infinite alternate;
+}
+@keyframes re-cook-wiggle {
+  from { transform: translate(-50%, -100%) rotate(-3deg); }
+  to   { transform: translate(-50%, -100%) rotate(3deg); }
+}
+
+.re-sprite--at-table .re-fig {
+  animation: re-nod 0.5s ease-in-out 2;
+}
+@keyframes re-nod {
+  0%,100% { transform: none; }
+  50%      { transform: translateY(-3px); }
+}
+
+.re-carry {
+  position: absolute;
+  top: -16px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.95rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+  animation: re-carry-bob 0.5s ease-in-out infinite alternate;
+  z-index: 12;
+}
+@keyframes re-carry-bob {
+  from { transform: translateX(-50%) translateY(0); }
+  to   { transform: translateX(-50%) translateY(-3px); }
+}
+
+.re-sprite-patience {
+  position: absolute;
+  top: -7px; left: 50%;
+  transform: translateX(-50%);
+  width: 26px; height: 3px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.re-sprite-patience-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.2s linear, background 0.5s;
+}
+
+/* Chef cooking progress bar */
+.re-sprite-progress {
+  position: absolute;
+  bottom: -8px; left: 50%;
+  transform: translateX(-50%);
+  width: 30px; height: 3px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.re-sprite-progress-fill {
+  height: 100%;
+  background: #5adfa0;
+  border-radius: 2px;
+  transition: width 0.2s linear;
+}
+
+/* Food icon on table while customer eats */
+.re-sprite-food-icon {
+  position: absolute;
+  bottom: -18px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+/* Customer eating progress bar */
+.re-sprite-eat-bar {
+  position: absolute;
+  bottom: -8px; left: 50%;
+  transform: translateX(-50%);
+  width: 26px; height: 3px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.re-sprite-eat-fill {
+  height: 100%;
+  background: #f0a030;
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+
+#re-question-area {
+  display: none;
+}
+#re-question-area:not(:empty) {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(5, 3, 1, 0.88);
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.re-info-bar {
+  background: rgba(0,0,0,0.18);
+  padding: 5px 10px;
+  font-size: 0.7rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.15);
+  color: var(--muted);
+}
+
+.re-upgrades {
+  border-top: 1px solid var(--line);
+  padding: 8px 0 4px;
 }
 
 .re-section-lbl {
@@ -1808,152 +2084,6 @@ button:disabled {
   color: var(--muted);
   margin-bottom: 5px;
   text-align: center;
-}
-
-.re-cooks {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-}
-
-.re-cook {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-}
-
-.re-cook-circle {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #1e3d52;
-  border: 2px solid #3a6880;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.re-cook--active .re-cook-circle {
-  border-color: #6ab4e0;
-  box-shadow: 0 0 10px rgba(90, 170, 220, 0.35);
-}
-
-.re-cook-bar {
-  width: 44px;
-  height: 3px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.re-cook-fill {
-  height: 100%;
-  background: #5adfa0;
-  border-radius: 2px;
-  transition: width 0.18s linear;
-}
-
-.re-sat-info {
-  font-size: 0.62rem;
-  color: var(--muted);
-  text-align: center;
-  margin-top: 2px;
-}
-
-.re-customers {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 2px 0;
-  min-height: 70px;
-  align-items: flex-start;
-}
-
-.re-customer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.re-c--gone {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.re-c--happy { transform: translateY(-6px); }
-.re-c--sad   { transform: translateY(6px); }
-
-.re-patience {
-  width: 40px;
-  height: 3px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.re-patience-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 0.18s linear, background 0.5s;
-}
-
-.re-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #4a2020;
-  border: 2px solid #7a3a3a;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.4s, border-color 0.4s;
-}
-
-.re-c--served .re-circle {
-  background: #1e4a3a;
-  border-color: #3a8a6a;
-}
-
-.re-c--eating .re-circle {
-  background: #1e4a20;
-  border-color: #3a8a3a;
-}
-
-.re-hunger-fill {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(80, 200, 100, 0.3);
-  transition: height 0.25s ease;
-}
-
-.re-face {
-  font-size: 1.2rem;
-  position: relative;
-  z-index: 1;
-  line-height: 1;
-}
-
-.re-stats {
-  font-size: 0.72rem;
-  color: var(--muted);
-  padding: 6px 0 4px;
-  text-align: center;
-}
-
-.re-upgrades {
-  border-top: 1px solid var(--line);
-  padding-top: 8px;
-  margin-top: 4px;
 }
 
 .re-unlock-list {
@@ -1977,10 +2107,7 @@ button:disabled {
   gap: 4px;
   transition: background 0.2s;
 }
-
-.re-unlock-btn:hover {
-  background: #4daa62;
-}
+.re-unlock-btn:hover { background: #4daa62; }
 
 .re-unlock-btn--broke {
   background: #2a3a30;
@@ -1989,34 +2116,23 @@ button:disabled {
   opacity: 0.7;
 }
 
-.re-cost {
-  font-size: 0.68rem;
-  opacity: 0.85;
-}
+.re-cost { font-size: 0.68rem; opacity: 0.85; }
 
 .re-question-panel {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-top: 10px;
+  border-radius: 12px;
+  padding: 28px 32px;
+  max-width: 520px;
+  width: 88%;
+  max-height: 88vh;
+  overflow-y: auto;
 }
 
-.re-all-done {
-  text-align: center;
-  padding: 16px 14px;
-}
+.re-all-done { text-align: center; padding: 16px 14px; }
 
-.re-mastery {
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-bottom: 6px;
-}
-
-.re-mastery--done {
-  color: #c8a820;
-  font-weight: 700;
-}
+.re-mastery { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; }
+.re-mastery--done { color: #c8a820; font-weight: 700; }
 
 .re-question-header {
   font-size: 0.75rem;
@@ -2025,32 +2141,27 @@ button:disabled {
   margin-bottom: 10px;
 }
 
+.re-confirm-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.re-confirm-btn {
+  background: #4a7a3a;
+  min-width: 130px;
+}
+.re-confirm-btn:hover { background: #5a9a48; }
+
 .re-dirt-spot {
   position: absolute;
-  width: 9px;
-  height: 6px;
+  width: 9px; height: 6px;
   border-radius: 50%;
-  background: rgba(80, 48, 16, 0.55);
+  background: rgba(80,48,16,0.45);
   pointer-events: none;
   transform: translate(-50%, -50%);
-}
-
-.re-dirt-warning {
-  font-size: 0.75rem;
-  color: #cc8833;
-  padding: 4px 0 2px;
-  text-align: center;
-}
-
-.re-dirt-warning--mild {
-  color: var(--muted);
-}
-
-.re-stock-warnings {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 4px 0;
+  z-index: 1;
 }
 
 .re-stock-warn {
@@ -2071,7 +2182,25 @@ button:disabled {
   font-size: 0.7rem;
   font-family: inherit;
 }
+.re-restock-btn:hover { background: #7a3a3a; }
 
-.re-restock-btn:hover {
-  background: #7a3a3a;
+/* ── Session end modal ─────────────────────────── */
+.session-end-stats {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+.ses-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  font-size: 0.88rem;
+}
+.ses-label { color: var(--muted); }
+.ses-val { font-weight: 700; font-size: 0.95rem; }
+.ses-val--good { color: #5ada80; }
+.ses-val--bad  { color: #e05050; }

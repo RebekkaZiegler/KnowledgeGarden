@@ -2,7 +2,6 @@
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
 const HARVEST_PASS_RATE = 0.7;
-const NORMAL_ENEMIES_PER_RUN = 3;
 const INITIAL_UNLOCK_SLOTS = 2;
 const MAX_ACTIVE_BEDS = 6;
 const SEED_BEDS = PACK_CONTENT.beds;
@@ -27,6 +26,7 @@ const BED_PLANT_COLORS = {
   knochenlehre:  { stemHi: "#a8b890", stemLo: "#5a6a48", fruitHi: "#d8c060", fruitLo: "#908020" },
   muskellehre:   { stemHi: "#d87878", stemLo: "#903030", fruitHi: "#f05050", fruitLo: "#c01010" },
   atmungssystem: { stemHi: "#70d0d8", stemLo: "#247878", fruitHi: "#88d0f8", fruitLo: "#2878b8" },
+  debug:         { stemHi: "#ff44cc", stemLo: "#cc0099", fruitHi: "#44ff44", fruitLo: "#118811" },
 };
 const DEFAULT_PLANT_COLORS = { stemHi: "#7fc98a", stemLo: "#2f6b3d", fruitHi: "#ff8f8f", fruitLo: "#cf2f2f" };
 
@@ -50,6 +50,7 @@ let state = loadState();
 let selectedPlantId = null;
 let harvestSession = null;
 let phase2Session = null;
+let potionSoundPlayedAt = 0;
 let expandedSeedCatalogBedId = null;
 let catalogFilterBedId = null;
 let phase1ShowingLesson = false;
@@ -100,7 +101,7 @@ const SOUND_VOLUMES = {
   "soil and fertilizer.mp3": 0.70,
   "harvest.mp3":             0.75,
   "wrong.mp3":               0.60,
-  "potion.mp3":              0.70,
+  "potion.mp3":              0.18,
 };
 
 function playSound(filename) {
@@ -328,6 +329,7 @@ function createEmptyPlantState(plantId) {
     readiness: 0,
     readinessActionsUsed: 0,
     phase2Questions: {},
+    phase2SeqStep: 0,
     phase2Withered: false,
     harvestedOnce: false,
     cooldownUntil: null,
@@ -348,11 +350,7 @@ function buildBedsState() {
       title: bed.title,
       plants,
       activePlantIds: [],
-      combatUnlocked: false,
-      bossDefeated: false,
-      enemyProgress: {},
-      wrongInCombat: {},
-      bossAvailable: false
+      restaurantUnlocked: false
     };
   });
   return beds;
@@ -387,9 +385,7 @@ function createInitialState() {
         },
         stats: {
           harvestAttempts: 0,
-          harvestSuccesses: 0,
-          combatsWon: 0,
-          combatsLost: 0
+          harvestSuccesses: 0
         },
         weakpoints: {}
       }
@@ -422,21 +418,23 @@ function normalizeLoadedState(inputState) {
   if (!pack.lab) pack.lab = { discoveredHybrids: [] };
   const hybridIds = PACK_CONTENT.lab.hybrids.map((h) => h.id);
   PACK_CONTENT.beds.forEach((bed) => {
+    if (!pack.beds[bed.id]) {
+      // New bed added to content after this save was created — initialise it
+      const plants = {};
+      bed.plants.forEach((p) => { plants[p.id] = createEmptyPlantState(p.id); });
+      pack.beds[bed.id] = { id: bed.id, title: bed.title, plants, activePlantIds: [], restaurantUnlocked: false };
+    }
     const bedState = pack.beds[bed.id];
-    if (!bedState) return;
     const validIds = [...bed.plants.map((p) => p.id), ...hybridIds];
     const current = Array.isArray(bedState.activePlantIds) ? bedState.activePlantIds : [];
-    bedState.activePlantIds = current.filter((id) => validIds.includes(id)).slice(0, 4);
+    bedState.activePlantIds = [...new Set(current.filter((id) => validIds.includes(id)))].slice(0, 4);
     // Migration: add missing plant states for plants added to content.js after save was made
     if (!bedState.plants) bedState.plants = {};
     bed.plants.forEach((p) => {
       if (!bedState.plants[p.id]) bedState.plants[p.id] = createEmptyPlantState(p.id);
     });
-    // Migration: add new combat fields if missing in older saves
-    if (!bedState.enemyProgress) bedState.enemyProgress = {};
-    if (!bedState.wrongInCombat) bedState.wrongInCombat = {};
-    if (bedState.bossAvailable === undefined) bedState.bossAvailable = false;
-    if (bedState.bossDefeated === undefined) bedState.bossDefeated = false;
+    // Migration: rename combatUnlocked → restaurantUnlocked
+    if (bedState.restaurantUnlocked === undefined) bedState.restaurantUnlocked = bedState.combatUnlocked || false;
   });
   return s;
 }
@@ -503,7 +501,7 @@ function importStateFromFile(file) {
     selectedPlantId = null;
     phase2Session = null;
     harvestSession = null;
-    combatSession = null;
+    restaurantSession = null;
     labelSession = null;
     saveState();
     renderAll();
@@ -734,6 +732,22 @@ function ensurePhase2Tracking(plantContent, plantState) {
   if (typeof plantState.phase2Withered !== "boolean") {
     plantState.phase2Withered = false;
   }
+  if (typeof plantState.phase2SeqStep !== "number") {
+    plantState.phase2SeqStep = 0;
+  }
+}
+
+// Advance phase2SeqStep past steps where all questions are already learned
+function advancePhase2SeqStep(plantContent, plantState) {
+  if (areAllPhase2QuestionsLearned(plantContent, plantState)) return;
+  const actionCount = plantContent.phase2?.length || 1;
+  for (let i = 0; i < actionCount; i++) {
+    const currentIdx = (plantState.phase2SeqStep || 0) % actionCount;
+    const assigned = (plantContent.harvestQuestions || []).filter((_, qi) => qi % actionCount === currentIdx);
+    const hasUnlearned = assigned.some(q => (plantState.phase2Questions?.[q.id]?.status || "unseen") !== "learned");
+    if (hasUnlearned || assigned.length === 0) break;
+    plantState.phase2SeqStep = (plantState.phase2SeqStep || 0) + 1;
+  }
 }
 
 function computePhase2Readiness(plantContent, plantState) {
@@ -772,6 +786,7 @@ function resetPlantForRedo(plantState) {
   plantState.phase1StepsDone = { soil: false, seed: false, water: false };
   plantState.phase1ActiveStep = null;
   plantState.phase2Questions = {};
+  plantState.phase2SeqStep = 0;
   plantState.phase2Withered = false;
   plantState.readiness = 0;
   plantState.readinessActionsUsed = 0;
@@ -816,11 +831,13 @@ function markWeakpoint(plantId, questionId) {
   aggregateWeakpoint(plantId, questionId);
 }
 
-function unlockCombatIfNeeded() {
-  const bedState = getBedState();
-  const bedContent = getActiveBedContent();
-  if (!bedState || !bedContent || bedContent.plants.length === 0) return;
-  bedState.combatUnlocked = bedContent.plants.every((p) => bedState.plants[p.id]?.harvestedOnce);
+function unlockRestaurantIfNeeded() {
+  const pack = getPackState();
+  PACK_CONTENT.beds.forEach((bedContent) => {
+    const bedState = pack.beds[bedContent.id];
+    if (!bedState || bedContent.plants.length === 0) return;
+    bedState.restaurantUnlocked = bedContent.plants.every((p) => bedState.plants[p.id]?.harvestedOnce);
+  });
 }
 
 function renderSeedLibrary() {
@@ -1063,9 +1080,9 @@ function synthesizeHybrid(hybridId) {
   if (!pack.lab.discoveredHybrids.includes(hybridId)) pack.lab.discoveredHybrids.push(hybridId);
   unlockHybridBed();
   if (!hybridBed.plants[hybridId]) hybridBed.plants[hybridId] = createEmptyPlantState(hybridId);
-  hybridBed.activePlantIds.push(hybridId);
   saveState();
   renderAll();
+  showToast(`${hybrid.title} synthetisiert! Jetzt im Pflanzenkatalog unter "Hybrid Beet" verfügbar.`, "success");
 }
 
 function plantHybrid(hybridId) {
@@ -1152,7 +1169,7 @@ function renderLab() {
 }
 
 function renderAll() {
-  unlockCombatIfNeeded();
+  unlockRestaurantIfNeeded();
   renderPlayer();
   renderHealArea();
   renderGardenRoom();
@@ -1180,6 +1197,8 @@ function getBedPlantColors(bedId) {
 
 function getPlantColorScheme(content) {
   if (!content) return DEFAULT_PLANT_COLORS;
+  // Per-plant color override (e.g. debug plants)
+  if (content.colorOverride) return content.colorOverride;
   // Hybrid: stem+branch from source bed 1, fruits from source bed 2
   if (content.sources && content.sources.length >= 2) {
     const s1 = getBedPlantColors(content.sources[0].split("::")[0]);
@@ -1228,10 +1247,9 @@ function renderGardenRoom() {
   const allUnlocked = PACK_CONTENT.beds.filter(b =>
     unlockedIds.has(b.id) && (b.id !== "hybrid" || (pack.lab.discoveredHybrids?.length || 0) > 0)
   );
-  // Collect which beds to show, then sort by their natural content order (stable positions)
+  // Collect which beds to show. Only include a bed if it has active plants.
+  // (Empty beds — including activeBedId — stay hidden until the player plants something.)
   const shownBedIds = new Set();
-  if (state.activeBedId && allUnlocked.some(b => b.id === state.activeBedId))
-    shownBedIds.add(state.activeBedId);
   allUnlocked.forEach(b => {
     if (shownBedIds.size < 3 && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
       shownBedIds.add(b.id);
@@ -1456,12 +1474,30 @@ function skipCooldownWithFertilizer(plantId) {
 
 function renderLeftPanel() {
   if (!els.plantDetail) return;
-  // Clear the separate visual slot — renderPlantDetail() embeds the visual itself
-  if (els.leftPanelVisual) els.leftPanelVisual.innerHTML = "";
 
   if (!selectedPlantId || !state.activeBedId) {
+    if (els.leftPanelVisual) els.leftPanelVisual.innerHTML = "";
     els.plantDetail.innerHTML = "Keine Pflanze ausgewählt.<br><br>Klicke eine Pflanze im Garten an.";
     return;
+  }
+
+  // Render plant visual in the fixed slot above the scrollable detail panel
+  if (els.leftPanelVisual) {
+    const bedState = getBedState();
+    const plantState = bedState?.plants?.[selectedPlantId];
+    // Try active bed first, then search all beds (covers post-harvest case)
+    let plantContent = getPlantContent(selectedPlantId);
+    if (!plantContent) {
+      for (const bed of PACK_CONTENT.beds) {
+        plantContent = bed.plants.find(p => p.id === selectedPlantId) || null;
+        if (plantContent) break;
+      }
+    }
+    const activeIds = bedState?.activePlantIds || [];
+    const isHarvested = plantState?.harvestedOnce && !activeIds.includes(selectedPlantId);
+    els.leftPanelVisual.innerHTML = (plantState && plantContent && !isHarvested)
+      ? buildPlantVisualHtml(plantState, plantContent, "plant-visual--large")
+      : "";
   }
 
   // renderPlantDetail() renders directly into els.plantDetail and binds its own events
@@ -1593,27 +1629,37 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const phase2Actions = Math.max(1, Number((content.phase2 || []).length || 1));
   const usedActions = Math.max(0, Math.min(phase2Actions, Number(plantState.readinessActionsUsed || 0)));
 
-  // Water/fertilize visual effects: check which actions are done
+  // Determine sequential step info (used for both visual effects and growth animation)
+  const seqStep = plantState.phase2SeqStep || 0;
+  const seqCurrentIdx = seqStep % phase2Actions;
+  const seqLastIdx = ((seqStep - 1) + phase2Actions) % phase2Actions;
+  const seqCurrentType = (content.phase2[seqCurrentIdx]?.type || "").toLowerCase();
+  const seqLastType = seqStep > 0 ? (content.phase2[seqLastIdx]?.type || "").toLowerCase() : "";
+  const lastActionWasTrim = locked && seqLastType === "trim";
+
+  // Sequential visual effects: grey for water-needed, transparent for fertilize-needed,
+  // recovery animation during cooldown, grey-building during trim cooldown (water comes next)
   let plantOpacity = 1.0;
   let plantSaturation = 1.0;
-  if (visual.phase !== "phase1" && plantState.phase1Completed) {
-    (content.phase2 || []).forEach((action, idx) => {
-      const assigned = (content.harvestQuestions || []).filter((_, qi) => qi % phase2Actions === idx);
-      const done = assigned.length > 0 && assigned.every(q =>
-        plantState.phase2Questions?.[q.id]?.status === "learned"
-      );
-      if (!done) {
-        if (action.type === "fertilize") plantOpacity = 0.72;
-        if (action.type === "water") plantSaturation = 0.5;
-      }
-    });
+  if (visual.phase !== "phase1" && plantState.phase1Completed && visual.phase !== "phase3") {
+    if (locked) {
+      if (seqLastType === "water")           plantSaturation = 0.5 + (0.5 * fillProgress);
+      else if (seqLastType === "fertilize")  plantOpacity = 0.72 + (0.28 * fillProgress);
+      else if (seqLastType === "trim")       plantSaturation = 1.0 - (0.5 * fillProgress);
+    } else {
+      if (seqCurrentType === "water")           plantSaturation = 0.5;
+      else if (seqCurrentType === "fertilize")  plantOpacity = 0.72;
+    }
   }
 
   // Harvest fruit removal: each correct answer removes one fruit from the visual
   const isHarvestPlant = harvestSession && harvestSession.plantId === plantState.id;
   const harvestCorrect = isHarvestPlant ? (harvestSession.correct || 0) : 0;
+  // Trim doesn't grow the plant — suppress growth animation during trim cooldown
   const stagedProgress = locked
-    ? Math.max(0, Math.min(phase2Actions, (usedActions - 1) + fillProgress))
+    ? lastActionWasTrim
+      ? usedActions                                                              // trim: no growth
+      : Math.max(0, Math.min(phase2Actions, (usedActions - 1) + fillProgress))  // water/fertilize: grow
     : usedActions;
   const stageRatio = visual.phase === "phase1"
     ? 0
@@ -1621,24 +1667,31 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const stemMax = Math.round(42 + (growthScale * 38));
   const stemFill = Math.max(10, Math.round(stemMax * (0.12 + (stageRatio * 0.88))));
   const fullBranches = Math.max(0, Math.floor(stagedProgress + 0.0001));
-  const growingBranchIdx = (locked && usedActions > 0) ? Math.max(0, usedActions - 1) : -1;
+  const growingBranchIdx = (locked && !lastActionWasTrim && usedActions > 0) ? Math.max(0, usedActions - 1) : -1;
   const currentBranchGrowth = (growingBranchIdx >= 0) ? fillProgress : 1;
   const branchSpecs = new Array(phase2Actions).fill(0).map((_, i) => ({
     y: 0.24 + (((i + 1) / (phase2Actions + 1)) * 0.64),
     rot: (i % 2 === 0 ? -1 : 1) * (22 + ((i % 3) * 5)),
     len: 14 + ((i % 4) * 3)
   }));
-  // Grey drooping stubs for incomplete trim actions — positioned independently between branches
+  // Grey drooping stubs: show when trim is the current active step, or when a trim question
+  // has "wrong" status (harvest failure recovery). Hidden during trim cooldown and when trim
+  // step is not yet reached in the sequence.
   const trimStubHtml = visual.phase === "phase1" ? "" : (() => {
     const phase2 = content.phase2 || [];
     const actionCount = Math.max(1, phase2.length);
+    const seqStepForStubs = plantState.phase2SeqStep || 0;
+    const currentStepForStubs = seqStepForStubs % actionCount;
     const trimIndices = phase2.reduce((acc, a, i) => { if (a.type === "trim") acc.push(i); return acc; }, []);
     return trimIndices.map((idx, trimRank) => {
       const assigned = (content.harvestQuestions || []).filter((_, qi) => qi % actionCount === idx);
-      const done = assigned.length === 0 || assigned.every(q =>
-        plantState.phase2Questions?.[q.id]?.status === "learned"
-      );
-      if (done) return "";
+      if (assigned.length === 0) return "";
+      const allLearned = assigned.every(q => plantState.phase2Questions?.[q.id]?.status === "learned");
+      if (allLearned) return "";
+      // Show stub: trim is current active step (not in cooldown), OR a trim question failed during harvest
+      const isCurrentAndReady = (idx === currentStepForStubs) && !locked;
+      const hasWrongFromHarvest = assigned.some(q => plantState.phase2Questions?.[q.id]?.status === "wrong");
+      if (!isCurrentAndReady && !hasWrongFromHarvest) return "";
       // Space stubs evenly in the lower 20–60% of the stem, independent of branch positions
       const yFrac = 0.2 + ((trimRank + 1) / (trimIndices.length + 1)) * 0.4;
       const by = Math.round(stemFill * yFrac);
@@ -1695,7 +1748,9 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
       : "";
   const classAttr = "plant-visual" + (extraClass ? " " + extraClass : "") + sparkleClass;
   const colors = getPlantColorScheme(content);
-  const colorStyle = `--stem-hi:${colors.stemHi};--stem-lo:${colors.stemLo};--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};opacity:${plantOpacity};filter:saturate(${plantSaturation});`;
+  // Color variables on outer div (inherited by all); opacity/filter on plant-body only (not pot)
+  const colorStyle = `--stem-hi:${colors.stemHi};--stem-lo:${colors.stemLo};--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};`;
+  const bodyStyle = `opacity:${plantOpacity};filter:saturate(${plantSaturation});`;
   const potSrc = (() => {
     const steps = plantState.phase1StepsDone || {};
     if (plantState.phase1Completed || visual.phase !== 'phase1') return 'assets/images/pot ready to grow.png';
@@ -1706,10 +1761,12 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   return `
     <div class="${classAttr}" data-plant-visual="${plantState.id}" style="${colorStyle}">
       <img class="plant-pot-img" src="${potSrc}" alt="">
-      ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
-      ${visual.phase !== "phase1" ? `<div class="plant-stem${visual.withered ? " is-withered" : ""}" style="--stem-fill:${stemFill}px;"></div>` : ""}
-      ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}${trimStubHtml}</div>` : ""}
-      <div class="plant-fruits">${fruitDots}</div>
+      <div class="plant-body" style="${bodyStyle}">
+        ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
+        ${visual.phase !== "phase1" ? `<div class="plant-stem${visual.withered ? " is-withered" : ""}" style="--stem-fill:${stemFill}px;"></div>` : ""}
+        ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}${trimStubHtml}</div>` : ""}
+        <div class="plant-fruits">${fruitDots}</div>
+      </div>
     </div>
   `;
 }
@@ -2027,6 +2084,34 @@ function renderPlantDetail() {
     return;
   }
   const activeIds = bedState.activePlantIds || [];
+
+  // If a plant is selected but no longer active, check if it was just harvested
+  if (selectedPlantId && !activeIds.includes(selectedPlantId)) {
+    const ps = bedState.plants?.[selectedPlantId];
+    if (ps?.harvestedOnce) {
+      const fruits = ps.lastHarvestFruits ?? "?";
+      const plantContent = (() => {
+        let c = getPlantContent(selectedPlantId);
+        if (!c) for (const bed of PACK_CONTENT.beds) { c = bed.plants.find(p => p.id === selectedPlantId) || null; if (c) break; }
+        return c;
+      })();
+      const colors = getPlantColorScheme(plantContent);
+      const dotCount = typeof ps.lastHarvestFruits === "number" ? Math.min(ps.lastHarvestFruits, 12) : 0;
+      const fruitDots = dotCount > 0
+        ? `<div class="harvest-success-dot-row" style="--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};">${new Array(dotCount).fill(0).map((_, i) => `<span class="harvest-fruit-dot" style="animation-delay:${(i * 0.12).toFixed(2)}s"></span>`).join("")}</div>`
+        : "";
+      els.plantDetail.innerHTML = `
+        <div class="harvest-success-card">
+          <div class="harvest-success-title">Gut gemacht!</div>
+          <div class="harvest-success-fruits">+${fruits} Früchte</div>
+          ${fruitDots}
+          <div class="harvest-success-hint muted">Pflanze erneut einsetzen, um sie weiter zu üben.</div>
+        </div>`;
+      return;
+    }
+    selectedPlantId = null;
+  }
+
   if (activeIds.length === 0) {
     els.plantDetail.textContent = "Wähle im Beet oben eine Pflanze aus.";
     return;
@@ -2034,11 +2119,6 @@ function renderPlantDetail() {
 
   if (!selectedPlantId) {
     els.plantDetail.textContent = "Wähle eine Pflanze zum Starten.";
-    return;
-  }
-  if (!activeIds.includes(selectedPlantId)) {
-    selectedPlantId = null;
-    els.plantDetail.textContent = "Die gewählte Pflanze ist nicht mehr aktiv. Bitte erneut auswählen.";
     return;
   }
 
@@ -2074,8 +2154,7 @@ function renderPlantDetail() {
 
   if (withered) {
     const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
-    const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
-    els.plantDetail.innerHTML = plantVisualHtml + `
+    els.plantDetail.innerHTML = `
       <div><strong>${label}</strong></div>
       <div class="feedback">Pflanze verwelkt: zu viele falsche Antworten bei offenen Fragen.</div>
       <div class="muted">Diese Pflanze muss ab Phase 1 neu gestartet werden.</div>
@@ -2089,28 +2168,30 @@ function renderPlantDetail() {
     return;
   }
 
+  advancePhase2SeqStep(plantContent, plantState);
   const actionCount = Math.max(1, plantContent.phase2.length || 1);
+  const currentStepIdx = (plantState.phase2SeqStep || 0) % actionCount;
   const actions = plantContent.phase2.map((a, idx) => {
     const assigned = plantContent.harvestQuestions.filter((_, i) => i % actionCount === idx);
     if (assigned.length === 0) return '';
     const learnedCount = assigned.filter((q) => plantState.phase2Questions[q.id]?.status === "learned").length;
     const hasWrong = assigned.some((q) => plantState.phase2Questions[q.id]?.status === "wrong");
     const allLearnedAction = learnedCount === assigned.length;
-    const statusLabel = allLearnedAction ? "OK" : hasWrong ? `⚠ ${learnedCount}/${assigned.length}` : `${learnedCount}/${assigned.length}`;
+    const isCurrentStep = idx === currentStepIdx && !allLearnedAction;
+    const statusLabel = allLearnedAction ? "✓" : hasWrong ? `⚠ ${learnedCount}/${assigned.length}` : `${learnedCount}/${assigned.length}`;
     const imgSrc = getActionImg(a.type);
     const icon = getActionIcon(a.type);
-    const doneClass = allLearnedAction ? " tool-done" : "";
+    const doneClass = allLearnedAction ? " tool-done" : isCurrentStep ? "" : " tool-btn--seq-locked";
+    const isDisabled = onCooldown || allLearnedAction || !isCurrentStep;
     const tipText = escapeHtmlAttr(`${a.type}: ${a.text} [${statusLabel}]`);
     const btnInner = imgSrc
       ? `<img src="${imgSrc}" class="tool-img" alt="${a.type}"><span class="tool-status">${statusLabel}</span>`
       : `<img src="assets/images/button.png" class="tool-img" alt="${a.type}"><span class="tool-icon tool-icon--overlay">${icon}</span><span class="tool-status">${statusLabel}</span>`;
-    return `<button class="tool-btn${doneClass}" data-p2="${idx}" ${(onCooldown || allLearnedAction) ? "disabled" : ""} title="${tipText}">${btnInner}</button>`;
+    return `<button class="tool-btn${doneClass}" data-p2="${idx}" ${isDisabled ? "disabled" : ""} title="${tipText}">${btnInner}</button>`;
   }).join("");
   const harvestable = allLearned;
-  const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
-  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
 
-  els.plantDetail.innerHTML = plantVisualHtml + `
+  els.plantDetail.innerHTML = `
     ${onCooldown ? `<div class="cooldown-track-wrap"><div class="cooldown-track"><div class="cooldown-fill" style="width:${cooldownProgressPct}%"></div></div><div class="muted" style="text-align:center;font-size:0.78rem">⏳ Cooldown: ${secsLeft}s</div></div>` : ""}
     <div class="tools-row">${actions}</div>
     <div class="plant-util-row">
@@ -2137,6 +2218,7 @@ function renderPlantDetail() {
       player.fertilizer -= 1;
     }
     plantState.cooldownUntil = null;
+    potionSoundPlayedAt = Date.now();
     playSound("potion.mp3");
     saveState();
     renderAll();
@@ -2152,16 +2234,14 @@ function renderPhase1(plantContent, plantState) {
   const labels = { soil: "🪨 Boden", seed: "🌰 Samen", water: "💧 Erstes Giessen" };
   const nextStep = order.find((s) => !plantState.phase1StepsDone[s]);
   const activeStep = plantState.phase1ActiveStep || null;
-  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
 
   if (!activeStep) {
-    const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
     const chips = order.map((s) => {
       const done = plantState.phase1StepsDone[s];
       return `<span class="status-chip ${done ? "done" : "idle"}">${labels[s]}: ${done ? "✓" : "…"}</span>`;
     }).join(" ");
 
-    els.plantDetail.innerHTML = plantVisualHtml + `
+    els.plantDetail.innerHTML = `
       <div class="plant-phase-chips">${chips}</div>
       <div class="row">
         <button id="start-phase1-step-btn" ${nextStep ? "" : "disabled"}>${nextStep ? `${labels[nextStep]} starten` : "Phase 1 abgeschlossen"}</button>
@@ -2183,7 +2263,7 @@ function renderPhase1(plantContent, plantState) {
   const stepData = plantContent.phase1[activeStep];
   if (!stepData || typeof stepData.statement !== "string") {
     const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
-    els.plantDetail.innerHTML = plantVisualHtml + `
+    els.plantDetail.innerHTML = `
       <div><strong>${label}</strong></div>
       <div class="feedback">Keine Frage für Schritt "${activeStep}" konfiguriert.</div>
       <div class="row"><button id="phase1-back-btn">Zurück</button></div>
@@ -2197,11 +2277,9 @@ function renderPhase1(plantContent, plantState) {
     return;
   }
 
-  const label = getCurrentPlantLabel(selectedPlantId, plantContent.title);
-
   if (phase1ShowingLesson) {
     const explanation = normalizeExplanation(stepData.solution) || stepData.statement;
-    els.plantDetail.innerHTML = plantVisualHtml + `
+    els.plantDetail.innerHTML = `
       <div class="muted detail-hint">Phase 1 – ${labels[activeStep]} – Lerninhalt</div>
       <div class="question">${explanation}</div>
       <div class="muted">Lies durch, dann beantworte die Frage.</div>
@@ -2214,7 +2292,7 @@ function renderPhase1(plantContent, plantState) {
     return;
   }
 
-  els.plantDetail.innerHTML = plantVisualHtml + `
+  els.plantDetail.innerHTML = `
     <div class="muted detail-hint">Phase 1 – ${labels[activeStep]} – Frage</div>
     <div class="question">${stepData.statement}</div>
     <div class="row">
@@ -2280,7 +2358,9 @@ function usePhase2Action(plantId, actionIndex) {
   if (plantState.cooldownUntil && now < plantState.cooldownUntil) return;
 
   computePhase2Readiness(plantContent, plantState);
-  plantState.readinessActionsUsed += 1;
+  const actionType = (plantContent.phase2[actionIndex]?.type || "").toLowerCase();
+  if (actionType !== "trim") plantState.readinessActionsUsed += 1; // trim doesn't grow the plant
+  plantState.phase2SeqStep = (plantState.phase2SeqStep || 0) + 1;
   plantState.cooldownUntil = now + getCooldownMs();
   if (areAllPhase2QuestionsLearned(plantContent, plantState) && !plantState.phase2Withered) {
     plantState.status = "harvestable";
@@ -2288,7 +2368,6 @@ function usePhase2Action(plantId, actionIndex) {
     plantState.status = "growing";
   }
   addXp(1);
-  selectedPlantId = null;
   saveState();
   renderAll();
 }
@@ -2331,7 +2410,6 @@ function renderPhase2Question() {
   const plantState = bedState && bedState.plants[phase2Session.plantId];
   const action = plantContent.phase2[phase2Session.actionIndex];
   const q = phase2Session.question;
-  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
   const hint = `<div class="muted detail-hint">${getActionIcon(action.type)} ${action.type}: ${action.text}</div>`;
 
   function attachContinueAndResolve(fb, ok) {
@@ -2382,7 +2460,7 @@ function renderPhase2Question() {
       const label = `${letters[i]}) ${o.text}`;
       return `<button class="mc-option ${mcBtnClass(label)}" data-p2mc="${i}">${label}</button>`;
     }).join("");
-    els.plantDetail.innerHTML = plantVisualHtml + hint + `
+    els.plantDetail.innerHTML = hint + `
       <div class="question">${q.question}</div>
       <div class="mc-options">${optHtml}</div>
       <div id="phase2-feedback" class="feedback"></div>
@@ -2409,7 +2487,7 @@ function renderPhase2Question() {
   }
 
   // true_false
-  els.plantDetail.innerHTML = plantVisualHtml + hint + `
+  els.plantDetail.innerHTML = hint + `
     <div class="question">${q.statement}</div>
     <div class="row">
       <button data-p2a="true">Richtig</button>
@@ -2456,7 +2534,6 @@ function renderHarvestQuestion() {
   const bedState = getBedState();
   const plantState = bedState && bedState.plants[harvestSession.plantId];
   const plantContent = getPlantContent(harvestSession.plantId);
-  const plantVisualHtml = buildPlantVisualHtml(plantState, plantContent, "plant-visual--large");
 
   function advanceHarvest() {
     harvestSession.index += 1;
@@ -2482,7 +2559,7 @@ function renderHarvestQuestion() {
       const label = `${letters[i]}) ${o.text}`;
       return `<button class="mc-option ${mcBtnClass(label)}" data-oi="${i}">${label}</button>`;
     }).join("");
-    els.plantDetail.innerHTML = plantVisualHtml + `
+    els.plantDetail.innerHTML = `
       <div class="muted detail-hint">🌾 Ernte (${progress})</div>
       <div class="question">${q.question}</div>
       <div class="mc-options">${optHtml}</div>
@@ -2513,7 +2590,7 @@ function renderHarvestQuestion() {
   }
 
   // true/false
-  els.plantDetail.innerHTML = plantVisualHtml + `
+  els.plantDetail.innerHTML = `
     <div class="muted detail-hint">🌾 Ernte (${progress})</div>
     <div class="question">${q.statement}</div>
     <div class="row">
@@ -2548,20 +2625,18 @@ function finalizeHarvest() {
 
   if (wrongCount === 0) {
     // All correct → harvest success
-    pack.player.fruits += harvestSession.correct;
+    const fruitsGained = harvestSession.correct;
+    pack.player.fruits += fruitsGained;
     plantState.harvestedOnce = true;
+    plantState.lastHarvestFruits = fruitsGained;
     plantState.status = "completed";
     plantState.readiness = 0;
     plantState.readinessActionsUsed = 0;
     plantState.cooldownUntil = null;
     const harvestedId = harvestSession.plantId;
-    const fruitsGained = harvestSession.correct;
     const idx = bedState.activePlantIds.indexOf(harvestedId);
     if (idx >= 0) bedState.activePlantIds.splice(idx, 1);
-    if (selectedPlantId === harvestedId) selectedPlantId = null;
-    if (bedState.activePlantIds.length === 0 && state.activeBedId === bedState.id) {
-      state.activeBedId = null;
-    }
+    // Keep selectedPlantId and activeBedId so the plant stays visible in the left panel
     harvestSession = null;
     addXp(5);
     pack.stats.harvestSuccesses += 1;
@@ -2576,10 +2651,27 @@ function finalizeHarvest() {
         plantState.phase2Questions[qId].status = "wrong";
       }
     });
+    // Reset phase2SeqStep to the first action that has wrong questions
+    const phase2ActionCount = Math.max(1, plantContent.phase2.length || 1);
+    const wrongActionIdxs = harvestSession.wrongIds
+      .map(qId => {
+        const qi = (plantContent.harvestQuestions || []).findIndex(q => q.id === qId);
+        return qi >= 0 ? qi % phase2ActionCount : -1;
+      })
+      .filter(i => i >= 0)
+      .sort((a, b) => a - b);
+    if (wrongActionIdxs.length > 0) {
+      const firstWrongIdx = wrongActionIdxs[0];
+      const curStep = plantState.phase2SeqStep || 0;
+      const curIdx = curStep % phase2ActionCount;
+      const cycleBase = Math.floor(curStep / phase2ActionCount) * phase2ActionCount;
+      plantState.phase2SeqStep = firstWrongIdx >= curIdx
+        ? cycleBase + firstWrongIdx
+        : cycleBase + phase2ActionCount + firstWrongIdx;
+    }
     computePhase2Readiness(plantContent, plantState);
     evaluateWither(plantContent, plantState);
     // Bar shows proportion of correct answers (e.g. 4/6 correct → 67%)
-    const phase2ActionCount = Math.max(1, plantContent.phase2.length || 1);
     plantState.readinessActionsUsed = phase2ActionCount * (total - wrongCount) / total;
     plantState.cooldownUntil = null;
     plantState.status = "growing";
@@ -2641,10 +2733,11 @@ function checkPlantSoundTriggers() {
 
       if (plantId in prevPlantSoundStates) {
         const prev = prevPlantSoundStates[plantId];
+        const potionJustUsed = Date.now() - potionSoundPlayedAt < 1200;
         if (harvestable && !prev.harvestable) {
-          playSound("twinkle done.mp3");
+          if (!potionJustUsed) playSound("twinkle done.mp3");
         } else if (cooldownDone && !prev.cooldownDone && !harvestable) {
-          playSound("twinkle.mp3");
+          if (!potionJustUsed) playSound("twinkle.mp3");
         }
       }
 
@@ -2905,7 +2998,29 @@ const RE_DIRT_POS = [
   {x:82,y:68},{x:38,y:92},{x:57,y:48},{x:12,y:88},{x:77,y:44}
 ];
 
+const RE_TABLE_SLOTS = [
+  { x: 38, y: 22 }, { x: 64, y: 22 },
+  { x: 38, y: 60 }, { x: 64, y: 60 },
+  { x: 83, y: 40 }
+];
+const RE_COOK_POS   = [{ x: 12, y: 32 }, { x: 12, y: 56 }, { x: 12, y: 76 }];
+const RE_ENTRANCE   = { x: 93, y: 78 };
+const RE_EXIT_POS   = { x: 98, y: 92 };
+const RE_DELIVER_MS = 1200;
+const RE_ARRIVE_MS  = 1400;
+
+const CUST_PALETTES = [
+  { skin: "#f5c5a0", hair: "#3a2200", shirt: "#cc4444", pants: "#334488" },
+  { skin: "#c88060", hair: "#111111", shirt: "#4488cc", pants: "#333344" },
+  { skin: "#ffe0c8", hair: "#cc9900", shirt: "#44aa44", pants: "#884444" },
+  { skin: "#a06040", hair: "#222222", shirt: "#aa44aa", pants: "#445522" },
+  { skin: "#f0d0b0", hair: "#884422", shirt: "#dd7700", pants: "#224488" },
+];
+
+let reLastUpgradeSignature = "";
+
 let restaurantSession = null;
+let sessionStats = { questionsAnswered: 0, correct: 0, wrong: 0, startTime: Date.now() };
 
 function reGetRestaurant(bedId) {
   const bedState = getPackState().beds[bedId];
@@ -2942,6 +3057,121 @@ function rePickQuestion(bedId, allowRepeat = false) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
+function buildChefHtml() {
+  return `<svg class="re-fig re-fig--chef" width="26" height="44" viewBox="0 0 26 44" xmlns="http://www.w3.org/2000/svg">
+    <rect x="9" y="1" width="8" height="3" rx="1" fill="white" stroke="#ccc" stroke-width="0.4"/>
+    <rect x="11" y="-1" width="4" height="5" rx="1" fill="white" stroke="#ccc" stroke-width="0.4"/>
+    <circle cx="13" cy="10" r="6" fill="#f5c5a0" stroke="#e0a070" stroke-width="0.5"/>
+    <circle cx="11" cy="10" r="0.9" fill="#7a4020" opacity="0.8"/>
+    <circle cx="15" cy="10" r="0.9" fill="#7a4020" opacity="0.8"/>
+    <path d="M11 12.5 Q13 14.5 15 12.5" stroke="#7a4020" stroke-width="0.7" fill="none" opacity="0.8"/>
+    <rect x="9" y="16" width="8" height="10" rx="2" fill="white" stroke="#ddd" stroke-width="0.4"/>
+    <line x1="13" y1="17" x2="13" y2="25" stroke="#ddd" stroke-width="0.5"/>
+    <rect x="4" y="16" width="5" height="8" rx="2.5" fill="white" stroke="#ddd" stroke-width="0.4"/>
+    <rect x="17" y="16" width="5" height="8" rx="2.5" fill="white" stroke="#ddd" stroke-width="0.4"/>
+    <circle cx="6.5" cy="24" r="2.2" fill="#f5c5a0" stroke="#e0a070" stroke-width="0.4"/>
+    <circle cx="19.5" cy="24" r="2.2" fill="#f5c5a0" stroke="#e0a070" stroke-width="0.4"/>
+    <rect x="9" y="26" width="3.5" height="13" rx="1.5" fill="#334455"/>
+    <rect x="13.5" y="26" width="3.5" height="13" rx="1.5" fill="#334455"/>
+    <ellipse cx="10.5" cy="39.5" rx="3.2" ry="1.8" fill="#222"/>
+    <ellipse cx="15.5" cy="39.5" rx="3.2" ry="1.8" fill="#222"/>
+  </svg><div class="re-carry" style="display:none"></div><div class="re-sprite-progress" style="display:none"><div class="re-sprite-progress-fill"></div></div>`;
+}
+
+function buildCustomerHtml(customerId) {
+  const pal = CUST_PALETTES[customerId % CUST_PALETTES.length];
+  return `<svg class="re-fig re-fig--customer" width="22" height="40" viewBox="0 0 22 40" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="11" cy="5" rx="5.5" ry="3.5" fill="${pal.hair}"/>
+    <circle cx="11" cy="9" r="5.5" fill="${pal.skin}" stroke="#c09060" stroke-width="0.4"/>
+    <circle cx="9.2" cy="9" r="0.8" fill="#5a3020" opacity="0.8"/>
+    <circle cx="12.8" cy="9" r="0.8" fill="#5a3020" opacity="0.8"/>
+    <path d="M9.2 11.5 Q11 13 12.8 11.5" stroke="#5a3020" stroke-width="0.6" fill="none" opacity="0.7"/>
+    <rect x="7" y="15" width="8" height="10" rx="2" fill="${pal.shirt}"/>
+    <rect x="2" y="15" width="5" height="8" rx="2.5" fill="${pal.skin}" stroke="#c09060" stroke-width="0.3"/>
+    <rect x="15" y="15" width="5" height="8" rx="2.5" fill="${pal.skin}" stroke="#c09060" stroke-width="0.3"/>
+    <rect x="7" y="25" width="3.5" height="11" rx="1.5" fill="${pal.pants}"/>
+    <rect x="11.5" y="25" width="3.5" height="11" rx="1.5" fill="${pal.pants}"/>
+    <ellipse cx="9" cy="36.5" rx="3" ry="1.5" fill="#333"/>
+    <ellipse cx="13" cy="36.5" rx="3" ry="1.5" fill="#333"/>
+  </svg><div class="re-sprite-patience"><div class="re-sprite-patience-fill"></div></div><div class="re-sprite-eat-bar" style="display:none"><div class="re-sprite-eat-fill"></div></div><div class="re-sprite-food-icon" style="display:none"></div>`;
+}
+
+function getCookPos(cook, cookIndex, session) {
+  const kp = RE_COOK_POS[cookIndex] || { x: 12, y: 50 };
+  if (!cook.targetId || cook.state === "idle") return { x: kp.x, y: kp.y, carrying: null, phase: "idle" };
+  const cust = session.customers.find(c => c.id === cook.targetId);
+  const slot = cust?.tableSlot ?? 0;
+  const tp = RE_TABLE_SLOTS[slot] || RE_TABLE_SLOTS[0];
+  if (cook.state === "delivering") {
+    const prog = Math.min(1, 1 - (cook.deliverTimer / RE_DELIVER_MS));
+    return { x: kp.x + (tp.x - kp.x) * prog, y: kp.y + (tp.y - kp.y) * prog, carrying: cook.cookIcons, phase: "delivering" };
+  }
+  if (cook.state === "cooking") {
+    const prog = 1 - (cook.cookTimer / cook.cookTimerMax);
+    if (prog < 0.28) {
+      const t = prog / 0.28;
+      return { x: kp.x + (tp.x - kp.x) * t, y: kp.y + (tp.y - kp.y) * t, carrying: null, phase: "going" };
+    } else if (prog < 0.40) {
+      return { x: tp.x, y: tp.y, carrying: null, phase: "at_table" };
+    } else {
+      const t = Math.min(1, (prog - 0.40) / 0.30);
+      return { x: tp.x + (kp.x - tp.x) * t, y: tp.y + (kp.y - tp.y) * t, carrying: null, phase: t >= 1 ? "cooking" : "returning" };
+    }
+  }
+  return { x: kp.x, y: kp.y, carrying: null, phase: "idle" };
+}
+
+function getCustomerPos(c) {
+  const slot = c.tableSlot ?? 0;
+  const tp = RE_TABLE_SLOTS[slot] || RE_TABLE_SLOTS[0];
+  if (c.state === "leaving_happy" || c.state === "leaving_sad") {
+    const prog = Math.min(1, 1 - (c.leaveTimer / 900));
+    return { x: tp.x + (RE_EXIT_POS.x - tp.x) * prog, y: tp.y + (RE_EXIT_POS.y - tp.y) * prog };
+  }
+  const arr = Math.min(1, (c.arrivalProgress || 0));
+  return { x: RE_ENTRANCE.x + (tp.x - RE_ENTRANCE.x) * arr, y: RE_ENTRANCE.y + (tp.y - RE_ENTRANCE.y) * arr };
+}
+
+function assignTableSlot(session) {
+  const used = new Set(session.customers.map(c => c.tableSlot));
+  for (let i = 0; i < RE_TABLE_SLOTS.length; i++) { if (!used.has(i)) return i; }
+  return session.customers.length % RE_TABLE_SLOTS.length;
+}
+
+function buildReUpgradesHtml(session, restaurant, player) {
+  const reBedContent = PACK_CONTENT.beds.find(b => b.id === session.bedId);
+  const reAllQs = [];
+  (reBedContent?.plants || []).forEach(p => {
+    (p.harvestQuestions || []).forEach(q => reAllQs.push(q));
+    (p.cleaningQuestions || []).forEach(q => reAllQs.push(q));
+  });
+  const reAnswers = restaurant.questionAnswers || {};
+  const reMastered = reAllQs.filter(q => reAnswers[q.id] === "correct").length;
+  const reAllMastered = reAllQs.length > 0 && reMastered === reAllQs.length;
+  const unlocks = [];
+  if (restaurant.unlockedCooks < 3) {
+    const n = restaurant.unlockedCooks + 1;
+    unlocks.push({ type: "cook", value: n, icon: "👨‍🍳", label: `${n}. Koch`, cost: n });
+  }
+  if (!restaurant.unlockedCleaner)
+    unlocks.push({ type: "cleaner", value: true, icon: "🧹", label: "Reinigungskraft", cost: 5 });
+  RE_INGREDIENTS.filter(i => i.cost > 0 && !restaurant.unlockedIngredients.includes(i.id))
+    .forEach(ing => unlocks.push({ type: "ingredient", value: ing.id, icon: ing.icon, label: ing.label, cost: ing.cost }));
+  session.currentUnlocks = unlocks;
+  const masteryHtml = reAllQs.length > 0
+    ? reAllMastered
+      ? `<div class="re-mastery re-mastery--done">🏆 ${reMastered}/${reAllQs.length} Fragen gemeistert</div>`
+      : `<div class="re-mastery">${reMastered}/${reAllQs.length} Fragen korrekt beantwortet</div>`
+    : "";
+  const unlocksHtml = unlocks.length
+    ? unlocks.map((u, i) => {
+        const can = player.fruits >= u.cost;
+        return `<button class="re-unlock-btn${can ? "" : " re-unlock-btn--broke"}" onclick="startReUnlock(${i})"${can ? "" : " disabled"}>${u.icon} ${u.label} <span class="re-cost">${u.cost} 🍎</span></button>`;
+      }).join("")
+    : `<span style="font-size:.75rem;color:var(--muted)">Alles freigeschaltet!</span>`;
+  return `<div class="re-section-lbl" style="text-align:left;margin-bottom:4px">Verbesserungen</div>${masteryHtml}<div class="re-unlock-list">${unlocksHtml}</div>`;
+}
+
 function reSatiety(restaurant, stocks) {
   return Math.min(100, restaurant.unlockedIngredients.reduce((s, id) => {
     if (stocks && (stocks[id] ?? RE_STOCK_BASE) <= 0) return s; // out of stock
@@ -2958,12 +3188,6 @@ function reSyncCooks() {
 
 function openRestaurant(bedId) {
   stopRestaurant();
-  const bedState = getPackState().beds[bedId];
-  const rc = document.getElementById("room-content");
-  if (!bedState?.combatUnlocked) {
-    if (rc) rc.innerHTML = `<p class="muted" style="text-align:center;padding:2rem 1rem">Ernte alle Pflanzen dieses Beetes, um das Restaurant zu öffnen.</p>`;
-    return;
-  }
   reGetRestaurant(bedId);
   restaurantSession = {
     bedId, cooks: [], customers: [], nextCustomerId: 0,
@@ -2973,8 +3197,10 @@ function openRestaurant(bedId) {
     stocks: Object.fromEntries(RE_INGREDIENTS.map(i => [i.id, RE_STOCK_BASE]))
   };
   reSyncCooks();
+  reLastUpgradeSignature = "";
+  reInitScene(bedId);
   restaurantSession.gameLoopId = setInterval(restaurantTick, RE_TICK_MS);
-  reRenderView();
+  reUpdateScene();
 }
 
 function stopRestaurant() {
@@ -3000,7 +3226,7 @@ function restaurantTick() {
   session.spawnTimer -= RE_TICK_MS;
   if (session.spawnTimer <= 0) {
     if (session.customers.length < RE_MAX_CUST)
-      session.customers.push({ id: session.nextCustomerId++, state: "waiting", patience: 100, hunger: 0, leaveTimer: 0 });
+      session.customers.push({ id: session.nextCustomerId++, state: "waiting", patience: 100, hunger: 0, leaveTimer: 0, tableSlot: assignTableSlot(session), arrivalProgress: 0 });
     const base = Math.max(4000, RE_SPAWN_BASE - (restaurant.unlockedCooks - 1) * 1500);
     session.spawnTimer = base * spawnPenalty;
   }
@@ -3019,6 +3245,7 @@ function restaurantTick() {
   // Update customers
   session.customers = session.customers.filter(c => {
     if (c.state === "waiting") {
+      if ((c.arrivalProgress || 0) < 1) c.arrivalProgress = Math.min(1, (c.arrivalProgress || 0) + (RE_TICK_MS / RE_ARRIVE_MS));
       c.patience -= (RE_TICK_MS / RE_PATIENCE_MS) * 100 * dirtFactor;
       if (c.patience <= 0) {
         c.patience = 0; c.state = "leaving_sad"; c.leaveTimer = 900;
@@ -3042,17 +3269,23 @@ function restaurantTick() {
 
   // Update cooks
   session.cooks.forEach(cook => {
+    if (cook.state === "delivering") {
+      cook.deliverTimer -= RE_TICK_MS;
+      if (cook.deliverTimer <= 0) {
+        const t = session.customers.find(c => c.id === cook.targetId);
+        if (t?.state === "being_served") { t.state = "eating"; t.hunger = 0; t.foodIcon = cook.cookIcons; }
+        cook.state = "idle"; cook.targetId = null;
+      }
+    }
     if (cook.state === "cooking") {
       cook.cookTimer -= RE_TICK_MS;
       if (cook.cookTimer <= 0) {
-        const t = session.customers.find(c => c.id === cook.targetId);
-        if (t?.state === "being_served") { t.state = "eating"; t.hunger = 0; }
-        cook.state = "idle"; cook.targetId = null;
+        cook.state = "delivering"; cook.deliverTimer = RE_DELIVER_MS;
       }
     }
     if (cook.state === "idle") {
       const busy = new Set(session.cooks.filter(c => c.id !== cook.id && c.targetId != null).map(c => c.targetId));
-      const t = session.customers.find(c => c.state === "waiting" && !busy.has(c.id));
+      const t = session.customers.find(c => c.state === "waiting" && !busy.has(c.id) && (c.arrivalProgress || 0) >= 1);
       if (t) {
         // Only use ingredients that are in stock
         const available = restaurant.unlockedIngredients.filter(id => (session.stocks[id] ?? RE_STOCK_BASE) > 0);
@@ -3067,124 +3300,143 @@ function restaurantTick() {
   });
 
   if (needsSave) { saveState(); renderPlayer(); }
-  reRenderView();
+  reUpdateScene();
 }
 
-function reRenderView() {
+function reInitScene(bedId) {
+  const rc = document.getElementById("room-content");
+  if (!rc) return;
+  const bedState = getPackState().beds[bedId];
+  if (!bedState?.restaurantUnlocked) {
+    rc.innerHTML = `<p class="muted" style="text-align:center;padding:2rem 1rem">Ernte alle Pflanzen dieses Beetes, um das Restaurant zu öffnen.</p>`;
+    return;
+  }
+  const tablesHtml = RE_TABLE_SLOTS.map((t, i) =>
+    `<div class="re-table" id="re-table-${i}" style="left:${t.x}%;top:${t.y}%"></div>`
+  ).join("");
+  rc.innerHTML = `
+    <div class="re-scene" id="re-scene">
+      <div class="re-kitchen-bg"></div>
+      <div class="re-wall-divider"></div>
+      <div class="re-door-gap"></div>
+      <div class="re-counter"></div>
+      <div class="re-kitchen-sign">Küche</div>
+      <div class="re-entrance-arch"></div>
+      ${tablesHtml}
+      <div id="re-sprites"></div>
+      <div id="re-dirt-layer"></div>
+    </div>
+    <div class="re-info-bar">
+      <span id="re-stats-text" class="re-stats-text"></span>
+      <span id="re-dirt-warn-text"></span>
+      <div id="re-stock-warn-text" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+    <div class="re-upgrades" id="re-upgrades-panel"></div>
+    <div id="re-question-area"></div>`;
+}
+
+function reUpdateScene() {
   if (!restaurantSession) return;
-  if (restaurantSession.paused && restaurantSession.unlockQ) return;
   const session = restaurantSession;
   const bedState = getPackState().beds[session.bedId];
   const restaurant = bedState.restaurant;
-  const reBedContent = PACK_CONTENT.beds.find(b => b.id === session.bedId);
-  const reAllQs = [];
-  (reBedContent?.plants || []).forEach(p => {
-    (p.harvestQuestions || []).forEach(q => reAllQs.push(q));
-    (p.cleaningQuestions || []).forEach(q => reAllQs.push(q));
+  const spritesDiv = document.getElementById("re-sprites");
+  if (!spritesDiv) return;
+
+  session.cooks.forEach((cook, i) => {
+    const pos = getCookPos(cook, i, session);
+    let el = document.getElementById(`re-cook-${cook.id}`);
+    if (!el) {
+      el = document.createElement("div");
+      el.id = `re-cook-${cook.id}`;
+      el.className = "re-sprite re-sprite--chef";
+      el.innerHTML = buildChefHtml();
+      spritesDiv.appendChild(el);
+    }
+    el.style.left = `${pos.x}%`;
+    el.style.top  = `${pos.y}%`;
+    const carryEl = el.querySelector(".re-carry");
+    if (carryEl) { carryEl.textContent = pos.carrying || ""; carryEl.style.display = pos.carrying ? "" : "none"; }
+    el.classList.toggle("re-sprite--cooking", pos.phase === "cooking");
+    el.classList.toggle("re-sprite--at-table", pos.phase === "at_table");
+    const progBar = el.querySelector(".re-sprite-progress");
+    const progFill = el.querySelector(".re-sprite-progress-fill");
+    const showProg = pos.phase === "cooking" && cook.state === "cooking";
+    if (progBar) progBar.style.display = showProg ? "" : "none";
+    if (showProg && progFill) {
+      // Normalize to kitchen-only time (~30% of total cook time)
+      const kitchenDuration = cook.cookTimerMax * 0.30;
+      const kitchenProg = Math.max(0, Math.min(1, 1 - cook.cookTimer / kitchenDuration));
+      progFill.style.width = `${kitchenProg * 100}%`;
+    }
   });
-  const reAnswers = restaurant.questionAnswers || {};
-  const reMastered = reAllQs.filter(q => reAnswers[q.id] === "correct").length;
-  const reAllMastered = reAllQs.length > 0 && reMastered === reAllQs.length;
-  const rc = document.getElementById("room-content");
-  if (!rc) return;
 
-  const cooksHtml = session.cooks.map(cook => {
-    const pct = cook.state === "cooking" ? ((1 - cook.cookTimer / cook.cookTimerMax) * 100).toFixed(1) : 0;
-    return `<div class="re-cook${cook.state === "cooking" ? " re-cook--active" : ""}">
-      <div class="re-cook-circle">${cook.state === "cooking" ? cook.cookIcons : "💤"}</div>
-      ${cook.state === "cooking" ? `<div class="re-cook-bar"><div class="re-cook-fill" style="width:${pct}%"></div></div>` : ""}
-    </div>`;
-  }).join("");
+  const existingCusts = new Set([...spritesDiv.querySelectorAll(".re-sprite--customer")].map(el => el.dataset.custId));
+  const activeIds = new Set(session.customers.map(c => String(c.id)));
+  existingCusts.forEach(sid => { if (!activeIds.has(sid)) { const e = spritesDiv.querySelector(`[data-cust-id="${sid}"]`); if (e) e.remove(); } });
+  session.customers.forEach(c => {
+    const pos = getCustomerPos(c);
+    let el = spritesDiv.querySelector(`[data-cust-id="${c.id}"]`);
+    if (!el) {
+      el = document.createElement("div");
+      el.className = "re-sprite re-sprite--customer";
+      el.dataset.custId = String(c.id);
+      el.innerHTML = buildCustomerHtml(c.id);
+      spritesDiv.appendChild(el);
+    }
+    el.style.left = `${pos.x}%`;
+    el.style.top  = `${pos.y}%`;
+    el.classList.toggle("re-sprite--leaving", c.state.startsWith("leaving_"));
+    el.classList.toggle("re-sprite--eating", c.state === "eating");
+    const isEating = c.state === "eating";
+    const patWrap = el.querySelector(".re-sprite-patience");
+    if (patWrap) patWrap.style.display = isEating ? "none" : "";
+    const pf = el.querySelector(".re-sprite-patience-fill");
+    if (pf && !isEating) {
+      const pat = Math.max(0, c.patience);
+      pf.style.width = `${pat}%`;
+      pf.style.background = pat > 60 ? "#44cc66" : pat > 30 ? "#ccaa22" : "#cc3333";
+    }
+    const eatBar = el.querySelector(".re-sprite-eat-bar");
+    const eatFill = el.querySelector(".re-sprite-eat-fill");
+    if (eatBar) eatBar.style.display = isEating ? "" : "none";
+    if (isEating && eatFill) eatFill.style.width = `${Math.min(100, c.hunger)}%`;
+    const foodIconEl = el.querySelector(".re-sprite-food-icon");
+    if (foodIconEl) {
+      foodIconEl.textContent = c.foodIcon || "";
+      foodIconEl.style.display = isEating && c.foodIcon ? "" : "none";
+    }
+  });
 
-  const cleanerHtml = restaurant.unlockedCleaner
-    ? `<div class="re-cook${session.dirtCount > 0 ? " re-cook--active" : ""}">
-         <div class="re-cook-circle">${session.dirtCount > 0 ? "🧹" : "💤"}</div>
-       </div>`
-    : "";
-
-  const customersHtml = session.customers.map(c => {
-    const pat = Math.max(0, c.patience).toFixed(1);
-    const hun = Math.min(100, c.hunger).toFixed(1);
-    const pc = pat > 60 ? "#44cc66" : pat > 30 ? "#ccaa22" : "#cc3333";
-    let face = "😟", cls = "";
-    if      (c.state === "being_served")  { face = "😊"; cls = "re-c--served"; }
-    else if (c.state === "eating")        { face = "😋"; cls = "re-c--eating"; }
-    else if (c.state === "leaving_happy") { face = "😄"; cls = "re-c--gone re-c--happy"; }
-    else if (c.state === "leaving_sad")   { face = "😢"; cls = "re-c--gone re-c--sad"; }
-    return `<div class="re-customer ${cls}">
-      <div class="re-patience"><div class="re-patience-fill" style="width:${pat}%;background:${pc}"></div></div>
-      <div class="re-circle">
-        ${c.state === "eating" ? `<div class="re-hunger-fill" style="height:${hun}%"></div>` : ""}
-        <span class="re-face">${face}</span>
-      </div>
-    </div>`;
-  }).join("");
-
-  // Dirt spots
-  const dirtSpotsHtml = RE_DIRT_POS.slice(0, Math.min(session.dirtCount, RE_DIRT_POS.length))
-    .map(p => `<div class="re-dirt-spot" style="left:${p.x}%;top:${p.y}%"></div>`).join("");
-  const dirtWarning = session.dirtCount > 8
-    ? `<div class="re-dirt-warning">⚠️ Sehr dreckig! Gäste werden ungeduldig.</div>`
-    : session.dirtCount > 4 ? `<div class="re-dirt-warning re-dirt-warning--mild">🟤 Etwas schmutzig…</div>` : "";
-
-  // Stock display
-  const outOfStock = restaurant.unlockedIngredients.filter(id => (session.stocks[id] ?? RE_STOCK_BASE) <= 0);
-  const stockWarningsHtml = outOfStock.map(id => {
-    const ing = RE_INGREDIENTS.find(i => i.id === id);
-    return `<span class="re-stock-warn">${ing?.icon || "📦"} ${ing?.label || id} leer!
-      <button class="re-restock-btn" onclick="startReRestock('${id}')">Nachfüllen</button>
-    </span>`;
-  }).join("");
-
-  // Unlock buttons
-  const player = getPackState().player;
-  const unlocks = [];
-  if (restaurant.unlockedCooks < 3) {
-    const n = restaurant.unlockedCooks + 1;
-    unlocks.push({ type: "cook", value: n, icon: "👨‍🍳", label: `${n}. Koch`, cost: n });
+  const dirtDiv = document.getElementById("re-dirt-layer");
+  if (dirtDiv) {
+    const spots = RE_DIRT_POS.slice(0, Math.min(session.dirtCount, RE_DIRT_POS.length)).map(p => `<div class="re-dirt-spot" style="left:${p.x}%;top:${p.y}%"></div>`).join("");
+    if (dirtDiv.innerHTML !== spots) dirtDiv.innerHTML = spots;
   }
-  if (!restaurant.unlockedCleaner)
-    unlocks.push({ type: "cleaner", value: true, icon: "🧹", label: "Reinigungskraft", cost: 5 });
-  RE_INGREDIENTS.filter(i => i.cost > 0 && !restaurant.unlockedIngredients.includes(i.id))
-    .forEach(ing => unlocks.push({ type: "ingredient", value: ing.id, icon: ing.icon, label: ing.label, cost: ing.cost }));
-  session.currentUnlocks = unlocks;
 
-  const unlocksHtml = unlocks.length
-    ? unlocks.map((u, i) => {
-        const can = player.fruits >= u.cost;
-        return `<button class="re-unlock-btn${can ? "" : " re-unlock-btn--broke"}" onclick="startReUnlock(${i})"${can ? "" : " disabled"}>
-          ${u.icon} ${u.label} <span class="re-cost">${u.cost} 🍎</span>
-        </button>`;
-      }).join("")
-    : `<span style="font-size:.75rem;color:var(--muted)">Alles freigeschaltet!</span>`;
-  const masteryHtml = reAllQs.length > 0
-    ? reAllMastered
-      ? `<div class="re-mastery re-mastery--done">🏆 ${reMastered}/${reAllQs.length} Fragen gemeistert</div>`
-      : `<div class="re-mastery">${reMastered}/${reAllQs.length} Fragen korrekt beantwortet</div>`
-    : "";
+  const statsEl = document.getElementById("re-stats-text");
+  if (statsEl) statsEl.textContent = `✓ ${session.totalServed} bedient  ·  😞 ${session.totalImpatient} ungeduldig  ·  🟤 ${session.dirtCount} Dreck`;
+  const dirtWarnEl = document.getElementById("re-dirt-warn-text");
+  if (dirtWarnEl) {
+    dirtWarnEl.textContent = session.dirtCount > 8 ? "⚠️ Sehr dreckig!" : session.dirtCount > 4 ? "🟤 Etwas schmutzig…" : "";
+    dirtWarnEl.style.color = session.dirtCount > 8 ? "#cc8833" : "var(--muted)";
+  }
+  const outOfStock = restaurant.unlockedIngredients.filter(id => (session.stocks[id] ?? RE_STOCK_BASE) <= 0);
+  const stockWarnEl = document.getElementById("re-stock-warn-text");
+  if (stockWarnEl) {
+    stockWarnEl.innerHTML = outOfStock.map(id => {
+      const ing = RE_INGREDIENTS.find(i => i.id === id);
+      return `<span class="re-stock-warn">${ing?.icon || "📦"} ${ing?.label || id} leer! <button class="re-restock-btn" onclick="startReRestock('${id}')">Nachfüllen</button></span>`;
+    }).join("");
+  }
 
-  rc.innerHTML = `
-    <div class="re-layout">
-      <div class="re-kitchen">
-        <div class="re-section-lbl">Küche</div>
-        <div class="re-cooks">${cooksHtml}${cleanerHtml}</div>
-        <div class="re-sat-info">Sättigung: <strong>${reSatiety(restaurant, session.stocks)}%</strong></div>
-      </div>
-      <div class="re-dining" style="position:relative">
-        <div class="re-section-lbl">Gäste</div>
-        <div class="re-customers">${customersHtml || `<span style="font-size:.8rem;color:var(--muted)">Wartet auf Gäste…</span>`}</div>
-        ${dirtSpotsHtml}
-      </div>
-    </div>
-    ${dirtWarning}
-    ${stockWarningsHtml ? `<div class="re-stock-warnings">${stockWarningsHtml}</div>` : ""}
-    <div class="re-stats">✓ ${session.totalServed} bedient · 😞 ${session.totalImpatient} ungeduldig · 🟤 ${session.dirtCount} Dreck</div>
-    <div class="re-upgrades">
-      <div class="re-section-lbl">Verbesserungen</div>
-      ${masteryHtml}
-      <div class="re-unlock-list">${unlocksHtml}</div>
-    </div>
-    <div id="re-question-area"></div>`;
+  const player = getPackState().player;
+  const sig = `${restaurant.unlockedCooks}:${restaurant.unlockedCleaner}:${restaurant.unlockedIngredients.join(",")}:${player.fruits}`;
+  if (sig !== reLastUpgradeSignature) {
+    reLastUpgradeSignature = sig;
+    const panel = document.getElementById("re-upgrades-panel");
+    if (panel) panel.innerHTML = buildReUpgradesHtml(session, restaurant, player);
+  }
 }
 
 function startReUnlock(idx) {
@@ -3220,7 +3472,7 @@ function reRenderQuestion() {
   } else if (isMulti) {
     qHtml = `<div class="question">${q.question}</div>
       <div class="mc-options">${shuffled.map((o, i) => `<button class="mc-option mc-option--toggle" data-ri="${i}" onclick="toggleReOption(${i})">${o.text}</button>`).join("")}</div>
-      <button class="mc-option" style="margin-top:6px" onclick="resolveReMulti()">Bestätigen</button>`;
+      <div class="re-confirm-row"><button class="mc-option re-confirm-btn" onclick="resolveReMulti()">Bestätigen</button></div>`;
   } else {
     qHtml = `<div class="question">${q.question}</div>
       <div class="mc-options">${shuffled.map((o, i) => `<button class="mc-option" data-ri="${i}" onclick="resolveReAnswer(${i})">${o.text}</button>`).join("")}</div>`;
@@ -3270,6 +3522,8 @@ function resolveReMulti() {
 
 function applyReUnlockResult(ok, feedbackText, unlock) {
   if (!restaurantSession) return;
+  sessionStats.questionsAnswered++;
+  if (ok) sessionStats.correct++; else sessionStats.wrong++;
   const bedState = getPackState().beds[restaurantSession.bedId];
   const isRestock = unlock.type === "restock";
   // Track answer (skip repeat questions to avoid downgrading "correct" back to "wrong")
@@ -3279,6 +3533,7 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
     if (qa[uq.q.id] !== "correct") qa[uq.q.id] = ok ? "correct" : "wrong";
     saveState();
   }
+  playSound(ok ? "twinkle.mp3" : "wrong.mp3");
   if (ok) {
     if (!isRestock) getPackState().player.fruits -= unlock.cost;
     if (unlock.type === "cook") bedState.restaurant.unlockedCooks = unlock.value;
@@ -3305,9 +3560,10 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
     btn.className = "mc-option"; btn.style.cssText = "margin-top:6px;display:block";
     btn.textContent = "Weiter";
     btn.onclick = () => {
+      area.innerHTML = "";
       restaurantSession.paused = false;
       restaurantSession.unlockQ = null;
-      reRenderView();
+      reUpdateScene();
     };
     panel.appendChild(fb);
     panel.appendChild(btn);
@@ -3367,10 +3623,12 @@ function startReRepeat() {
 
 function reCloseQuestion() {
   if (!restaurantSession) return;
+  const area = document.getElementById("re-question-area");
+  if (area) area.innerHTML = "";
   restaurantSession.paused = false;
   restaurantSession.unlockQ = null;
   restaurantSession.pendingUnlock = null;
-  reRenderView();
+  reUpdateScene();
 }
 
 function openLabModal() {
@@ -3390,13 +3648,43 @@ window.KG_UI = {
   getActiveBedId: () => state.activeBedId
 };
 
+function openSessionEndModal() {
+  const now = Date.now();
+  const elapsed = now - (sessionStats.startTime || now);
+  const mins = Math.floor(elapsed / 60000);
+  const secs = Math.floor((elapsed % 60000) / 1000);
+  const timeStr = mins > 0 ? `${mins} Min. ${secs} Sek.` : `${secs} Sek.`;
+  const total = sessionStats.questionsAnswered;
+  const correct = sessionStats.correct;
+  const wrong = sessionStats.wrong;
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const statsDiv = document.getElementById("session-end-stats");
+  if (statsDiv) {
+    statsDiv.innerHTML = `
+      <div class="ses-stat-row"><span class="ses-label">Sitzungszeit</span><span class="ses-val">${timeStr}</span></div>
+      <div class="ses-stat-row"><span class="ses-label">Fragen beantwortet</span><span class="ses-val">${total}</span></div>
+      <div class="ses-stat-row"><span class="ses-label">Davon richtig</span><span class="ses-val ses-val--good">${correct}</span></div>
+      <div class="ses-stat-row"><span class="ses-label">Davon falsch</span><span class="ses-val ses-val--bad">${wrong}</span></div>
+      ${total > 0 ? `<div class="ses-stat-row"><span class="ses-label">Trefferquote</span><span class="ses-val">${pct}%</span></div>` : ""}
+    `;
+  }
+  openModal("modal-session-end");
+}
+
 // ── Bottom nav + modal triggers ────────────────────────────────────────────
 const openCatalogBtn = document.getElementById("open-catalog-btn");
 if (openCatalogBtn) openCatalogBtn.addEventListener("click", () => openCatalogModal(null));
 
 const openMapBtn = document.getElementById("open-map-btn");
 if (openMapBtn) openMapBtn.addEventListener("click", () => {
-  const bedId = state.activeBedId || getPackState().bedProgress?.unlockedBedIds?.[0];
+  const pack = getPackState();
+  const active = state.activeBedId;
+  // Prefer active bed if it has restaurant unlocked; else find any bed that does
+  const bedId = (active && pack.beds[active]?.restaurantUnlocked)
+    ? active
+    : (pack.bedProgress?.unlockedBedIds || []).find(id => pack.beds[id]?.restaurantUnlocked)
+      || active
+      || (pack.bedProgress?.unlockedBedIds || [])[0];
   if (!bedId) return;
   openRestaurant(bedId);
   openModal("modal-room");
@@ -3420,6 +3708,15 @@ if (closeRoomBtn) closeRoomBtn.addEventListener("click", () => { stopRestaurant(
 
 const closeLabBtn = document.getElementById("close-lab-btn");
 if (closeLabBtn) closeLabBtn.addEventListener("click", () => closeModal("modal-lab"));
+
+const openSessionEndBtn = document.getElementById("open-session-end-btn");
+if (openSessionEndBtn) openSessionEndBtn.addEventListener("click", openSessionEndModal);
+
+const sessionEndYesBtn = document.getElementById("session-end-yes-btn");
+if (sessionEndYesBtn) sessionEndYesBtn.addEventListener("click", () => { window.close(); });
+
+const sessionEndNoBtn = document.getElementById("session-end-no-btn");
+if (sessionEndNoBtn) sessionEndNoBtn.addEventListener("click", () => closeModal("modal-session-end"));
 
 // Click outside modal to close
 document.querySelectorAll(".modal-overlay").forEach((overlay) => {
