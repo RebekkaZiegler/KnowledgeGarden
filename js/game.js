@@ -1223,20 +1223,27 @@ function renderGardenRoom() {
   const unlockedIds = new Set(getBedProgress().unlockedBedIds);
   const MAX_POTS = 4;
 
-  // Show at most 3 beds: active bed first, then beds with plants, then fill from unlocked
-  const allUnlocked = PACK_CONTENT.beds.filter(b => unlockedIds.has(b.id));
-  const gardenBeds = [];
-  if (state.activeBedId) {
-    const ab = allUnlocked.find(b => b.id === state.activeBedId);
-    if (ab) gardenBeds.push(ab);
-  }
+  // Show at most 3 beds: active bed + beds with plants. Empty slots get a "choose topic" button.
+  // Hybrid bed only counts once at least one hybrid has been discovered
+  const allUnlocked = PACK_CONTENT.beds.filter(b =>
+    unlockedIds.has(b.id) && (b.id !== "hybrid" || (pack.lab.discoveredHybrids?.length || 0) > 0)
+  );
+  // Collect which beds to show, then sort by their natural content order (stable positions)
+  const shownBedIds = new Set();
+  if (state.activeBedId && allUnlocked.some(b => b.id === state.activeBedId))
+    shownBedIds.add(state.activeBedId);
   allUnlocked.forEach(b => {
-    if (gardenBeds.length < 3 && !gardenBeds.some(x => x.id === b.id) && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
-      gardenBeds.push(b);
+    if (shownBedIds.size < 3 && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
+      shownBedIds.add(b.id);
   });
-  for (let i = allUnlocked.length - 1; i >= 0 && gardenBeds.length < 3; i--) {
-    if (!gardenBeds.some(x => x.id === allUnlocked[i].id)) gardenBeds.push(allUnlocked[i]);
-  }
+  const gardenBeds = allUnlocked.filter(b => shownBedIds.has(b.id));
+
+  // Fill remaining slots (up to 3) with "choose topic" placeholders
+  const emptySlots = Math.max(0, 3 - gardenBeds.length);
+  const emptySlotsHtml = Array.from({ length: emptySlots }, () => `
+    <div class="garden-shelf garden-shelf--empty-slot">
+      <button class="garden-choose-topic-btn" data-open-catalog="1">+ Thema wählen</button>
+    </div>`).join("");
 
   const html = gardenBeds.map((bed) => {
     const bedState = pack.beds[bed.id] || {};
@@ -1313,9 +1320,9 @@ function renderGardenRoom() {
 
   const hiddenCount = allUnlocked.length - gardenBeds.length;
   const hiddenHint = hiddenCount > 0
-    ? `<div class="garden-hidden-hint">${hiddenCount} weiteres Kapitel im Pflanzenkatalog</div>`
+    ? `<div class="garden-hidden-hint">${hiddenCount} weitere Kapitel im Pflanzenkatalog</div>`
     : "";
-  els.gardenRoom.innerHTML = (html || `<div class="muted" style="padding:2rem">Keine Beete freigeschaltet. Öffne den Pflanzenkatalog, um zu beginnen.</div>`) + hiddenHint;
+  els.gardenRoom.innerHTML = (html + emptySlotsHtml || `<div class="muted" style="padding:2rem">Keine Beete freigeschaltet. Öffne den Pflanzenkatalog, um zu beginnen.</div>`) + hiddenHint;
 
   // Click handlers
   els.gardenRoom.querySelectorAll(".garden-pot.has-plant").forEach((el) => {
@@ -1331,6 +1338,10 @@ function renderGardenRoom() {
       const bedId = el.getAttribute("data-add-bed");
       openCatalogModal(bedId);
     });
+  });
+
+  els.gardenRoom.querySelectorAll("[data-open-catalog]").forEach((el) => {
+    el.addEventListener("click", () => openCatalogModal());
   });
 
   // Phase2 tool buttons inside pot-tools
@@ -1581,6 +1592,26 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const growthScale = Math.max(0.45, Math.min(1.8, Number(visual.growth || 1)));
   const phase2Actions = Math.max(1, Number((content.phase2 || []).length || 1));
   const usedActions = Math.max(0, Math.min(phase2Actions, Number(plantState.readinessActionsUsed || 0)));
+
+  // Water/fertilize visual effects: check which actions are done
+  let plantOpacity = 1.0;
+  let plantSaturation = 1.0;
+  if (visual.phase !== "phase1" && plantState.phase1Completed) {
+    (content.phase2 || []).forEach((action, idx) => {
+      const assigned = (content.harvestQuestions || []).filter((_, qi) => qi % phase2Actions === idx);
+      const done = assigned.length > 0 && assigned.every(q =>
+        plantState.phase2Questions?.[q.id]?.status === "learned"
+      );
+      if (!done) {
+        if (action.type === "fertilize") plantOpacity = 0.72;
+        if (action.type === "water") plantSaturation = 0.5;
+      }
+    });
+  }
+
+  // Harvest fruit removal: each correct answer removes one fruit from the visual
+  const isHarvestPlant = harvestSession && harvestSession.plantId === plantState.id;
+  const harvestCorrect = isHarvestPlant ? (harvestSession.correct || 0) : 0;
   const stagedProgress = locked
     ? Math.max(0, Math.min(phase2Actions, (usedActions - 1) + fillProgress))
     : usedActions;
@@ -1597,6 +1628,25 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
     rot: (i % 2 === 0 ? -1 : 1) * (22 + ((i % 3) * 5)),
     len: 14 + ((i % 4) * 3)
   }));
+  // Grey drooping stubs for incomplete trim actions — positioned independently between branches
+  const trimStubHtml = visual.phase === "phase1" ? "" : (() => {
+    const phase2 = content.phase2 || [];
+    const actionCount = Math.max(1, phase2.length);
+    const trimIndices = phase2.reduce((acc, a, i) => { if (a.type === "trim") acc.push(i); return acc; }, []);
+    return trimIndices.map((idx, trimRank) => {
+      const assigned = (content.harvestQuestions || []).filter((_, qi) => qi % actionCount === idx);
+      const done = assigned.length === 0 || assigned.every(q =>
+        plantState.phase2Questions?.[q.id]?.status === "learned"
+      );
+      if (done) return "";
+      // Space stubs evenly in the lower 20–60% of the stem, independent of branch positions
+      const yFrac = 0.2 + ((trimRank + 1) / (trimIndices.length + 1)) * 0.4;
+      const by = Math.round(stemFill * yFrac);
+      const isLeft = trimRank % 2 === 0;
+      return `<span class="plant-trim-stub${isLeft ? " plant-trim-stub--left" : ""}" style="--by:${by}px;"></span>`;
+    }).join("");
+  })();
+
   const branchHtml = visual.phase === "phase1" ? "" : branchSpecs.map((b, i) => {
     let grow = 0;
     if (i < fullBranches) grow = 1;
@@ -1611,7 +1661,7 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
     return `<span class="plant-branch${isLeft ? " plant-branch--left" : ""}${visual.withered ? " is-withered" : ""}" style="--by:${by}px;--br:${brDeg}deg;--bl:${bl}px;"></span>`;
   }).join("");
   const harvestReady = plantState.phase1Completed && (plantState.readiness || 0) <= 0;
-  const fruitTotalRaw = Math.min(18, Math.max(0, Number(visual.fruitCount || 0)));
+  const fruitTotalRaw = Math.min(18, Math.max(0, Number(visual.fruitCount || 0) - harvestCorrect));
   const fruitTotal = (visual.phase === "phase3" || visual.phase === "phase2_final") ? fruitTotalRaw : 0;
   const fruitOpacity = visual.phase === "phase2_final" ? (0.45 + (fillProgress * 0.55)) : 1;
   // Fruits anchor only on branches (not stem tip) so they appear naturally on the plant
@@ -1645,7 +1695,7 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
       : "";
   const classAttr = "plant-visual" + (extraClass ? " " + extraClass : "") + sparkleClass;
   const colors = getPlantColorScheme(content);
-  const colorStyle = `--stem-hi:${colors.stemHi};--stem-lo:${colors.stemLo};--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};`;
+  const colorStyle = `--stem-hi:${colors.stemHi};--stem-lo:${colors.stemLo};--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};opacity:${plantOpacity};filter:saturate(${plantSaturation});`;
   const potSrc = (() => {
     const steps = plantState.phase1StepsDone || {};
     if (plantState.phase1Completed || visual.phase !== 'phase1') return 'assets/images/pot ready to grow.png';
@@ -1658,7 +1708,7 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
       <img class="plant-pot-img" src="${potSrc}" alt="">
       ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
       ${visual.phase !== "phase1" ? `<div class="plant-stem${visual.withered ? " is-withered" : ""}" style="--stem-fill:${stemFill}px;"></div>` : ""}
-      ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}</div>` : ""}
+      ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}${trimStubHtml}</div>` : ""}
       <div class="plant-fruits">${fruitDots}</div>
     </div>
   `;
@@ -2498,7 +2548,7 @@ function finalizeHarvest() {
 
   if (wrongCount === 0) {
     // All correct → harvest success
-    pack.player.fruits += harvestSession.correct * 2;
+    pack.player.fruits += harvestSession.correct;
     plantState.harvestedOnce = true;
     plantState.status = "completed";
     plantState.readiness = 0;
@@ -2516,7 +2566,7 @@ function finalizeHarvest() {
     addXp(5);
     pack.stats.harvestSuccesses += 1;
     playSound("twinkle done.mp3");
-    showToast(`Ernte bestanden! Alle ${total} Fragen richtig. +${fruitsGained * 2} Früchte`, "success");
+    showToast(`Ernte bestanden! Alle ${total} Fragen richtig. +${fruitsGained} Früchte`, "success");
   } else {
     // Some wrong → only reset wrong questions, plant back to phase 2
     const plantContent = getPlantContent(harvestSession.plantId);
@@ -2826,97 +2876,6 @@ function openCatalogModal(filterBedId) {
   openModal("modal-catalog");
 }
 
-// ── Map modal ──────────────────────────────────────────────────────────────
-let mapConfig = null;
-
-async function loadMapConfig() {
-  try {
-    const r = await fetch("map-config.json");
-    if (r.ok) mapConfig = await r.json();
-  } catch (e) {
-    mapConfig = null;
-  }
-}
-
-function openMapModal() {
-  renderMapPins();
-  openModal("modal-map");
-}
-
-function renderMapPins() {
-  if (!mapConfig) return;
-  const img = document.getElementById("map-display");
-  if (img) img.src = mapConfig.mapImage || "map.png";
-
-  // Clear old pins
-  document.querySelectorAll(".map-pin").forEach(p => p.remove());
-
-  const container = document.getElementById("map-container");
-  if (!container) return;
-  const pack = getPackState();
-
-  mapConfig.locations.forEach(loc => {
-    const anyReady = loc.rooms.some(r => {
-      if (!r.bedId) return false;
-      const bs = pack.beds?.[r.bedId];
-      return bs?.combatUnlocked && pack.player?.fruits > 0;
-    });
-    const anyUnlocked = loc.rooms.some(r => {
-      if (!r.bedId) return false;
-      return pack.beds?.[r.bedId]?.combatUnlocked;
-    });
-
-    const pin = document.createElement("button");
-    pin.className = "map-pin" +
-      (anyReady ? " map-pin--ready" : anyUnlocked ? "" : " map-pin--locked");
-    pin.style.left = `${loc.x}%`;
-    pin.style.top  = `${loc.y}%`;
-    pin.innerHTML  = `<span class="map-pin-label">${loc.name}</span>`;
-
-    if (anyUnlocked) {
-      pin.addEventListener("click", () => selectMapLocation(loc));
-    }
-    container.appendChild(pin);
-  });
-
-  // close room picker when clicking map background
-  document.getElementById("map-room-picker").hidden = true;
-}
-
-function selectMapLocation(loc) {
-  if (loc.rooms.length === 1) {
-    enterMapRoom(loc.rooms[0]);
-    return;
-  }
-  // Show room picker
-  const title = document.getElementById("map-room-picker-title");
-  const list  = document.getElementById("map-room-picker-list");
-  title.textContent = loc.name;
-  list.innerHTML = "";
-  loc.rooms.forEach(room => {
-    const btn = document.createElement("button");
-    btn.className = "map-room-btn";
-    btn.textContent = room.name || room.bedId;
-    btn.addEventListener("click", () => enterMapRoom(room));
-    list.appendChild(btn);
-  });
-  document.getElementById("map-room-picker").hidden = false;
-}
-
-function enterMapRoom(room) {
-  if (!room.bedId) return;
-  state.activeBedId = room.bedId;
-  document.getElementById("map-room-picker").hidden = true;
-  closeModal("modal-map");
-  openRoomModal(room);
-}
-
-function openRoomModal(room) {
-  const title = document.getElementById("room-title");
-  if (title) title.textContent = room.name || "Raum";
-  openModal("modal-room");
-  if (room.bedId) openRestaurant(room.bedId);
-}
 
 // ── Restaurant / Praxis System ─────────────────────────────────────────────
 
@@ -3414,8 +3373,6 @@ function reCloseQuestion() {
   reRenderView();
 }
 
-loadMapConfig();
-
 function openLabModal() {
   renderLab();
   openModal("modal-lab");
@@ -3441,8 +3398,8 @@ const openMapBtn = document.getElementById("open-map-btn");
 if (openMapBtn) openMapBtn.addEventListener("click", () => {
   const bedId = state.activeBedId || getPackState().bedProgress?.unlockedBedIds?.[0];
   if (!bedId) return;
-  const bedContent = PACK_CONTENT.beds.find(b => b.id === bedId);
-  openRoomModal({ bedId, name: bedContent?.title || "Restaurant" });
+  openRestaurant(bedId);
+  openModal("modal-room");
 });
 
 const openLabBtn = document.getElementById("open-lab-btn");
@@ -3460,9 +3417,6 @@ if (closeCatalogBtn) closeCatalogBtn.addEventListener("click", () => { catalogFi
 
 const closeRoomBtn = document.getElementById("close-room-btn");
 if (closeRoomBtn) closeRoomBtn.addEventListener("click", () => { stopRestaurant(); closeModal("modal-room"); });
-
-const closeMapBtn = document.getElementById("close-map-btn");
-if (closeMapBtn) closeMapBtn.addEventListener("click", () => closeModal("modal-map"));
 
 const closeLabBtn = document.getElementById("close-lab-btn");
 if (closeLabBtn) closeLabBtn.addEventListener("click", () => closeModal("modal-lab"));

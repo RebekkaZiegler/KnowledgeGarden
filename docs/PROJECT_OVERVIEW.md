@@ -33,12 +33,7 @@ Master Overview — Stand: März 2026
 **Offen (nach Priorität):**
 1. Playtest: vollständiger Loop (Früchte-Balance, Restaurant-Spielgefühl, Ernte-Härte)
 2. Content-QA nach Playtest — Ablauf: `docs/PLAYTEST_CHECKLIST.md`
-3. **Karten-System**: Nachbarschaftskarte mit Pins → Räume/Orte anklicken
-4. **Reinigungssystem** (vollständig ausgearbeitet in `docs/IDEAS.md §3`)
-   — ersetzt Restaurant langfristig als Hochdruck-Testmechanismus
-   — 34 Orte (Zuhause + Nachbarschaft), Frontansicht, klickbare Items
-   — Wartet auf Asset-Erstellung
-5. Restaurant v2: Menü-Designer, Cocktails, Spa, Naturheilpraxis (siehe `docs/IDEAS.md §4`)
+3. Restaurant v2: Menü-Designer, Cocktails, Spa, Naturheilpraxis (siehe `docs/IDEAS.md §4`)
 6. Pixel-Grafik Layer (optional, spätere Phase)
 
 ---
@@ -69,7 +64,6 @@ Langzeit-Vision: mehrere Packs (z.B. Warhammer Lore, Schullehrplan), jeder als e
 - Ernte = Wissenstest (100% korrekt erforderlich)
 - Früchte = Ressource (verdient durch Ernte, verbraucht im Restaurant)
 - Restaurant = entspannter Betrieb + Unlock-System über Fragen
-- Reinigung = Hochdrucktest (geplantes Redesign, siehe `docs/IDEAS.md §3`)
 - Labor = themenübergreifende Integration (Hybride)
 - Verrottung = Vergessen (optional, spätere Phase)
 
@@ -81,7 +75,7 @@ Langzeit-Vision: mehrere Packs (z.B. Warhammer Lore, Schullehrplan), jeder als e
 
 Ein Pack ist eine vollständig eigenständige Lernwelt mit:
 - Eigenem Garten
-- Eigenem Restaurant / Reinigungsbereich
+- Eigenem Restaurant
 - Eigenem Labor
 - Eigenen XP, HP, Früchten, Statistiken
 
@@ -176,7 +170,7 @@ Wenn alle Fragen korrekt beantwortet: Trophäe + Empfehlung neues Kapitel freisc
 |---|---|---|
 | XP | Phase 1, Ernte | Nie (permanent) |
 | Früchte | Ernte (×2 pro korrekte Antwort) | Restaurant-Unlocks, Nachfüllen |
-| HP | Beschriften-Minispiel | Zukünftig: Reinigungssystem |
+| HP | Beschriften-Minispiel | — |
 
 ---
 
@@ -220,23 +214,7 @@ Designregel: diagnostisch, nie beschämend.
 - Löscht nie Errungenschaften oder XP
 - Spieler-wählbarer Modus: Aus / Sanft / Streng
 
-### 11.2 Reinigung / Neighborhood Cleanup
-
-Vollständig ausgearbeitet in `docs/IDEAS.md §3`. Löst das Restaurant als Hochdruck-Testmechanismus ab:
-- 34 Orte in Zuhause + Nachbarschaft (Frontansicht)
-- Klickbare Unordnungs-Items mit dirty/clean Zuständen
-- Ratten → Rattenkäfig, Insekten → Terrarium (wholesome!)
-- Trophäenraum als Fortschritts-Showcase
-- Drag-and-Drop Editor für Asset-Platzierung
-- Asset-Anforderungen dokumentiert in `docs/ASSETS_NEEDED.txt`
-
-### 11.3 Karten-Navigation
-
-- Nachbarschaftskarte mit klickbaren Pins
-- Pin-Zustände: gesperrt / freigeschaltet / gereinigt / Trophäen-Challenge bereit
-- Ersetzt den direkten Restaurant-Button langfristig
-
-### 11.4 Town Hub
+### 11.2 Town Hub
 
 - Pixel-Art-Dorf als Hauptmenü
 - Jeder Pack = ein Haus im Dorf

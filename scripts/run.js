@@ -5,8 +5,8 @@ const { spawn } = require("child_process");
 
 const PORT = Number(process.env.PORT) || 5173;
 const ROOT = process.cwd();
-const SESSION_TTL_MS = 6000;
-const EMPTY_GRACE_MS = 2500;
+const SESSION_TTL_MS = 60000;  // 60s — survives browser timer throttling in background
+const EMPTY_GRACE_MS = 5000;
 
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -23,6 +23,7 @@ const MIME_TYPES = {
 
 const sessions = new Map();
 let emptySince = null;
+let isShuttingDown = false;
 
 function safeResolve(urlPath) {
   const cleanPath = decodeURIComponent(urlPath.split("?")[0]);
@@ -90,6 +91,7 @@ function removeSession(id) {
 }
 
 function sweepSessions() {
+  if (isShuttingDown) return;
   const now = Date.now();
   for (const [id, lastSeen] of sessions.entries()) {
     if (now - lastSeen > SESSION_TTL_MS) {
@@ -101,6 +103,7 @@ function sweepSessions() {
     if (!emptySince) emptySince = now;
     if (now - emptySince >= EMPTY_GRACE_MS) {
       console.log("App window closed. Shutting down server.");
+      isShuttingDown = true;
       server.close(() => process.exit(0));
     }
   } else {

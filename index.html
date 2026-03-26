@@ -86,27 +86,11 @@
     </div>
   </div>
 
-  <!-- Map modal -->
-  <div id="modal-map" class="modal-overlay" hidden>
-    <div class="modal-box modal-box--map">
-      <h2>Nachbarschaft</h2>
-      <div id="map-container">
-        <img id="map-display" alt="Nachbarschaftskarte" />
-      </div>
-      <div id="map-room-picker" hidden>
-        <div class="map-room-picker-title" id="map-room-picker-title"></div>
-        <div id="map-room-picker-list"></div>
-      </div>
-      <button id="close-map-btn" class="modal-close-btn">Schließen</button>
-    </div>
-  </div>
-
-  <!-- Room / cleaning modal -->
+  <!-- Room / Restaurant modal -->
   <div id="modal-room" class="modal-overlay" hidden>
     <div class="modal-box modal-box--map">
-      <h2 id="room-title">Raum</h2>
+      <h2 id="room-title">Restaurant</h2>
       <div id="room-content">
-        <p class="muted" style="text-align:center;padding:2rem 0;">Reinigungssystem wird gebaut — bald verfügbar.</p>
       </div>
       <button id="close-room-btn" class="modal-close-btn">Schließen</button>
     </div>
@@ -145,7 +129,12 @@
       };
 
       post("/__app_open", false);
-      const timer = setInterval(() => post("/__app_ping", false), 2000);
+      const timer = setInterval(() => post("/__app_ping", false), 20000);
+
+      // Re-ping immediately when window regains visibility (browser throttles intervals in background)
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) post("/__app_ping", false);
+      });
 
       window.addEventListener("beforeunload", () => {
         clearInterval(timer);
