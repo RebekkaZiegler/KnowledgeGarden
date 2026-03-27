@@ -2972,25 +2972,41 @@ function openCatalogModal(filterBedId) {
 
 // ── Restaurant / Praxis System ─────────────────────────────────────────────
 
-const RE_PATIENCE_MS  = 28000;
+const RE_PATIENCE_MS  = 40000;
 const RE_TICK_MS      = 200;
 const RE_MAX_CUST     = 5;
-const RE_SPAWN_BASE   = 9000;
-const RE_COOK_BASE    = 3000;
-const RE_STOCK_BASE   = 12;   // uses before restock needed
-const RE_CLEANER_MS   = 7000; // how often cleaner removes one dirt spot
+const RE_SPAWN_BASE   = 12000;
+const RE_COOK_BASE    = 6000;
 
-const RE_INGREDIENTS = [
-  { id: "skewer",  label: "Spieß",   icon: "🍢", satiety: 35, cost: 0, category: "food"  },
-  { id: "water",   label: "Wasser",  icon: "💧", satiety: 10, cost: 0, category: "drink" },
-  { id: "protein", label: "Protein", icon: "🥩", satiety: 28, cost: 3, category: "food"  },
-  { id: "veggy",   label: "Gemüse",  icon: "🥦", satiety: 22, cost: 3, category: "food"  },
-  { id: "carbs",   label: "Beilage", icon: "🍞", satiety: 18, cost: 2, category: "food"  },
-  { id: "sauce",   label: "Sauce",   icon: "🍯", satiety: 12, cost: 2, category: "food"  },
-  { id: "cola",    label: "Cola",    icon: "🥤", satiety: 18, cost: 3, category: "drink" },
-  { id: "beer",    label: "Bier",    icon: "🍺", satiety: 15, cost: 4, category: "drink" },
-  { id: "wine",    label: "Wein",    icon: "🍷", satiety: 22, cost: 5, category: "drink" },
+// ── Pizza toppings (unlockable + restockable) ───────────────────────────────
+const RE_TOPPINGS = [
+  { id: "bacon",            label: "Bacon",         img: "assets/images/Pizza/bacon.png",            cost: 3, restockAmt: 5 },
+  { id: "basil",            label: "Basilikum",     img: "assets/images/Pizza/basil.png",            cost: 2, restockAmt: 5 },
+  { id: "egg",              label: "Ei",            img: "assets/images/Pizza/egg.png",              cost: 4, restockAmt: 1 },
+  { id: "green_bellpepper", label: "Grüne Paprika", img: "assets/images/Pizza/green_bellpepper.png", cost: 2, restockAmt: 5 },
+  { id: "gruene_oliven",    label: "Gr. Oliven",    img: "assets/images/Pizza/grüne_oliven.png",     cost: 3, restockAmt: 5 },
+  { id: "ham",              label: "Schinken",      img: "assets/images/Pizza/ham.png",              cost: 3, restockAmt: 5 },
+  { id: "jalapenio",        label: "Jalapeño",      img: "assets/images/Pizza/jalapenio.png",        cost: 2, restockAmt: 5 },
+  { id: "onion",            label: "Zwiebeln",      img: "assets/images/Pizza/onion.png",            cost: 2, restockAmt: 5 },
+  { id: "red_bellpepper",   label: "Rote Paprika",  img: "assets/images/Pizza/red_bellpepper.png",   cost: 2, restockAmt: 5 },
+  { id: "salami",           label: "Salami",        img: "assets/images/Pizza/salami.png",           cost: 3, restockAmt: 5 },
+  { id: "schwarze_oliven",  label: "Schw. Oliven",  img: "assets/images/Pizza/schwarze_oliven.png",  cost: 3, restockAmt: 5 },
+  { id: "shrimp",           label: "Garnelen",      img: "assets/images/Pizza/shrimp.png",           cost: 4, restockAmt: 5 },
+  { id: "shroomi",          label: "Pilze",         img: "assets/images/Pizza/shroomi.png",          cost: 2, restockAmt: 5 },
+  { id: "sucuck",           label: "Sucuk",         img: "assets/images/Pizza/sucuck.png",           cost: 3, restockAmt: 5 },
+  { id: "tomato",           label: "Tomaten",       img: "assets/images/Pizza/tomato.png",           cost: 2, restockAmt: 5 },
 ];
+
+// ── Drinks ──────────────────────────────────────────────────────────────────
+const RE_DRINKS = [
+  { id: "water", label: "Wasser", icon: "💧", cost: 0, unlimited: true },
+  { id: "cola",  label: "Cola",   icon: "🥤", cost: 3, restockAmt: 5 },
+  { id: "beer",  label: "Bier",   icon: "🍺", cost: 4, restockAmt: 5 },
+  { id: "wine",  label: "Wein",   icon: "🍷", cost: 5, restockAmt: 5 },
+];
+
+const RE_PIZZA_MAX_TOPPINGS = 25;
+const RE_MAX_ACTIVE_PIZZAS  = 10;
 
 // Predetermined dirt spot positions (% within dining area)
 const RE_DIRT_POS = [
@@ -3001,13 +3017,18 @@ const RE_DIRT_POS = [
 const RE_TABLE_SLOTS = [
   { x: 38, y: 22 }, { x: 64, y: 22 },
   { x: 38, y: 60 }, { x: 64, y: 60 },
-  { x: 83, y: 40 }
+  { x: 83, y: 40 },
+  { x: 51, y: 40 }, { x: 83, y: 70 },
+  { x: 51, y: 75 }
 ];
-const RE_COOK_POS   = [{ x: 12, y: 32 }, { x: 12, y: 56 }, { x: 12, y: 76 }];
+const RE_COOK_POS   = [
+  { x: 12, y: 32 }, { x: 12, y: 56 }, { x: 12, y: 76 },
+  { x: 20, y: 18 }, { x: 20, y: 90 }
+];
 const RE_ENTRANCE   = { x: 93, y: 78 };
 const RE_EXIT_POS   = { x: 98, y: 92 };
-const RE_DELIVER_MS = 1200;
-const RE_ARRIVE_MS  = 1400;
+const RE_DELIVER_MS = 2200;
+const RE_ARRIVE_MS  = 2400;
 
 const CUST_PALETTES = [
   { skin: "#f5c5a0", hair: "#3a2200", shirt: "#cc4444", pants: "#334488" },
@@ -3018,21 +3039,52 @@ const CUST_PALETTES = [
 ];
 
 let reLastUpgradeSignature = "";
+let reActiveNav = null;
+let reLastPanelSignature = "";
 
 let restaurantSession = null;
 let sessionStats = { questionsAnswered: 0, correct: 0, wrong: 0, startTime: Date.now() };
 
 function reGetRestaurant(bedId) {
   const bedState = getPackState().beds[bedId];
+  const basicRecipe = { id: "basic", name: "Basic Pizza", toppings: [], active: true, orderedCount: 0, deletable: false };
   if (!bedState.restaurant) {
-    bedState.restaurant = { unlockedCooks: 1, unlockedIngredients: ["skewer", "water"], unlockedCleaner: false, questionAnswers: {} };
+    bedState.restaurant = {
+      unlockedCooks: 1, unlockedTables: 2,
+      unlockedToppings: [], unlockedDrinks: ["water"],
+      stocks: {}, pizzaRecipes: [{ ...basicRecipe }],
+      questionAnswers: {}, totalCustStats: { sad: 0, neutral: 0, happy: 0, veryHappy: 0 }
+    };
     saveState();
   }
-  // Migrate older saves missing new fields
   const r = bedState.restaurant;
-  if (!r.unlockedIngredients.includes("water")) r.unlockedIngredients.push("water");
-  if (r.unlockedCleaner === undefined) r.unlockedCleaner = false;
+  // Migrate old saves that used unlockedIngredients
+  if (r.unlockedIngredients && !r.unlockedToppings) {
+    r.unlockedToppings = r.unlockedIngredients.filter(id => RE_TOPPINGS.some(t => t.id === id));
+    const migratedDrinks = r.unlockedIngredients.filter(id => RE_DRINKS.some(d => d.id === id));
+    r.unlockedDrinks = ["water", ...migratedDrinks.filter(id => id !== "water")];
+    delete r.unlockedIngredients;
+  }
+  if (!r.unlockedToppings) r.unlockedToppings = [];
+  if (!r.unlockedDrinks) r.unlockedDrinks = ["water"];
+  if (!r.unlockedDrinks.includes("water")) r.unlockedDrinks.unshift("water");
+  if (!r.pizzaRecipes) r.pizzaRecipes = [{ ...basicRecipe }];
+  if (!r.pizzaRecipes.some(p => p.id === "basic")) r.pizzaRecipes.unshift({ ...basicRecipe });
+  r.pizzaRecipes.forEach(p => { if (p.orderedCount === undefined) p.orderedCount = 0; if (p.deletable === undefined) p.deletable = true; });
+  r.pizzaRecipes.find(p => p.id === "basic").deletable = false;
+  // Migrate old cleaner fields (no longer used)
+  delete r.unlockedCleaner;
+  delete r.unlockedCleaners;
+  if (r.unlockedTables === undefined) r.unlockedTables = 2;
   if (!r.questionAnswers) r.questionAnswers = {};
+  if (!r.stocks) r.stocks = {};
+  if (!r.totalCustStats) r.totalCustStats = { sad: 0, neutral: 0, happy: 0, veryHappy: 0 };
+  const tcs = r.totalCustStats;
+  if (tcs.waitTimeout   === undefined) tcs.waitTimeout   = 0;
+  if (tcs.dirtLeave     === undefined) tcs.dirtLeave     = 0;
+  if (tcs.cravingUnmet  === undefined) tcs.cravingUnmet  = 0;
+  if (tcs.cravingIngredientNA       === undefined) tcs.cravingIngredientNA       = 0;
+  if (tcs.cravingDislikeConflict    === undefined) tcs.cravingDislikeConflict    = 0;
   return r;
 }
 
@@ -3093,8 +3145,9 @@ function buildCustomerHtml(customerId) {
     <rect x="11.5" y="25" width="3.5" height="11" rx="1.5" fill="${pal.pants}"/>
     <ellipse cx="9" cy="36.5" rx="3" ry="1.5" fill="#333"/>
     <ellipse cx="13" cy="36.5" rx="3" ry="1.5" fill="#333"/>
-  </svg><div class="re-sprite-patience"><div class="re-sprite-patience-fill"></div></div><div class="re-sprite-eat-bar" style="display:none"><div class="re-sprite-eat-fill"></div></div><div class="re-sprite-food-icon" style="display:none"></div>`;
+  </svg><div class="re-sprite-patience"><div class="re-sprite-patience-fill"></div></div><div class="re-sprite-eat-bar" style="display:none"><div class="re-sprite-eat-fill"></div></div><div class="re-sprite-food-icon" style="display:none"></div><div class="re-sprite-outcome" style="display:none"></div>`;
 }
+
 
 function getCookPos(cook, cookIndex, session) {
   const kp = RE_COOK_POS[cookIndex] || { x: 12, y: 50 };
@@ -3122,6 +3175,16 @@ function getCookPos(cook, cookIndex, session) {
 }
 
 function getCustomerPos(c) {
+  // Entrance-waiting: no table assigned yet
+  if (c.tableSlot === -1) {
+    const offset = (c.id % 5) * 2;  // spread them slightly so they don't stack
+    if (c.state === "leaving_happy" || c.state === "leaving_sad") {
+      const prog = Math.min(1, 1 - (c.leaveTimer / 900));
+      return { x: RE_ENTRANCE.x + offset + (RE_EXIT_POS.x - RE_ENTRANCE.x - offset) * prog,
+               y: RE_ENTRANCE.y + (RE_EXIT_POS.y - RE_ENTRANCE.y) * prog };
+    }
+    return { x: RE_ENTRANCE.x + offset, y: RE_ENTRANCE.y };
+  }
   const slot = c.tableSlot ?? 0;
   const tp = RE_TABLE_SLOTS[slot] || RE_TABLE_SLOTS[0];
   if (c.state === "leaving_happy" || c.state === "leaving_sad") {
@@ -3132,51 +3195,65 @@ function getCustomerPos(c) {
   return { x: RE_ENTRANCE.x + (tp.x - RE_ENTRANCE.x) * arr, y: RE_ENTRANCE.y + (tp.y - RE_ENTRANCE.y) * arr };
 }
 
-function assignTableSlot(session) {
+function assignTableSlot(session, restaurant) {
+  const limit = Math.min(restaurant.unlockedTables, RE_TABLE_SLOTS.length);
   const used = new Set(session.customers.map(c => c.tableSlot));
-  for (let i = 0; i < RE_TABLE_SLOTS.length; i++) { if (!used.has(i)) return i; }
-  return session.customers.length % RE_TABLE_SLOTS.length;
+  for (let i = 0; i < limit; i++) { if (!used.has(i)) return i; }
+  return -1; // all unlocked tables occupied — customer waits at entrance
 }
 
-function buildReUpgradesHtml(session, restaurant, player) {
-  const reBedContent = PACK_CONTENT.beds.find(b => b.id === session.bedId);
-  const reAllQs = [];
-  (reBedContent?.plants || []).forEach(p => {
-    (p.harvestQuestions || []).forEach(q => reAllQs.push(q));
-    (p.cleaningQuestions || []).forEach(q => reAllQs.push(q));
-  });
-  const reAnswers = restaurant.questionAnswers || {};
-  const reMastered = reAllQs.filter(q => reAnswers[q.id] === "correct").length;
-  const reAllMastered = reAllQs.length > 0 && reMastered === reAllQs.length;
-  const unlocks = [];
-  if (restaurant.unlockedCooks < 3) {
-    const n = restaurant.unlockedCooks + 1;
-    unlocks.push({ type: "cook", value: n, icon: "👨‍🍳", label: `${n}. Koch`, cost: n });
+
+function assignCravings(restaurant) {
+  const toppings = restaurant.unlockedToppings;
+  const drinks   = restaurant.unlockedDrinks.filter(id => id !== "water");
+  // 1 or 2 food cravings
+  let cravings = [];
+  if (toppings.length > 0 && Math.random() < 0.80) {
+    const t1 = toppings[Math.floor(Math.random() * toppings.length)];
+    cravings = [t1];
+    if (toppings.length > 1 && Math.random() < 0.35) {
+      const rest = toppings.filter(t => t !== t1);
+      cravings.push(rest[Math.floor(Math.random() * rest.length)]);
+    }
   }
-  if (!restaurant.unlockedCleaner)
-    unlocks.push({ type: "cleaner", value: true, icon: "🧹", label: "Reinigungskraft", cost: 5 });
-  RE_INGREDIENTS.filter(i => i.cost > 0 && !restaurant.unlockedIngredients.includes(i.id))
-    .forEach(ing => unlocks.push({ type: "ingredient", value: ing.id, icon: ing.icon, label: ing.label, cost: ing.cost }));
-  session.currentUnlocks = unlocks;
-  const masteryHtml = reAllQs.length > 0
-    ? reAllMastered
-      ? `<div class="re-mastery re-mastery--done">🏆 ${reMastered}/${reAllQs.length} Fragen gemeistert</div>`
-      : `<div class="re-mastery">${reMastered}/${reAllQs.length} Fragen korrekt beantwortet</div>`
-    : "";
-  const unlocksHtml = unlocks.length
-    ? unlocks.map((u, i) => {
-        const can = player.fruits >= u.cost;
-        return `<button class="re-unlock-btn${can ? "" : " re-unlock-btn--broke"}" onclick="startReUnlock(${i})"${can ? "" : " disabled"}>${u.icon} ${u.label} <span class="re-cost">${u.cost} 🍎</span></button>`;
-      }).join("")
-    : `<span style="font-size:.75rem;color:var(--muted)">Alles freigeschaltet!</span>`;
-  return `<div class="re-section-lbl" style="text-align:left;margin-bottom:4px">Verbesserungen</div>${masteryHtml}<div class="re-unlock-list">${unlocksHtml}</div>`;
+  // Drink craving
+  const cravingDrink = drinks.length > 0 && Math.random() < 0.65
+    ? drinks[Math.floor(Math.random() * drinks.length)] : null;
+  // Disliked topping (never overlaps with cravings)
+  let dislikedTopping = null;
+  if (toppings.length > 1 && Math.random() < 0.28) {
+    const notCraved = toppings.filter(t => !cravings.includes(t));
+    if (notCraved.length > 0)
+      dislikedTopping = notCraved[Math.floor(Math.random() * notCraved.length)];
+  }
+  return { cravings, cravingDrink, dislikedTopping };
 }
 
-function reSatiety(restaurant, stocks) {
-  return Math.min(100, restaurant.unlockedIngredients.reduce((s, id) => {
-    if (stocks && (stocks[id] ?? RE_STOCK_BASE) <= 0) return s; // out of stock
-    return s + (RE_INGREDIENTS.find(i => i.id === id)?.satiety || 0);
-  }, 0));
+function selectOrder(restaurant, customer) {
+  const { cravings, dislikedTopping, cravingDrink } = customer;
+  const activePizzas = restaurant.pizzaRecipes.filter(p => p.active);
+  // Filter out pizzas containing the disliked topping
+  const eligible = dislikedTopping
+    ? activePizzas.filter(p => !p.toppings.some(t => t.id === dislikedTopping))
+    : [...activePizzas];
+  const pool = eligible.length > 0 ? eligible : activePizzas.filter(p => p.id === "basic");
+  // Score by how many cravings appear in the pizza
+  const scored = pool.map(p => {
+    const ids = new Set(p.toppings.map(t => t.id));
+    return { pizza: p, score: (cravings || []).filter(c => ids.has(c)).length };
+  });
+  const maxScore = Math.max(...scored.map(s => s.score));
+  const best = scored.filter(s => s.score === maxScore);
+  const pizza = best[Math.floor(Math.random() * best.length)].pizza;
+  // Drink: craved if available + in stock, else water
+  const drinkAvail = cravingDrink && restaurant.unlockedDrinks.includes(cravingDrink)
+    && (RE_DRINKS.find(d => d.id === cravingDrink)?.unlimited || (restaurant.stocks[cravingDrink] || 0) > 0);
+  return { pizzaId: pizza.id, pizzaName: pizza.name, drinkId: drinkAvail ? cravingDrink : "water" };
+}
+
+function pizzaSatiety(pizza) {
+  const distinct = new Set((pizza?.toppings || []).map(t => t.id)).size;
+  return Math.min(90, 35 + distinct * 6);
 }
 
 function reSyncCooks() {
@@ -3186,6 +3263,14 @@ function reSyncCooks() {
     restaurantSession.cooks.push({ id: restaurantSession.cooks.length, state: "idle", cookTimer: 0, cookTimerMax: 1, targetId: null, cookIcons: "" });
 }
 
+
+function addDirtSpot(session) {
+  const used = new Set(session.dirtSpots);
+  for (let i = 0; i < RE_DIRT_POS.length; i++) {
+    if (!used.has(i)) { session.dirtSpots.push(i); return; }
+  }
+}
+
 function openRestaurant(bedId) {
   stopRestaurant();
   reGetRestaurant(bedId);
@@ -3193,11 +3278,15 @@ function openRestaurant(bedId) {
     bedId, cooks: [], customers: [], nextCustomerId: 0,
     spawnTimer: 1200, totalServed: 0, totalImpatient: 0,
     paused: false, unlockQ: null, currentUnlocks: [], gameLoopId: null,
-    dirtCount: 0, cleanerTimer: RE_CLEANER_MS,
-    stocks: Object.fromEntries(RE_INGREDIENTS.map(i => [i.id, RE_STOCK_BASE]))
+    dirtSpots: [],
+    custStats: { sad: 0, neutral: 0, happy: 0, veryHappy: 0,
+                 waitTimeout: 0, dirtLeave: 0,
+                 cravingUnmet: 0, cravingIngredientNA: 0, cravingDislikeConflict: 0 }
   };
   reSyncCooks();
   reLastUpgradeSignature = "";
+  reActiveNav = null;
+  reLastPanelSignature = "";
   reInitScene(bedId);
   restaurantSession.gameLoopId = setInterval(restaurantTick, RE_TICK_MS);
   reUpdateScene();
@@ -3205,6 +3294,7 @@ function openRestaurant(bedId) {
 
 function stopRestaurant() {
   if (restaurantSession?.gameLoopId) clearInterval(restaurantSession.gameLoopId);
+  if (restaurantSession) saveState(); // persist final stocks + totalCustStats
   restaurantSession = null;
 }
 
@@ -3219,52 +3309,124 @@ function restaurantTick() {
   const restaurant = bedState.restaurant;
 
   // Dirt factors
-  const dirtFactor = session.dirtCount > 5 ? 1.35 : 1.0; // patience drains faster
-  const spawnPenalty = session.dirtCount > 8 ? 1.6 : 1.0; // customers arrive slower
+  const dirtFactor = session.dirtSpots.length > 5 ? 1.35 : 1.0; // patience drains faster
+  const spawnPenalty = session.dirtSpots.length > 8 ? 1.6 : 1.0; // customers arrive slower
 
   // Spawn
   session.spawnTimer -= RE_TICK_MS;
   if (session.spawnTimer <= 0) {
-    if (session.customers.length < RE_MAX_CUST)
-      session.customers.push({ id: session.nextCustomerId++, state: "waiting", patience: 100, hunger: 0, leaveTimer: 0, tableSlot: assignTableSlot(session), arrivalProgress: 0 });
+    if (session.customers.length < RE_MAX_CUST) {
+      const { cravings, cravingDrink, dislikedTopping } = assignCravings(restaurant);
+      const slot = assignTableSlot(session, restaurant);
+      session.customers.push({ id: session.nextCustomerId++, state: "waiting", patience: 100, hunger: 0, leaveTimer: 0, tableSlot: slot, arrivalProgress: slot === -1 ? 1 : 0, cravings, cravingDrink, dislikedTopping, order: null, satiety: 50 });
+    }
     const base = Math.max(4000, RE_SPAWN_BASE - (restaurant.unlockedCooks - 1) * 1500);
     session.spawnTimer = base * spawnPenalty;
   }
 
-  // Cleaner
-  if (restaurant.unlockedCleaner && session.dirtCount > 0) {
-    session.cleanerTimer -= RE_TICK_MS;
-    if (session.cleanerTimer <= 0) {
-      session.dirtCount = Math.max(0, session.dirtCount - 1);
-      session.cleanerTimer = RE_CLEANER_MS;
-    }
-  }
 
   let needsSave = false;
 
   // Update customers
   session.customers = session.customers.filter(c => {
     if (c.state === "waiting") {
-      if ((c.arrivalProgress || 0) < 1) c.arrivalProgress = Math.min(1, (c.arrivalProgress || 0) + (RE_TICK_MS / RE_ARRIVE_MS));
-      c.patience -= (RE_TICK_MS / RE_PATIENCE_MS) * 100 * dirtFactor;
+      if (c.tableSlot >= 0 && (c.arrivalProgress || 0) < 1) c.arrivalProgress = Math.min(1, (c.arrivalProgress || 0) + (RE_TICK_MS / RE_ARRIVE_MS));
+      const entranceFactor = c.tableSlot === -1 ? 1.8 : 1.0;
+      c.patience -= (RE_TICK_MS / RE_PATIENCE_MS) * 100 * dirtFactor * entranceFactor;
       if (c.patience <= 0) {
         c.patience = 0; c.state = "leaving_sad"; c.leaveTimer = 900;
         const p = getPackState().player;
         if (p.fruits > 0) { p.fruits--; needsSave = true; }
         session.totalImpatient++;
-        if (Math.random() < 0.4) session.dirtCount++;  // angry customers make extra mess
+        session.custStats.sad++;
+        restaurant.totalCustStats.sad++;
+        session.custStats.waitTimeout++;
+        restaurant.totalCustStats.waitTimeout++;
+        if (session.dirtSpots.length > 0) {
+          session.custStats.dirtLeave++;
+          restaurant.totalCustStats.dirtLeave++;
+        }
+        if (Math.random() < 0.4) addDirtSpot(session);  // angry customers make extra mess
       }
     } else if (c.state === "eating") {
-      c.hunger += (RE_TICK_MS / 5000) * reSatiety(restaurant, session.stocks);
-      if (c.hunger >= 100) { c.state = "leaving_happy"; c.leaveTimer = 900; session.totalServed++; }
+      c.hunger += (RE_TICK_MS / 5000) * (c.satiety || 50);
+      if (c.hunger >= 100) {
+        const pizza = restaurant.pizzaRecipes.find(p => p.id === c.order?.pizzaId);
+        const toppingIds = new Set((pizza?.toppings || []).map(t => t.id));
+        const metCravings = (c.cravings || []).filter(cr => toppingIds.has(cr)).length;
+        const metDrink = c.cravingDrink && c.order?.drinkId === c.cravingDrink;
+        const totalCravings = (c.cravings?.length || 0) + (c.cravingDrink ? 1 : 0);
+        const metTotal = metCravings + (metDrink ? 1 : 0);
+        const sat = totalCravings === 0 ? "neutral"
+          : metTotal === totalCravings ? "veryHappy"
+          : metTotal > 0 ? "happy" : "neutral";
+        c.satisfaction = sat;
+        session.custStats[sat]++;
+        restaurant.totalCustStats[sat]++;
+
+        // Fruit rewards from happy customers
+        const player = getPackState().player;
+        if (sat === "happy" || sat === "veryHappy") {
+          const allHarvested = PACK_CONTENT.beds.filter(b => b.id !== "hybrid")
+            .every(b => getPackState().beds[b.id]?.restaurantUnlocked);
+          const reward = sat === "veryHappy" ? (allHarvested ? 1.0 : 0.2) : (allHarvested ? 0.5 : 0.1);
+          if (!player.fruitProgress) player.fruitProgress = 0;
+          player.fruitProgress += reward;
+          while (player.fruitProgress >= 1) { player.fruits++; player.fruitProgress -= 1; }
+          needsSave = true;
+        }
+
+        // Craving analysis (why wasn't it met?)
+        if (sat !== "veryHappy") {
+          (c.cravings || []).filter(cr => !toppingIds.has(cr)).forEach(cr => {
+            session.custStats.cravingUnmet++;
+            restaurant.totalCustStats.cravingUnmet++;
+            const inStock = restaurant.unlockedToppings.includes(cr) && (restaurant.stocks[cr] || 0) > 0;
+            if (!inStock) {
+              session.custStats.cravingIngredientNA++;
+              restaurant.totalCustStats.cravingIngredientNA++;
+            } else {
+              // Available but disliked-topping conflict blocked every matching pizza
+              const matchingPizzas = restaurant.pizzaRecipes.filter(p => p.active && p.toppings.some(t => t.id === cr));
+              if (matchingPizzas.length > 0 && c.dislikedTopping &&
+                  matchingPizzas.every(p => p.toppings.some(t => t.id === c.dislikedTopping))) {
+                session.custStats.cravingDislikeConflict++;
+                restaurant.totalCustStats.cravingDislikeConflict++;
+              }
+            }
+          });
+          // Drink craving unmet
+          if (c.cravingDrink && c.order?.drinkId !== c.cravingDrink) {
+            session.custStats.cravingUnmet++;
+            restaurant.totalCustStats.cravingUnmet++;
+            const drinkAvail = restaurant.unlockedDrinks.includes(c.cravingDrink)
+              && (RE_DRINKS.find(d => d.id === c.cravingDrink)?.unlimited || (restaurant.stocks[c.cravingDrink] || 0) > 0);
+            if (!drinkAvail) {
+              session.custStats.cravingIngredientNA++;
+              restaurant.totalCustStats.cravingIngredientNA++;
+            }
+          }
+        }
+
+        c.state = "leaving_happy"; c.leaveTimer = 900; session.totalServed++;
+      }
     } else if (c.state === "leaving_happy" || c.state === "leaving_sad") {
       c.leaveTimer -= RE_TICK_MS;
       if (c.leaveTimer <= 0) {
-        if (Math.random() < 0.3) session.dirtCount++;  // leaving customers drop dirt
+        if (Math.random() < 0.3) addDirtSpot(session);  // leaving customers drop dirt
         return false;
       }
     }
     return true;
+  });
+
+  // Reassign entrance-waiters to newly freed tables
+  const occupiedSlots = new Set(session.customers.filter(c => c.tableSlot >= 0).map(c => c.tableSlot));
+  const limit = Math.min(restaurant.unlockedTables, RE_TABLE_SLOTS.length);
+  session.customers.filter(c => c.tableSlot === -1 && c.state === "waiting").forEach(c => {
+    for (let i = 0; i < limit; i++) {
+      if (!occupiedSlots.has(i)) { c.tableSlot = i; c.arrivalProgress = 0; occupiedSlots.add(i); break; }
+    }
   });
 
   // Update cooks
@@ -3273,7 +3435,7 @@ function restaurantTick() {
       cook.deliverTimer -= RE_TICK_MS;
       if (cook.deliverTimer <= 0) {
         const t = session.customers.find(c => c.id === cook.targetId);
-        if (t?.state === "being_served") { t.state = "eating"; t.hunger = 0; t.foodIcon = cook.cookIcons; }
+        if (t?.state === "being_served") { t.state = "eating"; t.hunger = 0; t.foodIcon = cook.cookIcons; t.foodToppings = cook.cookPizza || []; }
         cook.state = "idle"; cook.targetId = null;
       }
     }
@@ -3285,22 +3447,463 @@ function restaurantTick() {
     }
     if (cook.state === "idle") {
       const busy = new Set(session.cooks.filter(c => c.id !== cook.id && c.targetId != null).map(c => c.targetId));
-      const t = session.customers.find(c => c.state === "waiting" && !busy.has(c.id) && (c.arrivalProgress || 0) >= 1);
+      const t = session.customers.find(c => c.state === "waiting" && !busy.has(c.id) && c.tableSlot >= 0 && (c.arrivalProgress || 0) >= 1);
       if (t) {
-        // Only use ingredients that are in stock
-        const available = restaurant.unlockedIngredients.filter(id => (session.stocks[id] ?? RE_STOCK_BASE) > 0);
+        // Determine order (chef will "take" it at the table during the at_table phase)
+        t.order = selectOrder(restaurant, t);
+        const pizza = restaurant.pizzaRecipes.find(p => p.id === t.order.pizzaId);
+        if (pizza) pizza.orderedCount++;
+        // Decrement drink stock
+        const drink = RE_DRINKS.find(d => d.id === t.order.drinkId);
+        if (drink && !drink.unlimited) restaurant.stocks[t.order.drinkId] = Math.max(0, (restaurant.stocks[t.order.drinkId] || 0) - 1);
+        // Decrement stock per topping placement (3 bacon = costs 3 bacon)
+        if (pizza) {
+          const counts = {};
+          pizza.toppings.forEach(tp => { counts[tp.id] = (counts[tp.id] || 0) + 1; });
+          Object.entries(counts).forEach(([id, n]) => {
+            restaurant.stocks[id] = Math.max(0, (restaurant.stocks[id] || 0) - n);
+          });
+        }
+        t.satiety = pizzaSatiety(pizza);
         t.state = "being_served"; cook.state = "cooking"; cook.targetId = t.id;
-        const ms = RE_COOK_BASE + (available.length - 1) * 500;
+        const distinctCount = pizza ? new Set(pizza.toppings.map(tp => tp.id)).size : 0;
+        const ms = RE_COOK_BASE + distinctCount * 600;
         cook.cookTimer = ms; cook.cookTimerMax = ms;
-        cook.cookIcons = available.map(id => RE_INGREDIENTS.find(i => i.id === id)?.icon || "").join("") || "🍽️";
-        // Decrement stock for each used ingredient
-        available.forEach(id => { session.stocks[id] = Math.max(0, (session.stocks[id] ?? RE_STOCK_BASE) - 1); });
+        cook.cookIcons = "🍕";
+        cook.cookPizza = pizza ? pizza.toppings.map(tp => ({ ...tp })) : [];
+        needsSave = true;
       }
     }
   });
 
   if (needsSave) { saveState(); renderPlayer(); }
   reUpdateScene();
+}
+
+// ── Pizza manager ────────────────────────────────────────────────────────────
+function buildRePizzaManagerHtml(restaurant) {
+  const recipes = restaurant.pizzaRecipes;
+  const activeCount = recipes.filter(p => p.active).length;
+  const rows = recipes.map(p => {
+    const distinctToppings = [...new Set(p.toppings.map(t => t.id))];
+    const toppingPreviews = distinctToppings.slice(0, 8).map(id => {
+      const t = RE_TOPPINGS.find(x => x.id === id);
+      return t ? `<img src="${t.img}" class="re-pm-tip" title="${t.label}">` : "";
+    }).join("") + (distinctToppings.length > 8 ? `<span class="re-pm-more">+${distinctToppings.length - 8}</span>` : "");
+    const activeClass = p.active ? " re-pm-row--active" : "";
+    const controls = p.deletable ? `
+      <button class="re-pm-btn re-pm-btn--toggle${p.active ? "" : " re-pm-btn--off"}" onclick="togglePizzaActive('${p.id}')">${p.active ? "Aktiv" : "Inaktiv"}</button>
+      <button class="re-pm-btn" onclick="openPizzaCreator('${p.id}')">✏️</button>
+      <button class="re-pm-btn re-pm-btn--del" onclick="if(confirm('Pizza löschen?'))deletePizzaRecipe('${p.id}')">🗑️</button>` : `<span class="re-pm-badge">Standard</span>`;
+    return `<div class="re-pm-row${activeClass}">
+      <div class="re-pm-info">
+        <div class="re-pm-name">${p.name}</div>
+        <div class="re-pm-tips">${toppingPreviews || '<span class="muted" style="font-size:.7rem">Keine Zutaten</span>'}</div>
+      </div>
+      <div class="re-pm-meta">
+        <span class="re-pm-orders">${p.orderedCount}×</span>
+        <div class="re-pm-controls">${controls}</div>
+      </div>
+    </div>`;
+  }).join("");
+  return `<div class="re-pm-header">
+    <span class="muted" style="font-size:.75rem">${activeCount}/${RE_MAX_ACTIVE_PIZZAS} aktiv</span>
+    <button class="re-pm-create-btn" onclick="openPizzaCreator()">+ Neue Pizza</button>
+  </div>${rows}`;
+}
+
+function openPizzaManager() {
+  if (!restaurantSession) return;
+  const panel = document.getElementById("re-pizza-manager");
+  if (!panel) return;
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  panel.hidden = !panel.hidden;
+  if (!panel.hidden) panel.innerHTML = buildRePizzaManagerHtml(restaurant);
+}
+
+// ── Pizza creator ─────────────────────────────────────────────────────────────
+let rePizzaCreatorState = null;
+
+function openPizzaCreator(editId) {
+  if (!restaurantSession) return;
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  const player = getPackState().player;
+  const existing = editId ? restaurant.pizzaRecipes.find(p => p.id === editId) : null;
+  rePizzaCreatorState = { toppings: existing ? existing.toppings.map(t => ({ ...t })) : [], editingId: editId || null };
+  const overlay = document.getElementById("re-pizza-creator");
+  if (!overlay) return;
+  const nameEl = document.getElementById("re-pc-name");
+  if (nameEl) nameEl.value = existing?.name || "";
+  reBuildCreatorPalette(restaurant, player);
+  reRenderPizzaCanvas();
+  overlay.hidden = false;
+}
+
+function reBuildCreatorPalette(restaurant, player) {
+  const palette = document.getElementById("re-pc-palette");
+  if (!palette || !restaurantSession) return;
+  const unlocks = reRebuildUnlocks(restaurantSession, restaurant);
+  const canAsk = player.fruits >= 1;
+  // Count toppings already placed on current pizza
+  const placed = {};
+  (rePizzaCreatorState?.toppings || []).forEach(t => { placed[t.id] = (placed[t.id] || 0) + 1; });
+
+  palette.innerHTML = RE_TOPPINGS.map(t => {
+    const unlocked = restaurant.unlockedToppings.includes(t.id);
+    const stock = restaurant.stocks[t.id] || 0;
+    if (!unlocked) {
+      const idx = unlocks.findIndex(u => u.type === "topping" && u.value === t.id);
+      const can = player.fruits >= 1;
+      return `<div class="re-pc-tile re-pc-tile--locked" title="${t.label} – nicht freigeschaltet">
+        <img src="${t.img}" class="re-pc-tile-img" draggable="false">
+        <span class="re-pc-tile-lbl">${t.label}</span>
+        <button class="re-pc-tile-action${can ? "" : " re-pc-tile-action--broke"}" onclick="startReUnlock(${idx})"${can ? "" : " disabled"}>🔓 1🍎</button>
+      </div>`;
+    }
+    const available = stock - (placed[t.id] || 0);
+    if (available <= 0) {
+      const isEmpty = stock === 0;
+      return `<div class="re-pc-tile re-pc-tile--empty" title="${t.label} – ${isEmpty ? "leer" : "alles platziert"}">
+        <img src="${t.img}" class="re-pc-tile-img" draggable="false">
+        <span class="re-pc-tile-lbl">${t.label}</span>
+        <span class="re-pc-tile-stock re-pc-tile-stock--out">${available}</span>
+        ${isEmpty ? `<button class="re-pc-tile-action${canAsk ? "" : " re-pc-tile-action--broke"}" onclick="startReRestock('${t.id}')"${canAsk ? "" : " disabled"}>🛒 1🍎</button>` : ""}
+      </div>`;
+    }
+    return `<div class="re-pc-tile" draggable="true" title="${t.label} (${available} verfügbar)" ondragstart="reOnDragStart(event,'${t.id}')">
+      <img src="${t.img}" class="re-pc-tile-img" draggable="false">
+      <span class="re-pc-tile-lbl">${t.label}</span>
+      <span class="re-pc-tile-stock">${available}</span>
+    </div>`;
+  }).join("");
+}
+
+function closePizzaCreator() {
+  const overlay = document.getElementById("re-pizza-creator");
+  if (overlay) overlay.hidden = true;
+  rePizzaCreatorState = null;
+}
+
+function reOnDragStart(event, toppingId) {
+  event.dataTransfer.setData("toppingId", toppingId);
+  event.dataTransfer.effectAllowed = "copy";
+}
+
+function reOnPizzaDragOver(event) {
+  event.preventDefault();
+  event.dataTransfer.dropEffect = "copy";
+}
+
+function reOnPizzaDrop(event) {
+  event.preventDefault();
+  if (!rePizzaCreatorState) return;
+  if (rePizzaCreatorState.toppings.length >= RE_PIZZA_MAX_TOPPINGS) return;
+  const id = event.dataTransfer.getData("toppingId");
+  const tp = RE_TOPPINGS.find(t => t.id === id);
+  if (!id || !tp) return;
+  // Check available stock minus already placed
+  if (restaurantSession) {
+    const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+    const placed = rePizzaCreatorState.toppings.filter(t => t.id === id).length;
+    const available = (restaurant.stocks[id] || 0) - placed;
+    if (available <= 0) { showToast(`${tp.label} — kein Vorrat mehr!`, "error"); return; }
+  }
+  const canvas = document.getElementById("re-pc-canvas");
+  if (!canvas) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = Math.max(5, Math.min(95, Math.round(((event.clientX - rect.left) / rect.width) * 100)));
+  const y = Math.max(5, Math.min(95, Math.round(((event.clientY - rect.top) / rect.height) * 100)));
+  rePizzaCreatorState.toppings.push({ id, x, y });
+  reRenderPizzaCanvas();
+}
+
+function reRenderPizzaCanvas() {
+  if (!rePizzaCreatorState) return;
+  const countEl = document.getElementById("re-pc-count");
+  if (countEl) countEl.textContent = rePizzaCreatorState.toppings.length;
+  const toppingsDiv = document.getElementById("re-pc-toppings");
+  if (!toppingsDiv) return;
+  toppingsDiv.innerHTML = rePizzaCreatorState.toppings.map((t, idx) => {
+    const tp = RE_TOPPINGS.find(x => x.id === t.id);
+    if (!tp) return "";
+    return `<img src="${tp.img}" class="re-pc-placed" style="left:${t.x}%;top:${t.y}%" title="${tp.label} — klicken zum Entfernen" draggable="false" onclick="rePizzaRemoveTopping(${idx})">`;
+  }).join("");
+  // Refresh palette so available counts update
+  if (restaurantSession) {
+    const r = getPackState().beds[restaurantSession.bedId].restaurant;
+    reBuildCreatorPalette(r, getPackState().player);
+  }
+}
+
+function rePizzaRemoveTopping(idx) {
+  if (!rePizzaCreatorState) return;
+  rePizzaCreatorState.toppings.splice(idx, 1);
+  reRenderPizzaCanvas();
+}
+
+function savePizzaRecipe() {
+  if (!rePizzaCreatorState || !restaurantSession) return;
+  const name = (document.getElementById("re-pc-name")?.value.trim()) || "Neue Pizza";
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  if (rePizzaCreatorState.editingId) {
+    const recipe = restaurant.pizzaRecipes.find(p => p.id === rePizzaCreatorState.editingId);
+    if (recipe) { recipe.name = name; recipe.toppings = rePizzaCreatorState.toppings; }
+  } else {
+    const activeCount = restaurant.pizzaRecipes.filter(p => p.active).length;
+    restaurant.pizzaRecipes.push({ id: `pizza_${Date.now()}`, name, toppings: rePizzaCreatorState.toppings, active: activeCount < RE_MAX_ACTIVE_PIZZAS, orderedCount: 0, deletable: true });
+  }
+  saveState();
+  closePizzaCreator();
+  reRefreshMainPanel();
+}
+
+function deletePizzaRecipe(recipeId) {
+  if (!restaurantSession) return;
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  const idx = restaurant.pizzaRecipes.findIndex(p => p.id === recipeId && p.deletable);
+  if (idx >= 0) { restaurant.pizzaRecipes.splice(idx, 1); saveState(); }
+  reRefreshMainPanel();
+}
+
+function togglePizzaActive(recipeId) {
+  if (!restaurantSession) return;
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  const recipe = restaurant.pizzaRecipes.find(p => p.id === recipeId && p.deletable);
+  if (!recipe) return;
+  if (!recipe.active && restaurant.pizzaRecipes.filter(p => p.active).length >= RE_MAX_ACTIVE_PIZZAS) {
+    alert(`Maximal ${RE_MAX_ACTIVE_PIZZAS} aktive Pizzen erlaubt.`); return;
+  }
+  recipe.active = !recipe.active;
+  saveState();
+  reRefreshMainPanel();
+}
+
+function buildReStorageHtml(restaurant) {
+  const toppingRows = restaurant.unlockedToppings.map(id => {
+    const t = RE_TOPPINGS.find(x => x.id === id);
+    if (!t) return "";
+    const stock = restaurant.stocks[id] || 0;
+    const cls = stock === 0 ? " re-storage-row--out" : stock <= 2 ? " re-storage-row--low" : "";
+    return `<div class="re-storage-row${cls}"><img src="${t.img}" class="re-storage-img"><span>${t.label}</span><span class="re-stock-count">${stock}</span></div>`;
+  }).join("");
+  const drinkRows = restaurant.unlockedDrinks.map(id => {
+    const d = RE_DRINKS.find(x => x.id === id);
+    if (!d) return "";
+    if (d.unlimited) return `<div class="re-storage-row"><span>${d.icon} ${d.label}</span><span class="re-stock-count re-stock-count--inf">∞</span></div>`;
+    const stock = restaurant.stocks[id] || 0;
+    const cls = stock === 0 ? " re-storage-row--out" : stock <= 2 ? " re-storage-row--low" : "";
+    return `<div class="re-storage-row${cls}"><span>${d.icon} ${d.label}</span><span class="re-stock-count">${stock}</span></div>`;
+  }).join("");
+  if (!toppingRows && !drinkRows) return `<span class="muted" style="font-size:.75rem">Noch nichts im Lager</span>`;
+  return (toppingRows ? `<div class="re-storage-group-lbl">Zutaten</div>${toppingRows}` : "")
+       + (drinkRows   ? `<div class="re-storage-group-lbl">Getränke</div>${drinkRows}` : "");
+}
+
+function toggleReStorage() {
+  const p = document.getElementById("re-storage-panel");
+  if (!p) return;
+  p.hidden = !p.hidden;
+  if (!p.hidden && restaurantSession) p.innerHTML = buildReStorageHtml(getPackState().beds[restaurantSession.bedId].restaurant);
+}
+
+// ── Restaurant panel builders ─────────────────────────────────────────────
+function buildReStaffHtml(session, restaurant, player) {
+  const unlocks = reRebuildUnlocks(session, restaurant);
+  const staff = unlocks.filter(u => u.type === "cook" || u.type === "table");
+  if (staff.length === 0)
+    return `<div class="re-panel-done">✓ Alles freigeschaltet</div>`;
+  const btns = staff.map(u => {
+    const idx = unlocks.indexOf(u);
+    const can = player.fruits >= 1;
+    return `<button class="re-unlock-btn${can ? "" : " re-unlock-btn--broke"}" onclick="startReUnlock(${idx})"${can ? "" : " disabled"} title="1 🍎 für die Frage">${u.iconHtml || u.icon || ""} ${u.label} <span class="re-cost">1 🍎</span></button>`;
+  }).join("");
+  return `<div class="re-unlock-list">${btns}</div>`;
+}
+
+function buildReMenuViewHtml(session, restaurant) {
+  const active = restaurant.pizzaRecipes.filter(p => p.active);
+  const rows = active.map(p => {
+    const tips = [...new Set(p.toppings.map(t => t.id))].slice(0, 6).map(id => {
+      const t = RE_TOPPINGS.find(x => x.id === id);
+      return t ? `<img src="${t.img}" class="re-pm-tip" title="${t.label}">` : "";
+    }).join("");
+    const ctrl = p.deletable
+      ? `<button class="re-pm-btn re-pm-btn--toggle" onclick="togglePizzaActive('${p.id}')">Entfernen</button>
+         <button class="re-pm-btn" onclick="openPizzaCreator('${p.id}')">✏️</button>`
+      : `<span class="re-pm-badge">Standard</span>`;
+    return `<div class="re-pm-row re-pm-row--active">
+      ${buildMiniPizzaHtml(p.toppings)}
+      <div class="re-pm-info">
+        <div class="re-pm-name">${p.name}</div>
+        <div class="re-pm-tips">${tips || '<span class="muted" style="font-size:.7rem">Keine Zutaten</span>'}</div>
+      </div>
+      <div class="re-pm-meta"><span class="re-pm-orders">${p.orderedCount}×</span><div class="re-pm-controls">${ctrl}</div></div>
+    </div>`;
+  }).join("") || `<div class="re-panel-hint">Kein Menü aktiv. Füge Pizzen über "Erstellte Pizzen" hinzu.</div>`;
+  return `<div class="re-menu-header"><span class="muted" style="font-size:.74rem">${active.length}/${RE_MAX_ACTIVE_PIZZAS} im Menü</span></div>
+    <div class="re-menu-active-list">${rows}</div>
+    <div class="re-sub-nav">
+      <button class="re-sub-nav-btn" onclick="reMenuSubNav('my_pizzas')">Erstellte Pizzen</button>
+      <button class="re-sub-nav-btn" onclick="openPizzaCreator()">+ Neue Pizza</button>
+    </div>
+    <div id="re-menu-sub-panel"></div>`;
+}
+
+function buildReAllPizzasHtml(restaurant) {
+  const rows = restaurant.pizzaRecipes.map(p => {
+    const distinct = [...new Set(p.toppings.map(t => t.id))];
+    const tips = distinct.slice(0, 8).map(id => {
+      const t = RE_TOPPINGS.find(x => x.id === id);
+      return t ? `<img src="${t.img}" class="re-pm-tip" title="${t.label}">` : "";
+    }).join("") + (distinct.length > 8 ? `<span class="re-pm-more">+${distinct.length - 8}</span>` : "");
+    const activeClass = p.active ? " re-pm-row--active" : "";
+    const ctrl = p.deletable
+      ? `<button class="re-pm-btn re-pm-btn--toggle${p.active ? "" : " re-pm-btn--off"}" onclick="togglePizzaActive('${p.id}')">${p.active ? "Aktiv" : "Inaktiv"}</button>
+         <button class="re-pm-btn" onclick="openPizzaCreator('${p.id}')">✏️</button>
+         <button class="re-pm-btn re-pm-btn--del" onclick="if(confirm('Pizza löschen?'))deletePizzaRecipe('${p.id}')">🗑️</button>`
+      : `<span class="re-pm-badge">Standard</span>`;
+    return `<div class="re-pm-row${activeClass}">
+      <div class="re-pm-info">
+        <div class="re-pm-name">${p.name}</div>
+        <div class="re-pm-tips">${tips || '<span class="muted" style="font-size:.7rem">Keine Zutaten</span>'}</div>
+      </div>
+      <div class="re-pm-meta"><span class="re-pm-orders">${p.orderedCount}×</span><div class="re-pm-controls">${ctrl}</div></div>
+    </div>`;
+  }).join("");
+  return `<div class="re-sub-panel-header"><span class="muted" style="font-size:.74rem">${restaurant.pizzaRecipes.filter(p=>p.active).length}/${RE_MAX_ACTIVE_PIZZAS} aktiv</span></div>${rows}`;
+}
+
+function buildReStoragePanelHtml(session, restaurant, player) {
+  const unlocks = reRebuildUnlocks(session, restaurant);
+  const canAsk = player.fruits >= 1;
+
+  const toppingRows = restaurant.unlockedToppings.map(id => {
+    const t = RE_TOPPINGS.find(x => x.id === id);
+    if (!t) return "";
+    const stock = restaurant.stocks[id] || 0;
+    const cls = stock === 0 ? " re-storage-row--out" : stock <= 2 ? " re-storage-row--low" : "";
+    return `<div class="re-storage-row${cls}">
+      <img src="${t.img}" class="re-storage-img"><span class="re-storage-lbl">${t.label}</span>
+      <span class="re-stock-count">${stock}</span>
+      <button class="re-restock-btn${canAsk ? "" : " re-restock-btn--broke"}" onclick="startReRestock('${id}')"${canAsk ? "" : " disabled"}>Nachkaufen (1🍎)</button>
+    </div>`;
+  }).join("");
+
+  const drinkRows = RE_DRINKS.map(d => {
+    if (d.unlimited)
+      return `<div class="re-storage-row"><span class="re-storage-lbl">${d.icon} ${d.label}</span><span class="re-stock-count re-stock-count--inf">∞</span></div>`;
+    if (!restaurant.unlockedDrinks.includes(d.id)) {
+      const idx = unlocks.findIndex(u => u.type === "drink" && u.value === d.id);
+      if (idx < 0) return "";
+      const can = player.fruits >= 1;
+      return `<div class="re-storage-row re-storage-row--locked">
+        <span class="re-storage-lbl">${d.icon} ${d.label}</span>
+        <button class="re-unlock-btn${can ? "" : " re-unlock-btn--broke"}" onclick="startReUnlock(${idx})"${can ? "" : " disabled"}>Freischalten (1🍎)</button>
+      </div>`;
+    }
+    const stock = restaurant.stocks[d.id] || 0;
+    const cls = stock === 0 ? " re-storage-row--out" : stock <= 2 ? " re-storage-row--low" : "";
+    return `<div class="re-storage-row${cls}">
+      <span class="re-storage-lbl">${d.icon} ${d.label}</span>
+      <span class="re-stock-count">${stock}</span>
+      <button class="re-restock-btn${canAsk ? "" : " re-restock-btn--broke"}" onclick="startReRestock('${d.id}')"${canAsk ? "" : " disabled"}>Nachkaufen (1🍎)</button>
+    </div>`;
+  }).join("");
+
+  let html = "";
+  if (toppingRows) html += `<div class="re-storage-group-lbl">Zutaten</div>${toppingRows}`;
+  if (drinkRows)   html += `<div class="re-storage-group-lbl">Getränke</div>${drinkRows}`;
+  return html || `<div class="re-panel-hint">Noch nichts freigeschaltet.</div>`;
+}
+
+// ── Restaurant nav system ──────────────────────────────────────────────────
+function reRebuildUnlocks(session, restaurant) {
+  const unlocks = [];
+  // Cooks: 2nd–5th (cost = cook number)
+  if (restaurant.unlockedCooks < 5) {
+    const n = restaurant.unlockedCooks + 1;
+    unlocks.push({ type: "cook", value: n, icon: "👨‍🍳", label: `${n}. Koch`, cost: n });
+  }
+  // Tables: 3rd–8th (cost = table number)
+  if (restaurant.unlockedTables < RE_TABLE_SLOTS.length) {
+    const n = restaurant.unlockedTables + 1;
+    unlocks.push({ type: "table", value: n, icon: "🪑", label: `${n}. Tisch`, cost: n });
+  }
+  RE_TOPPINGS.filter(t => !restaurant.unlockedToppings.includes(t.id))
+    .forEach(t => unlocks.push({ type: "topping", value: t.id, iconHtml: `<img src="${t.img}" class="re-unlock-img">`, label: t.label, cost: t.cost }));
+  RE_DRINKS.filter(d => d.cost > 0 && !restaurant.unlockedDrinks.includes(d.id))
+    .forEach(d => unlocks.push({ type: "drink", value: d.id, iconHtml: d.icon, label: d.label, cost: d.cost }));
+  session.currentUnlocks = unlocks;
+  return unlocks;
+}
+
+function reNavTo(section) {
+  if (!restaurantSession) return;
+  reActiveNav = reActiveNav === section ? null : section;
+  document.querySelectorAll(".re-nav-btn").forEach(b =>
+    b.classList.toggle("re-nav-btn--active", b.dataset.nav === reActiveNav));
+  reRefreshMainPanel();
+}
+
+function reRefreshMainPanel() {
+  const panel = document.getElementById("re-main-panel");
+  if (!panel || !restaurantSession) return;
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  const player = getPackState().player;
+  if (!reActiveNav) { panel.innerHTML = ""; return; }
+  if (reActiveNav === "staff")   panel.innerHTML = buildReStaffHtml(restaurantSession, restaurant, player);
+  if (reActiveNav === "menu")    panel.innerHTML = buildReMenuViewHtml(restaurantSession, restaurant);
+  if (reActiveNav === "storage") panel.innerHTML = buildReStoragePanelHtml(restaurantSession, restaurant, player);
+}
+
+function reMenuSubNav(sub) {
+  const subPanel = document.getElementById("re-menu-sub-panel");
+  if (!subPanel || !restaurantSession) return;
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  if (sub === "my_pizzas") subPanel.innerHTML = buildReAllPizzasHtml(restaurant);
+}
+
+function allChaptersHarvested() {
+  const packState = getPackState();
+  return PACK_CONTENT.beds.filter(b => b.id !== "hybrid")
+    .every(b => packState.beds[b.id]?.restaurantUnlocked);
+}
+
+function buildReInsightsHtml(session, restaurant) {
+  const s = session.custStats;
+  const t = restaurant.totalCustStats || {};
+  const row  = (icon, label, sv, tv) =>
+    `<div class="re-ins-row"><span>${icon} ${label}</span><span class="re-ins-vals"><span class="re-ins-s">${sv}</span><span class="re-ins-sep">/</span><span class="re-ins-t">${tv}</span></span></div>`;
+  const sub  = (icon, label, sv, tv) =>
+    `<div class="re-ins-row re-ins-row--sub"><span>${icon} ${label}</span><span class="re-ins-vals"><span class="re-ins-s">${sv}</span><span class="re-ins-sep">/</span><span class="re-ins-t">${tv}</span></span></div>`;
+
+  const hasSadData = (s.sad||(t.sad||0)) || (s.waitTimeout||(t.waitTimeout||0)) || (s.dirtLeave||(t.dirtLeave||0));
+  const hasCravData = s.cravingUnmet||(t.cravingUnmet||0);
+
+  if (!hasSadData && !hasCravData)
+    return `<div class="re-ins-empty muted">Noch keine Daten.</div>`;
+
+  const sadSect = hasSadData ? `
+    ${row("😞", "Unglückliche Kunden gesamt", s.sad||0, t.sad||0)}
+    ${s.waitTimeout||(t.waitTimeout||0) ? sub("⏳", "zu lang gewartet", s.waitTimeout||0, t.waitTimeout||0) : ""}
+    ${s.dirtLeave  ||(t.dirtLeave  ||0) ? sub("🟤", "schmutzige Umgebung beim Verlassen", s.dirtLeave||0, t.dirtLeave||0) : ""}` : "";
+
+  const cravSect = hasCravData ? `
+    ${row("💔", "Nicht erfüllte Gelüste", s.cravingUnmet||0, t.cravingUnmet||0)}
+    ${s.cravingIngredientNA   ||(t.cravingIngredientNA   ||0) ? sub("📦", "Zutat nicht verfügbar / nicht freigeschaltet", s.cravingIngredientNA||0, t.cravingIngredientNA||0) : ""}
+    ${s.cravingDislikeConflict||(t.cravingDislikeConflict||0) ? sub("🚫", "alle passenden Pizzen hatten eine ungeliebte Zutat", s.cravingDislikeConflict||0, t.cravingDislikeConflict||0) : ""}` : "";
+
+  return `<div class="re-ins-legend"><span>Sitzung / Gesamt</span></div>${sadSect}${cravSect}`;
+}
+
+function toggleReInsights() {
+  const panel = document.getElementById("re-insights-panel");
+  if (!panel || !restaurantSession) return;
+  panel.hidden = !panel.hidden;
+  if (!panel.hidden) {
+    const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+    panel.innerHTML = buildReInsightsHtml(restaurantSession, restaurant);
+  }
 }
 
 function reInitScene(bedId) {
@@ -3327,12 +3930,48 @@ function reInitScene(bedId) {
       <div id="re-dirt-layer"></div>
     </div>
     <div class="re-info-bar">
-      <span id="re-stats-text" class="re-stats-text"></span>
-      <span id="re-dirt-warn-text"></span>
+      <div class="re-info-row"><span id="re-stats-text" class="re-stats-text"></span><span id="re-dirt-warn-text"></span><button class="re-insights-btn" onclick="toggleReInsights()">💡 Insights</button><button class="re-reset-btn" onclick="resetRestaurant()">🔄 Reset</button></div>
+      <div class="re-info-row re-sat-row" id="re-sat-stats-text"></div>
       <div id="re-stock-warn-text" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+      <div id="re-insights-panel" hidden class="re-insights-panel"></div>
     </div>
-    <div class="re-upgrades" id="re-upgrades-panel"></div>
+    <div class="re-main-nav">
+      <button class="re-nav-btn" data-nav="staff" onclick="reNavTo('staff')">👥 Mitarbeiter</button>
+      <button class="re-nav-btn" data-nav="menu"  onclick="reNavTo('menu')">📋 Menü</button>
+      <button class="re-nav-btn" data-nav="storage" onclick="reNavTo('storage')">📦 Lager</button>
+    </div>
+    <div id="re-main-panel" class="re-main-panel"></div>
+    <div id="re-pizza-creator" class="re-pc-overlay" hidden>
+      <div class="re-pc-box">
+        <div class="re-pc-header">
+          <span class="re-pc-title">🍕 Pizza Creator</span>
+          <button class="re-pc-close-btn" onclick="closePizzaCreator()">✕</button>
+        </div>
+        <div class="re-pc-body">
+          <div class="re-pc-left">
+            <div class="re-pc-canvas" id="re-pc-canvas" ondragover="reOnPizzaDragOver(event)" ondrop="reOnPizzaDrop(event)">
+              <img src="assets/images/Pizza/basic.png" class="re-pc-base" draggable="false">
+              <div id="re-pc-toppings"></div>
+            </div>
+            <div class="re-pc-counter"><span id="re-pc-count">0</span>/${RE_PIZZA_MAX_TOPPINGS} · Topping klicken zum Entfernen</div>
+            <div class="re-pc-name-row">
+              <input id="re-pc-name" type="text" placeholder="Pizza benennen…" maxlength="28" class="re-pc-name-input">
+              <button onclick="savePizzaRecipe()" class="re-pc-save-btn">Speichern</button>
+            </div>
+          </div>
+          <div class="re-pc-palette" id="re-pc-palette"></div>
+        </div>
+      </div>
+    </div>
     <div id="re-question-area"></div>`;
+}
+
+function buildMiniPizzaHtml(toppings) {
+  const tops = (toppings || []).map(t => {
+    const tp = RE_TOPPINGS.find(x => x.id === t.id);
+    return tp ? `<img src="${tp.img}" class="re-mp-top" style="left:${t.x}%;top:${t.y}%" draggable="false">` : "";
+  }).join("");
+  return `<div class="re-mini-pizza"><img src="assets/images/Pizza/basic.png" class="re-mp-base" draggable="false">${tops}</div>`;
 }
 
 function reUpdateScene() {
@@ -3340,6 +3979,7 @@ function reUpdateScene() {
   const session = restaurantSession;
   const bedState = getPackState().beds[session.bedId];
   const restaurant = bedState.restaurant;
+  const player = getPackState().player;
   const spritesDiv = document.getElementById("re-sprites");
   if (!spritesDiv) return;
 
@@ -3356,7 +3996,11 @@ function reUpdateScene() {
     el.style.left = `${pos.x}%`;
     el.style.top  = `${pos.y}%`;
     const carryEl = el.querySelector(".re-carry");
-    if (carryEl) { carryEl.textContent = pos.carrying || ""; carryEl.style.display = pos.carrying ? "" : "none"; }
+    if (carryEl) {
+      const show = pos.phase === "delivering";
+      carryEl.style.display = show ? "" : "none";
+      if (show) carryEl.innerHTML = buildMiniPizzaHtml(cook.cookPizza);
+    }
     el.classList.toggle("re-sprite--cooking", pos.phase === "cooking");
     el.classList.toggle("re-sprite--at-table", pos.phase === "at_table");
     const progBar = el.querySelector(".re-sprite-progress");
@@ -3403,39 +4047,100 @@ function reUpdateScene() {
     if (isEating && eatFill) eatFill.style.width = `${Math.min(100, c.hunger)}%`;
     const foodIconEl = el.querySelector(".re-sprite-food-icon");
     if (foodIconEl) {
-      foodIconEl.textContent = c.foodIcon || "";
-      foodIconEl.style.display = isEating && c.foodIcon ? "" : "none";
+      foodIconEl.style.display = isEating ? "" : "none";
+      if (isEating) foodIconEl.innerHTML = buildMiniPizzaHtml(c.foodToppings || []);
+    }
+    // Outcome emoji when leaving
+    const outcomeEl = el.querySelector(".re-sprite-outcome");
+    if (outcomeEl) {
+      const isLeaving = c.state === "leaving_happy" || c.state === "leaving_sad";
+      outcomeEl.style.display = isLeaving ? "" : "none";
+      if (isLeaving) {
+        if (c.state === "leaving_sad") outcomeEl.textContent = "😞";
+        else if (c.satisfaction === "veryHappy") outcomeEl.textContent = "😊";
+        else if (c.satisfaction === "happy") outcomeEl.textContent = "🙂";
+        else outcomeEl.textContent = "😐";
+      }
     }
   });
 
   const dirtDiv = document.getElementById("re-dirt-layer");
   if (dirtDiv) {
-    const spots = RE_DIRT_POS.slice(0, Math.min(session.dirtCount, RE_DIRT_POS.length)).map(p => `<div class="re-dirt-spot" style="left:${p.x}%;top:${p.y}%"></div>`).join("");
+    const canClean = !session.paused && getPackState().player.fruits >= 1;
+    const spots = session.dirtSpots.map(i => { const p = RE_DIRT_POS[i]; return `<div class="re-dirt-spot${canClean ? " re-dirt-spot--clickable" : ""}" style="left:${p.x}%;top:${p.y}%" ${canClean ? `onclick="startDirtClean(${i})" title="Dreck aufräumen (1 🍎)"` : ""}></div>`; }).join("");
     if (dirtDiv.innerHTML !== spots) dirtDiv.innerHTML = spots;
   }
 
+  // Mark locked tables — clicking one triggers the unlock question
+  RE_TABLE_SLOTS.forEach((_, i) => {
+    const tel = document.getElementById(`re-table-${i}`);
+    if (!tel) return;
+    const locked = i >= restaurant.unlockedTables;
+    tel.classList.toggle("re-table--locked", locked);
+    if (locked) {
+      tel.onclick = startTableUnlock;
+      tel.title = "Tisch freischalten (Frage beantworten)";
+    } else {
+      tel.onclick = null;
+      tel.title = "";
+    }
+  });
+
   const statsEl = document.getElementById("re-stats-text");
-  if (statsEl) statsEl.textContent = `✓ ${session.totalServed} bedient  ·  😞 ${session.totalImpatient} ungeduldig  ·  🟤 ${session.dirtCount} Dreck`;
+  const dirtCount = session.dirtSpots.length;
+  if (statsEl) statsEl.textContent = `✓ ${session.totalServed} bedient  ·  😞 ${session.totalImpatient} ungeduldig  ·  🟤 ${dirtCount} Dreck`;
   const dirtWarnEl = document.getElementById("re-dirt-warn-text");
   if (dirtWarnEl) {
-    dirtWarnEl.textContent = session.dirtCount > 8 ? "⚠️ Sehr dreckig!" : session.dirtCount > 4 ? "🟤 Etwas schmutzig…" : "";
-    dirtWarnEl.style.color = session.dirtCount > 8 ? "#cc8833" : "var(--muted)";
+    dirtWarnEl.textContent = dirtCount > 8 ? "⚠️ Sehr dreckig!" : dirtCount > 4 ? "🟤 Etwas schmutzig…" : "";
+    dirtWarnEl.style.color = dirtCount > 8 ? "#cc8833" : "var(--muted)";
   }
-  const outOfStock = restaurant.unlockedIngredients.filter(id => (session.stocks[id] ?? RE_STOCK_BASE) <= 0);
+
+  // Satisfaction stats
+  const satEl = document.getElementById("re-sat-stats-text");
+  if (satEl && session.custStats) {
+    const cs = session.custStats;
+    const ts = restaurant.totalCustStats || {};
+    const sTotal = cs.sad + cs.neutral + cs.happy + cs.veryHappy;
+    const tTotal = (ts.sad||0) + (ts.neutral||0) + (ts.happy||0) + (ts.veryHappy||0);
+    satEl.innerHTML = sTotal > 0
+      ? `Sitzung: 😊 ${cs.veryHappy} · 🙂 ${cs.happy} · 😐 ${cs.neutral} · 😞 ${cs.sad}` +
+        (tTotal > 0 ? `<span class="re-total-stats"> &nbsp;|&nbsp; Gesamt: 😊 ${ts.veryHappy||0} · 🙂 ${ts.happy||0} · 😐 ${ts.neutral||0} · 😞 ${ts.sad||0}</span>` : "")
+      : tTotal > 0
+        ? `<span class="re-total-stats">Gesamt: 😊 ${ts.veryHappy||0} · 🙂 ${ts.happy||0} · 😐 ${ts.neutral||0} · 😞 ${ts.sad||0}</span>`
+        : "";
+  }
+
+  // Out-of-stock warning — only for ingredients used in active menu pizzas
+  const activeToppingIds = new Set(
+    restaurant.pizzaRecipes.filter(p => p.active)
+      .flatMap(p => p.toppings.map(t => t.id))
+  );
+  const outOfStock = [
+    ...restaurant.unlockedToppings.filter(id => activeToppingIds.has(id) && (restaurant.stocks[id] || 0) <= 0)
+      .map(id => ({ id, ing: RE_TOPPINGS.find(x => x.id === id) })),
+    ...restaurant.unlockedDrinks.filter(id => {
+      const d = RE_DRINKS.find(x => x.id === id);
+      return d && !d.unlimited && (restaurant.stocks[id] || 0) <= 0;
+    }).map(id => ({ id, ing: RE_DRINKS.find(x => x.id === id) }))
+  ];
   const stockWarnEl = document.getElementById("re-stock-warn-text");
   if (stockWarnEl) {
-    stockWarnEl.innerHTML = outOfStock.map(id => {
-      const ing = RE_INGREDIENTS.find(i => i.id === id);
-      return `<span class="re-stock-warn">${ing?.icon || "📦"} ${ing?.label || id} leer! <button class="re-restock-btn" onclick="startReRestock('${id}')">Nachfüllen</button></span>`;
+    const canRestock = player.fruits >= 1;
+    stockWarnEl.innerHTML = outOfStock.map(({ id, ing }) => {
+      const iconHtml = ing?.img ? `<img src="${ing.img}" style="height:1em;vertical-align:middle">` : (ing?.icon || "📦");
+      return `<span class="re-stock-warn">${iconHtml} ${ing?.label || id} leer! <button class="re-restock-btn${canRestock ? "" : " re-restock-btn--broke"}" onclick="startReRestock('${id}')"${canRestock ? "" : " disabled"}>Nachfüllen (1 🍎)</button></span>`;
     }).join("");
   }
 
-  const player = getPackState().player;
-  const sig = `${restaurant.unlockedCooks}:${restaurant.unlockedCleaner}:${restaurant.unlockedIngredients.join(",")}:${player.fruits}`;
-  if (sig !== reLastUpgradeSignature) {
-    reLastUpgradeSignature = sig;
-    const panel = document.getElementById("re-upgrades-panel");
-    if (panel) panel.innerHTML = buildReUpgradesHtml(session, restaurant, player);
+  // Update insights panel if visible
+  const insightsPanel = document.getElementById("re-insights-panel");
+  if (insightsPanel && !insightsPanel.hidden) insightsPanel.innerHTML = buildReInsightsHtml(session, restaurant);
+
+  // Refresh the main nav panel if state has changed
+  const panelSig = `${restaurant.unlockedCooks}:${restaurant.unlockedTables}:${restaurant.unlockedToppings.join(",")}:${restaurant.unlockedDrinks.join(",")}:${JSON.stringify(restaurant.stocks)}:${restaurant.pizzaRecipes.map(p=>p.id+p.active).join(",")}:${player.fruits}`;
+  if (panelSig !== reLastPanelSignature) {
+    reLastPanelSignature = panelSig;
+    reRefreshMainPanel();
   }
 }
 
@@ -3443,13 +4148,22 @@ function startReUnlock(idx) {
   if (!restaurantSession) return;
   const unlock = restaurantSession.currentUnlocks?.[idx];
   if (!unlock) return;
-  if (getPackState().player.fruits < unlock.cost) return;
+  const player = getPackState().player;
+  if (player.fruits < 1) return;
+  player.fruits -= 1;
+  saveState(); renderPlayer();
   restaurantSession.paused = true;
   const bedId = restaurantSession.bedId;
   const q = rePickQuestion(bedId);
   if (!q) { reShowAllDone(unlock); return; }
-  let shuffled = [], isMulti = false;
-  if (q.type !== "true_false") {
+  let shuffled, isMulti;
+  if (q.type === "true_false") {
+    shuffled = [
+      { text: "Wahr",   correct: q.answer === true,  origIdx: 0 },
+      { text: "Falsch", correct: q.answer === false, origIdx: 1 }
+    ];
+    isMulti = false;
+  } else {
     shuffled = shuffle(q.options.map((o, i) => ({ ...o, origIdx: i })));
     isMulti = q.options.filter(o => o.correct).length > 1;
   }
@@ -3459,65 +4173,38 @@ function startReUnlock(idx) {
 
 function reRenderQuestion() {
   if (!restaurantSession?.unlockQ) return;
-  const { q, shuffled, isMulti, unlock } = restaurantSession.unlockQ;
+  const { q, shuffled, unlock } = restaurantSession.unlockQ;
   const area = document.getElementById("re-question-area");
   if (!area) return;
-  let qHtml;
-  if (q.type === "true_false") {
-    qHtml = `<div class="question">${q.statement}</div>
-      <div class="row">
-        <button class="mc-option" onclick="resolveReAnswer(true)">Wahr</button>
-        <button class="mc-option" onclick="resolveReAnswer(false)">Falsch</button>
-      </div>`;
-  } else if (isMulti) {
-    qHtml = `<div class="question">${q.question}</div>
-      <div class="mc-options">${shuffled.map((o, i) => `<button class="mc-option mc-option--toggle" data-ri="${i}" onclick="toggleReOption(${i})">${o.text}</button>`).join("")}</div>
-      <div class="re-confirm-row"><button class="mc-option re-confirm-btn" onclick="resolveReMulti()">Bestätigen</button></div>`;
-  } else {
-    qHtml = `<div class="question">${q.question}</div>
-      <div class="mc-options">${shuffled.map((o, i) => `<button class="mc-option" data-ri="${i}" onclick="resolveReAnswer(${i})">${o.text}</button>`).join("")}</div>`;
-  }
+  const prompt = q.type === "true_false" ? q.statement : q.question;
+  const optHtml = shuffled.map((o, i) =>
+    `<button class="mc-option mc-option--toggle" data-ri="${i}" onclick="toggleReOption(${i})">${o.text}</button>`
+  ).join("");
   area.innerHTML = `<div class="re-question-panel">
-    <div class="re-question-header">🔓 ${unlock.icon} ${unlock.label} freischalten (${unlock.cost} 🍎)</div>
-    ${qHtml}
+    <div class="re-question-header">${unlock.type === "clean" ? "🧹 Dreck aufräumen" : unlock.type === "restock" ? `📦 Nachfüllen: ${unlock.iconHtml || ""} ${unlock.label}` : `🔓 ${unlock.iconHtml || unlock.icon || ""} ${unlock.label}`}</div>
+    <div class="question">${prompt}</div>
+    <div class="mc-options">${optHtml}</div>
+    <div class="re-confirm-row"><button class="mc-option re-confirm-btn" onclick="resolveReMulti()">Bestätigen</button></div>
   </div>`;
 }
 
 function toggleReOption(idx) {
   if (!restaurantSession?.unlockQ) return;
-  const sel = restaurantSession.unlockQ.selected;
+  const { isMulti, selected: sel } = restaurantSession.unlockQ;
   sel.has(idx) ? sel.delete(idx) : sel.add(idx);
   document.querySelectorAll("#re-question-area .mc-option--toggle").forEach((b, i) => {
     b.classList.toggle("mc-option--selected", sel.has(i));
   });
 }
 
-function resolveReAnswer(answer) {
-  if (!restaurantSession?.unlockQ) return;
-  const { q, shuffled, unlock } = restaurantSession.unlockQ;
-  let ok, feedback;
-  if (q.type === "true_false") {
-    ok = answer === q.answer;
-    feedback = q.explanation || q.solution || "";
-  } else {
-    ok = Boolean(shuffled[answer]?.correct);
-    feedback = q.explanation || "";
-    document.querySelectorAll("#re-question-area .mc-option").forEach((b, i) => {
-      if (shuffled[i]?.correct) b.classList.add("mc-correct");
-      else if (i === answer && !ok) b.classList.add("mc-wrong");
-      b.disabled = true;
-    });
-  }
-  applyReUnlockResult(ok, feedback, unlock);
-}
 
 function resolveReMulti() {
   if (!restaurantSession?.unlockQ) return;
   const { q, shuffled, unlock, selected } = restaurantSession.unlockQ;
-  const correctOrig = q.options.map((o, i) => o.correct ? i : -1).filter(i => i >= 0);
-  const selOrig = [...selected].map(i => shuffled[i]?.origIdx);
-  const ok = correctOrig.length === selOrig.length && correctOrig.every(i => selOrig.includes(i));
-  applyReUnlockResult(ok, q.explanation || "", unlock);
+  if (selected.size === 0) { showToast("Bitte erst eine Antwort auswählen.", "error"); return; }
+  const correctIndices = shuffled.map((o, i) => o.correct ? i : -1).filter(i => i >= 0);
+  const ok = correctIndices.length === selected.size && correctIndices.every(i => selected.has(i));
+  applyReUnlockResult(ok, q.explanation || q.solution || "", unlock);
 }
 
 function applyReUnlockResult(ok, feedbackText, unlock) {
@@ -3526,6 +4213,7 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
   if (ok) sessionStats.correct++; else sessionStats.wrong++;
   const bedState = getPackState().beds[restaurantSession.bedId];
   const isRestock = unlock.type === "restock";
+  const isClean   = unlock.type === "clean";
   // Track answer (skip repeat questions to avoid downgrading "correct" back to "wrong")
   const uq = restaurantSession.unlockQ;
   if (uq?.q && !uq.isRepeat) {
@@ -3535,11 +4223,25 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
   }
   playSound(ok ? "twinkle.mp3" : "wrong.mp3");
   if (ok) {
-    if (!isRestock) getPackState().player.fruits -= unlock.cost;
-    if (unlock.type === "cook") bedState.restaurant.unlockedCooks = unlock.value;
-    else if (unlock.type === "ingredient") bedState.restaurant.unlockedIngredients.push(unlock.value);
-    else if (unlock.type === "cleaner") bedState.restaurant.unlockedCleaner = true;
-    else if (isRestock && restaurantSession) restaurantSession.stocks[unlock.value] = RE_STOCK_BASE;
+    if (isClean) {
+      const idx = restaurantSession.dirtSpots.indexOf(unlock.value);
+      if (idx >= 0) restaurantSession.dirtSpots.splice(idx, 1);
+    } else if (unlock.type === "cook") bedState.restaurant.unlockedCooks = unlock.value;
+    else if (unlock.type === "table") bedState.restaurant.unlockedTables++;
+    else if (unlock.type === "topping") {
+      bedState.restaurant.unlockedToppings.push(unlock.value);
+      const t = RE_TOPPINGS.find(x => x.id === unlock.value);
+      if (t) bedState.restaurant.stocks[unlock.value] = t.restockAmt ?? 5;
+    } else if (unlock.type === "drink") {
+      bedState.restaurant.unlockedDrinks.push(unlock.value);
+      const d = RE_DRINKS.find(x => x.id === unlock.value);
+      if (d && !d.unlimited) bedState.restaurant.stocks[unlock.value] = d.restockAmt ?? 5;
+    } else if (isRestock) {
+      const any = RE_TOPPINGS.find(x => x.id === unlock.value) || RE_DRINKS.find(x => x.id === unlock.value);
+      const amt = any?.restockAmt ?? 5;
+      bedState.restaurant.stocks[unlock.value] = (bedState.restaurant.stocks[unlock.value] || 0) + amt;
+      saveState();
+    }
     if (!isRestock) { saveState(); renderPlayer(); }
     reSyncCooks();
   }
@@ -3549,21 +4251,33 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
     panel.querySelectorAll(".mc-option").forEach(b => { b.disabled = true; });
     const fb = document.createElement("div");
     fb.className = `feedback ${ok ? "feedback--correct" : "feedback--wrong"}`;
-    const successMsg = isRestock
-      ? `✓ ${unlock.icon} ${unlock.label} aufgefüllt!`
-      : `✓ ${unlock.icon} ${unlock.label} freigeschaltet!`;
-    const failMsg = isRestock
-      ? "✗ Falsch — nachfüllen fehlgeschlagen. Versuch es nochmal!"
-      : "✗ Falsch — keine Früchte ausgegeben.";
+    const unlockIcon = unlock.iconHtml || unlock.icon || "";
+    const successMsg = isClean
+      ? `✓ 🧹 Sauber!`
+      : isRestock
+        ? `✓ ${unlockIcon} ${unlock.label} nachgefüllt!`
+        : `✓ ${unlockIcon} ${unlock.label} freigeschaltet!`;
+    const failMsg = isClean
+      ? "✗ Falsch — der Dreck bleibt. Versuch es nochmal!"
+      : isRestock
+        ? "✗ Falsch — nachfüllen fehlgeschlagen. Versuch es nochmal!"
+        : "✗ Falsch — keine Früchte ausgegeben.";
     fb.innerHTML = (ok ? successMsg : failMsg) + (feedbackText ? `<br><small>${feedbackText}</small>` : "");
     const btn = document.createElement("button");
-    btn.className = "mc-option"; btn.style.cssText = "margin-top:6px;display:block";
+    btn.className = "mc-option"; btn.style.cssText = "margin-top:6px;display:block;margin-left:auto;margin-right:auto";
     btn.textContent = "Weiter";
     btn.onclick = () => {
       area.innerHTML = "";
       restaurantSession.paused = false;
       restaurantSession.unlockQ = null;
+      reLastPanelSignature = "";  // force panel refresh
       reUpdateScene();
+      // Refresh creator palette if the creator is open (new topping/restock might have changed)
+      const creatorOpen = !document.getElementById("re-pizza-creator")?.hidden;
+      if (creatorOpen && restaurantSession) {
+        const r2 = getPackState().beds[restaurantSession.bedId].restaurant;
+        reBuildCreatorPalette(r2, getPackState().player);
+      }
     };
     panel.appendChild(fb);
     panel.appendChild(btn);
@@ -3572,15 +4286,61 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
 
 function startReRestock(ingredientId) {
   if (!restaurantSession || restaurantSession.paused) return;
-  const ing = RE_INGREDIENTS.find(i => i.id === ingredientId);
+  const player = getPackState().player;
+  if (player.fruits < 1) { showToast("Nicht genug Früchte (1 🍎 für die Frage).", "error"); return; }
+  const ing = RE_TOPPINGS.find(t => t.id === ingredientId) || RE_DRINKS.find(d => d.id === ingredientId);
   if (!ing) return;
-  const unlock = { type: "restock", value: ingredientId, icon: ing.icon, label: `${ing.label} nachfüllen`, cost: 0 };
+  player.fruits -= 1;
+  saveState(); renderPlayer();
+  const iconHtml = ing.img ? `<img src="${ing.img}" style="height:1em;vertical-align:middle">` : (ing.icon || "📦");
+  const unlock = { type: "restock", value: ingredientId, iconHtml, label: ing.label, cost: 0 };
   restaurantSession.paused = true;
   const bedId = restaurantSession.bedId;
   const q = rePickQuestion(bedId);
   if (!q) { reShowAllDone(unlock); return; }
-  let shuffled = [], isMulti = false;
-  if (q.type !== "true_false") {
+  let shuffled, isMulti;
+  if (q.type === "true_false") {
+    shuffled = [
+      { text: "Wahr",   correct: q.answer === true,  origIdx: 0 },
+      { text: "Falsch", correct: q.answer === false, origIdx: 1 }
+    ];
+    isMulti = false;
+  } else {
+    shuffled = shuffle(q.options.map((o, i) => ({ ...o, origIdx: i })));
+    isMulti = q.options.filter(o => o.correct).length > 1;
+  }
+  restaurantSession.unlockQ = { q, shuffled, isMulti, unlock, selected: new Set() };
+  reRenderQuestion();
+}
+
+function startTableUnlock() {
+  if (!restaurantSession || restaurantSession.paused) return;
+  const restaurant = getPackState().beds[restaurantSession.bedId].restaurant;
+  const unlocks = reRebuildUnlocks(restaurantSession, restaurant);
+  const idx = unlocks.findIndex(u => u.type === "table");
+  if (idx >= 0) startReUnlock(idx);
+}
+
+function startDirtClean(spotIndex) {
+  if (!restaurantSession || restaurantSession.paused) return;
+  if (!restaurantSession.dirtSpots.includes(spotIndex)) return;
+  const player = getPackState().player;
+  if (player.fruits < 1) { showToast("Nicht genug Früchte (1 🍎 für die Frage).", "error"); return; }
+  player.fruits -= 1;
+  saveState(); renderPlayer();
+  const unlock = { type: "clean", value: spotIndex, icon: "🧹", label: "Dreck aufräumen", cost: 0 };
+  restaurantSession.paused = true;
+  const bedId = restaurantSession.bedId;
+  const q = rePickQuestion(bedId, true);
+  if (!q) { reShowAllDone(unlock); return; }
+  let shuffled, isMulti;
+  if (q.type === "true_false") {
+    shuffled = [
+      { text: "Wahr",   correct: q.answer === true,  origIdx: 0 },
+      { text: "Falsch", correct: q.answer === false, origIdx: 1 }
+    ];
+    isMulti = false;
+  } else {
     shuffled = shuffle(q.options.map((o, i) => ({ ...o, origIdx: i })));
     isMulti = q.options.filter(o => o.correct).length > 1;
   }
@@ -3609,16 +4369,45 @@ function startReRepeat() {
   if (!restaurantSession) return;
   const unlock = restaurantSession.pendingUnlock;
   if (!unlock) return;
+  const player = getPackState().player;
+  if (player.fruits < 1) { showToast("Nicht genug Früchte (1 🍎 für die Frage).", "error"); return; }
+  player.fruits -= 1;
+  saveState(); renderPlayer();
   const bedId = restaurantSession.bedId;
   const q = rePickQuestion(bedId, true);
   if (!q) return;
-  let shuffled = [], isMulti = false;
-  if (q.type !== "true_false") {
+  let shuffled, isMulti;
+  if (q.type === "true_false") {
+    shuffled = [
+      { text: "Wahr",   correct: q.answer === true,  origIdx: 0 },
+      { text: "Falsch", correct: q.answer === false, origIdx: 1 }
+    ];
+    isMulti = false;
+  } else {
     shuffled = shuffle(q.options.map((o, i) => ({ ...o, origIdx: i })));
     isMulti = q.options.filter(o => o.correct).length > 1;
   }
   restaurantSession.unlockQ = { q, shuffled, isMulti, unlock, selected: new Set(), isRepeat: true };
   reRenderQuestion();
+}
+
+function resetRestaurant() {
+  if (!restaurantSession) return;
+  if (!confirm("Restaurant wirklich zurücksetzen? Alle Upgrades, Pizzen und Statistiken gehen verloren.")) return;
+  const bedId = restaurantSession.bedId;
+  const bedState = getPackState().beds[bedId];
+  const basicRecipe = { id: "basic", name: "Basic Pizza", toppings: [], active: true, orderedCount: 0, deletable: false };
+  bedState.restaurant = {
+    unlockedCooks: 1, unlockedTables: 2,
+    unlockedToppings: [], unlockedDrinks: ["water"],
+    stocks: {}, pizzaRecipes: [{ ...basicRecipe }],
+    questionAnswers: {},
+    totalCustStats: { sad: 0, neutral: 0, happy: 0, veryHappy: 0,
+      waitTimeout: 0, dirtLeave: 0, cravingUnmet: 0, cravingIngredientNA: 0, cravingDislikeConflict: 0 }
+  };
+  saveState();
+  stopRestaurant();
+  openRestaurant(bedId);
 }
 
 function reCloseQuestion() {
