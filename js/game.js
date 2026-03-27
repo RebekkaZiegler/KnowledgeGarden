@@ -4348,20 +4348,96 @@ function startDirtClean(spotIndex) {
   reRenderQuestion();
 }
 
+function isBedMasteredInRestaurant(bedId) {
+  const bedContent = PACK_CONTENT.beds.find(b => b.id === bedId);
+  if (!bedContent) return false;
+  const answers = getPackState().beds[bedId]?.restaurant?.questionAnswers || {};
+  const all = [];
+  (bedContent.plants || []).forEach(p => {
+    (p.harvestQuestions || []).forEach(q => all.push(q));
+    (p.phase4Questions || []).forEach(q => all.push(q));
+  });
+  return all.length > 0 && all.every(q => answers[q.id] === "correct");
+}
+
+function openTrophyRoom() {
+  const container = document.getElementById("trophy-list");
+  if (!container) return;
+  const pack = getPackState();
+  const unlockedBeds = pack.bedProgress?.unlockedBedIds || [];
+  const nonHybridBeds = PACK_CONTENT.beds.filter(b => b.id !== "hybrid" && unlockedBeds.includes(b.id));
+
+  container.innerHTML = nonHybridBeds.map(bed => {
+    const bedState = pack.beds[bed.id];
+    const restUnlocked = bedState?.restaurantUnlocked || false;
+    if (!restUnlocked) {
+      return `<div class="trophy-item trophy-item--locked">
+        <div class="trophy-icon">🔒</div>
+        <div class="trophy-info">
+          <div class="trophy-name">${bed.title}</div>
+          <div class="muted" style="font-size:.8rem">Restaurant noch nicht freigeschaltet</div>
+        </div>
+      </div>`;
+    }
+    const answers = bedState?.restaurant?.questionAnswers || {};
+    const bedContent = PACK_CONTENT.beds.find(b => b.id === bed.id);
+    const all = [];
+    (bedContent?.plants || []).forEach(p => {
+      (p.harvestQuestions || []).forEach(q => all.push(q));
+      (p.phase4Questions || []).forEach(q => all.push(q));
+    });
+    const total = all.length;
+    const correct = all.filter(q => answers[q.id] === "correct").length;
+    const wrong = all.filter(q => answers[q.id] === "wrong").length;
+    const unseen = total - correct - wrong;
+    const mastered = total > 0 && all.every(q => answers[q.id] === "correct");
+    const pct = total > 0 ? Math.round(correct / total * 100) : 0;
+
+    return `<div class="trophy-item ${mastered ? "trophy-item--mastered" : ""}">
+      <div class="trophy-icon">${mastered ? "🏆" : "📖"}</div>
+      <div class="trophy-info">
+        <div class="trophy-name">${bed.title}</div>
+        <div class="trophy-bar-wrap"><div class="trophy-bar" style="width:${pct}%"></div></div>
+        <div class="muted" style="font-size:.8rem">
+          ${mastered
+            ? `<strong style="color:#5ada80">Gemeistert!</strong> Alle ${total} Fragen richtig.`
+            : `${correct}/${total} richtig · ${wrong} falsch · ${unseen} offen`}
+        </div>
+      </div>
+    </div>`;
+  }).join("") || "<div class='muted'>Noch kein Kapitel freigeschaltet.</div>";
+
+  openModal("modal-trophies");
+}
+
 function reShowAllDone(unlock) {
   if (!restaurantSession) return;
   restaurantSession.pendingUnlock = unlock;
   const area = document.getElementById("re-question-area");
   if (!area) return;
+
+  // Check for other restaurant beds not yet mastered
+  const pack = getPackState();
+  const otherUnmastered = (pack.bedProgress?.unlockedBedIds || [])
+    .filter(id => id !== restaurantSession.bedId && id !== "hybrid" &&
+                  pack.beds[id]?.restaurantUnlocked && !isBedMasteredInRestaurant(id));
+  const hintHtml = otherUnmastered.length > 0
+    ? `<div class="muted" style="font-size:.82rem;margin-top:.2rem">Noch ${otherUnmastered.length} weiteres Kapitel zum Meistern.</div>`
+    : "";
+
   area.innerHTML = `<div class="re-question-panel re-all-done">
-    <div style="font-size:1.6rem;margin-bottom:.3rem">🏆</div>
+    <div style="font-size:1.8rem;margin-bottom:.3rem">🏆</div>
     <div><strong>Alle Fragen gemeistert!</strong></div>
-    <div class="muted" style="font-size:.82rem;margin:.5rem 0 .8rem">
-      Du hast alle Fragen dieses Kapitels mindestens einmal richtig beantwortet.<br>
+    <div class="muted" style="font-size:.82rem;margin:.5rem 0 .4rem">
+      Du hast alle Fragen dieses Kapitels richtig beantwortet.<br>
       Empfehlung: Schalte ein neues Kapitel im Garten frei.
     </div>
-    <button class="mc-option" onclick="startReRepeat()">Wiederholungsfrage anzeigen</button>
-    <button class="mc-option" style="margin-top:4px" onclick="reCloseQuestion()">Zurück</button>
+    ${hintHtml}
+    <div style="display:flex;flex-direction:column;gap:4px;align-items:center;margin-top:.8rem">
+      <button class="mc-option" onclick="startReRepeat()">Wiederholungsfrage anzeigen</button>
+      <button class="mc-option" onclick="openTrophyRoom()">🏆 Trophäenraum</button>
+      <button class="mc-option" onclick="reCloseQuestion()">Zurück</button>
+    </div>
   </div>`;
 }
 
@@ -4482,6 +4558,9 @@ if (openMapBtn) openMapBtn.addEventListener("click", () => {
 const openLabBtn = document.getElementById("open-lab-btn");
 if (openLabBtn) openLabBtn.addEventListener("click", openLabModal);
 
+const openTrophiesBtn = document.getElementById("open-trophies-btn");
+if (openTrophiesBtn) openTrophiesBtn.addEventListener("click", openTrophyRoom);
+
 const toggleSettingsBtn = document.getElementById("toggle-settings-btn");
 if (toggleSettingsBtn) toggleSettingsBtn.addEventListener("click", openSettingsPage);
 
@@ -4497,6 +4576,9 @@ if (closeRoomBtn) closeRoomBtn.addEventListener("click", () => { stopRestaurant(
 
 const closeLabBtn = document.getElementById("close-lab-btn");
 if (closeLabBtn) closeLabBtn.addEventListener("click", () => closeModal("modal-lab"));
+
+const closeTrophiesBtn = document.getElementById("close-trophies-btn");
+if (closeTrophiesBtn) closeTrophiesBtn.addEventListener("click", () => closeModal("modal-trophies"));
 
 const openSessionEndBtn = document.getElementById("open-session-end-btn");
 if (openSessionEndBtn) openSessionEndBtn.addEventListener("click", openSessionEndModal);
