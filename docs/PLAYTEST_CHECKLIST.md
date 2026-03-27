@@ -1,88 +1,78 @@
-# Playtest Checklist (MVP Loop)
+# Playtest Checklist
 
-Stand: March 2026
+Stand: März 2026
 
-## Goal
-Validate the full learning loop with concrete balancing data:
-- Fruit economy (earn vs spend)
-- HP pressure and recovery cadence
-- Combat/Boss difficulty curve
-- UI clarity and pacing
+## Ziel
+Den vollständigen Lernloop validieren:
+- Früchte-Balance (Ernte vs. Ausgaben im Restaurant)
+- Ernte-Härte (100%-Anforderung, Rückfall-Mechanik)
+- Restaurant-Spielgefühl (Gäste, Dreck, Unlocks, Fragen-Priorität)
+- UI-Klarheit und Tempo
 
 ## Setup
-1. Start app with `npm run run` (or `npm run serve` + browser).
-2. Use a fresh save for at least one run.
-3. Use normal mode first (`Dev-Cooldown: Aus`), then optional dev-fast verification run.
-4. Record data per run in the log template below.
+1. App starten mit `npm run run` (oder `npm run serve` + Browser).
+2. Mindestens einen Lauf mit frischem Spielstand.
+3. Normalmodus (`Dev-Cooldown: Aus`), danach optional Dev-Schnelllauf zur Verifikation.
+4. Daten pro Lauf im Log-Template unten festhalten.
 
-## Test Pass A (Fresh Player)
-1. Start from empty save.
-2. Unlock first bed, complete Phase 1 + Phase 2 + Harvest for at least 2 plants.
-3. Start normal combat and play until one of:
-- fruits reach 0
-- hp reach 0
-- boss becomes available
-4. If boss is available, run boss fight once.
-5. Note where flow feels too easy, too punishing, or unclear.
+## Test-Durchgang A (Frischer Spielstand)
+1. Leeren Spielstand starten.
+2. Erstes Beet freischalten, Phase 1 + Phase 2 + Ernte für mindestens 2 Pflanzen abschließen.
+3. Restaurant öffnen und erste Unlock-Fragen beantworten.
+4. Notieren: Wo fühlt sich der Flow zu leicht, zu hart oder unklar an?
 
-## Test Pass B (Mid Progress)
-1. Continue same save.
-2. Reach at least 1 hybrid synthesis and plant it.
-3. Repeat harvest + combat loop in another bed.
-4. Check whether weakpoint reinforcement feels meaningful.
+## Test-Durchgang B (Mittlerer Fortschritt)
+1. Gleichen Spielstand fortsetzen.
+2. Mindestens 1 Hybrid-Synthese abschließen und einpflanzen.
+3. Ernte + Restaurant-Loop in einem zweiten Beet wiederholen.
+4. Prüfen: Fühlt sich die Früchte-Wirtschaft nachhaltig an?
 
-## Test Pass C (Recovery and Friction)
-1. Intentionally fail several combat questions.
-2. Use label minigame for HP recovery.
-3. Measure how long it takes to recover and return to combat.
+## Test-Durchgang C (Restaurant-Stress)
+1. Restaurant längere Zeit laufen lassen ohne aktiv einzugreifen.
+2. Beobachten: Gäste-Geduld, Dreck-Akkumulation, Vorrat-Erschöpfung.
+3. Messen: Wie lange dauert es, sich nach leerem Vorrat zu erholen?
 
-## Metrics To Track
-- Session duration (minutes)
-- Harvest attempts / successes
-- Fruits before combat, fruits after combat
-- HP lost per combat run
-- Number of hard resets from `fruits = 0`
-- Number of retreats from `hp = 0`
-- Boss unlocked? (yes/no)
-- Boss win? (yes/no)
-- Confusing UI moments (count + short note)
+## Metriken
+- Sitzungsdauer (Minuten)
+- Ernterversuche / Erfolge
+- Früchte vor/nach Restaurant-Session
+- Anzahl harter Resets wegen `Früchte = 0`
+- Restaurant-Unlocks erreicht (Anzahl)
+- Unklare UI-Momente (Anzahl + kurze Notiz)
 
-## Balance Heuristics (Initial)
-- If players hit `fruits = 0` before reaching boss in most runs, fruit economy is too strict.
-- If players almost never lose HP, combat pressure is too low.
-- If boss fails repeatedly even with preparation, queue size or question mix is too hard.
-- If label minigame recovery feels mandatory too often, HP damage or regen cadence needs tuning.
+## Balance-Heuristiken
+- Wenn Spieler `Früchte = 0` erreichen bevor ein zweites Beet freigeschaltet ist: Früchte-Einkommen zu niedrig.
+- Wenn Restaurant-Fragen sich zu wenig abwechseln: Fragen-Pool zu klein oder Prioritäts-Logik prüfen.
+- Wenn Ernte regelmäßig beim ersten Versuch scheitert: Fragen zu schwer oder phase1-Vorbereitung lückenhaft.
+- Wenn Dreck sich zu schnell aufstaut ohne Chance zur Reaktion: Reinigungskraft-Unlock zu teuer oder zu spät.
 
-## Run Log Template
-Copy this block per playtest run:
+## Run-Log-Template
+Pro Playtest-Lauf kopieren:
 
 ```md
 ### Run ID: YYYY-MM-DD-##
-- Mode: normal / dev-fast
-- Save type: fresh / continued
-- Beds played:
-- Plants harvested:
-- Hybrids synthesized:
-- Fruits (start combat -> end):
-- HP (start combat -> end):
-- Normal combat result: success / retreat / hard reset
-- Boss available: yes/no
-- Boss result: win/loss/not attempted
-- Time to recover HP via label game:
-- Top 3 pain points:
+- Modus: normal / dev-schnell
+- Spielstand: frisch / fortgesetzt
+- Beete gespielt:
+- Pflanzen geerntet:
+- Hybriden synthetisiert:
+- Früchte (Sessionstart → Sessionende):
+- Restaurant-Unlocks erreicht:
+- Ernte-Misserfolge (Anzahl + welche Pflanze):
+- Größte Reibungspunkte:
 1.
 2.
 3.
-- Suggested tuning changes:
+- Vorgeschlagene Anpassungen:
 1.
 2.
 3.
 ```
 
-## Decision Rule After 5 Runs
-Only change one balancing axis at a time:
-1. Fruit gain/spend
-2. HP loss/recovery
-3. Boss queue size/composition
+## Entscheidungsregel nach 5 Läufen
+Immer nur eine Balance-Achse gleichzeitig ändern:
+1. Früchte-Einnahmen / Ausgaben
+2. Ernte-Rückfall-Mechanik (wie viele Fragen fallen zurück, wie weit)
+3. Restaurant-Unlock-Kosten
 
-After each change, run at least 2 new sessions before the next change.
+Nach jeder Änderung mindestens 2 neue Sessions vor der nächsten Änderung.

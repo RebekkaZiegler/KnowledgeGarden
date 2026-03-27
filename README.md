@@ -1,7 +1,7 @@
 # KnowledgeGarden
 
 KnowledgeGarden is a browser-based learning RPG prototype.
-You learn topics by growing plants, test yourself through harvest/combat questions, and unlock more content over time.
+You learn topics by growing plants, test yourself through harvest questions, and unlock more content via the Restaurant.
 
 Current version: **0.4** — Heilpraktiker Pack
 
@@ -55,7 +55,7 @@ The game uses a two-panel layout:
 
 - **Left panel** (always visible): player stats, heal button, selected plant info and questions
 - **Garden room** (center): topic shelves, each showing growing plants in pots — all topics visible at once
-- **Bottom nav bar**: Pflanzen (catalog), Kampf (combat), Labor (lab), Einstellungen (settings)
+- **Bottom nav bar**: Pflanzen (catalog), Restaurant, Labor (lab), Trophäen, Einstellungen (settings)
 
 No movement or world navigation — everything is accessible directly from the garden view.
 
@@ -66,7 +66,7 @@ No movement or world navigation — everything is accessible directly from the g
 3. Once all Phase 2 questions are learned and the cooldown expires, harvest the plant.
 4. Harvest requires **all questions correct** — wrong answers go back to Phase 2 proportionally.
 5. Harvested plants reward fruits (×2 per correct answer).
-6. Spend fruits in combat to unlock progression.
+6. Open the Restaurant — answer questions to unlock new cooks, ingredients, and upgrades; spend fruits on refills.
 7. Synthesize hybrid plants in the Lab once both source plants are harvested.
 
 ## Core mechanics
@@ -99,15 +99,14 @@ Each topic has a distinct color scheme (stem + fruit):
 
 Hybrid plants inherit stem color from source 1 and fruit color from source 2.
 
-### 3) Combat and boss flow
+### 3) Restaurant
 
-- Fruit cost: 1 fruit per answer attempt
-- Correct: +1 XP, enemy marked defeated
-- Wrong: -1 HP, question queued for boss
-- Fruits = 0: hard reset of combat progress
-- HP = 0: retreat, no reset
-- All enemies defeated → boss fight (wrong questions + random fill to min. 5)
-- Boss win: +1 bed slot unlocked
+- Real-time background minigame: cooks serve customers automatically
+- Customers arrive with a patience bar; dirt accumulates over time
+- Ingredient stock depletes → refill costs a question answer (+ optional fruits)
+- New cooks, ingredients, and a cleaner unlockable via questions + fruits
+- Question priority: unseen first → wrong answers → repetition once all mastered
+- Trophy + new chapter recommendation when all questions are mastered
 
 ### 4) Lab / Hybrids
 
@@ -126,7 +125,7 @@ Hybrid plants inherit stem color from source 1 and fruit color from source 2.
 
 - Click a pot to select a plant or add a new one
 - Click action buttons (💧 ✂️ 🌿 🧪) in the left panel or above the selected pot
-- Bottom nav bar for Katalog / Kampf / Labor / Einstellungen
+- Bottom nav bar for Katalog / Restaurant / Labor / Trophäen / Einstellungen
 - Esc closes modals
 
 ## Project structure
@@ -135,7 +134,6 @@ Hybrid plants inherit stem color from source 1 and fruit color from source 2.
 - `styles.css` — UI/game styling
 - `js/content.js` — content pack data (questions, plants, hybrids, label exercises)
 - `js/game.js` — core game logic and UI rendering
-- `js/world.js` — legacy Phaser world scene (inactive)
 - `scripts/serve.js` — static local server
 - `scripts/run.js` — local server + app-window launcher
 - `docs/` — project overview, playtest checklist, ideas

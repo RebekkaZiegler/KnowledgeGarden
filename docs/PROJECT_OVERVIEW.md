@@ -10,7 +10,7 @@ Master Overview — Stand: März 2026
 - Plant Tycoon-Stil Garten-UI: bis zu 3 aktive Beete gleichzeitig sichtbar
 - Linkes Panel (immer sichtbar): Spielerstatistiken, Heilbereich, Pflanzendetail + Fragen
 - Bottom-Navigationsleiste mit Modalen: Pflanzen-Katalog, Restaurant, Labor, Einstellungen
-- 5 Beete, 54 Pflanzen (+ Hybride) mit echtem Heilpraktiker-Inhalt
+- 5 Beete, Pflanzen mit echtem Heilpraktiker-Inhalt (+ Hybride)
 - Farbcodierung pro Thema; Hybride mischen Stamm- und Fruchtfarbe der Elternpflanzen
 - Phase 1 (Lerninhalt VOR Frage + T/F mit Sofort-Wiederholung), Phase 2 (3 Aktionen + Cooldown), Ernte
 - Ernte: 100% korrekt erforderlich — falsche Fragen gehen proportional in Phase 2 zurück
@@ -18,7 +18,7 @@ Master Overview — Stand: März 2026
 - Katalog filtert auf Thema wenn von leerem Topf geöffnet; zeigt vollständige Stats aller Beete
 - 4 Hybrid-Pflanzendefinitionen + Labor-System (Synthetisieren + Einpflanzen)
 - Speichersystem (localStorage), Export/Import Spielstand, UI auf Deutsch
-- HP-Regeneration: Beschriften-Minispiel (17 Übungen, Diagramme + Bilder)
+- Beschriften-Minispiel: 17 Übungen mit Diagrammen + Bildern (Bonus-Aktivität)
 
 **Restaurant-System (v1):**
 - Echtzeit-Minigame: Köche (CSS-Kreise) kochen und servieren automatisch
@@ -31,10 +31,9 @@ Master Overview — Stand: März 2026
 - Trophäen-Anzeige + Empfehlung neues Kapitel wenn alle Fragen gemeistert
 
 **Offen (nach Priorität):**
-1. Playtest: vollständiger Loop (Früchte-Balance, Restaurant-Spielgefühl, Ernte-Härte)
-2. Content-QA nach Playtest — Ablauf: `docs/PLAYTEST_CHECKLIST.md`
-3. Restaurant v2: Menü-Designer, Cocktails, Spa, Naturheilpraxis (siehe `docs/IDEAS.md §4`)
-6. Pixel-Grafik Layer (optional, spätere Phase)
+1. Playtest: vollständiger Loop (Früchte-Balance, Restaurant-Spielgefühl, Ernte-Härte) — Ablauf: `docs/PLAYTEST_CHECKLIST.md`
+2. Restaurant v2: Menü-Designer, Cocktails, Spa, Naturheilpraxis (siehe `docs/IDEAS.md`)
+3. Pixel-Grafik Layer (optional, spätere Phase)
 
 ---
 
@@ -170,7 +169,7 @@ Wenn alle Fragen korrekt beantwortet: Trophäe + Empfehlung neues Kapitel freisc
 |---|---|---|
 | XP | Phase 1, Ernte | Nie (permanent) |
 | Früchte | Ernte (×2 pro korrekte Antwort) | Restaurant-Unlocks, Nachfüllen |
-| HP | Beschriften-Minispiel | — |
+| HP | Beschriften-Minispiel | — (kein aktiver Verbrauch) |
 
 ---
 
@@ -178,8 +177,7 @@ Wenn alle Fragen korrekt beantwortet: Trophäe + Empfehlung neues Kapitel freisc
 
 - **Phase 1**: `solution`-Feld = Lerninhalt VOR der Frage + Erklärung NACH der Antwort
   - Muss vollständig eigenständig lesbar sein (keine Pronomen ohne Referent)
-- **Phase 2 + Ernte**: `explanation`-Feld der Frage als Feedback
-  - Alle 199 harvestQuestions haben `explanation` (1–2 Sätze, substantieller anatomischer Inhalt)
+- **Phase 2 + Ernte**: `explanation`-Feld der Frage als Feedback (alle harvestQuestions haben `explanation`, 1–2 Sätze mit substanziellem Inhalt)
 - Farb-Feedback: `.feedback--correct` (grün) / `.feedback--wrong` (rot)
 
 ---

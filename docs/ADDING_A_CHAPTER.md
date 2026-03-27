@@ -77,8 +77,8 @@ makeDetailedPlant({
     water: { statement: "...", answer: true/false, solution: "..." }
   },
 
-  harvestQuestions: [ ... ],   // Ziel: 6–8 · Minimum: 5 · ALLE Fakten der Pflanze abdecken
-  phase4Questions: [ ... ]     // Ziel: 3–4 · Minimum: 2 · Synthese und Zusammenhänge testen
+  harvestQuestions: [ ... ],   // so viele wie nötig, damit jeder Fakt aus phase1 mindestens einmal abgefragt wird
+  phase4Questions: [ ... ]     // so viele wie nötig, damit alle wichtigen Zusammenhänge getestet werden
 })
 ```
 
@@ -112,7 +112,7 @@ soil: {
 
 ## Schritt 4 — `harvestQuestions`
 
-**Ziel: 6–8 Fragen pro Pflanze.** Minimum ist 5, aber nur wenn das Thema wirklich schmal ist.
+**Schreib so viele Fragen, bis jeder prüfungsrelevante Fakt aus Phase 1 mindestens einmal abgefragt wurde.** Die Anzahl ergibt sich aus dem Inhalt — es gibt kein vorgegebenes Minimum oder Ziel.
 
 Jede einzelne Frage muss einen konkreten Fakt testen, der ohne diese Frage nicht abgedeckt wäre. Keine Wiederholungen desselben Fakts in anderen Worten.
 
@@ -151,7 +151,7 @@ Zwei Typen:
 
 ## Schritt 5 — `phase4Questions`
 
-Für das Restaurant. **Ziel: 3–4 Fragen pro Pflanze.** Minimum ist 2.
+Für das Restaurant. **Schreib so viele Fragen, bis alle wichtigen Zusammenhänge und Abgrenzungen des Themas getestet sind.** Die Anzahl ergibt sich aus dem Inhalt.
 
 Phase-4-Fragen sind **Synthese-Fragen**: Sie testen nicht einzelne Fakten (das machen `harvestQuestions`), sondern Zusammenhänge, Abgrenzungen und das Gesamtbild. Mehrere Antworten können korrekt sein.
 
@@ -220,7 +220,8 @@ Vor dem Commit folgendes manuell durchgehen:
 - [ ] Jede `solution` ist eigenständig lesbar (kein "Es", "Sie" ohne klaren Bezug im selben Satz)
 - [ ] Alle `options`-Arrays haben genau 4 Einträge
 - [ ] Alle `harvestQuestion`-MC-Arrays haben genau 1 `correct: true`
-- [ ] Mindestens 5 `harvestQuestions`, mindestens 2 `phase4Questions` pro Pflanze (Ziel: 6–8 / 3–4)
+- [ ] Jeder prüfungsrelevante Fakt aus Phase 1 ist durch mindestens eine `harvestQuestion` abgedeckt
+- [ ] Alle wichtigen Zusammenhänge sind durch mindestens eine `phase4Question` abgedeckt
 
 **Inhalt:**
 - [ ] Jede `harvestQuestion` und `phase4Question` — ist der abgefragte Fakt in einer `solution` von Phase 1 eingeführt?
@@ -312,4 +313,3 @@ const BEISPIEL_1099_PLANTS = [
 - **Reihenfolge im Spiel:** Betten werden in der Reihenfolge freigeschaltet, in der sie in `PACK_CONTENT.beds` stehen. Das erste Bett ist beim Start bereits freigeschaltet, alle weiteren müssen durch den Spieler über den Katalog aktiviert werden.
 - **Hybride:** Wenn das neue Kapitel als Quelle für eine hybride Pflanze dient, muss `HEILPRAKTIKER_HYBRIDS` entsprechend ergänzt werden (eigenes Thema, hier nicht weiter dokumentiert).
 - **Speichersystem:** Neue Betten werden automatisch initialisiert — kein Migrations-Code nötig, solange nur neue Betten/Pflanzen hinzukommen und keine bestehenden IDs geändert werden.
-- **Bestandskapitel mit Lücken:** Histologie, Knochenlehre, Muskellehre und Atmungssystem haben aktuell nur 3 harvestQuestions pro Pflanze (das alte Minimum). Diese Kapitel sollten nachgepflegt werden.
