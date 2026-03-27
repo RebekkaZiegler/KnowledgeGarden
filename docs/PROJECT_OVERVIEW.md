@@ -104,7 +104,7 @@ Im Garten sind maximal 3 Beete gleichzeitig sichtbar. Alle Beete mit ihren Stats
 Jede Pflanze ist ein prüfbares Konzept mit:
 - `phase1`: soil/seed/water (T/F + solution)
 - `harvestQuestions`: T/F oder MC mit `explanation`
-- `cleaningQuestions`: MC mit 4 Optionen
+- `phase4Questions`: MC mit 4 Optionen
 
 ---
 
@@ -143,7 +143,7 @@ Zweck: Entspannter Betrieb im Hintergrund + Motivation durch Unlock-Mechanismus.
 ### Ressourcen
 
 - **Früchte** = Kosten für Unlocks und Nachfüllen (verdient durch Ernte)
-- Fragen aus `harvestQuestions` + `cleaningQuestions` = Währung für Unlocks
+- Fragen aus `harvestQuestions` + `phase4Questions` = Währung für Unlocks
 
 ### Ablauf
 
@@ -199,7 +199,7 @@ Designregel: diagnostisch, nie beschämend.
 
 - Freischaltung: mindestens 1 Ernte aus 2 verschiedenen Beeten
 - Keine Zufallsmechanik — nur kuratierte, vordefinierte Hybriden
-- 4 Hybriden definiert mit eigenen harvestQuestions und cleaningQuestions
+- 4 Hybriden definiert mit eigenen harvestQuestions und phase4Questions
 - Hybridfarben: Stammfarbe von Elternteil 1, Fruchtfarbe von Elternteil 2
 - Labor-Screen: zeigt ✓/✗ Erntestatus pro benötigter Quellpflanze; Hinweis-Button für gesperrte Hybride
 
@@ -239,7 +239,7 @@ Jeder Pack definiert in `content.js`:
 - Phase-1-Inhalt (soil/seed/water mit `solution`)
 - Phase-2-Aktionen
 - `harvestQuestions` (T/F oder MC + `explanation`)
-- `cleaningQuestions` (MC, 4 Optionen)
+- `phase4Questions` (MC, 4 Optionen)
 - Hybriden (mit `sources` = zwei Quellpflanzen)
 - Label-Übungen (SVG-Diagramme oder Bilder mit Beschriftungszonen)
 

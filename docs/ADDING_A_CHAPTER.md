@@ -12,7 +12,7 @@ Alles spielt sich ausschliesslich in `js/content.js` ab — kein anderer Code mu
 Das bedeutet:
 - Jedes prüfungsrelevante Thema des Studienbriefs hat eine eigene Pflanze
 - Keine Platzhalter, keine "TODO"-Fragen, keine halbleeren Pflanzen
-- Alle Pflanzen haben vollständige `phase1`, `harvestQuestions` und `cleaningQuestions`
+- Alle Pflanzen haben vollständige `phase1`, `harvestQuestions` und `phase4Questions`
 - Die Phase-1-Regel gilt: alles, was abgefragt wird, muss vorher erklärt worden sein
 
 Lieber ein Kapitel erst später einfügen, wenn es wirklich fertig ist.
@@ -59,7 +59,7 @@ makeDetailedPlant({
   },
 
   harvestQuestions: [ ... ],   // mind. 3, max. ~8
-  cleaningQuestions: [ ... ]   // mind. 2, für Restaurant
+  phase4Questions: [ ... ]   // mind. 2, für Restaurant
 })
 ```
 
@@ -71,7 +71,7 @@ makeDetailedPlant({
 
 Phase 1 ist der einzige Ort, wo neues Wissen eingeführt wird.
 
-**Regel: Alles, was in `harvestQuestions` oder `cleaningQuestions` abgefragt wird, muss in mindestens einem der drei `solution`-Felder erklärt worden sein.**
+**Regel: Alles, was in `harvestQuestions` oder `phase4Questions` abgefragt wird, muss in mindestens einem der drei `solution`-Felder erklärt worden sein.**
 
 ```javascript
 soil: {
@@ -124,7 +124,7 @@ Mindestens 3, typischerweise 5–8 Fragen. Zwei Typen:
 
 ---
 
-## Schritt 5 — `cleaningQuestions`
+## Schritt 5 — `phase4Questions`
 
 Für das Restaurant. Mehrere Antworten können korrekt sein.
 
@@ -169,7 +169,7 @@ Vor dem Commit folgendes manuell durchgehen:
 - [ ] Jede `solution` ist eigenständig lesbar (kein "Es", "Sie" ohne klaren Bezug im selben Satz)
 - [ ] Alle `options`-Arrays haben genau 4 Einträge
 - [ ] Alle `harvestQuestion`-MC-Arrays haben genau 1 `correct: true`
-- [ ] Mindestens 3 `harvestQuestions`, mindestens 2 `cleaningQuestions` pro Pflanze
+- [ ] Mindestens 3 `harvestQuestions`, mindestens 2 `phase4Questions` pro Pflanze
 
 ---
 
@@ -219,7 +219,7 @@ const BEISPIEL_1099_PLANTS = [
         explanation: "B katalysiert die Umwandlung in Prozess Z. Fehlt B, stockt Z und es entsteht Erkrankung M."
       }
     ],
-    cleaningQuestions: [
+    phase4Questions: [
       {
         id: "bt_mc1",
         type: "mc",

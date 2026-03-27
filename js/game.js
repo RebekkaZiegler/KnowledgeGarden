@@ -3096,7 +3096,7 @@ function rePickQuestion(bedId, allowRepeat = false) {
   const all = [];
   (bedContent?.plants || []).forEach(p => {
     (p.harvestQuestions || []).forEach(q => all.push(q));
-    (p.cleaningQuestions || []).forEach(q => all.push(q));
+    (p.phase4Questions || []).forEach(q => all.push(q));
   });
   const unseen  = all.filter(q => !answers[q.id]);
   const wrong   = all.filter(q => answers[q.id] === "wrong");
