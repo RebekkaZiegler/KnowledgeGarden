@@ -47,9 +47,17 @@ Konkret heißt das:
 
 ---
 
+## Schritt 0 — Fakten-Liste erstellen (Pflicht)
+
+Bevor eine einzige Zeile Code geschrieben wird: **Lies den Studienbrief komplett durch und schreibe alle prüfungsrelevanten Fakten, Funktionen, Definitionen und klinischen Zusammenhänge auf.**
+
+Diese Liste ist die Grundlage für alles Weitere. Sie wird in Schritt 7 (Coverage-Check) direkt gegen die fertigen Fragen geprüft.
+
+---
+
 ## Schritt 1 — Pflanzen-Array anlegen
 
-Direkt vor dem `PACK_CONTENT`-Block (aktuell Zeile ~2856) einen neuen Block einfügen:
+Direkt vor dem `PACK_CONTENT`-Block (aktuell Zeile ~3906) einen neuen Block einfügen:
 
 ```javascript
 const KAPITELNAME_XXXX_PLANTS = [
@@ -82,7 +90,7 @@ makeDetailedPlant({
 })
 ```
 
-`bossQuestions` und `phase2` sind optional — werden automatisch mit Standardwerten befüllt wenn weggelassen.
+`phase2` ist optional — wird automatisch mit Standardwerten befüllt wenn weggelassen.
 
 ---
 
@@ -195,7 +203,7 @@ Am Ende der `beds`-Liste, **vor** dem `hybrid`-Eintrag:
 
 ## Schritt 7 — Coverage-Check (Pflicht vor Qualitätsprüfung)
 
-Geh zurück zur Liste aller prüfungsrelevanten Fakten aus dem Studienbrief (Schritt 0).
+Geh zurück zur Fakten-Liste aus Schritt 0.
 
 Für jeden Punkt: In welcher Frage kommt dieser Fakt vor?
 
@@ -313,3 +321,46 @@ const BEISPIEL_1099_PLANTS = [
 - **Reihenfolge im Spiel:** Betten werden in der Reihenfolge freigeschaltet, in der sie in `PACK_CONTENT.beds` stehen. Das erste Bett ist beim Start bereits freigeschaltet, alle weiteren müssen durch den Spieler über den Katalog aktiviert werden.
 - **Hybride:** Wenn das neue Kapitel als Quelle für eine hybride Pflanze dient, muss `HEILPRAKTIKER_HYBRIDS` entsprechend ergänzt werden (eigenes Thema, hier nicht weiter dokumentiert).
 - **Speichersystem:** Neue Betten werden automatisch initialisiert — kein Migrations-Code nötig, solange nur neue Betten/Pflanzen hinzukommen und keine bestehenden IDs geändert werden.
+
+---
+
+## Schritt 9 — Label-Übungen hinzufügen (optional, aber empfohlen)
+
+Label-Übungen sind interaktive Beschriftungs-Aufgaben auf anatomischen Diagrammen aus dem Studienbrief. Der Spieler zieht Labels auf die richtigen Stellen im Bild. Sie erscheinen im Labor.
+
+### 9a — Diagramm-Bilder extrahieren
+
+Geeignete Abbildungen aus dem PDF identifizieren (Querschnitte, Übersichtsdiagramme mit beschriftbaren Strukturen) und als PNG in `assets/diagrams/` speichern:
+
+Namenskonvention: `{kapitelname}_figure_{N}.png` — z. B. `herzkreislauf_figure_3.png`.
+
+Nur Abbildungen wählen, die **mindestens 4 klar abgrenzbare, prüfungsrelevante Strukturen** zeigen. Nicht jede Abbildung eignet sich — bevorzugt Querschnitte, Schemazeichnungen und Übersichten mit eindeutig lokalisierbaren Strukturen.
+
+### 9b — Eintrag in `LABEL_EXERCISES` anlegen
+
+In `js/content.js` im `LABEL_EXERCISES`-Array (vor dem abschließenden `]`):
+
+```javascript
+{
+  id: "eindeutige_id",
+  title: "Titel der Übung",
+  passRate: 0.6,
+  diagramType: "image",
+  imagePath: "assets/diagrams/kapitelname_figure_N.png",
+  bedId: "kapitelname_XXXX",
+  aspectRatio: "1/1",
+  zones: [
+    { id: "z_struktur_a", label: "Struktur A", left: 10, top: 20, width: 25, height: 8 },
+    { id: "z_struktur_b", label: "Struktur B", left: 55, top: 40, width: 20, height: 8 },
+    // mind. 4 Zonen
+  ]
+}
+```
+
+**Koordinaten** (`left`, `top`, `width`, `height`) sind Prozentwerte relativ zur Bildgröße (0–100). Sie werden visuell im Browser kalibriert — Startwerte können geschätzt werden, dann im Spiel nachjustiert.
+
+**`bedId`** muss mit der `id` des zugehörigen Betts in `PACK_CONTENT.beds` übereinstimmen.
+
+**`passRate`**: 0.6 = 60 % der Labels müssen korrekt platziert werden, um zu bestehen.
+
+**IDs:** Zonen-IDs beginnen mit `z_`, sind einmalig pro Übung (nicht global). Übungs-ID (`id`) muss global einmalig im `LABEL_EXERCISES`-Array sein.

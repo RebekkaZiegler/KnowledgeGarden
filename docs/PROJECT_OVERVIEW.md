@@ -111,7 +111,7 @@ Jede Pflanze ist ein prüfbares Konzept mit:
 
 ### Phase 1 — Grundlegung (einmalig)
 
-- 3 Schritte: Boden → Samen → Erstes Gießen
+- 3 Schritte: Boden → Samen → Angießen
 - `solution`-Text als Lerninhalt VOR der Frage gezeigt
 - Sofortige Wiederholung bei Fehler (kein Fortschritt bis korrekt)
 - Entsperrt Phase 2
