@@ -1985,6 +1985,11 @@ button:disabled {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.55));
   animation: re-carry-bob 0.5s ease-in-out infinite alternate;
   z-index: 12;
+  display: flex; align-items: center; gap: 3px;
+}
+.re-carry-drink {
+  font-size: 1.3rem;
+  line-height: 1;
 }
 @keyframes re-carry-bob {
   from { transform: translateX(-50%) translateY(0); }
@@ -2050,6 +2055,7 @@ button:disabled {
   bottom: -46px; left: 50%;
   transform: translateX(-50%);
   filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+  display: flex; align-items: center; gap: 3px;
 }
 
 /* Customer eating progress bar */
@@ -2089,6 +2095,16 @@ button:disabled {
 .re-info-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .re-sat-row { font-size: 0.75rem; color: var(--muted); min-height: 1rem; }
 .re-total-stats { opacity: 0.65; }
+.re-fruit-bar {
+  display: inline-block; vertical-align: middle;
+  width: 56px; height: 6px;
+  background: rgba(0,0,0,0.15); border-radius: 3px; overflow: hidden;
+}
+.re-fruit-bar-fill {
+  display: block; height: 100%;
+  background: #f4a020; border-radius: 3px;
+  transition: width 0.4s ease;
+}
 
 /* Bottom sections row */
 /* ── Main restaurant nav ──────────────────────────────────────────────────── */

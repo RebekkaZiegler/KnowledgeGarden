@@ -1,3 +1,5 @@
 .claude/
 # Large music files (>100MB, excluded from GitHub)
 assets/music/Home Beyond the Vale _ Fantasy Celtic Ambience _ Relaxing Music [No Ads].mp3
+# Source PDFs — too large for git, stored locally
+Input/*.pdf
