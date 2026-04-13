@@ -13881,7 +13881,7 @@ const PACK_CONTENT = {
       plants: HORMONSYSTEM_1042_PLANTS
     },
     {
-      id: "1043",
+      id: "nervensystem_1043",
       label: "1043 – Strukturen und Funktion des Nervensystems",
       plants: NERVENSYSTEM_1043_PLANTS
     },
