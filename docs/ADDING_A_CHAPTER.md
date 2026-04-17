@@ -75,6 +75,16 @@ Konkret heißt das:
 
 ---
 
+## ⚠️ EISERNE REGEL: Nie bestehende Pflanzen als vollständig annehmen
+
+**Bestehende Pflanzen bedeuten NICHT, dass ein Kapitel vollständig abgedeckt ist.**
+
+Egal wie viele Pflanzen bereits existieren — sie wurden möglicherweise ohne vollständige PDF-Lektüre geschrieben. Immer zuerst das PDF komplett lesen, dann gegen die bestehenden Pflanzen kreuzen.
+
+**Verboten:** Ein Kapitel mit bestehenden Pflanzen als „fertig" behandeln, ohne vorher Schritt B–C (PDF lesen + Lücken prüfen) durchgeführt zu haben.
+
+---
+
 ## Bestehendes Kapitel erweitern (Lückenanalyse)
 
 Wenn ein Kapitel bereits Pflanzen hat, aber noch nicht vollständig abgedeckt ist, gelten andere Schritte als beim Neuanlegen. **Kein neues Array, kein neuer Bett-Eintrag** — nur fehlende Pflanzen in das bestehende Array einfügen.
@@ -128,6 +138,16 @@ node --check "c:/Users/RebekkaZiegler/Desktop/KnowledgeGarden/js/content.js"
 ```
 
 Commit-Nachricht: `add Studienbrief XXXX (Titel): N neue Pflanzen für Thema1 und Thema2`
+
+---
+
+## ⚠️ EISERNE REGEL: Kein einziges Plant ohne vollständige PDF-Lektüre
+
+**Bevor eine einzige Pflanze geschrieben wird, muss das gesamte PDF gelesen worden sein — Seite für Seite, in Chunks von max. 20 Seiten.**
+
+Pflanzen, die ohne vorherige vollständige PDF-Lektüre geschrieben wurden, sind per Definition unvollständig. Es ist nicht möglich, zuverlässig zu wissen, was fehlt, ohne das Original gelesen zu haben.
+
+Keine Ausnahmen. Kein "ich kenne das Thema grob". Kein "8 Pflanzen sollten reichen".
 
 ---
 
