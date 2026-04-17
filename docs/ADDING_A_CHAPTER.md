@@ -5,6 +5,34 @@ Alles spielt sich ausschliesslich in `js/content.js` ab — kein anderer Code mu
 
 ---
 
+## Spielmechanik: Pflanzphase und Restaurant
+
+Das Spiel hat zwei Hauptphasen, die für jedes Bett (= Kapitel) nacheinander freigeschaltet werden:
+
+### Pflanzphase (Phase 1–3)
+Jede Pflanze durchläuft einen Lebenszyklus:
+- **Phase 1** — Lernphase: Der Spieler liest `solution`-Texte und beantwortet True/False-Aussagen (`statement`).
+- **Phase 2** — Wachstumsphase: Die `harvestQuestions` werden als Quizfragen gestellt. Richtige Antworten lassen die Pflanze wachsen; falsche blockieren sie.
+- **Phase 3** — Ernte: Die Pflanze wird geerntet (`harvestedOnce = true`). Danach beginnt ein neuer Wachstumszyklus.
+
+### Restaurant (Phase 4)
+Das Restaurant wird freigeschaltet, sobald **alle Pflanzen eines Betts mindestens einmal geerntet wurden**.
+
+Im Restaurant betreibt der Spieler eine Pizzeria: Kunden kommen herein, werden bedient, und zwischendurch erscheinen Quizfragen auf dem Bildschirm. Richtige Antworten bringen Belohnungen (neue Zutaten, Köche, Tische).
+
+**Welche Fragen erscheinen im Restaurant?** Alle `harvestQuestions` UND alle `phase4Questions` des Betts — in zufälliger Reihenfolge, zuerst ungesehene, dann falsch beantwortete.
+
+### Konsequenzen für die Fragengestaltung
+
+| Fragetyp | Wo verwendet | Zweck |
+|---|---|---|
+| `harvestQuestions` | Phase 2 (Pflanzwachstum) + Restaurant | Einzelfakten testen; jeweils genau 1 richtige Antwort |
+| `phase4Questions` | Nur Restaurant | Synthese, Zusammenhänge, Abgrenzungen; mehrere richtige Antworten möglich |
+
+`phase4Questions` erscheinen nie während der Pflanzphase — sie setzen voraus, dass der Spieler das Thema bereits durch die Ernte kennt.
+
+---
+
 ## Grundregel: Vollständigkeit
 
 **Ein Kapitel wird nur hinzugefügt, wenn es vollständig ist.**
@@ -44,6 +72,62 @@ Konkret heißt das:
 |---|---|
 | Pflanzen-Array `KAPITELNAME_XXXX_PLANTS` | Neuer const-Block vor `PACK_CONTENT` |
 | Bett-Eintrag in `PACK_CONTENT.beds` | Am Ende der `beds`-Liste, vor dem `hybrid`-Eintrag |
+
+---
+
+## Bestehendes Kapitel erweitern (Lückenanalyse)
+
+Wenn ein Kapitel bereits Pflanzen hat, aber noch nicht vollständig abgedeckt ist, gelten andere Schritte als beim Neuanlegen. **Kein neues Array, kein neuer Bett-Eintrag** — nur fehlende Pflanzen in das bestehende Array einfügen.
+
+### Schritt A — Bestehende Pflanzen lesen
+
+Abschnitt `KAPITELNAME_XXXX_PLANTS` in `content.js` lesen. Alle vorhandenen Pflanzen-IDs und ihre Themen auflisten.
+
+### Schritt B — PDF in Chunks lesen (max. 20 Seiten pro Aufruf)
+
+Das PDF in Blöcken lesen: `pages: "1-20"`, dann `"21-40"`, dann `"41-57"` usw. Dabei alle prüfungsrelevanten Themen, Strukturen, Funktionen und klinischen Fakten notieren.
+
+### Schritt C — Lücken identifizieren
+
+Bestehende Pflanzentopics gegen die PDF-Themen kreuzen. Für jede Lücke notieren: Welches Thema fehlt? Welche Fakten enthält es?
+
+Wenn keine Lücken → fertig, kein Commit nötig.
+
+### Schritt D — Neue Pflanzen schreiben
+
+Neue Pflanzen zuerst in `Input/plants_XXXX_new.js` schreiben (als Staging-Datei), dann prüfen, dann in `content.js` einbauen.
+
+### Schritt E — In content.js einfügen
+
+Mit dem Edit-Tool: das Ende des bestehenden Arrays suchen — das letzte `})` vor dem `];` — und dort einfügen. Das Muster ist:
+
+```
+    ]           ← Ende phase4Questions des letzten bestehenden Plants
+  })            ← Ende makeDetailedPlant
+                ← Leerzeile
+];              ← Ende des Arrays
+```
+
+ersetzen durch:
+
+```
+    ]
+  }),           ← Komma hinzufügen
+
+  makeDetailedPlant({ ... }),   ← neue Pflanze(n)
+
+  makeDetailedPlant({ ... })    ← letzte neue Pflanze ohne Komma
+
+];
+```
+
+### Schritt F — Validieren und committen
+
+```bash
+node --check "c:/Users/RebekkaZiegler/Desktop/KnowledgeGarden/js/content.js"
+```
+
+Commit-Nachricht: `add Studienbrief XXXX (Titel): N neue Pflanzen für Thema1 und Thema2`
 
 ---
 
