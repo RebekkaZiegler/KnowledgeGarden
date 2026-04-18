@@ -12131,19 +12131,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 1 – Erregungsleitung: Aufbau der Nervenzelle, Ruhepotential, Aktionspotential, saltatorische Erregungsleitung",
     phase1: {
       soil: {
-        statement: "Wie ist eine Nervenzelle aufgebaut und was ist das Ruhepotential?",
-        answer: "Nervenzelle = Zellleib + Kern, Dendriten (bis 12, Signalempfänger), Axon/Neurit (Signalweiterleitung), Neuroglia (Stütz-/Hüllzellen). Ruhepotential: ca. -80 mV; K⁺ innen 40–50× höher, Na⁺ außen 3–10× höher.",
-        solution: "Ruhepotential entsteht durch ungleiche Ionenverteilung: K⁺ vorwiegend intrazellulär, Na⁺ vorwiegend extrazellulär. Die Na-K-ATPase hält dieses Gleichgewicht aufrecht."
+        statement: "Das Ruhepotential einer Nervenzelle beträgt ca. -80 mV; dabei ist K⁺ intrazellulär ca. 40–50-fach höher konzentriert als extrazellulär, während Na⁺ extrazellulär ca. 3–10-fach höher konzentriert ist als intrazellulär.",
+        answer: true,
+        solution: "Das Ruhepotential entsteht durch ungleiche Ionenverteilung: K⁺ ist vorwiegend intrazellulär, Na⁺ vorwiegend extrazellulär. Die Na-K-ATPase-Pumpe hält dieses Ungleichgewicht aufrecht. Eine Nervenzelle besteht aus Zellleib mit Zellkern, Dendriten (bis zu 12, Signalempfänger) und Axon/Neurit."
       },
       seed: {
-        statement: "Was passiert beim Aktionspotential und wie lange dauert es?",
-        answer: "Na⁺-Einstrom → Depolarisation (+20 bis +60 mV), danach K⁺-Ausstrom → Repolarisation zurück auf Ruhepotential. Läuft innerhalb ca. 1 ms ab. Refraktärzeit: Na-K-ATPase stellt Ausgangszustand wieder her.",
-        solution: "Das Aktionspotential folgt dem Alles-oder-Nichts-Prinzip. Nach dem Auslösen folgt eine Refraktärzeit, in der kein weiteres AP ausgelöst werden kann."
+        statement: "Beim Aktionspotential strömt zuerst K⁺ in die Zelle ein (Depolarisation), danach strömt Na⁺ aus (Repolarisation); der Gesamtvorgang dauert ca. 1 ms.",
+        answer: false,
+        solution: "Umgekehrt: Na⁺-EINSTROM bewirkt die Depolarisation (Membranpotential steigt auf +20 bis +60 mV), danach folgt K⁺-AUSSTROM und die Repolarisation zurück auf das Ruhepotential. Das Aktionspotential folgt dem Alles-oder-Nichts-Prinzip."
       },
       water: {
-        statement: "Was ist saltatorische Erregungsleitung und wodurch wird sie ermöglicht?",
-        answer: "Erregung springt von Ranvier-Schnürring zu Ranvier-Schnürring (alle ca. 1,5 mm). Ermöglicht durch Myelinscheide (Schwann-Zellen, Lipoprotein) → bis 120 m/s. Viel schneller als kontinuierliche Leitung.",
-        solution: "Die Myelinscheide isoliert das Axon elektrisch. Nur an den Ranvier-Schnürringen (Lücken in der Myelinscheide) findet Ionenaustausch statt – daher ‚springt' die Erregung."
+        statement: "Die Myelinscheide wird von Schwann-Zellen gebildet und besteht aus Lipoprotein; sie ermöglicht die saltatorische Erregungsleitung von Ranvier-Schnürring zu Ranvier-Schnürring mit Geschwindigkeiten bis zu 120 m/s.",
+        answer: true,
+        solution: "Die Myelinscheide isoliert das Axon elektrisch. Nur an den Ranvier-Schnürringen (Lücken im Myelin, alle ca. 1,5 mm) findet Ionenaustausch statt – daher 'springt' die Erregung saltatorisch. Das ist deutlich schneller als die kontinuierliche Leitung unmyelinisierter Fasern."
       }
     },
     harvestQuestions: [
@@ -12240,19 +12240,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 1 – Synaptische Übertragung: Aufbau der Synapse, Neurotransmitter, Myasthenia gravis, Curare",
     phase1: {
       soil: {
-        statement: "Wie ist eine Synapse aufgebaut und welche Funktion hat sie?",
-        answer: "Synapse = präsynaptisches Endknöpfchen + synaptischer Spalt + postsynaptische Membran. Enthält Vesikel mit Neurotransmittern. Ventilfunktion: Erregung nur in eine Richtung (unidirektional). Ca²⁺-Einstrom → Vesikel fusionieren → Transmitter in den Spalt.",
-        solution: "Die synaptische Ventilfunktion ist entscheidend: Erregung kann nur vom prä- zum postsynaptischen Neuron weitergeleitet werden, nicht umgekehrt."
+        statement: "An einer Synapse bewirkt der Ca²⁺-Einstrom ins präsynaptische Endknöpfchen die Fusion der Vesikel mit der Membran und die Freisetzung von Neurotransmittern in den synaptischen Spalt; die Erregung wird dabei unidirektional weitergeleitet (Ventilfunktion).",
+        answer: true,
+        solution: "Die Synapse besteht aus präsynaptischem Endknöpfchen, synaptischem Spalt und postsynaptischer Membran. Ca²⁺ ist der entscheidende Trigger für die Transmitterausschüttung. Die Ventilfunktion stellt sicher, dass Signale nur in eine Richtung fließen."
       },
       seed: {
-        statement: "Welche Neurotransmitter gibt es und wie werden sie eingeteilt?",
-        answer: "Cholinerge Synapsen: Acetylcholin (ACh) → durch Acetylcholinesterase gespalten. Adrenerge Synapsen: Adrenalin, Noradrenalin, Dopamin. Weitere: Serotonin, Substance P (Schmerz), GABA (hemmend).",
-        solution: "Acetylcholinesterase beendet die ACh-Wirkung durch Spaltung in Acetat und Cholin. Hemmung dieses Enzyms ist der Angriffspunkt von Medikamenten (z.B. bei Myasthenia gravis) und Giften."
+        statement: "Dopamin, Noradrenalin und Serotonin sind adrenerge Neurotransmitter; Acetylcholin (ACh) wird von der Acetylcholinesterase in Acetat und Cholin gespalten.",
+        answer: false,
+        solution: "Serotonin ist kein adrenerger Transmitter – adrenerge Synapsen nutzen Adrenalin, Noradrenalin und Dopamin. Serotonin gehört zu einer eigenen Gruppe. Die Aussage über ACh ist jedoch richtig: Acetylcholinesterase spaltet ACh in Acetat und Cholin und beendet so die synaptische Erregung."
       },
       water: {
-        statement: "Was ist Myasthenia gravis und wie wirkt Curare?",
-        answer: "Myasthenia gravis: Autoimmunerkrankung, Acetylcholin-Rezeptoren durch Antikörper zerstört → Muskelschwäche. Therapie: Acetylcholinesterase-Hemmer (mehr ACh verfügbar). Curare: blockiert ACh-Rezeptoren → generalisierte Muskellähmung.",
-        solution: "Beide wirken am ACh-Rezeptor, aber verschieden: Myasthenia gravis = Rezeptorzerstörung durch Autoantikörper, Curare = kompetitive Rezeptorblockade."
+        statement: "Curare blockiert die Acetylcholin-Rezeptoren an der motorischen Endplatte kompetitiv und führt zur Muskellähmung; bei Myasthenia gravis (Autoimmunzerstörung der ACh-Rezeptoren) ist der Einsatz von Acetylcholinesterase-Hemmern die Therapie der Wahl.",
+        answer: true,
+        solution: "Beide wirken am ACh-Rezeptor, aber verschieden: Curare = kompetitive Rezeptorblockade von außen. Myasthenia gravis = Autoantikörper zerstören die eigenen Rezeptoren. Acetylcholinesterase-Hemmer erhöhen die verfügbare ACh-Menge und kompensieren so den Rezeptormangel."
       }
     },
     harvestQuestions: [
@@ -12349,19 +12349,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 2 – ZNS/PNS, Embryonalentwicklung, Stammhirn, Substantia grisea/alba",
     phase1: {
       soil: {
-        statement: "Wie ist das Nervensystem gegliedert?",
-        answer: "ZNS (Gehirn + Rückenmark) + PNS (Hirn-/Rückenmarksnerven). Somatisch (willkürlich) vs. Vegetativ (unwillkürlich: Sympathikus + Parasympathikus). Primäre Hirnbläschen: Prosencephalon, Mesencephalon, Rhombencephalon.",
-        solution: "Die sekundäre Entwicklung differenziert: Telencephalon + Diencephalon (aus Prosencephalon); Metencephalon/Pons + Cerebellum + Myelencephalon/Medulla oblongata (aus Rhombencephalon)."
+        statement: "Das ZNS umfasst Gehirn und Rückenmark; alle 12 Hirnnerven und die 31 Spinalnerven gehören dagegen zum peripheren Nervensystem (PNS).",
+        answer: true,
+        solution: "ZNS = Gehirn + Rückenmark. PNS = alle peripheren Nerven (Hirn- und Rückenmarksnerven). Das vegetative NS (Sympathikus + Parasympathikus) ist funktionell ein Teil des PNS. Das somatische NS ist willkürlich, das vegetative NS ist unwillkürlich."
       },
       seed: {
-        statement: "Aus welchen Teilen besteht das Stammhirn und welche Funktionen hat es?",
-        answer: "Stammhirn = Medulla oblongata + Pons + Mesencephalon. Enthält: Kreislauf- und Atemzentrum, Formatio reticularis (reguliert Bewusstseinshelligkeit/Wachheit).",
-        solution: "Das Stammhirn ist lebenswichtig – es steuert automatische Vitalfunktionen. Die Formatio reticularis ist entscheidend für Bewusstsein und Schlaf-Wach-Regulierung."
+        statement: "Das Stammhirn besteht aus Medulla oblongata, Pons und Cerebellum und enthält Kreislauf- und Atemzentrum sowie die Formatio reticularis, die die Bewusstseinshelligkeit reguliert.",
+        answer: false,
+        solution: "Das Stammhirn besteht aus Medulla oblongata, Pons und MESENCEPHALON – NICHT dem Cerebellum. Das Cerebellum (Kleinhirn) liegt anatomisch dahinter, zählt aber nicht zum Stammhirn. Formatio reticularis und Kreislauf-/Atemzentren liegen korrekt im Stammhirn."
       },
       water: {
-        statement: "Was ist der Unterschied zwischen Substantia grisea und Substantia alba – und wo liegt was?",
-        answer: "Substantia grisea (grau): Nervenzellen + marklose Fasern. Substantia alba (weiß): markhaltige Fasern. Im Gehirn: grau außen (Kortex), weiß innen. Im Rückenmark: grau innen (Schmetterlingsform), weiß außen.",
-        solution: "Der inverse Aufbau ist prüfungsrelevant: Im Gehirn liegt Grau außen, im Rückenmark liegt Grau innen."
+        statement: "Im Rückenmark liegt die Substantia grisea (graue Substanz) innen in Schmetterlingsform und die Substantia alba (weiße Substanz) außen – genau umgekehrt zum Großhirn, wo Grau als Kortex außen liegt.",
+        answer: true,
+        solution: "Dieser inverse Aufbau ist prüfungsrelevant: Großhirn = Grau außen (Kortex), Weiß innen. Rückenmark = Grau innen (Schmetterlingsform: Hinterhorn, Vorderhorn, Seitenhorn), Weiß außen."
       }
     },
     harvestQuestions: [
@@ -12458,19 +12458,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 3 – Die 12 Hirnnervenpaare: Qualität (afferent/efferent/gemischt), Funktion, klinische Tests",
     phase1: {
       soil: {
-        statement: "Welche Hirnnerven sind rein sensorisch (afferent) und was testen sie?",
-        answer: "I N. olfactorius: Geruch (Sniff-Bottle-Test). II N. opticus: Sehen (Visus, Fingerperimetrie). VIII N. vestibulocochlearis: Hören + Gleichgewicht (Weber, Rinne, Romberg, Unterberger-Tretversuch). Merke: Nur I, II, VIII rein afferent – XII rein efferent – alle anderen gemischt.",
-        solution: "Mnemotechnik für die 12 Nerven: ‚Oh, Oh, Oh, trainiere täglich alle fünf Sinne ganz von außen her.' → I–XII in Reihenfolge."
+        statement: "Von den 12 Hirnnerven sind N. olfactorius (I), N. opticus (II) und N. vestibulocochlearis (VIII) rein afferent (sensorisch); der N. hypoglossus (XII) ist rein efferent; alle anderen sind gemischte Nerven.",
+        answer: true,
+        solution: "Mnemotechnik: 'Oh, Oh, Oh, trainiere täglich alle fünf Sinne ganz von außen her.' I, II, VIII = rein afferent. XII = rein efferent. Der 3., 7. und 10. Hirnnerv haben zusätzlich vegetative Funktionen."
       },
       seed: {
-        statement: "Welche Hirnnerven steuern die Augenbewegung und welche Störungen treten bei Läsionen auf?",
-        answer: "III N. oculomotorius: Augenbewegung (außer schräg/außen), Akkommodation, Pupillenverengung; Störung: Pupillenstarre, Anisokorie, direkte + konsensuelle Lichtreaktion gestört. IV N. trochlearis: oberer schräger Augenmuskel (diagonale Doppelbilder). VI N. abducens: äußerer gerader Augenmuskel (horizontale Doppelbilder).",
-        solution: "III, IV, VI = die drei Augenmuskelnerven. Schädigung von VI → Abweichung nach innen. Schädigung von III → Ptosis, Mydriasis, Schielstellung nach außen-unten."
+        statement: "Der N. trochlearis (IV) innerviert den äußeren geraden Augenmuskel und verursacht bei Lähmung horizontale Doppelbilder; der N. abducens (VI) innerviert den oberen schrägen Augenmuskel.",
+        answer: false,
+        solution: "Vertauscht: N. trochlearis (IV) → oberer SCHRÄGER Augenmuskel (diagonale Doppelbilder). N. abducens (VI) → äußerer GERADER Augenmuskel (horizontale Doppelbilder). N. oculomotorius (III) innerviert alle anderen Augenmuskeln + Akkommodation + Pupillenverengung."
       },
       water: {
-        statement: "Was sind die Funktionen des N. vagus (X) und N. facialis (VII) und was passiert bei ihrer Lähmung?",
-        answer: "VII N. facialis: motorisch Gesichtsmuskulatur, sensorisch Geschmack vordere Zunge, vegetativ Tränen-/Speichelsekretion; Lähmung: Bell-Phänomen, Hyperakusis. X N. vagus: wichtigster Parasympathikus (Herz/Lunge/GIT), zieht bis in Bauchbereich; Lähmung: Heiserkeit, Zäpfchen weicht zur gesunden Seite.",
-        solution: "Merke: Bei N. vagus-Lähmung Zäpfchen zur GESUNDEN Seite. Bei N. hypoglossus-Lähmung zeigt Zunge zur KRANKEN Seite."
+        statement: "Bei einer Läsion des N. vagus (X) weicht das Gaumenzäpfchen zur gesunden Seite; bei N. facialis-Lähmung (VII) sind Bell-Phänomen, Hyperakusis und verstrichene Nasolabialfalte typische Zeichen.",
+        answer: true,
+        solution: "Merke: Vagus-Lähmung → Zäpfchen zur GESUNDEN Seite (intakte Gegenseite zieht weg). Hypoglossus-Lähmung → Zunge zur KRANKEN Seite. N. facialis innerviert Gesichtsmuskulatur (motorisch), Geschmack vordere Zunge (sensorisch) und Tränen-/Speichelsekretion (vegetativ)."
       }
     },
     harvestQuestions: [
@@ -12567,19 +12567,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 4 – Kleinhirn (3 Teile), Mittelhirn (Substantia nigra) und Zwischenhirn (5 Etagen)",
     phase1: {
       soil: {
-        statement: "Welche drei Teile hat das Cerebellum und was sind ihre Funktionen?",
-        answer: "Archicerebellum: Gleichgewicht im Ruhezustand. Paleocerebellum: Gleichgewicht bei Willkürbewegungen, Teil des EPS. Neocerebellum: Feinmotorik, Tastsinn + Tiefensensibilität. Das Kleinhirn speichert erlernte Bewegungsabläufe (jederzeit abrufbar).",
-        solution: "Das Kleinhirn liegt in der hinteren Schädelgrube. Es koordiniert Bewegungen, initiiert sie aber nicht. Störungen führen zu Ataxie (Koordinationsstörungen)."
+        statement: "Das Kleinhirn (Cerebellum) gliedert sich in drei Teile: Archicerebellum (Gleichgewicht im Ruhezustand), Paleocerebellum (Gleichgewicht bei Willkürbewegungen, Teil des EPS) und Neocerebellum (Feinmotorik, Tastsinn und Tiefensensibilität).",
+        answer: true,
+        solution: "Das Cerebellum liegt in der hinteren Schädelgrube und koordiniert Bewegungen, initiiert sie aber nicht. Es speichert erlernte Bewegungsabläufe (z.B. Fahrradfahren). Störungen führen zu Ataxie."
       },
       seed: {
-        statement: "Was enthält das Mesencephalon (Mittelhirn)?",
-        answer: "Vierhügelplatte: obere Hügel (Sehbahn), untere Hügel (Hörbahn). Substantia nigra: produziert Dopamin, Teil des extrapyramidalen Systems – degeneriert bei Parkinson. Pyramidenbahnen verlaufen durch das Mesencephalon.",
-        solution: "Die Degeneration der Substantia nigra führt zu Dopaminmangel → Parkinson-Symptome (Rigor, Tremor, Akinese). Das Mesencephalon ist auch Schaltstelle für Seh- und Hörbahn."
+        statement: "Die Substantia nigra im Mesencephalon produziert Dopamin und gehört zum extrapyramidalen System; ihre Degeneration verursacht das Parkinson-Syndrom (Rigor, Tremor, Akinese).",
+        answer: true,
+        solution: "Das Mesencephalon (Mittelhirn) enthält außerdem die Vierhügelplatte (obere Hügel = Sehbahn, untere Hügel = Hörbahn) und steuert die meisten Augenmuskeln. Pyramidenbahnen verlaufen ebenfalls durch das Mesencephalon."
       },
       water: {
-        statement: "Welche 5 Etagen hat das Diencephalon und was sind ihre Funktionen?",
-        answer: "1. Epithalamus: Epiphyse (Melatonin, Tag-Nacht-Rhythmus), Habenulae (Riechsystem). 2. Thalamus: Aufmerksamkeitsfilter, Tor zum Bewusstsein, Gedächtnis. 3. Subthalamus: Grobmotorik (Nucleus subthalamus/Luys-Körper). 4. Hypothalamus: Schlaf/Wach, Körpertemperatur, Wasserhaushalt, Nahrung, Fortpflanzung. 5. Metathalamus: Kniehöcker (Sehen + Hören).",
-        solution: "Merke: Hypothalamus = 5 vegetative Grundfunktionen. Thalamus = ‚Tor zum Bewusstsein' – filtert, welche Informationen bewusst werden."
+        statement: "Das Diencephalon besteht aus 4 Etagen: Epithalamus (Epiphyse/Melatonin), Thalamus (Aufmerksamkeitsfilter), Hypothalamus (vegetative Grundfunktionen) und Metathalamus (Kniehöcker).",
+        answer: false,
+        solution: "Das Diencephalon hat FÜNF Etagen: 1. Epithalamus (Epiphyse + Habenulae), 2. Thalamus (Aufmerksamkeitsfilter/Gedächtnis), 3. Subthalamus (Grobmotorik, Nucleus subthalamicus = Luys-Körper), 4. Hypothalamus (Schlaf/Wach, Temperatur, Wasser, Nahrung, Fortpflanzung), 5. Metathalamus (Kniehöcker: visuell + auditiv)."
       }
     },
     harvestQuestions: [
@@ -12676,19 +12676,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 4–6 – Die 4 Großhirnlappen, Basalganglien (EPS), limbisches System",
     phase1: {
       soil: {
-        statement: "Welche 4 Lappen hat das Großhirn und welche Funktionen haben sie?",
-        answer: "Frontallappen: motorisches Zentrum, Broca-Areal (Sprachproduktion). Parietallappen: Körperfühlsphäre (Sensomotorik), Lesezentrum. Temporallappen: Heschl-Windungen (Hörzentrum), Wernicke-Feld (Sprachverständnis). Occipitallappen: primäres Sehzentrum.",
-        solution: "Broca (Frontallappen) = Sprachproduktion; Wernicke (Temporallappen) = Sprachverständnis. Broca-Läsion → motorische Aphasie; Wernicke-Läsion → sensorische Aphasie."
+        statement: "Der Frontallappen enthält das primäre motorische Zentrum und das Broca-Areal (motorisches Sprachzentrum); das Wernicke-Feld (sensorisches Sprachzentrum) liegt im Temporallappen.",
+        answer: true,
+        solution: "Die vier Großhirnlappen: Frontallappen = motorisch + Broca. Parietallappen = somatische Sensibilität + Lesezentrum. Temporallappen = Heschl-Querwindungen (Hörzentrum) + Wernicke-Feld. Occipitallappen = primäres Sehzentrum."
       },
       seed: {
-        statement: "Was sind die Basalganglien und welche Funktion haben sie?",
-        answer: "Basalganglien: Corpus striatum (Nucleus caudatus + Putamen), Globus pallidus, Substantia nigra, Nucleus subthalamicus. Teil des extrapyramidalen Systems (EPS): steuert langsame, automatisierte Bewegungsprogramme, Haltung und Koordination.",
-        solution: "Bei Parkinson degeneriert die Substantia nigra → Dopaminmangel → Basalganglienfehlfunktion. EPS-Störungen äußern sich in Rigor, Tremor und Akinese."
+        statement: "Das Corpus striatum besteht aus Nucleus caudatus und Putamen und wird durch die Capsula interna geteilt; Globus pallidus, Substantia nigra und Nucleus subthalamicus sind weitere Basalganglien des extrapyramidalen Systems.",
+        answer: true,
+        solution: "Die Basalganglien sind zuständig für langsame, automatisierte Bewegungsprogramme. Bei Parkinson degeneriert die Substantia nigra → Dopaminmangel → EPS-Fehlfunktion (Rigor, Tremor, Akinese). Der Nucleus subthalamicus (Luys-Körper) liegt anatomisch im Diencephalon."
       },
       water: {
-        statement: "Was ist das limbische System und welche Aufgaben hat es?",
-        answer: "Liegt zwischen Großhirn und Hirnstamm (‚Reptiliengehirn'). Verbindung zu Hypothalamus und Formatio reticularis. Funktionen: affektive Bewertung von Erlebnissen → Langzeitgedächtnis, vegetative Reaktionen bei Emotionen, Geruchsempfindung, Triebverhalten. Wirkungsort von Psychopharmaka.",
-        solution: "Das limbische System verbindet emotionale Verarbeitung mit Gedächtnisbildung – daher werden emotional bedeutsame Ereignisse besonders gut erinnert."
+        statement: "Das limbische System liegt zwischen Großhirn und Hirnstamm und ist ausschließlich für die Geruchsverarbeitung zuständig; sein Wirkungsgebiet hat keinen Einfluss auf Emotionen oder das Gedächtnis.",
+        answer: false,
+        solution: "Das limbische System ('Reptiliengehirn') hat vielfältige Funktionen: affektive Bewertung von Erlebnissen → Langzeitgedächtnisbildung, vegetative Reaktionen bei Emotionen (Herzschlag, Blutdruck), Geruchserinnerung, Triebverhalten. Es verbindet mit Hypothalamus und Formatio reticularis. Psychopharmaka wirken hier."
       }
     },
     harvestQuestions: [
@@ -12785,19 +12785,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 8–9 – Ventrikelsystem, Meningen, Liquorzirkulation, Circulus Willisi",
     phase1: {
       soil: {
-        statement: "Wie ist das Ventrikelsystem aufgebaut und wo liegen die 4 Ventrikel?",
-        answer: "4 Ventrikel: I. + II. Seitenventrikel (laterale Ventrikel) in den Großhirnhemisphären; III. Ventrikel im Diencephalon; IV. Ventrikel im Rautenhirn. Verbindungen: Foramen interventricularis (I/II → III), Aquaeductus cerebri (III → IV). 3 Meningen (von außen): Dura mater, Arachnoidea, Pia mater.",
-        solution: "Resorptionsstörungen führen zu Hydrocephalus (Wasserkopf). Lumbalpunktion: Liquordruck liegend 75–180 mmHg, sitzend 150–250 mmHg."
+        statement: "Das Ventrikelsystem besteht aus 4 Ventrikeln: zwei laterale Seitenventrikel (I+II) in den Großhirnhemisphären, III. Ventrikel im Diencephalon und IV. Ventrikel im Rautenhirn; die drei Hirnhäute sind von außen: Dura mater, Arachnoidea und Pia mater.",
+        answer: true,
+        solution: "Verbindungen zwischen den Ventrikeln: Foramen interventricularis (I/II → III), Aquaeductus cerebri (III → IV). Der IV. Ventrikel mündet in den äußeren Liquorraum zwischen Arachnoidea und Pia mater. Resorptionsstörungen → Hydrocephalus."
       },
       seed: {
-        statement: "Wie wird Liquor produziert und zirkuliert er?",
-        answer: "Produktion im Plexus choroideus (spezialisierte Gefäßzotten), 500–700 ml/Tag. Zirkulation: I+II. Ventrikel → III. Ventrikel → IV. Ventrikel → äußerer Liquorraum (zwischen Arachnoidea und Pia mater) → venöse Resorption. Zirkulierende Menge: ca. 150 ml. Liquor: klar, farblos, pH 7,31, Eiweiß 15–25 mg/dl.",
-        solution: "Funktionen des Liquors: 1. Wasserkissenfunktion (mechanischer Schutz vor Erschütterungen). 2. Ernährung der Hirnzellen. 3. Konstanter Innendruck im ZNS."
+        statement: "Der Liquor cerebrospinalis wird im Plexus choroideus produziert (ca. 500–700 ml/Tag), zirkuliert in einer Gesamtmenge von ca. 150 ml und hat eine Wasserkissenfunktion sowie eine ernährende Funktion für die Hirnzellen.",
+        answer: true,
+        solution: "Liquor: klar, farblos, pH 7,31, Eiweiß 15–25 mg/dl, Glucose 60–85 mg/dl. Normaler Liquordruck: liegend 75–180 mmHg, sitzend 150–250 mmHg. Die Zirkulation läuft von den Seitenventrikeln durch alle Ventrikel bis in den äußeren Liquorraum."
       },
       water: {
-        statement: "Welche Arterien versorgen das Gehirn und was ist der Circulus Willisi?",
-        answer: "4 große Arterien: A. carotis interna (dextra et sinister) und A. vertebralis (dextra et sinister; vereinigen sich zur A. basilaris → Aa. cerebri posteriores). Circulus arteriosus cerebri (Circulus Willisi): arterieller Ring an der Gehirnbasis; Anastomosen sichern Versorgung auch bei Verschluss von bis zu 3 Gefäßen.",
-        solution: "Das Gehirn toleriert maximal ca. 3 Minuten Sauerstoffmangel – danach irreparable Hirnschäden. Der Circulus Willisi ist ein lebenswichtiger Sicherheitsmechanismus."
+        statement: "Das Gehirn wird von zwei Arterienpaaren versorgt: A. carotis interna und A. vertebralis (jeweils beidseitig); der Circulus arteriosus cerebri (Circulus Willisi) ist ein arterieller Ring an der Gehirnbasis, der die Versorgung auch bei Verschluss mehrerer Gefäße aufrechterhalten kann.",
+        answer: true,
+        solution: "Die beiden A. vertebrales vereinigen sich zur A. basilaris → Aa. cerebri posteriores. Das Gehirn verträgt maximal ca. 3 Minuten Sauerstoffmangel – danach irreparable Schäden. Der Circulus Willisi ist ein lebenswichtiger Sicherheitsmechanismus."
       }
     },
     harvestQuestions: [
@@ -12894,19 +12894,19 @@ const NERVENSYSTEM_1043_PLANTS = [
     contextHint: "Kap. 10–12 – Pyramidenbahnen, EPS, Spinalnerven, mono-/polysynaptische Reflexe, Sympathikus & Parasympathikus",
     phase1: {
       soil: {
-        statement: "Wie ist das Rückenmark aufgebaut und wie viele Spinalnerven gibt es?",
-        answer: "Medulla spinalis reicht von Foramen magnum bis LWK 1/2, Länge 40–45 cm. Graue Substanz innen: Hinterhorn (afferent/sensibel), Vorderhorn (efferent/motorisch), Seitenhorn (vegetativ). 31 Spinalnervenpaare: 8 zervikal, 12 thorakal, 5 lumbal, 5 sakral, 1 coccygeal. Cauda equina: L3–S5+Co1.",
-        solution: "Dermatome: Hautgebiete, die von einem Spinalnerv innerviert werden. Sensibilitätsstörungen in einem Dermatom erlauben Rückschlüsse auf die Höhe einer Rückenmarksläsion (Höhendiagnostik)."
+        statement: "Das Rückenmark (Medulla spinalis) reicht vom Foramen magnum bis zum 1./2. Lendenwirbel; seine graue Substanz liegt innen mit Hinterhorn (afferent), Vorderhorn (motorisch) und Seitenhorn (vegetativ); es gibt insgesamt 31 Spinalnervenpaare.",
+        answer: true,
+        solution: "31 Spinalnervenpaare: 8 zervikal (C1–C8), 12 thorakal (Th1–Th12), 5 lumbal (L1–L5), 5 sakral (S1–S5), 1 coccygeal. Die Fasern L3–S5+Co1 bilden die Cauda equina (Pferdeschweif). Dermatome = Hautgebiete eines Spinalnervs → Höhendiagnostik bei Rückenmarksläsionen."
       },
       seed: {
-        statement: "Wie unterscheidet sich der monosynaptische vom polysynaptischen Reflexbogen?",
-        answer: "Monosynaptisch (Eigenreflex): Rezeptor + Effektor im gleichen Organ; 1 Synapse; Hinterwurzel → Hinterhorn → Synapse → Vorderhorn → Effektor. Bsp: Patellarsehnenreflex, Achillessehnenreflex. Polysynaptisch (Fremdreflex): Rezeptor ≠ Effektor; mehrere Synapsen mit Interneuron; ZNS kann eingreifen. Bsp: Lidschlussreflex, Bauchdeckenreflex.",
-        solution: "Pathologische Reflexe (z.B. Babinsky-Zeichen bei Bestreichen der Fußsohle) zeigen eine Schädigung der Pyramidenbahn an. Bei Kindern bis 2 Jahre ist der Babinsky physiologisch."
+        statement: "Der monosynaptische Reflexbogen ist ein Eigenreflex (Rezeptor + Effektor im gleichen Organ, z.B. Patellarsehnenreflex); der polysynaptische Reflexbogen ist ein Fremdreflex (Rezeptor ≠ Effektor, z.B. Lidschlussreflex).",
+        answer: true,
+        solution: "Pathologischer Reflex: Babinsky-Zeichen (Greifreflex bei Bestreichen der Fußsohle) = bei Erwachsenen Hinweis auf Pyramidenbahnschädigung (bei Kindern bis 2 Jahre physiologisch). Reflexe ermöglichen schnelle Reaktionen ohne Einschaltung des Gehirns."
       },
       water: {
-        statement: "Was ist der Unterschied zwischen Sympathikus und Parasympathikus in Ursprung, Transmitter und Wirkung?",
-        answer: "Sympathikus: Ursprung thorako-lumbal; postganglionär Noradrenalin; ergotrop (‚fight or flight'): Herzfrequenz↑, Bronchien dilatiert, Darm↓, Schließmuskel kontrahiert. Parasympathikus: Ursprung cranio-sakral; prä- und postganglionär ACh; trophrotrop (Erholung/Homöostase): Herzfrequenz↓, Bronchien↓, Darm↑, Blasen-/Darmentleerung↑.",
-        solution: "Steuerung von Sympathikus und Parasympathikus erfolgt hauptsächlich durch den Hypothalamus. Der Solarplexus (Plexus solaris) ist ein autonomes Geflecht aus sympathischen und parasympathischen Fasern im Bauchraum."
+        statement: "Der Sympathikus hat seinen Ursprung im Thorakalmark und oberen Lumbalmark (thorako-lumbal), nutzt postganglionär Noradrenalin und wirkt ergotrop ('fight or flight'); der Parasympathikus hat cranio-sakralen Ursprung und nutzt prä- und postganglionär Acetylcholin.",
+        answer: true,
+        solution: "Sympathikus = ergotrop (leistungssteigernd): Herzfrequenz↑, Bronchien dilatiert, Darm↓, Schließmuskel kontrahiert. Parasympathikus = trophrotrop (erholend): Herzfrequenz↓, Bronchien kontrahiert, Darm↑, Blasen-/Darmentleerung↑. Steuerung über Hypothalamus. Solarplexus = autonomes Geflecht im Bauchraum."
       }
     },
     harvestQuestions: [
@@ -12995,7 +12995,111 @@ const NERVENSYSTEM_1043_PLANTS = [
         explanation: "Der Patellarsehnenreflex ist ein monosynaptischer Eigenreflex (nicht polysynaptisch) – Rezeptor und Effektor liegen beide im Quadrizepsmuskel."
       }
     ]
+  }),
+
+  makeDetailedPlant({
+    id: "1043_09",
+    title: "Histologie des Gehirns",
+    contextHint: "Kap. 7 – Neuroglia (3 Gliatypen: Astrozyten/Oligodendrozyten/Mikroglia), Substantia alba vs. grisea, 6 Gewebeschichten der Hirnrinde",
+    phase1: {
+      soil: {
+        statement: "Die Neuroglia (Stütz- und Hüllgewebe des ZNS) besteht aus drei Typen: Astrozyten (Ernährung und Stoffaustausch der Nervenzellen), Oligodendrozyten (bilden die Myelinscheide im ZNS) und Mikroglia (amöboid beweglich, Makrophagenfunktion).",
+        answer: true,
+        solution: "Neuroglia hat bindegewebsähnliche Funktionen. Astrozyten = sternförmige Stützzellen. Oligodendrozyten = bilden Markscheide im ZNS (analog zu Schwann-Zellen im PNS). Mikroglia = immunologische Abwehr, phagozytiert Zelltrümmer."
+      },
+      seed: {
+        statement: "Die Substantia alba (weiße Substanz) besteht aus markhaltigen Axonen und liegt im Großhirn außen als Kortex; die Substantia grisea (graue Substanz) besteht aus Nervenzellkörpern und liegt im Großhirn innen.",
+        answer: false,
+        solution: "Vertauscht: Im Großhirn liegt die graue Substanz AUSSEN als Kortex, die weiße Substanz INNEN. Im Rückenmark ist es genau umgekehrt: grau innen (Schmetterlingsform), weiß außen. Die weiße Farbe der Substantia alba kommt vom hohen Eiweißgehalt der Lipoprotein-Myelinscheide."
+      },
+      water: {
+        statement: "Die Großhirnrinde ist aus 6 Schichten (Laminae) aufgebaut; die Lamina pyramidalis (Schicht III) besteht aus pyramidenförmig angeordneten Neuronen und ist vor allem für motorische Bereiche (Willkürbewegungen) zuständig.",
+        answer: true,
+        solution: "Die 6 Schichten von außen nach innen: 1. Lamina molecularis (faserreich, zellarm), 2. L. granularis externa (kleine Neurone, grobe Wahrnehmung), 3. L. pyramidalis (motorisch), 4. L. granularis interna (wie Schicht 2), 5. L. ganglionaris (größere Pyramidenzellen), 6. L. multiformis (Schaltneurone, Kommunikationsfunktion)."
+      }
+    },
+    harvestQuestions: [
+      {
+        id: "1043_09_h1",
+        type: "mc",
+        question: "Welche Funktion haben Oligodendrozyten im ZNS?",
+        options: [
+          { text: "Sie bilden die Myelinscheide der Axone", correct: true },
+          { text: "Sie dienen der Ernährung der Nervenzellen", correct: false },
+          { text: "Sie haben eine amöboide Makrophagenfunktion", correct: false },
+          { text: "Sie bilden Aktionspotenziale", correct: false }
+        ],
+        explanation: "Oligodendrozyten bilden die Markscheide (Myelinscheide) im ZNS – das Analogon zu den Schwann-Zellen im PNS. Astrozyten dienen der Ernährung und dem Stoffaustausch; Mikroglia hat die Makrophagenfunktion."
+      },
+      {
+        id: "1043_09_h2",
+        type: "true_false",
+        statement: "Mikroglia sind amöboid beweglich und haben eine ähnliche Funktion wie Makrophagen im Immunsystem.",
+        answer: true,
+        explanation: "Korrekt. Mikroglia sind der 'Immuntyp' der Gliazellen: amöboid beweglich, phagozytieren Zelltrümmer und Erreger – damit erfüllen sie eine vergleichbare Funktion wie Makrophagen im peripheren Immunsystem."
+      },
+      {
+        id: "1043_09_h3",
+        type: "mc",
+        question: "Wo befindet sich die Substantia grisea (graue Substanz) im Großhirn?",
+        options: [
+          { text: "Außen als Hirnrinde (Kortex)", correct: true },
+          { text: "Innen in Schmetterlingsform", correct: false },
+          { text: "Gleichmäßig verteilt", correct: false },
+          { text: "Nur im Bereich des Corpus callosum", correct: false }
+        ],
+        explanation: "Im Großhirn liegt die Substantia grisea außen als Kortex (Hirnrinde). Im Rückenmark ist es umgekehrt: grau liegt innen in Schmetterlingsform. Dieser Unterschied ist prüfungsrelevant."
+      },
+      {
+        id: "1043_09_h4",
+        type: "true_false",
+        statement: "Die Lamina pyramidalis (3. Schicht der Großhirnrinde) ist hauptsächlich für motorische Funktionen und Willkürbewegungen zuständig.",
+        answer: true,
+        explanation: "Korrekt. Die Lamina pyramidalis (Schicht III) enthält pyramidenförmig angeordnete Neurone und ist für motorische Bereiche zuständig. Die Lamina ganglionaris (Schicht V) enthält ähnliche, aber größere Pyramidenzellen."
+      },
+      {
+        id: "1043_09_h5",
+        type: "mc",
+        question: "Welche drei Typen von Gliazellen (Neuroglia) unterscheidet man im ZNS?",
+        options: [
+          { text: "Astrozyten, Oligodendrozyten und Mikroglia", correct: true },
+          { text: "Schwann-Zellen, Astrozyten und Mikroglia", correct: false },
+          { text: "Monozyten, Astrozyten und Oligodendrozyten", correct: false },
+          { text: "Astrozyten, Makrophagen und Fibroblasten", correct: false }
+        ],
+        explanation: "Die drei ZNS-Gliatypen: Astrozyten (Ernährung/Stoffaustausch), Oligodendrozyten (Myelinscheide), Mikroglia (Immunabwehr). Schwann-Zellen bilden die Myelinscheide im PNS, nicht im ZNS."
+      }
+    ],
+    phase4Questions: [
+      {
+        id: "1043_09_p4_1",
+        type: "mc",
+        question: "Welche Aussagen zu den Gliatypen des ZNS sind korrekt? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Astrozyten dienen der Ernährung und dem Stoffaustausch der Nervenzellen", correct: true },
+          { text: "Oligodendrozyten bilden die Myelinscheide im ZNS", correct: true },
+          { text: "Mikroglia sind amöboid beweglich und haben Makrophagenfunktion", correct: true },
+          { text: "Schwann-Zellen bilden die Myelinscheide im PNS (nicht im ZNS)", correct: true },
+          { text: "Astrozyten bilden Aktionspotenziale wie Nervenzellen", correct: false }
+        ],
+        explanation: "Astrozyten sind Stütz- und Ernährungszellen, keine elektrisch erregbaren Zellen. Alle anderen Aussagen sind korrekt. Die Unterscheidung Oligodendrozyten (ZNS) vs. Schwann-Zellen (PNS) ist prüfungsrelevant."
+      },
+      {
+        id: "1043_09_p4_2",
+        type: "mc",
+        question: "Welche Aussagen zu Substantia alba und grisea sind richtig? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Substantia alba besteht aus markhaltigen Axonen (Faserbahnen)", correct: true },
+          { text: "Substantia grisea besteht aus Nervenzellkörpern und ist marklos", correct: true },
+          { text: "Im Großhirn liegt die graue Substanz außen als Kortex", correct: true },
+          { text: "Im Rückenmark liegt die graue Substanz außen", correct: false },
+          { text: "Die weiße Farbe der Substantia alba kommt vom Lipoprotein der Myelinscheide", correct: true }
+        ],
+        explanation: "Im Rückenmark liegt die graue Substanz INNEN (Schmetterlingsform: Hinterhorn, Vorderhorn, Seitenhorn), nicht außen. Im Großhirn ist es umgekehrt: grau außen."
+      }
+    ]
   })
+
 ];
 
 
