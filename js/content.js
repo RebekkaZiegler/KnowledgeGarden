@@ -13985,19 +13985,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Kap. 1 – Äußeres Ohr, Mittelohr, Schallweg: Trommelfell → Gehörknöchelchen → ovales Fenster; Frequenzbereich",
     phase1: {
       soil: {
-        statement: "Aus welchen drei Bereichen besteht das Ohr und was gehört jeweils dazu?",
-        answer: "Äußeres Ohr (Auris externa): Ohrmuschel (Aurikula), Gehörgang (Meatus acusticus externus, 2,5–3 cm, s-förmig), Cerumen (Ohrenschmalz: virostatisch, fungizid, bakterizid), Tragus. Mittelohr (Auris media): Trommelfell (Membrana tympani, 1 cm), Paukenhöhle, Tuba auditiva (Eustachische Röhre, Druckausgleich), Gehörknöchelchen: Hammer → Amboss → Steigbügel. Innenohr (Auris interna): Cochlea + Vestibularorgan.",
-        solution: "Das Trommelfell (Membrana tympani) bildet die Grenze zwischen äußerem Ohr und Mittelohr. Ein gesundes Trommelfell ist glänzend grau-beige; ein rotes ist entzündet."
+        statement: "Das Mittelohr (Auris media) enthält Trommelfell, drei Gehörknöchelchen (Hammer, Amboss, Steigbügel) sowie die Tuba auditiva (Eustachische Röhre), die zum Druckausgleich mit dem Nasen-Rachenraum verbindet.",
+        answer: true,
+        solution: "Das Außenohr (Auris externa): Ohrmuschel (Aurikula), Gehörgang (2,5–3 cm, s-förmig), Cerumen (virostatisch, fungizid, bakterizid). Das Innenohr (Auris interna): Cochlea (Hören) + Vestibularorgan (Gleichgewicht)."
       },
       seed: {
-        statement: "Wie wird Schall vom Außenohr bis ins Innenohr weitergeleitet?",
-        answer: "Schallwellen → äußerer Gehörgang → Trommelfell (gerät in Schwingung) → Hammer → Amboss → Steigbügel → ovales Fenster (Innenohr). Schalldruckerhöhung durch: (1) Verjüngung Trommelfell → ovales Fenster (kleiner → Druckverstärkung), (2) Gehörknöchelchen als Hebelmechanismus.",
-        solution: "Das ovale Fenster ist bedeutend kleiner als das Trommelfell. Diese Verjüngung erhöht den Schalldruck. Die Gehörknöchelchen wirken zusätzlich hebelübersetzend."
+        statement: "Das Trommelfell (Membrana tympani) bildet die Grenze zwischen äußerem Ohr und Innenohr und leitet Schwingungen direkt an den Steigbügel weiter.",
+        answer: false,
+        solution: "Das Trommelfell grenzt Außenohr vom MITTELOHR ab (nicht vom Innenohr). Es überträgt Schwingungen auf den HAMMER (nicht direkt auf Steigbügel). Schallweg: Trommelfell→Hammer→Amboss→Steigbügel→ovales Fenster→Innenohr. Schallverstärkung: Flächenunterschied + Hebelwirkung."
       },
       water: {
-        statement: "Welche Funktionen hat das Mittelohr und welcher Frequenzbereich ist hörbar?",
-        answer: "Mittelohrfunktionen: (1) Schallverstärkung, (2) Druckausgleich beiderseits des Trommelfells über die Tuba auditiva (beim Schlucken öffnet sich die Röhre), (3) Schutz des Hörorgans vor starken Schwingungen (Amplitudenverringerung). Hörbarer Bereich: 20–16.000 Hz; Hauptempfindlichkeit: 2000–4000 Hz; Ultraschall: >16.000–18.000 Hz.",
-        solution: "Die Tuba auditiva erklärt das 'Druckgefühl' beim Höhenunterschied (Fliegen, Bergfahrt): Schließt sich die Röhre, entsteht Druckungleichgewicht, das Schmerzen verursacht."
+        statement: "Der hörbare Frequenzbereich des Menschen liegt zwischen 20 und 16.000 Hz; die größte Empfindlichkeit besteht im Bereich von 2.000–4.000 Hz.",
+        answer: true,
+        solution: "Ultraschall beginnt bei >16.000–18.000 Hz. Mittelohrfunktionen: (1) Schallverstärkung, (2) Druckausgleich über Tuba auditiva (öffnet sich beim Schlucken), (3) Schutz vor starken Schwingungen. Druckgefühl beim Fliegen = Tuba auditiva verschlossen."
       }
     },
     harvestQuestions: [
@@ -14094,19 +14094,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Kap. 1.3 – Innenohr: Schnecke (Scala vestibuli/media/tympani, Corti-Organ), Gleichgewichtsorgan (Bogengänge, Vorhof, Statolithen)",
     phase1: {
       soil: {
-        statement: "Aus welchen drei Gängen besteht die Cochlea (Schnecke) und welche Flüssigkeit enthält jeder?",
-        answer: "Die Cochlea besteht aus: (1) Scala vestibuli (Vorhoftreppe): Perilymphe (natriumhaltig). (2) Scala media (Schneckengang): Endolymphe (kaliumhaltig). (3) Scala tympani (Paukentreppe): Perilymphe (natriumhaltig). Scala media wird oben durch Reissner-Membran, unten durch Basilar-Membran begrenzt.",
-        solution: "Die unterschiedliche Ionenzusammensetzung (Na⁺ in Perilymphe, K⁺ in Endolymphe) ist entscheidend für die Signaltransduktion im Corti-Organ – ähnlich dem Ruhepotential der Nervenzellen."
+        statement: "Die Cochlea (Schnecke) besteht aus drei Gängen: Scala vestibuli (Vorhoftreppe) und Scala tympani (Paukentreppe) enthalten Perilymphe (natriumhaltig), während der Schneckengang (Scala media/Ductus cochlearis) mit kaliumhaltiger Endolymphe gefüllt ist.",
+        answer: true,
+        solution: "Merkhilfe: Perilymphe = außen = Na⁺-haltig (wie Extrazellulärflüssigkeit). Endolymphe = innen = K⁺-haltig. Der Ionenunterschied ist Voraussetzung für die Erregung der Haarzellen im Corti-Organ."
       },
       seed: {
-        statement: "Was ist das Corti-Organ und wie funktioniert die Schallwahrnehmung?",
-        answer: "Das Corti-Organ ist der eigentliche Sitz des Gehörsinns. Es liegt zwischen Basilar- und Tektorial-Membran. Enthält Sinnes-Haarzellen (auf bestimmte Frequenzen abgestimmt). Schallweg: Schalldruck → Endolymphe → Corti-Organ → Basilar- und Tektorial-Membran gegeneinander verschoben → Stimulierung der Haarzellen → mechanische Schwingung → Neurotransmitter → elektrischer Impuls → Hörnerv (N. vestibulocochlearis) → Hirnrinde.",
-        solution: "Jede Haarzelle hat eine eigene Nervenfaser. Das verhindert eine Pauschalerregung des Hörnervs – stattdessen werden nur spezifische Frequenzbereiche erregt, was Tonunterscheidung ermöglicht."
+        statement: "Das Corti-Organ liegt zwischen Basilar- und Tektorial-Membran; seine Haarzellen wandeln mechanische Schwingungen in elektrische Signale um, die über den N. vestibulocochlearis zur Hörrinde geleitet werden.",
+        answer: true,
+        solution: "Jede Haarzelle hat eine eigene Nervenfaser → differenzierte Frequenzwahrnehmung. Schallweg im Innenohr: Steigbügel→ovales Fenster→Perilymphe→Basilarmembran→Haarzellen erregt→Aktionspotential→N. vestibulocochlearis→Hörrinde."
       },
       water: {
-        statement: "Aus welchen Bestandteilen setzt sich das Vestibularorgan zusammen und welche Bewegungen registriert es?",
-        answer: "Vestibularorgan = Gleichgewichtsorgan im Innenohr. Besteht aus: (1) Knöchernem Vorhof mit Utriculus (Macula utriculi) + Sacculus (Macula sacculi): enthält Statolithen (Gleichgewichtssteinchen in Gallertschicht) → registriert Gravitation und Linearbeschleunigung. (2) 3 knöchernen Bogengängen (Canales semiculares, senkrecht aufeinanderstehend): enthält Crista ampullaris → registriert Drehbeschleunigung (Winkelbeschleunigung).",
-        solution: "Die drei Bogengänge stehen in allen drei Raumebenen. Dreht man den Kopf, bewegt sich die Endolymphe träge → die Crista ampullaris wird gereizt → Gehirn erkennt Rotationsrichtung und -geschwindigkeit."
+        statement: "Das Vestibularorgan besteht aus Utriculus und Sacculus (mit Statolithen für Gravitation und Linearbeschleunigung) sowie drei Bogengängen, deren Crista ampullaris Drehbeschleunigungen registriert.",
+        answer: true,
+        solution: "Die drei Bogengänge stehen senkrecht aufeinander → Drehbeschleunigung in allen drei Raumebenen messbar. Statolithen = Kalziumkarbonat-Kristalle in Gallertschicht. Entzündung des Vestibularorgans → Schwindel."
       }
     },
     harvestQuestions: [
@@ -14203,19 +14203,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Kap. 2 – Augapfel: 3 Augenhäute (Sklera/Cornea, Uvea, Retina); lichtbrechende Organe; Glaukom; Sehnerv",
     phase1: {
       soil: {
-        statement: "Aus welchen drei Schichten besteht die Augenwand und was gehört jeweils dazu?",
-        answer: "1. Äußere (Tunica fibrosa bulbi): Sklera/Lederhaut (hinten, undurchsichtig, hart, weiß) + Cornea/Hornhaut (vorne, durchsichtig, glasklar, gefäßlos). Schlemm-Kanal am Übergang (Kammerwasserabfluss). 2. Mittlere (Uvea/Gefäßhaut): Chorioidea/Aderhaut (hinten) → Ziliarkörper/Ziliarmuskel → Iris/Regenbogenhaut (mit Pupille in der Mitte). 3. Innere: Retina/Netzhaut (Pars optica hinten + Pars ciliaris vorne).",
-        solution: "Merkhilfe Augenhäute von außen nach innen: Sklera (=Lederhaut) → Hornhaut (=vorne), Uvea (= Aderhaut/Ziliarkörper/Iris), Retina (=Netzhaut). Drei Schichten – analog zur Hirnhaut."
+        statement: "Die Augenwand besteht aus drei Schichten: äußere Tunica fibrosa (Sklera + Cornea), mittlere Uvea (Chorioidea + Ziliarkörper + Iris) und innere Retina (Netzhaut).",
+        answer: true,
+        solution: "Sklera = undurchsichtig, weiß, hinten; Cornea = durchsichtig, glasklar, gefäßlos, vorne. Am Übergang liegt der Schlemm-Kanal (Kammerwasserabfluss). Uvea enthält Blutgefäße und versorgt das Auge."
       },
       seed: {
-        statement: "Was sind die lichtbrechenden Organe des Auges und welche Funktionen haben sie?",
-        answer: "Lichtbrechende Organe: Glaskörper (Corpus vitreum, 98–99% Wasser, gallertartig, füllt größten Teil des Augapfels), Linse (Akkommodation = Anpassung an verschiedene Entfernungen durch Krümmungsänderung; gefäßlos), vordere und hintere Augenkammer (mit Kammerwasser, Normaldruck 15–18 mmHg). Ziliardrüse produziert das Kammerwasser.",
-        solution: "Die Linse ist die einzige verstellbare Struktur im dioptrischen Apparat. Beim Blick in die Nähe wird sie durch den Ziliarmuskel runder (stärker gekrümmt = mehr Brechkraft)."
+        statement: "Der Glaskörper (Corpus vitreum) besteht zu 98–99% aus Wasser, ist gallertartig und gehört zu den lichtbrechenden Organen; Normaldruck des Kammerwassers liegt bei 15–18 mmHg.",
+        answer: true,
+        solution: "Lichtbrechende Organe: Glaskörper, Linse (einzige verstellbare Struktur – Akkommodation durch Ziliarmuskel), Kammerwasser. Kammerwasser: produziert von Ziliardrüse, drainiert über Schlemm-Kanal. Bei Abflussbehinderung → Glaukom."
       },
       water: {
-        statement: "Was ist das Glaukom und wie entsteht es? Was ist der Sehnerv (N. opticus)?",
-        answer: "Glaukom (Grüner Star): erhöhter Augeninnendruck durch erschwerten/unmöglichen Abfluss des Kammerwassers (z.B. durch Verklebung der Iris mit der Hornhaut-Rückseite → Schlemm-Kanal verlegt). Leitsymptome: starke Schmerzen, Sehstörungen. Sehnerv (N. opticus): 2. Hirnnerv, ca. 1 Million Nervenfasern, umgeben von 3 Hirnhäuten (Dura mater, Arachnoidea, Pia mater) + Liquor cerebrospinalis. Chiasma opticum = Kreuzungsstelle beider Sehnerven.",
-        solution: "Der N. opticus ist entwicklungsgeschichtlich ein Hirnbestandteil (Ausstülpung des Diencephalon). Daher ist er wie das Gehirn von Hirnhäuten umgeben. Das Chiasma opticum liegt im Diencephalon."
+        statement: "Beim Glaukom (Grüner Star) fließt das Kammerwasser nicht ab, was zu erhöhtem Augeninnendruck führt; der Sehnerv (N. opticus) ist der II. Hirnnerv mit ca. 1 Million Fasern und von Hirnhäuten umgeben.",
+        answer: true,
+        solution: "Chiasma opticum = Kreuzungsstelle beider Sehnerven im Diencephalon. N. opticus ist von Hirnhäuten umgeben (entwicklungsgeschichtlich Ausstülpung des Vorderhirns). Glaukom-Leitsymptome: starke Schmerzen, Sehstörungen."
       }
     },
     harvestQuestions: [
@@ -14312,19 +14312,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Kap. 2.3-2.4 – Dioptrischer Apparat, Myopie/Hyperopie, Stäbchen/Zapfen, Rhodopsin, Makula/Fovea",
     phase1: {
       soil: {
-        statement: "Wie verläuft das Licht durch den dioptrischen Apparat und wo wird das Bild gebildet?",
-        answer: "Lichtweg: Cornea → Augenkammer (Kammerwasser) → Iris/Pupille (Lichtmenge) → Linse (Akkommodation) → Glaskörper → Netzhaut (Retina). Das Bild wird auf der Netzhaut verkleinert und höhen- und seitenverkehrt abgebildet. Von dort: N. opticus → Thalamus → Sehrinde im Hinterhauptslappen.",
-        solution: "Das Gehirn 'dreht' das umgekehrte Netzhautbild in die richtige Lage um. Die Linse ist die einzige verstellbare Struktur (durch Krümmungsänderung via Ziliarmuskel)."
+        statement: "Das auf der Netzhaut entstehende Bild ist verkleinert, höhen- und seitenverkehrt; der Sehreiz wird über N. opticus → Thalamus → Sehrinde im Hinterhauptslappen weitergeleitet.",
+        answer: true,
+        solution: "Das Gehirn korrigiert die Umkehrung. Lichtweg: Cornea→Augenkammer→Pupille/Iris→Linse (Akkommodation)→Glaskörper→Retina. Die Linse ist die einzige verstellbare Struktur durch Krümmungsänderung via Ziliarmuskel."
       },
       seed: {
-        statement: "Was ist Myopie, was ist Hyperopie – wie entstehen sie und wie werden sie korrigiert?",
-        answer: "Myopie (Kurzsichtigkeit): Bild wird vor der Netzhaut vereinigt (verlängerter Augapfel). Entfernte Objekte unscharf. Korrektur: konkave (zerstreuende) Brillengläser. Hyperopie (Weitsichtigkeit): Bild wird hinter der Netzhaut vereinigt (verkürzter Augapfel). Nahe Objekte unscharf. Korrektur: konvexe (sammelnde) Brillengläser.",
-        solution: "Merkhilfe: Myopie = Kürzel: 'My → zu Viel Auge' (zu lang) → Zerstreuungslinse (konkav). Hyperopie = 'zu wenig Auge' (zu kurz) → Sammellinse (konvex)."
+        statement: "Bei Myopie (Kurzsichtigkeit) werden parallel einfallende Strahlen vor der Netzhaut vereinigt (verlängerter Augapfel); die Korrektur erfolgt mit konvex geschliffenen Brillengläsern.",
+        answer: false,
+        solution: "Myopie → Korrektur mit KONKAV (zerstreuend). Hyperopie (Weitsichtigkeit, verkürzter Augapfel, Bild hinter Netzhaut) → Korrektur mit KONVEX (sammelnd). Merkhilfe: Myopie = 'zu viel Auge' → zerstreuen."
       },
       water: {
-        statement: "Was unterscheidet Stäbchen und Zapfen und welche Rolle spielt Rhodopsin?",
-        answer: "Stäbchen (ca. 120 Mio.): Hell-Dunkel-Wahrnehmung, Dämmerungssehen. Enthalten Rhodopsin (Sehpurpur = Retinal + Opsin). Bei Belichtung → Zerfall des Rhodopsins → Aktionspotential. Rhodopsin wird in der Leber synthetisiert. Vitamin-A-Mangel → schlechteres Dämmerungssehen bis temporäre Blindheit. Zapfen (ca. 6 Mio.): Farbsehen (3 Typen: Blau/Rot/Grün), scharfes Sehen. Gelber Fleck (Makula lutea): nur Zapfen. Fovea centralis = Stelle des schärfsten Sehens. Blinder Fleck (Sehnervenpapille): keine Rezeptoren.",
-        solution: "Merkhilfe: Stäbchen = sensitiv für Schatten (Nacht), Zapfen = bunt (Tag). Das Sehspektrum reicht von 400 nm (Blau) bis 760 nm (Rot)."
+        statement: "Die Fovea centralis ('Stelle des schärfsten Sehens') liegt innerhalb der Makula lutea und enthält ausschließlich Zapfen; Stäbchen ermöglichen das Dämmerungssehen und enthalten Rhodopsin (Retinal + Opsin).",
+        answer: true,
+        solution: "Makula lutea (Gelber Fleck): nur Zapfen, beste Sehschärfe. Blinder Fleck (Sehnervenpapille): keine Rezeptoren. Sehspektrum: 400–760 nm (Blau bis Rot). Vitamin-A-Mangel → Rhodopsin↓ → Nachtblindheit."
       }
     },
     harvestQuestions: [
@@ -14421,19 +14421,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Kap. 3-4.1 – Geruchsorgan: Regio olfactoria, N. olfactorius, Riechhirn; Epidermis: 4 Schichten, Langerhans-Zellen, Melanozyten",
     phase1: {
       soil: {
-        statement: "Wo liegt das Riechepithel, wie werden Gerüche weitergeleitet und wo werden sie verarbeitet?",
-        answer: "Riechschleimhaut (Regio olfactoria) in der oberen Nasenmuschel und am oberen Nasenseptum, ca. 500 mm². Enthält Sinnesepithel (keine Flimmerrepithel!), Becherzellen und Stützzellen. Geruchsweg: gasförmige Moleküle → Riechzellen (5–12 Qualitäten) → Nervenfortsätze → N. olfactorius (1. Hirnnerv) → Riechkolben (Bulbus olfactorius) → Rhinencephalon (Riechhirn) → limbisches System (Geruchserinnerungen, emotionale Verknüpfung).",
-        solution: "Der N. olfactorius ist der einzige Hirnnerv, der direkt ins limbische System projiziert (ohne Thalamus-Umschaltung). Daher lösen Gerüche so direkt emotionale Erinnerungen aus."
+        statement: "Die Riechschleimhaut (Regio olfactoria) liegt in der oberen Nasenmuschel und am oberen Nasenseptum; sie enthält kein Flimmerepithel, sondern Sinnesepithel mit Riechzellen, die 5–12 Geruchsqualitäten aufnehmen können.",
+        answer: true,
+        solution: "Geruchsweg: Riechzellen→N. olfactorius (I. Hirnnerv)→Riechkolben (Bulbus olfactorius)→Rhinencephalon→limbisches System. N. olfactorius projiziert direkt ins limbische System (ohne Thalamus) → Gerüche lösen sofort emotionale Reaktionen aus."
       },
       seed: {
-        statement: "Wie ist die Epidermis (Oberhaut) von außen nach innen aufgebaut?",
-        answer: "Von außen nach innen: (1) Stratum corneum (Hornschicht): verhornte Zellen, Selbstreinigung (Abschuppen). (2) Stratum lucidum (Glanzschicht): zellkernfrei, nur an dicken Stellen (Handflächen, Fußsohlen). (3) Stratum granulosum (Körnerzellschicht): Keratozyten mit Keratohyalin, ölähnliche Substanz. (4) Stratum germinativum (Keimschicht/Regenerationsschicht): Stratum spinosum (Stachelzellschicht, Langerhans-Zellen = Phagozytose) + Stratum basale (Basalzellschicht, Melanozyten = Melanin/Hautfarbe, Merkel-Tastscheiben). Hauterneuerung alle 28–30 Tage.",
-        solution: "Merkhilfe: 'Corneum → Lucidum → Granulosum → Germinativum'. Nur das Germinativum enthält Stammzellen (mitotisch aktiv). Die Epidermis enthält keine Blutgefäße – Ernährung durch Diffusion aus dem Corium."
+        statement: "Die Epidermis ist von außen nach innen folgendermaßen aufgebaut: Stratum germinativum → Stratum granulosum → Stratum lucidum → Stratum corneum.",
+        answer: false,
+        solution: "Korrekte Reihenfolge von außen nach innen: Stratum corneum (Hornschicht) → Stratum lucidum (Glanzschicht, nur an dicken Hautstellen) → Stratum granulosum (Körnerzellschicht) → Stratum germinativum (Keimschicht = Stratum spinosum + Stratum basale). Hauterneuerung alle 28–30 Tage."
       },
       water: {
-        statement: "Was sind Langerhans-Zellen und Merkel-Tastscheiben und wo befinden sie sich?",
-        answer: "Langerhans-Zellen: im Stratum spinosum (Stachelzellschicht). Dendritische Zellen, gehören zur Körperabwehr (Phagozytose von Antigenen, Antigenpräsentation → Teil des Immunsystems). Merkel-Tastscheiben: im Stratum basale (Basalzellschicht). Mechanosensoren für Druck und Vibration – besonders dicht in den Fingerspitzen.",
-        solution: "Die Haut ist nicht nur Schutzbarriere, sondern auch Teil des Immunsystems (Langerhans-Zellen) und des Nervensystems (Merkel-Scheiben). Melanozyten im Stratum basale produzieren Melanin → Hautfarbe, UV-Schutz."
+        statement: "Langerhans-Zellen befinden sich im Stratum spinosum und dienen der Körperabwehr durch Phagozytose; Melanozyten liegen im Stratum basale und produzieren den Farbstoff Melanin.",
+        answer: true,
+        solution: "Merkel-Tastscheiben liegen ebenfalls im Stratum basale (Mechanosensoren für Druck/Vibration, besonders dicht in Fingerspitzen). Keine Blutgefäße in der Epidermis – Ernährung durch Diffusion aus dem Corium."
       }
     },
     harvestQuestions: [
@@ -14530,19 +14530,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Kap. 4.1-4.3 – Lederhaut/Unterhaut, Hautanhangsgebilde, Sinnesrezeptoren: Merkel, Meissner, Vater-Pacini, Ruffini, Thermorezeptoren",
     phase1: {
       soil: {
-        statement: "Aus welchen Schichten besteht die Lederhaut (Corium) und was enthält die Subcutis?",
-        answer: "Corium/Dermis (Lederhaut): bindegewebiges Geflecht, elastische Fasern, reich an Blut- und Lymphgefäßen. Zwei Anteile: Stratum papillare (Papillarschicht, Schutz vor mechanischer Beanspruchung) + Stratum reticulare (Geflechtschicht, Elastizität und Festigkeit). Ruffini-Körperchen im Stratum reticulare (Dehnungswahrnehmung). Subcutis (Unterhaut): Fetteinlagerungen (Bau- und Depotfett), Blutgefäße, Nervengeflecht (freie Nervenendigungen = Nozizeptoren/Schmerz), Vater-Pacini-Lamellenkörperchen (Druck, Tiefensensibilität, Vibration).",
-        solution: "Merkhilfe: Epidermis = keine Blutgefäße. Corium = Blutgefäße vorhanden (ernährt Epidermis per Diffusion). Subcutis = Fettdepot + Druckrezeptoren (Vater-Pacini)."
+        statement: "Das Corium (Lederhaut) besteht aus Stratum papillare und Stratum reticulare; die Subcutis enthält Fetteinlagerungen sowie Vater-Pacini-Lamellenkörperchen für Tiefensensibilität und Vibration.",
+        answer: true,
+        solution: "Corium: Bindegewebe mit elastischen Fasern und Blutgefäßen (ernährt gefäßlose Epidermis per Diffusion). Ruffini-Körperchen im Stratum reticulare → Dehnungswahrnehmung. Subcutis: Bau- und Depotfett, Nozizeptoren (freie Nervenendigungen = Schmerz)."
       },
       seed: {
-        statement: "Welche Hautrezeptoren nehmen welche Reize wahr und wo liegen sie?",
-        answer: "Merkel-Tastscheiben (Stratum basale): Druck/Vibration. Meissner-Tastkörperchen (Dermis/Papillen): Druckrezeptoren. Krause-Endkolben (Dermis): Druck. Thermorezeptoren (Dermis): Wärme und Kälte. Nozizeptoren/Schmerzrezeptoren (Dermis, freie Nervenendigungen): Schmerz → Weiterleitung ans ZNS. Vater-Pacini-Lamellenkörperchen (Subcutis): Tiefensensibilität, Vibration. Ruffini-Körperchen (Corium, Stratum reticulare): Dehnungsempfindung.",
-        solution: "Merkhilfe: Vater-Pacini = tief (Subcutis) = Druck von tief. Ruffini = Dehnung (Stratum reticulare). Merkel = Berührung fein (Stratum basale). Die Fingerbeere ist besonders reich an Merkel-Scheiben."
+        statement: "Ruffini-Körperchen liegen in der Subcutis und registrieren Vibrations- und Tiefendruckreize; Vater-Pacini-Lamellenkörperchen befinden sich im Corium und registrieren Dehnungsreize.",
+        answer: false,
+        solution: "Vertauscht: Ruffini-Körperchen = Corium (Stratum reticulare) = Dehnungswahrnehmung. Vater-Pacini-Lamellenkörperchen = Subcutis = Tiefensensibilität + Vibration. Merkel-Tastscheiben (Stratum basale) = feine Berührung/Druck."
       },
       water: {
-        statement: "Welche Hautanhangsgebilde gibt es und welche Funktion haben Schweißdrüsen und Talgdrüsen?",
-        answer: "Hautanhangsgebilde: Haare (Pili), Talgdrüsen, Hautdrüsen (Schweiß-/Duftdrüsen), Nägel. Talgdrüsen (Glandulae sebaceae): am Haarbalg, ölige Substanz → Schutz vor Austrocknung. Schweißdrüsen (Glandulae sudoriferae): Temperaturregulation durch Verdunstungskälte; Säureschutzmantel (schützt Haut vor Mikroorganismen); Zusammensetzung: 99% Wasser + Kochsalz, Ammoniak, Harnstoff, Harnsäure, Kreatinin, Antikörper. Duftdrüsen (apocrinae): Pheromone, charakteristischer Geruch, Sekretion durch Sexualhormone beeinflusst.",
-        solution: "Der Säureschutzmantel des Schweißes ist besonders in den Achseln ausgeprägt. Talgdrüsen produzieren Sebum: zu wenig → Austrocknung, zu viel → Akne (verstopfte Haarfollikel)."
+        statement: "Zu den Hautanhangsgebilden gehören Haare, Talgdrüsen, Schweißdrüsen und Nägel; Schweißdrüsen dienen der Temperaturregulation und bilden den Säureschutzmantel der Haut.",
+        answer: true,
+        solution: "Talgdrüsen (Glandulae sebaceae): am Haarbalg, schützen vor Austrocknung. Duftdrüsen (apocrinae): Pheromone, durch Sexualhormone gesteuert. Schweißzusammensetzung: 99% Wasser + Kochsalz, Ammoniak, Harnstoff, Harnsäure, Kreatinin, Antikörper."
       }
     },
     harvestQuestions: [
@@ -14639,19 +14639,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Teil II Kap. 1-2.1 – Alterstheorien, biographisches/biologisches Alter, geriatrische Syndrome ('geriatrische I's')",
     phase1: {
       soil: {
-        statement: "Welche vier Eigenschaften charakterisieren Alterungsprozesse und welche Theorien gibt es?",
-        answer: "Alterungsprozesse sind: (1) universal (alle Lebewesen), (2) irreversibel (unumkehrbar), (3) schädlich (verminderte Anpassungsfähigkeit), (4) biologisch-genetisch vorherbestimmt (nicht durch Schonung vermeidbar). Theorien: Somatische Mutationstheorie (enzymatische Fehlfunktionen), Genregulationstheorie (verschiedene Gene für Lebensphasen aktiviert), Telomeren-Theorie (Telomere verkürzen sich bei Zellteilung), Theorie der freien Radikale (oxidativer Stress durch endogene/exogene Radikal-Quellen).",
-        solution: "Die Telomeren-Theorie ist modern und gut belegt: Telomere schützen die Chromosomenenden. Bei jeder Zellteilung werden sie kürzer – bis die Zelle ihre Funktion nicht mehr erfüllen kann."
+        statement: "Alterungsprozesse sind universal, irreversibel, schädlich und biologisch-genetisch vorherbestimmt; die Telomeren-Theorie erklärt Altern durch die Verkürzung von Telomeren bei jeder Zellteilung.",
+        answer: true,
+        solution: "Weitere Alterstheorien: Somatische Mutationstheorie (enzymatische Fehlfunktionen), Genregulationstheorie (verschiedene Gene für Lebensphasen), Theorie der freien Radikale (oxidativer Stress). Anti-Aging mit Vitamin C, E, Beta-Karotin (Antioxidantien)."
       },
       seed: {
-        statement: "Was ist der Unterschied zwischen biographischem und biologischem Alter?",
-        answer: "Biographisches Alter: zeitlich messbares Alter (Geburtsdatum). Biologisches Alter: Zustand des Körpers, Gesundheitsstand und Belastbarkeit – nur schätzbar (Leistungstests). Zwei Menschen gleichen Geburtsjahres können biologisch sehr unterschiedlich alt sein (Lebensstil, Lebensereignisse). Plus: soziales Alter (wie Alter in der Gesellschaft erlebt wird – abhängig von Familie, sozialem Umfeld, Wohnverhältnissen).",
-        solution: "Beispiel: Ein 82-Jähriger mit biologischem Alter von 72 Jahren ist fitter als ein gleichaltriger 82-Jähriger mit biologischem Alter von 90 Jahren. Das biographische Alter allein sagt wenig über den Gesundheitszustand."
+        statement: "Das biologische Alter entspricht immer dem biographischen Alter; zwei Menschen gleichen Geburtsjahres sind daher immer gleich alt im Sinne ihres Gesundheitszustandes.",
+        answer: false,
+        solution: "Biographisches Alter = Geburtsdatum (messbar). Biologisches Alter = aktueller Gesundheitszustand und Belastbarkeit (nur schätzbar). Beide können erheblich abweichen – abhängig von Lebensstil, Erkrankungen, Genetik. Plus: Soziales Alter (soziale Einbindung)."
       },
       water: {
-        statement: "Was sind die vier großen geriatrischen Syndrome ('geriatrische I's') und welche weiteren gibt es?",
-        answer: "Die vier großen geriatrischen I's: (1) Instabilität (mangelnde strukturelle/funktionelle Belastbarkeit). (2) Immobilität (Unfähigkeit zur Bewegung, organisch oder durch Immobilisierung). (3) Intellektueller Abbau (physiologisch und pathologisch bedingte ZNS-Veränderungen). (4) Inkontinenz (Harn-, Stuhl- und Affektinkontinenz). Weitere: Isolation, Inappetenz, Insomnia, Iatrogenie (arztbedingte Erkrankungen), Colon irritabile, Impaired eyes and ears (Seh-/Hörstörungen), Impecunity (Altersarmut). Typisch: Syndromvernetzung.",
-        solution: "Geriatrische Syndrome beeinflussen sich gegenseitig: z.B. Immobilität → Isolation → Inappetenz → Instabilität. Der Arzt muss das Gesamtbild sehen."
+        statement: "Die vier großen geriatrischen Syndrome ('geriatrische I's') sind Instabilität, Immobilität, intellektueller Abbau und Inkontinenz; weitere Syndrome sind z.B. Isolation, Insomnia und Iatrogenie.",
+        answer: true,
+        solution: "Iatrogenie = durch ärztliche Maßnahmen verursachte Erkrankungen (z.B. Nebenwirkungen). Impaired eyes and ears = Alters-Seh-/Hörstörungen. Impecunity = Altersarmut. Typisch: 'Syndromvernetzung' (Syndrome bedingen sich gegenseitig)."
       }
     },
     harvestQuestions: [
@@ -14748,19 +14748,19 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
     contextHint: "Kap. 2.2-3 – Altersveränderungen Herz/Lunge/Knochen/Niere/Sinnesorgane/ZNS; Demenz (Alzheimer, Multiinfarkt); Pharmakokinetik im Alter",
     phase1: {
       soil: {
-        statement: "Welche wichtigen Altersveränderungen betreffen Herz-Kreislauf, Knochen/Muskeln und Niere?",
-        answer: "Herz-Kreislauf: Arteriosklerose → Blutdruck↑, orthostatische Dysregulation (Blutdruckabfall beim Aufstehen), Schlagvolumen↓, Herzminutenvolumen↓, Linkshypertrophie ab 70. LJ. Knochen: Osteoporose (Mineralverlust, Frauen nach Wechseljahren stärker). Muskulatur: ↓0,5%/Jahr, besonders Dorsalflexoren der Füße → Stolpern. Stürze: jeder 3. über 65-Jährige stürzt mindestens 1×/Jahr → Komplikationen: Dekubitus, Thrombosen, Pneumonie. Niere: Nierenkörperchen ↓35%, GFR bei 80-Jährigen = 50% → Medikamentendosierung anpassen! Durst↓ → Exsikkosegefahr → Verwirrtheit.",
-        solution: "Wichtige Praxisregel: Ältere Menschen empfinden Durst schwächer → auf ausreichende Trinkmenge achten (1,5–2 L täglich). Ausnahme: Herzinsuffizienz/Niereninsuffizienz (Trinkmengenbeschränkung)."
+        statement: "Im Alter sinken Muskelmasse um ca. 0,5%/Jahr, Nierenkörperchen um 35% (30.–70. Lj.) und die glomeruläre Filtrationsrate auf etwa 50% eines 20-Jährigen; dies erfordert Anpassung der Medikamentendosierung.",
+        answer: true,
+        solution: "Weitere Altersveränderungen: Herz (Arteriosklerose→Blutdruck↑, orthostatische Dysregulation), Knochen (Osteoporose), Lungenelastizität↓ (Vitalkapazität -44%), Durst↓ → Exsikkosegefahr → Verwirrtheit. Trinkmenge 1,5–2 L täglich."
       },
       seed: {
-        statement: "Was sind die zwei häufigsten Demenzformen und welche Symptome zeigt eine Demenz?",
-        answer: "Demenz (60% Alzheimer, 20% Multiinfarkt): Alzheimer-Demenz: Frauen häufiger, genetisch/Stoffwechsel, Amyloidablagerungen, Hirnatrophie, Hohlräume. Multiinfarkt-Demenz: Männer häufiger, vaskulär, Arteriosklerose. Symptome: Gedächtnnis↓ (v.a. Kurzzeitgedächtnis), Konzentration↓, Orientierungsstörungen (räumlich/zeitlich), Persönlichkeitsveränderungen (Wutausbrüche, Feindseligkeit), Stimmung (Interesselosigkeit, Angst, Apathie), Verhalten (Reizbarkeit, Aggression), körperlich (Inkontinenz im Endstadium). Drei Stadien: leicht → mittelgradig → schwer.",
-        solution: "Abgrenzung: Akute Verwirrtheit (Delir) = reversibel, Ursachen: Hyponatriämie, niedriger Blutdruck, Infekte, Medikamente. Demenz = chronisch, fortschreitend, irreversibel."
+        statement: "Die Alzheimer-Demenz macht ca. 60% aller Demenzen aus, betrifft häufiger Frauen und ist mit Amyloidablagerungen und Hirnatrophie verbunden; die Multiinfarkt-Demenz ist vaskulär bedingt und betrifft häufiger Männer.",
+        answer: true,
+        solution: "3 Demenzstadien: leicht (Alltagstätigkeiten noch möglich), mittelgradig (Orientierungsstörungen auch in vertrauter Umgebung), schwer (Hilfe bei allen ATL nötig). Akute Verwirrtheit (Delir) = reversibel (Hyponatriämie, Infekte, Medikamente)."
       },
       water: {
-        statement: "Warum muss die Pharmakotherapie im Alter angepasst werden?",
-        answer: "Veränderte Pharmakokinetik: Resorption↓ (Darmfunktion), Transport verändert (weniger Albumine → mehr freies Medikament → Wirkungsverstärkung), Verteilung verändert (mehr Körperfett → fettlösliche Medikamente länger wirksam; weniger Körperwasser → wasserlösliche konzentrierter). Ausscheidung↓ (Leber- und Nierenfunktion↓) → Akkumulation → Vergiftung. Paradoxe Reaktionen möglich (z.B. Schlafmittel → Erregung statt Schlaf). Gefahr: Hypoglykämie bei Blutzuckertabletten, Sturzgefahr durch Kreislaufmedikamente.",
-        solution: "Grundregel Geriatrie: 'Start low, go slow' – niedrige Startdosis, langsam steigern. Niereninsuffizienz macht viele renale Ausscheidung nötig machende Medikamente gefährlicher."
+        statement: "Im Alter werden Medikamente langsamer abgebaut (Leber/Niere↓), und weniger Albumin führt zu mehr freiem (aktivem) Medikament; daher gilt als Grundregel 'Start low, go slow'.",
+        answer: true,
+        solution: "Paradoxe Reaktionen möglich: z.B. Schlafmittel → Erregung statt Schlaf. Fettlösliche Mittel länger wirksam (mehr Körperfett); wasserlösliche Mittel konzentrierter (weniger Körperwasser). Besondere Gefahr: Hypoglykämie, Sturzgefahr."
       }
     },
     harvestQuestions: [
@@ -14849,7 +14849,112 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         explanation: "Die Leberfunktion nimmt im Alter ab (nicht zu) → verlangsamter Abbau vieler Medikamente. Alle anderen Aussagen sind korrekt."
       }
     ]
+  }),
+
+  makeDetailedPlant({
+    id: "1044_09",
+    title: "Hilfsorgane des Auges",
+    contextHint: "Kap. 2.2 – 6 Augenmuskeln (Innervation N. III/IV/VI), Augenlider, Tränenapparat, Liddrüsen (Meibom/Moll/Zeis), Schielung",
+    phase1: {
+      soil: {
+        statement: "Die 6 Augenmuskeln werden von drei Hirnnerven innerviert: N. oculomotorius (III.) innerviert M. rectus superior/inferior/medialis und M. obliquus inferior; N. trochlearis (IV.) innerviert M. obliquus superior; N. abducens (VI.) innerviert M. rectus lateralis.",
+        answer: true,
+        solution: "Merkhilfe: N. abducens (VI.) = M. rectus lateralis (zieht Auge nach AUSSEN/lateral). N. trochlearis (IV.) = M. obliquus superior (leichte Rotation). Alle anderen 4 Augenmuskeln → N. oculomotorius (III.). Schielung entsteht bei Hirnnervenstörung."
+      },
+      seed: {
+        statement: "Die Tränendrüse (Glandula lacrimalis) liegt medial am unteren Augapfel; das abgesonderte Sekret wird über den Tränenkanal direkt in die Nasenhaupthöhle abgeleitet.",
+        answer: false,
+        solution: "Die Tränendrüse liegt LATERAL am OBEREN Augapfel (nicht medial/unten). Das Sekret wird durch den Lidschlag über die Bindehaut verteilt und über den Tränenkanal (mit punktförmiger Öffnung am inneren Augenwinkel) in die Nase abgeleitet."
+      },
+      water: {
+        statement: "Zu den Hilfs- und Schutzeinrichtungen des Auges gehören Augenlider (Palpebra superior/inferior), Augenbrauen, Wimpern, Bindehaut (Konjunktiva) und Tränenapparat; an den Augenlidern befinden sich drei Drüsentypen: Meibomdrüsen, Molldrüsen und Zeisdrüsen.",
+        answer: true,
+        solution: "Liddrüsen: Meibomdrüsen = fetten Lidrand ein (verhindern Überlaufen der Tränen). Molldrüsen = Schweißdrüsen. Zeisdrüsen = Talgdrüsen. Bindehaut (Konjunktiva): kleidet Innenfläche der Lider aus, verbindet Augapfel und Lid."
+      }
+    },
+    harvestQuestions: [
+      {
+        id: "1044_09_h1",
+        type: "mc",
+        question: "Welcher Hirnnerv innerviert den M. rectus lateralis?",
+        options: [
+          { text: "N. oculomotorius (III. Hirnnerv)", correct: false },
+          { text: "N. trochlearis (IV. Hirnnerv)", correct: false },
+          { text: "N. abducens (VI. Hirnnerv)", correct: true },
+          { text: "N. facialis (VII. Hirnnerv)", correct: false }
+        ],
+        explanation: "M. rectus lateralis zieht das Auge nach lateral (außen) und wird vom N. abducens (VI. Hirnnerv) innerviert. N. trochlearis innerviert nur den M. obliquus superior; alle übrigen 4 Augenmuskeln werden vom N. oculomotorius (III.) innerviert."
+      },
+      {
+        id: "1044_09_h2",
+        type: "true_false",
+        statement: "Schielung (Strabismus) entsteht durch eine Schwäche oder Funktionsstörung der Augenmuskeln bzw. der sie innervierenden Hirnnerven (III., IV. oder VI.).",
+        answer: true,
+        explanation: "Korrekt. Bei Muskelschwäche oder Hirnnervenstörung führen beide Augen keine gleichartigen Bewegungen mehr aus → Strabismus (Schielung). Die Innervation erfolgt physiologisch immer symmetrisch an beiden Augen."
+      },
+      {
+        id: "1044_09_h3",
+        type: "mc",
+        question: "Wo liegt die Tränendrüse (Glandula lacrimalis)?",
+        options: [
+          { text: "Medial am unteren Augapfel", correct: false },
+          { text: "Lateral am oberen Augapfel", correct: true },
+          { text: "Im inneren Augenwinkel", correct: false },
+          { text: "Hinter der Iris", correct: false }
+        ],
+        explanation: "Die Tränendrüse (Glandula lacrimalis) liegt lateral am oberen Augapfel. Das Sekret wird durch den Lidschlag über die Bindehaut verteilt; der Tränenkanal mit punktförmiger Öffnung am inneren Augenwinkel leitet es in die Nase ab."
+      },
+      {
+        id: "1044_09_h4",
+        type: "true_false",
+        statement: "Der M. obliquus superior wird vom N. trochlearis (IV. Hirnnerv) innerviert und ermöglicht eine leichte Rotation des Augapfels.",
+        answer: true,
+        explanation: "Korrekt. N. trochlearis (IV.) innerviert ausschließlich den M. obliquus superior (ermöglicht leichte Rotation). N. abducens (VI.) → M. rectus lateralis. N. oculomotorius (III.) → alle anderen 4 Augenmuskeln."
+      },
+      {
+        id: "1044_09_h5",
+        type: "mc",
+        question: "Welche Liddrüsen fetten den Lidrand ein und verhindern so das Überlaufen der Tränen?",
+        options: [
+          { text: "Molldrüsen (Schweißdrüsen)", correct: false },
+          { text: "Zeisdrüsen (Talgdrüsen)", correct: false },
+          { text: "Meibomdrüsen", correct: true },
+          { text: "Glandula lacrimalis", correct: false }
+        ],
+        explanation: "Meibomdrüsen fetten den Lidrand ein – das verhindert das Überlaufen der Tränenflüssigkeit über den Lidrand. Molldrüsen = Schweißdrüsen, Zeisdrüsen = Talgdrüsen. Glandula lacrimalis = Tränendrüse, liegt lateral oben."
+      }
+    ],
+    phase4Questions: [
+      {
+        id: "1044_09_p4_1",
+        type: "mc",
+        question: "Welche Augenmuskeln werden vom N. oculomotorius (III. Hirnnerv) innerviert? (Mehrere Antworten möglich)",
+        options: [
+          { text: "M. rectus superior", correct: true },
+          { text: "M. rectus inferior", correct: true },
+          { text: "M. rectus medialis", correct: true },
+          { text: "M. obliquus inferior", correct: true },
+          { text: "M. rectus lateralis", correct: false },
+          { text: "M. obliquus superior", correct: false }
+        ],
+        explanation: "N. oculomotorius (III.) innerviert 4 Augenmuskeln: M. rectus superior, inferior, medialis und M. obliquus inferior. M. rectus lateralis → N. abducens (VI.). M. obliquus superior → N. trochlearis (IV.)."
+      },
+      {
+        id: "1044_09_p4_2",
+        type: "mc",
+        question: "Welche Aussagen zu den Hilfsorganen des Auges sind korrekt? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Die Tränendrüse liegt lateral am oberen Augapfel", correct: true },
+          { text: "Meibomdrüsen fetten den Lidrand ein und verhindern das Überlaufen der Tränen", correct: true },
+          { text: "Die Bindehaut (Konjunktiva) kleidet die Innenfläche der Augenlider aus", correct: true },
+          { text: "Wimpern schützen das Auge vor Fremdkörpern und lösen Lidschlussreflex aus", correct: true },
+          { text: "Der Tränenkanal leitet Tränenflüssigkeit in die Mundhöhle", correct: false }
+        ],
+        explanation: "Der Tränenkanal leitet Tränenflüssigkeit in die NASE (nicht in die Mundhöhle) – deshalb riecht man bei starkem Weinen bisweilen salzig in der Nase. Alle anderen Aussagen sind korrekt."
+      }
+    ]
   })
+
 ];
 
 const NATURHEILVERFAHREN1_1045_PLANTS = [
