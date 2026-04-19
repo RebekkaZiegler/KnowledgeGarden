@@ -13110,19 +13110,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 1 – Hydrotherapie: Kneipp-Güsse, Wickel, Kräuterbäder; Wirkfaktoren Reizfläche/Intensität/Dauer/Temperaturdifferenz",
     phase1: {
       soil: {
-        statement: "Von welchen vier Faktoren hängt die Wirkung einer hydrotherapeutischen Anwendung ab?",
-        answer: "1. Reizfläche (Körperareal), 2. Reizintensität (Temperaturhöhe), 3. Reizdauer (Anwendungszeit), 4. Temperaturdifferenz (Unterschied zwischen Anwendung und Körpertemperatur). Je größer die Differenz, desto stärker die Reaktion.",
-        solution: "Diese vier Parameter bestimmen zusammen den physiologischen Reiz. Kurze Kälteanwendung → Vasodilatation nach initialer Konstriktion; länger dauernde Kälte → anhaltende Vasokonstriktion."
+        statement: "Die vier Wirkfaktoren einer hydrotherapeutischen Anwendung nach Kneipp sind: Reizfläche, Reizintensität, Reizdauer und Temperaturdifferenz.",
+        answer: true,
+        solution: "Je größer die Temperaturdifferenz, desto stärker die Reaktion. Kurze Kälteanwendung → reaktive Vasodilatation nach initialer Konstriktion; länger andauernde Kälte → anhaltende Vasokonstriktion."
       },
       seed: {
-        statement: "Wie wirken kalte und warme Wickel und bei welchen Indikationen werden sie eingesetzt?",
-        answer: "Kalte Wickel: kühlend, entzündungshemmend → bei Fieber, Entzündungen, Prellungen, Verstauchungen. Heiße Wickel: wärmend, muskelentspannend, durchblutungsfördernd → bei Gelenkrheumatismus, Koliken, Muskelverspannungen.",
-        solution: "Das Prinzip: Kälte zieht Wärme ab (antiphlogistisch), Wärme fördert die Durchblutung und entspannt Muskulatur und glatte Muskulatur der Eingeweide."
+        statement: "Heiße Wickel sind bei fieberhaften Erkrankungen, lokalen Entzündungen, Eiterungen, Gelenkentzündungen sowie Verstauchungen und Prellungen indiziert.",
+        answer: false,
+        solution: "Das sind Indikationen für KALTE Wickel. Heiße Wickel passen zu chronischem Gelenkrheumatismus, Magen-/Darmkoliken sowie Koliken und Entzündungen des Urogenitalsystems."
       },
       water: {
-        statement: "Welche Wirkung haben Kneipp-Güsse und was unterscheidet sie von einem normalen kalten Duschen?",
-        answer: "Kneipp-Güsse sind tonisierend, stoffwechselanregend und kreislaufstabilisierend. Wasser wird fächerartig (kein Strahl) in aufsteigender Richtung über die Extremitäten geführt. Temperatur kalt (15–18 °C). Nach der Anwendung warm werden/bewegen.",
-        solution: "Der flächige Wasserlauf reizt die Hautrezeptoren gezielt, ohne Schockwirkung. Die Reflexantwort steigert den Kreislauftonus und regt die Thermoregulation an."
+        statement: "Kneipp-Güsse werden als druckloser Wasserstrahl angewendet, wirken tonisierend auf Herz-Kreislauf und Atmung sowie stoffwechselanregend. Nach dem Guss soll der Patient sich abstreifen und zügig bewegen.",
+        answer: true,
+        solution: "3 Grundsatzregeln der Hydrotherapie: nie auf kaltes Gewebe anwenden, nie bei frierendem/übermüdetem Patienten, nie in kalten zugigen Räumen. Güsse wirken auch günstig auf ZNS und VNS und lindern Schmerzen."
       }
     },
     harvestQuestions: [
@@ -13219,19 +13219,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 2-3 – Biomolekulare Therapie: VitOrgan, Thymusfaktoren; Ozontherapie: O₃, Eigenblutbehandlung, Kontraindikationen",
     phase1: {
       soil: {
-        statement: "Was ist das Prinzip der biomolekularen Therapie und welche Substanzen werden eingesetzt?",
-        answer: "Zelldefekte werden durch Zufuhr von Zellkomponenten aus gesunden Tierzellen (VitOrgan-Präparate) ausgeglichen. Wirkt organspezifisch nach homöopathischem Prinzip. Thymusfaktoren dienen als Immunstimulanz und unterstützen das Immunsystem.",
-        solution: "Die Therapie beruht auf der Idee, dass erkrankte Zellen fehlende Bausteine aus gleichartigen gesunden Zellen aufnehmen können. Organspezifität: Leber-Extrakt für Lebererkrankungen usw."
+        statement: "Bei der biomolekularen Therapie werden Zellkomponenten aus gesunden Tierzellen (VitOrgan-Präparate nach Theurer) eingesetzt, die organspezifisch wirken und reduzierte artspezifische Antigene enthalten.",
+        answer: true,
+        solution: "Das Prinzip: erkrankte Zellen nehmen fehlende Bausteine aus gleichartigen gesunden Zellen auf. Organspezifität: Leberextrakt für Lebererkrankungen usw. Biomolekulare Zelldefekte → Zellkomponenten aus gesunden Zellen."
       },
       seed: {
-        statement: "Was ist Ozon chemisch und welche biologischen Wirkungen hat es therapeutisch?",
-        answer: "Ozon = O₃ (dreiatomiger Sauerstoff). Therapeutische Wirkungen: bakterizid, viruzid, entzündungshemmend, durchblutungsfördernd, immunstimulierend, analgetisch.",
-        solution: "Durch die Abgabe eines Sauerstoffatoms entsteht aktiver Sauerstoff (O₂ + O), der Mikroorganismen oxidativ abtötet und den Zellstoffwechsel aktiviert."
+        statement: "Ozon (O₃) ist dreiatomiger Sauerstoff und wirkt bakterizid, viruzid und entzündungshemmend. Die direkte intravenöse Ozonzufuhr ist in Deutschland wegen Emboliegefahr verboten.",
+        answer: true,
+        solution: "Ozon gibt leicht ein Sauerstoffatom ab → aktiver Sauerstoff tötet Mikroorganismen oxidativ ab. 4 erlaubte Anwendungsformen: große Eigenblutbehandlung (50-100 ml, Infusion), kleine Eigenblutbehandlung (1-5 ml, i.m./s.c.), Begasung Hautareale, rektale Begasung."
       },
       water: {
-        statement: "Welche Anwendungsformen der Ozontherapie gibt es und was ist in Deutschland verboten?",
-        answer: "Anwendungen: (1) Große Eigenblutbehandlung: 50–100 ml Blut entnehmen, ozonieren, reinfundieren. (2) Kleine Eigenblutbehandlung: 1–5 ml Blut i.m. oder s.c. reinjizieren. (3) Begasung von Hautarealen (offen/unter Folie). (4) Rektale Begasung mit 50–100 ml Ozon/O₂-Gemisch. Die direkte intravenöse Ozonzufuhr ist in Deutschland verboten (Emboliegefahr).",
-        solution: "Die i.v. Gabe ist wegen der Gefahr einer tödlichen Gasembolie verboten. Alle anderen Anwendungsformen sind in der Naturheilpraxis möglich."
+        statement: "Bei der kleinen Eigenblutbehandlung mit Ozon werden 50–100 ml Blut entnommen, mit Ozon angereichert und als Infusion zurückgegeben.",
+        answer: false,
+        solution: "Das ist die GROSSE Eigenblutbehandlung. Bei der kleinen Eigenblutbehandlung werden nur 1–5 ml Blut entnommen und i.m. oder s.c. reinjiziert."
       }
     },
     harvestQuestions: [
@@ -13328,19 +13328,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 4 – Magnetfeldtherapie: Pole, Indikationen; Lasertherapie: LASER-Akronym, Eigenschaften, Wirkungen",
     phase1: {
       soil: {
-        statement: "Wie wirken Nordpol und Südpol bei der Magnetfeldtherapie und welche Indikationen gibt es?",
-        answer: "Nordpol: aktivierend, durchblutungsfördernd. Südpol: beruhigend, entzündungshemmend, schmerzlindernd. Indikationen: Schmerzzustände, Wundheilungsstörungen, Neuralgien, Herz-Kreislauf-Erkrankungen, Stoffwechselstörungen. Wirkung: stabilisiert Membranpotential, fördert Durchblutung.",
-        solution: "Die Polarität des Magneten bestimmt die Wirkungsrichtung. In der Praxis wird der Südpol häufiger bei Entzündungen eingesetzt, der Nordpol zur Aktivierung."
+        statement: "Bei der Magnetfeldtherapie wirkt der Nordpol aktivierend und durchblutungsfördernd, der Südpol beruhigend und entzündungshemmend.",
+        answer: true,
+        solution: "Die Magnetfeldtherapie normalisiert das Ionenverhältnis an der Zellmembran und stabilisiert das Membranpotential. Anwendungsgebiete: Haut/Schleimhaut, Nerven, Knochen/Gelenke, Wirbelsäule, Muskeln/Sehnen/Bänder, alle Entzündungen/Ödeme, Schmerzen."
       },
       seed: {
-        statement: "Wofür steht das Akronym LASER und welche besonderen Eigenschaften hat Laserlicht?",
-        answer: "LASER = Light Amplification by Stimulated Emission of Radiation. Eigenschaften: (1) Monochromasie (eine Wellenlänge), (2) Kohärenz (Wellen in Phase), (3) geringe Divergenz (paralleles Licht, kaum Streuung). Dadurch hohe Energiedichte auf kleiner Fläche.",
-        solution: "Diese drei Eigenschaften unterscheiden Laserlicht von normalem Licht. Monochromatisch und kohärent bedeutet: alle Photonen gleicher Wellenlänge schwingen synchron."
+        statement: "LASER steht für 'Light Amplification by Stimulated Emission of Radiation'. Die drei besonderen Eigenschaften von Laserlicht sind Monochromasie, Kohärenz und geringe Divergenz.",
+        answer: true,
+        solution: "Monochromasie = eine Wellenlänge; Kohärenz = Wellen schwingen synchron/in Phase; geringe Divergenz = kaum Streuung (paralleles Licht). Diese Eigenschaften ermöglichen hohe Energiedichte auf kleiner Fläche."
       },
       water: {
-        statement: "Welche biologischen Wirkungen hat die Lasertherapie im therapeutischen Einsatz?",
-        answer: "Lasertherapie steigert ATP-Synthese und Zellstoffwechsel, fördert Eiweißsynthese und Bildung kollagener Fasern, stimuliert das Immunsystem, wirkt analgetisch und entzündungshemmend, beschleunigt Wundheilung.",
-        solution: "Der Laser regt Mitochondrien zur verstärkten ATP-Produktion an (Photobiomodulation). Dies stimuliert Zellproliferation und Gewebereparatur."
+        statement: "Die Lasertherapie hemmt die ATP-Synthese in den Mitochondrien und verlangsamt dadurch den Zellstoffwechsel.",
+        answer: false,
+        solution: "Lasertherapie STEIGERT die ATP-Synthese (Photobiomodulation) und fördert den Zellstoffwechsel. Weitere Wirkungen: Eiweißsynthese↑, kollagene Fasern/Aderneubildung, Enzyme↑, Antikörperbildung↑."
       }
     },
     harvestQuestions: [
@@ -13437,19 +13437,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 5-6 – Eigenharn: Reiztherapie, Morgenurin, Indikationen; Farbtherapie: Chakren, Wirkung der Farben",
     phase1: {
       soil: {
-        statement: "Was ist das Prinzip der Eigenharntherapie und wie wird sie angewendet?",
-        answer: "Eigenharntherapie ist eine Reiztherapie: körpereigener Urin wird als Antigen-Informationsträger genutzt. Anwendung: Injektion von 2 ml Morgenurin (steril, 2× pro Woche) i.m. oder s.c., alternativ äußerlich (Einreiben). Morgenurin bevorzugt, da konzentrierter.",
-        solution: "Die körpereigenen Stoffe im Urin (Antigene, Hormone, Metaboliten) sollen das Immunsystem regulierend reizen. Typische Indikationen: Hauterkrankungen, Arthrosen."
+        statement: "Bei der Eigenharntherapie werden 2 ml Morgenurin 2× wöchentlich i.m. oder s.c. injiziert; bei Kindern beträgt die Dosis 0,5 ml.",
+        answer: true,
+        solution: "Eigenharntherapie ist eine Reiztherapie. Morgenurin ist konzentrierter (längste Nüchternphase). Oral auch möglich: z.B. ½ l Urin mit Sahne bei Arthrosen. Typische Indikationen: Hauterkrankungen, Arthrosen."
       },
       seed: {
-        statement: "Welche therapeutischen Eigenschaften werden Rot, Grün und Blau in der Farbtherapie zugeschrieben?",
-        answer: "Rot: wärmend, Durchblutung↑, aktivierend – bei Kreislaufschwäche, Ischias, Asthma (vorsichtig dosieren!). Grün: ausgleichend, entspannend, reguliert Atem- und Herzfrequenz – bei Bluthochdruck, Asthma, Infektionen. Blau: kühlend, beruhigend, entzündungshemmend – bei Entzündungen, Angst, Schlaflosigkeit, Fieber.",
-        solution: "Die Farben wirken über die Augen und Haut auf das Nervensystem. Rot stimuliert, Grün balanciert, Blau dämpft – entsprechend der Wellenlänge (warm → kalt)."
+        statement: "Die Farbe Grün wirkt beruhigend und ausgleichend und ist indiziert bei Herz-/Kreislaufstörungen (besonders Bluthochdruck), Asthma, chronischer Bronchitis, Infektionen, Nervenleiden und organischen ZNS-Erkrankungen.",
+        answer: true,
+        solution: "Grün bewirkt auch Entlastung, Erholung und Regeneration bei noch nicht akuten Krankheitszuständen. Blau ist die dunkelste und kühlste Farbe: beruhigend, bei Ängstlichkeit, Unruhe, Herzjagen, Nervosität, Schlaflosigkeit, Entzündungen, Fieber."
       },
       water: {
-        statement: "Welche Wirkungen werden Orange, Gelb und Violett in der Farbtherapie zugeordnet?",
-        answer: "Orange: erheiternd, Appetit↑, positive Stimmung – bei Leber, Anämie, Verstopfung, Depression. Gelb: Verstand, Wachheit, verdauungsfördernd – bei Leber, Knochen, Immunschwäche. Violett: Heilung, Ausgeglichenheit – bei Unruhe, Entzündungen seröser Häute.",
-        solution: "In der Farbtherapie werden Farben den Chakren (Energiezentren) zugeordnet. Die warmen Töne (Orange/Gelb) stimulieren, Violett harmonisiert auf höchstem Energieniveau."
+        statement: "Rot ist die kräftigste und wärmste Farbe und kann ohne Einschränkungen bei allen Patienten angewendet werden.",
+        answer: false,
+        solution: "Rot hat Kontraindikationen: Kreislaufschwäche, Durchblutungsstörungen, Ischias, Asthma/chron. Katarrhe, Nierenentzündungen. Es muss vorsichtig dosiert werden."
       }
     },
     harvestQuestions: [
@@ -13546,19 +13546,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 7 – Canthariden-Pflaster (spanische Fliege), Baunscheidt-Verfahren (Stichelgerät, Öl, Indikationen)",
     phase1: {
       soil: {
-        statement: "Was ist das Canthariden-Pflaster, aus welcher Substanz wird es gewonnen und wann wird es entfernt?",
-        answer: "Das Canthariden-Pflaster wird aus der spanischen Fliege (Cantharis vesicatoria) gewonnen. Es erzeugt eine Blase auf der Haut (Blasenpflaster). Indikationen: Gelenkerkrankungen. Pflaster wird nach 18–20 Stunden entfernt, bevor die Blase platzt.",
-        solution: "Cantharidin (der Wirkstoff) reizt die Haut stark und erzeugt eine Blase. Das Ableiten von Lymphflüssigkeit soll den Entzündungsprozess im Gelenk entlasten – Ableitungstherapie."
+        statement: "Das Canthariden-Pflaster wird aus der spanischen Fliege (in Mittel- und Südamerika) hergestellt, hauptsächlich bei Gelenkerkrankungen eingesetzt und bildet nach 18–20 Stunden eine flüssigkeitsgefüllte Blase unter dem Pflaster.",
+        answer: true,
+        solution: "Ziel: Giftstoffe aus dem Gelenk ableiten und einen chronischen Zustand wieder aktiv/therapiefähig machen. Blase wird beim Entfernen aufgestochen (sterile Kanüle), steriler Verband angelegt. Wiederholung nach ca. 1 Woche möglich."
       },
       seed: {
-        statement: "Wie funktioniert das Baunscheidt-Verfahren und welche Substanzen werden dabei verwendet?",
-        answer: "Das Baunscheidt-Verfahren nutzt ein Stichelgerät (Nadelrad, mehrere Nadeln) zur Hautperforation. Anschließend Einreiben mit Baunscheidt-Öl (aus Senföl + Cantharidin). Wirkt als Ableitungsverfahren und Reflextherapie. Indikationen: Rheuma, Wirbelsäulenerkrankungen, Bronchitis.",
-        solution: "Die Hautstiche fördern die lokale Durchblutung und Lymphdrainage. Das Öl reizt zusätzlich. Über Reflexbögen (Dermatome) sollen tiefer liegende Organe beeinflusst werden."
+        statement: "Das Baunscheidt-Verfahren wurde von Carl Baunscheidt (1809–1874) entwickelt; es werden viele kleine Nadelstiche gesetzt und anschließend ein Reizöl (aus Senföl, Chantharidin oder Wacholderöl) eingerieben.",
+        answer: true,
+        solution: "Indikationen: rheumatischer Formenkreis, Wirbelsäulenerkrankungen, chronische Bronchitis. Bildung von Quaddeln, Hautrötungen, eitrigen Pusteln → Schorfbildung nach ca. 1 Woche. Achtung: Stellen rasieren, Pigmentveränderungen bis 3 Jahre."
       },
       water: {
-        statement: "Welche Nebenwirkung und welches verbotene Mittel sind beim Baunscheidt-Verfahren zu beachten?",
-        answer: "Nebenwirkung: Pigmentveränderungen der Haut können bis zu 3 Jahre anhalten. Wichtig: Krotonöl (früher im Baunscheidt-Öl enthalten) ist heute verboten, da es stark hautreizend/kanzerogen ist.",
-        solution: "Patienten müssen über die mögliche Hyperpigmentierung aufgeklärt werden. Krotonöl wurde früher mit Senföl kombiniert, ist aber aufgrund seiner Gefährlichkeit nicht mehr zulässig."
+        statement: "Krotonöl ist im heutigen Baunscheidt-Öl ein zulässiger Bestandteil und darf in Deutschland weiterhin angewendet werden.",
+        answer: false,
+        solution: "Krotonöl ist in Deutschland VERBOTEN. Es steht im Verdacht, die krebserregende Wirkung von Umweltgiften zu verstärken. Das heutige Baunscheidt-Öl basiert auf Senföl, Chantharidin oder Wacholderöl."
       }
     },
     harvestQuestions: [
@@ -13655,19 +13655,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 8 – Hirudo medicinalis, Hirudin, Wirkungen, Indikationen, Kontraindikationen, Entsorgung",
     phase1: {
       soil: {
-        statement: "Was ist Hirudin und welche therapeutischen Wirkungen hat die Blutegeltherapie?",
-        answer: "Hirudin ist ein Polypeptid im Speichel des medizinischen Blutegels (Hirudo medicinalis), das die Blutgerinnung hemmt (Thrombinhemmer). Wirkungen: gerinnungshemmend, lymphstrombeschleunigend, entzündungswidrig, antithrombotisch, immunstimulierend, analgetisch.",
-        solution: "Der Egel injiziert beim Saugen verschiedene bioaktive Substanzen, darunter Hirudin (Antikoagulans), Hyaluronidase (Gewebedurchdringung) und andere analgetische Stoffe."
+        statement: "Hirudin ist ein Polypeptid im Speichel des Blutegels (Hirudo medicinalis), das die Blutgerinnung hemmt. Die Blutegeltherapie wirkt gerinnungshemmend, lymphstrombeschleunigend, entzündungswidrig, antithrombotisch und immunstimulierend.",
+        answer: true,
+        solution: "Indikationen: Thrombophlebitis, Varicosis, Ulcus cruris, chron. Otitis media, Furunkel/Karbunkel/Phlegmone, Gelenkerkrankungen (bes. Gonarthrose), Hämatome, Gichtanfall, Visusverschlechterung/Glaukom (Schläfenbereich), Postcholezystektomiesyndrom."
       },
       seed: {
-        statement: "Welche Indikationen und Kontraindikationen gibt es für die Blutegeltherapie?",
-        answer: "Indikationen: Thrombophlebitis, Arthrose (v.a. Gonarthrose), Hämatome, Gicht, Glaukom. Kontraindikationen: Blutgerinnungsstörungen/Einnahme von Gerinnungshemmern, Anämie, Hirudinallergie. Nie bei Patienten mit stark kompromittiertem Immunsystem.",
-        solution: "Der Egel verringert Schwellung und Entzündung durch mechanische Blutentnahme + bioaktive Substanzen. KI: Alle Zustände, bei denen weitere Blutungsneigung oder Infektion gefährlich wäre."
+        statement: "Nach dem Tierarzneimittelgesetz dürfen Blutegel seit dem 28.01.2022 auch weiterhin zur Behandlung von Tieren eingesetzt werden.",
+        answer: false,
+        solution: "Seit dem 28.01.2022 dürfen Blutegel NUR NOCH für humanmedizinische Zwecke verwendet werden. Die Behandlung von Tieren mit Blutegeln ist seitdem verboten."
       },
       water: {
-        statement: "Wie lange saugen Blutegel und wie werden sie nach der Therapie entsorgt?",
-        answer: "Ein Egel saugt 10–40 Minuten und nimmt dabei ca. 10 ml Blut auf. Die Nachblutung aus der Bissstelle beträgt weitere 10–40 ml in den nächsten 24 Stunden. Entsorgung: hochprozentiger Alkohol oder Einfrieren bei -18 °C. Nie mit Gewalt abreißen!",
-        solution: "Das Abreißen würde die Wunde aufreißen und zu Nachblutungen führen. Die Nachblutung ist therapeutisch erwünscht (Fortsetzung des Drainageeffekts). Egel werden als Sondermüll entsorgt."
+        statement: "Gebrauchte Blutegel dürfen nach der Therapie nicht in die Kanalisation entsorgt oder in Wildteiche ausgesetzt werden; sie müssen in hochprozentigem Alkohol getötet oder bei -18 °C eingefroren werden.",
+        answer: true,
+        solution: "Blutegel sind als Sondermüll (Abfallschlüssel 18 01 02) zu entsorgen. Cave: Nie mit Gewalt abreißen (Zähnchen bleiben in Haut → langanhaltende Entzündungen). Egel können bis zu 30 Jahre alt werden."
       }
     },
     harvestQuestions: [
@@ -13764,19 +13764,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 9-10 – Akupunktur: TCM, Yin/Yang, Qi, Meridiane; Neuraltherapie nach Huneke: Segmenttherapie, Störfeldtherapie, Procain",
     phase1: {
       soil: {
-        statement: "Was sind Yin und Yang in der TCM und wie werden die Organe zugeordnet?",
-        answer: "Yin: ruhend, kühl, nährend → Speicherorgane (Zang): Milz-Pankreas, Lunge, Herz, Leber, Niere. Yang: bewegt, warm, transformierend → Hohlorgane (Fu): Magen, Gallenblase, Dünndarm, Dickdarm, Harnblase. Meridiane: 12 paarige Hauptmeridiane (Yang außen/Rücken, Yin innen/Bauch) + 8 unpaarige.",
-        solution: "Das Yin-Yang-Prinzip beschreibt komplementäre Gegensätze. Qi (Lebensenergie) fließt durch Meridiane. Blockierungen oder Ungleichgewichte des Qi verursachen Krankheit."
+        statement: "In der TCM verlaufen Yin-Meridiane innen (am Bauch/Extremitäteninnenseite) und Yang-Meridiane außen (am Rücken). Es gibt 12 paarige Hauptmeridiane und 8 unpaarige Leitbahnen ('Altarme des Flusses Qi').",
+        answer: true,
+        solution: "Yin-Speicherorgane (Zang): Milz-Pankreas, Lunge, Herz, Leber, Niere. Yang-Hohlorgane (Fu): Magen, Gallenblase, Dünndarm, Dickdarm, Harnblase. Der Dreifach-Erwärmer-Meridian ist keinem einzelnen Organ zugeordnet."
       },
       seed: {
-        statement: "Was unterscheidet Segmenttherapie und Störfeldtherapie in der Neuraltherapie nach Huneke?",
-        answer: "Segmenttherapie: Injektion in Dermatome/Head-Zonen, die dem erkrankten Organ segmental zugeordnet sind (reflektorische Wirkung). Störfeldtherapie: Behandlung von Narben, Eitersherden (Zähne, Mandeln) als Fernursachen von Erkrankungen. Lokalanästhetikum (Procain/Lidocain/Novocain) unterbricht pathologische Nervenimpulse.",
-        solution: "Huneke entdeckte das ‚Sekundenphänomen': Nach Injektion ins Störfeld tritt sofortige Heilung ein, die mindestens 8 Stunden anhalten muss, um als echter Heilerfolg zu gelten."
+        statement: "Bei der Neuraltherapie nach Huneke unterscheidet man Segmenttherapie (Injektion in Dermatome/Head-Zonen) und Störfeldtherapie (Behandlung von Narben/Eitersherden als Fernursachen). Das Sekundenphänomen muss mindestens 8, besser 20 Stunden anhalten.",
+        answer: true,
+        solution: "Störfelder = Narben oder Eiterherde (häufig Zähne/Mandeln) mit Fernwirkung. Depolarisation → Potentialabfall → Repolarisation; gezielte Lokalanästhetikum-Injektion schaltet das chronische Irritationszentrum aus."
       },
       water: {
-        statement: "Welche Lokalanästhetika werden in der Neuraltherapie verwendet und welcher rechtliche Status gilt für sie?",
-        answer: "Procain, Lidocain, Novocain. Wichtig: Lokalanästhetika unterliegen dem Arzneimittelgesetz und sind damit rezeptpflichtig. Vor Anwendung: Allergietest in der Augenbindehaut. Das Sekunden-Phänomen (Heilerfolg ≥8h) bestätigt das Störfeld.",
-        solution: "Obwohl Neuraltherapie ein Naturheilverfahren ist, arbeitet sie mit verschreibungspflichtigen Substanzen. Als Heilpraktiker muss die Rezeptpflicht beachtet und ggf. der Arzt einbezogen werden."
+        statement: "Lokalanästhetika (Procain, Lidocain, Novocain) für die Neuraltherapie unterliegen dem Nahrungsergänzungsmittelgesetz und sind damit rezeptfrei erhältlich.",
+        answer: false,
+        solution: "Lokalanästhetika fallen unter das ARZNEIMITTELGESETZ und sind rezeptpflichtig! Vor der Anwendung: Allergietest in der Augenbindehaut (1 Tropfen → wenn Bindehaut sich rötet = Unverträglichkeit)."
       }
     },
     harvestQuestions: [
@@ -13873,19 +13873,19 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
     contextHint: "Kap. 11-13 – Chiropraktik: Subluxationen; Massage: Wirkungen; Bewegungstherapie: aktiv/passiv; Reiki: Mikao Usui, 3 Grade",
     phase1: {
       soil: {
-        statement: "Was ist das Ziel der Chiropraktik und was sind Subluxationen?",
-        answer: "Chiropraktik löst Subluxationen auf – das sind Gelenkblockaden mit begleitenden Muskelverspannungen und Nervenirritationen, meist der Wirbelsäule. Durch gezielte Manipulationen (Impulse) werden Gelenke mobilisiert und Nervenkompressionenzurückgelöst. Dies hat reflektorische Wirkung auf zugeordnete Organe.",
-        solution: "Eine Subluxation ist keine vollständige Gelenkausrenkung, sondern eine partielle Fehlstellung mit Funktionsstörung. Chiropraktiker nutzen hochspezifische Impulstechniken, keine Rohmassagen."
+        statement: "Die Chiropraktik basiert auf der Vorstellung, dass viele Beschwerden auf Subluxationen (partielle Gelenkfehlstellungen mit Blockaden, Muskelverspannungen und Verwachsungen) zurückzuführen sind, die durch gezielte Handgrifftechniken gelöst werden.",
+        answer: true,
+        solution: "Ziel: Gelenkblockaden, Muskelverspannungen und Verwachsungen lösen. Chiropraktik kann auch vorbeugend eingesetzt werden. Erfordert lange Erfahrung und gute Lehrer sowie Kenntnisse der Anatomie/Physiologie."
       },
       seed: {
-        statement: "Welche physiologischen Wirkungen hat die klassische Massage?",
-        answer: "Massage fördert Durchblutung und Lymphfluss, regt den Stoffwechsel an, normalisiert den Muskeltonus (Hyper- oder Hypotonus), vermehrt rote Blutkörperchen (Erythropoese↑), löst Muskelverspannungen und Adhäsionen, wirkt entspannend auf das Nervensystem.",
-        solution: "Die mechanischen Griffe (Effleurage, Petrissage, Friktion, Tapotement) erzeugen unterschiedliche Effekte auf Haut, Muskel und Bindegewebe. Lymphdrainage ist ein Sonderform."
+        statement: "Die klassische Massage fördert Durchblutung und Lymphfluss, normalisiert den Muskeltonus, vermehrt rote Blutkörperchen und regt den Stoffwechsel sowie die Sauerstoffversorgung der Muskeln an.",
+        answer: true,
+        solution: "Weitere Wirkungen: Bindegewebe gedehnt, Gelenke besser durchblutet, Entzündungen/Schwellungen günstig beeinflusst, Spann- und Kontraktionskraft der Muskeln erhöht. Auch vorbeugend (z.B. gegen Verletzungen) geeignet."
       },
       water: {
-        statement: "Was versteht man unter Reiki und welche Grade gibt es?",
-        answer: "Reiki (Mikao Usui, Japan) bedeutet 'universelle Lebensenergie'. Ziel: Harmonisierung der Körperschwingungen. Wirkung: entkrampfend, entspannend, schmerzstillend. Anwendung mit beiden Händen auf Körperregionen. Es gibt 3 Grade (Einweihungsstufen): Grad 1 (Selbstbehandlung), Grad 2 (Fernbehandlung), Grad 3 (Meistergrad/Lehrfähigkeit).",
-        solution: "Reiki basiert auf der Vorstellung, dass der Therapeut Lebensenergie kanalisiert und auf den Patienten überträgt. Wissenschaftlicher Nachweis fehlt, aber entspannende Wirkung ist dokumentiert."
+        statement: "Reiki wurde von Mikao Usui (japanischer Mönch) wiederentdeckt, wirkt entkrampfend, entspannend und schmerzstillend. Es gibt drei Grade der Ausbildung. Bei Behandlungen werden immer beide Hände benutzt.",
+        answer: true,
+        solution: "Reiki harmonisiert gestörte energetische Körperschwingungen und aktiviert Selbstheilungskräfte von Körper, Seele und Geist. Wenige Minuten pro Körperteil reichen meist aus; bei Teilbehandlungen etwas länger verweilen."
       }
     },
     harvestQuestions: [
@@ -13972,6 +13972,109 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Aktive Bewegungstherapie beginnt mit maximaler Belastung", correct: false }
         ],
         explanation: "Aktive Bewegungstherapie beginnt langsam steigernd – nicht mit maximaler Belastung. Alle anderen Aussagen sind korrekt."
+      }
+    ]
+  }),
+
+  makeDetailedPlant({
+    id: "1046_09",
+    title: "Hydrotherapie: Temperaturreaktionen & Wickeltypen",
+    contextHint: "Kap. 1.1–1.3.2 – 3 Grundsatzregeln; vasomotorische Reaktionssequenz (plötzlich vs. anhaltend, warm vs. kalt); Prießnitz-Wickel (Leinen+Wolle) vs. Kneipp-Wickel (Leinen+Baumwolle+Wolle)",
+    phase1: {
+      soil: {
+        statement: "Die drei Grundsatzregeln der Hydrotherapie lauten: nie auf kaltes Gewebe anwenden, nie bei frierendem oder übermüdetem Patienten und nie in kalten oder zugigen Räumen.",
+        answer: true,
+        solution: "Diese Regeln sichern die Wirksamkeit und verhindern Komplikationen. Hydrotherapeutische Reize wirken nur auf warmes, reaktionsfähiges Gewebe. Frierender oder übermüdeter Patient kann nicht adäquat reagieren."
+      },
+      seed: {
+        statement: "Beim Prießnitz-Wickel wird zusätzlich zu feuchtem Leinentuch und Wolltuch ein Baumwolltuch eingelegt.",
+        answer: false,
+        solution: "Das ist der KNEIPP-Wickel: feuchtes Leinentuch + Baumwolltuch + trockenes Wolltuch. Der Prießnitz-Wickel besteht nur aus feuchtem Leinentuch + trockenem Wolltuch (ohne Baumwolle)."
+      },
+      water: {
+        statement: "Plötzliche Wärme bewirkt zunächst kurze Vasokonstriktion, dann Vasodilatation; plötzliche Kälte bewirkt zunächst Vasokonstriktion, dann starke Vasodilatation – bei anhaltender Kälte folgt erneute Vasokonstriktion mit Mangeldurchblutung.",
+        answer: true,
+        solution: "Länger andauernde Wärme → anhaltende Vasodilatation; länger andauernde Kälte → anhaltende Vasokonstriktion/Mangeldurchblutung. Der kurze Kältereiz (Kneipp-Guss) nutzt die reaktive Dilatationsphase therapeutisch."
+      }
+    },
+    harvestQuestions: [
+      {
+        id: "1046_09_h1",
+        type: "mc",
+        question: "Welche drei Grundsatzregeln gelten für alle hydrotherapeutischen Anwendungen?",
+        options: [
+          { text: "Nie auf kaltes Gewebe, nie bei frierendem/übermüdetem Patienten, nie in kalten/zugigen Räumen", correct: true },
+          { text: "Immer kurze Anwendungszeit, immer mit Massage kombinieren, immer nüchtern", correct: false },
+          { text: "Nur morgens anwenden, immer kalt beginnen, immer warm beenden", correct: false },
+          { text: "Nie bei Kindern, nie bei Älteren, nie bei Herzerkrankungen", correct: false }
+        ],
+        explanation: "Die 3 Grundsatzregeln sichern die physiologische Reaktionsfähigkeit des Gewebes. Kaltes Gewebe reagiert nicht; frierender/übermüdeter Patient kann nicht thermoregulieren; kalte/zugige Räume verhindern die erwünschte Erwärmungsphase."
+      },
+      {
+        id: "1046_09_h2",
+        type: "true_false",
+        statement: "Der Kneipp-Wickel besteht aus feuchtem Leinentuch + trockenem Baumwolltuch + trockenem Wolltuch.",
+        answer: true,
+        explanation: "Korrekt. Der Kneipp-Wickel hat drei Schichten: feuchtes Leinentuch (innen), Baumwolltuch (Mitte), Wolltuch (außen). Der Prießnitz-Wickel besteht nur aus zwei Schichten: feuchtes Leinentuch + Wolltuch."
+      },
+      {
+        id: "1046_09_h3",
+        type: "mc",
+        question: "Was bewirkt eine länger andauernde Kälteanwendung auf die Blutgefäße?",
+        options: [
+          { text: "Anhaltende Vasodilatation", correct: false },
+          { text: "Zunächst Dilatation, dann Konstriktion", correct: false },
+          { text: "Anhaltende Vasokonstriktion mit Mangeldurchblutung", correct: true },
+          { text: "Keine Wirkung – nur kurze Anwendungen wirken", correct: false }
+        ],
+        explanation: "Länger andauernde Kälte → anhaltende Vasokonstriktion → Mangeldurchblutung. Dagegen: plötzliche/kurze Kälte → zunächst Konstriktion, dann starke reaktive Vasodilatation (therapeutisch genutzt bei Kneipp-Güssen)."
+      },
+      {
+        id: "1046_09_h4",
+        type: "true_false",
+        statement: "Plötzliche Wärme führt zunächst zu kurzer Vasokonstriktion, bevor die Vasodilatation einsetzt.",
+        answer: true,
+        explanation: "Korrekt. Plötzliche Wärme → kurze Konstriktion → dann Dilatation. Länger andauernde Wärme → direkte anhaltende Vasodilatation (ohne initiale Konstriktion)."
+      },
+      {
+        id: "1046_09_h5",
+        type: "mc",
+        question: "Welcher Wickeltyp besteht ausschließlich aus feuchtem Leinentuch und trockenem Wolltuch (ohne Baumwolle)?",
+        options: [
+          { text: "Kneipp-Wickel", correct: false },
+          { text: "Prießnitz-Wickel", correct: true },
+          { text: "Moor-Wickel", correct: false },
+          { text: "Schaf-Wickel", correct: false }
+        ],
+        explanation: "Der Prießnitz-Wickel = feuchtes Leinentuch + trockenes Wolltuch (2 Schichten). Der Kneipp-Wickel hat drei Schichten: Leinen + Baumwolle + Wolle."
+      }
+    ],
+    phase4Questions: [
+      {
+        id: "1046_09_p4_1",
+        type: "mc",
+        question: "Welche vasomotorischen Reaktionen sind korrekt beschrieben? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Länger andauernde Wärme → Vasodilatation", correct: true },
+          { text: "Länger andauernde Kälte → Vasokonstriktion/Mangeldurchblutung", correct: true },
+          { text: "Plötzliche Kälte → zunächst Konstriktion, dann starke Dilatation", correct: true },
+          { text: "Plötzliche Wärme → sofortige anhaltende Dilatation ohne initiale Konstriktion", correct: false },
+          { text: "Kurzer Kältereiz (z.B. Kneipp-Guss) nutzt die reaktive Dilatationsphase", correct: true }
+        ],
+        explanation: "Plötzliche Wärme bewirkt zunächst kurze Konstriktion, dann Dilatation – nicht sofortige Dilatation. Alle anderen Aussagen beschreiben die vasomotorischen Reaktionen korrekt."
+      },
+      {
+        id: "1046_09_p4_2",
+        type: "mc",
+        question: "Welche Aussagen zu Wickeltypen und Grundsatzregeln der Hydrotherapie sind korrekt? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Prießnitz-Wickel: 2 Schichten (Leinen + Wolle)", correct: true },
+          { text: "Kneipp-Wickel: 3 Schichten (Leinen + Baumwolle + Wolle)", correct: true },
+          { text: "Hydrotherapie darf auf kaltes Gewebe angewendet werden", correct: false },
+          { text: "Nie bei frierendem oder übermüdetem Patienten anwenden", correct: true },
+          { text: "Kalte Wickel sind indiziert bei Fieber, Entzündungen, Verstauchungen", correct: true }
+        ],
+        explanation: "Hydrotherapie NIE auf kaltes Gewebe anwenden – kaltes Gewebe kann nicht reagieren. Alle anderen Aussagen sind korrekt."
       }
     ]
   })
