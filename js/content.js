@@ -14964,19 +14964,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 1.1 – Wirkspektrum äth. Öle: appetitfördernd, spasmolytisch, diuretisch, antibiotisch; optimale Konzentrationen; Baldrian-Dosierung; schleimlösende Öle",
     phase1: {
       soil: {
-        statement: "Welche allgemeinen Wirkungen haben ätherische Öle und welche Konzentration ist für ihre antibiotische Wirkung optimal?",
-        answer: "Allgemeine Wirkungen: appetitfördernd, spasmolytisch, diuretisch, antibiotisch. Optimale antibiotische Konzentration: 0,6–1,2 %. Beispiele: Thymianöl 0,7 %, Eukalyptus-/Pfefferminzöl 0,2–0,3 %, Lavendelöl 0,4–0,5 %, Kampfer-/Angelikaöl 1,0 %. Bei der Harnwegbehandlung wirken Thuja- und Wacholderöl diuretisch, doch werden Glykoside wie Arbutin (z. B. Bärentraubenblättertee) als besser angesehen.",
-        solution: "Ätherische Öle entfalten ihre antibiotische Wirkung in einem engen Konzentrationsfenster. Zu niedrige Konzentration ist unwirksam, zu hohe kann reizend wirken."
+        statement: "Die allgemeinen Wirkungen ätherischer Öle sind appetitfördernd, spasmolytisch, diuretisch und antibiotisch; die optimale antibiotische Wirkung entfalten sie bei einer Konzentration von 0,6–1,2 %.",
+        answer: true,
+        solution: "Thymianöl optimal bei 0,7 %, Eukalyptus/Pfefferminz 0,2–0,3 %, Lavendelöl 0,4–0,5 %, Kampfer-/Angelikaöl 1,0 %. Harnwege: Thuja/Wacholder diuretisch, besser aber Arbutin (Bärentraubenblättertee)."
       },
       seed: {
-        statement: "Wie wirkt Baldrian in verschiedenen Dosierungen und warum darf Arnika innerlich nur homöopathisch angewendet werden?",
-        answer: "Baldrian (ätherisches Öl, Herz-Kreislauf): 8–10 Tropfen belebend, 15–20 Tropfen beruhigend, >30 Tropfen schädlich. Dosisabhängiger Effekt: kleine Dosis stimulierend, mittlere Dosis sedierend, große Dosis toxisch. Arnika: nur homöopathisch (D6 oder D12) innerlich anwendbar; unverdünntes Arnikaöl innerlich ist giftig. Melisse: beruhigend.",
-        solution: "Baldrian ist eines der wenigen Beispiele, bei denen die Dosis die Wirkungsqualität umkehrt. Dieses Prinzip ist prüfungsrelevant."
+        statement: "Baldrian wirkt dosisabhängig: 8–10 Tropfen beruhigend, 15–20 Tropfen belebend und mehr als 30 Tropfen schädlich.",
+        answer: false,
+        solution: "Vertauscht: 8–10 Tropfen = belebend, 15–20 Tropfen = beruhigend, >30 Tropfen = schädlich (toxisch). Arnika: nur homöopathisch (D6/D12) innerlich – unverdünnt giftig. Melisse: beruhigend."
       },
       water: {
-        statement: "Welche ätherischen Öle wirken im Respirationstrakt und durch welchen Mechanismus?",
-        answer: "Respirationstrakt: Menthol belebend. Schleimlösend: Thymian, Anis, Eukalyptus, Fenchel, Latschenkiefer. Salbei: gegen Mund- und Rachenentzündungen. Kampferbaum: antibiotisch. Kamille (Wirkstoff Azulen): entgiftend. Die äth. Öle verdampfen beim Einatmen und gelangen direkt in die Atemwege, wo sie die Bronchialschleimhaut stimulieren und Schleim verflüssigen.",
-        solution: "Menthol wirkt belebend (Kältereiz), nicht aber schleimlösend. Schleimlösend sind Thymian, Anis, Eukalyptus, Fenchel, Latschenkiefer – diese Unterscheidung ist prüfungsrelevant."
+        statement: "Im Respirationstrakt wirkt Menthol schleimlösend, während Thymian, Anis, Eukalyptus, Fenchel und Latschenkiefer belebend wirken.",
+        answer: false,
+        solution: "Vertauscht: Menthol = belebend (Kältereiz), nicht schleimlösend. Schleimlösend: Thymian, Anis, Eukalyptus, Fenchel, Latschenkiefer. Salbei: Mund/Rachen. Kamille (Azulen): entgiftend/keimtötend."
       }
     },
     harvestQuestions: [
@@ -15073,19 +15073,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 1.1 – Hautdurchblutung, analgetisch, entzündungshemmend; Verdauung: Galleproduktion, Karminativa, Spasmolytika",
     phase1: {
       soil: {
-        statement: "Welche ätherischen Öle fördern die Hautdurchblutung und welche wirken entzündungshemmend auf der Haut?",
-        answer: "Durchblutungsfördernd: Kampfer, Rosmarin, Terpentin, Senföl. Analgetisch (Kältereiz): Menthol. Entzündungshemmend: Kamillenöl, Ringelblumenöl, Arnikaöl. Diese drei Wirkgruppen sind klar zu trennen: Durchblutungsfördernd ≠ entzündungshemmend.",
-        solution: "Menthol täuscht Kälte vor und wirkt dadurch analgetisch – der Kältereiz überlagert den Schmerzreiz. Kamille und Ringelblume dagegen hemmen aktiv Entzündungsmediatoren."
+        statement: "Kampfer, Rosmarin, Terpentin und Senföl wirken auf der Haut durchblutungsfördernd, während Ringelblumen-, Kamille- und Arnikaöl entzündungshemmend (antiphlogistisch) wirken.",
+        answer: true,
+        solution: "Menthol gehört weder zur Durchblutungs- noch zur Entzündungsgruppe – es wirkt analgetisch durch Kältereiz. Merke: durchblutungsfördernd = Kampfer/Rosmarin/Terpentin/Senföl; analgetisch = Menthol."
       },
       seed: {
-        statement: "Welche Wirkungen haben ätherische Öle auf den Verdauungstrakt und welches Öl steigert die Galleproduktion besonders stark?",
-        answer: "Wirkungen auf den Verdauungstrakt: desinfizierend (gegen Gärungs- und Fäulnisdyspepsien), verdauungsfördernd, galleproduktionssteigernd, karminativ (blähungswidrig), spasmolytisch, entzündungshemmend. Galleproduktion: Pfefferminze steigert die Galleproduktion um das 7-Fache! Karminativa: Anis, Fenchel, Kümmelöl. Entzündungshemmend mit Antihistaminwirkung: Kamille und Schafgarbe.",
-        solution: "Pfefferminze steigert die Galleproduktion um das 7-Fache – ein spektakulärer Wert, der im Studienbrief ausdrücklich hervorgehoben wird und prüfungsrelevant ist."
+        statement: "Pfefferminze steigert die Galleproduktion um das 7-Fache, Anis, Fenchel und Kümmelöl wirken karminativ (blähungswidrig) und Kamille/Schafgarbe wirken im Verdauungstrakt entzündungshemmend und antihistaminisch.",
+        answer: true,
+        solution: "Die 7-fache Galleproduktionssteigerung durch Pfefferminze ist prüfungsrelevant. Karminativa = Anis/Fenchel/Kümmel. Kamille/Schafgarbe zusätzlich antihistaminisch (Histaminrezeptoren blockierend)."
       },
       water: {
-        statement: "Was sind Karminativa und was bedeutet es, dass Kamille und Schafgarbe Antihistaminwirkung haben?",
-        answer: "Karminativa sind blähungswidrige (windtreibende) Substanzen, die Blähungen lindern. Im Verdauungstrakt wirken Anis, Fenchel und Kümmelöl karminativ. Kamille und Schafgarbe enthalten äth. Öle, die nicht nur entzündungshemmend wirken, sondern auch Histaminrezeptoren blockieren – dadurch lindern sie allergisch bedingte Entzündungsreaktionen der Darmschleimhaut.",
-        solution: "Antihistaminwirkung bedeutet Blockade von Histaminrezeptoren. Bei Nahrungsmittelunverträglichkeiten oder Schleimhautentzündungen sind Kamille und Schafgarbe daher besonders wertvoll."
+        statement: "Menthol wirkt bei Gärungs- und Fäulnisdyspepsien karminativ durch seinen direkten Einfluss auf die Darmflora.",
+        answer: false,
+        solution: "Menthol wirkt bei Gärungs-/Fäulnisdyspepsien, aber durch seine desinfizierende Wirkung – nicht karminativ. Karminativ = blähungswidrig = Anis/Fenchel/Kümmel."
       }
     },
     harvestQuestions: [
@@ -15182,19 +15182,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 1.2–1.3 – Bitterstoffe: Reflexprinzip, Herz-Kreislauf, Verdauung, Löwenzahn; Gerbstoffe: Adstringenz, Tormentillwurzel, Kombinationen, Indikationen",
     phase1: {
       soil: {
-        statement: "Wie wirken Bitterstoffe im Körper und welche Organsysteme profitieren davon?",
-        answer: "Bitterstoffe wirken reflektorisch über die Mundschleimhaut → N. sympathicus und N. vagus → Organe, und zusätzlich lokal. Herz-Kreislauf: tonisierend (Herzmuskel stärkend), antianämisch (Magensäure↑ → Eisenresorption↑). Verdauung: Magensaftsekretion↑, Peristaltik↑, Gallebildung↑, spasmolytisch, diuretisch. Löwenzahn: steigert zusätzlich die Insulinproduktion. Beste Wirkung bei schwachem Bittergeschmack – intensiver Bittergeschmack schwächt die Wirkung paradoxerweise ab.",
-        solution: "Das Besondere an Bitterstoffen: Die Wirkung beginnt schon im Mund. Der Geschmackssinn aktiviert über Nervenbahnen die Verdauungsorgane – noch bevor der Wirkstoff resorbiert wird."
+        statement: "Bitterstoffe wirken reflektorisch über die Mundschleimhaut; sie regen über N. sympathicus und N. vagus die Verdauung an, steigern die Magensäuresekretion (→ verbesserte Eisenresorption) und fördern die Gallebildung.",
+        answer: true,
+        solution: "Wirkung beginnt bereits im Mund vor der Resorption. Löwenzahn steigert zusätzlich Insulinproduktion. Beste Wirkung bei schwachem Bittergeschmack – intensiver Geschmack schwächt die Wirkung paradoxerweise ab."
       },
       seed: {
-        statement: "Was sind Gerbstoffe, welche Typen gibt es und was ist die wichtigste Gerbstoffdroge?",
-        answer: "Gerbstoffe sind adstringierende (zusammenziehende) Substanzen, die auf eiweißhaltiges Gewebe einwirken. Zwei Typen: (1) Wasserlösliche Gerbstoffe → gut als Tee extrahierbar. (2) Catechingerbstoffe (nicht wasserlöslich) → Tinktur oder Pulver nötig. Wichtigste Gerbstoffdroge: Tormentillwurzel (Potentilla erecta) – zusätzlich bakterienhemmend. Eichenrindenabkochung: klassisches Gerbstoffpräparat für die Haut.",
-        solution: "Tormentillwurzel ist die wichtigste Gerbstoffdroge und hat durch ihre bakterienhemmende Zusatzwirkung eine besondere Stellung unter den Gerbstoffdrogen."
+        statement: "Die wichtigste Gerbstoffdroge mit zusätzlicher bakterienhemmender Wirkung ist die Tormentillwurzel (Potentilla erecta); wasserlösliche Gerbstoffe lassen sich als Tee, Catechingerbstoffe nur als Tinktur oder Pulver verwenden.",
+        answer: true,
+        solution: "Tormentillwurzel = Blutwurzel. Zwei Typen: wasserlöslich (Tee) vs. Catechin (unlöslich → Tinktur/Pulver). Eichenrinde = klassisches äußerliches Gerbstoffpräparat."
       },
       water: {
-        statement: "Wie unterscheiden sich die Wirkungen kleiner und großer Mengen Gerbstoffe und wie beeinflussen Kombinationen die Wirkung?",
-        answer: "Kleine Mengen: bakteriostatisch, entzündungshemmend. Große Mengen: entzündungserregend, Abführ- und Brechmittelwirkung. Achtung: hohe Dosen sind hautreizend und leberschädigend! Kombinationen: mit äth. Ölen → Gerbstoffwirkung abgeschwächt und verlängert; mit Schleimstoffen → Gerbstoffwirkung verstärkt; mit Alkaloiden → Wirkungseintritt verzögert.",
-        solution: "Gerbstoffe zeigen eine klare Dosis-Wirkungs-Umkehr: Kleine Mengen sind therapeutisch wertvoll, große Mengen können schaden. Dasselbe gilt für die Lebertoxizität bei Überdosierung."
+        statement: "Gerbstoffe in großen Mengen wirken adstringierend, diuretisch und leberschützend.",
+        answer: false,
+        solution: "Große Mengen Gerbstoffe wirken entzündungserregend und leberschädigend (nicht leberschützend). Kleine Mengen: adstringierend, bakteriostatisch, entzündungshemmend. Mit Schleimstoffen kombiniert → Gerbstoffwirkung verstärkt."
       }
     },
     harvestQuestions: [
@@ -15291,19 +15291,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 1.4–1.6 – Schleimstoffe: Quellfähigkeit, Schutzfilm, Kombinationswirkungen; Alkaloide: Stickstoff, Beispiele, Arztpflicht; Glykoside, Kieselsäure, Flavonoide",
     phase1: {
       soil: {
-        statement: "Was sind die wichtigsten Eigenschaften der Schleimstoffe und wie wirken sie in verschiedenen Körperbereichen?",
-        answer: "Schleimstoffe: quellfähig, bilden Gele und viskose Lösungen. Schutzfilm über Schleimhäuten. Nicht resorbiert. Verdauung: Pufferwirkung (Gastritis), antidiarrhoisch in niedriger Dosis, abführend in hoher Dosis (Leinsamen!). Atemwege: reizlindernd (z. B. Huflattich). Äußerlich: aufweichend und wundheilend (z. B. bei Furunkeln). Wichtig: Schleimstoffe müssen als Tee aufgenommen werden, da sie in Alkohol nicht löslich sind.",
-        solution: "Schleimstoffe bilden einen Schutzfilm – sie wirken also rein mechanisch schützend, ohne selbst resorbiert zu werden. Daher sind sie ideal bei Schleimhautreizungen jeder Art."
+        statement: "Schleimstoffe sind quellfähig und bilden Schutzfilme über Schleimhäuten; in niedriger Dosierung wirken sie antidiarrhoisch, in hoher Dosierung abführend (z. B. Leinsamen).",
+        answer: true,
+        solution: "Schleimstoffe werden nicht resorbiert – rein mechanischer Schutzfilm. Pufferwirkung bei Gastritis. Für Schleimstoffe: Teeaufguss oder Mazeration (nicht Tinktur – in Alkohol unlöslich)."
       },
       seed: {
-        statement: "Was sind Alkaloide und warum ist ihre Anwendung dem Arzt vorbehalten?",
-        answer: "Alkaloide: stickstoffhaltige Pflanzenstoffe, stark wirkend. Entscheidend: Die wirksame und die giftige Dosis liegen sehr nahe beieinander (geringe therapeutische Breite). Deshalb ist die Anwendung dem Arzt vorbehalten. Wichtige Beispiele: Atropin (Anticholinergikum), Chinin (Malariamittel), Curare (Muskelrelaxans), Nikotin (Sucht), Koffein (Stimulans), Strychnin (Gift), Opium/Morphin (Analgetikum).",
-        solution: "Die geringe therapeutische Breite macht Alkaloide zu den gefährlichsten pflanzlichen Wirkstoffen. Morphin heilt in der richtigen Dosis schwere Schmerzen, kann aber in Überdosis töten."
+        statement: "Alkaloide sind stickstoffhaltige Pflanzenstoffe mit breiter therapeutischer Breite; ihre Anwendung ist daher in der Regel ohne ärztliche Aufsicht möglich.",
+        answer: false,
+        solution: "Alkaloide haben eine GERINGE therapeutische Breite – wirksame und toxische Dosis liegen sehr nahe beieinander. Deshalb Anwendung dem Arzt vorbehalten. Beispiele: Atropin, Chinin, Curare, Nikotin, Koffein, Strychnin, Opium."
       },
       water: {
-        statement: "Wie beeinflussen Schleimstoffe die Wirkung anderer pflanzlicher Wirkstoffe in Kombinationspräparaten?",
-        answer: "Schleimstoffe verlängern die Verweildauer anderer Wirkstoffe an der Schleimhaut. Kombinationswirkungen: mit äth. Ölen → deren Wirkung verlängert und möglicherweise verstärkt; mit Bitterstoffen → Bitterstoffwirkung verlängert. Schleimstoffe wirken als 'Depot' für andere Wirkstoffe. Kombinationswirkung bei Gerbstoffen und Schleimstoff: Gerbstoffwirkung verstärkt.",
-        solution: "Schleimstoffe sind natürliche Retardierungsmittel: Sie verlängern die Kontaktzeit anderer Wirkstoffe mit der Schleimhaut und erhöhen so deren Wirkdauer."
+        statement: "Schleimstoffe verlängern in Kombination mit ätherischen Ölen oder Bitterstoffen deren Wirkdauer an der Schleimhaut; mit Gerbstoffen kombiniert verstärken sie die adstringierende Wirkung.",
+        answer: true,
+        solution: "Schleimstoffe = natürliche Retardierungsmittel: verlängern Kontaktzeit anderer Wirkstoffe. Kombinationsübersicht: äth. Öle/Bitterstoffe → verlängert; Gerbstoffe → verstärkt; Alkaloide → Wirkungseintritt verzögert."
       }
     },
     harvestQuestions: [
@@ -15400,19 +15400,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 2–3 – Droge, Tee (Infus), Abkochung, kalter Auszug, Pulver, Saft, Tinktur, Tablette, Tropfen, Salbe; Haut, oral, rektal, parenteral",
     phase1: {
       soil: {
-        statement: "Welche Zubereitungsformen kennt die Phytotherapie und wie werden sie jeweils hergestellt?",
-        answer: "Droge: getrocknete Pflanze/Pflanzenteile. Abkochung (Decoctum): kalt aufgießen, kochen. Tee (Infus): heißes/kochendes Wasser aufgießen. Kalter Auszug (Mazeration): kalt bis mäßig warm in Wasser, Wein, Essig oder Alkohol. Pulver: fein zerstoßene Trockenkräuter. Saft: frisch gepresste Pflanze; kurze Haltbarkeit. Tinktur: Trockenpflanzen + organisches Lösungsmittel (fast immer Alkohol). Tabletten/Dragees: häufigste feste Form. Tropfen: wie Tinktur, aber auch wasserbasiert möglich. Salbe: Fett/Öl + pflanzliche Wirkstoffe.",
-        solution: "Der Unterschied zwischen Tropfen und Tinktur: Tinkturen enthalten immer Alkohol als Lösungsmittel, Tropfen können auch wasserbasiert sein."
+        statement: "Eine Tinktur wird durch Extraktion getrockneter Pflanzenteile mit Alkohol (40–70 %) im Verhältnis 1:5 bis 1:10 hergestellt; Schleimstoffe und Saponine lösen sich in Alkohol schlecht und werden besser durch Mazeration gewonnen.",
+        answer: true,
+        solution: "Droge = getrocknete Pflanze. Tinktur vs. Tropfen: Tinktur immer alkoholbasiert; Tropfen können auch wasserbasiert sein. Nur Apotheker dürfen Arzneimittel herstellen und verkaufen!"
       },
       seed: {
-        statement: "Welche Vorteile haben Tinkturen gegenüber wässrigen Zubereitungen?",
-        answer: "Vorteile der Tinktur: (1) Alkohol löst fast alle Wirkstoffe außer Saponinen und Schleimstoffen besser aus der Droge als Wasser. (2) Höhere Haltbarkeit als getrocknete Drogen und andere Zubereitungen. (3) Einnahme überall ohne großen Aufwand möglich. (4) Konzentration leicht durch Wasserzusatz variierbar. Mengenverhältnis: Droge zu Alkohol zwischen 1:5 und 1:10; Alkoholgehalt: 40–70 %. Nur Apotheker dürfen Arzneimittel herstellen und verkaufen!",
-        solution: "Tinkturen sind bei Saponinen und Schleimstoffen ungeeignet (lösen sich nicht in Alkohol). Für diese Wirkstoffe ist Mazeration oder Teeaufguss die richtige Methode."
+        statement: "Die äußere (dermale) Anwendung von Heilpflanzen hat unter allen Darreichungswegen das höchste Komplikationsrisiko, bietet aber die größte lokale Wirksamkeit.",
+        answer: false,
+        solution: "Genau umgekehrt: die dermale Anwendung hat das GERINGSTE Komplikationsrisiko. Vorteile: lokale Therapie auch für Laien, einfache Handhabung. Parenteral (i.v., i.a.) = höchstes Risiko."
       },
       water: {
-        statement: "Welche Darreichungswege gibt es und welcher hat das geringste Komplikationsrisiko?",
-        answer: "Darreichungswege: (1) Über die Haut (dermal): geringstes Komplikationsrisiko aller Formen! Wirkstoffe werden über Blutgefäße systemisch aufgenommen. (2) Oral: Resorption über gesamten Verdauungskanal; häufigste Form. (3) Rektal: Klistiere oder Suppositorien. (4) Parenteral (umgeht Verdauungskanal): i.v., i.a., i.c., i.m., s.c. Die dermale Anwendung bietet lokale Therapie auch für Laien und ist problemlos in der Handhabung.",
-        solution: "Die dermale (äußere) Anwendung hat das geringste Komplikationsrisiko. Das macht sie besonders für die Selbstmedikation und den Heilpraktikerbereich attraktiv."
+        statement: "Zu den parenteralen Verabreichungswegen gehören i.v., i.a., i.c., i.m. und s.c.; parenteral bedeutet, dass der Verdauungskanal umgangen wird.",
+        answer: true,
+        solution: "Parenteral = umgeht den Verdauungskanal (lat. para enteron = neben dem Darm). Oral = Resorption über Verdauungskanal. Rektal = über Mastdarmschleimhaut (Klistiere, Suppositorien)."
       }
     },
     harvestQuestions: [
@@ -15509,19 +15509,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 3.1.5–3.1.7 – Kräuterbäder, Wickel: Wirkungsmechanismus, kalt vs. warm, Arzneizusätze; Packungen; Heiße und kalte Packung",
     phase1: {
       soil: {
-        statement: "Wie wirken Wickel und Umschläge und was geschieht physiologisch beim Anlegen eines feuchtkalten Wickels?",
-        answer: "Physiologischer Ablauf: Feuchtkaltes Wickeltuch → Vasokonstriktion (Blutgefäße ziehen sich zusammen) → dann Vasodilatation (Gefäßerweiterung). In der Vasodilatationsphase ist die Haut besonders aufnahmefähig für Arzneistoffe. Äußere Wolldecke → Wärmeentwicklung → kräftige Gefäßerweiterung → stark ableitend aus der Tiefe. Feuchte Wärme: nervenberuhigend und schmerzstillend. Arzneizusätze: Eintauchen des Tuchs in Teeaufguss steigert die Wirkung.",
-        solution: "Der Zweiphasenmechanismus ist prüfungsrelevant: Zuerst Kontraktion (aktive Abwehr), dann Dilatation (Erholung/Aufnahme). In der Dilatationsphase ist die Haut maximal aufnahmefähig."
+        statement: "Ein feuchtkalter Wickel bewirkt zunächst eine Vasokonstriktion, dann eine Vasodilatation; in der Dilatationsphase ist die Haut für Arzneistoffe besonders aufnahmefähig.",
+        answer: true,
+        solution: "Zweiphasenmechanismus: Kontraktion → Dilatation. Äußere Wolldecke → Wärmeentwicklung → kräftige Gefäßerweiterung → stark ableitend. Beste Anwendungszeit: früher Morgen (außer bei Fieber: abends)."
       },
       seed: {
-        statement: "Wann werden kalte und wann warme oder heiße Wickel angewendet?",
-        answer: "Kalter Wickel bei: Arteriosklerose, Fettsucht, fieberhaften Erkrankungen, Hautkrankheiten, Knochenbrüchen, Neuralgien. Warmer/heißer Wickel bei: Blasenerkrankungen, Darm-/Gallenerkrankungen, Grippe, Koliken, Nierenerkrankungen, Sehnenentzündungen, Unterleibserkrankungen. Durchführung: nasses Leinentuch + trockenes Leinentuch + Wolltuch. Bei 'hitzigen' Menschen kalt, bei Schüttelfrost vorgewärmt. Beste Anwendungszeit: früher Morgen (außer bei Fieber: abends).",
-        solution: "Merkhilfe: Kalter Wickel = kühlend/ableitend bei Entzündung/Fieber. Warmer Wickel = krampflösend/durchblutungsfördernd bei inneren Erkrankungen (Koliken, Blasenentzündung)."
+        statement: "Bei fieberhaften Erkrankungen und Arteriosklerose ist der warme Wickel indiziert; bei Blasenerkrankungen und Koliken der kalte Wickel.",
+        answer: false,
+        solution: "Vertauscht! Kalter Wickel bei: Fieber, Arteriosklerose, Fettsucht, Hautkrankheiten, Knochenbrüchen, Neuralgien. Warmer Wickel bei: Blasen-/Darm-/Gallenerkrankungen, Grippe, Koliken, Nierenerkrankungen, Sehnenentzündungen."
       },
       water: {
-        statement: "Was sind Kräuterbäder und Packungen und durch welchen Mechanismus erhöhen warme Bäder die Arzneimittelresorption?",
-        answer: "Kräuterbäder: warmes Wasser erweitert Gefäße → Wirkstoffe werden über gesamte Hautoberfläche aufgenommen → deutliche systemische Arzneiwirkung + Entspannungseffekt. Äth. Öle im Bad: wasserunlöslich → müssen mit Emulgatoren/Fetten vermischt werden (Bademilch) oder als Badeöl ohne Wasser verwendet werden. Packungen: wie Wickel, aber Inhalt besteht aus erhitzten/feuchten Heilpflanzenteilen (heiße Packung, z. B. Heublumen) oder kalten Substanzen (Quark, Lehm). Wirkung: schweißanregend, wärmeentziehend, entgiftend.",
-        solution: "Kräuterbäder nutzen den großen Vorteil der Gesamtkörperdurchblutung: Die Wirkstoffaufnahme ist umso größer, je mehr Haut mit dem Wasser in Kontakt kommt (Vollbad > Teilbad)."
+        statement: "Ätherische Öle sind im Badewasser wasserlöslich und können daher direkt dem Badewasser beigemischt werden; warme Kräuterbäder erweitern die Blutgefäße und fördern die systemische Resorption der Wirkstoffe.",
+        answer: false,
+        solution: "Ätherische Öle sind WASSERUNLÖSLICH – müssen mit Emulgatoren/Fetten gemischt werden (Bademilch) oder als Badeöl ohne Wasser verwendet werden. Der zweite Teil ist korrekt: warmes Wasser → Gefäßerweiterung → systemische Resorption."
       }
     },
     harvestQuestions: [
@@ -15618,19 +15618,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 4 – Schüßler (1821–1898): Zellsalztheorie; Potenz D6/D12; Aufnahme über Mundschleimhaut; 12 Salze: Ca fluoratum, Ca phosphoricum, Fe phosphoricum, K chloratum, K phosphoricum, K sulfuricum, Mg phosphoricum, Na chloratum, Na phosphoricum, Na sulfuricum, Silicea, Ca sulfuricum",
     phase1: {
       soil: {
-        statement: "Was ist die theoretische Grundlage der Biochemie nach Dr. Schüßler und wie unterscheidet sie sich von der Homöopathie?",
-        answer: "W.H. Schüßler (1821–1898): Ausgangsthese: normale Zellfunktion ist von anorganischen Salzen abhängig; Fehlen dieser Lebenssalze → Erkrankung. Geht NICHT nach Simile-Prinzip (Homöopathie: Ähnlichkeit), sondern nach physiologisch-chemischen Gesetzen. Potenz D6 (1:1.000.000) am häufigsten, D12 selten. Aufnahme muss über Mundschleimhaut erfolgen (Magensäure zerstört die Wirkung). Ziel: nicht direkter Salzersatz, sondern Reiz auf die Zelle → Zelle deckt Defizit selbst aus Nahrung. Regel: Je chronischer, desto länger einnehmen, aber geringer dosieren. Generell nur ein Mittel auf einmal.",
-        solution: "Schüßler kritisierte die Homöopathie, obwohl er homöopathische Potenzen verwendete. Das Simile-Prinzip lehnte er ab – er handelte nach physiologisch-chemischen Gesetzmäßigkeiten."
+        statement: "Die Biochemie nach Schüßler (1821–1898) basiert auf der Theorie, dass das Fehlen anorganischer Salze Erkrankungen verursacht; die Salze werden in Potenz D6 (1:1.000.000) verabreicht und müssen über die Mundschleimhaut aufgenommen werden, weil Magensäure die Wirkung zerstört.",
+        answer: true,
+        solution: "Unterschied zur Homöopathie: Schüßler handelt nach physiologisch-chemischen Gesetzen, nicht nach dem Simile-Prinzip. Ziel: nicht direkter Salzersatz, sondern Reiz auf die Zelle → deckt Defizit selbst aus Nahrung."
       },
       seed: {
-        statement: "Welche Schüßler-Salze tragen die Nummern 1–6 und welche Indikationen haben sie?",
-        answer: "Nr. 1 Calcium fluoratum: Zahnschmelz, Knochen, elastisches Gewebe → Knochen-/Zahnerkrankungen, Gelenkbeschwerden, Elastizitätsverlust der Gefäße. Nr. 2 Calcium phosphoricum: häufigstes Körpersalz; Aufbau, Proteinsynthese → Knochen/Zähne, schlechtheilende Knochenbrüche, Blutarmut, rasche Ermüdbarkeit. Nr. 3 Ferrum phosphoricum: Hämoglobin, Infektabwehr → 1. Entzündungsstadium, Anämien, Verletzungen. Nr. 4 Kalium chloratum: Erregbarkeit → Schleimhautkatarrhe (2. Entzündungsstadium). Nr. 5 Kalium phosphoricum: wertvollstes Mittel; Gehirn/Nerven → Erschöpfung, Depressionen, Lähmungen. Nr. 6 Kalium sulfuricum: Epidermis, Epithelzellen → chronische Entzündungen.",
-        solution: "Merkhilfe: Fe phosphoricum = 1. Entzündungsstadium (akut, Fieber), K chloratum = 2. Entzündungsstadium (Schleimhautkatarrhe). K phosphoricum ist das wichtigste Nervenmittel."
+        statement: "Ferrum phosphoricum (Nr. 3) wird beim 2. Entzündungsstadium (Schleimhautkatarrhe) eingesetzt, während Kalium chloratum (Nr. 4) für das 1. Entzündungsstadium (akut, fieberhaft) zuständig ist.",
+        answer: false,
+        solution: "Vertauscht! Ferrum phosphoricum (Nr. 3) = 1. Entzündungsstadium (akut, fieberhaft, plötzlich). Kalium chloratum (Nr. 4) = 2. Entzündungsstadium (Schleimhautkatarrhe). K phosphoricum = wertvollstes Nervenmittel."
       },
       water: {
-        statement: "Welche Schüßler-Salze tragen die Nummern 7–12 und welche Indikationen haben sie?",
-        answer: "Nr. 7 Magnesium phosphoricum: Skelett, Muskeln, Nerven, Gehirn; antithrombotisch, antiallergisch → Krämpfe aller Art, Neuralgien. Nr. 8 Natrium chloratum (Kochsalz): Wasserhaushalt, osmotischer Druck → Blutarmut, Abmagerung, Schleimhautkatarrhe, nässende Ekzeme. Nr. 9 Natrium phosphoricum: hält Harnsäure in Lösung → Rheuma, Gicht. Nr. 10 Natrium sulfuricum: entwässernd → Ausscheidungsorgane, Leber, Galle, Niere, Blase, Ekzeme, Ödeme. Nr. 11 Silicea: Haut, Schleimhäute, Knochen; Entzündungen mit Eiterungen → Hauterkrankungen. Nr. 12 Calcium sulfuricum: Leber/Gallenblase; eitrige Prozesse → Abszesse, Furunkel, Bindehautentzündung.",
-        solution: "Mg phosphoricum = Krampfmittel Nr. 1 bei Schüßler. Na phosphoricum = Mittel gegen Säureüberschuss (Rheuma, Gicht). Na sulfuricum = Entwässerung und Entschlackung."
+        statement: "Magnesium phosphoricum (Nr. 7) ist das Hauptmittel bei Krämpfen und Neuralgien; Natrium phosphoricum (Nr. 9) hält Harnsäure in Lösung und ist das Mittel bei Rheuma und Gicht; Kalium phosphoricum (Nr. 5) gilt als das wertvollste Funktionsmittel.",
+        answer: true,
+        solution: "Mg phosphoricum = Krampfmittel. Na phosphoricum = Säuremittel (Rheuma/Gicht). K phosphoricum = Nervenmittel (Erschöpfung/Depressionen). Na sulfuricum (Nr. 10) = Entwässerung/Ausscheidungsorgane."
       }
     },
     harvestQuestions: [
@@ -15727,19 +15727,19 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
     contextHint: "Kap. 5–6 – Bach (1886–1936): 38 Heilmittel, Sonnen-/Kochmethode, Dosierung; Enzymtherapie: Biokatalysatoren, Schlüssel-Schloss, Anwendung, KI",
     phase1: {
       soil: {
-        statement: "Wer war Dr. Edward Bach und auf welcher Theorie beruht die Bachblütentherapie?",
-        answer: "Dr. Edward Bach (1886–1936): englischer Arzt, zunächst Schulmediziner (Unfallchirurgie, Bakteriologie, Pathologie). Entwickelte 38 Heilmittel (37 Blüten + 1 Quellwasser). Grundtheorie: Die Psyche des Menschen ist bei Erkrankungen wichtiger als der Körper. Jeder Krankheit liegt ein negativer Seelenzustand zugrunde. Ziel: Harmonisierung von Seele und Bewusstsein (Selbstheilung durch Reharmonisierung). Bachs Krankheitsdefinition: 'Krankheit ist weder Grausamkeit noch Strafe, sondern einzig und allein ein Korrektiv; ein Werkzeug, dessen sich unsere eigene Seele bedient, um uns auf unsere Fehler hinzuweisen.'",
-        solution: "Die Bachblütentherapie wirkt nach Bach nicht auf den Körper direkt, sondern auf das Bewusstsein – die feinstoffliche Energie der Blüten soll Blockaden im Seelenleben lösen."
+        statement: "Dr. Edward Bach (1886–1936) entwickelte 38 Heilmittel (37 Blüten + 1 Quellwasser); er war der Ansicht, dass jeder Krankheit ein negativer Seelenzustand zugrunde liegt und die Psyche wichtiger als der Körper ist.",
+        answer: true,
+        solution: "Bach-Zitat: 'Krankheit ist weder Grausamkeit noch Strafe, sondern einzig und allein ein Korrektiv.' Ziel: Harmonisierung von Seele und Bewusstsein → Selbstheilung. Dosierung: 10 ml Fläschchen + 1 Tropfen Blütenessenz."
       },
       seed: {
-        statement: "Wie werden Bachblüten hergestellt und wie werden sie angewendet?",
-        answer: "Zwei Herstellungsmethoden: (1) Sonnenmethode: voll erblühte Blüten in Quellwasser, Sonne über Stunden bis Blüten welken → Essenz in Flaschen + Alkohol zur Haltbarmachung. (2) Kochmethode: für früh blühende Pflanzen; im köchelnden Wasser bis Blüten verwelkt → Alkohol zur Haltbarmachung. Essenz wird im Bach-Center (England) als 'Stockbottle' abgefüllt. Anwendung: intensive Befragung und Beobachtung notwendig. Dosierung: 10 ml-Fläschchen mit kohlensäurefreiem Mineralwasser + 1 Tropfen Blütenessenz. Notfalltropfen: doppelte Menge.",
-        solution: "Beide Herstellungsmethoden verwenden am Ende Alkohol zur Konservierung. Sonnenmethode: Licht als Energieträger. Kochmethode: Feuer als Energieträger (wenn Sonne zu schwach)."
+        statement: "Bei der Bachblüten-Sonnenmethode werden voll erblühte Blüten in Wasser gekocht, bis sie welken; bei der Kochmethode werden sie dagegen in Quellwasser in die Sonne gestellt.",
+        answer: false,
+        solution: "Vertauscht! Sonnenmethode: Blüten in QUELLWASSER in die SONNE. Kochmethode: Blüten in KOCHENDEM WASSER bis Verwelken (für früh blühende Pflanzen, wenn Sonne zu schwach). Beide Methoden: Essenz danach mit Alkohol konservieren."
       },
       water: {
-        statement: "Was ist Enzymtherapie, wie wirken Enzyme und bei wem ist sie kontraindiziert?",
-        answer: "Enzyme = Eiweißkörper (früher: Fermente), Biokatalysatoren. Wirkung: Beschleunigung von Stoffwechselvorgängen ohne selbst verändert zu werden. Substratspezifisch nach Schlüssel-Schloss-Prinzip. Therapeutisch: Wirkung auf Immunsystem und Abwehrreaktionen. Anwendung: akute/chronische Entzündungen, virale Infekte, Gefäßerkrankungen, maligne Erkrankungen. Kombination mit Vitaminen/Mineralstoffen (Coenzyme). Kontraindikationen (KI): Schwangere, Blutgerinnungsstörungen, vor größeren Operationen (fibrinolytische Eigenschaften!), Eiweißallergie. Beispiele: Wobe-Mucos, Wobenzym, Phlogenzym; Kanne-Brottrunk.",
-        solution: "Die KI der Enzymtherapie sind prüfungsrelevant: fibrinolytische Eigenschaften → Blutungsrisiko bei Schwangerschaft, Gerinnungsstörungen und Operationen. Eiweißallergie → Allergiereaktionen."
+        statement: "Enzyme sind substratspezifische Eiweißkörper (Biokatalysatoren), die nach dem Schlüssel-Schloss-Prinzip wirken und dabei selbst nicht verändert werden; bei Schwangeren und Patienten mit Blutgerinnungsstörungen sind sie wegen ihrer fibrinolytischen Eigenschaften kontraindiziert.",
+        answer: true,
+        solution: "Enzyme = Biokatalysatoren (alter Name: Fermente). Substratspezifisch = passt nur zu einem bestimmten Substrat. Weitere KI: vor großen Operationen, Eiweißallergie. Präparate: Wobe-Mucos, Wobenzym, Phlogenzym."
       }
     },
     harvestQuestions: [
@@ -15826,6 +15826,109 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
           { text: "Kontraindikation nur bei Lebererkrankungen", correct: false }
         ],
         explanation: "KI sind nicht nur Lebererkrankungen, sondern: Schwangerschaft, Blutgerinnungsstörungen, vor Operationen und Eiweißallergie. Alle anderen Aussagen sind korrekte Aussagen zur Enzymtherapie."
+      }
+    ]
+  }),
+
+  makeDetailedPlant({
+    id: "1045_09",
+    title: "Orale Zubereitungsformen im Detail & Trägersubstanzen",
+    contextHint: "Kap. 3.2 – Infus (5–15 Min, ätherische Öle), Decoctum (Wurzeln/Rinden, 10 Min kochen), Mazeration (Schleimstoffe/Saponine, 3–12 Std.); Kap. 3.1.1–3.1.2 – fette vs. mineralische Öle als Träger",
+    phase1: {
+      soil: {
+        statement: "Für Wurzeln, Rinden und holzige Pflanzenteile mit bitterstoff- oder gerbstoffhaltigen Inhaltsstoffen ist das Decoctum (Abkochung) die geeignete Zubereitungsform: in kaltes Wasser geben, aufkochen und 10 Minuten kochen lassen.",
+        answer: true,
+        solution: "Decoctum: 1 TL–1 EL auf 1 Tasse kaltes Wasser, aufkochen, 10 Min kochen + 10 Min ziehen. Ätherische Öle verflüchtigen sich dabei – das muss man in Kauf nehmen. Infus = heiß übergießen, 5–15 Min ziehen (für ätherische Öle, kein Kochen)."
+      },
+      seed: {
+        statement: "Die Mazeration (Kaltwasserauszug) eignet sich besonders für schleimstoff- und saponinhaltige Drogen; sie verwendet die doppelte Kräutermenge und lässt 3–12 Stunden (am besten über Nacht) stehen.",
+        answer: true,
+        solution: "Schleimstoffe und Saponine lösen sich in kaltem Wasser besser als in heißem oder in Alkohol. Bei gemischten Pflanzen (zarte + holzige Teile): Kaltwasseraufguss mit anschließender Abkochung oder Infus."
+      },
+      water: {
+        statement: "Mineralische Öle (Paraffine, Vaseline) eignen sich als Trägersubstanzen für perkutane Heilmittel, weil sie gut durch die Haut aufgenommen werden und Wirkstoffe effizient in tiefe Schichten transportieren.",
+        answer: false,
+        solution: "Mineralische Öle werden von der Haut NICHT aufgenommen – deshalb ungeeignet als Träger perkutaner Wirkstoffe. Geeignet: fette Pflanzenöle (Olivenöl, Erdnussöl, Sonnenblumenöl, Weizenkeimöl). Mineralische Öle nur für Schutzcremes (Zinkpaste/Wundcremes)."
+      }
+    },
+    harvestQuestions: [
+      {
+        id: "1045_09_h1",
+        type: "mc",
+        question: "Welche orale Zubereitungsform ist für schleimstoff- und saponinhaltige Drogen am besten geeignet?",
+        options: [
+          { text: "Mazeration (Kaltwasserauszug, 3–12 Std.)", correct: true },
+          { text: "Decoctum (Abkochung, 10 Min kochen)", correct: false },
+          { text: "Infus (Heißwasseraufguss, 5–15 Min)", correct: false },
+          { text: "Tinktur (Alkoholauszug)", correct: false }
+        ],
+        explanation: "Mazeration: doppelte Kräutermenge mit kaltem Wasser, 3–12 Std. ziehen. Schleimstoffe und Saponine lösen sich in kaltem Wasser besser; Alkohol (Tinktur) ist für diese Wirkstoffe ungeeignet."
+      },
+      {
+        id: "1045_09_h2",
+        type: "true_false",
+        statement: "Beim Decoctum werden die Pflanzenteile mit kochendem Wasser übergossen und 5–15 Minuten ziehen gelassen.",
+        answer: false,
+        explanation: "Falsch. Das ist der Infus. Beim Decoctum: Pflanzenteile in KALTES Wasser geben, aufkochen, 10 Minuten KOCHEN, dann nochmals 10 Minuten ziehen. Nur für Wurzeln, Rinden und holzige Teile."
+      },
+      {
+        id: "1045_09_h3",
+        type: "mc",
+        question: "Warum ist beim Infus (Heißwasseraufguss) das Zudecken der Teekanne wichtig?",
+        options: [
+          { text: "Damit ätherische Öle nicht verflüchtigen", correct: true },
+          { text: "Um die Extraktion von Schleimstoffen zu beschleunigen", correct: false },
+          { text: "Um den Bittergeschmack zu reduzieren", correct: false },
+          { text: "Um die Keimfreiheit zu gewährleisten", correct: false }
+        ],
+        explanation: "Ätherische Öle sind flüchtig und schwimmen auf der Wasseroberfläche. Ohne Deckel oder wenn das Wasser kocht, verflüchtigen sie sich. Deshalb: kochendes Wasser übergießen (nicht mitkochen!) und zudecken."
+      },
+      {
+        id: "1045_09_h4",
+        type: "true_false",
+        statement: "Fette Pflanzenöle (z. B. Olivenöl, Weizenkeimöl) dringen durch die Haut ein und eignen sich als Trägersubstanzen für ätherische Öle bei Hautanwendungen.",
+        answer: true,
+        explanation: "Korrekt. Fette Pflanzenöle dringen gut durch die Haut und nehmen Arzneizusätze mit. Herstellungsverfahren: 1 Teil Kräuter : 3 Teile Pflanzenöl, 4–6 Wochen sonnig lagern. Mineralische Öle (Paraffin, Vaseline) können nicht durch die Haut aufgenommen werden."
+      },
+      {
+        id: "1045_09_h5",
+        type: "mc",
+        question: "Für welche Situation eignet sich der Kaltwasseraufguss mit anschließender Abkochung?",
+        options: [
+          { text: "Bei einem Gemisch aus zarten und holzigen Pflanzenteilen", correct: true },
+          { text: "Nur für schleimstoffhaltige Drogen ohne holzige Anteile", correct: false },
+          { text: "Wenn der Alkoholgehalt einer Tinktur reduziert werden soll", correct: false },
+          { text: "Ausschließlich für frische Pflanzen", correct: false }
+        ],
+        explanation: "Kaltwasseraufguss mit anschließender Abkochung oder Infus: ideal bei Gemisch aus zarten und holzigen Pflanzenteilen. Zarte Teile kalt mazerieren, holzige Teile danach abkochen – beide Auszüge mischen."
+      }
+    ],
+    phase4Questions: [
+      {
+        id: "1045_09_p4_1",
+        type: "mc",
+        question: "Welche Wirkstoff-Zubereitungsform-Paare sind korrekt? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Schleimstoffe → Mazeration (Kaltwasserauszug)", correct: true },
+          { text: "Ätherische Öle → Infus (heiß übergießen, zudecken, nicht kochen)", correct: true },
+          { text: "Bitterstoffe/Gerbstoffe (Wurzeln/Rinden) → Decoctum (Abkochung)", correct: true },
+          { text: "Saponine → Tinktur (Alkoholauszug)", correct: false },
+          { text: "Alle Wirkstoffe lassen sich gleich gut durch Infus extrahieren", correct: false }
+        ],
+        explanation: "Saponine lösen sich in Alkohol schlecht – Tinktur ist ungeeignet. Für Saponine: Mazeration. Infus eignet sich nicht für Wurzeln/Rinden (unvollständige Extraktion) und Kochen zerstört Schleimstoffe."
+      },
+      {
+        id: "1045_09_p4_2",
+        type: "mc",
+        question: "Welche Aussagen zu Trägersubstanzen und Frischpflanzenzubereitungen sind korrekt? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Fette Pflanzenöle dringen durch die Haut ein und transportieren Wirkstoffe", correct: true },
+          { text: "Mineralische Öle (Paraffin, Vaseline) werden von der Haut nicht aufgenommen", correct: true },
+          { text: "Kalt gepresstes Pflanzenöl ist weniger haltbar als mineralisches Öl", correct: true },
+          { text: "Frischpflanzensäfte nach HAB werden aus getrockneten Pflanzen hergestellt", correct: false },
+          { text: "Mineralische Öle sind sinnvoll für Schutzcremes (z. B. mit Zinkpaste)", correct: true }
+        ],
+        explanation: "Frischpflanzensäfte nach HAB (Homöopathisches Arzneibuch) werden aus FRISCHEN Pflanzen hergestellt. Tinkturen nach DAB (Deutsches Arzneibuch) verwenden getrocknete Pflanzen."
       }
     ]
   })
