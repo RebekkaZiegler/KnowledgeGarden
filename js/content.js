@@ -16045,19 +16045,19 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 1 – 8 unentbehrliche AS, Brennwert 4,1 kcal/g, Bedarf 0,8–1,0 g/kg KG, Harnstoff in der Leber, Harnsäure und Gicht",
     phase1: {
       soil: {
-        statement: "Welche 8 Aminosäuren sind für den Menschen unentbehrlich und welche Abbauprodukte entstehen beim Eiweißstoffwechsel?",
-        answer: "Unentbehrliche AS: Valin (0,8 g/Tag), Phenylalanin (1,1 g), Leucin (1,1 g), Isoleucin (0,7 g), Threonin (0,5 g), Methionin (1,1 g), Lysin (0,8 g), Tryptophan (0,25 g/Tag – niedrigster Bedarf). Abbauprodukte: Wasser, CO2, Harnstoff. Harnstoff entsteht in der Leber und wird über die Nieren ausgeschieden.",
+        statement: "Tryptophan hat mit 0,25 g/Tag den niedrigsten Minimalbedarf unter den 8 unentbehrlichen Aminosäuren; beim Eiweißabbau entstehen Wasser, CO₂ und Harnstoff, der in der Leber gebildet wird.",
+        answer: true,
         solution: "Tryptophan hat mit 0,25 g/Tag den niedrigsten Tagesbedarf. Harnstoff wird in der Leber synthetisiert – bei Niereninsuffizienz kann er nicht ausreichend ausgeschieden werden und akkumuliert im Blut."
       },
       seed: {
-        statement: "Welche Funktionen erfüllt Eiweiß im Körper und wie hoch ist sein Brennwert?",
-        answer: "Funktionen: Gewebeaufbau und -erhaltung, Bildung von Enzymen/Hormonen/Antikörpern, Pufferwirkung (Säure-Base-Haushalt), Aufrechterhaltung des onkotischen Drucks im Blut. Brennwert: 4,1 kcal/g = 17 kJ/g. Normalbedarf: 0,8–1,0 g/kg KG/Tag.",
+        statement: "Eiweiß hat einen Brennwert von 4,1 kcal/g und dient primär als Bau- und Betriebsstoff; der Normalbedarf eines Erwachsenen liegt bei 0,8–1,0 g/kg Körpergewicht pro Tag.",
+        answer: true,
         solution: "Eiweiß ist primär kein Energielieferant – diese Funktion übernehmen KH und Fette. Im Hungerzustand wird Eiweiß jedoch zur Energiegewinnung genutzt (Gluconeogenese aus Aminosäuren)."
       },
       water: {
-        statement: "Wann ist der Eiweißbedarf erhöht und wann muss er eingeschränkt werden? Was haben Purine mit Gicht zu tun?",
-        answer: "Erhöhter Bedarf: Kinder, Ältere, Schwangerschaft, Laktation, Krankheit/Rekonvaleszenz. Eingeschränkt bei: Nierenversagen/Niereninsuffizienz. Purine (aus eiweißreicher Kost) → Harnsäure (Normalwert 3–7 mg/dl; Männer <7,4 mg/dl, Frauen <6,7 mg/dl). Hyperurikämie → Gicht (Harnsäurekristallablagerungen in Gelenken).",
-        solution: "Die Niere scheidet Harnstoff und Harnsäure aus – zu viel Eiweiß belastet die Niere und erhöht die Harnsäure. Purinreiche Lebensmittel (Innereien, Fleisch, Bier) sind Hauptauslöser der Gicht."
+        statement: "Harnstoff, das Hauptabbauprodukt des Eiweißstoffwechsels, wird in der Niere gebildet und über den Urin ausgeschieden.",
+        answer: false,
+        solution: "Harnstoff wird in der LEBER synthetisiert (Harnstoffzyklus) – nicht in der Niere. Die Niere ist für die Ausscheidung zuständig. Erhöhter Eiweißbedarf: Kinder, Ältere, Schwangerschaft, Laktation, Rekonvaleszenz. Purine → Harnsäure (Normalwert 3–7 mg/dl; Männer <7,4, Frauen <6,7 mg/dl) → Hyperurikämie → Gicht."
       }
     },
     harvestQuestions: [
@@ -16152,18 +16152,18 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 2+3 – Brennwerte, Kohlenhydratklassen, Fettverdauung, Lipoproteine (LDL/HDL/VLDL), Blutfettgrenzwerte, essenzielle FS",
     phase1: {
       soil: {
-        statement: "Welche Kohlenhydratklassen gibt es und welchen Energieanteil liefern Kohlenhydrate?",
-        answer: "Monosaccharide: Glukose, Fruktose, Galaktose, Ribose. Disaccharide: Saccharose, Maltose, Laktose. Polysaccharide: Glykogen (tierisch), Stärke (pflanzlich), Cellulose (unlöslicher Ballaststoff), Inulin (löslicher Ballaststoff). Brennwert 4,1 kcal/g = 17 kJ/g. KH decken ca. 47 % des Energiebedarfs (Hauptenergielieferant). Überkonsum → Umwandlung in Fett.",
+        statement: "Saccharose besteht aus Glukose und Fruktose, Laktose aus Galaktose und Glukose, Maltose aus zwei Glukose-Einheiten; Kohlenhydrate liefern 4,1 kcal/g und decken als Hauptenergielieferant ca. 47 % des Energiebedarfs.",
+        answer: true,
         solution: "Glykogen ist die tierische Speicherform der Glucose (in Leber und Muskel), Stärke die pflanzliche. Cellulose ist für den Menschen unverdaulich und zählt zu den unlöslichen Ballaststoffen."
       },
       seed: {
-        statement: "Wie werden Fette verdaut und resorbiert? Welche Lipoproteine gibt es?",
-        answer: "Fettverdauung: Pankreaslipase → Glycerin + Fettsäuren → Gallensalze emulgieren → Mizellen → Dünndarmzellen. Kurz-/mittelkettige FS: direkt über Pfortader; langkettige FS: Chylomikronen → Lymphe → Blut. Steatorrhoe: >7 g Fett/Tag im Stuhl. Lipoproteine: Chylomikronen (exogene TG), VLDL (endogene TG), IDL (TG + Cholesterinester), LDL (freies Cholesterin, 'böse'), HDL (Cholesterinester + Phospholipide, 'gut').",
-        solution: "Langkettige Fettsäuren benötigen den Umweg über Chylomikronen und Lymphe. MCT-Fette (mittelkettige TG) gelangen direkt in die Pfortader – daher bei Malabsorptionssyndromen (z. B. nach Pankreatitis) empfohlen."
+        statement: "Langkettige Fettsäuren werden nach der Resorption direkt über die Pfortader zur Leber transportiert.",
+        answer: false,
+        solution: "Langkettige FS werden in Chylomikronen verpackt und über die Lymphe ins Blut transportiert – nicht direkt via Pfortader. Nur kurz- und mittelkettige Fettsäuren gehen direkt über die Pfortader. MCT-Fette (mittelkettige TG) sind daher bei Malabsorptionssyndromen empfohlen."
       },
       water: {
-        statement: "Was sind essentielle Fettsäuren und welche Grenzwerte gelten für Blutfette?",
-        answer: "Essentielle Fettsäuren (müssen zugeführt werden): Linolsäure (Omega-6) und Linolensäure (Omega-3); Bedarf je ca. 6 g/Tag. Brennwert Fett: 9,3 kcal/g = 38,9 kJ/g. Grenzwerte: Gesamtcholesterin <200 mg/dl, Triglyzeride <180 mg/dl, LDL <160 mg/dl, HDL Frauen >45 / Männer >40 mg/dl. Wichtig: Lipide erst nach 12 h Nahrungskarenz messen.",
+        statement: "Die essenziellen Fettsäuren Linolsäure (Omega-6) und Linolensäure (Omega-3) müssen mit der Nahrung zugeführt werden; Blutfette sollten nach 12-stündiger Nahrungskarenz gemessen werden.",
+        answer: true,
         solution: "Fett hat mehr als doppelt so viel Energie wie KH oder Eiweiß (9,3 vs. 4,1 kcal/g). Die 12-h-Nüchternheit ist Pflicht für valide Blutfettwerte – nach dem Essen zirkulieren noch Chylomikronen."
       }
     },
@@ -16259,19 +16259,19 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 4+5 – Wasserhaushalt (60 % Körper), Perspiratio insensibilis, Dehydratation, Na-Bedarf 1500 mg, K-Bedarf 4000 mg, Arrhythmien, Herzstillstand",
     phase1: {
       soil: {
-        statement: "Wie ist der Wasserhaushalt des Körpers aufgebaut? Wie viel Wasser nimmt der Mensch auf und scheidet er aus?",
-        answer: "Körperwasser: 60 % beim Erwachsenen (Säuglinge 75 %). Zufuhr: Getränke 1000–1500 ml + Nahrung 700–900 ml + Oxidationswasser 300 ml. Abgabe: Urin 1000–1500 ml, Perspiratio insensibilis 500 ml, Atmung 400 ml, Stuhl 100 ml. Störungen: Hypovolämie, Hypervolämie, Hyperhydratation, Dehydratation (isoton/hyperton/hypoton).",
+        statement: "Wasser macht 60 % des Körpergewichts eines Erwachsenen aus (Säuglinge 75 %); täglich werden ca. 2500 ml aufgenommen und ausgeschieden, wobei der Verlust über die Atemluft ca. 400 ml beträgt.",
+        answer: true,
         solution: "Perspiratio insensibilis ist die unmerkliche Wasserabgabe über Haut (ca. 500 ml/Tag) – auch ohne sichtbares Schwitzen. Oxidationswasser entsteht beim Zellstoffwechsel (ca. 300 ml/Tag)."
       },
       seed: {
-        statement: "Welche Bedeutung hat Natrium und wann wird es diätetisch eingeschränkt?",
-        answer: "Natrium: Bedarf 1500 mg/Tag; wichtigstes extrazelluläres Kation. Mangel: Krämpfe, Apathie, Verwirrheit, Epilepsie. Erhöhter Na-Spiegel: Durst, Verwirrheit, Koma. Einschränkung bei: Herzinsuffizienz, Hypertonie, Glomerulonephritis, Leberzirrhose (Na-Retention → Ödeme).",
+        statement: "Natriumreduktion ist indiziert bei Herzinsuffizienz, Hypertonie, Glomerulonephritis und Leberzirrhose, da Natrium den osmotischen Druck reguliert und Na-Retention Ödeme begünstigt.",
+        answer: true,
         solution: "Natrium bestimmt den osmotischen Druck und damit den Wasserhaushalt. Kochsalzreduktion senkt den Blutdruck nachweislich – verstecktes Salz (Brot, Käse, Wurstwaren) ist oft der Hauptlieferant."
       },
       water: {
-        statement: "Welche klinischen Zeichen treten bei Kaliumstörungen auf?",
-        answer: "Kalium: Bedarf 4000 mg/Tag; wichtigstes intrazelluläres Kation. Hyperkaliämie (zu viel K): Arrhythmien, Kammerflimmern, Herzstillstand, zeltförmige T-Wellen im EKG. Hypokaliämie (zu wenig K): schlaffe Paresen, Arrhythmien, paralytischer Ileus.",
-        solution: "Kaliumabweichungen in beide Richtungen können lebensbedrohlich sein – besonders die kardialen Folgen. Im EKG sind zeltförmige T-Wellen das charakteristische Zeichen der Hyperkaliämie."
+        statement: "Hyperkaliämie äußert sich im EKG durch abgeflachte T-Wellen und kann zum paralytischen Ileus führen.",
+        answer: false,
+        solution: "Hyperkaliämie zeigt ZELTFÖRMIGE (spitze, überhöhte) T-Wellen – nicht abgeflachte. Im weiteren Verlauf drohen Kammerflimmern und Herzstillstand. Der paralytische Ileus ist eine Folge der HYPOKALIÄMIE (schlaffe Lähmung der Darmmuskulatur)."
       }
     },
     harvestQuestions: [
@@ -16366,18 +16366,18 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 5 – Ca-Regulation (Calcitonin/PTH/Vit D3), Bedarf 1000 mg; Fe-Transport Transferrin, Speicher Ferritin, Bedarf 10/15/30 mg, Fe2+ besser resorbiert, Vit C erhöht Aufnahme",
     phase1: {
       soil: {
-        statement: "Welche Funktionen hat Calcium und wie wird der Calciumspiegel reguliert?",
-        answer: "Calcium-Funktionen: verringert Membranerregbarkeit, elektromechanische Kopplung, Blutgerinnung, Knochenaufbau. Blutverteilung: 55 % ionisiert (aktiv), 40 % proteingebunden. Regulation: Calcitonin (Schilddrüse, senkt Ca), PTH Parathormon (Nebenschilddrüse, erhöht Ca), Vitamin D3 als Calcitriol (erhöht intestinale Ca-Aufnahme). Bedarf Erwachsene: 1000 mg/Tag.",
+        statement: "Calcium wird im Blut zu 55 % ionisiert (aktiv) und zu 40 % proteingebunden transportiert; der Spiegel wird durch Calcitonin (senkt), PTH (erhöht) und Vitamin D3 als Calcitriol (steigert Ca-Resorption) reguliert.",
+        answer: true,
         solution: "Calcitonin und PTH sind Antagonisten. Vitamin D3 ist Voraussetzung für die intestinale Calciumaufnahme – ohne ausreichend Vit D nützt auch hohe Ca-Zufuhr wenig (z. B. Rachitis bei Vit-D-Mangel trotz Milchkonsum)."
       },
       seed: {
-        statement: "Wie wird Eisen im Körper transportiert und gespeichert? Welche Wertigkeit wird besser resorbiert?",
-        answer: "Eisen: 35–50 mg/kg Körpergewicht im Körper. Bedarf: Männer 10 mg/Tag, Frauen 15 mg/Tag, Schwangere 30 mg/Tag. Fe²⁺ (zweiwertiges Eisen) wird besser resorbiert als Fe³⁺. Transport im Blut: Transferrin. Speicher: Ferritin (löslich) und Hämosiderin. Vitamin C erhöht die Eisenaufnahme (reduziert Fe³⁺ zu Fe²⁺).",
-        solution: "Häm-Eisen aus tierischer Nahrung ist als Fe²⁺ direkt resorbierbar. Pflanzliches Eisen liegt als Fe³⁺ vor – Vitamin C (Ascorbinsäure) verbessert seine Resorption durch Reduktion erheblich."
+        statement: "Eisen wird im Blut durch Ferritin transportiert; als Speicherprotein dient Transferrin in Leber und Milz.",
+        answer: false,
+        solution: "Genau umgekehrt: Transferrin transportiert Eisen im Blut; Ferritin (und Hämosiderin) sind die Eisenspeicherproteine. Bedarf: Männer 10 mg, Frauen 15 mg, Schwangere 30 mg/Tag. Fe²⁺ wird besser resorbiert als Fe³⁺; Vitamin C steigert die Fe-Aufnahme."
       },
       water: {
-        statement: "Was ist die häufigste Anämieform und wie entwickelt sich ein Eisenmangel stufenweise?",
-        answer: "Eisenmangelanämie = häufigste Anämie weltweit. Stufenweise Entwicklung: 1. Ferritin sinkt (Speicher leer) 2. Transferrinsättigung sinkt 3. Hb sinkt (mikrozytäre hypochrome Anämie). Symptome: Müdigkeit, Blässe, Belastungsdyspnoe. Risikogruppen: Frauen (Menstruation), Kinder (Wachstum), Schwangere (30 mg/Tag), Ausdauersportler.",
+        statement: "Eisenmangelanämie ist die häufigste Anämieform weltweit; Ferritin sinkt als erster Laborwert, Hämoglobin erst als Spätsymptom. Vitamin C steigert die Eisenresorption durch Reduktion von Fe³⁺ zu Fe²⁺.",
+        answer: true,
         solution: "Anämie (erniedrigtes Hb) ist ein Spätsymptom – der Eisenmangel beginnt mit leerem Ferritinspeicher, lange bevor das Blutbild auffällt. Ferritin ist daher der sensitivste Eisenmangelmarker."
       }
     },
@@ -16473,18 +16473,18 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 6 – Beri-Beri (B1), Stomatitis/Glossitis (B2), epilepsieähnliche Krämpfe (B6), Intrinsic Factor/megalozytäre Anämie/Hinter-Seitenstrang (B12), Folsäuremangel häufigster Vitaminmangel, Skorbut (Vit C)",
     phase1: {
       soil: {
-        statement: "Was sind Funktionen und Mangelerscheinungen von Vitamin B1, B2 und B12?",
-        answer: "B1 (Thiamin): Decarboxylierung; Mangel → Beri-Beri (trocken = polyneuropathisch, feucht = kardiales Ödem); i.v.-Gabe → anaphylaktischer Schock möglich. B2 (Riboflavin): Redoxvorgänge; Mangel → Stomatitis, Glossitis, Mundwinkelrhagaden, Keratitis. B12 (Cobalamin): RNA/DNA-Biosynthese; Resorption erfordert Intrinsic Factor (Magendrüsen); Mangel erst nach 3 Jahren manifest (große Leberspeicher) → megalozytäre Anämie, Hinter- und Seitenstrangdegeneration.",
+        statement: "Vitamin B12 benötigt zur Resorption den Intrinsic Factor der Magendrüsen; Mangel tritt erst nach ca. 3 Jahren auf (großer Leberspeicher) und führt zu megalozytärer Anämie und Degeneration der Hinter- und Seitenstränge.",
+        answer: true,
         solution: "B12-Mangel tritt bei Veganern und nach Magenoperationen auf (fehlender Intrinsic Factor). Die 3-Jahres-Latenz erklärt, warum Symptome spät auftreten. Die Rückenmarkdegeneration (Hinter-/Seitenstrang) ist irreversibel, wenn zu spät behandelt."
       },
       seed: {
-        statement: "Welche Besonderheiten haben Niacin (B3), Pyridoxin (B6), Folsäure und Biotin?",
-        answer: "Niacin (B3): kann aus Tryptophan synthetisiert werden; bildet NAD/NADP (Coenzyme in Redoxprozessen); therapeutisch: senkt Cholesterin und Triglyzeride. B6 (Pyridoxin): Aminosäurenstoffwechsel; Mangel → epilepsieähnliche Krämpfe. Folsäure: häufigster Vitaminmangel in Europa/Nordamerika; Megaloblastenanämie; gesteigerter Bedarf bei Kontrazeptiva, Tuberkulostatika, Sulfonamiden, Schwangerschaft, Alkohol. Biotin: Coenzym A; Glykogen und Glukoneogenese; Bedarf 40 µg/Tag.",
-        solution: "Folsäure ist für die Zellteilung essentiell – Mangel in der Frühschwangerschaft erhöht das Risiko für Neuralrohrdefekte (Spina bifida). Daher perikonzeptionelle Supplementierung empfohlen."
+        statement: "Folsäuremangel ist der seltenste Vitaminmangel in Europa und Nordamerika und tritt hauptsächlich bei Kindern auf.",
+        answer: false,
+        solution: "Folsäuremangel ist der HÄUFIGSTE Vitaminmangel in Europa und Nordamerika. Er tritt vor allem bei Schwangeren, Alkoholikern und unter Einnahme von Kontrazeptiva, Tuberkulostatika oder Sulfonamiden auf. Folge: Megaloblastenanämie und erhöhtes Neuralrohrdefekt-Risiko in der Frühschwangerschaft."
       },
       water: {
-        statement: "Welche Funktionen hat Vitamin C, was passiert bei Mangel und bei Überdosierung?",
-        answer: "Vitamin C (Ascorbinsäure): antioxidativ (Zellschutz), erhöht Eisenaufnahme (Fe³⁺ → Fe²⁺). Mangel → Skorbut: Kollagendefekte → Zahnfleischbluten, Wundheilungsstörungen, Hautblutungen; unbehandelt tödlich. Überdosierung → Oxalatsteine (renale Oxalatausscheidung). Pantothensäure (B5): Teil von Coenzym A; alle Abbauprozesse; Bedarf 5 mg/Tag.",
+        statement: "Eine Überdosierung von Vitamin C kann zu Oxalatsteinen führen; Vitamin-C-Mangel über 4–5 Monate führt zu Skorbut mit Kollagendefekten, Zahnfleischbluten und unbehandelt tödlichem Verlauf.",
+        answer: true,
         solution: "Skorbut war historisch häufig bei Seeleuten ohne frische Kost. Heute selten, aber bei einseitiger Ernährung, Alkoholismus und Dialysepatienten möglich. Megadosen Vitamin C sind wegen Oxalatstein-Risiko kontraindiziert."
       }
     },
@@ -16580,18 +16580,18 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 6+7 – Vit A: Nachtblindheit, Xerophthalmie; Vit D: Rachitis, Prohormon, UV; Vit E: Antioxidans 8 mg/Tag; Vit K: Blutgerinnung, Dicumarol; Ballaststoffe: löslich (Pektin, Beta-Glucan) vs. unlöslich (Cellulose, Lignin)",
     phase1: {
       soil: {
-        statement: "Welche Funktionen und Mangelerscheinungen haben Vitamin A und Vitamin D?",
-        answer: "Vit A (Retinol): aus Carotinen (Provitamin); Funktion: Sehpurpur, antikanzerogen; Mangel → Nachtblindheit, Xerophthalmie (Hornhautaustrocknung); Hypervitaminose → Kopfschmerzen, Erbrechen. Vit D (Calciferol): aus Cholesterin via UV-Licht synthetisierbar; eigentlich Prohormon; aktive Form Calcitriol (in Leber + Niere aktiviert); Calciumaufnahme↑; Mangel → Rachitis (Kinder), Osteomalazie (Erwachsene); Überdosierung → Knochenentkalktung, Calciumablagerungen in Weichteilen.",
-        solution: "Vitamin D ist das einzige Vitamin, das der Körper selbst synthetisieren kann (UV-Licht auf Haut). Dennoch häufig mangelhaft, besonders im Winter und bei älteren Menschen mit wenig Sonnenexposition. Vitamin A-Hypervitaminose ist möglich (fettlöslich, kumuliert)."
+        statement: "Vitamin D ist ein echtes Vitamin, das ausschließlich über die Nahrung aufgenommen werden muss; ohne ausreichende Zufuhr entsteht bei Kindern Rachitis durch gestörte Calciumaufnahme.",
+        answer: false,
+        solution: "Vitamin D gilt als Prohormon, nicht als klassisches Vitamin, da der Körper es aus Cholesterin durch UV-Licht in der Haut selbst synthetisieren kann. Die aktive Form Calcitriol entsteht in Leber und Niere. Mangel → Rachitis (Kinder), Osteomalazie (Erwachsene). Überdosierung → Knochenentkalktung, Calciumablagerungen."
       },
       seed: {
-        statement: "Welche Aufgaben haben Vitamin E und Vitamin K?",
-        answer: "Vit E (Tocopherol): Antioxidans (Zellschutz, 'zelleigener Rostschutz' gegen freie Radikale); verlangsamt Blutplättchenverklumpung; Bedarf 8 mg/Tag; Quellen: pflanzliche Öle (Raps, Oliven, Maiskeim, Sonnenblumen), Nüsse, Hülsenfrüchte. Vit K: Bildung von Prothrombin und Blutgerinnungsfaktoren VII, IX, X; Bedarf bis 70 µg/Tag; Quelle: Darmflora + grüne Gemüse; Mangel bei Darmflorastörungen/Cholestase → verlängerte Blutungszeit, Blutungsneigung. Dicumarol (Marcumar) hemmt Vit K → therapeutische Antikoagulation.",
+        statement: "Vitamin K wird zur Bildung von Prothrombin und den Blutgerinnungsfaktoren VII, IX und X benötigt; Dicumarol hemmt Vitamin K und wird therapeutisch zur Antikoagulation, z. B. nach Herzinfarkt, eingesetzt.",
+        answer: true,
         solution: "Vitamin K-Antagonisten (Cumarine) werden bei Patienten nach Herzinfarkt, Vorhofflimmern oder mit künstlichen Herzklappen eingesetzt. Patienten unter Marcumar müssen die Zufuhr von grünem Gemüse konstant halten."
       },
       water: {
-        statement: "Was unterscheidet lösliche von unlöslichen Ballaststoffen und welche Wirkungen haben sie?",
-        answer: "Unlösliche Ballaststoffe: Cellulose + Lignin; hohe Quellfähigkeit, beschleunigen Magen-Darm-Passage, binden Gallensäuren/Cholesterin, reduzieren Karzinogenexposition → Schutz vor Dickdarmkrebs; Quellen: Vollkornprodukte, Hülsenfrüchte. Lösliche Ballaststoffe: Pektin, Inulin, Beta-Glucan; wasserlöslich, teils vergärbar; Energiequelle für Dickdarmbakterien → kurzkettige Fettsäuren (Butyrat) → protektiv für Darmschleimhaut, antientzündlich; Quellen: Obst (Äpfel = viel Pektin), Gemüse, Haferflocken (Beta-Glucan), Lein-/Flohsamen.",
+        statement: "Unlösliche Ballaststoffe (Cellulose, Lignin) beschleunigen die Magen-Darm-Passage und binden Gallensäuren; lösliche Ballaststoffe (Pektin, Beta-Glucan) dienen als Energiequelle für Dickdarmbakterien und produzieren kurzkettige Fettsäuren mit protektiver Wirkung auf die Darmschleimhaut.",
+        answer: true,
         solution: "Haferflocken enthalten Beta-Glucane (löslich) – cholesterinsenkend nachgewiesen. Vollkorn enthält primär unlösliche Ballaststoffe – wichtig für Darmpassage. Beide Typen sind wichtig und ergänzen sich."
       }
     },
@@ -16687,18 +16687,18 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 8.1–8.4 – Magenerkrankung: Alkohol/Kaffee/Rauchen meiden; CED: eiweißreich, kein Industrie-LM; Zöliakie: glutenfrei (Weizen, Roggen, Gerste, Dinkel...); Leber: Alkoholverbot, 5 Mahlzeiten; Galle: max. 40 g Fett; Pankreatitis: 7 Stufen",
     phase1: {
       soil: {
-        statement: "Welche Ernährungsregeln gelten bei Magenerkrankungen, Gastroenteritis und chronisch-entzündlichen Darmerkrankungen?",
-        answer: "Magenerkrankungen: leichte, fettarme, KH-reiche Vollkost; mehrere kleine Portionen; meiden: Alkohol, Kaffee, Rauchen (stimulieren Säureproduktion). Gastroenteritis: 1–2 Tage nur ungesüßter Tee + evtl. Zwieback, dann Kostaufbau. CED (M. Crohn, Colitis ulcerosa): eiweißreiche Kost, Elektrolytverluste ausgleichen (B12 + Eisen), ggf. laktosefrei, keine industriell stark verarbeiteten LM (Emulgatoren begünstigen Entzündung).",
+        statement: "Bei Magenerkrankungen wird heute eine leichte, fettarme, kohlenhydratreiche Kost empfohlen; Alkohol, Kaffee und Rauchen steigern die Magensäureproduktion und sollten gemieden werden.",
+        answer: true,
         solution: "Bei CED droht Mangelernährung – durch Malabsorption, erhöhten Bedarf und oft verringerte Nahrungsaufnahme. Im akuten Schub ist manchmal parenterale Ernährung nötig."
       },
       seed: {
-        statement: "Was ist Zöliakie und welche Lebensmittel müssen gemieden werden?",
-        answer: "Zöliakie: Autoimmunerkrankung (nicht Nahrungsmittelunverträglichkeit) – Immunreaktion auf Klebereiweiß Gluten → Entzündung der Dünndarmzotten → Atrophie → Malabsorption. Strikte lebenslange glutenfreie Kost. Meiden: Weizen, Roggen, Gerste, Hafer, Dinkel, Emmer, Einkorn, Grünkern, Triticale. Hafer ist von Natur aus glutenfrei, wird aber fast immer kontaminiert. Gluten auch in vielen verarbeiteten LM versteckt.",
-        solution: "Zöliakie ist keine Allergie, sondern eine Autoimmunerkrankung. Die einzige Therapie ist konsequente Glutenfreiheit – keine Diät, die nur Beschwerden mildert, sondern vollständige Abstinenz zur Zottenerholung."
+        statement: "Zöliakie ist eine Nahrungsmittelunverträglichkeit gegen das Klebereiweiß Gluten; da Hafer von Natur aus kein Gluten enthält, ist er für Zöliakie-Patienten uneingeschränkt erlaubt.",
+        answer: false,
+        solution: "Zöliakie ist eine AUTOIMMUNERKRANKUNG, keine Nahrungsmittelunverträglichkeit. Hafer ist zwar von Natur aus glutenfrei, wird aber fast immer durch Verarbeitung kontaminiert – nur bei nachgewiesener Verträglichkeit und als glutenfrei gekennzeichnet erlaubt. Meiden: Weizen, Roggen, Gerste, Hafer, Dinkel, Emmer, Einkorn, Grünkern, Triticale."
       },
       water: {
-        statement: "Welche Ernährungsregeln gelten bei Leber- und Gallenwegserkrankungen? Was ist die Pankreatitis-Stufenkost?",
-        answer: "Leber: vollwertige Mischkost; absolutes Alkoholverbot; 5 kleine Mahlzeiten; meiden: fettreiche/-gebratene Speisen, blähende Gemüse (Kohl, Zwiebeln), Nüsse, scharfe Gewürze. Keine spezielle 'Leberdiät'. Galle: magerer Fisch/Fleisch gedünstet; max. 40 g Fett/Tag; zarte Gemüse; was Leber verträgt, verträgt auch Galle. Akute Pankreatitis Stufen 1–7: 1=Infusion (NPO), 2=ungesüßter Tee, 3=Tee + Traubenzucker, 4=KH-Aufbau, 5=KH-Eiweiß extrem fettarm, 6=langsam Fett zugeben (10 g/Tag), 7=leichte Vollkost.",
+        statement: "Bei akuter Pankreatitis beginnt der Kostaufbau mit absoluter Nahrungskarenz (Stufe 1 = Infusionstherapie), da keine Verdauungssäfte gebildet werden sollen; der Aufbau erfolgt in 7 Stufen bis zur leichten Vollkost.",
+        answer: true,
         solution: "Stufe 1 der Pankreatitis-Kost bedeutet absolute Nahrungskarenz (nil per os) – Infusion zur Flüssigkeitsversorgung. Bei chronischer Pankreatitis: Alkohol für mindestens 6 Monate verboten."
       }
     },
@@ -16794,18 +16794,18 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
     contextHint: "Kap. 8.6–8.9 – Diabetes: KH 45–50%, Eiweiß 15–20%, Fett 30%; Niere: streng eiweißarm 0,35–0,45 g, Dialyse eiweißreich; Hypertonie: Na↓, K/Mg↑; Gicht: Purine↓, Fruchtzucker meiden, >2 L/Tag trinken",
     phase1: {
       soil: {
-        statement: "Welche Ernährungsgrundsätze gelten bei Diabetes mellitus?",
-        answer: "Nährstoffrelation: KH 45–50 % (1 g = 4 kcal), Eiweiß 15–20 % (1 g = 4 kcal), Fett 30 % (1 g = 9 kcal). Ziel: gleichmäßiger Blutzucker, keine Spitzen. 'Langsame' KH bevorzugen (Stärke, Ballaststoffe); 'schnelle' KH (isolierter Zucker, Limonaden) meiden. Eiweiß max. 20 % → Nephropathierisiko. Fett: mehrfach ungesättigte bevorzugen, gesättigte reduzieren. Früher KH-Reduktion + viel Fett-Diabetiker-LM → Übergewicht; heute: Ernährung kaum verschieden von gesunder Normalkost; spezielle Diabetiker-LM vom Markt genommen.",
+        statement: "Bei Diabetes mellitus sollte die Nährstoffrelation aus ca. 45–50 % Kohlenhydraten, 15–20 % Eiweiß und 30 % Fett bestehen; 'schnelle' Kohlenhydrate (isolierte Zucker) sind zu meiden.",
+        answer: true,
         solution: "Spezielle Diabetikerlebensmittel enthielten hohe Fettanteile als KH-Ersatz und führten zu Übergewicht – ein unbeabsichtigter Schaden durch veraltetes Ernährungswissen."
       },
       seed: {
-        statement: "Welche Eiweißmengen sind bei Nierenerkrankungen indiziert und wann ist eiweißreiche Kost nötig?",
-        answer: "Nierendiät = eiweißdefinierte Kostform. Abstufungen: streng eiweißarm 0,35–0,45 g/kg KG; mäßig eiweißarm 0,45–0,6 g/kg KG; Normalzufuhr 0,8 g/kg KG; eiweißreich 1–1,5 g/kg KG. Eiweißarme Kost: Niereninsuffizienz. Eiweißreiche Kost: Dialyse (Aminosäureverlust!), Verbrennungen, Operationen, Mangelernährung, onkologische Patienten. Mindestens ⅔ des Eiweißes: biologisch hochwertig (tierisch). Gute Kombinationen: Kartoffel + Ei, Weizen + Milch, Hülsenfrüchte + Getreide.",
-        solution: "Dialysepatienten benötigen eiweißreich – paradox, aber erklärbar: durch die Dialyse gehen Aminosäuren verloren, die ersetzt werden müssen. Bei Niereninsuffizienz ohne Dialyse gilt das Gegenteil."
+        statement: "Die Nierendiät ist eine eiweißreiche Kostform; Dialysepatienten hingegen benötigen eiweißarme Kost, da die Niere durch weniger Stickstoffabbauprodukte entlastet wird.",
+        answer: false,
+        solution: "Genau umgekehrt: Niereninsuffizienz → eiweißarme Kost (streng: 0,35–0,45 g/kg KG, mäßig: 0,45–0,6 g/kg KG). Dialysepatienten → eiweißreich (1–1,5 g/kg KG), weil durch die Dialyse Aminosäuren verloren gehen. Bei Dialyse gilt das Gegenteil der Niereninsuffizienz-Diät."
       },
       water: {
-        statement: "Welche Ernährungsmaßnahmen helfen bei Hypertonie, Hypercholesterinämie und Gicht?",
-        answer: "Hypertonie: Na↓, K/Mg-reiche LM, Übergewicht reduzieren, Alkohol → alkoholfrei, Koffein↓, Bewegung. Hypercholesterinämie: HDL↑/LDL↓; Fettverzehr↓, gesättigte FS↓, trans-Fette meiden (Fertiggerichte, Margarine), ungesättigte FS↑, schnelle KH↓, Ballaststoffe↑, Cholesterin <300 mg/Tag. Gicht: Purine↓ (Fleisch/Geflügel/Fisch↓, Innereien meiden); Fruchtzucker meiden (wird in Leber zu Purinen → Harnsäure↑); Flüssigkeit >2 L/Tag (Urinmenge ≥2 L); kein Bier (viel Purine); nicht braten (konzentriert Purine); Insulin fördert Harnsäure-Rückresorption.",
+        statement: "Bei Gicht sollte Fruchtzucker (Fruktose) eingeschränkt werden, da er in der Leber den Purin-Pool erhöht und damit den Harnsäurespiegel steigert; täglich so viel trinken, dass mehr als 2 Liter Urin anfallen.",
+        answer: true,
         solution: "Fruchtzucker (Fructose) ist ein häufig übersehener Gichtauslöser – er wird in der Leber direkt zu Purinen metabolisiert. Industriell mit HFCS gesüßte Getränke sind besonders problematisch."
       }
     },
