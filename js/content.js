@@ -16904,19 +16904,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 1+2 – Hahnemann *10.4.1755 Meißen, †2.7.1843 Paris; Chinarinde-Selbstversuch 1790; similia similibus curentur; Organon 1810; Homöopathie vs. Allopathie (Contraria contrariis curantur)",
     phase1: {
       soil: {
-        statement: "Wer war Samuel Hahnemann und welcher Selbstversuch führte zur Entdeckung des Ähnlichkeitsprinzips?",
-        answer: "Samuel Hahnemann (*10. April 1755 in Meißen, †2. Juli 1843 in Paris). 1790 übersetzte er eine englische Materia Medica und war mit der Beschreibung der Chinarinde (bei Malaria) unzufrieden. Im Selbstversuch nahm er zweimal täglich geringe Dosen Chinarinde ein und entwickelte malariaähnliche Fieberanfälle – die verschwanden, als er aufhörte. Schlussfolgerung: Similia similibus curentur = Ähnliches wird durch Ähnliches geheilt. Das neue Heilsystem nannte er Homöopathie (griech.: homoios = gleich, pathos = Leiden). Das 'Organon', die Gesamtdarstellung der Homöopathie, erschien 1810.",
-        solution: "Die Entdeckung des Simile-Prinzips war nicht völlig neu – Hippokrates und Paracelsus kannten es. Hahnemann hat es jedoch als Erster konsequent weiterentwickelt und systematisch ausgebaut."
+        statement: "Samuel Hahnemann (*10.4.1755 Meißen, †2.7.1843 Paris) entdeckte durch den Chinarinden-Selbstversuch 1790 das Simile-Prinzip ('similia similibus curentur') und veröffentlichte die Gesamtdarstellung seiner Methode 1810 im Organon.",
+        answer: true,
+        solution: "Die Entdeckung des Simile-Prinzips war nicht völlig neu – Hippokrates und Paracelsus kannten es. Hahnemann entwickelte es als Erster konsequent systematisch aus. Homöopathie: homoios = gleich, pathos = Leiden."
       },
       seed: {
-        statement: "Wie unterscheidet sich die homöopathische von der schulmedizinischen Vorgehensweise?",
-        answer: "Schulmedizin (Allopathie): sucht Diagnose, behandelt nach antagonistischem Prinzip (Contraria contrariis curantur – Entgegengesetztes heilt Entgegengesetztes); bekämpft Symptome, birgt Nebenwirkungsrisiko. Homöopathie: braucht klinische Diagnose nur zur Eingrenzung; Behandlung basiert auf allen subjektiven und objektiven Symptomen; erfasst Patienten als Konstitutionstyp; Ziel: Selbstheilungskräfte aktivieren; keine Nebenwirkungen/Therapieschäden. Grenze der Homöopathie: wenn Selbstheilungskräfte blockiert/überfordert sind, müssen schulmedizinische Mittel eingesetzt werden (z. B. Notfallmedizin).",
-        solution: "Homöopathie und Schulmedizin schließen sich nicht aus. Die Schulmedizin profitiert von unterstützender Homöopathie, umgekehrt hat die Homöopathie Grenzen (z. B. Notfall, chirurgische Indikationen)."
+        statement: "Die Schulmedizin (Allopathie) arbeitet nach dem Contraria-Prinzip und bekämpft Symptome; die Homöopathie erfasst den Patienten als Konstitutionstyp und zielt auf Aktivierung der Selbstheilungskräfte ohne Nebenwirkungen – in der Notfallmedizin hat sie jedoch keinen Platz.",
+        answer: true,
+        solution: "Homöopathie und Schulmedizin schließen sich nicht aus – schulmedizinische Behandlung kann von unterstützender Homöopathie profitieren. Grenzen: wenn Selbstheilungskräfte blockiert/überfordert sind."
       },
       water: {
-        statement: "Was lehrten Hippokrates und Paracelsus zur Ähnlichkeitsregel und was ist das Simile?",
-        answer: "Hippokrates (ca. 460–375 v. Chr.): kannte das Prinzip 'Ähnliches durch Ähnliches heilen' und auch das antagonistische Prinzip. Paracelsus (1493–1541): 'Auf keine Weise wird eine Krankheit per contraria geheilt, sondern mit Hilfe des Simile.' Kannte aber die Potenzierung noch nicht. Das Simile ist das dem Erkrankungssymptombild ähnlichste Mittel. Je ähnlicher die Symptome, desto erfolgreicher die Heilung. Hahnemann nannte es Similimum.",
-        solution: "Das Similimum ist das am besten passende Einzelmittel – es verspricht schnellste Heilung. Falsch gewählte homöopathische Einzelmittel wirken nicht, während Komplexmittel im günstigsten Fall langsamer wirken."
+        statement: "Weder Hippokrates noch Paracelsus kannte das Ähnlichkeitsprinzip – Hahnemann war der erste Arzt der Geschichte, der das Simile-Prinzip in der Medizin beschrieb.",
+        answer: false,
+        solution: "FALSCH: Hippokrates (460–375 v. Chr.) und Paracelsus (1493–1541) kannten beide das Simile-Prinzip. Paracelsus kannte die Potenzierung jedoch noch nicht. Hahnemann nannte das ideale Einzelmittel 'Similimum'."
       }
     },
     harvestQuestions: [
@@ -17011,19 +17011,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 3.1–3.3 – 3 Hauptprinzipien; Arzneimittelprüfung am Gesunden = Arzneimittelbild; Hahnemann 200 Mittel, heute 3000; Urtinkturen → Potenzierung; höhere Verdünnung = tiefgreifendere Wirkung; Verschüttelung wichtiger als Verdünnung",
     phase1: {
       soil: {
-        statement: "Auf welchen drei Hauptprinzipien basiert die Homöopathie?",
-        answer: "1. Simile-Regel: Patient wird mit dem Mittel behandelt, das beim Gesunden ähnliche Symptome hervorruft. Das Mittel heißt Simile; je ähnlicher, desto erfolgreicher. Die Gesamtheit aller Symptome muss betrachtet werden. Homöopathie ist individuell – dasselbe Krankheitsbild kann bei verschiedenen Patienten unterschiedliche Mittel erfordern. 2. Reine Arzneimittellehre: Jedes Mittel muss eine Arzneimittelprüfung am Gesunden durchlaufen. Die beobachteten Symptome werden als Arzneimittelbild festgehalten. Hahnemann prüfte ~200 Mittel, heute sind ~3.000 bekannt. 3. Gabenlehre: Potenzierung der Arznei (Verdünnung + Verschüttelung/Verreibung).",
-        solution: "Die Individualität der Homöopathie ist entscheidend: Drei Patienten mit Fieber können drei verschiedene Mittel benötigen, weil sie unterschiedlich auf die Erkrankung reagieren."
+        statement: "Die drei Hauptprinzipien der Homöopathie sind: Simile-Regel (ähnliches Mittel), Reine Arzneimittellehre (Arzneimittelprüfung am Gesunden → Arzneimittelbild) und Gabenlehre (Potenzierung: Verdünnung + Verschüttelung).",
+        answer: true,
+        solution: "Die Individualität ist entscheidend: Drei Patienten mit Fieber können drei verschiedene Mittel benötigen. Hahnemann prüfte ~200 Mittel; heute ~3.000 bekannt."
       },
       seed: {
-        statement: "Was ist die Gabenlehre und warum gilt: höhere Verdünnung = stärkere Wirkung?",
-        answer: "Hahnemann beobachtete, dass Substanzen bei Verabreichung als Urtinktur (unverdünnt) zwar heilten, aber gefährlich reagierten. Verdünnte und geschüttelte Substanzen wirkten besser. Er nannte dieses Verfahren Potenzierung (Begriff aus der Alchemie). In der Homöopathie gilt: Je höher die Verdünnung (= Potenz), desto tiefgreifender die Wirkung. Wichtiger als die Verdünnung selbst ist die Verschüttelung/Verreibung nach jedem Verdünnungsschritt.",
-        solution: "Das ist kontraintuitiv – normalerweise bedeutet Verdünnung Abschwächung. In der Homöopathie wird die Substanz durch Potenzierung 'dynamisiert': Materie wird immaterieller, die Information wird freigesetzt."
+        statement: "In der Homöopathie gilt: Höhere Verdünnung = tiefgreifendere Wirkung; dabei ist die Verschüttelung/Verreibung nach jedem Verdünnungsschritt wichtiger als die Verdünnung selbst.",
+        answer: true,
+        solution: "Das ist kontraintuitiv. Potenzierung = Begriff aus der Alchemie. Die Substanz wird 'dynamisiert': Materie wird immaterieller, Information wird freigesetzt."
       },
       water: {
-        statement: "Wie funktioniert die Fallaufnahme und was sind Modalitäten?",
-        answer: "Fallaufnahme: Alle wahrnehmbaren Symptome werden detailliert erfasst. Zuerst Selbstbericht des Patienten, dann Familienanamnese, Lebensgeschichte (Vorerkrankungen, Operationen, Impfungen, Medikamente, Lebensbedingungen, Ernährung, Verdauung). Modalitäten: Einflüsse, die Intensität, Qualität, Ort des Symptoms oder Allgemeinbefinden verändern – z. B. besser/schlechter bei Kälte/Wärme, Bewegung/Ruhe, Licht/Dunkel, Nässe/Trockenheit, zu bestimmten Tageszeiten. Leitsymptome: besonders auffällige und ungewöhnliche Symptome → führen zum richtigen Mittel.",
-        solution: "Modalitäten sind das A und O der Mittelfindung in der Homöopathie. 'Wann werden die Beschwerden besser oder schlechter?' – diese Frage ist entscheidender als die Diagnose selbst."
+        statement: "Modalitäten sind Einflüsse (Kälte/Wärme, Bewegung/Ruhe, Tageszeiten), die Intensität, Qualität oder Ort der Symptome verändern, und gelten in der Homöopathie als entscheidender für die Mittelfindung als die medizinische Diagnose.",
+        answer: true,
+        solution: "Leitsymptome = besonders auffällige, ungewöhnliche Symptome. Die 5 Fragen der Anamnese: Wo (Lokalisation), Wie (Empfindung), Wodurch (Modalitäten), Womit (Begleitsymptome), Warum (Ursache)."
       }
     },
     harvestQuestions: [
@@ -17118,19 +17118,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 3.3.1–3.3.2 – D=1:10 (10x schütteln), C=1:100 (100x), LM=1:50000; ab D24/C12/LM3 kein Molekül mehr (Avogadro); Tiefpotenzen <D6/C3, Mittelpotenzen D6–D22/C3–C11, Hochpotenzen ≥D23/C12/LM3; Hochpotenzen nur in erfahrenen Händen; nicht bei stark geschwächten Patienten",
     phase1: {
       soil: {
-        statement: "Wie unterscheiden sich D-Potenzen, C-Potenzen und LM-Potenzen?",
-        answer: "D-Potenzen (Dezimalpotenzen): Verdünnung 1:10 + Verschüttelung (10× kräftig); flüssig = 1 Teil Urtinktur + 9 Teile Wasser-Alkohol; fest (Globuli) = 1 Teil + 9 Teile Milchzucker + Verreibung. C-Potenzen (Centesimalpotenzen): Verdünnung 1:100; 1 Teil Urtinktur + 99 Teile Träger; 100 Schüttelschläge pro Schritt. LM-Potenzen: Verdünnung 1:50.000 (L = 50, M = 1000 im Lateinischen); wirken sehr weich, können längere Zeit genommen werden; besonders für chronisch Kranke geeignet. C- und LM-Potenzen gehen direkt auf Hahnemann zurück.",
-        solution: "D-Potenzen sind in Deutschland am gebräuchlichsten. Bei Unsicherheit über die Potenz beginnt man als Anfänger mit D6."
+        statement: "D-Potenzen werden 1:10 mit 10 Schüttelschlägen, C-Potenzen 1:100 mit 100 Schüttelschlägen und LM-Potenzen 1:50.000 potenziert; C- und LM-Potenzen gehen direkt auf Hahnemann zurück.",
+        answer: true,
+        solution: "D-Potenzen sind in Deutschland am gebräuchlichsten. LM-Potenzen wirken besonders weich und eignen sich für chronisch Kranke. Bei Unsicherheit beginnt man als Anfänger mit D6."
       },
       seed: {
-        statement: "Was sind Tiefpotenzen, Mittelpotenzen und Hochpotenzen, und wofür werden sie eingesetzt?",
-        answer: "Tiefpotenzen: < D6/C3; noch substantieller Arzneimittelgehalt nachweisbar; direkte Arznereize; kurze Wirkdauer → häufiger wiederholen; bei akuten Erkrankungen und Unsicherheit über das Simile. Mittelpotenzen: D6–D22 / C3–C11; Wirkdauer 24h bis einige Tage; eine Gabe/Tag bis eine Gabe/Woche. Hochpotenzen: ab D23/C12/LM3 und höher; kein Molekül mehr nachweisbar; Wirkung energetisch/informatorisch; tiefgreifend auf Konstitution, Persönlichkeit, Gemüt; lange Wirkdauer → seltener geben. Hochpotenzen nur von Erfahrenen einsetzen; NIE bei stark geschwächten Patienten; dürfen nie dem Patienten mitgegeben werden.",
-        solution: "Je akuter die Erkrankung, umso niedriger die Potenz und umso häufiger die Gabe. Bei hochakuten Fällen (Notfall) kommt es zuerst auf das Mittel an, erst in zweiter Linie auf die Potenz."
+        statement: "Hochpotenzen (ab D23/C12/LM3) enthalten kein Molekül der Ausgangssubstanz mehr, wirken tiefgreifend auf Konstitution und Gemüt und dürfen NIE bei stark geschwächten Patienten eingesetzt oder dem Patienten mitgegeben werden.",
+        answer: true,
+        solution: "Tiefpotenzen (<D6/C3): häufige Gaben, akute Erkrankungen. Mittelpotenzen (D6–D22/C3–C11): 1 Gabe/Tag bis 1/Woche. Je akuter die Erkrankung, umso niedriger die Potenz und häufiger die Gabe."
       },
       water: {
-        statement: "Was erklärt die Avogadro-Konstante in Bezug auf Hochpotenzen?",
-        answer: "Ab der Potenz D24 / C12 / LM3 befindet sich kein einziges Molekül des Arzneistoffs mehr im Medikament (Avogadro-Konstante: 1 mol = 6,022 × 10²³ Teilchen). Dennoch erhalten die Arznei durch Verschüttelung/Verreibung die Information über die Ausgangssubstanz. Das Arzneimittel gilt als Informationsspeicher/Informationsträger. Die Information stammt aus der Ursubstanz und wird durch den Träger (Alkohol, Wasser, Milchzucker) weitergegeben. Je höher die Potenz, desto immaterieller die Information, desto schneller und weiter kann sie sich entfalten.",
-        solution: "Die Informationsspeicher-Theorie ist die wissenschaftlich umstrittenste Aussage der Homöopathie – sie erklärt, warum Hochpotenzen trotz fehlender Substanzmoleküle wirken sollen."
+        statement: "Ab D24/C12/LM3 befindet sich laut Avogadro-Konstante (6,022×10²³ Teilchen/mol) kein Molekül der Ausgangssubstanz mehr im Arzneimittel; Hochpotenzen wirken als reine Informationsträger (Alkohol, Wasser, Milchzucker speichern die Substanzinformation).",
+        answer: true,
+        solution: "Die Informationsspeicher-Theorie ist wissenschaftlich umstritten – sie erklärt, warum Hochpotenzen trotz fehlender Substanzmoleküle wirken sollen. Je höher die Potenz, desto immaterieller die Wirkung."
       }
     },
     harvestQuestions: [
@@ -17225,19 +17225,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 4 – Darreichung: Tablette/2-3 Globuli/10 Tropfen; Erstverschlimmerung = Körper reagiert; akut: spätestens 1 Woche geheilt, nach 3. Gabe Besserung; chronisch: nach 6-8 Wochen Mittelwechsel; nicht mit dem Essen; über Mundschleimhaut; Salben nur in Ausnahmefällen",
     phase1: {
       soil: {
-        statement: "In welchen Darreichungsformen kommen Homöopathika vor und wie wird eine Gabe definiert?",
-        answer: "Darreichungsformen: Tabletten, Globuli (Rohrzuckerkügelchen) und Tropfen. Triturationen (Pulver) sind nicht mehr sehr üblich. Eine Gabe = 1 Tablette, 2–3 Globuli oder 10 Tropfen. Je akuter die Krankheit: umso häufiger die Gabe, umso niedriger die Potenz. Grundsätze: Die Grundsubstanzen kommen aus der Tierwelt, Pflanzenwelt und von Mineralien. Nosoden = Arzneimittel aus krankmachenden Stoffen (Schleim, Keime, Abwehrstoffe); ab D12 in Apotheken erhältlich.",
-        solution: "Bei hochakuten Fällen gilt: Es kommt zuerst auf das richtige Mittel an, erst in zweiter Linie auf die Potenz. Man nimmt das Mittel in der Potenz, die gerade verfügbar ist."
+        statement: "Eine homöopathische Gabe besteht aus 1 Tablette, 2–3 Globuli oder 10 Tropfen; Nosoden sind Arzneimittel aus krankmachenden Stoffen (Keime, Blut, Eiter) und werden ab D12 in Apotheken abgegeben.",
+        answer: true,
+        solution: "Je akuter die Krankheit, umso häufiger die Gabe und umso niedriger die Potenz. Bei hochakuten Fällen gilt: zuerst das richtige Mittel, erst dann die Potenz."
       },
       seed: {
-        statement: "Was ist eine Erstverschlimmerung und wann ist ein Mittelwechsel notwendig?",
-        answer: "Erstverschlimmerung: Bei akuten Erkrankungen kommt es nach homöopathischer Gabe fast immer zuerst zu einer Erstreaktion – meist ein Zeichen einsetzender Besserung. Kann aber auch 'Erstverschlimmerung' sein = Zeichen, dass der Körper reagiert. Bei heftiger Erstverschlimmerung: Potenz und Mittel überdenken. Akute Erkrankungen: Heilung spätestens nach 1 Woche; nach der 3. Gabe muss Besserung eintreten, sonst Mittel falsch gewählt. Chronische Erkrankungen: nach spätestens 6–8 Wochen Mittel wechseln, wenn Verbesserung stagniert oder nach Erstverschlimmerung keine Besserung folgt.",
-        solution: "Die Erstverschlimmerung ist von der Verstärkung der Grunderkrankung zu unterscheiden. Eine Erstverschlimmerung ist kurz und gefolgt von Besserung – sie ist ein positives Zeichen."
+        statement: "Bei akuten Erkrankungen muss spätestens nach der 3. Gabe eine Verbesserung eintreten; bei chronischen Erkrankungen ist nach spätestens 6–8 Wochen ohne Besserung ein Mittelwechsel nötig.",
+        answer: true,
+        solution: "Die Erstverschlimmerung = Zeichen, dass der Körper reagiert; ist kurz und gefolgt von Besserung. Bei heftiger Erstverschlimmerung: Potenz und Mittelwahl überdenken. Akute Erkrankungen: spätestens nach 1 Woche geheilt."
       },
       water: {
-        statement: "Wie werden homöopathische Mittel eingenommen und äußerlich angewendet?",
-        answer: "Innere Anwendung: Nicht mit dem Essen einnehmen (Magensäure zerstört die Mittel). Über Mundschleimhaut aufnehmen: Globuli zwischen Unterkiefer und Wangenschleimhaut auflösen lassen; Tablette in Wasser aufgelöst mit Einmalspritze (ohne Kanüle) unter die Zunge geben; Tropfen in Schleimhautbereich zwischen Wange und Unterkiefer. Äußerliche Anwendung: Verreibungen, Tabletten oder Tropfen in Wasser aufgelöst auf erkrankte Stelle; Wickel und Umschläge (dasselbe Mittel auch innerlich geben). Salben nur in Ausnahmefällen – nie in offene Wunden (Fett verschmutzt Wunde).",
-        solution: "Die gleichzeitige innere und äußerliche Gabe desselben Mittels verstärkt die Wirkung. Salben in offene Wunden sind kontraindiziert, weil das Fett die Wundheilung behindert."
+        statement: "Homöopathika werden über die Mundschleimhaut aufgenommen (nicht geschluckt), nicht mit dem Essen eingenommen, und dürfen als Salbe nie in offene Wunden gegeben werden.",
+        answer: true,
+        solution: "Die gleichzeitige innere und äußerliche Gabe desselben Mittels verstärkt die Wirkung. Fett in offenen Wunden behindert die Wundheilung."
       }
     },
     harvestQuestions: [
@@ -17332,19 +17332,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 6.1+6.2 – Calc.carb.: innere Austernschale; träge/korpulent; Krämpfe nach Schreck; schlechter Kälte/Nässe/Bewegung; Sepia: Tintenfisch; Frauen; distanziert/allein; schlaffe Bindegewebe; besser Wärme/Bewegung/Ruhe; schlechter Kälte/Berührung",
     phase1: {
       soil: {
-        statement: "Was ist Calcium carbonicum, auf welche Organe wirkt es und wie sieht das typische Erscheinungsbild aus?",
-        answer: "Calcium carbonicum = innere weiße Austernschale. Wirkung auf: ZNS, Lymphdrüsen, Schilddrüse, Knochen, Magen-Darm, Haut, Schleimhäute, Muskeln. Erscheinungsbild: träge, schwerfällig, langsam; meist grobknochig und eher korpulent; trotz Robustheit zu Infekten neigend; Kinder: tapsig, rasch ermüdend, stur und schwer zu erziehen. Erkrankungsneigungen: ängstlich, Krämpfe nach Schreck; chronische Katarrhe (trocken oder schleimig-eitrig-blutig); Blutungsneigung aus Körperhöhlen; heißhungrig mit großem Durst; Blähungen, Obstipation, Durchfall; Gelenkentzündungen, Muskelschwäche; bei Jungen: Wachstumsschwierigkeiten, Knochenverkrümmungen.",
-        solution: "Calcium carbonicum verschlimmert sich durch Kälte, Nässe, Bewegung und Luftzug. Besserung bei trockenem Klima."
+        statement: "Calcium carbonicum (innere Austernschale) entspricht einem trägen, korpulenten Typ mit Krämpfen nach Schreck und Blutungsneigung; Verschlimmerung durch Kälte, Nässe und Bewegung, Besserung bei trockenem Klima.",
+        answer: true,
+        solution: "Trotz robustem Erscheinungsbild besteht eine Neigung zu Infekten. Calc. carb. wirkt auf ZNS, Lymphdrüsen, Knochen, Schilddrüse. Kinder: tapsig, rasch ermüdend, stur."
       },
       seed: {
-        statement: "Was ist Sepia, wem entspricht typischerweise das Sepia-Bild und welche Modalitäten sind charakteristisch?",
-        answer: "Sepia = Tintenfisch. Wirkung: ZNS, Beckenorgane, Haut, periphere Nerven, Gelenke, Magen-Darm, Leber. Meist Frauen entsprechen dem Sepia-Bild. Erscheinungsbild: gerne allein, möchte in Ruhe gelassen werden; nicht gerne berührt; unfreundlich und distanziert; Bindegewebe, Haut und Muskeltonus schlaff und unelastisch; nicht selten Vorfall von Gebärmutter und Scheide. Erkrankungsneigungen: chronische Entzündungsprozesse, Katarrhe der Urogenitalorgane, Ekzeme; charakteristisch: morgendliche Schwäche, abendliche Munterkeit. Besserung: nach längerem Liegen, Ruhe/Alleinsein, Wärme, längerer rascher Bewegung. Verschlimmerung: durch Kälte, zu Beginn der Bewegung, in geschlossenen Räumen, bei Berührung.",
-        solution: "Sepia ist ein klassisches 'Frauenmittel'. Die Kombination aus morgendlicher Schwäche, abendlicher Munterkeit und dem Wunsch nach Alleinsein ist diagnostisch wegweisend."
+        statement: "Sepia (Tintenfisch) zeigt typischerweise morgendliche Munterkeit und abendliche Schwäche bei meist weiblichen Patienten, die gerne allein sind und schlaffe Bindegewebe aufweisen.",
+        answer: false,
+        solution: "FALSCH: Sepia zeigt morgendliche SCHWÄCHE und abendliche MUNTERKEIT. Besserung durch Wärme, Ruhe/Alleinsein und längere rasche Bewegung; Verschlimmerung durch Kälte, Berührung und geschlossene Räume."
       },
       water: {
-        statement: "Was sind Polychreste und Konstitutionsmittel, und welche Mittel gehören dazu?",
-        answer: "Polychreste = Arzneimittel, die aufgrund der großen Zahl bekannter Symptome bei einer Vielzahl von Erkrankungen anwendbar sind. Konstitutionsmittel: gehören alle zu den Polychresten; vereinen homöopathisches Arzneimittelbild mit der Persönlichkeit des Individuums nach dem Simile-Prinzip; erfassen die Gesamtindividualität in Körper-Geist-Seele. Wichtige Polychreste/Konstitutionsmittel: Calcium carbonicum, Silicea, Phosphorus, Sulfur, Natrium muriaticum, Pulsatilla, Lachesis, Sepia, Lycopodium, Nux vomica, Arsenicum album, Mercurius solubilis, Graphites, Rhus toxicodendron, Bryonia.",
-        solution: "Konstitutionsmittel sind nicht nur auf eine Erkrankung zugeschnitten, sondern auf den ganzen Menschen. Das macht die Konstitutionsdiagnostik so komplex und vielschichtig."
+        statement: "Konstitutionsmittel sind eine Untergruppe der Polychreste; sie erfassen die Gesamtindividualität in Körper-Geist-Seele und umfassen u.a. Calc. carb., Sepia, Phosphorus, Sulfur, Pulsatilla, Lycopodium, Nux vomica und Graphites.",
+        answer: true,
+        solution: "Polychreste = Arzneimittel mit großer bekannter Symptomvielfalt, daher bei vielen Erkrankungen anwendbar. Konstitutionsmittel vereinen Arzneimittelbild mit der Persönlichkeit des Individuums."
       }
     },
     harvestQuestions: [
@@ -17439,19 +17439,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 6.3–6.6 – Phosphorus: nicht allein, schreckhaft, hämorrhagisch; besser rechts/kalt/Schlaf; Sulfur: wasserscheu, Körperöffnungen rot, Entgiftungsmittel; besser warm/Bewegung; Pulsatilla: weiblich, anhänglich, veränderlicher Schleim, frische Luft; Lycopodium: Rechtsmittel, 16-20 Uhr schlechter, Leber/Niere",
     phase1: {
       soil: {
-        statement: "Was sind die charakteristischen Merkmale von Phosphorus und welche Erkrankungen neigen Phosphorus-Typen zu entwickeln?",
-        answer: "Phosphorus = gelber Phosphor (Mineral). Wirkung: ZNS, Knochen, Gefäßnerven, Haargefäße, Schleimhäute. Erscheinungsbild: Leitsymptom – kann sehr schlecht allein sein; außerordentlich schreckhaft (Geräusche, Gewitter, Schüsse); sensibel mit 'feinen Antennen' für andere; temperamentvoll, liebt Bewegung; intelligent, aber vergesslich; verschmust, liebebedürftig; muss im Mittelpunkt stehen. Appetit maßlos, trinkt viel; Wechsel Durchfall/Verstopfung, oft Fettstühle. Erkrankungsneigung: hämorrhagische Diathese (selbst kleine Wunden bluten ausdauernd). Besserung: kaltes Essen/Wasser, Schlaf, Liegen auf der rechten Seite. Verschlimmerung: linke Seite, physische/psychische Anstrengung, warmes Essen, Berührung, vor/während Gewitter.",
-        solution: "Die Kombination aus Schreckhaftigkeit, extremer Gesellschaftsbedürftigkeit und hämorrhagischer Neigung macht Phosphorus unverwechselbar."
+        statement: "Phosphorus (gelber Phosphor) ist charakterisiert durch extreme Gesellschaftsbedürftigkeit, Schreckhaftigkeit, hämorrhagische Diathese und Besserung beim Liegen auf der rechten Seite sowie bei kaltem Essen.",
+        answer: true,
+        solution: "Verschlimmerung durch physische/psychische Anstrengung, linke Seite und Gewitter. Die Kombination aus Schreckhaftigkeit, extremer Gesellschaftsbedürftigkeit und hämorrhagischer Neigung ist unverwechselbar."
       },
       seed: {
-        statement: "Was sind die charakteristischen Merkmale von Sulfur?",
-        answer: "Sulfur = Schwefel. Eines der wichtigsten Konstitutionsmittel. Wirkung: ZNS, vegetatives NS, Haut/Schleimhäute, Venen/Pfortader, MDT, Leber, Urogenitalsystem, Muskeln, Gelenke. Reaktionssteigerndes Mittel für alle Zellen; wichtigstes Entgiftungsmittel der Homöopathie. Erscheinungsbild: ausgeprägte Wasserscheue; nachts Heißhunger, tagsüber schnell satt und oft mager; trinkt viel; streitsüchtig, schwierig; langsame Bewegungen, kraftlos; selbstsüchtig, unleidlich, trotzig; ängstlich, jammert. Erkrankungen: trockene Haut, Ekzeme, Haarausfall, Schuppen; Verstopfung/Durchfall wechselnd, stark stinkende Blähungen; alle Körperöffnungen sind rot; nachts häufiges Urinieren. Verschlimmerung: abends/nachts, Ruhe, nasskaltes Wetter, nach Waschen. Besserung: trockenes warmes Wetter, Bewegung. Hinweis: Sulfur kann heftige Erstverschlimmerungen auslösen.",
-        solution: "Die 'roten Körperöffnungen' und die Wasserscheue sind klassische Leitsymptome für Sulfur. Sulfur wird oft als 'Entgiftungsmittel' zu Beginn einer Behandlung eingesetzt."
+        statement: "Sulfur ist das wichtigste Entgiftungsmittel der Homöopathie mit den Leitsymptomen Wasserscheue und rote Körperöffnungen; Besserung bei trockenem warmen Wetter und Bewegung, und es kann heftige Erstverschlimmerungen auslösen.",
+        answer: true,
+        solution: "Verschlimmerung: abends/nachts, Ruhe, nasskaltes Wetter, nach Waschen. Rote Körperöffnungen und Wasserscheue sind die klassischen Leitsymptome. Sulfur wird oft zu Beginn einer Behandlung eingesetzt."
       },
       water: {
-        statement: "Was sind die charakteristischen Merkmale von Pulsatilla und Lycopodium?",
-        answer: "Pulsatilla (Wiesenküchenschelle): eines der größten Polychreste. Wirkt auf ZNS, Kreislauf, Hypophyse, weibliche Geschlechtsorgane, MDT, Leber/Gallenblase, Schleimhäute, Pfortader/Venen, Psyche. Meist weibliche Patienten; anhänglich, launisch, nachgiebig; kann nicht allein sein; Schleimabsonderungen dick, mild, gelblich-grün; große Veränderlichkeit aller Symptome; trinkt wenig. Besserung: frische kühle Luft, kalte Anwendungen. Verschlimmerung: morgens, Wärme, schwüles Wetter. Lycopodium (Bärlapp): wirkt auf Leber, ZNS, Mandeln/Rachen-Kehlkopf, MDT. Sensibel, ängstlich, dominanter Außenauftritt; ausgesprochenes 'Rechtsmittel' (Beschwerden rechts oder von rechts nach links); magere Typen mit aufgetriebenem Bauch; Leber-/Nierenstörungen; Blähungen/Verstopfung; Arthritis/Gicht. Verschlimmerung: 16–20 Uhr.",
-        solution: "Pulsatilla = Veränderlichkeit der Symptome + Schleimabsonderungen (gelblich-grün, mild). Lycopodium = Rechtsseitigkeit + 16-20 Uhr-Verschlimmerung."
+        statement: "Pulsatilla (Wiesenküchenschelle) zeigt dicke, milde, gelblich-grüne Schleimabsonderungen mit großer Symptomveränderlichkeit und Besserung durch frische kühle Luft; Lycopodium ist ein 'Rechtsmittel' mit typischer Verschlimmerung zwischen 16–20 Uhr.",
+        answer: true,
+        solution: "Pulsatilla: meist weiblich, anhänglich, schlechter morgens und Wärme. Lycopodium: sensibel, magerer Typ mit aufgetriebenem Bauch, Leber/Niere, Blähungen/Verstopfung."
       }
     },
     harvestQuestions: [
@@ -17546,19 +17546,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 6.7–6.8, Kap. 7 – Nux vomica: Brechnuss, männlich, cholerisch, MDT-Störungen, Bandscheibe, besser Ruhe/feuchte Wärme; Graphites: Graphit, Haut/Mastdarm, honigartiges Sekret, Schilddrüsenunterfunktion; Einzelmittel = Similimum; Komplexmittel = mehrere Mittel gemischt, keine Arzneimittelprüfung",
     phase1: {
       soil: {
-        statement: "Was sind die charakteristischen Merkmale von Nux vomica?",
-        answer: "Nux vomica = Brechnuss (getrocknete reife Samen); eines der größten Polychreste. Wirkung: ZNS, vegetatives NS, MDT, Leber, Blase. Erscheinungsbild: in erster Linie männliche Patienten; bezug zur rechten Körperseite; hager und schwächlich; cholerisch und überempfindlich; reagiert stark auf Geräusche und Licht; reizbar und nervös; wirkt aggressiv, ist aber ängstlich und unsicher; essen viel und hastig → Verdauungsprobleme; verkrampft und überängstlich bei Untersuchungen. Erkrankungsneigungen: Magen-Darm-Störungen; Durchfall, Erbrechen oder Verstopfung wechselnd; plötzlich auftretender Bandscheibenvorfall mit brettharter Bauchmuskelversteifung. Besserung: Ruhe, warme feuchte Witterung. Verschlimmerung: Kälte, trockenes Wetter, helles Licht, Geräusche, Berührung, psychische Belastungen.",
-        solution: "Nux vomica ist das 'Stresstyp-Mittel' – der überarbeitete, cholerische, reizbare Patient mit Verdauungsproblemen und Empfindlichkeit auf Umweltreize."
+        statement: "Nux vomica (Brechnuss) entspricht einem cholerischen, überempfindlichen, meist männlichen Typ mit MDT-Störungen und plötzlichem Bandscheibenvorfall mit brettharter Bauchmuskelversteifung; Besserung bei Ruhe und warmer feuchter Witterung.",
+        answer: true,
+        solution: "Nux vomica = 'Stresstyp-Mittel'. Verschlimmerung durch Kälte, helles Licht, Geräusche, Berührung. Besonderheit: plötzlicher Bandscheibenvorfall mit brettharter Bauchmuskelversteifung."
       },
       seed: {
-        statement: "Was sind die charakteristischen Merkmale von Graphites?",
-        answer: "Graphites = natürlich vorkommendes Graphit. Wirkung: Haut, äußeres Auge, Nägel und Haare, Mastdarm. Erscheinungsbild: dickliche, verstopfte, phlegmatische, frostige Menschen; ängstlich, traurig, unruhig; Schilddrüsenunterfunktion zeigt oft Graphites-Symptome; Neigung zu Erkältungen, Hormonstörungen, Lympherkrankungen; Haut trocken, hornig, schuppend. Erkrankungsneigungen: schmierige Hautausschläge mit honigartigen Sekret; Ekzeme hinter Ohren und zwischen Zehen; Haarausfall; Verstopfung (Stuhl hart, knollig, stinkend mit Schleimfetzen); Gelenke verdickt. Besserung: im Dunkeln, durch Einhüllen des Körpers. Verschlimmerung: bei Wärme, nachts, während und nach der Menstruation.",
-        solution: "Das honigartige Sekret der Hautausschläge und die Assoziation mit Schilddrüsenunterfunktion sind typische Graphites-Hinweise."
+        statement: "Graphites (natürliches Graphit) zeigt honigartige Sekrete aus Hautausschlägen, ist mit Schilddrüsenüberfunktion assoziiert und bessert sich bei Wärme.",
+        answer: false,
+        solution: "FALSCH: Graphites ist mit Schilddrüsenunter-funktion assoziiert (nicht Überfunktion). Besserung im Dunkeln und durch Einhüllen, Verschlimmerung bei Wärme und nachts. Erscheinungsbild: dicklich, phlegmatisch, frostig."
       },
       water: {
-        statement: "Was unterscheidet Einzelmittel von Komplexmitteln in der Homöopathie?",
-        answer: "Einzelmittel: Grundprinzip der Homöopathie – nur ein einziges Mittel nach dem Arzneimittelbild. Nur gelegentlich zwei, selten drei Mittel. Das Similimum = am besten passendes Mittel → schnellste Heilung. Einige Mittel antidotieren sich gegenseitig (dürfen nicht zusammen gegeben werden). Komplexmittel: mehrere Einzelmittel ähnlicher Indikation gemischt; keine Arzneimittelprüfung; nach allopathischen Gesichtspunkten eingesetzt; für Anfänger einfacher zu handhaben; können 10, 20+ Einzelmittel enthalten → Informationsüberflutung → Organismus oft überfordert. Falsch gewähltes Einzelmittel: wirkt nichts. Komplexmittel: wirken im günstigsten Fall langsamer als das Similimum, manchmal gar nicht.",
-        solution: "Das richtig gewählte Similimum ist dem Komplexmittel immer überlegen. Komplexmittel sind ein Kompromiss für Situationen, in denen das Simile schwer zu finden ist."
+        statement: "Das richtig gewählte Similimum (Einzelmittel) ist dem Komplexmittel immer überlegen; Komplexmittel haben keine Arzneimittelprüfung, werden nach allopathischen Gesichtspunkten eingesetzt und können den Organismus durch Informationsüberflutung überfordern.",
+        answer: true,
+        solution: "Falsch gewähltes Einzelmittel: wirkt nichts (kein Schaden). Einige Mittel antidotieren sich gegenseitig. Komplexmittel: wirken im günstigsten Fall langsamer als das Similimum."
       }
     },
     harvestQuestions: [
@@ -17653,19 +17653,19 @@ const HOMOEOPATHIE_1048_PLANTS = [
     contextHint: "Kap. 8 – Aconitum: kein Schwitzen, Todesangst, kalter trockener Wind; Belladonna: schwitzt, weite Pupillen, feuerrotes Tonsillen; Ferrum phos.: mildes Fieber, kein Angst; Arnica: Trauma C30/C1000; Apis: Bienenstich-ähnlich; Mercurius: eitrig-scharf; Hepar sulf.: Potenz ↔ Wirkung auf Eiterung; Camphora: antidotiert ALLE Mittel",
     phase1: {
       soil: {
-        statement: "Welche drei großen Fiebermittel gibt es und wie unterscheiden sie sich?",
-        answer: "Aconitum (Blauer Eisenhut/Sturmhut): Fieber durch kalten, trockenen Wind; schnell hohes Fieber, harter/schneller Puls; Patient schwitzt NICHT; große Unruhe bis Todesangst; heftiger Durst; schlechter: abends, nachts, Wärme. Anfängermittel – muss sofort helfen. Belladonna (Tollkirsche): zweites großes Fiebermittel; Patient schwitzt; weite Pupillen, fiebrig glänzende Augen; Haut heiß, Patient friert; Schleimhäute trocken; Tonsillen/Hals feuerrot; kaum ansprechbar; Schlagader pulsiert dumpf/schwer; schlechter durch Kälte, Zugluft, Aufregung. Ferrum phosphoricum (phophorsaures Eisen): drittes Fiebermittel; langanhaltendes, nicht sehr hohes Fieber; keine Angstsymptome (Unterschied zu Aconit!); Puls leicht beschleunigt und unterdrückbar; Verbesserung bei leichter langsamer Bewegung; schlechter in Ruhe und im Liegen. Auch Anfängermittel.",
-        solution: "Entscheidend für die Unterscheidung: Aconit = kein Schwitzen + Todesangst; Belladonna = schwitzt + feuerrote Tonsillen + weite Pupillen; Ferrum phos. = mildes Fieber ohne Angstsymptome."
+        statement: "Aconitum (kein Schwitzen, Todesangst, ausgelöst durch kalten trockenen Wind), Belladonna (schwitzt, weite Pupillen, feuerrote Tonsillen) und Ferrum phosphoricum (mildes anhaltendes Fieber, keine Angst, Besserung bei Bewegung) sind die drei großen Fiebermittel.",
+        answer: true,
+        solution: "Aconitum und Ferrum phos. sind Anfängermittel – sie müssen sofort helfen. Belladonna: schlechter durch Kälte/Zugluft. Ferrum phos.: schlechter in Ruhe und im Liegen."
       },
       seed: {
-        statement: "Welche wichtigen Entzündungsmittel gibt es und wie unterscheiden sie sich?",
-        answer: "Arnica (Bergwohlverleih): traumatische Entzündungen (Verletzung, Quetschung, Blutung); Mittel der Wahl bei Unfällen; C30 vor/nach Operationen; C1000 bei Kopfverletzungen; auch gegen Schocksymptome. Apis (Honigbiene): brennende/stechende Entzündungen; Stelle hellrot, ödematös, heiß – wie Bienenstich; auch bei Insektenstichen (kleinere: evtl. Ledum). Bryonia (Zaunrübe): exsudative (wässrige) Entzündungen; besser bei festem Druck und Ruhe; schlechter bei leichter Berührung und Bewegung. Mercurius solubilis (quecksilberhaltiges Gemenge): eitrige, schmerzhafte Entzündungen; Eiter innen, roter Rand außen; alle Absonderungen scharf und wundmachend; Lymphknoten angeschwollen. Lachesis (Schlangengift): hochrote, eitrige, septische Entzündungen; Druck wird nicht ertragen; Patient schläft in die Verschlimmerung hinein. Hepar sulfuris (Kalkschwefelleber): rezidivierende eitrige Entzündungen, Furunkel; Tiefpotenz = Eiterung ausspülen; Mittelpotenz = Eiterung stoppen/einschmelzen; Hochpotenz = Entzündung ausheilen. Silicea (Kieselsäure): chronische, reaktionsträge, schmierend-chronische Eiterungen; Fistelneigung; kein richtiges Fieber; gut am Ende einer Behandlung. Myristica sebifera ('homöopathisches Messer'): fördert rasche Abszessreifung; leitet Eiterungen aus; nur bei lokaler Symptomatik; Nekrose und Sepsis im Vordergrund.",
-        solution: "Hepar sulf. ist das einzige Mittel, bei dem die Potenz die Wirkungsrichtung bestimmt: Tief = Eiterung ausspülen (öffnen), Hoch = Entzündung ausheilen."
+        statement: "Bei Hepar sulfuris bestimmt die Potenz die Wirkungsrichtung: Tiefpotenz spült Eiterungen aus, Mittelpotenz stoppt sie, Hochpotenz heilt die Entzündung aus – das ist einzigartig in der Homöopathie.",
+        answer: true,
+        solution: "Arnica C30 vor/nach OP, C1000 bei Kopfverletzungen. Apis = brennend-stechend, hellrot, ödematös wie Bienenstich. Myristica sebifera = 'homöopathisches Messer'. Silicea = chronische träge Eiterungen, Fistelneigung."
       },
       water: {
-        statement: "Welche wichtigen Erkältungsmittel gibt es und was ist an Camphora besonders zu beachten?",
-        answer: "Dulcamara (Bittersüß): Erkältung im Sommer/Spätsommer, wenn Tage heiß, Nächte kalt; ausgelöst durch Feuchtigkeit, Nebel, Schnee, Regen; Nase setzt sich zu; ungeduldig, unleidlich; besser im Freien und Wärme. Gelsemium (Falscher Jasmin): Erkältung bei warm-feuchtem, schwülem Wetter; jeder Knochen schmerzt; heiße ätzende Nasensekrete; völlig durstlos; langsame Symptomwicklung. Allium Cepa (Küchenzwiebel): wie beim Zwiebelschneiden – Nase und Augen laufen; Nasensekrete ÄTZEND und wundmachend; Augensekrete mild. Rhus toxicodendron (Giftsumach): Kälte, Feuchtigkeit, Durchnässung als Auslöser; unruhig und depressiv; großer Durst auf kaltes Wasser; trockene geschwollene Nase; Bewegung bessert. Camphora (Kampfer): Kälte/Durchnässung der Extremitäten als Auslöser; friert, müde, kraftlos, unruhig; Haut kalt und trocken; Nase setzt sich zu; regt Kreislauf an. WICHTIG: Camphora antidotiert alle anderen homöopathischen Mittel! Wirkt nur, wenn noch kein Katarrh besteht.",
-        solution: "Camphora-Merkregel: Es antidotiert ALLE anderen homöopathischen Mittel – daher niemals gleichzeitig mit anderen Homöopathika anwenden."
+        statement: "Camphora antidotiert alle anderen homöopathischen Mittel und darf daher nicht gleichzeitig mit anderen Homöopathika gegeben werden; es wirkt nur, wenn noch kein Katarrh besteht.",
+        answer: true,
+        solution: "Dulcamara = Sommer/Feuchtigkeit. Allium Cepa = ätzende Nasensekrete, milde Augensekrete. Gelsemium = warm-feuchtes Wetter, durstlos. Rhus tox. = Kälte/Nässe/Durchnässung, Bewegung bessert."
       }
     },
     harvestQuestions: [
@@ -17750,6 +17750,107 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Aconitum (kalter, trockener Wind)", correct: false }
         ],
         explanation: "Dulcamara, Rhus tox. und Gelsemium werden alle durch Feuchtigkeit/Nässe ausgelöst. Aconitum dagegen ist typisch für Erkältungen/Fieber durch kalten, trockenen Wind."
+      }
+    ]
+  }),
+
+  makeDetailedPlant({
+    id: "1048_09",
+    title: "Fallaufnahme: Anamnese, 5 W-Fragen & aktueller Status",
+    contextHint: "Kap. 5 – 5 W-Fragen: Wo (Lokalisation), Wie (Empfindung), Wodurch (Modalitäten besser/schlechter), Womit (Begleitsymptome), Warum (Ursache: Trauma/Impfung/Erlebnis); Leitsymptome = seltsam/auffällig; Kap. 1 – 26.05.2022 Dt. Ärztetag strich Homöopathie aus MWBO; Faustregel: je akuter → niedrigere Potenz + häufigere Gabe",
+    phase1: {
+      soil: {
+        statement: "Die homöopathische Anamnese strukturiert sich in 5 W-Fragen: Wo (Lokalisation), Wie (Empfindung), Wodurch (Modalitäten – besser/schlechter), Womit (Begleitsymptome) und Warum (Ursache wie Trauma, Impfung oder emotionales Ereignis).",
+        answer: true,
+        solution: "Nach dem Selbstbericht folgen: Familienanamnese, Lebensstil, Ernährung, Verdauung, Schlaf- und Stressverhalten. Besonders auffällige, seltsame Symptome = Leitsymptome → führen zum richtigen Mittel."
+      },
+      seed: {
+        statement: "Am 26. Mai 2022 anerkannte der Deutsche Ärztetag die Homöopathie als offizielle ärztliche Weiterbildungsbezeichnung und nahm sie neu in die Musterweiterbildungsordnung (MWBO) auf.",
+        answer: false,
+        solution: "FALSCH: Der Deutsche Ärztetag STRICH am 26.05.2022 die Zusatzbezeichnung 'Homöopathie' aus der MWBO. Homöopathie ist seitdem keine offiziell anerkannte ärztliche Weiterbildungsbezeichnung mehr in Deutschland."
+      },
+      water: {
+        statement: "Je akuter eine Erkrankung ist, umso häufiger wird das Mittel gegeben und umso niedriger ist die Potenz; bei hochakuten Fällen kommt es primär auf das richtige Mittel an, erst sekundär auf die Potenz.",
+        answer: true,
+        solution: "Tiefpotenzen (<D6/C3): häufige Gaben, kurze Wirkdauer. Bei der akuten Notfallsituation nimmt man das verfügbare Mittel, auch wenn die Potenz nicht ideal ist. Hochpotenzen = seltene Gaben, tiefgreifende Wirkung, nur bei chronischen Erkrankungen."
+      }
+    },
+    harvestQuestions: [
+      {
+        id: "1048_09_h1",
+        type: "true_false",
+        statement: "Die 5 W-Fragen der homöopathischen Anamnese lauten: Wo (Lokalisation), Wie (Empfindung), Wodurch (Modalitäten), Womit (Begleitsymptome) und Warum (Ursache).",
+        answer: true,
+        explanation: "Korrekt. Diese 5 Fragen bilden das Gerüst der homöopathischen Fallaufnahme. Sie helfen, das vollständige individuelle Symptombild zu erfassen – weit über die schulmedizinische Diagnose hinaus."
+      },
+      {
+        id: "1048_09_h2",
+        type: "mc",
+        question: "Was erfasst die Frage 'Wodurch' in der homöopathischen Anamnese?",
+        options: [
+          { text: "Die Modalitäten – wodurch verschlechtern oder verbessern sich die Symptome", correct: true },
+          { text: "Den Ursprungsort der Erkrankung im Körper", correct: false },
+          { text: "Die Begleitsymptome (z.B. Kopfschmerz mit Übelkeit)", correct: false },
+          { text: "Die Ursache (Trauma, Impfung, emotionales Erlebnis)", correct: false }
+        ],
+        explanation: "Wodurch = Modalitäten (besser/schlechter bei Wärme/Kälte, Bewegung/Ruhe, Tageszeiten). Den Ursprungsort erfasst 'Wo'; Begleitsymptome erfasst 'Womit'; die Ursache erfasst 'Warum'."
+      },
+      {
+        id: "1048_09_h3",
+        type: "true_false",
+        statement: "Am 26. Mai 2022 strich der Deutsche Ärztetag die Zusatzbezeichnung 'Homöopathie' aus der Musterweiterbildungsordnung (MWBO).",
+        answer: true,
+        explanation: "Korrekt. Der Deutsche Ärztetag 2022 beschloss, die Zusatzbezeichnung Homöopathie aus der MWBO zu streichen. Homöopathie ist damit keine offiziell anerkannte ärztliche Weiterbildungsbezeichnung mehr."
+      },
+      {
+        id: "1048_09_h4",
+        type: "mc",
+        question: "Was gilt als Faustregel für die Potenzwahl bei akuten Erkrankungen?",
+        options: [
+          { text: "Je akuter, umso niedriger die Potenz und umso häufiger die Gabe", correct: true },
+          { text: "Je akuter, umso höher die Potenz und umso seltener die Gabe", correct: false },
+          { text: "Bei akuten Erkrankungen immer Hochpotenzen (D30+)", correct: false },
+          { text: "Bei akuten Erkrankungen ist die Potenz irrelevant – nur das Mittel zählt", correct: false }
+        ],
+        explanation: "Je akuter → niedrigere Potenz + häufigere Gabe. Tiefpotenzen haben kurze Wirkdauer, deshalb bei Akutfällen öfter wiederholen. Bei hochakut gilt: zuerst das richtige Mittel, erst dann die ideale Potenz."
+      },
+      {
+        id: "1048_09_h5",
+        type: "mc",
+        question: "Was sind 'Leitsymptome' in der homöopathischen Fallaufnahme?",
+        options: [
+          { text: "Besonders auffällige, seltsame oder ungewöhnliche Symptome, die zur Mittelfindung führen", correct: true },
+          { text: "Die häufigsten und typischsten Symptome der jeweiligen Erkrankung", correct: false },
+          { text: "Alle objektiv messbaren Symptome (Fieber, Puls, Laborwerte)", correct: false },
+          { text: "Symptome, die durch die schulmedizinische Diagnose erklärt werden", correct: false }
+        ],
+        explanation: "Leitsymptome sind gerade die seltsamen, ungewöhnlichen, auffälligen Symptome – nicht die gewöhnlichen, erkrankungstypischen. Sie führen am direktesten zum passenden homöopathischen Mittel (Similimum)."
+      }
+    ],
+    phase4Questions: [
+      {
+        id: "1048_09_p4_1",
+        type: "mc",
+        question: "Welche Aussagen zur homöopathischen Fallaufnahme sind korrekt? (Mehrere Antworten möglich)",
+        options: [
+          { text: "'Womit' erfasst Begleitsymptome (z.B. Übelkeit begleitend zum Kopfschmerz)", correct: true },
+          { text: "'Warum' fragt nach der auslösenden Ursache (Trauma, Impfung, emotionales Erlebnis)", correct: true },
+          { text: "Für die Mittelfindung reicht die schulmedizinische ICD-Diagnose allein aus", correct: false },
+          { text: "Leitsymptome = besonders seltsame, auffällige Symptome → zeigen das passende Mittel an", correct: true }
+        ],
+        explanation: "Die schulmedizinische Diagnose allein reicht nicht – die Gesamtheit aller Symptome (inkl. Leitsymptome und Modalitäten) ist entscheidend. 'Womit' = Begleitsymptome; 'Warum' = Ursache."
+      },
+      {
+        id: "1048_09_p4_2",
+        type: "mc",
+        question: "Welche Aussagen zu Potenzwahl und aktuellem Status der Homöopathie sind korrekt? (Mehrere Antworten möglich)",
+        options: [
+          { text: "Je akuter die Erkrankung, umso niedriger die Potenz und häufiger die Gabe", correct: true },
+          { text: "Bei hochakuten Fällen: zuerst das richtige Mittel, erst dann die ideale Potenz", correct: true },
+          { text: "Der Deutsche Ärztetag strich 2022 die Zusatzbezeichnung Homöopathie aus der MWBO", correct: true },
+          { text: "Homöopathie ist seit 2022 in der Notfallmedizin der Schulmedizin gleichgestellt", correct: false }
+        ],
+        explanation: "Die Faustregel akut→niedrig/häufig gilt allgemein. Bei Notfall: Mittelwahl > Potenzwahl. Der Ärztetag-Beschluss 2022 entzieht der Homöopathie die offizielle ärztliche Weiterbildungsanerkennung. In der Notfallmedizin hat Homöopathie grundsätzlich keinen Platz."
       }
     ]
   })
