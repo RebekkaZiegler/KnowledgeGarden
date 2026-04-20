@@ -1,0 +1,10 @@
+{
+  "name": "Knowledge Garden RPG",
+  "short_name": "KnowledgeGarden",
+  "description": "Heilpraktiker-Lernspiel",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#141a17",
+  "theme_color": "#141a17"
+}
