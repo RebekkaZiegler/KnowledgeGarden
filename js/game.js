@@ -1556,12 +1556,12 @@ function renderPlayer() {
   const cooldownSeconds = Math.floor(getCooldownMs() / 1000);
   const curriculum = getCurriculumProgress();
   els.playerStats.innerHTML = `
-    <div>XP: <strong>${player.xp}</strong></div>
+    <div>Fortschritt: <strong>${curriculum.harvested}/${curriculum.total}${curriculum.complete ? " ✓" : ""}</strong></div>
     <div>Früchte: <strong>${player.fruits}</strong></div>
     <div>Trank: <strong>${isDevFastMode() ? player.fertilizer : "∞"}</strong></div>
   `;
   els.cooldownInfo.textContent = `Aktueller Cooldown: ${cooldownSeconds}s`;
-  els.curriculumStatus.textContent = `Fortschritt: ${curriculum.harvested}/${curriculum.total}${curriculum.complete ? " ✓" : ""}`;
+  els.curriculumStatus.textContent = "";
   els.devModeBtn.textContent = `Dev-Cooldown: ${isDevFastMode() ? "An" : "Aus"}`;
 }
 
