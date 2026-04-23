@@ -1556,7 +1556,7 @@ function renderPlayer() {
   const cooldownSeconds = Math.floor(getCooldownMs() / 1000);
   const curriculum = getCurriculumProgress();
   els.playerStats.innerHTML = `
-    <div>Fortschritt: <strong>${curriculum.harvested}/${curriculum.total}${curriculum.complete ? " ✓" : ""}</strong></div>
+    <div>XP: <strong>${curriculum.harvested}/${curriculum.total}${curriculum.complete ? " ✓" : ""}</strong></div>
     <div>Früchte: <strong>${player.fruits}</strong></div>
     <div>Trank: <strong>${isDevFastMode() ? player.fertilizer : "∞"}</strong></div>
   `;
