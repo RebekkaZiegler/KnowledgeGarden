@@ -572,10 +572,10 @@ header p {
 
 #bottom-nav button {
   flex: 0 0 auto;
-  min-width: fit-content;
-  max-width: 140px;
+  min-width: 48px;
+  max-width: 72px;
   height: 48px;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   font-family: 'Lora', Georgia, serif;
   font-weight: 900;
   letter-spacing: 0.03em;
