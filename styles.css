@@ -204,6 +204,7 @@ header p {
 
 /* Garden room: 3 fixed beds, no scroll */
 #garden-room {
+  order: -1;
   flex: 0 0 max(280px, 48dvh);
   width: 100%;
   overflow: hidden;
