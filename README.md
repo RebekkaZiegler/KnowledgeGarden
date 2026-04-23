@@ -3,7 +3,7 @@
 KnowledgeGarden is a browser-based learning RPG prototype.
 You learn topics by growing plants, test yourself through harvest questions, and unlock more content via the Restaurant.
 
-Current version: **0.4** — Heilpraktiker Pack
+Current version: **0.5** — Heilpraktiker Pack
 
 ## Requirements
 
@@ -49,13 +49,21 @@ Then open:
   npm run check
   ```
 
+## Mobile / PWA
+
+The game is installable as a PWA on Android (portrait orientation):
+
+- Hosted via GitHub Pages: `https://rebekkaziegler.github.io/KnowledgeGarden`
+- In Chrome: 3-dot menu → Add to Home Screen → opens fullscreen like a native app
+- Service worker caches all assets → works offline after first visit
+
 ## UI layout
 
-The game uses a two-panel layout:
+The game uses a portrait-stacked layout (same on desktop and mobile):
 
-- **Left panel** (always visible): player stats, heal button, selected plant info and questions
-- **Garden room** (center): topic shelves, each showing growing plants in pots — all topics visible at once
-- **Bottom nav bar**: Pflanzen (catalog), Restaurant, Labor (lab), Trophäen, Einstellungen (settings)
+- **Garden room** (top): topic shelves with growing plants in pots
+- **Detail panel** (below): selected plant info, lesson text, and questions — scrollable
+- **Bottom nav bar**: scrollable row — Pflanzen (catalog), Restaurant, Labor, Trophäen, Einstellungen
 
 No movement or world navigation — everything is accessible directly from the garden view.
 
