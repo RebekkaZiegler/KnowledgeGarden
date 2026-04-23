@@ -1441,7 +1441,7 @@ function selectPlantInGarden(plantId, bedId) {
   renderAll();
   // Scroll left panel to top so question is visible
   const lp = document.getElementById("left-panel");
-  if (lp) lp.scrollTop = lp.scrollHeight;
+  if (lp) lp.scrollTop = 0;
 }
 
 function skipCooldownWithFertilizer(plantId) {
@@ -1463,6 +1463,9 @@ function skipCooldownWithFertilizer(plantId) {
 
 function renderLeftPanel() {
   if (!els.plantDetail) return;
+
+  const isOpen = !!(selectedPlantId && state.activeBedId);
+  document.body.classList.toggle('plant-open', isOpen);
 
   if (!selectedPlantId || !state.activeBedId) {
     if (els.leftPanelVisual) els.leftPanelVisual.innerHTML = "";

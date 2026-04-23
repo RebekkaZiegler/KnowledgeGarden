@@ -173,14 +173,14 @@ header p {
 
 /* Left panel (always visible, Plant Tycoon style) */
 #left-panel {
-  flex: 1 1 auto;
+  flex: 0 0 0;
   min-width: 0;
   width: 100%;
   background:
     linear-gradient(rgba(14, 20, 16, 0.45), rgba(14, 20, 16, 0.45)),
     url('assets/images/Left Panel Background.png') center top / cover no-repeat,
     var(--panel);
-  border-top: 1px solid var(--line);
+  border-top: none;
   display: flex;
   flex-direction: column;
   padding: 0.75rem;
@@ -205,7 +205,7 @@ header p {
 /* Garden room: 3 fixed beds, no scroll */
 #garden-room {
   order: -1;
-  flex: 0 0 max(280px, 48dvh);
+  flex: 1 1 auto;
   width: 100%;
   overflow: hidden;
   background:
@@ -2556,6 +2556,16 @@ button:disabled {
   transition: width .4s;
 }
 
+/* ── Plant detail panel: opens below garden when a plant is selected ── */
+body.plant-open #garden-room {
+  flex: 0 0 max(160px, 32dvh);
+}
+body.plant-open #left-panel {
+  flex: 1 1 auto;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+}
+
 /* ── Mobile / portrait layout ──────────────────────────── */
 @media (max-width: 480px) {
   header {
@@ -2565,18 +2575,8 @@ button:disabled {
   header h1 { font-size: 0.88rem; }
   header p  { font-size: 0.7rem; }
   .header-stats { font-size: 0.76rem; gap: 0.7rem; }
-  #header-info { display: none; }
+  #cooldown-info { display: none; }
   .icon-legend-wrap { display: none; }
-
-  #garden-room {
-    flex: 0 0 45dvh;
-    overflow-y: auto;
-  }
-
-  .garden-shelf {
-    flex: 0 0 160px;
-    min-height: 160px;
-  }
 
   #bottom-nav {
     justify-content: flex-start;
