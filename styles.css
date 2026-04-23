@@ -2558,13 +2558,30 @@ button:disabled {
 
 /* ── Plant detail panel: opens below garden when a plant is selected ── */
 body.plant-open #garden-room {
-  flex: 0 0 max(160px, 32dvh);
+  display: none;
 }
 body.plant-open #left-panel {
   flex: 1 1 auto;
   overflow: hidden;
   border-top: 1px solid var(--line);
 }
+
+#back-to-garden-btn {
+  display: none;
+  width: 100%;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  text-align: left;
+  padding: 0.35rem 0.6rem;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+#back-to-garden-btn:hover { color: var(--text); border-color: var(--accent); }
+body.plant-open #back-to-garden-btn { display: block; }
 
 /* ── Mobile / portrait layout ──────────────────────────── */
 @media (max-width: 480px) {

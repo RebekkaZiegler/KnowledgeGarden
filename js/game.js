@@ -1561,7 +1561,7 @@ function renderPlayer() {
     <div>Trank: <strong>${isDevFastMode() ? player.fertilizer : "∞"}</strong></div>
   `;
   els.cooldownInfo.textContent = `Aktueller Cooldown: ${cooldownSeconds}s`;
-  els.curriculumStatus.textContent = `Curriculum-Fortschritt: ${curriculum.harvested}/${curriculum.total} Pflanzen mindestens einmal geerntet${curriculum.complete ? " (vollständig)" : ""}`;
+  els.curriculumStatus.textContent = `Fortschritt: ${curriculum.harvested}/${curriculum.total}${curriculum.complete ? " ✓" : ""}`;
   els.devModeBtn.textContent = `Dev-Cooldown: ${isDevFastMode() ? "An" : "Aus"}`;
 }
 
@@ -4454,6 +4454,14 @@ function openSessionEndModal() {
 }
 
 // ── Bottom nav + modal triggers ────────────────────────────────────────────
+const backToGardenBtn = document.getElementById("back-to-garden-btn");
+if (backToGardenBtn) backToGardenBtn.addEventListener("click", () => {
+  selectedPlantId = null;
+  state.activeBedId = null;
+  saveState();
+  renderAll();
+});
+
 const openCatalogBtn = document.getElementById("open-catalog-btn");
 if (openCatalogBtn) openCatalogBtn.addEventListener("click", () => openCatalogModal(null));
 
