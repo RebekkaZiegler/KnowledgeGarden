@@ -1628,20 +1628,35 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const seqLastType = seqStep > 0 ? (content.phase2[seqLastIdx]?.type || "").toLowerCase() : "";
   const lastActionWasTrim = locked && seqLastType === "trim";
 
-  // Sequential visual effects: grey for water-needed, transparent for fertilize-needed,
+  // Sequential visual effects: grey for water-needed, yellow for fertilize-needed,
   // recovery animation during cooldown, grey-building during trim cooldown (water comes next)
   let plantOpacity = 1.0;
   let plantSaturation = 1.0;
+  let plantSepia = 0;
+  let plantBrightness = 1;
   if (visual.phase !== "phase1" && plantState.phase1Completed && visual.phase !== "phase3") {
     if (locked) {
-      if (seqLastType === "water")           plantSaturation = 0.5 + (0.5 * fillProgress);
-      else if (seqLastType === "fertilize")  plantOpacity = 0.35 + (0.65 * fillProgress);
-      else if (seqLastType === "trim")       plantSaturation = 1.0 - (0.5 * fillProgress);
+      if (seqLastType === "water") {
+        plantSaturation = 0.5 + (0.5 * fillProgress);
+      } else if (seqLastType === "fertilize") {
+        const e = 1.0 - fillProgress;
+        plantSepia = 0.55 * e;
+        plantBrightness = 1 + 0.05 * e;
+        plantSaturation = 1 - 0.4 * e;
+      } else if (seqLastType === "trim") {
+        plantSaturation = 1.0 - (0.5 * fillProgress);
+      }
     } else {
-      if (seqCurrentType === "water")           plantSaturation = 0.5;
-      else if (seqCurrentType === "fertilize")  plantOpacity = 0.35;
+      if (seqCurrentType === "water") {
+        plantSaturation = 0.5;
+      } else if (seqCurrentType === "fertilize") {
+        plantSepia = 0.55;
+        plantBrightness = 1.05;
+        plantSaturation = 0.6;
+      }
     }
   }
+  const isThirsty = visual.phase !== "phase1" && plantState.phase1Completed && !locked && seqCurrentType === "water";
 
   // Harvest fruit removal: each correct answer removes one fruit from the visual
   const isHarvestPlant = harvestSession && harvestSession.plantId === plantState.id;
@@ -1743,7 +1758,8 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const colors = getPlantColorScheme(content);
   // Color variables on outer div (inherited by all); opacity/filter on plant-body only (not pot)
   const colorStyle = `--stem-hi:${colors.stemHi};--stem-lo:${colors.stemLo};--fruit-hi:${colors.fruitHi};--fruit-lo:${colors.fruitLo};`;
-  const bodyStyle = `opacity:${plantOpacity};filter:saturate(${plantSaturation});`;
+  const filterStr = `saturate(${plantSaturation.toFixed(2)})${plantSepia > 0 ? ` sepia(${plantSepia.toFixed(2)}) brightness(${plantBrightness.toFixed(2)})` : ''}`;
+  const bodyStyle = `opacity:${plantOpacity};filter:${filterStr};`;
   const potSrc = (() => {
     const steps = plantState.phase1StepsDone || {};
     if (plantState.phase1Completed || visual.phase !== 'phase1') return 'assets/images/pot ready to grow.png';
@@ -1757,7 +1773,7 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
       <div class="plant-body" style="${bodyStyle}">
         ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
         ${visual.phase !== "phase1" ? `<div class="plant-stem${visual.withered ? " is-withered" : ""}" style="--stem-fill:${stemFill}px;"></div>` : ""}
-        ${visual.phase !== "phase1" ? `<div class="plant-branches">${branchHtml}${trimStubHtml}</div>` : ""}
+        ${visual.phase !== "phase1" ? `<div class="plant-branches${isThirsty ? ' is-thirsty' : ''}">${branchHtml}${trimStubHtml}</div>` : ""}
         <div class="plant-fruits">${fruitDots}</div>
       </div>
     </div>

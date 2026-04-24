@@ -1175,6 +1175,7 @@ button:disabled {
   transform: translateX(-50%);
   border-radius: 999px;
   background: linear-gradient(180deg, var(--stem-hi, #7fc98a) 0%, var(--stem-lo, #2f6b3d) 85%);
+  box-shadow: inset -2px 0 3px rgba(0,0,0,0.2), inset 1px 0 2px rgba(255,255,255,0.12);
   transition: height 0.45s ease, background 0.45s ease;
 }
 
@@ -1193,12 +1194,26 @@ button:disabled {
   left: 50%;
   bottom: calc(22px + var(--by, 0px));
   width: var(--bl, 12px);
-  height: 4px;
+  height: 7px;
   transform-origin: left center;
   transform: rotate(var(--br, 0deg));
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--stem-lo, #3a7d48) 0%, var(--stem-hi, #68b877) 100%);
-  transition: width 0.45s ease, bottom 0.45s ease, background 0.45s ease;
+  border-radius: 3px 999px 999px 3px;
+  /* Top-to-bottom gradient = flat leaf surface lit from above, not a cylinder */
+  background: linear-gradient(180deg, var(--stem-hi, #68b877) 0%, var(--stem-lo, #3a7d48) 100%);
+  overflow: hidden;
+  transition: width 0.45s ease, bottom 0.45s ease, background 0.45s ease, transform 0.6s ease;
+}
+
+/* Midrib vein — fades toward the leaf tip */
+.plant-branch::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  width: 72%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.1) 65%, transparent 100%);
+  transform: translateY(-50%);
 }
 
 /* Left-going branches: anchor from right edge so they extend left */
@@ -1206,31 +1221,45 @@ button:disabled {
   left: auto;
   right: 50%;
   transform-origin: right center;
+  border-radius: 999px 3px 3px 999px;
+}
+
+/* Mirror midrib for left branches (vein runs from stem-end outward) */
+.plant-branch--left::after {
+  left: auto;
+  right: 8%;
+  background: linear-gradient(270deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.1) 65%, transparent 100%);
+}
+
+/* Thirsty: droop all branches downward */
+.plant-branches.is-thirsty .plant-branch {
+  transform: rotate(calc(var(--br, 0deg) + 12deg));
 }
 
 .plant-branch.is-withered {
-  background: linear-gradient(90deg, #8e7454 0%, #c7af8f 100%);
+  background: linear-gradient(180deg, #c7af8f 0%, #8e7454 100%);
 }
 
-/* Grey stubs = pending trim actions — dead side-shoots on the stem */
+/* Dead stubs = pending trim actions — snapped-off side-shoots */
 .plant-trim-stub {
   position: absolute;
   left: 50%;
   bottom: calc(22px + var(--by, 0px));
-  width: 13px;
+  width: 11px;
   height: 5px;
   transform-origin: left center;
-  transform: rotate(15deg);
-  border-radius: 0 999px 999px 0;
-  background: linear-gradient(90deg, #4a3018 0%, #7a5830 100%);
-  opacity: 0.9;
+  transform: rotate(24deg);
+  border-radius: 2px 1px 1px 2px;
+  background: linear-gradient(90deg, #1e0e04 0%, #7a5830 55%, #4a2e10 100%);
+  opacity: 0.92;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
 .plant-trim-stub--left {
   left: auto;
   right: 50%;
   transform-origin: right center;
-  transform: rotate(-15deg);
-  border-radius: 999px 0 0 999px;
+  transform: rotate(-24deg);
+  border-radius: 1px 2px 2px 1px;
 }
 
 .plant-tip-bud {
@@ -1335,13 +1364,13 @@ button:disabled {
   position: absolute;
   left: 50%;
   bottom: 22px;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, var(--fruit-hi, #ff8f8f) 0%, var(--fruit-lo, #cf2f2f) 72%);
+  background: radial-gradient(circle at 30% 28%, var(--fruit-hi, #ff8f8f) 0%, var(--fruit-lo, #cf2f2f) 72%);
   opacity: var(--fo, 1);
   transform: translate(calc(-50% + var(--fx, 0px)), calc(-1 * var(--fy, 0px)));
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -1372,6 +1401,16 @@ button:disabled {
 
 .plant-sparkle--action {
   filter: drop-shadow(0 0 7px var(--stem-hi));
+}
+
+@keyframes plantSway {
+  0%, 100% { transform: translateX(-1.5px); }
+  50%       { transform: translateX(1.5px); }
+}
+
+.plant-sparkle--action .plant-body,
+.plant-sparkle--harvest .plant-body {
+  animation: plantSway 4s ease-in-out infinite;
 }
 
 
