@@ -53,6 +53,8 @@ let phase2Session = null;
 let potionSoundPlayedAt = 0;
 let expandedSeedCatalogBedId = null;
 let catalogFilterBedId = null;
+let showHarvestedInSelector = false;
+let expandedHarvestedBedIds = new Set();
 let phase1ShowingLesson = false;
 let labelSession = null;
 let uiViewMode = "full";
@@ -851,15 +853,12 @@ function renderSeedLibrary() {
     const activeIds = getActivePlantIdsForBed(bed.id);
     const activeCount = activeIds.length;
     const harvestedCount = effectivePlants.filter((p) => pack.beds[bed.id]?.plants?.[p.id]?.harvestedOnce).length;
-    const sortedPlants = isOpen ? [...effectivePlants].sort((a, b) => {
-      const aActive = activeIds.includes(a.id);
-      const bActive = activeIds.includes(b.id);
-      const aHarvested = !!pack.beds[bed.id]?.plants?.[a.id]?.harvestedOnce;
-      const bHarvested = !!pack.beds[bed.id]?.plants?.[b.id]?.harvestedOnce;
-      const rank = (active, harvested) => active ? 2 : harvested ? 1 : 0;
-      return rank(aActive, aHarvested) - rank(bActive, bHarvested);
-    }) : [];
-    const plantRows = isOpen ? sortedPlants.map((plant) => {
+    const showHarvestedCat   = expandedHarvestedBedIds.has(bed.id);
+    const activeCatPlants    = isOpen ? effectivePlants.filter(p =>  activeIds.includes(p.id)) : [];
+    const newCatPlants       = isOpen ? effectivePlants.filter(p => !activeIds.includes(p.id) && !pack.beds[bed.id]?.plants?.[p.id]?.harvestedOnce) : [];
+    const harvestedCatPlants = isOpen ? effectivePlants.filter(p => !activeIds.includes(p.id) &&  pack.beds[bed.id]?.plants?.[p.id]?.harvestedOnce) : [];
+    const visibleCatPlants   = isOpen ? [...activeCatPlants, ...newCatPlants, ...(showHarvestedCat ? harvestedCatPlants : [])] : [];
+    const buildPlantRow = (plant) => {
       const pState = pack.beds[bed.id]?.plants?.[plant.id];
       if (!pState) return "";
       const isActive = activeIds.includes(plant.id);
@@ -867,13 +866,9 @@ function renderSeedLibrary() {
         ? { text: "Im Beet", tone: "active" }
         : pState.harvestedOnce
           ? { text: "Geerntet", tone: "done" }
-          : { text: "Synthetisiert", tone: "bad" };
+          : { text: "Neu", tone: "bad" };
       const label = getPlantLabel(bed.id, plant.id, plant.title);
-      const harvestClass = isActive
-        ? "catalog-row--planted"
-        : pState.harvestedOnce
-          ? "catalog-row--harvested"
-          : "catalog-row--not-harvested";
+      const harvestClass = isActive ? "catalog-row--planted" : pState.harvestedOnce ? "catalog-row--harvested" : "catalog-row--not-harvested";
       const canToggle = unlocked && !isActive && activeCount < 4;
       const actionBtn = isActive
         ? `<button data-seed-plant-toggle="${bed.id}::${plant.id}" style="font-size:0.78rem">Entfernen</button>`
@@ -891,7 +886,11 @@ function renderSeedLibrary() {
           ${actionBtn}
         </div>
       `;
-    }).join("") : "";
+    };
+    const harvestedCatToggle = isOpen && harvestedCatPlants.length > 0
+      ? `<div><button data-seed-toggle-harvested="${bed.id}" style="font-size:0.78rem;margin-top:0.3rem">${showHarvestedCat ? 'Geerntete ausblenden' : `Geerntete anzeigen (${harvestedCatPlants.length})`}</button></div>`
+      : '';
+    const plantRows = isOpen ? visibleCatPlants.map(buildPlantRow).join("") + harvestedCatToggle : "";
     if (unlocked) {
       const bedStats = computeShelfStats(bed, pack.beds[bed.id] || {});
       const activeBtnLabel = state.activeBedId === bed.id ? "Aktives Beet ✓" : "Beet wählen";
@@ -968,6 +967,18 @@ function renderSeedLibrary() {
     btn.addEventListener("click", () => {
       const bedId = btn.getAttribute("data-seed-catalog");
       expandedSeedCatalogBedId = expandedSeedCatalogBedId === bedId ? null : bedId;
+      renderSeedLibrary();
+    });
+  });
+
+  els.seedLibrary.querySelectorAll("[data-seed-toggle-harvested]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const bedId = btn.getAttribute("data-seed-toggle-harvested");
+      if (expandedHarvestedBedIds.has(bedId)) {
+        expandedHarvestedBedIds.delete(bedId);
+      } else {
+        expandedHarvestedBedIds.add(bedId);
+      }
       renderSeedLibrary();
     });
   });
@@ -1680,7 +1691,7 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const branchSpecs = new Array(phase2Actions).fill(0).map((_, i) => ({
     y: 0.24 + (((i + 1) / (phase2Actions + 1)) * 0.64),
     rot: (i % 2 === 0 ? -1 : 1) * (22 + ((i % 3) * 5)),
-    len: 14 + ((i % 4) * 3)
+    len: 20 + ((i % 4) * 5)
   }));
   // Grey drooping stubs: show when trim is the current active step, or when a trim question
   // has "wrong" status (harvest failure recovery). Hidden during trim cooldown and when trim
@@ -1833,30 +1844,31 @@ function renderPlants() {
   const isFull = activeIds.length >= 4;
   let addRow = "";
   if (bedContent) {
-    const optionMeta = bedContent.plants.map((p) => {
+    const allMeta = bedContent.plants.map((p) => {
       const pState = bedState.plants[p.id];
       const isActive = activeIds.includes(p.id);
       const harvested = Boolean(pState && pState.harvestedOnce);
-      if (isActive) {
-        return { id: p.id, title: p.title, disabled: true, color: "#8a5500", tag: "[Im Beet]" };
-      }
-      if (harvested) {
-        return { id: p.id, title: p.title, disabled: false, color: "#1f6b35", tag: "[Geerntet]" };
-      }
-      return { id: p.id, title: p.title, disabled: false, color: "#9f1d1d", tag: "[Neu]" };
+      return { id: p.id, title: p.title, isActive, harvested };
     });
-    const selectable = optionMeta.filter((o) => !o.disabled);
-    if (optionMeta.length > 0) {
-      const options = optionMeta.map((o) => {
-        const dis = o.disabled ? "disabled" : "";
-        return `<option value="${o.id}" style="color:${o.color}" ${dis}>${o.title} ${o.tag}</option>`;
-      }).join("");
+    const newPlants      = allMeta.filter(p => !p.isActive && !p.harvested);
+    const harvestedPlants = allMeta.filter(p => !p.isActive && p.harvested);
+    const visibleOptions  = showHarvestedInSelector ? [...newPlants, ...harvestedPlants] : newPlants;
+    if (visibleOptions.length > 0 || harvestedPlants.length > 0) {
+      const options = visibleOptions.map(o => {
+        const tag   = o.harvested ? '[Geerntet]' : '[Neu]';
+        const color = o.harvested ? '#1f6b35' : '#9f1d1d';
+        return `<option value="${o.id}" style="color:${color}">${o.title} ${tag}</option>`;
+      }).join('');
+      const toggleLabel = showHarvestedInSelector ? 'Nur neue anzeigen' : `Geerntete anzeigen (${harvestedPlants.length})`;
+      const harvestedToggle = harvestedPlants.length > 0
+        ? `<button id="toggle-harvested-selector" type="button" style="font-size:0.78rem">${toggleLabel}</button>`
+        : '';
       addRow = `
         <div class="row">
-          <select id="seed-add-select">${options}</select>
-          <button id="seed-add-btn" ${(isFull || selectable.length === 0) ? "disabled" : ""}>Einpflanzen</button>
+          <select id="seed-add-select" ${visibleOptions.length === 0 ? 'disabled' : ''}>${options || '<option disabled>–</option>'}</select>
+          <button id="seed-add-btn" ${(isFull || visibleOptions.length === 0) ? 'disabled' : ''}>Einpflanzen</button>
         </div>
-        <div class="muted">Legende: <span style="color:#8a5500">Gelb = im Beet</span> | <span style="color:#9f1d1d">Rot = noch nie geerntet</span> | <span style="color:#1f6b35">Grün = schon geerntet</span></div>
+        ${harvestedToggle}
       `;
     }
   }
@@ -1949,7 +1961,15 @@ function renderPlants() {
       if (bs.activePlantIds.includes(plantId) || bs.activePlantIds.length >= 4) return;
       preparePlantForNewCycle(bs.plants[plantId]);
       bs.activePlantIds.push(plantId);
+      showHarvestedInSelector = false;
       saveState();
+      renderAll();
+    });
+  }
+  const toggleHarvestedBtn = document.getElementById('toggle-harvested-selector');
+  if (toggleHarvestedBtn) {
+    toggleHarvestedBtn.addEventListener('click', () => {
+      showHarvestedInSelector = !showHarvestedInSelector;
       renderAll();
     });
   }
@@ -1985,7 +2005,14 @@ function renderPlantDetail() {
           <div class="harvest-success-fruits">+${fruits} Früchte</div>
           ${fruitDots}
           <div class="harvest-success-hint muted">Pflanze erneut einsetzen, um sie weiter zu üben.</div>
+          <button id="btn-back-to-garden">Zurück zum Garten</button>
         </div>`;
+      const backBtn = els.plantDetail.querySelector('#btn-back-to-garden');
+      if (backBtn) backBtn.addEventListener('click', () => {
+        selectedPlantId = null;
+        saveState();
+        renderAll();
+      });
       return;
     }
     selectedPlantId = null;
@@ -2502,6 +2529,7 @@ function finalizeHarvest() {
   const wrongCount = harvestSession.wrongIds.length;
   pack.stats.harvestAttempts += 1;
 
+  let harvestedIdForReturn = null;
   if (wrongCount === 0) {
     // All correct → harvest success
     const fruitsGained = harvestSession.correct;
@@ -2513,9 +2541,9 @@ function finalizeHarvest() {
     plantState.readinessActionsUsed = 0;
     plantState.cooldownUntil = null;
     const harvestedId = harvestSession.plantId;
+    harvestedIdForReturn = harvestedId;
     const idx = bedState.activePlantIds.indexOf(harvestedId);
     if (idx >= 0) bedState.activePlantIds.splice(idx, 1);
-    // Keep selectedPlantId and activeBedId so the plant stays visible in the left panel
     harvestSession = null;
     addXp(5);
     pack.stats.harvestSuccesses += 1;
@@ -2560,6 +2588,16 @@ function finalizeHarvest() {
   harvestSession = null;
   saveState();
   renderAll();
+  if (harvestedIdForReturn) {
+    const capturedId = harvestedIdForReturn;
+    setTimeout(() => {
+      if (selectedPlantId === capturedId) {
+        selectedPlantId = null;
+        saveState();
+        renderAll();
+      }
+    }, 2500);
+  }
 }
 
 function maybeUnlockMoreBedSlots() {

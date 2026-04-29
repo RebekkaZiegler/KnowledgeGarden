@@ -1174,13 +1174,23 @@ button:disabled {
   height: var(--stem-fill, 10px);
   transform: translateX(-50%);
   border-radius: 999px;
-  background: linear-gradient(180deg, var(--stem-hi, #7fc98a) 0%, var(--stem-lo, #2f6b3d) 85%);
+  /* Node bands over base colour — horizontal marks every ~7px like a real stem */
+  background:
+    repeating-linear-gradient(180deg,
+      transparent 0px, transparent 6px,
+      rgba(0,0,0,0.13) 6px, rgba(0,0,0,0.13) 7px),
+    linear-gradient(180deg, var(--stem-hi, #7fc98a) 0%, var(--stem-lo, #2f6b3d) 85%);
   box-shadow: inset -2px 0 3px rgba(0,0,0,0.2), inset 1px 0 2px rgba(255,255,255,0.12);
+  filter: url(#plant-organic);
   transition: height 0.45s ease, background 0.45s ease;
 }
 
 .plant-stem.is-withered {
-  background: linear-gradient(180deg, #c8b08a 0%, #8d7151 85%);
+  background:
+    repeating-linear-gradient(180deg,
+      transparent 0px, transparent 6px,
+      rgba(0,0,0,0.13) 6px, rgba(0,0,0,0.13) 7px),
+    linear-gradient(180deg, #c8b08a 0%, #8d7151 85%);
 }
 
 .plant-branches {
@@ -1194,14 +1204,29 @@ button:disabled {
   left: 50%;
   bottom: calc(22px + var(--by, 0px));
   width: var(--bl, 12px);
-  height: 7px;
+  height: 10px;
   transform-origin: left center;
   transform: rotate(var(--br, 0deg));
-  border-radius: 3px 999px 999px 3px;
-  /* Top-to-bottom gradient = flat leaf surface lit from above, not a cylinder */
+  /* Pointed at tip (right), full/rounded at stem-end (left) */
+  border-radius: 50% 12% 12% 50% / 50% 38% 38% 50%;
+  /* Top-to-bottom: lit from above, not along length */
   background: linear-gradient(180deg, var(--stem-hi, #68b877) 0%, var(--stem-lo, #3a7d48) 100%);
   overflow: hidden;
+  filter: url(#plant-organic);
   transition: width 0.45s ease, bottom 0.45s ease, background 0.45s ease, transform 0.6s ease;
+}
+
+/* Fine diagonal hatching — breaks up the flat surface */
+.plant-branch::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    125deg,
+    transparent 0px, transparent 2.5px,
+    rgba(0,0,0,0.07) 2.5px, rgba(0,0,0,0.07) 3px
+  );
+  pointer-events: none;
 }
 
 /* Midrib vein — fades toward the leaf tip */
@@ -1210,10 +1235,11 @@ button:disabled {
   position: absolute;
   top: 50%;
   left: 8%;
-  width: 72%;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.1) 65%, transparent 100%);
+  width: 70%;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.12) 60%, transparent 100%);
   transform: translateY(-50%);
+  border-radius: 999px;
 }
 
 /* Left-going branches: anchor from right edge so they extend left */
@@ -1221,14 +1247,15 @@ button:disabled {
   left: auto;
   right: 50%;
   transform-origin: right center;
-  border-radius: 999px 3px 3px 999px;
+  /* Mirror: pointed at tip (left), rounded at stem-end (right) */
+  border-radius: 12% 50% 50% 12% / 38% 50% 50% 38%;
 }
 
 /* Mirror midrib for left branches (vein runs from stem-end outward) */
 .plant-branch--left::after {
   left: auto;
   right: 8%;
-  background: linear-gradient(270deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.1) 65%, transparent 100%);
+  background: linear-gradient(270deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.12) 60%, transparent 100%);
 }
 
 /* Thirsty: droop all branches downward */
