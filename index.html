@@ -173,7 +173,9 @@
   <script src="./js/game.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(reg => {
+        reg.update();
+      }).catch(() => {});
     }
   </script>
   <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden;">
