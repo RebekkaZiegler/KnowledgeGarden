@@ -391,7 +391,10 @@ function createInitialState() {
           lastStreakDate: null,
           firstPlayDate: null,
           dailyActions: 0,
-          dailyDate: null
+          dailyDate: null,
+          prevStreak: 0,
+          streakBrokenDate: null,
+          lastStreakBought: null
         },
         weakpoints: {}
       }
@@ -417,11 +420,14 @@ function normalizeLoadedState(inputState) {
   if (!pack || !pack.beds) return s;
   if (!pack.lab) pack.lab = { discoveredHybrids: [] };
   if (!pack.stats) pack.stats = {};
-  pack.stats.streak       = pack.stats.streak       ?? 0;
-  pack.stats.lastStreakDate = pack.stats.lastStreakDate ?? null;
-  pack.stats.firstPlayDate  = pack.stats.firstPlayDate  ?? null;
-  pack.stats.dailyActions  = pack.stats.dailyActions  ?? 0;
-  pack.stats.dailyDate     = pack.stats.dailyDate     ?? null;
+  pack.stats.streak          = pack.stats.streak          ?? 0;
+  pack.stats.lastStreakDate  = pack.stats.lastStreakDate  ?? null;
+  pack.stats.firstPlayDate   = pack.stats.firstPlayDate   ?? null;
+  pack.stats.dailyActions    = pack.stats.dailyActions    ?? 0;
+  pack.stats.dailyDate       = pack.stats.dailyDate       ?? null;
+  pack.stats.prevStreak      = pack.stats.prevStreak      ?? 0;
+  pack.stats.streakBrokenDate = pack.stats.streakBrokenDate ?? null;
+  pack.stats.lastStreakBought = pack.stats.lastStreakBought ?? null;
   const hybridIds = PACK_CONTENT.lab.hybrids.map((h) => h.id);
   PACK_CONTENT.beds.forEach((bed) => {
     if (!pack.beds[bed.id]) {
@@ -1580,11 +1586,23 @@ function renderPlayer() {
   const curriculum = getCurriculumProgress();
   const { totalQ, learnedQ } = getLearningProgress();
 
-  // Streak
+  const now = Date.now();
   const today = new Date().toISOString().slice(0, 10);
-  const streakActive = stats.lastStreakDate === today;
+  const yesterday = new Date(now - 86400000).toISOString().slice(0, 10);
+
+  // Streak + buy-back
   const streak = stats.streak || 0;
-  const streakHtml = `<div class="stat-streak${streakActive ? ' stat-streak--active' : ''}">🔥 ${streak}</div>`;
+  const streakActive = stats.lastStreakDate === today;
+  const streakBrokenBeforeToday = streak > 1 && stats.lastStreakDate !== today && stats.lastStreakDate !== yesterday;
+  const streakResetToday = stats.streakBrokenDate === today && (stats.prevStreak || 0) > 0;
+  const canBuyBack = (streakBrokenBeforeToday || streakResetToday) && stats.lastStreakBought !== yesterday;
+  const buyBackCost = 3;
+  const buyBackHtml = canBuyBack
+    ? (player.fruits >= buyBackCost
+        ? `<button id="btn-buyback-streak" style="font-size:0.7rem;padding:1px 6px">Zurückkaufen (${buyBackCost}🍎)</button>`
+        : `<span class="muted" style="font-size:0.7rem">(${buyBackCost}🍎 nötig)</span>`)
+    : '';
+  const streakHtml = `<div class="stat-streak${streakActive ? ' stat-streak--active' : ''}">🔥 ${streak} ${buyBackHtml}</div>`;
 
   // Daily goal
   const dailyDone = stats.dailyDate === today ? (stats.dailyActions || 0) : 0;
@@ -1592,23 +1610,19 @@ function renderPlayer() {
   const dots = Array.from({ length: DAILY_GOAL }, (_, i) => `<span class="daily-dot${i < dailyDone ? ' daily-dot--done' : ''}"></span>`).join('');
   const dailyHtml = `<div class="stat-daily${dailyComplete ? ' stat-daily--done' : ''}" title="Tagesziel: ${DAILY_GOAL} Aktionen">${dots}</div>`;
 
-  // Pace tracker
+  // Pace tracker — per day
   let paceHtml = '';
-  const now = Date.now();
   const daysLeft = (EXAM_DEADLINE - now) / 86400000;
-  const weeksLeft = daysLeft / 7;
-  if (totalQ > 0 && weeksLeft > 0) {
+  if (totalQ > 0 && daysLeft > 0) {
     const remaining = totalQ - learnedQ;
-    const neededPerWeek = remaining / weeksLeft;
+    const neededPerDay = remaining / daysLeft;
     if (stats.firstPlayDate && learnedQ > 0) {
-      const daysElapsed = (now - stats.firstPlayDate) / 86400000;
-      const pacePerWeek = (learnedQ / daysElapsed) * 7;
-      const onTrack = pacePerWeek >= neededPerWeek;
-      const projFinish = new Date(now + (remaining / (learnedQ / daysElapsed)) * 86400000);
-      const projStr = projFinish.toLocaleDateString('de-DE', { month: 'short', year: 'numeric' });
-      paceHtml = `<div class="stat-pace ${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}" title="${Math.round(pacePerWeek)}/Wo aktuell · ${Math.round(neededPerWeek)}/Wo nötig">📈 ${Math.round(pacePerWeek)}/Wo · ${projStr}${onTrack ? ' ✓' : ' ⚠️'}</div>`;
+      const daysElapsed = Math.max(1, (now - stats.firstPlayDate) / 86400000);
+      const pacePerDay = learnedQ / daysElapsed;
+      const onTrack = pacePerDay >= neededPerDay;
+      paceHtml = `<div class="stat-pace ${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}">Du brauchst ${neededPerDay.toFixed(1)}/Tag · du schaffst ${pacePerDay.toFixed(1)}/Tag${onTrack ? ' ✓' : ' ⚠️'}</div>`;
     } else {
-      paceHtml = `<div class="stat-pace" title="Nötig für Feb 2028">📈 ${Math.round(neededPerWeek)}/Wo nötig</div>`;
+      paceHtml = `<div class="stat-pace">Du brauchst ${neededPerDay.toFixed(1)} Fragen/Tag für Feb 2028</div>`;
     }
   }
 
@@ -1621,6 +1635,8 @@ function renderPlayer() {
     </div>
     <div class="stat-row">${paceHtml}</div>
   `;
+  const buyBackBtn = els.playerStats.querySelector('#btn-buyback-streak');
+  if (buyBackBtn) buyBackBtn.addEventListener('click', buyBackStreak);
   els.cooldownInfo.textContent = `Cooldown: ${cooldownSeconds}s`;
   els.curriculumStatus.textContent = "";
   els.devModeBtn.textContent = `Dev-Cooldown: ${isDevFastMode() ? "An" : "Aus"}`;
@@ -1668,11 +1684,40 @@ function trackDailyActivity() {
   if (!stats.firstPlayDate) stats.firstPlayDate = Date.now();
   if (stats.lastStreakDate !== today) {
     const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-    stats.streak = (stats.lastStreakDate === yesterday) ? (stats.streak || 0) + 1 : 1;
+    if (stats.lastStreakDate === yesterday) {
+      stats.streak = (stats.streak || 0) + 1;
+    } else {
+      // Streak broken — save it so buy-back can restore it
+      if ((stats.streak || 0) > 1) {
+        stats.prevStreak = stats.streak;
+        stats.streakBrokenDate = today;
+      }
+      stats.streak = 1;
+    }
     stats.lastStreakDate = today;
   }
   if (stats.dailyDate !== today) { stats.dailyActions = 0; stats.dailyDate = today; }
   stats.dailyActions = (stats.dailyActions || 0) + 1;
+}
+
+function buyBackStreak() {
+  const pack = getPackState();
+  const stats = pack.stats;
+  const today = new Date().toISOString().slice(0, 10);
+  const cost = 3;
+  if (pack.player.fruits < cost) { showToast(`Nicht genug Früchte (${cost} benötigt).`, 'error'); return; }
+  pack.player.fruits -= cost;
+  if (stats.streakBrokenDate === today && (stats.prevStreak || 0) > 0) {
+    // Already answered today (streak was reset) — restore prevStreak + 1 for today
+    stats.streak = stats.prevStreak + 1;
+    stats.prevStreak = 0;
+    stats.streakBrokenDate = null;
+  }
+  // If not yet answered today, streak is still intact — just bridge the date gap
+  stats.lastStreakDate = today;
+  stats.lastStreakBought = today;
+  saveState();
+  renderAll();
 }
 
 function getActionIcon(type) {
@@ -2634,6 +2679,7 @@ function finalizeHarvest() {
     const idx = bedState.activePlantIds.indexOf(harvestedId);
     if (idx >= 0) bedState.activePlantIds.splice(idx, 1);
     harvestSession = null;
+    trackDailyActivity();
     addXp(5);
     pack.stats.harvestSuccesses += 1;
     playSound("twinkle done.mp3");
