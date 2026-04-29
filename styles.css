@@ -346,10 +346,10 @@ header p {
 
 .garden-shelf-pots {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.3rem;
   align-items: flex-end;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
@@ -362,7 +362,8 @@ header p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-shrink: 0;
+  flex: 1 1 0;
+  min-width: 0;
   height: auto;
 }
 
@@ -387,9 +388,9 @@ header p {
 
 /* Empty pot visual */
 .empty-pot {
-  width: 86px;
-  height: 155px;
-  background: url('assets/images/pot.png') center bottom / 84px auto no-repeat;
+  width: 100%;
+  height: 240px;
+  background: url('assets/images/pot.png') center bottom / 80% auto no-repeat;
   border: none;
   border-radius: 0;
   opacity: 0.9;
@@ -529,15 +530,34 @@ header p {
 
 .garden-add-plant:hover { opacity: 0.8; border-color: var(--accent); }
 
-/* Plant visual sizes — zoom scales all JS-calculated px values uniformly */
+/* Plant visual sizes */
 .plant-visual--garden {
-  height: 155px;
-  width: 86px;
-  zoom: 1.5;
+  height: 240px;
+  width: 100%;
 }
 
+/* Pot image fills the flex width */
 .plant-visual--garden .plant-pot-img {
-  width: 84px;
+  width: 100%;
+  max-width: 120px;
+}
+
+/* Scale only the plant content (not the container) so 4 pots still fit in a row */
+.plant-visual--garden .plant-body {
+  zoom: 1.45;
+}
+
+/* Adjust stem/branch offsets to stay above the pot after zoom */
+.plant-visual--garden .plant-stem,
+.plant-visual--garden .plant-stem-track {
+  bottom: 40px;
+}
+.plant-visual--garden .plant-branch,
+.plant-visual--garden .plant-trim-stub {
+  bottom: calc(40px + var(--by, 0px));
+}
+.plant-visual--garden .plant-fruit-dot {
+  bottom: 40px;
 }
 
 /* Align garden plant to soil level */
