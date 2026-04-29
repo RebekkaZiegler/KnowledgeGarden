@@ -2276,6 +2276,14 @@ function usePhase2Action(plantId, actionIndex) {
   addXp(1);
   saveState();
   renderAll();
+  const capturedPlantId = plantId;
+  setTimeout(() => {
+    if (selectedPlantId === capturedPlantId) {
+      selectedPlantId = null;
+      saveState();
+      renderAll();
+    }
+  }, 700);
 }
 
 function startPhase2Action(plantId, actionIndex) {
