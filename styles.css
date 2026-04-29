@@ -276,18 +276,22 @@ header p {
 }
 
 .garden-choose-topic-btn {
-  background: rgba(80, 160, 100, 0.18);
-  border: 1.5px solid var(--accent);
-  border-radius: 8px;
-  color: var(--accent);
-  font-size: 0.95rem;
-  font-weight: 600;
+  background: url('assets/images/button.png') center center / 100% 100% no-repeat;
+  border: none;
+  border-radius: 0;
+  color: #1a0f00;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 900;
+  font-size: 1rem;
+  padding: 0.55rem 1.4rem;
+  min-height: 44px;
   cursor: pointer;
-  padding: 0.55rem 1.1rem;
-  transition: background 0.15s;
+  transition: filter 0.15s, transform 0.1s;
+  text-shadow: none;
 }
 .garden-choose-topic-btn:hover, .garden-choose-topic-btn:active {
-  background: rgba(80, 160, 100, 0.32);
+  filter: brightness(1.15);
+  transform: translateY(-1px);
 }
 
 .garden-shelf--active {
@@ -843,8 +847,8 @@ button:disabled {
   font-family: 'Lora', Georgia, serif;
   font-weight: 900;
   font-size: 0.82rem;
-  padding: 0.5rem 1.1rem;
-  min-height: 40px;
+  padding: 0.65rem 1.3rem;
+  min-height: 44px;
   cursor: pointer;
   transition: filter 0.15s, transform 0.1s;
   text-shadow: none;
@@ -1018,7 +1022,7 @@ button:disabled {
   overflow: visible !important;
   height: auto !important;
   word-break: break-word;
-  padding: 0.5rem 2.2rem;
+  padding: 0.8rem 2.8rem;
   border: none;
   border-radius: 0;
   cursor: pointer;
@@ -1026,6 +1030,7 @@ button:disabled {
   background: url('assets/images/button_long.png') center center / 100% 100% no-repeat;
   color: #1a0f00;
   font-weight: 400;
+  line-height: 1.4;
 }
 
 .mc-option.mc-option--short {
