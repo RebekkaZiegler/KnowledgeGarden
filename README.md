@@ -1,153 +1,177 @@
 # KnowledgeGarden
 
-KnowledgeGarden is a browser-based learning RPG prototype.
-You learn topics by growing plants, test yourself through harvest questions, and unlock more content via the Restaurant.
+A browser-based learning RPG for Heilpraktiker exam prep.  
+You grow plants by answering questions, harvest them when ready, and track progress toward your exam deadline.
 
-Current version: **0.5** — Heilpraktiker Pack
+**Current version:** MVP 0.5 — Heilpraktiker Pack  
+**Exam deadline tracked in-game:** February 2028
 
-## Requirements
+---
 
-- Node.js 18+ (recommended)
-- npm (comes with Node.js)
-- Windows/macOS/Linux
+## Play on your phone (recommended)
 
-## Download / Setup
+The game is a PWA — it installs to your home screen and runs like a native app.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/RebekkaZiegler/KnowledgeGarden.git
-   cd KnowledgeGarden
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+**First install:**
+1. Open `https://rebekkaziegler.github.io/KnowledgeGarden` in Chrome (Android) or Safari (iOS)
+2. **Android Chrome:** tap the 3-dot menu → *Add to Home Screen*
+3. **iOS Safari:** tap the Share button → *Add to Home Screen*
+4. Open the app from the home screen — it runs fullscreen, no browser bar
 
-## Start the game
+**Getting updates (if something looks outdated):**
 
-### Option A: App-like window (recommended)
-Starts local server and tries to open an app window automatically.
+The app caches files for offline use. If an update doesn't appear after reopening:
+
+- **Android:** long-press the app icon → App info → Storage → clear *Cache* (not "Storage" — that would delete your save)
+- **iOS:** Settings → Safari → Advanced → Website Data → find the site → Delete
+- **Quickest option either way:** delete the home screen icon and re-add it from the browser — this forces a fresh install. Your save data is stored in `localStorage` and survives this.
+
+The app now checks for updates on every launch, so this should be rare going forward.
+
+---
+
+## Run locally (desktop)
+
+**Requirements:** Node.js 18+, npm
 
 ```bash
-npm run run
+git clone https://github.com/RebekkaZiegler/KnowledgeGarden.git
+cd KnowledgeGarden
+npm install
 ```
-
-### Option B: Local server only
-Starts local server without forced app-window behavior.
 
 ```bash
-npm run serve
+npm run run    # starts server + app window (recommended)
+npm run serve  # server only → open http://localhost:5173
+npm run check  # syntax check
 ```
 
-Then open:
-`http://localhost:5173`
-
-## Useful commands
-
-- Syntax check:
-  ```bash
-  npm run check
-  ```
-
-## Mobile / PWA
-
-The game is installable as a PWA on Android (portrait orientation):
-
-- Hosted via GitHub Pages: `https://rebekkaziegler.github.io/KnowledgeGarden`
-- In Chrome: 3-dot menu → Add to Home Screen → opens fullscreen like a native app
-- Service worker caches all assets → works offline after first visit
+---
 
 ## UI layout
 
-The game uses a portrait-stacked layout (same on desktop and mobile):
+Portrait-stacked layout, same on desktop and mobile:
 
-- **Garden room** (top): topic shelves with growing plants in pots
-- **Detail panel** (below): selected plant info, lesson text, and questions — scrollable
-- **Bottom nav bar**: scrollable row — Pflanzen (catalog), Restaurant, Labor, Trophäen, Einstellungen
+- **Header** — harvest progress (🌾), fruits (🍎), streak (🔥), daily goal dots, pace tracker
+- **Garden** (main area) — up to 2 topic shelves with plants in pots
+- **Detail panel** — opens below the garden when you tap a plant; shows questions, lesson text, cooldown
+- **Bottom nav** (2 rows on mobile) — 🚪 🌱 🍽️ 🔬 🏆 / ⚙️ ♪ ♪♩ 🗑️
 
-No movement or world navigation — everything is accessible directly from the garden view.
+---
 
 ## Core game loop
 
-1. Click an empty pot on a topic shelf to plant a seed (opens filtered catalog).
-2. Grow the plant through Phase 1 (3 setup steps with lesson + question) and Phase 2 (watering/trimming/fertilizing, each with a question).
-3. Once all Phase 2 questions are learned and the cooldown expires, harvest the plant.
-4. Harvest requires **all questions correct** — wrong answers go back to Phase 2 proportionally.
-5. Harvested plants reward fruits (×2 per correct answer).
-6. Open the Restaurant — answer questions to unlock new cooks, ingredients, and upgrades; spend fruits on refills.
-7. Synthesize hybrid plants in the Lab once both source plants are harvested.
+1. **Catalog (🌱)** — choose a topic bed, plant a seed
+2. **Phase 1** — three setup steps (soil → seed → water), each with a lesson + true/false question
+3. **Phase 2** — water / trim / fertilize actions, each asks a harvest question; cooldown between each (5 min)
+4. After answering, the app **auto-returns to the garden** — come back when the cooldown is done
+5. Once all questions are learned, **harvest** the plant — all questions asked again, all must be correct
+6. Wrong harvest answers send only those questions back to Phase 2; correct ones are done
+7. **Restaurant (🍽️)** — real-time minigame; answer questions to unlock upgrades and earn fruits
+8. **Lab (🔬)** — synthesize hybrid plants once their source plants are harvested
 
-## Core mechanics
+---
 
-### 1) Plant lifecycle
+## Motivation system
 
-- **Phase 1 (Setup):**
-  - Steps: Soil → Seed → First watering
-  - Each step shows lesson text first, then a true/false question.
-  - Retry immediately on wrong answer — no progress until correct.
-- **Phase 2 (Practice):**
-  - 3 actions: water (Wässern), trim (Beschneiden), fertilize (Düngen)
-  - Each action asks a harvest question; correct = learned, wrong = stays in queue
-  - Cooldown between actions (5 min normal / 10 s dev mode)
-  - 3 wrong answers on one question → plant withers
-  - All questions learned → plant ready to harvest
-- **Harvest:**
-  - All harvest questions asked once in random order
-  - All must be answered correctly — any wrong → only those questions reset to Phase 2
-  - Success: fruits earned, plant removed from bed, `harvestedOnce` flagged permanently
+### Streak 🔥
+- Increments by 1 each calendar day you answer at least one question
+- Resets if you miss a day
+- **Buy-back:** if you miss a day, a *Zurückkaufen (3🍎)* button appears — spend 3 fruits to restore your streak
+- Can only buy back once; can't buy two days in a row
 
-### 2) Plant colors
+### Daily goal
+- Three dots in the header — fill one per phase 2 action completed
+- Resets at midnight
 
-Each topic has a distinct color scheme (stem + fruit):
-- Zytologie: orange
-- Histologie: blue/purple
-- Knochenlehre: grey-green
-- Muskellehre: red
-- Atmungssystem: teal
+### Pace tracker
+- Shows how many questions/day you need to finish all content by February 2028
+- Once you have a few days of history: shows your current pace vs. what's needed, and whether you're on track (green ✓) or behind (orange ⚠️)
 
-Hybrid plants inherit stem color from source 1 and fruit color from source 2.
+### Achievements 🏆
+Unlock badges for milestones — visible in the trophy room:
+- **Questions:** 1, 10, 50, 100, 500, 1000 answered
+- **Harvests:** 1, 5, 10, all plants
+- **Streak:** 3, 7, 14, 30 days
+- **Comeback** — bought a streak back
 
-### 3) Restaurant
+### Trophy room (🏆)
+- Big counter: total questions answered ever
+- 90-day activity heatmap (like GitHub's contribution graph)
+- Achievement badge grid — locked badges show as 🔒
+- Per-topic learning progress bars
 
-- Real-time background minigame: cooks serve customers automatically
-- Customers arrive with a patience bar; dirt accumulates over time
-- Ingredient stock depletes → refill costs a question answer (+ optional fruits)
-- New cooks, ingredients, and a cleaner unlockable via questions + fruits
-- Question priority: unseen first → wrong answers → repetition once all mastered
-- Trophy + new chapter recommendation when all questions are mastered
+---
 
-### 4) Lab / Hybrids
+## Plant mechanics
 
-- Unlocked after harvesting plants from 2 different topic beds
-- Each hybrid requires 2 specific source plants to be harvested
-- Lab shows ✓/✗ status per required plant; locked hybrids show a hint button
-- Synthesis costs 2 fruits; once discovered, replanting is free
+### Phase 1 — Setup
+- Three steps: soil → seed → first watering
+- Each shows a lesson, then a true/false question
+- Wrong answer: retry immediately, no progression until correct
 
-### 5) Save system
+### Phase 2 — Practice
+- Actions: water (💧), trim (✂️), fertilize (🌿)
+- Each action asks one harvest question; correct = learned, wrong = stays in queue
+- **Cooldown:** 5 minutes between actions (dev mode: 10 seconds)
+- After answering, app auto-returns to garden view
+- 3 wrong answers on the same question → plant withers and resets to Phase 1
+- All questions learned → plant turns sparkly, ready to harvest
 
-- Local save via browser storage (`localStorage`)
-- Export/Import save file (JSON) available in settings
-- Dev mode: fast cooldown toggle in settings
+### Harvest
+- All harvest questions in random order; all must be answered correctly
+- Wrong answers reset only those questions to Phase 2
+- Success: fruits earned, plant removed from active bed, counts toward completion
 
-## Controls
+### Plant selector
+- By default only shows **new (unplanted, unharvested)** plants
+- *Geerntete anzeigen* button reveals previously harvested plants for replanting
 
-- Click a pot to select a plant or add a new one
-- Click action buttons (💧 ✂️ 🌿 🧪) in the left panel or above the selected pot
-- Bottom nav bar for Katalog / Restaurant / Labor / Trophäen / Einstellungen
-- Esc closes modals
+---
+
+## Colors per topic
+
+| Topic | Stem | Fruit |
+|---|---|---|
+| Zytologie | orange | yellow |
+| Histologie | blue | purple |
+| Knochenlehre | grey-green | olive |
+| Muskellehre | red | red |
+| Atmungssystem | teal | light blue |
+
+Hybrid plants: stem color from source 1, fruit color from source 2.
+
+---
+
+## Save system
+
+- Saved automatically in `localStorage` — persists across app restarts
+- **Export/Import** available in Settings (⚙️) — saves as a JSON file
+- Clearing browser *cache* does **not** delete saves; clearing *site data / localStorage* does
+- Dev mode: fast cooldown toggle in Settings
+
+---
 
 ## Project structure
 
-- `index.html` — app shell
-- `styles.css` — UI/game styling
-- `js/content.js` — content pack data (questions, plants, hybrids, label exercises)
-- `js/game.js` — core game logic and UI rendering
-- `scripts/serve.js` — static local server
-- `scripts/run.js` — local server + app-window launcher
-- `docs/` — project overview, playtest checklist, ideas
+```
+index.html        — app shell, PWA manifest link, bottom nav
+styles.css        — all UI and game styling
+js/
+  content.js      — all question/plant/hybrid data
+  game.js         — game logic, rendering, state management
+sw.js             — service worker (network-first caching)
+manifest.json     — PWA manifest
+assets/           — images, sounds
+scripts/
+  serve.js        — local dev server
+  run.js          — server + app-window launcher
+```
+
+---
 
 ## Notes
 
-- This is an MVP/prototype under active iteration.
-- UI text and content is German by design (Heilpraktiker learning content).
-- If a push fails with auth issues, ensure the correct GitHub account/credentials are used.
+- UI and content are in German (Heilpraktiker exam material)
+- Designed for portrait orientation on mobile; works on desktop too
+- This is an active prototype — content and mechanics evolve frequently
