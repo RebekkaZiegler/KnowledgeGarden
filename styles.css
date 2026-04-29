@@ -346,7 +346,7 @@ header p {
 
 .garden-shelf-pots {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.2rem;
   align-items: flex-end;
   justify-content: center;
   flex-wrap: nowrap;
@@ -387,9 +387,9 @@ header p {
 
 /* Empty pot visual */
 .empty-pot {
-  width: 86px;
+  width: 70px;
   height: 155px;
-  background: url('assets/images/pot.png') center bottom / 84px auto no-repeat;
+  background: url('assets/images/pot.png') center bottom / 68px auto no-repeat;
   border: none;
   border-radius: 0;
   opacity: 0.9;
@@ -532,12 +532,12 @@ header p {
 /* Plant visual sizes — zoom scales all JS-calculated px values uniformly */
 .plant-visual--garden {
   height: 155px;
-  width: 86px;
-  zoom: 1.55;
+  width: 70px;
+  zoom: 1.22;
 }
 
 .plant-visual--garden .plant-pot-img {
-  width: 84px;
+  width: 68px;
 }
 
 /* Align garden plant to soil level */
