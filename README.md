@@ -22,9 +22,11 @@ The game is a PWA — it installs to your home screen and runs like a native app
 
 The app caches files for offline use. If an update doesn't appear after reopening:
 
-- **Android:** long-press the app icon → App info → Storage → clear *Cache* (not "Storage" — that would delete your save)
-- **iOS:** Settings → Safari → Advanced → Website Data → find the site → Delete
-- **Quickest option either way:** delete the home screen icon and re-add it from the browser — this forces a fresh install. Your save data is stored in `localStorage` and survives this.
+- **Android Chrome:** open the URL in Chrome (not the home screen icon) → tap the 3-dot menu → *Reload* or *Hard Reload*. If that doesn't work: Settings → Privacy → Clear browsing data → tick only *Cached images and files* (NOT cookies or site data).
+- **iOS Safari:** open the URL in Safari → hold the reload button → *Reload Without Content Blockers*, or just close all Safari tabs and reopen.
+- **Quickest option:** delete the home screen icon, open the URL fresh in the browser, re-add to home screen.
+
+> ⚠️ **Your save lives in `localStorage`.** Clearing *Cache* is safe — it only removes downloaded files, not your progress. Clearing *Site Data / Storage / Website Data* **will delete your save**. If you need to do a full wipe, use **Settings → Export** first to save a backup file.
 
 The app now checks for updates on every launch, so this should be rare going forward.
 

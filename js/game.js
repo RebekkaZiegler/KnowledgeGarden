@@ -1416,14 +1416,11 @@ function renderGardenRoom() {
   });
 
   els.gardenRoom.querySelectorAll("[data-add-bed]").forEach((el) => {
-    el.addEventListener("click", () => {
-      const bedId = el.getAttribute("data-add-bed");
-      openCatalogModal(bedId);
-    });
+    el.addEventListener("click", () => showPlantPicker(el.getAttribute("data-add-bed")));
   });
 
   els.gardenRoom.querySelectorAll("[data-open-catalog]").forEach((el) => {
-    el.addEventListener("click", () => openCatalogModal());
+    el.addEventListener("click", () => showBedPicker());
   });
 
   // Phase2 tool buttons inside pot-tools
@@ -3089,6 +3086,68 @@ function openCatalogModal(filterBedId) {
   if (filterBedId) expandedSeedCatalogBedId = filterBedId;
   renderSeedLibrary();
   openModal("modal-catalog");
+}
+
+function showBedPicker() {
+  const title = document.getElementById("quick-pick-title");
+  const list  = document.getElementById("quick-pick-list");
+  if (!title || !list) return;
+  title.textContent = "Thema wählen";
+  const unlockedIds = new Set(getBedProgress().unlockedBedIds);
+  const unlocked = PACK_CONTENT.beds.filter(b => b.id !== "hybrid" && unlockedIds.has(b.id));
+  list.innerHTML = unlocked.map(b =>
+    `<button class="quick-pick-btn" data-pick-bed="${b.id}">${b.title}</button>`
+  ).join("");
+  openModal("modal-quick-pick");
+  list.querySelectorAll("[data-pick-bed]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      closeModal("modal-quick-pick");
+      setActiveBed(btn.getAttribute("data-pick-bed"));
+    });
+  });
+}
+
+function showPlantPicker(bedId) {
+  const title = document.getElementById("quick-pick-title");
+  const list  = document.getElementById("quick-pick-list");
+  if (!title || !list) return;
+  const pack     = getPackState();
+  const bed      = PACK_CONTENT.beds.find(b => b.id === bedId);
+  const bedState = pack.beds[bedId];
+  if (!bed || !bedState) return;
+  title.textContent = bed.title;
+  const activeIds = bedState.activePlantIds || [];
+
+  const render = (showHarvested) => {
+    const newP  = bed.plants.filter(p => !activeIds.includes(p.id) && !bedState.plants?.[p.id]?.harvestedOnce);
+    const harvP = bed.plants.filter(p => !activeIds.includes(p.id) &&  bedState.plants?.[p.id]?.harvestedOnce);
+    const shown = showHarvested ? [...newP, ...harvP] : newP;
+    list.innerHTML = shown.map(p =>
+      `<button class="quick-pick-btn" data-pick-plant="${p.id}">${p.title}</button>`
+    ).join("") + (harvP.length > 0
+      ? `<button class="quick-pick-toggle" id="qp-harvested-toggle">${showHarvested ? "Nur neue anzeigen" : `+ Geerntete (${harvP.length})`}</button>`
+      : "");
+    list.querySelectorAll("[data-pick-plant]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const plantId = btn.getAttribute("data-pick-plant");
+        if (!canActivateBedForPlanting(bedId)) {
+          showToast(`Maximal ${MAX_ACTIVE_BEDS} aktive Beete gleichzeitig.`, "error"); return;
+        }
+        if (activeIds.length >= 4) { showToast("Beet ist voll (4/4).", "error"); return; }
+        preparePlantForNewCycle(bedState.plants[plantId]);
+        bedState.activePlantIds.push(plantId);
+        state.activeBedId = bedId;
+        showHarvestedInSelector = false;
+        saveState();
+        closeModal("modal-quick-pick");
+        renderAll();
+      });
+    });
+    const tog = list.querySelector("#qp-harvested-toggle");
+    if (tog) tog.addEventListener("click", () => render(!showHarvested));
+  };
+  render(false);
+  openModal("modal-quick-pick");
 }
 
 
@@ -4774,6 +4833,8 @@ if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => closeModa
 
 const closeCatalogBtn = document.getElementById("close-catalog-btn");
 if (closeCatalogBtn) closeCatalogBtn.addEventListener("click", () => { catalogFilterBedId = null; closeModal("modal-catalog"); });
+const closeQuickPickBtn = document.getElementById("close-quick-pick-btn");
+if (closeQuickPickBtn) closeQuickPickBtn.addEventListener("click", () => closeModal("modal-quick-pick"));
 
 const closeRoomBtn = document.getElementById("close-room-btn");
 if (closeRoomBtn) closeRoomBtn.addEventListener("click", () => { stopRestaurant(); closeModal("modal-room"); });
