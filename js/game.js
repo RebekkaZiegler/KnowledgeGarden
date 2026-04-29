@@ -11,6 +11,24 @@ const PHASE2_UNSEEN_SCORE = 20;
 const PHASE2_WRONG_SCORE = 10;
 const PHASE2_MAX_WRONG_PER_QUESTION = 3;
 const STOP_WORDS = new Set(["und", "der", "die", "das", "des", "den", "dem", "mit", "von", "im", "in", "am", "an", "zu", "zur", "für"]);
+const ACHIEVEMENTS = [
+  { id: 'q_1',      icon: '🌱', name: 'Erste Frage',     desc: '1 Frage beantwortet',          check: s => s.totalQuestionsAnswered >= 1 },
+  { id: 'q_10',     icon: '📚', name: 'Fleißig',          desc: '10 Fragen beantwortet',         check: s => s.totalQuestionsAnswered >= 10 },
+  { id: 'q_50',     icon: '📖', name: 'Wissbegierig',     desc: '50 Fragen beantwortet',         check: s => s.totalQuestionsAnswered >= 50 },
+  { id: 'q_100',    icon: '💯', name: 'Hundert!',         desc: '100 Fragen beantwortet',        check: s => s.totalQuestionsAnswered >= 100 },
+  { id: 'q_500',    icon: '🧠', name: 'Bücherwurm',       desc: '500 Fragen beantwortet',        check: s => s.totalQuestionsAnswered >= 500 },
+  { id: 'q_1000',   icon: '⭐', name: 'Tausend!',         desc: '1000 Fragen beantwortet',       check: s => s.totalQuestionsAnswered >= 1000 },
+  { id: 'h_1',      icon: '🌾', name: 'Erste Ernte',      desc: 'Erste Pflanze geerntet',        check: s => s.harvestSuccesses >= 1 },
+  { id: 'h_5',      icon: '🌿', name: 'Gartenarbeit',     desc: '5 Pflanzen geerntet',           check: s => s.harvestSuccesses >= 5 },
+  { id: 'h_10',     icon: '🪴', name: 'Grüner Daumen',    desc: '10 Pflanzen geerntet',          check: s => s.harvestSuccesses >= 10 },
+  { id: 'h_all',    icon: '🌳', name: 'Alles geerntet',   desc: 'Alle Pflanzen einmal geerntet', check: (s, p) => PACK_CONTENT.beds.every(b => b.plants.every(pl => p.beds[b.id]?.plants?.[pl.id]?.harvestedOnce)) },
+  { id: 's_3',      icon: '🔥', name: 'Drei Tage',        desc: '3 Tage Streak',                 check: s => s.bestStreak >= 3 },
+  { id: 's_7',      icon: '🔥', name: 'Eine Woche',       desc: '7 Tage Streak',                 check: s => s.bestStreak >= 7 },
+  { id: 's_14',     icon: '💪', name: 'Zwei Wochen',      desc: '14 Tage Streak',                check: s => s.bestStreak >= 14 },
+  { id: 's_30',     icon: '🏆', name: 'Ein Monat',        desc: '30 Tage Streak',                check: s => s.bestStreak >= 30 },
+  { id: 'comeback', icon: '💫', name: 'Comeback',         desc: 'Streak zurückgekauft',          check: s => (s.streakBuybacks || 0) >= 1 },
+];
+
 const POT_COLORS = {
   zytologie: "#c97d3a",
   histologie_1032: "#4e7db8",
@@ -394,7 +412,12 @@ function createInitialState() {
           dailyDate: null,
           prevStreak: 0,
           streakBrokenDate: null,
-          lastStreakBought: null
+          lastStreakBought: null,
+          bestStreak: 0,
+          totalQuestionsAnswered: 0,
+          streakBuybacks: 0,
+          activityLog: {},
+          unlockedAchievements: []
         },
         weakpoints: {}
       }
@@ -425,9 +448,14 @@ function normalizeLoadedState(inputState) {
   pack.stats.firstPlayDate   = pack.stats.firstPlayDate   ?? null;
   pack.stats.dailyActions    = pack.stats.dailyActions    ?? 0;
   pack.stats.dailyDate       = pack.stats.dailyDate       ?? null;
-  pack.stats.prevStreak      = pack.stats.prevStreak      ?? 0;
-  pack.stats.streakBrokenDate = pack.stats.streakBrokenDate ?? null;
-  pack.stats.lastStreakBought = pack.stats.lastStreakBought ?? null;
+  pack.stats.prevStreak           = pack.stats.prevStreak           ?? 0;
+  pack.stats.streakBrokenDate     = pack.stats.streakBrokenDate     ?? null;
+  pack.stats.lastStreakBought     = pack.stats.lastStreakBought     ?? null;
+  pack.stats.bestStreak           = pack.stats.bestStreak           ?? 0;
+  pack.stats.totalQuestionsAnswered = pack.stats.totalQuestionsAnswered ?? 0;
+  pack.stats.streakBuybacks       = pack.stats.streakBuybacks       ?? 0;
+  if (!pack.stats.activityLog)       pack.stats.activityLog = {};
+  if (!pack.stats.unlockedAchievements) pack.stats.unlockedAchievements = [];
   const hybridIds = PACK_CONTENT.lab.hybrids.map((h) => h.id);
   PACK_CONTENT.beds.forEach((bed) => {
     if (!pack.beds[bed.id]) {
@@ -1677,7 +1705,7 @@ function getLearningProgress() {
   return { totalQ, learnedQ };
 }
 
-function trackDailyActivity() {
+function trackDailyActivity(questionCount = 1) {
   const pack = getPackState();
   const stats = pack.stats;
   const today = new Date().toISOString().slice(0, 10);
@@ -1687,17 +1715,35 @@ function trackDailyActivity() {
     if (stats.lastStreakDate === yesterday) {
       stats.streak = (stats.streak || 0) + 1;
     } else {
-      // Streak broken — save it so buy-back can restore it
-      if ((stats.streak || 0) > 1) {
-        stats.prevStreak = stats.streak;
-        stats.streakBrokenDate = today;
-      }
+      if ((stats.streak || 0) > 1) { stats.prevStreak = stats.streak; stats.streakBrokenDate = today; }
       stats.streak = 1;
     }
     stats.lastStreakDate = today;
+    if (stats.streak > (stats.bestStreak || 0)) stats.bestStreak = stats.streak;
   }
-  if (stats.dailyDate !== today) { stats.dailyActions = 0; stats.dailyDate = today; }
+  if (stats.dailyDate !== today) {
+    // Prune activity log older than 91 days on day rollover
+    const cutoff = new Date(Date.now() - 91 * 86400000).toISOString().slice(0, 10);
+    Object.keys(stats.activityLog || {}).forEach(k => { if (k < cutoff) delete stats.activityLog[k]; });
+    stats.dailyActions = 0;
+    stats.dailyDate = today;
+  }
   stats.dailyActions = (stats.dailyActions || 0) + 1;
+  stats.totalQuestionsAnswered = (stats.totalQuestionsAnswered || 0) + questionCount;
+  if (!stats.activityLog) stats.activityLog = {};
+  stats.activityLog[today] = (stats.activityLog[today] || 0) + 1;
+}
+
+function checkAndUnlockAchievements() {
+  const pack = getPackState();
+  const stats = pack.stats;
+  if (!stats.unlockedAchievements) stats.unlockedAchievements = [];
+  ACHIEVEMENTS.forEach(a => {
+    if (!stats.unlockedAchievements.includes(a.id) && a.check(stats, pack)) {
+      stats.unlockedAchievements.push(a.id);
+      setTimeout(() => showToast(`🏆 Errungenschft freigeschaltet: ${a.name}!`, 'success'), 400);
+    }
+  });
 }
 
 function buyBackStreak() {
@@ -1716,7 +1762,9 @@ function buyBackStreak() {
   // If not yet answered today, streak is still intact — just bridge the date gap
   stats.lastStreakDate = today;
   stats.lastStreakBought = today;
+  stats.streakBuybacks = (stats.streakBuybacks || 0) + 1;
   saveState();
+  checkAndUnlockAchievements();
   renderAll();
 }
 
@@ -2401,6 +2449,7 @@ function usePhase2Action(plantId, actionIndex) {
   trackDailyActivity();
   addXp(1);
   saveState();
+  checkAndUnlockAchievements();
   renderAll();
   const capturedPlantId = plantId;
   setTimeout(() => {
@@ -2679,7 +2728,7 @@ function finalizeHarvest() {
     const idx = bedState.activePlantIds.indexOf(harvestedId);
     if (idx >= 0) bedState.activePlantIds.splice(idx, 1);
     harvestSession = null;
-    trackDailyActivity();
+    trackDailyActivity(total);
     addXp(5);
     pack.stats.harvestSuccesses += 1;
     playSound("twinkle done.mp3");
@@ -2722,6 +2771,7 @@ function finalizeHarvest() {
 
   harvestSession = null;
   saveState();
+  checkAndUnlockAchievements();
   renderAll();
   if (harvestedIdForReturn) {
     const capturedId = harvestedIdForReturn;
@@ -4483,49 +4533,69 @@ function openTrophyRoom() {
   const container = document.getElementById("trophy-list");
   if (!container) return;
   const pack = getPackState();
+  const stats = pack.stats;
+
+  // ── Counter ──
+  const totalAnswered = stats.totalQuestionsAnswered || 0;
+  const counterHtml = `<div class="trophy-counter">
+    <span class="trophy-counter-num">${totalAnswered}</span>
+    <span class="trophy-counter-label">Fragen beantwortet</span>
+  </div>`;
+
+  // ── Heatmap (last 90 days) ──
+  const log = stats.activityLog || {};
+  const now = Date.now();
+  const heatCells = [];
+  // Pad start so first cell is Monday
+  const firstDay = new Date(now - 89 * 86400000);
+  const dow = (firstDay.getDay() + 6) % 7; // 0=Mon
+  for (let p = 0; p < dow; p++) heatCells.push(`<span class="hm-cell hm-empty"></span>`);
+  for (let i = 89; i >= 0; i--) {
+    const d = new Date(now - i * 86400000);
+    const key = d.toISOString().slice(0, 10);
+    const count = log[key] || 0;
+    const lvl = count === 0 ? 0 : count < DAILY_GOAL ? 1 : 2;
+    heatCells.push(`<span class="hm-cell hm-${lvl}" title="${d.toLocaleDateString('de-DE')}: ${count}"></span>`);
+  }
+  const heatmapHtml = `
+    <div class="trophy-section-label">Aktivität (90 Tage)</div>
+    <div class="heatmap">${heatCells.join('')}</div>
+    <div class="hm-legend"><span class="hm-cell hm-0"></span> keine <span class="hm-cell hm-1"></span> wenig <span class="hm-cell hm-2"></span> Tagesziel</div>`;
+
+  // ── Achievements ──
+  const unlocked = stats.unlockedAchievements || [];
+  const achHtml = `
+    <div class="trophy-section-label">Errungenschaften</div>
+    <div class="ach-grid">${ACHIEVEMENTS.map(a => {
+      const done = unlocked.includes(a.id);
+      return `<div class="ach-badge${done ? '' : ' ach-badge--locked'}" title="${a.desc}">
+        <div class="ach-icon">${done ? a.icon : '🔒'}</div>
+        <div class="ach-name">${a.name}</div>
+      </div>`;
+    }).join('')}</div>`;
+
+  // ── Themenfortschritt ──
   const unlockedBeds = pack.bedProgress?.unlockedBedIds || [];
   const nonHybridBeds = PACK_CONTENT.beds.filter(b => b.id !== "hybrid" && unlockedBeds.includes(b.id));
-
-  container.innerHTML = nonHybridBeds.map(bed => {
-    const bedState = pack.beds[bed.id];
-    const restUnlocked = bedState?.restaurantUnlocked || false;
-    if (!restUnlocked) {
-      return `<div class="trophy-item trophy-item--locked">
-        <div class="trophy-icon">🔒</div>
+  const themenHtml = nonHybridBeds.length ? `
+    <div class="trophy-section-label">Themenfortschritt</div>
+    ${nonHybridBeds.map(bed => {
+      const bedState = pack.beds[bed.id];
+      const allQ = (bed.plants || []).flatMap(p => p.harvestQuestions || []);
+      const learnedQ = allQ.filter(q => bedState?.plants && Object.values(bedState.plants).some(ps => ps.phase2Questions?.[q.id]?.status === 'learned')).length;
+      const pct = allQ.length > 0 ? Math.round(learnedQ / allQ.length * 100) : 0;
+      const allHarvested = bed.plants.length > 0 && bed.plants.every(p => bedState?.plants?.[p.id]?.harvestedOnce);
+      return `<div class="trophy-item${allHarvested ? ' trophy-item--mastered' : ''}">
+        <div class="trophy-icon">${allHarvested ? '🏆' : '📖'}</div>
         <div class="trophy-info">
           <div class="trophy-name">${bed.title}</div>
-          <div class="muted" style="font-size:.8rem">Restaurant noch nicht freigeschaltet</div>
+          <div class="trophy-bar-wrap"><div class="trophy-bar" style="width:${pct}%"></div></div>
+          <div class="muted" style="font-size:.8rem">${learnedQ}/${allQ.length} Fragen gelernt${allHarvested ? ' · <strong style="color:#5ada80">Alle geerntet!</strong>' : ''}</div>
         </div>
       </div>`;
-    }
-    const answers = bedState?.restaurant?.questionAnswers || {};
-    const bedContent = PACK_CONTENT.beds.find(b => b.id === bed.id);
-    const all = [];
-    (bedContent?.plants || []).forEach(p => {
-      (p.harvestQuestions || []).forEach(q => all.push(q));
-      (p.phase4Questions || []).forEach(q => all.push(q));
-    });
-    const total = all.length;
-    const correct = all.filter(q => answers[q.id] === "correct").length;
-    const wrong = all.filter(q => answers[q.id] === "wrong").length;
-    const unseen = total - correct - wrong;
-    const mastered = total > 0 && all.every(q => answers[q.id] === "correct");
-    const pct = total > 0 ? Math.round(correct / total * 100) : 0;
+    }).join('')}` : '';
 
-    return `<div class="trophy-item ${mastered ? "trophy-item--mastered" : ""}">
-      <div class="trophy-icon">${mastered ? "🏆" : "📖"}</div>
-      <div class="trophy-info">
-        <div class="trophy-name">${bed.title}</div>
-        <div class="trophy-bar-wrap"><div class="trophy-bar" style="width:${pct}%"></div></div>
-        <div class="muted" style="font-size:.8rem">
-          ${mastered
-            ? `<strong style="color:#5ada80">Gemeistert!</strong> Alle ${total} Fragen richtig.`
-            : `${correct}/${total} richtig · ${wrong} falsch · ${unseen} offen`}
-        </div>
-      </div>
-    </div>`;
-  }).join("") || "<div class='muted'>Noch kein Kapitel freigeschaltet.</div>";
-
+  container.innerHTML = counterHtml + heatmapHtml + achHtml + themenHtml;
   openModal("modal-trophies");
 }
 
