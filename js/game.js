@@ -3,7 +3,9 @@ const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
 const HARVEST_PASS_RATE = 0.7;
 const INITIAL_UNLOCK_SLOTS = 2;
-const MAX_ACTIVE_BEDS = 6;
+const MAX_ACTIVE_BEDS = 2;
+const EXAM_DEADLINE = new Date('2028-02-01').getTime();
+const DAILY_GOAL = 3;
 const SEED_BEDS = PACK_CONTENT.beds;
 const PHASE2_UNSEEN_SCORE = 20;
 const PHASE2_WRONG_SCORE = 10;
@@ -384,7 +386,12 @@ function createInitialState() {
         },
         stats: {
           harvestAttempts: 0,
-          harvestSuccesses: 0
+          harvestSuccesses: 0,
+          streak: 0,
+          lastStreakDate: null,
+          firstPlayDate: null,
+          dailyActions: 0,
+          dailyDate: null
         },
         weakpoints: {}
       }
@@ -409,6 +416,12 @@ function normalizeLoadedState(inputState) {
   const pack = s.packs?.[s.activePackId];
   if (!pack || !pack.beds) return s;
   if (!pack.lab) pack.lab = { discoveredHybrids: [] };
+  if (!pack.stats) pack.stats = {};
+  pack.stats.streak       = pack.stats.streak       ?? 0;
+  pack.stats.lastStreakDate = pack.stats.lastStreakDate ?? null;
+  pack.stats.firstPlayDate  = pack.stats.firstPlayDate  ?? null;
+  pack.stats.dailyActions  = pack.stats.dailyActions  ?? 0;
+  pack.stats.dailyDate     = pack.stats.dailyDate     ?? null;
   const hybridIds = PACK_CONTENT.lab.hybrids.map((h) => h.id);
   PACK_CONTENT.beds.forEach((bed) => {
     if (!pack.beds[bed.id]) {
@@ -1240,24 +1253,21 @@ function renderGardenRoom() {
   const unlockedIds = new Set(getBedProgress().unlockedBedIds);
   const MAX_POTS = 4;
 
-  // Show at most 3 beds: active bed + beds with plants. Empty slots get a "choose topic" button.
-  // Hybrid bed only counts once at least one hybrid has been discovered
+  // Show at most 2 beds: active bed + one other bed with plants.
   const allUnlocked = PACK_CONTENT.beds.filter(b =>
     unlockedIds.has(b.id) && (b.id !== "hybrid" || (pack.lab.discoveredHybrids?.length || 0) > 0)
   );
-  // Always show the active bed (even if empty) so "Beet wählen" has an immediate visible effect.
-  // Fill remaining slots (up to 3 total) with other beds that have active plants.
   const shownBedIds = new Set();
   if (state.activeBedId && allUnlocked.some(b => b.id === state.activeBedId))
     shownBedIds.add(state.activeBedId);
   allUnlocked.forEach(b => {
-    if (shownBedIds.size < 3 && !shownBedIds.has(b.id) && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
+    if (shownBedIds.size < 2 && !shownBedIds.has(b.id) && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
       shownBedIds.add(b.id);
   });
   const gardenBeds = allUnlocked.filter(b => shownBedIds.has(b.id));
 
-  // Fill remaining slots (up to 3) with "choose topic" placeholders
-  const emptySlots = Math.max(0, 3 - gardenBeds.length);
+  // Fill remaining slots (up to 2) with "choose topic" placeholders
+  const emptySlots = Math.max(0, 2 - gardenBeds.length);
   const emptySlotsHtml = Array.from({ length: emptySlots }, () => `
     <div class="garden-shelf garden-shelf--empty-slot">
       <button class="garden-choose-topic-btn" data-open-catalog="1">+ Thema wählen</button>
@@ -1563,15 +1573,55 @@ function getPlantLifecycleStatus(plantState) {
 }
 
 function renderPlayer() {
-  const player = getPackState().player;
+  const pack = getPackState();
+  const player = pack.player;
+  const stats = pack.stats;
   const cooldownSeconds = Math.floor(getCooldownMs() / 1000);
   const curriculum = getCurriculumProgress();
+  const { totalQ, learnedQ } = getLearningProgress();
+
+  // Streak
+  const today = new Date().toISOString().slice(0, 10);
+  const streakActive = stats.lastStreakDate === today;
+  const streak = stats.streak || 0;
+  const streakHtml = `<div class="stat-streak${streakActive ? ' stat-streak--active' : ''}">🔥 ${streak}</div>`;
+
+  // Daily goal
+  const dailyDone = stats.dailyDate === today ? (stats.dailyActions || 0) : 0;
+  const dailyComplete = dailyDone >= DAILY_GOAL;
+  const dots = Array.from({ length: DAILY_GOAL }, (_, i) => `<span class="daily-dot${i < dailyDone ? ' daily-dot--done' : ''}"></span>`).join('');
+  const dailyHtml = `<div class="stat-daily${dailyComplete ? ' stat-daily--done' : ''}" title="Tagesziel: ${DAILY_GOAL} Aktionen">${dots}</div>`;
+
+  // Pace tracker
+  let paceHtml = '';
+  const now = Date.now();
+  const daysLeft = (EXAM_DEADLINE - now) / 86400000;
+  const weeksLeft = daysLeft / 7;
+  if (totalQ > 0 && weeksLeft > 0) {
+    const remaining = totalQ - learnedQ;
+    const neededPerWeek = remaining / weeksLeft;
+    if (stats.firstPlayDate && learnedQ > 0) {
+      const daysElapsed = (now - stats.firstPlayDate) / 86400000;
+      const pacePerWeek = (learnedQ / daysElapsed) * 7;
+      const onTrack = pacePerWeek >= neededPerWeek;
+      const projFinish = new Date(now + (remaining / (learnedQ / daysElapsed)) * 86400000);
+      const projStr = projFinish.toLocaleDateString('de-DE', { month: 'short', year: 'numeric' });
+      paceHtml = `<div class="stat-pace ${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}" title="${Math.round(pacePerWeek)}/Wo aktuell · ${Math.round(neededPerWeek)}/Wo nötig">📈 ${Math.round(pacePerWeek)}/Wo · ${projStr}${onTrack ? ' ✓' : ' ⚠️'}</div>`;
+    } else {
+      paceHtml = `<div class="stat-pace" title="Nötig für Feb 2028">📈 ${Math.round(neededPerWeek)}/Wo nötig</div>`;
+    }
+  }
+
   els.playerStats.innerHTML = `
-    <div>XP: <strong>${curriculum.harvested}/${curriculum.total}${curriculum.complete ? " ✓" : ""}</strong></div>
-    <div>Früchte: <strong>${player.fruits}</strong></div>
-    <div>Trank: <strong>${isDevFastMode() ? player.fertilizer : "∞"}</strong></div>
+    <div class="stat-row">
+      <div>🌾 <strong>${curriculum.harvested}/${curriculum.total}</strong></div>
+      <div>🍎 <strong>${player.fruits}</strong></div>
+      ${streakHtml}
+      ${dailyHtml}
+    </div>
+    <div class="stat-row">${paceHtml}</div>
   `;
-  els.cooldownInfo.textContent = `Aktueller Cooldown: ${cooldownSeconds}s`;
+  els.cooldownInfo.textContent = `Cooldown: ${cooldownSeconds}s`;
   els.curriculumStatus.textContent = "";
   els.devModeBtn.textContent = `Dev-Cooldown: ${isDevFastMode() ? "An" : "Aus"}`;
 }
@@ -1593,6 +1643,36 @@ function getCurriculumProgress() {
     harvested,
     complete: total > 0 && harvested === total
   };
+}
+
+function getLearningProgress() {
+  const pack = getPackState();
+  let totalQ = 0, learnedQ = 0;
+  PACK_CONTENT.beds.forEach(bed => {
+    bed.plants.forEach(plant => {
+      const pState = pack.beds[bed.id]?.plants?.[plant.id];
+      const qs = plant.harvestQuestions || [];
+      totalQ += qs.length;
+      if (pState) qs.forEach(q => {
+        if (pState.phase2Questions?.[q.id]?.status === 'learned') learnedQ++;
+      });
+    });
+  });
+  return { totalQ, learnedQ };
+}
+
+function trackDailyActivity() {
+  const pack = getPackState();
+  const stats = pack.stats;
+  const today = new Date().toISOString().slice(0, 10);
+  if (!stats.firstPlayDate) stats.firstPlayDate = Date.now();
+  if (stats.lastStreakDate !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    stats.streak = (stats.lastStreakDate === yesterday) ? (stats.streak || 0) + 1 : 1;
+    stats.lastStreakDate = today;
+  }
+  if (stats.dailyDate !== today) { stats.dailyActions = 0; stats.dailyDate = today; }
+  stats.dailyActions = (stats.dailyActions || 0) + 1;
 }
 
 function getActionIcon(type) {
@@ -2273,6 +2353,7 @@ function usePhase2Action(plantId, actionIndex) {
   } else {
     plantState.status = "growing";
   }
+  trackDailyActivity();
   addXp(1);
   saveState();
   renderAll();

@@ -76,14 +76,41 @@ header p {
 
 .header-stats {
   display: flex;
-  gap: 1.2rem;
+  flex-direction: column;
+  gap: 0.3rem;
   margin: 0;
   font-size: 0.88rem;
 }
 
-.header-stats div {
-  white-space: nowrap;
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
+
+.stat-row div { white-space: nowrap; }
+
+/* Streak */
+.stat-streak { opacity: 0.45; }
+.stat-streak--active { opacity: 1; }
+
+/* Daily dots */
+.stat-daily { display: flex; align-items: center; gap: 3px; }
+.daily-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.4;
+  transition: background 0.3s, opacity 0.3s;
+}
+.daily-dot--done { background: var(--accent); opacity: 1; }
+.stat-daily--done .daily-dot { background: #5cca6e; }
+
+/* Pace tracker */
+.stat-pace { font-size: 0.78rem; color: var(--muted); }
+.stat-pace--ok  { color: #5cca6e; }
+.stat-pace--warn { color: #e8a030; }
 
 #header-info {
   display: flex;
