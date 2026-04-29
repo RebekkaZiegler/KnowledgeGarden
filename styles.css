@@ -358,7 +358,7 @@ header p {
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  height: 100%;
+  height: auto;
 }
 
 .garden-pot.has-plant {
@@ -524,10 +524,13 @@ header p {
 
 /* Plant visual sizes */
 .plant-visual--garden {
-  height: 100%;
-  max-height: 170px;
-  min-height: 90px;
-  width: 90px;
+  height: 170px;
+  width: 110px;
+}
+
+/* Smaller pot image in garden overview so it fits the 110px wide visual */
+.plant-visual--garden .plant-pot-img {
+  width: 108px;
 }
 
 /* Align garden plant to soil level */
