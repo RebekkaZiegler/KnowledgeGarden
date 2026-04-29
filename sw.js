@@ -1,4 +1,4 @@
-const CACHE = 'kg-v1';
+const CACHE = 'kg-v2';
 const PRECACHE = ['/', '/styles.css', '/js/content.js', '/js/game.js'];
 
 self.addEventListener('install', e => {
