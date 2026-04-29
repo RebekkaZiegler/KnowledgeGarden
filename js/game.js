@@ -1599,8 +1599,8 @@ function renderPlayer() {
   const buyBackCost = 3;
   const buyBackHtml = canBuyBack
     ? (player.fruits >= buyBackCost
-        ? `<button id="btn-buyback-streak" style="font-size:0.7rem;padding:1px 6px">Zurückkaufen (${buyBackCost}🍎)</button>`
-        : `<span class="muted" style="font-size:0.7rem">(${buyBackCost}🍎 nötig)</span>`)
+        ? `<button id="btn-buyback-streak" style="font-size:0.78rem;padding:2px 8px">Zurückkaufen (${buyBackCost}🍎)</button>`
+        : `<span class="muted" style="font-size:0.78rem">(${buyBackCost}🍎 nötig)</span>`)
     : '';
   const streakHtml = `<div class="stat-streak${streakActive ? ' stat-streak--active' : ''}">🔥 ${streak} ${buyBackHtml}</div>`;
 
