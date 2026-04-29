@@ -1,5 +1,6 @@
-const CACHE = 'kg-v3';
-const PRECACHE = ['/', '/styles.css', '/js/content.js', '/js/game.js'];
+const CACHE = 'kg-v4';
+const PRECACHE = ['/', '/styles.css', '/js/content.js', '/js/game.js',
+  '/assets/images/icon-192.png', '/assets/images/icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
