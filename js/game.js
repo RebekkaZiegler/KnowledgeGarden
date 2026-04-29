@@ -161,6 +161,9 @@ bindEvents();
 renderAll();
 startCooldownTicker();
 maybeShowChangelog();
+// Unlock any achievements already earned from pre-feature play history
+checkAndUnlockAchievements();
+saveState();
 
 function normalizeExplanation(text) {
   return String(text || "")
@@ -456,6 +459,23 @@ function normalizeLoadedState(inputState) {
   pack.stats.streakBuybacks       = pack.stats.streakBuybacks       ?? 0;
   if (!pack.stats.activityLog)       pack.stats.activityLog = {};
   if (!pack.stats.unlockedAchievements) pack.stats.unlockedAchievements = [];
+
+  // Retroactively populate stats from existing save data so achievements unlock correctly
+  if (pack.stats.totalQuestionsAnswered === 0) {
+    let retroQ = 0;
+    PACK_CONTENT.beds.forEach(bed => {
+      bed.plants.forEach(plant => {
+        const ps = pack.beds[bed.id]?.plants?.[plant.id];
+        if (ps?.phase2Questions) Object.values(ps.phase2Questions).forEach(q => {
+          if (q.status === 'learned' || q.status === 'wrong') retroQ++;
+        });
+      });
+    });
+    pack.stats.totalQuestionsAnswered = retroQ;
+  }
+  if (pack.stats.bestStreak === 0 && (pack.stats.streak || 0) > 0)
+    pack.stats.bestStreak = pack.stats.streak;
+
   const hybridIds = PACK_CONTENT.lab.hybrids.map((h) => h.id);
   PACK_CONTENT.beds.forEach((bed) => {
     if (!pack.beds[bed.id]) {
