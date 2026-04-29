@@ -3096,7 +3096,7 @@ function showBedPicker() {
   const unlockedIds = new Set(getBedProgress().unlockedBedIds);
   const unlocked = PACK_CONTENT.beds.filter(b => b.id !== "hybrid" && unlockedIds.has(b.id));
   list.innerHTML = unlocked.map(b =>
-    `<button class="quick-pick-btn" data-pick-bed="${b.id}">${b.title}</button>`
+    `<button class="quick-pick-btn" data-pick-bed="${b.id}">${b.title || b.id}</button>`
   ).join("");
   openModal("modal-quick-pick");
   list.querySelectorAll("[data-pick-bed]").forEach(btn => {
@@ -3123,7 +3123,7 @@ function showPlantPicker(bedId) {
     const harvP = bed.plants.filter(p => !activeIds.includes(p.id) &&  bedState.plants?.[p.id]?.harvestedOnce);
     const shown = showHarvested ? [...newP, ...harvP] : newP;
     list.innerHTML = shown.map(p =>
-      `<button class="quick-pick-btn" data-pick-plant="${p.id}">${p.title}</button>`
+      `<button class="quick-pick-btn" data-pick-plant="${p.id}">${getPlantLabel(bed.id, p.id, p.title || p.id)}</button>`
     ).join("") + (harvP.length > 0
       ? `<button class="quick-pick-toggle" id="qp-harvested-toggle">${showHarvested ? "Nur neue anzeigen" : `+ Geerntete (${harvP.length})`}</button>`
       : "");
