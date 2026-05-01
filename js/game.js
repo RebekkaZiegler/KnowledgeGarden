@@ -4833,8 +4833,7 @@ if (toggleSettingsBtn) toggleSettingsBtn.addEventListener("click", openSettingsP
 const closeSettingsBtn = document.getElementById("close-settings-btn");
 if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => closeModal("modal-settings"));
 
-const updateBtn = document.getElementById("update-btn");
-if (updateBtn) updateBtn.addEventListener("click", async () => {
+async function runAppUpdate(btn) {
   const ok = confirm(
     "App auf die neueste Version aktualisieren?\n\n" +
     "✅ Dein Spielstand bleibt vollständig erhalten.\n" +
@@ -4842,8 +4841,7 @@ if (updateBtn) updateBtn.addEventListener("click", async () => {
     "Die Seite wird danach neu gestartet."
   );
   if (!ok) return;
-  updateBtn.textContent = "Wird aktualisiert…";
-  updateBtn.disabled = true;
+  if (btn) { btn.textContent = "…"; btn.disabled = true; }
   try {
     if ("caches" in window) {
       const keys = await caches.keys();
@@ -4855,7 +4853,13 @@ if (updateBtn) updateBtn.addEventListener("click", async () => {
     }
   } catch (e) { /* ignore */ }
   window.location.reload(true);
-});
+}
+
+const updateBtn = document.getElementById("update-btn");
+if (updateBtn) updateBtn.addEventListener("click", () => runAppUpdate(updateBtn));
+
+const updateNavBtn = document.getElementById("update-nav-btn");
+if (updateNavBtn) updateNavBtn.addEventListener("click", () => runAppUpdate(updateNavBtn));
 
 const closeCatalogBtn = document.getElementById("close-catalog-btn");
 if (closeCatalogBtn) closeCatalogBtn.addEventListener("click", () => { catalogFilterBedId = null; closeModal("modal-catalog"); });
