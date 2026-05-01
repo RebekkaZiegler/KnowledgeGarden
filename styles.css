@@ -358,22 +358,34 @@ header p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 0.4rem;
+  gap: 0 0.3rem;
   flex: 1 1 0;
   min-height: 0;
   overflow: hidden;
   padding: 0.3rem 0.4rem 0;
+  position: relative;
 }
 
-/* ── Individual pot — each cell is a mini-shelf ── */
+/* Continuous shelf between the two rows */
+.garden-shelf-pots::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 30px;
+  transform: translateY(-15px);
+  background: url('assets/images/Shelf Plank.png') center / 100% 100% no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Individual pot ── */
 .garden-pot {
   position: relative;
   cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* shelf plank at the bottom of every cell */
-  background: url('assets/images/Shelf Plank.png') center bottom / 100% 28px no-repeat;
 }
 
 .garden-pot.has-plant {
@@ -545,11 +557,10 @@ header p {
   width: 100%;
 }
 
-/* Pot image raised above the shelf plank (22px = plank height) */
+/* Pot image sits on the shelf — no max-width cap */
 .plant-visual--garden .plant-pot-img {
-  width: 75%;
-  max-width: 110px;
-  bottom: 22px;
+  width: 85%;
+  bottom: 18px;
 }
 
 /* Scale plant content within the cell */
@@ -557,18 +568,17 @@ header p {
   zoom: 1.45;
 }
 
-/* Stem/branches: above shelf (22px) + pot height (~52px) = 74px visual
-   In zoom-space: 74 / 1.45 ≈ 51px */
+/* Stem/branches: shelf 18px + pot ~50px = 68px visual; zoom-space: 68/1.45 ≈ 47px */
 .plant-visual--garden .plant-stem,
 .plant-visual--garden .plant-stem-track {
-  bottom: 51px;
+  bottom: 47px;
 }
 .plant-visual--garden .plant-branch,
 .plant-visual--garden .plant-trim-stub {
-  bottom: calc(51px + var(--by, 0px));
+  bottom: calc(47px + var(--by, 0px));
 }
 .plant-visual--garden .plant-fruit-dot {
-  bottom: 51px;
+  bottom: 47px;
 }
 
 /* Align garden plant to soil level */
