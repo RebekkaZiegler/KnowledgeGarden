@@ -1873,7 +1873,9 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const stageRatio = visual.phase === "phase1"
     ? 0
     : Math.max(0, Math.min(1, stagedProgress / phase2Actions));
-  const stemMax = Math.round(42 + (growthScale * 38));
+  const isGardenView = (extraClass || '').includes('garden');
+  const sizeMul = isGardenView ? 1.8 : 1.0;
+  const stemMax = Math.round((42 + (growthScale * 38)) * sizeMul);
   const stemFill = Math.max(10, Math.round(stemMax * (0.12 + (stageRatio * 0.88))));
   const fullBranches = Math.max(0, Math.floor(stagedProgress + 0.0001));
   const growingBranchIdx = (locked && !lastActionWasTrim && !alreadyFullHeight && usedActions > 0) ? Math.max(0, usedActions - 1) : -1;
@@ -1881,7 +1883,7 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const branchSpecs = new Array(phase2Actions).fill(0).map((_, i) => ({
     y: 0.24 + (((i + 1) / (phase2Actions + 1)) * 0.64),
     rot: (i % 2 === 0 ? -1 : 1) * (22 + ((i % 3) * 5)),
-    len: 20 + ((i % 4) * 5)
+    len: Math.round((20 + ((i % 4) * 5)) * sizeMul)
   }));
   // Grey drooping stubs: show when trim is the current active step, or when a trim question
   // has "wrong" status (harvest failure recovery). Hidden during trim cooldown and when trim

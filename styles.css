@@ -547,17 +547,17 @@ header p {
   zoom: 1.45;
 }
 
-/* Adjust stem/branch offsets to stay above the pot after zoom */
+/* Adjust stem/branch offsets to stay above the pot */
 .plant-visual--garden .plant-stem,
 .plant-visual--garden .plant-stem-track {
-  bottom: 40px;
+  bottom: 52px;
 }
 .plant-visual--garden .plant-branch,
 .plant-visual--garden .plant-trim-stub {
-  bottom: calc(40px + var(--by, 0px));
+  bottom: calc(52px + var(--by, 0px));
 }
 .plant-visual--garden .plant-fruit-dot {
-  bottom: 40px;
+  bottom: 52px;
 }
 
 /* Align garden plant to soil level */
