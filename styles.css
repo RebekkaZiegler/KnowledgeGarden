@@ -243,6 +243,16 @@ header p {
   gap: 0.4rem;
 }
 
+/* Wrapper fills the full garden room so shelves can stretch into it */
+.garden-shelves {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 0.4rem;
+  height: 100%;
+}
+
 /* ── Shelf rows ── */
 .garden-shelf {
   background:
