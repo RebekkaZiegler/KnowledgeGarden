@@ -4833,6 +4833,30 @@ if (toggleSettingsBtn) toggleSettingsBtn.addEventListener("click", openSettingsP
 const closeSettingsBtn = document.getElementById("close-settings-btn");
 if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => closeModal("modal-settings"));
 
+const updateBtn = document.getElementById("update-btn");
+if (updateBtn) updateBtn.addEventListener("click", async () => {
+  const ok = confirm(
+    "App auf die neueste Version aktualisieren?\n\n" +
+    "✅ Dein Spielstand bleibt vollständig erhalten.\n" +
+    "ℹ️ Nur die App-Dateien (CSS, JS) werden neu geladen.\n\n" +
+    "Die Seite wird danach neu gestartet."
+  );
+  if (!ok) return;
+  updateBtn.textContent = "Wird aktualisiert…";
+  updateBtn.disabled = true;
+  try {
+    if ("caches" in window) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+    if ("serviceWorker" in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(r => r.unregister()));
+    }
+  } catch (e) { /* ignore */ }
+  window.location.reload(true);
+});
+
 const closeCatalogBtn = document.getElementById("close-catalog-btn");
 if (closeCatalogBtn) closeCatalogBtn.addEventListener("click", () => { catalogFilterBedId = null; closeModal("modal-catalog"); });
 const closeQuickPickBtn = document.getElementById("close-quick-pick-btn");
