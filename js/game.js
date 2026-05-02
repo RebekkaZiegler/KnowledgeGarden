@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "0.5.110";  // ← bump this with every push
+﻿const APP_VERSION = "0.5.111";  // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4843,21 +4843,9 @@ function runAppUpdate() {
   openModal("modal-update");
 }
 
-async function doUpdate() {
-  const confirmBtn = document.getElementById("update-confirm-btn");
-  if (confirmBtn) { confirmBtn.textContent = "Wird aktualisiert…"; confirmBtn.disabled = true; }
-  try {
-    if ("caches" in window) {
-      const keys = await caches.keys();
-      await Promise.all(keys.map(k => caches.delete(k)));
-    }
-    if ("serviceWorker" in navigator) {
-      const regs = await navigator.serviceWorker.getRegistrations();
-      await Promise.all(regs.map(r => r.unregister()));
-    }
-  } catch (e) { /* ignore */ }
-  const base = location.origin + location.pathname;
-  location.replace(base + "?_bust=" + Date.now());
+function doUpdate() {
+  // Simple direct navigation with cache-bust — SW handles fresh fetch
+  window.location.href = location.origin + location.pathname + "?v=" + Date.now();
 }
 
 const updateBtn = document.getElementById("update-btn");
