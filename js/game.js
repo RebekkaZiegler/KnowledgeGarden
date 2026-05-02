@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "0.5.107";  // ← bump this with every push
+﻿const APP_VERSION = "0.5.108";  // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4837,14 +4837,15 @@ if (toggleSettingsBtn) toggleSettingsBtn.addEventListener("click", openSettingsP
 const closeSettingsBtn = document.getElementById("close-settings-btn");
 if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => closeModal("modal-settings"));
 
-async function runAppUpdate(btn) {
-  const ok = confirm(
-    `App aktualisieren? (aktuell: v${APP_VERSION})\n\n` +
-    "✅ Dein Spielstand bleibt erhalten.\n" +
-    "Die Seite wird neu gestartet."
-  );
-  if (!ok) return;
-  if (btn) { btn.textContent = "…"; btn.disabled = true; }
+function runAppUpdate() {
+  const info = document.getElementById("update-version-info");
+  if (info) info.textContent = `Aktuell geladen: v${APP_VERSION}`;
+  openModal("modal-update");
+}
+
+async function doUpdate() {
+  const confirmBtn = document.getElementById("update-confirm-btn");
+  if (confirmBtn) { confirmBtn.textContent = "Wird aktualisiert…"; confirmBtn.disabled = true; }
   try {
     if ("caches" in window) {
       const keys = await caches.keys();
@@ -4855,16 +4856,21 @@ async function runAppUpdate(btn) {
       await Promise.all(regs.map(r => r.unregister()));
     }
   } catch (e) { /* ignore */ }
-  // Cache-bust the URL so the browser is forced to fetch fresh from network
   const base = location.origin + location.pathname;
   location.replace(base + "?_bust=" + Date.now());
 }
 
 const updateBtn = document.getElementById("update-btn");
-if (updateBtn) updateBtn.addEventListener("click", () => runAppUpdate(updateBtn));
+if (updateBtn) updateBtn.addEventListener("click", runAppUpdate);
 
 const updateNavBtn = document.getElementById("update-nav-btn");
-if (updateNavBtn) updateNavBtn.addEventListener("click", () => runAppUpdate(updateNavBtn));
+if (updateNavBtn) updateNavBtn.addEventListener("click", runAppUpdate);
+
+const updateConfirmBtn = document.getElementById("update-confirm-btn");
+if (updateConfirmBtn) updateConfirmBtn.addEventListener("click", doUpdate);
+
+const updateCancelBtn = document.getElementById("update-cancel-btn");
+if (updateCancelBtn) updateCancelBtn.addEventListener("click", () => closeModal("modal-update"));
 
 const closeCatalogBtn = document.getElementById("close-catalog-btn");
 if (closeCatalogBtn) closeCatalogBtn.addEventListener("click", () => { catalogFilterBedId = null; closeModal("modal-catalog"); });

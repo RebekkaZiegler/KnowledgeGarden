@@ -97,6 +97,20 @@
     </div>
   </div>
 
+  <!-- Update confirmation -->
+  <div id="modal-update" class="modal-overlay" hidden>
+    <div class="modal-box modal-box--narrow">
+      <h2>🔄 App aktualisieren</h2>
+      <p style="font-size:0.9rem;margin:0.5rem 0 0.25rem">Lädt die neueste Version von GitHub.</p>
+      <p style="font-size:0.85rem;color:var(--accent);margin:0 0 1rem">✅ Spielstand bleibt erhalten.</p>
+      <div id="update-version-info" style="font-size:0.75rem;color:var(--muted);margin-bottom:1rem;text-align:center"></div>
+      <div style="display:flex;gap:0.5rem">
+        <button id="update-confirm-btn" style="flex:1;padding:0.65rem">Jetzt aktualisieren</button>
+        <button id="update-cancel-btn" style="flex:1;padding:0.65rem;opacity:0.6">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Quick-pick: bed selector or plant selector -->
   <div id="modal-quick-pick" class="modal-overlay" hidden>
     <div class="modal-box modal-box--narrow">
