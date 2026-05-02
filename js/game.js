@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "0.5.106";  // ← bump this with every push
+﻿const APP_VERSION = "0.5.107";  // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4839,10 +4839,9 @@ if (closeSettingsBtn) closeSettingsBtn.addEventListener("click", () => closeModa
 
 async function runAppUpdate(btn) {
   const ok = confirm(
-    "App auf die neueste Version aktualisieren?\n\n" +
-    "✅ Dein Spielstand bleibt vollständig erhalten.\n" +
-    "ℹ️ Nur die App-Dateien (CSS, JS) werden neu geladen.\n\n" +
-    "Die Seite wird danach neu gestartet."
+    `App aktualisieren? (aktuell: v${APP_VERSION})\n\n` +
+    "✅ Dein Spielstand bleibt erhalten.\n" +
+    "Die Seite wird neu gestartet."
   );
   if (!ok) return;
   if (btn) { btn.textContent = "…"; btn.disabled = true; }
@@ -4856,7 +4855,9 @@ async function runAppUpdate(btn) {
       await Promise.all(regs.map(r => r.unregister()));
     }
   } catch (e) { /* ignore */ }
-  window.location.reload(true);
+  // Cache-bust the URL so the browser is forced to fetch fresh from network
+  const base = location.origin + location.pathname;
+  location.replace(base + "?_bust=" + Date.now());
 }
 
 const updateBtn = document.getElementById("update-btn");
