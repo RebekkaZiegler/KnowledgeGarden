@@ -266,7 +266,7 @@ header p {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .garden-hidden-hint {
@@ -361,7 +361,7 @@ header p {
   gap: 0 0.3rem;
   flex: 1 1 0;
   min-height: 0;
-  overflow: hidden;
+  overflow: visible;
   padding: 0.3rem 0.4rem 0;
   position: relative;
 }
@@ -374,7 +374,7 @@ header p {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .garden-pot.has-plant {
@@ -536,12 +536,13 @@ header p {
 
 .garden-add-plant:hover { opacity: 0.8; border-color: var(--accent); }
 
-/* Garden plant visual — flex-end on parent pushes this to cell bottom */
+/* Garden plant visual — flex-end pins to bottom; z-index puts it above shelf header */
 .plant-visual--garden {
   position: relative;
   height: 130px;
   width: 100%;
   flex-shrink: 0;
+  z-index: 5;
 }
 
 .plant-visual--garden .plant-pot-img {
@@ -2788,8 +2789,20 @@ button:disabled {
 .ach-badge--locked { opacity: 0.35; filter: grayscale(1); }
 .ach-icon { font-size: 1.6rem; line-height: 1; }
 .ach-name { font-size: 0.65rem; color: var(--muted); line-height: 1.2; }
-.ach-badge:not(.ach-badge--locked) { border-color: #4a8a4a; background: #1a2e1a; }
+.ach-badge:not(.ach-badge--locked) { border-color: #4a8a4a; background: #1a2e1a; cursor: pointer; }
 .ach-badge:not(.ach-badge--locked) .ach-name { color: #8dc88d; }
+.ach-badge--locked { cursor: pointer; }
+.ach-date { font-size: 0.58rem; color: var(--muted); margin-top: 1px; }
+.ach-badge--finale {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-color: #c8a830 !important;
+  background: linear-gradient(135deg, #2a2010 0%, #1a1808 100%) !important;
+}
+.ach-badge--finale .ach-icon { font-size: 2rem; }
+.ach-badge--finale .ach-name { font-size: 0.9rem; color: #e8c840 !important; }
 
 /* ── Plant detail panel: opens below garden when a plant is selected ── */
 body.plant-open #garden-room {

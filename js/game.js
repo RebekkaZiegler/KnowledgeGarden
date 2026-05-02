@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "0.5.114";  // ← bump this with every push
+﻿const APP_VERSION = "1.0.0";    // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -13,21 +13,52 @@ const PHASE2_WRONG_SCORE = 10;
 const PHASE2_MAX_WRONG_PER_QUESTION = 3;
 const STOP_WORDS = new Set(["und", "der", "die", "das", "des", "den", "dem", "mit", "von", "im", "in", "am", "an", "zu", "zur", "für"]);
 const ACHIEVEMENTS = [
-  { id: 'q_1',      icon: '🌱', name: 'Erste Frage',     desc: '1 Frage beantwortet',          check: s => s.totalQuestionsAnswered >= 1 },
-  { id: 'q_10',     icon: '📚', name: 'Fleißig',          desc: '10 Fragen beantwortet',         check: s => s.totalQuestionsAnswered >= 10 },
-  { id: 'q_50',     icon: '📖', name: 'Wissbegierig',     desc: '50 Fragen beantwortet',         check: s => s.totalQuestionsAnswered >= 50 },
-  { id: 'q_100',    icon: '💯', name: 'Hundert!',         desc: '100 Fragen beantwortet',        check: s => s.totalQuestionsAnswered >= 100 },
-  { id: 'q_500',    icon: '🧠', name: 'Bücherwurm',       desc: '500 Fragen beantwortet',        check: s => s.totalQuestionsAnswered >= 500 },
-  { id: 'q_1000',   icon: '⭐', name: 'Tausend!',         desc: '1000 Fragen beantwortet',       check: s => s.totalQuestionsAnswered >= 1000 },
-  { id: 'h_1',      icon: '🌾', name: 'Erste Ernte',      desc: 'Erste Pflanze geerntet',        check: s => s.harvestSuccesses >= 1 },
-  { id: 'h_5',      icon: '🌿', name: 'Gartenarbeit',     desc: '5 Pflanzen geerntet',           check: s => s.harvestSuccesses >= 5 },
-  { id: 'h_10',     icon: '🪴', name: 'Grüner Daumen',    desc: '10 Pflanzen geerntet',          check: s => s.harvestSuccesses >= 10 },
-  { id: 'h_all',    icon: '🌳', name: 'Alles geerntet',   desc: 'Alle Pflanzen einmal geerntet', check: (s, p) => PACK_CONTENT.beds.every(b => b.plants.every(pl => p.beds[b.id]?.plants?.[pl.id]?.harvestedOnce)) },
-  { id: 's_3',      icon: '🔥', name: 'Drei Tage',        desc: '3 Tage Streak',                 check: s => s.bestStreak >= 3 },
-  { id: 's_7',      icon: '🔥', name: 'Eine Woche',       desc: '7 Tage Streak',                 check: s => s.bestStreak >= 7 },
-  { id: 's_14',     icon: '💪', name: 'Zwei Wochen',      desc: '14 Tage Streak',                check: s => s.bestStreak >= 14 },
-  { id: 's_30',     icon: '🏆', name: 'Ein Monat',        desc: '30 Tage Streak',                check: s => s.bestStreak >= 30 },
-  { id: 'comeback', icon: '💫', name: 'Comeback',         desc: 'Streak zurückgekauft',          check: s => (s.streakBuybacks || 0) >= 1 },
+  // Fragen
+  { id: 'q_1',      icon: '🌱', name: 'Erste Frage',       desc: '1 Frage beantwortet',           check: s => s.totalQuestionsAnswered >= 1 },
+  { id: 'q_10',     icon: '📚', name: 'Fleißig',            desc: '10 Fragen beantwortet',          check: s => s.totalQuestionsAnswered >= 10 },
+  { id: 'q_50',     icon: '📖', name: 'Wissbegierig',       desc: '50 Fragen beantwortet',          check: s => s.totalQuestionsAnswered >= 50 },
+  { id: 'q_100',    icon: '💯', name: 'Hundert!',           desc: '100 Fragen beantwortet',         check: s => s.totalQuestionsAnswered >= 100 },
+  { id: 'q_500',    icon: '🧠', name: 'Bücherwurm',         desc: '500 Fragen beantwortet',         check: s => s.totalQuestionsAnswered >= 500 },
+  { id: 'q_1000',   icon: '⭐', name: 'Tausend!',           desc: '1000 Fragen beantwortet',        check: s => s.totalQuestionsAnswered >= 1000 },
+  // Ernte
+  { id: 'h_1',      icon: '🌾', name: 'Erste Ernte',        desc: 'Erste Pflanze geerntet',         check: s => s.harvestSuccesses >= 1 },
+  { id: 'h_5',      icon: '🌿', name: 'Gartenarbeit',       desc: '5 Pflanzen geerntet',            check: s => s.harvestSuccesses >= 5 },
+  { id: 'h_10',     icon: '🪴', name: 'Grüner Daumen',      desc: '10 Pflanzen geerntet',           check: s => s.harvestSuccesses >= 10 },
+  { id: 'h_all',    icon: '🌳', name: 'Alles geerntet',     desc: 'Alle Pflanzen einmal geerntet',  check: (s, p) => PACK_CONTENT.beds.every(b => b.plants.every(pl => p.beds[b.id]?.plants?.[pl.id]?.harvestedOnce)) },
+  // Streak
+  { id: 's_3',      icon: '🔥', name: 'Drei Tage',          desc: '3 Tage Streak',                  check: s => s.bestStreak >= 3 },
+  { id: 's_7',      icon: '🔥', name: 'Eine Woche',         desc: '7 Tage Streak',                  check: s => s.bestStreak >= 7 },
+  { id: 's_14',     icon: '💪', name: 'Zwei Wochen',        desc: '14 Tage Streak',                 check: s => s.bestStreak >= 14 },
+  { id: 's_30',     icon: '🏆', name: 'Ein Monat',          desc: '30 Tage Streak',                 check: s => s.bestStreak >= 30 },
+  { id: 'comeback', icon: '💫', name: 'Comeback',           desc: 'Streak zurückgekauft',           check: s => (s.streakBuybacks || 0) >= 1 },
+  // Restaurant
+  { id: 'r_open',   icon: '🍽️', name: 'Eröffnung',         desc: 'Restaurant freigeschaltet',      check: (s, p) => Object.values(p.beds).some(b => b.restaurantUnlocked) },
+  { id: 'r_serve',  icon: '🧑‍🍳', name: 'Erster Service',   desc: '10 Gäste bedient',               check: (s, p) => Object.values(p.beds).some(b => (b.restaurant?.totalServed || 0) >= 10) },
+  { id: 'r_master1',icon: '⭐', name: 'Küchenchef',         desc: 'Ein Thema im Restaurant gemeistert', check: (s, p) => PACK_CONTENT.beds.filter(b => b.id !== 'hybrid').some(b => {
+      const bs = p.beds[b.id]; if (!bs?.restaurantUnlocked) return false;
+      const ans = bs.restaurant?.questionAnswers || {};
+      const all = (b.plants||[]).flatMap(pl => [...(pl.harvestQuestions||[]), ...(pl.phase4Questions||[])]);
+      return all.length > 0 && all.every(q => ans[q.id] === 'correct');
+    }) },
+  { id: 'r_masterall',icon:'🌟', name: 'Sternekoch',        desc: 'Alle Themen im Restaurant gemeistert', check: (s, p) => PACK_CONTENT.beds.filter(b => b.id !== 'hybrid').every(b => {
+      const bs = p.beds[b.id]; if (!bs?.restaurantUnlocked) return false;
+      const ans = bs.restaurant?.questionAnswers || {};
+      const all = (b.plants||[]).flatMap(pl => [...(pl.harvestQuestions||[]), ...(pl.phase4Questions||[])]);
+      return all.length > 0 && all.every(q => ans[q.id] === 'correct');
+    }) },
+  // Finale
+  { id: 'heilpraktiker', icon: '🩺', name: 'Heilpraktiker!', desc: 'Alle Errungenschaften & alle Restaurantthemen gemeistert — Prüfung bestanden!',
+    check: (s, p) => {
+      const otherIds = ACHIEVEMENTS.filter(a => a.id !== 'heilpraktiker').map(a => a.id);
+      if (!otherIds.every(id => (s.unlockedAchievements || []).includes(id))) return false;
+      return PACK_CONTENT.beds.filter(b => b.id !== 'hybrid').every(b => {
+        const bs = p.beds[b.id]; if (!bs?.restaurantUnlocked) return false;
+        const ans = bs.restaurant?.questionAnswers || {};
+        const all = (b.plants||[]).flatMap(pl => [...(pl.harvestQuestions||[]), ...(pl.phase4Questions||[])]);
+        return all.length > 0 && all.every(q => ans[q.id] === 'correct');
+      });
+    }
+  },
 ];
 
 const POT_COLORS = {
@@ -426,7 +457,8 @@ function createInitialState() {
           totalQuestionsAnswered: 0,
           streakBuybacks: 0,
           activityLog: {},
-          unlockedAchievements: []
+          unlockedAchievements: [],
+          achievementDates: {}
         },
         weakpoints: {}
       }
@@ -465,6 +497,7 @@ function normalizeLoadedState(inputState) {
   pack.stats.streakBuybacks       = pack.stats.streakBuybacks       ?? 0;
   if (!pack.stats.activityLog)       pack.stats.activityLog = {};
   if (!pack.stats.unlockedAchievements) pack.stats.unlockedAchievements = [];
+  if (!pack.stats.achievementDates)     pack.stats.achievementDates = {};
 
   // Retroactively populate stats from existing save data so achievements unlock correctly
   if (pack.stats.totalQuestionsAnswered === 0) {
@@ -1764,7 +1797,8 @@ function checkAndUnlockAchievements() {
   ACHIEVEMENTS.forEach(a => {
     if (!stats.unlockedAchievements.includes(a.id) && a.check(stats, pack)) {
       stats.unlockedAchievements.push(a.id);
-      setTimeout(() => showToast(`🏆 Errungenschft freigeschaltet: ${a.name}!`, 'success'), 400);
+      stats.achievementDates[a.id] = Date.now();
+      setTimeout(() => showToast(`🏆 ${a.name} freigeschaltet!`, 'success'), 400);
     }
   });
 }
@@ -4653,9 +4687,15 @@ function openTrophyRoom() {
     <div class="trophy-section-label">Errungenschaften</div>
     <div class="ach-grid">${ACHIEVEMENTS.map(a => {
       const done = unlocked.includes(a.id);
-      return `<div class="ach-badge${done ? '' : ' ach-badge--locked'}" title="${a.desc}">
+      const dateStr = done && stats.achievementDates?.[a.id]
+        ? new Date(stats.achievementDates[a.id]).toLocaleDateString('de-DE')
+        : '';
+      const isHeilpraktiker = a.id === 'heilpraktiker';
+      return `<div class="ach-badge${done ? '' : ' ach-badge--locked'}${isHeilpraktiker ? ' ach-badge--finale' : ''}"
+        data-ach-id="${a.id}" data-ach-name="${a.name}" data-ach-desc="${a.desc}" data-ach-date="${dateStr}" data-ach-done="${done}">
         <div class="ach-icon">${done ? a.icon : '🔒'}</div>
         <div class="ach-name">${a.name}</div>
+        ${done && dateStr ? `<div class="ach-date">${dateStr}</div>` : ''}
       </div>`;
     }).join('')}</div>`;
 
@@ -4699,6 +4739,28 @@ function openTrophyRoom() {
     }).join('')}` : '';
 
   container.innerHTML = counterHtml + heatmapHtml + achHtml + themenHtml;
+
+  // Achievement click: show info via quick-pick modal
+  container.querySelectorAll('.ach-badge').forEach(el => {
+    el.addEventListener('click', () => {
+      const name = el.getAttribute('data-ach-name');
+      const desc = el.getAttribute('data-ach-desc');
+      const date = el.getAttribute('data-ach-date');
+      const done = el.getAttribute('data-ach-done') === 'true';
+      const title = document.getElementById('quick-pick-title');
+      const list  = document.getElementById('quick-pick-list');
+      if (!title || !list) return;
+      title.textContent = name;
+      list.innerHTML = `
+        <div style="font-size:0.9rem;margin-bottom:0.5rem">${desc}</div>
+        ${done
+          ? `<div style="color:var(--accent);font-size:0.85rem">✅ Freigeschaltet am ${date}</div>`
+          : `<div style="color:var(--muted);font-size:0.85rem">🔒 Noch nicht freigeschaltet</div>`}
+      `;
+      openModal('modal-quick-pick');
+    });
+  });
+
   openModal("modal-trophies");
 }
 
