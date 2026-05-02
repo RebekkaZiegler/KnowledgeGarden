@@ -366,27 +366,11 @@ header p {
   position: relative;
 }
 
-/* Continuous shelf between the two rows */
-.garden-shelf-pots::before {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  top: 50%;
-  height: 30px;
-  transform: translateY(-15px);
-  background: url('assets/images/Shelf Plank.png') center / 100% 100% no-repeat;
-  z-index: 1;
-  pointer-events: none;
-}
 
-/* ── Individual pot — plant sits at bottom of cell on the shelf ── */
+/* ── Individual pot ── */
 .garden-pot {
   position: relative;
   cursor: default;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
   background: url('assets/images/Shelf Plank.png') center bottom / 100% 28px no-repeat;
   overflow: hidden;
 }
@@ -410,16 +394,14 @@ header p {
   content: none;
 }
 
-/* Empty pot visual */
+/* Empty pot — absolute, same position as active plant-visual */
 .empty-pot {
-  width: 100%;
+  position: absolute;
+  bottom: 28px;
+  left: 0; right: 0;
   height: 165px;
-  flex-shrink: 0;
-  background: url('assets/images/pot.png') center calc(100% - 22px) / 62% auto no-repeat;
-  border: none;
-  border-radius: 0;
+  background: url('assets/images/pot.png') center bottom / 62% auto no-repeat;
   opacity: 0.9;
-  position: relative;
 }
 
 .empty-pot::before {
@@ -555,48 +537,37 @@ header p {
 
 .garden-add-plant:hover { opacity: 0.8; border-color: var(--accent); }
 
-/* Plant visual — fixed height, anchored to cell bottom by parent justify-content */
+/* ── Garden plant visual: fixed absolute position on top of the shelf plank ── */
+/* Shelf plank = 28px at cell bottom. Plant-visual sits ON TOP of it. */
 .plant-visual--garden {
+  position: absolute;
+  bottom: 28px;   /* = shelf plank height */
+  left: 0; right: 0;
   height: 165px;
-  width: 100%;
-  flex-shrink: 0;
 }
 
-/* Pot image: smaller, sits on the shelf plank (28px) */
+/* Pot image: bottom of plant-visual = right on the shelf */
 .plant-visual--garden .plant-pot-img {
   width: 62%;
-  bottom: 22px;
+  bottom: 0;
 }
 
-/* Scale plant content within the cell */
+/* Plant body: zoom makes stem/branches bigger */
 .plant-visual--garden .plant-body {
   zoom: 1.45;
 }
 
-/* Stem/branches: shelf 18px + pot ~50px = 68px visual; zoom-space: 68/1.45 ≈ 47px */
+/* Stem starts just above the pot (~30px in zoom-space ≈ 44px visual ≈ pot height) */
 .plant-visual--garden .plant-stem,
 .plant-visual--garden .plant-stem-track {
-  bottom: 47px;
+  bottom: 30px;
 }
 .plant-visual--garden .plant-branch,
 .plant-visual--garden .plant-trim-stub {
-  bottom: calc(47px + var(--by, 0px));
+  bottom: calc(30px + var(--by, 0px));
 }
 .plant-visual--garden .plant-fruit-dot {
-  bottom: 47px;
-}
-
-/* Align garden plant to soil level */
-.plant-visual--garden .plant-stem,
-.plant-visual--garden .plant-stem-track {
-  bottom: 58px;
-}
-.plant-visual--garden .plant-branch,
-.plant-visual--garden .plant-trim-stub {
-  bottom: calc(58px + var(--by, 0px));
-}
-.plant-visual--garden .plant-fruit-dot {
-  bottom: 58px;
+  bottom: 30px;
 }
 
 .plant-visual--large {
