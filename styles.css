@@ -373,6 +373,7 @@ header p {
   cursor: default;
   background: url('assets/images/Shelf Plank.png') center bottom / 100% 28px no-repeat;
   overflow: hidden;
+  clip-path: inset(0);
 }
 
 .garden-pot.has-plant {
@@ -399,7 +400,7 @@ header p {
   position: absolute;
   bottom: 28px;
   left: 0; right: 0;
-  height: 165px;
+  height: 130px;
   background: url('assets/images/pot.png') center bottom / 62% auto no-repeat;
   opacity: 0.9;
 }
@@ -543,7 +544,7 @@ header p {
   position: absolute;
   bottom: 28px;   /* = shelf plank height */
   left: 0; right: 0;
-  height: 165px;
+  height: 130px;
 }
 
 /* Pot image: bottom of plant-visual = right on the shelf */
