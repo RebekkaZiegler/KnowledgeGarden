@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "0.5.112";  // ← bump this with every push
+﻿const APP_VERSION = "0.5.113";  // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4666,16 +4666,22 @@ function openTrophyRoom() {
     <div class="trophy-section-label">Themenfortschritt</div>
     ${nonHybridBeds.map(bed => {
       const bedState = pack.beds[bed.id];
-      const allQ = (bed.plants || []).flatMap(p => p.harvestQuestions || []);
-      const learnedQ = allQ.filter(q => bedState?.plants && Object.values(bedState.plants).some(ps => ps.phase2Questions?.[q.id]?.status === 'learned')).length;
-      const pct = allQ.length > 0 ? Math.round(learnedQ / allQ.length * 100) : 0;
+      let totalQ = 0, learnedQ = 0;
+      (bed.plants || []).forEach(p => {
+        const pState = bedState?.plants?.[p.id];
+        (p.harvestQuestions || []).forEach(q => {
+          totalQ++;
+          if (pState?.phase2Questions?.[q.id]?.status === 'learned') learnedQ++;
+        });
+      });
+      const pct = totalQ > 0 ? Math.round(learnedQ / totalQ * 100) : 0;
       const allHarvested = bed.plants.length > 0 && bed.plants.every(p => bedState?.plants?.[p.id]?.harvestedOnce);
       return `<div class="trophy-item${allHarvested ? ' trophy-item--mastered' : ''}">
         <div class="trophy-icon">${allHarvested ? '🏆' : '📖'}</div>
         <div class="trophy-info">
           <div class="trophy-name">${bed.title}</div>
           <div class="trophy-bar-wrap"><div class="trophy-bar" style="width:${pct}%"></div></div>
-          <div class="muted" style="font-size:.8rem">${learnedQ}/${allQ.length} Fragen gelernt${allHarvested ? ' · <strong style="color:#5ada80">Alle geerntet!</strong>' : ''}</div>
+          <div class="muted" style="font-size:.8rem">${learnedQ}/${totalQ} Fragen gelernt${allHarvested ? ' · <strong style="color:#5ada80">Alle geerntet!</strong>' : ''}</div>
         </div>
       </div>`;
     }).join('')}` : '';

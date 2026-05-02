@@ -554,17 +554,17 @@ header p {
   zoom: 1.45;
 }
 
-/* Stem starts just above the pot (~30px in zoom-space ≈ 44px visual ≈ pot height) */
+/* Stem starts above the pot rim */
 .plant-visual--garden .plant-stem,
 .plant-visual--garden .plant-stem-track {
-  bottom: 30px;
+  bottom: 42px;
 }
 .plant-visual--garden .plant-branch,
 .plant-visual--garden .plant-trim-stub {
-  bottom: calc(30px + var(--by, 0px));
+  bottom: calc(42px + var(--by, 0px));
 }
 .plant-visual--garden .plant-fruit-dot {
-  bottom: 30px;
+  bottom: 42px;
 }
 
 .plant-visual--large {
