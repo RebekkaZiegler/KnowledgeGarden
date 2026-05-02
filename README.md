@@ -3,7 +3,7 @@
 A browser-based learning RPG for Heilpraktiker exam prep.  
 You grow plants by answering questions, harvest them when ready, and track progress toward your exam deadline.
 
-**Current version:** MVP 0.5 — Heilpraktiker Pack  
+**Current version:** v1.0 — Heilpraktiker Pack  
 **Exam deadline tracked in-game:** February 2028
 
 ---
@@ -18,9 +18,11 @@ The game is a PWA — it installs to your home screen and runs like a native app
 3. **iOS Safari:** tap the Share button → *Add to Home Screen*
 4. Open the app from the home screen — it runs fullscreen, no browser bar
 
-**Getting updates (if something looks outdated):**
+**Getting updates:**
 
-The app caches files for offline use. If an update doesn't appear after reopening:
+Once installed, tap **⚙️ → 🔄 Auf neueste Version aktualisieren** inside the app. Wait ~5 minutes after a new release before pressing it (GitHub Pages CDN propagation delay).
+
+If the update button isn't visible yet or doesn't work:
 
 - **Android Chrome:** open the URL in Chrome (not the home screen icon) → tap the 3-dot menu → *Reload* or *Hard Reload*. If that doesn't work: Settings → Privacy → Clear browsing data → tick only *Cached images and files* (NOT cookies or site data).
 - **iOS Safari:** open the URL in Safari → hold the reload button → *Reload Without Content Blockers*, or just close all Safari tabs and reopen.
