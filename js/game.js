@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.0";    // ← bump this with every push
+﻿const APP_VERSION = "1.0.1";    // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
