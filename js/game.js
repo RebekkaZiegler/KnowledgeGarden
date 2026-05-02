@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "0.5.113";  // ← bump this with every push
+﻿const APP_VERSION = "0.5.114";  // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4659,29 +4659,41 @@ function openTrophyRoom() {
       </div>`;
     }).join('')}</div>`;
 
-  // ── Themenfortschritt ──
+  // ── Themenfortschritt (Restaurant-Fragen — original) ──
   const unlockedBeds = pack.bedProgress?.unlockedBedIds || [];
   const nonHybridBeds = PACK_CONTENT.beds.filter(b => b.id !== "hybrid" && unlockedBeds.includes(b.id));
   const themenHtml = nonHybridBeds.length ? `
     <div class="trophy-section-label">Themenfortschritt</div>
     ${nonHybridBeds.map(bed => {
       const bedState = pack.beds[bed.id];
-      let totalQ = 0, learnedQ = 0;
+      const restUnlocked = bedState?.restaurantUnlocked || false;
+      if (!restUnlocked) return `<div class="trophy-item trophy-item--locked">
+        <div class="trophy-icon">🔒</div>
+        <div class="trophy-info">
+          <div class="trophy-name">${bed.title}</div>
+          <div class="muted" style="font-size:.8rem">Restaurant noch nicht freigeschaltet</div>
+        </div>
+      </div>`;
+      const answers = bedState?.restaurant?.questionAnswers || {};
+      const all = [];
       (bed.plants || []).forEach(p => {
-        const pState = bedState?.plants?.[p.id];
-        (p.harvestQuestions || []).forEach(q => {
-          totalQ++;
-          if (pState?.phase2Questions?.[q.id]?.status === 'learned') learnedQ++;
-        });
+        (p.harvestQuestions || []).forEach(q => all.push(q));
+        (p.phase4Questions || []).forEach(q => all.push(q));
       });
-      const pct = totalQ > 0 ? Math.round(learnedQ / totalQ * 100) : 0;
-      const allHarvested = bed.plants.length > 0 && bed.plants.every(p => bedState?.plants?.[p.id]?.harvestedOnce);
-      return `<div class="trophy-item${allHarvested ? ' trophy-item--mastered' : ''}">
-        <div class="trophy-icon">${allHarvested ? '🏆' : '📖'}</div>
+      const total = all.length;
+      const correct = all.filter(q => answers[q.id] === "correct").length;
+      const wrong = all.filter(q => answers[q.id] === "wrong").length;
+      const unseen = total - correct - wrong;
+      const mastered = total > 0 && all.every(q => answers[q.id] === "correct");
+      const pct = total > 0 ? Math.round(correct / total * 100) : 0;
+      return `<div class="trophy-item${mastered ? ' trophy-item--mastered' : ''}">
+        <div class="trophy-icon">${mastered ? '🏆' : '📖'}</div>
         <div class="trophy-info">
           <div class="trophy-name">${bed.title}</div>
           <div class="trophy-bar-wrap"><div class="trophy-bar" style="width:${pct}%"></div></div>
-          <div class="muted" style="font-size:.8rem">${learnedQ}/${totalQ} Fragen gelernt${allHarvested ? ' · <strong style="color:#5ada80">Alle geerntet!</strong>' : ''}</div>
+          <div class="muted" style="font-size:.8rem">${mastered
+            ? `<strong style="color:#5ada80">Gemeistert!</strong> Alle ${total} Fragen richtig.`
+            : `${correct}/${total} richtig · ${wrong} falsch · ${unseen} offen`}</div>
         </div>
       </div>`;
     }).join('')}` : '';
