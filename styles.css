@@ -371,9 +371,10 @@ header p {
 .garden-pot {
   position: relative;
   cursor: default;
-  background: url('assets/images/Shelf Plank.png') center bottom / 100% 28px no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow: hidden;
-  clip-path: inset(0);
 }
 
 .garden-pot.has-plant {
@@ -390,17 +391,14 @@ header p {
   border-radius: 4px;
 }
 
-/* Pot accent color stripe at bottom */
-.garden-pot::after {
-  content: none;
-}
+/* no ::after needed */
 
-/* Empty pot — absolute, same position as active plant-visual */
+/* Empty pot — flows to cell bottom same as plant-visual */
 .empty-pot {
-  position: absolute;
-  bottom: 28px;
-  left: 0; right: 0;
+  position: relative;
+  width: 100%;
   height: 130px;
+  flex-shrink: 0;
   background: url('assets/images/pot.png') center bottom / 62% auto no-repeat;
   opacity: 0.9;
 }
@@ -538,16 +536,14 @@ header p {
 
 .garden-add-plant:hover { opacity: 0.8; border-color: var(--accent); }
 
-/* ── Garden plant visual: fixed absolute position on top of the shelf plank ── */
-/* Shelf plank = 28px at cell bottom. Plant-visual sits ON TOP of it. */
+/* Garden plant visual — flex-end on parent pushes this to cell bottom */
 .plant-visual--garden {
-  position: absolute;
-  bottom: 28px;   /* = shelf plank height */
-  left: 0; right: 0;
+  position: relative;
   height: 130px;
+  width: 100%;
+  flex-shrink: 0;
 }
 
-/* Pot image: bottom of plant-visual = right on the shelf */
 .plant-visual--garden .plant-pot-img {
   width: 62%;
   bottom: 0;
