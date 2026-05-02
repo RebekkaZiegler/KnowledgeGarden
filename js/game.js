@@ -1,4 +1,5 @@
-﻿const SAVE_KEY = "kg_rpg_mvp_v6";
+﻿const APP_VERSION = "0.5.106";  // ← bump this with every push
+const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
 const HARVEST_PASS_RATE = 0.7;
@@ -161,9 +162,14 @@ bindEvents();
 renderAll();
 startCooldownTicker();
 maybeShowChangelog();
-// Unlock any achievements already earned from pre-feature play history
 checkAndUnlockAchievements();
 saveState();
+
+// Show version in header and settings
+const vLabel = document.getElementById("app-version-label");
+if (vLabel) vLabel.textContent = `v${APP_VERSION} · Heilpraktiker`;
+const vSettings = document.getElementById("settings-version");
+if (vSettings) vSettings.textContent = `Version ${APP_VERSION}`;
 
 function normalizeExplanation(text) {
   return String(text || "")

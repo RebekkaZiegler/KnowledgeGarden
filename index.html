@@ -18,7 +18,7 @@
 <body>
   <header>
     <h1>Knowledge Garden RPG</h1>
-    <p>MVP 0.5 - Heilpraktiker</p>
+    <p id="app-version-label">MVP 0.5 - Heilpraktiker</p>
     <div id="player-stats" class="stats header-stats"></div>
     <div id="header-info">
       <span id="cooldown-info" class="header-info-item muted"></span>
@@ -76,7 +76,8 @@
         <button id="reset-btn" class="danger">Speicher zurücksetzen</button>
         <button id="changelog-btn">Was ist neu?</button>
       </div>
-      <button id="update-btn" style="width:100%;margin-top:0.6rem;font-size:0.95rem;padding:0.6rem 1rem;">🔄 Auf neueste Version aktualisieren</button>
+      <div id="settings-version" style="font-size:0.75rem;color:var(--muted);margin-top:0.5rem;text-align:center;"></div>
+      <button id="update-btn" style="width:100%;margin-top:0.4rem;font-size:0.95rem;padding:0.6rem 1rem;">🔄 Auf neueste Version aktualisieren</button>
       <input id="import-file-input" type="file" accept="application/json,.json" style="display:none">
       <div class="volume-settings">
         <label>♪ Musik<input id="music-volume" type="range" min="0" max="100" value="10"></label>
