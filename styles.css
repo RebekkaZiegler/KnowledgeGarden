@@ -2832,9 +2832,10 @@ body.plant-open #back-to-garden-btn { display: block; }
     gap: 0.2rem 0.5rem;
     align-items: center;
   }
-  header h1          { grid-area: title; font-size: 0.88rem; margin: 0; }
-  header p           { display: none; }
-  #player-stats      { grid-area: stats; }
+  header h1             { grid-area: title; font-size: 0.88rem; margin: 0; }
+  header p              { display: none; }
+  #app-version-label    { display: block; font-size: 0.65rem; color: var(--muted); margin: 0; }
+  #player-stats         { grid-area: stats; }
   #header-info       { grid-area: info; margin-left: 0; }
   .icon-legend-wrap  { display: none; }
   #cooldown-info     { display: none; }
