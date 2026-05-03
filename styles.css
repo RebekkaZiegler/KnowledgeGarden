@@ -358,6 +358,7 @@ header p {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
+  align-content: flex-end;
   gap: 0 0.3rem;
   flex: 1 1 0;
   min-height: 0;
