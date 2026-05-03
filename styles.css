@@ -358,7 +358,6 @@ header p {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  align-content: flex-end;
   gap: 0 0.3rem;
   flex: 1 1 0;
   min-height: 0;
@@ -366,6 +365,13 @@ header p {
   padding: 0.3rem 0.4rem 0;
   position: relative;
   z-index: 2;
+}
+
+/* Spacer pushes pot rows to the bottom (align-content:flex-end unreliable with overflow:visible) */
+.garden-shelf-pots::before {
+  content: '';
+  width: 100%;
+  flex-grow: 1;
 }
 
 .garden-shelf-header {
