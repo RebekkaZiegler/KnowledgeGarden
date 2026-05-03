@@ -355,9 +355,10 @@ header p {
 .shelf-stat--open    { color: #a8a890; }
 
 .garden-shelf-pots {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  align-content: flex-end;
   gap: 0 0.3rem;
   flex: 1 1 0;
   min-height: 0;
@@ -381,6 +382,8 @@ header p {
   flex-direction: column;
   justify-content: flex-end;
   overflow: visible;
+  width: calc(50% - 0.15rem);
+  flex-shrink: 0;
 }
 
 .garden-pot.has-plant {
