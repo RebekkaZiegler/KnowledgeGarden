@@ -267,8 +267,6 @@ header p {
   display: flex;
   flex-direction: column;
   overflow: visible;
-  background:
-    linear-gradient(180deg, rgba(45,31,14,0.25) 0%, rgba(61,41,18,0.25) 60%, rgba(42,28,10,0.25) 100%);
 }
 
 .garden-hidden-hint {
@@ -544,14 +542,12 @@ header p {
 
 .garden-add-plant:hover { opacity: 0.8; border-color: var(--accent); }
 
-/* Garden plant visual */
+/* Garden plant visual — taller than the grid cell so the plant extends above its boundary */
 .plant-visual--garden {
   position: relative;
-  height: 130px;
+  height: 260px;
   width: 100%;
   flex-shrink: 0;
-  overflow: visible;
-  /* no z-index here — z-index:2 on garden-shelf-pots handles layering above header */
 }
 
 .plant-visual--garden .plant-pot-img {
@@ -559,12 +555,8 @@ header p {
   bottom: 0;
 }
 
-/* Extend body 100px above the plant-visual so zoom has room to grow into */
+/* zoom scales all JS-calculated pixel values uniformly */
 .plant-visual--garden .plant-body {
-  top: -100px;
-  bottom: 0;
-  left: 0;
-  right: 0;
   zoom: 1.45;
 }
 
