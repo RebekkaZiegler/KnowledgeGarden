@@ -367,13 +367,6 @@ header p {
   z-index: 2;
 }
 
-/* Spacer pushes pot rows to the bottom (align-content:flex-end unreliable with overflow:visible) */
-.garden-shelf-pots::before {
-  content: '';
-  width: 100%;
-  flex-grow: 1;
-}
-
 .garden-shelf-header {
   position: relative;
   z-index: 1;
@@ -553,7 +546,7 @@ header p {
   bottom: 0;
   left: 0;
   right: 0;
-  top: -130px;
+  top: -220px;
   overflow: visible;
 }
 
@@ -565,6 +558,8 @@ header p {
 /* zoom scales all JS-calculated pixel values uniformly */
 .plant-visual--garden .plant-body {
   zoom: 1.45;
+  transform: scaleY(0.82);
+  transform-origin: bottom center;
 }
 
 /* Stem starts above the pot rim */
