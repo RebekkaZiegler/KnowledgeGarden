@@ -551,6 +551,7 @@ header p {
   width: 100%;
   flex-shrink: 0;
   overflow: visible;
+  /* no z-index here — z-index:2 on garden-shelf-pots handles layering above header */
 }
 
 .plant-visual--garden .plant-pot-img {
@@ -558,10 +559,13 @@ header p {
   bottom: 0;
 }
 
-/* scale with transform (not zoom) — transform overflow propagates through overflow:visible parents */
+/* Extend body 100px above the plant-visual so zoom has room to grow into */
 .plant-visual--garden .plant-body {
-  transform: scale(1.45);
-  transform-origin: bottom center;
+  top: -100px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  zoom: 1.45;
 }
 
 /* Stem starts above the pot rim */
