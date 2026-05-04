@@ -558,8 +558,6 @@ header p {
 /* zoom scales all JS-calculated pixel values uniformly */
 .plant-visual--garden .plant-body {
   zoom: 1.45;
-  transform: scaleY(0.82);
-  transform-origin: bottom center;
 }
 
 /* Stem starts above the pot rim */
