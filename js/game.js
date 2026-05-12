@@ -1,10 +1,10 @@
-﻿const APP_VERSION = "1.0.15";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.16";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
 const HARVEST_PASS_RATE = 0.7;
 const INITIAL_UNLOCK_SLOTS = 2;
-const MAX_ACTIVE_BEDS = 2;
+const MAX_ACTIVE_BEDS = 1;
 const EXAM_DEADLINE = new Date('2028-02-01').getTime();
 const DAILY_GOAL = 3;
 const SEED_BEDS = PACK_CONTENT.beds;
@@ -81,6 +81,13 @@ const BED_PLANT_COLORS = {
   debug:         { stemHi: "#ff44cc", stemLo: "#cc0099", fruitHi: "#44ff44", fruitLo: "#118811" },
 };
 const DEFAULT_PLANT_COLORS = { stemHi: "#7fc98a", stemLo: "#2f6b3d", fruitHi: "#ff8f8f", fruitLo: "#cf2f2f" };
+
+function hashStr(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+  return h;
+}
+function hashByte(h, idx) { return (h >>> (idx * 8)) & 0xFF; }
 
 const CHANGELOG_VERSION = "0.4";
 const CHANGELOG_KEY = `kg_changelog_seen_${CHANGELOG_VERSION}`;
@@ -1346,7 +1353,7 @@ function renderGardenRoom() {
   const unlockedIds = new Set(getBedProgress().unlockedBedIds);
   const MAX_POTS = 4;
 
-  // Show at most 2 beds: active bed + one other bed with plants.
+  // Show only the active bed (or first bed with plants if none active).
   const allUnlocked = PACK_CONTENT.beds.filter(b =>
     unlockedIds.has(b.id) && (b.id !== "hybrid" || (pack.lab.discoveredHybrids?.length || 0) > 0)
   );
@@ -1354,13 +1361,13 @@ function renderGardenRoom() {
   if (state.activeBedId && allUnlocked.some(b => b.id === state.activeBedId))
     shownBedIds.add(state.activeBedId);
   allUnlocked.forEach(b => {
-    if (shownBedIds.size < 2 && !shownBedIds.has(b.id) && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
+    if (shownBedIds.size < 1 && !shownBedIds.has(b.id) && (pack.beds[b.id]?.activePlantIds?.length || 0) > 0)
       shownBedIds.add(b.id);
   });
   const gardenBeds = allUnlocked.filter(b => shownBedIds.has(b.id));
 
-  // Fill remaining slots (up to 2) with "choose topic" placeholders
-  const emptySlots = Math.max(0, 2 - gardenBeds.length);
+  // Fill remaining slot (up to 1) with "choose topic" placeholder
+  const emptySlots = Math.max(0, 1 - gardenBeds.length);
   const emptySlotsHtml = Array.from({ length: emptySlots }, () => `
     <div class="garden-shelf garden-shelf--empty-slot">
       <button class="garden-choose-topic-btn" data-open-catalog="1">+ Thema wählen</button>
@@ -1918,11 +1925,37 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
   const fullBranches = Math.max(0, Math.floor(stagedProgress + 0.0001));
   const growingBranchIdx = (locked && !lastActionWasTrim && !alreadyFullHeight && usedActions > 0) ? Math.max(0, usedActions - 1) : -1;
   const currentBranchGrowth = (growingBranchIdx >= 0) ? fillProgress : 1;
-  const branchSpecs = new Array(phase2Actions).fill(0).map((_, i) => ({
-    y: 0.24 + (((i + 1) / (phase2Actions + 1)) * 0.64),
-    rot: (i % 2 === 0 ? -1 : 1) * (22 + ((i % 3) * 5)),
-    len: 20 + ((i % 4) * 5)
-  }));
+  // Per-plant shape: hash plant ID → stable form type + per-branch jitter
+  const plantHash = hashStr(content.id || plantState.id || "");
+  // 0=normal, 1=bushy/round, 2=wide, 3=tall-sparse
+  const formType = plantHash % 4;
+  const branchSpecs = new Array(phase2Actions).fill(0).map((_, i) => {
+    const bh = hashStr((content.id || "") + i);
+    const baseY = 0.24 + (((i + 1) / (phase2Actions + 1)) * 0.64);
+    const yJitter = ((hashByte(bh, 0) / 255) - 0.5) * 0.16;
+    const side = i % 2 === 0 ? -1 : 1;
+    let baseAngle, angleRange, lenBase, lenRange;
+    if (formType === 1) {        // bushy: steep upward, shorter branches
+      baseAngle = side * (36 + (i % 3) * 6);
+      angleRange = 14; lenBase = 15; lenRange = 9;
+    } else if (formType === 2) { // wide: near-horizontal, long
+      baseAngle = side * (12 + (i % 3) * 4);
+      angleRange = 10; lenBase = 28; lenRange = 14;
+    } else if (formType === 3) { // tall-sparse: steep drooping
+      baseAngle = side * (44 + (i % 3) * 8);
+      angleRange = 12; lenBase = 22; lenRange = 10;
+    } else {                     // normal: slight variation on default
+      baseAngle = side * (22 + (i % 3) * 5);
+      angleRange = 16; lenBase = 20; lenRange = 15;
+    }
+    const angleJitter = ((hashByte(bh, 1) / 255) - 0.5) * angleRange;
+    const len = Math.round(lenBase + (hashByte(bh, 2) / 255) * lenRange);
+    return {
+      y: Math.max(0.12, Math.min(0.92, baseY + yJitter)),
+      rot: baseAngle + angleJitter,
+      len
+    };
+  });
   // Grey drooping stubs: show when trim is the current active step, or when a trim question
   // has "wrong" status (harvest failure recovery). Hidden during trim cooldown and when trim
   // step is not yet reached in the sequence.
@@ -2015,6 +2048,7 @@ function buildPlantVisualHtml(plantState, content, extraClass) {
         ${visual.phase !== "phase1" ? `<div class="plant-stem-track" style="--stem-max:${stemMax}px;"></div>` : ""}
         ${visual.phase !== "phase1" ? `<div class="plant-stem${visual.withered ? " is-withered" : ""}" style="--stem-fill:${stemFill}px;"></div>` : ""}
         ${visual.phase !== "phase1" ? `<div class="plant-branches${isThirsty ? ' is-thirsty' : ''}">${branchHtml}${trimStubHtml}</div>` : ""}
+        ${(formType === 1 && visual.phase !== "phase1" && fullBranches >= 2) ? `<div class="plant-crown" style="--by:${stemFill}px;"></div>` : ""}
         <div class="plant-fruits">${fruitDots}</div>
       </div>
     </div>
