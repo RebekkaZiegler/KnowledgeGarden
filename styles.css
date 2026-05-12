@@ -38,7 +38,7 @@ html, body {
 body {
   margin: 0;
   font-family: 'Lora', Georgia, serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--text);
   background: var(--bg);
@@ -79,7 +79,7 @@ header p {
   flex-direction: column;
   gap: 0.3rem;
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 1.05rem;
 }
 
 .stat-row {
@@ -108,7 +108,7 @@ header p {
 .stat-daily--done .daily-dot { background: #5cca6e; }
 
 /* Pace tracker */
-.stat-pace { font-size: 0.78rem; color: var(--muted); }
+.stat-pace { font-size: 0.92rem; color: var(--muted); }
 .stat-pace--ok  { color: #5cca6e; }
 .stat-pace--warn { color: #e8a030; }
 
@@ -269,7 +269,7 @@ header p {
 }
 
 .garden-hidden-hint {
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   color: var(--muted);
   text-align: center;
   padding: 0.2rem 0 0.1rem;
@@ -325,7 +325,7 @@ header p {
 }
 
 .garden-shelf-label {
-  font-size: 0.7rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: #c8a87a;
   text-transform: uppercase;
@@ -341,7 +341,7 @@ header p {
 }
 
 .shelf-stat {
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   color: var(--muted);
   background: rgba(0,0,0,0.25);
   border-radius: 4px;
