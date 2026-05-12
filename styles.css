@@ -378,8 +378,7 @@ header p {
   position: relative;
   cursor: default;
   overflow: visible;
-  width: calc(50% - 0.15rem);
-  flex: 1 1 0;
+  flex: 1 1 calc(50% - 0.15rem);
   align-self: stretch;
   display: flex;
   flex-direction: column;
