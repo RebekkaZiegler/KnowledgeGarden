@@ -218,6 +218,10 @@ soil: {
 
 **Gute `solution`:** Eigenständig lesbar, keine Abkürzungen ohne Erklärung, deckt den Inhalt ab, der später getestet wird.
 
+**Längenbegrenzung: maximal 3 Sätze pro `solution`.** Das ist eine harte Grenze für Lesbarkeit auf dem Mobilgerät.
+
+**Zu viel Inhalt für 3 Sätze?** → Pflanze aufteilen, nicht kürzen. Lieber zwei Pflanzen mit je 3 fokussierten Sätzen als eine Pflanze mit gekürztem Text, der die Fragen nicht mehr abdeckt. Niemals einen `solution`-Text kürzen und die dazugehörigen `harvestQuestions` stehenlassen — der Spieler wird dann über Inhalte abgefragt, die er nie erklärt bekommen hat.
+
 **Tipp für Vollständigkeit:** Schreib zuerst alle Fragen (Schritte 4+5), dann schau, welche Fakten in `solution` noch fehlen — und ergänze sie.
 
 ---
