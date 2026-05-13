@@ -406,7 +406,7 @@ header p {
   width: 100%;
   flex: 1 1 0;
   min-height: 200px;
-  background: url('assets/images/pot.png') center bottom / 68% auto no-repeat;
+  background: url('assets/images/pot.png') center bottom / 82% auto no-repeat;
   opacity: 0.9;
 }
 
@@ -553,7 +553,7 @@ header p {
 }
 
 .plant-visual--garden .plant-pot-img {
-  width: 68%;
+  width: 82%;
   bottom: 0;
 }
 
@@ -576,6 +576,9 @@ header p {
 }
 .plant-visual--garden .plant-crown {
   bottom: calc(var(--by, 0px) + 30px);
+}
+.plant-visual--large .plant-crown {
+  bottom: calc(var(--by, 0px) + 46px);
 }
 
 .plant-visual--large {
@@ -1360,16 +1363,16 @@ button:disabled {
   background: linear-gradient(270deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.12) 60%, transparent 100%);
 }
 
-/* Bushy crown blob for form-type 1 plants */
+/* Bushy crown blob for form-type 1 plants — same visual style as branches */
 .plant-crown {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 32px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--stem-hi, #7fc98a);
-  opacity: 0.28;
+  width: 36px;
+  height: 30px;
+  border-radius: 50% 50% 40% 40%;
+  background: linear-gradient(180deg, var(--stem-hi, #68b877) 0%, var(--stem-lo, #3a7d48) 100%);
+  filter: url(#plant-organic);
   pointer-events: none;
 }
 
