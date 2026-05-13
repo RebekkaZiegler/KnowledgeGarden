@@ -62,7 +62,7 @@ function makeDetailedPlant(def) {
 
 const ZYTOLOGIE_1031_PLANTS = [
   makeDetailedPlant({
-    id: "zelle_begriff",
+    id: "zelle_hierarchie",
     title: "Begriffsbestimmung Zelle",
     phase1: {
       soil: {
@@ -78,7 +78,7 @@ const ZYTOLOGIE_1031_PLANTS = [
       water: {
         statement: "Zellen gleicher Funktion können sich zu Gewebeverbänden zusammenschliessen.",
         answer: true,
-        solution: "Zellen mit gleicher Spezialisierung lagern sich zu Gewebeverbänden zusammen. Gewebe ist damit die nächsthöhere Organisationsebene über der Einzelzelle und Grundlage aller Organe des Körpers. Die Hierarchie lautet: Zelle → Gewebe → Organ → Organsystem → Organismus; die Leber ist beispielsweise ein Organ, das aus mehreren Gewebetypen besteht. Viren gelten hingegen nicht als lebensfähig, da sie keinen eigenen Stoffwechsel besitzen und sich nur mithilfe der Replikationsmaschinerie einer Wirtszelle vermehren können – sie erfüllen nicht alle vier Grundeigenschaften des Lebens eigenständig."
+        solution: "Die Hierarchie lautet: Zelle → Gewebe → Organ → Organsystem → Organismus. Gleichartig spezialisierte Zellen lagern sich zu Gewebe zusammen, das Grundlage aller Organe ist. Die Leber ist beispielsweise ein Organ; das Verdauungssystem ist das zugehörige Organsystem."
       }
     },
     harvestQuestions: [
@@ -95,8 +95,6 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Beide Begriffe bezeichnen dasselbe – den Zellstoffwechsel", correct: false }
       ], explanation: "Der Zellbegriff verbindet Morphologie (griech. morphe = Form: Aufbau, Grösse, Gestalt der Zelle) mit Physiologie (griech. physis = Natur: Funktion, Stoffwechsel, Prozesse). Struktur erklärt Funktion – das Kernprinzip der Zytologie." },
       { id: "zb_h3", type: "true_false", statement: "Die Organisationsebenen von der Zelle bis zum Organismus lauten: Zelle → Gewebe → Organ → Organsystem → Organismus.", answer: true, explanation: "Diese Hierarchie ist das Grundprinzip biologischer Organisation: Gleichartig differenzierte Zellen bilden Gewebe, Gewebe organisieren sich zu Organen, Organe zu Organsystemen und diese zusammen zum Organismus." },
-      { id: "zb_h4", type: "true_false", statement: "Virionen (Viren) gelten als kleinste lebensfähige Einheiten, da sie sich reproduzieren können.", answer: false, explanation: "Viren sind keine Zellen und gelten nicht als lebensfähig: Sie besitzen keinen eigenen Stoffwechsel und können sich nur unter Nutzung der Replikationsmaschinerie einer Wirtszelle vermehren. Sie erfüllen nicht alle vier Grundeigenschaften des Lebens eigenständig." },
-      { id: "zb_h5", type: "true_false", statement: "Einzeller wie Amöben oder Paramecien sind vollständige Organismen, die alle Lebensfunktionen in einer Zelle vereinen.", answer: true, explanation: "Protozön (tierische Einzeller) wie Amöben und Paramecien erledigen Ernährung, Bewegung, Reizaufnahme und Fortpflanzung in einer einzigen Zelle – ohne Gewebeverband. Sie belegen, dass die Zelle selbst die kleinste lebensfähige Einheit ist." },
       { id: "zb_h6", type: "mc", question: "In welche Kategorie des hierarchischen Aufbaus ist 'Leber' einzuordnen?", options: [
         { text: "Organ (besteht aus mehreren Gewebetypen)", correct: true },
         { text: "Gewebe (gleichartige Zellen mit gemeinsamer Funktion)", correct: false },
@@ -110,7 +108,34 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Organe sind kleiner als Gewebe", correct: false },
         { text: "Gleichartig differenzierte Zellen bilden einen Gewebeverband", correct: true },
         { text: "Ein Organismus besteht aus maximal einem Organsystem", correct: false }
-      ]},
+      ]}
+    ]
+  }),
+  makeDetailedPlant({
+    id: "zelle_viren_einzeller",
+    title: "Viren und Einzeller",
+    phase1: {
+      soil: {
+        statement: "Viren gelten als die kleinsten lebenden Einheiten, da sie sich reproduzieren können.",
+        answer: false,
+        solution: "Viren sind keine Zellen und besitzen keinen eigenen Stoffwechsel. Sie können sich nur in Wirtszellen vermehren, indem sie deren Replikationsmaschinerie nutzen. Damit erfüllen sie nicht alle vier Grundeigenschaften des Lebens eigenständig und gelten nicht als lebensfähig."
+      },
+      seed: {
+        statement: "Einzeller wie Amöben oder Paramecien sind vollständige Organismen, die alle Lebensfunktionen in einer einzigen Zelle erledigen.",
+        answer: true,
+        solution: "Einzeller (Protozoen) wie Amöben und Paramecien sind vollständige Organismen. Sie erledigen Ernährung, Bewegung, Reizaufnahme und Fortpflanzung in einer einzigen Zelle – ohne Gewebeverband. Sie belegen, dass die Zelle selbst die kleinste lebensfähige Einheit des Lebens ist."
+      },
+      water: {
+        statement: "Viren und Einzeller sind biologisch gleichwertig, da beide sich reproduzieren können.",
+        answer: false,
+        solution: "Einzeller sind echte Lebewesen mit eigenem Stoffwechsel, die alle vier Grundeigenschaften des Lebens erfüllen. Viren hingegen haben keinen eigenen Stoffwechsel und sind auf Wirtszellen angewiesen – sie gelten daher nicht als lebendig. Mehrzellige Organismen unterscheiden sich von Einzellern durch die Arbeitsteilung zwischen spezialisierten Zellen."
+      }
+    },
+    harvestQuestions: [
+      { id: "zb_h4", type: "true_false", statement: "Virionen (Viren) gelten als kleinste lebensfähige Einheiten, da sie sich reproduzieren können.", answer: false, explanation: "Viren sind keine Zellen und gelten nicht als lebensfähig: Sie besitzen keinen eigenen Stoffwechsel und können sich nur unter Nutzung der Replikationsmaschinerie einer Wirtszelle vermehren. Sie erfüllen nicht alle vier Grundeigenschaften des Lebens eigenständig." },
+      { id: "zb_h5", type: "true_false", statement: "Einzeller wie Amöben oder Paramecien sind vollständige Organismen, die alle Lebensfunktionen in einer Zelle vereinen.", answer: true, explanation: "Protozoen (tierische Einzeller) wie Amöben und Paramecien erledigen Ernährung, Bewegung, Reizaufnahme und Fortpflanzung in einer einzigen Zelle – ohne Gewebeverband. Sie belegen, dass die Zelle selbst die kleinste lebensfähige Einheit ist." }
+    ],
+    phase4Questions: [
       { id: "zb_mc2", type: "mc", question: "Warum gelten Viren nicht als lebende Zellen?", options: [
         { text: "Sie besitzen keinen eigenen Stoffwechsel und können sich nur in Wirtszellen vermehren", correct: true },
         { text: "Sie sind zu gross für eine Zelle", correct: false },
@@ -131,7 +156,7 @@ const ZYTOLOGIE_1031_PLANTS = [
       seed: {
         statement: "Alle menschlichen Zellen sind in Form und Grösse nahezu identisch.",
         answer: false,
-        solution: "Erythrozyten sind nur etwa 7–8 µm gross, bikonkav geformt und besitzen weder Zellkern noch Mitochondrien – ATP gewinnen sie ausschliesslich durch anaerobe Glykolyse. Thrombozyten sind ebenfalls kernlose Membranfragmente, die durch Abschnürung aus Megakaryozyten im Knochenmark entstehen. Nervenzellen können mit ihren Axonen über einen Meter lang sein, um weit entfernte Strukturen zu verbinden. Diese extreme Vielfalt spiegelt die verschiedenartigen Aufgaben der Zellen im Körper wider."
+        solution: "Erythrozyten sind nur etwa 7–8 µm gross, bikonkav geformt und besitzen weder Zellkern noch Mitochondrien – ATP gewinnen sie ausschliesslich durch anaerobe Glykolyse. Thrombozyten sind ebenfalls kernlose Membranfragmente, die durch Abschnürung aus Megakaryozyten im Knochenmark entstehen. Nervenzellen können mit ihren Axonen über einen Meter lang sein, um weit entfernte Strukturen zu verbinden."
       },
       water: {
         statement: "Die Eizelle (Ovum) ist mit etwa 120 Mikrometern Durchmesser die grösste menschliche Zelle und damit gerade noch mit blossem Auge erkennbar.",
@@ -190,23 +215,62 @@ const ZYTOLOGIE_1031_PLANTS = [
     ]
   }),
   makeDetailedPlant({
-    id: "prokaryont_vs_eukaryont",
-    title: "Prokaryonte und eukaryonte Zellen",
+    id: "prokaryoten_merkmale",
+    title: "Prokaryoten: Merkmale und Abgrenzung",
     phase1: {
       soil: {
         statement: "Prokaryonte Zellen besitzen keinen Zellkern.",
         answer: true,
-        solution: "Prokaryonte Zellen wie Bakterien und Archäen besitzen kein von einer Membran umschlossenes Zellkernäquivalent. Ihre DNA liegt frei als Nucleoid (kreisförmiges Chromosom) im Zytoplasma; zusätzlich können kleine ringförmige DNA-Stücke (Plasmide) vorhanden sein. Prokaryoten besitzen Ribosomen vom 70S-Typ (Untereinheiten 30S und 50S) – kleiner als die eukaryonten 80S-Ribosomen. Pilze, Pflanzen, Tiere und Protisten (z.B. Amöben) sind Eukaryoten – die einzigen Prokaryoten sind Bacteria und Archäa."
+        solution: "Prokaryonte Zellen wie Bakterien und Archäen besitzen kein von einer Membran umschlossenes Zellkernäquivalent. Ihre DNA liegt frei als Nucleoid (kreisförmiges Chromosom) im Zytoplasma; zusätzlich können kleine ringförmige DNA-Stücke (Plasmide) vorhanden sein."
       },
       seed: {
-        statement: "Eukaryonte Zellen besitzen einen Zellkern.",
+        statement: "Prokaryoten und Eukaryoten unterscheiden sich unter anderem im Ribosomentyp.",
         answer: true,
-        solution: "Der membranbegrenzte Zellkern (Nukleus) ist das definitive Merkmal aller Eukaryoten. Er trennt die DNA vom Zytoplasma und ermöglicht getrennte Transkription (im Zellkern) und Translation (am Ribosom im Zytoplasma). Bei Prokaryoten fehlt diese Trennung; Transkription und Translation laufen gleichzeitig im selben Zellraum ab – ein Ribosom kann an die wachsende mRNA binden, noch während die RNA-Polymerase transkribiert. Antibiotika, die auf prokaryonte 70S-Ribosomen wirken (z.B. Tetracycline), schädigen menschliche Zellen mit 80S-Ribosomen daher nicht; gegen Pilzinfektionen (Eukaryoten!) wirken sie aus demselben Grund nicht."
+        solution: "Prokaryoten besitzen 70S-Ribosomen (Untereinheiten 30S und 50S); Eukaryoten haben grössere 80S-Ribosomen. Pilze, Pflanzen, Tiere und Protisten sind Eukaryoten – die einzigen Prokaryoten sind Bacteria und Archäa."
       },
       water: {
         statement: "Erythrozyten von Säugetieren verlieren im Reifungsverlauf ihren Zellkern.",
         answer: true,
         solution: "Reife Erythrozyten stossen ihren Zellkern während der Erythropöse aus, um maximalen Raum für Hämoglobin zu gewinnen. Da ohne Kern keine DNA-Replikation möglich ist, können sie sich nicht teilen – ihre Lebensdauer von etwa 120 Tagen ist biologisch fix."
+      }
+    },
+    harvestQuestions: [
+      { id: "pe_h3", type: "mc", question: "Welche Organismengruppen gehören zu den Prokaryoten?", options: [
+        { text: "Bakterien und Archäen", correct: true },
+        { text: "Pilze", correct: false },
+        { text: "Pflanzen", correct: false },
+        { text: "Protisten (Einzeller wie Amöben)", correct: false }
+      ], explanation: "Prokaryoten umfassen nur zwei Domänen: Bacteria und Archäa. Alle anderen – Tiere, Pflanzen, Pilze und Protisten – sind Eukaryoten. Diese Zweiteilung ist die fundamentalste Klassifikation der Lebewelt." },
+      { id: "pe_h4", type: "true_false", statement: "Prokaryonte Zellen besitzen keinen membranbegrenzten Zellkern – ihre DNA liegt als Nucleoid frei im Zytoplasma.", answer: true, explanation: "Bei Prokaryoten liegt die zirkuläre chromosomale DNA als Nucleoid (keine Kernhülle) im Zytoplasma. Zusätzlich können kleine ringförmige DNA-Stücke (Plasmide) vorhanden sein. Das Fehlen der Kernhülle ist das Definitionsmerkmal der Prokaryoten." },
+      { id: "pe_h6", type: "true_false", statement: "Reife Erythrozyten des Menschen sind kernlos, entstammen aber eukaryon Vorläuferzellen.", answer: true, explanation: "Erythroblasten (Vorläuferzellen) sind eukaryonte Zellen mit vollständigem Kern. Im Laufe der Erythropöse im Knochenmark stossen reifende Erythrozyten ihren Kern aus – das Endprodukt (reifer Erythrozyt) ist kernlos, aber kein Prokaryot, da der Kernverlust ein Reifungsergebnis ist." }
+    ],
+    phase4Questions: [
+      { id: "pe_mc1", type: "mc", question: "Welche Merkmalskombination beschreibt korrekt Prokaryoten (im Unterschied zu Eukaryoten)?", options: [
+        { text: "Kein Zellkern, 70S-Ribosomen, keine membranumschlossenen Organellen", correct: true },
+        { text: "Zellkern vorhanden, 70S-Ribosomen, Mitochondrien vorhanden", correct: false },
+        { text: "Kein Zellkern, 80S-Ribosomen, Golgi-Apparat vorhanden", correct: false },
+        { text: "Kein Zellkern, 70S-Ribosomen, Mitochondrien vorhanden", correct: false }
+      ], explanation: "Prokaryoten haben kein membranumschlossenes Zellkern-Äquivalent (Nucleoid), verwenden 70S-Ribosomen (Ziel für Antibiotika) und besitzen keine membranumschlossenen Organellen wie Mitochondrien oder Golgi-Apparat." }
+    ]
+  }),
+  makeDetailedPlant({
+    id: "eukaryoten_ribosomen_antibiotika",
+    title: "Eukaryoten: Zellkern, Transkription und Antibiotika",
+    phase1: {
+      soil: {
+        statement: "Eukaryonte Zellen besitzen einen membranbegrenzten Zellkern.",
+        answer: true,
+        solution: "Der membranbegrenzte Zellkern (Nukleus) ist das definitive Merkmal aller Eukaryoten. Der Kern trennt die DNA vom Zytoplasma; Transkription (DNA→mRNA) findet im Kern statt, Translation (mRNA→Protein) am Ribosom im Zytoplasma."
+      },
+      seed: {
+        statement: "Bei Prokaryoten laufen Transkription und Translation gleichzeitig im selben Zellraum ab.",
+        answer: true,
+        solution: "Bei Prokaryoten fehlt die Kernhülle; Transkription und Translation laufen gleichzeitig im selben Zellraum ab – ein Ribosom bindet an die wachsende mRNA, während die RNA-Polymerase noch transkribiert. Dieses Kopplungsprinzip ist bei Eukaryoten durch die Kernhülle räumlich getrennt."
+      },
+      water: {
+        statement: "Antibiotika, die auf prokaryonte 70S-Ribosomen wirken, sind auch gegen Pilzinfektionen wirksam.",
+        answer: false,
+        solution: "Antibiotika, die auf prokaryonte 70S-Ribosomen wirken (z.B. Tetracycline), schädigen menschliche Zellen mit 80S-Ribosomen nicht. Pilze sind Eukaryoten mit 80S-Ribosomen – daher wirken diese Antibiotika nicht gegen Pilzinfektionen; Pilzinfektionen erfordern Antimykotika."
       }
     },
     harvestQuestions: [
@@ -217,23 +281,9 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Golgi-Apparat", correct: false }
       ], explanation: "Prokaryoten besitzen Ribosomen (70S-Typ), aber keinen membranbegrenzten Zellkern, keine Mitochondrien und keinen Golgi-Apparat. Eukaryonte Ribosomen sind grösser (80S) – dieser Unterschied erklärt, warum viele Antibiotika (z.B. Tetracycline) gezielt prokaryonte 70S-Ribosomen hemmen, ohne menschliche Zellen zu schädigen." },
       { id: "pe_h2", type: "true_false", statement: "Bei Prokaryoten läufen Transkription und Translation gleichzeitig im selben Zellraum ab.", answer: true, explanation: "Da Prokaryoten keine Kernhülle besitzen, kann ein Ribosom an die mRNA binden und mit der Translation beginnen, während die RNA-Polymerase die mRNA noch transkribiert (sog. Kopplungsprinzip). Bei Eukaryoten sind Transkription (im Kern) und Translation (im Zytoplasma) räumlich getrennt." },
-      { id: "pe_h3", type: "mc", question: "Welche Organismengruppen gehören zu den Prokaryoten?", options: [
-        { text: "Bakterien und Archäen", correct: true },
-        { text: "Pilze", correct: false },
-        { text: "Pflanzen", correct: false },
-        { text: "Protisten (Einzeller wie Amöben)", correct: false }
-      ], explanation: "Prokaryoten umfassen nur zwei Domänen: Bacteria und Archäa. Alle anderen – Tiere, Pflanzen, Pilze und Protisten – sind Eukaryoten. Diese Zweiteilung ist die fundamentalste Klassifikation der Lebewelt." },
-      { id: "pe_h4", type: "true_false", statement: "Prokaryonte Zellen besitzen keinen membranbegrenzten Zellkern – ihre DNA liegt als Nucleoid frei im Zytoplasma.", answer: true, explanation: "Bei Prokaryoten liegt die zirkuläre chromosomale DNA als Nucleoid (keine Kernhülle) im Zytoplasma. Zusätzlich können kleine ringförmige DNA-Stücke (Plasmide) vorhanden sein. Das Fehlen der Kernhülle ist das Definitionsmerkmal der Prokaryoten." },
-      { id: "pe_h5", type: "true_false", statement: "Pilze sind Prokaryoten und deshalb besonders empfindlich gegenüber bakteriziden Antibiotika.", answer: false, explanation: "Pilze sind Eukaryoten – sie haben membranumschlossene Zellkerne, Mitochondrien und 80S-Ribosomen wie menschliche Zellen. Antibiotika, die auf prokaryonte Strukturen (70S-Ribosomen, Peptidoglykan-Zellwand) abzielen, wirken daher nicht gegen Pilze. Pilzinfektionen erfordern Antimykotika." },
-      { id: "pe_h6", type: "true_false", statement: "Reife Erythrozyten des Menschen sind kernlos, entstammen aber eukaryon Vorläuferzellen.", answer: true, explanation: "Erythroblasten (Vorläuferzellen) sind eukaryonte Zellen mit vollständigem Kern. Im Laufe der Erythropöse im Knochenmark stossen reifende Erythrozyten ihren Kern aus – das Endprodukt (reifer Erythrozyt) ist kernlos, aber kein Prokaryot, da der Kernverlust ein Reifungsergebnis ist." }
+      { id: "pe_h5", type: "true_false", statement: "Pilze sind Prokaryoten und deshalb besonders empfindlich gegenüber bakteriziden Antibiotika.", answer: false, explanation: "Pilze sind Eukaryoten – sie haben membranumschlossene Zellkerne, Mitochondrien und 80S-Ribosomen wie menschliche Zellen. Antibiotika, die auf prokaryonte Strukturen (70S-Ribosomen, Peptidoglykan-Zellwand) abzielen, wirken daher nicht gegen Pilze. Pilzinfektionen erfordern Antimykotika." }
     ],
     phase4Questions: [
-      { id: "pe_mc1", type: "mc", question: "Welche Merkmalskombination beschreibt korrekt Prokaryoten (im Unterschied zu Eukaryoten)?", options: [
-        { text: "Kein Zellkern, 70S-Ribosomen, keine membranumschlossenen Organellen", correct: true },
-        { text: "Zellkern vorhanden, 70S-Ribosomen, Mitochondrien vorhanden", correct: false },
-        { text: "Kein Zellkern, 80S-Ribosomen, Golgi-Apparat vorhanden", correct: false },
-        { text: "Kein Zellkern, 70S-Ribosomen, Mitochondrien vorhanden", correct: false }
-      ], explanation: "Prokaryoten haben kein membranumschlossenes Zellkern-Äquivalent (Nucleoid), verwenden 70S-Ribosomen (Ziel für Antibiotika) und besitzen keine membranumschlossenen Organellen wie Mitochondrien oder Golgi-Apparat." },
       { id: "pe_mc2", type: "mc", question: "Warum wirken viele Antibiotika nicht gegen Pilzinfektionen?", options: [
         { text: "Weil Pilze Eukaryoten mit 80S-Ribosomen sind – eukaryonte wie menschliche Zellen", correct: true },
         { text: "Weil Pilze keine Zellwand besitzen", correct: false },
@@ -243,13 +293,13 @@ const ZYTOLOGIE_1031_PLANTS = [
     ]
   }),
   makeDetailedPlant({
-    id: "zelldifferenzierung",
+    id: "zelldifferenzierung_grundlagen",
     title: "Zelldifferenzierung",
     phase1: {
       soil: {
         statement: "Zelldifferenzierung bedeutet Spezialisierung von Zellen auf bestimmte Aufgaben.",
         answer: true,
-        solution: "Durch Zelldifferenzierung werden aus einheitlichen Vorläuferzellen Spezialisten. Die vier Grundgewebetypen des Körpers – Epithelgewebe, Binde- und Stützgewebe, Muskelgewebe und Nervengewebe – entstehen alle durch Differenzierung. Die DNA-Sequenz bleibt bei der Differenzierung unverändert; was sich ändert, ist das Genexpressionsmuster (epigenetische Regulation). Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie verlassen den Zellzyklus dauerhaft und können sich nicht mehr teilen. Die Differenzierungsfähigkeit von Stammzellen wird in drei Stufen unterteilt: Totipotenz (alle Zelltypen inkl. extra-embryonalem Gewebe), Pluripotenz (alle somatischen Zelltypen, kein extra-embryonales Gewebe) und Multipotenz (nur begrenzte Zelltypen)."
+        solution: "Aus einheitlichen Vorläuferzellen entstehen durch Differenzierung Spezialisten. Die vier Grundgewebetypen – Epithelgewebe, Binde- und Stützgewebe, Muskelgewebe und Nervengewebe – entstehen alle durch Differenzierung. Die DNA-Sequenz bleibt dabei unverändert; was sich ändert, ist das Genexpressionsmuster (epigenetische Regulation)."
       },
       seed: {
         statement: "Differenzierte Zellen sind im Organismus stets auf genau eine einzige Funktion beschränkt.",
@@ -270,14 +320,6 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Mesenchym, Ektoderm, Entoderm und Mesoderm", correct: false }
       ], explanation: "Die vier Grundgewebetypen sind: Epithelgewebe (Bedeckung, Sekretion), Binde- und Stützgewebe (Stoff-Transport, Halt), Muskelgewebe (Kontraktion), Nervengewebe (Erregungsleitung). Alle anderen Gewebe (Knochen, Knorpel, Blut) sind spezialisierte Unterformen des Bindegewebes." },
       { id: "zd_h2", type: "true_false", statement: "Beim Prozess der Zelldifferenzierung verändert sich der DNA-Gehalt der Zelle.", answer: false, explanation: "Die DNA-Sequenz bleibt bei der Differenzierung unverändert – jede Körperzelle enthält denselben diploiden Chromosomensatz. Was sich ändert, ist das Genexpressionsmuster: Nur bestimmte Gene werden in einer Leberzelle, nur andere in einer Muskelzelle abgelesen (epigenetische Regulation)." },
-      { id: "zd_h3", type: "true_false", statement: "Pluripotente Stammzellen können sich zu jedem Gewebetyp differenzieren, nicht aber zu extra-embryonalem Gewebe.", answer: true, explanation: "Pluripotente Zellen (z.B. embryonale Stammzellen, iPS-Zellen) können alle somatischen Gewebetypen bilden. Im Gegensatz dazu können totipotente Zellen (z.B. befruchtete Eizelle, frühe Blastomeren) auch Placenta und Trophoblast bilden. Multipotente Stammzellen (z.B. hämatopötische) können nur eine begrenzte Zahl von Zelltypen bilden." },
-      { id: "zd_h4", type: "true_false", statement: "Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie teilen sich nach der Entwicklung nicht mehr.", answer: true, explanation: "Postmitotische Zellen wie ausgereifte Neuronen haben den Zellzyklus dauerhaft verlassen. Das erklärt, warum Hirnschäden und Rückenmarksverletzungen nur schwer zu regenerieren sind – verlorene Neuronen können nicht durch Zellteilung ersetzt werden. Nur bestimmte Stammzellnischen im Gehirn (z.B. Hippokampus) behalten eine begrenzte Neurogenese." },
-      { id: "zd_h5", type: "mc", question: "Was bezeichnet man als 'Totipotenz' einer Zelle?", options: [
-        { text: "Die Fähigkeit, alle Zelltypen einschliesslich extra-embryonalem Gewebe zu bilden", correct: true },
-        { text: "Die Fähigkeit, sich unbegrenzt zu teilen", correct: false },
-        { text: "Die Fähigkeit, mehrere Gewebetypen, aber kein extra-embryonales Gewebe zu bilden", correct: false },
-        { text: "Die Fähigkeit zur Zellteilung ohne DNA-Replikation", correct: false }
-      ], explanation: "Totipotenz: Fähigkeit zur Bildung aller Zelltypen (Soma + extra-embryonal wie Plazenta) – nur befruchtete Eizelle und frühe Blastomeren. Pluripotenz: alle somatischen Typen, kein extra-embryonal (embryonale Stammzellen). Multipotenz: begrenzte Typen (z.B. hämatopötische Stammzellen)." },
       { id: "zd_h6", type: "true_false", statement: "Zelldifferenzierung ist Voraussetzung für die Ausbildung spezialisierter Organe und Gewebe.", answer: true, explanation: "Organe sind aus mehreren Gewebetypen zusammengesetzt, und Gewebe bestehen aus differenzierten Zellen. Ohne Differenzierung gäbe es nur undifferenzierte Zellmassen ohne spezifische Funktion – die Entstehung komplexer Organe wie Herz oder Leber wäre unmöglich." }
     ],
     phase4Questions: [
@@ -286,7 +328,40 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Differenzierung verändert das Genexpressionsmuster, nicht die DNA", correct: true },
         { text: "Pluripotente Stammzellen können alle somatischen Zelltypen bilden", correct: true },
         { text: "Hoch differenzierte Neuronen teilen sich regelmässig im Erwachsenenalter", correct: false }
-      ]},
+      ]}
+    ]
+  }),
+  makeDetailedPlant({
+    id: "stammzellen_potenz",
+    title: "Stammzellen und Differenzierungspotenz",
+    phase1: {
+      soil: {
+        statement: "Totipotente Zellen können alle Zelltypen einschliesslich extra-embryonalem Gewebe bilden.",
+        answer: true,
+        solution: "Stammzellen besitzen die Fähigkeit zur Selbsterneuerung und zur Differenzierung. Totipotente Zellen (befruchtete Eizelle, frühe Blastomeren) können alle Zelltypen einschliesslich extra-embryonalem Gewebe (Plazenta) bilden. Pluripotente Zellen können alle somatischen Gewebetypen bilden, aber kein extra-embryonales Gewebe."
+      },
+      seed: {
+        statement: "Embryonale Stammzellen und iPS-Zellen sind pluripotent.",
+        answer: true,
+        solution: "Multipotente Stammzellen können nur eine begrenzte Anzahl von Zelltypen bilden (z.B. hämatopoetische Stammzellen → Blutzellen). Die Hierarchie lautet: Totipotenz > Pluripotenz > Multipotenz. Embryonale Stammzellen und iPS-Zellen sind pluripotent."
+      },
+      water: {
+        statement: "Hoch differenzierte Zellen wie ausgereifte Neuronen können sich im Erwachsenenalter nicht mehr teilen.",
+        answer: true,
+        solution: "Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie haben den Zellzyklus dauerhaft verlassen und teilen sich nicht mehr. Das erklärt, warum Hirnschäden schwer zu regenerieren sind. Nur bestimmte Stammzellnischen im Gehirn (z.B. Hippokampus) behalten eine begrenzte Neurogenese."
+      }
+    },
+    harvestQuestions: [
+      { id: "zd_h3", type: "true_false", statement: "Pluripotente Stammzellen können sich zu jedem Gewebetyp differenzieren, nicht aber zu extra-embryonalem Gewebe.", answer: true, explanation: "Pluripotente Zellen (z.B. embryonale Stammzellen, iPS-Zellen) können alle somatischen Gewebetypen bilden. Im Gegensatz dazu können totipotente Zellen (z.B. befruchtete Eizelle, frühe Blastomeren) auch Placenta und Trophoblast bilden. Multipotente Stammzellen (z.B. hämatopoetische) können nur eine begrenzte Zahl von Zelltypen bilden." },
+      { id: "zd_h4", type: "true_false", statement: "Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie teilen sich nach der Entwicklung nicht mehr.", answer: true, explanation: "Postmitotische Zellen wie ausgereifte Neuronen haben den Zellzyklus dauerhaft verlassen. Das erklärt, warum Hirnschäden und Rückenmarksverletzungen nur schwer zu regenerieren sind – verlorene Neuronen können nicht durch Zellteilung ersetzt werden. Nur bestimmte Stammzellnischen im Gehirn (z.B. Hippokampus) behalten eine begrenzte Neurogenese." },
+      { id: "zd_h5", type: "mc", question: "Was bezeichnet man als 'Totipotenz' einer Zelle?", options: [
+        { text: "Die Fähigkeit, alle Zelltypen einschliesslich extra-embryonalem Gewebe zu bilden", correct: true },
+        { text: "Die Fähigkeit, sich unbegrenzt zu teilen", correct: false },
+        { text: "Die Fähigkeit, mehrere Gewebetypen, aber kein extra-embryonales Gewebe zu bilden", correct: false },
+        { text: "Die Fähigkeit zur Zellteilung ohne DNA-Replikation", correct: false }
+      ], explanation: "Totipotenz: Fähigkeit zur Bildung aller Zelltypen (Soma + extra-embryonal wie Plazenta) – nur befruchtete Eizelle und frühe Blastomeren. Pluripotenz: alle somatischen Typen, kein extra-embryonal (embryonale Stammzellen). Multipotenz: begrenzte Typen (z.B. hämatopoetische Stammzellen)." }
+    ],
+    phase4Questions: [
       { id: "zd_mc2", type: "mc", question: "Welche Reihenfolge der Differenzierungspotenz ist korrekt (höchste zuerst)?", options: [
         { text: "Totipotenz → Pluripotenz → Multipotenz", correct: true },
         { text: "Multipotenz → Pluripotenz → Totipotenz", correct: false },
@@ -296,8 +371,8 @@ const ZYTOLOGIE_1031_PLANTS = [
     ]
   }),
   makeDetailedPlant({
-    id: "zellmembran",
-    title: "Zellmembran",
+    id: "zellmembran_transport",
+    title: "Zellmembran und Membrantransport",
     phase1: {
       soil: {
         statement: "Die Zellmembran grenzt die Zelle gegen ihre Umwelt ab.",
@@ -310,9 +385,9 @@ const ZYTOLOGIE_1031_PLANTS = [
         solution: "Die Zellmembran ist nicht vollständig undurchlässig, sondern selektiv permeabel: Kleine ungeladene Moleküle wie O2 und CO2 diffundieren frei, während geladene Ionen und grosse Moleküle nur durch spezifische Kanalproteine passieren können."
       },
       water: {
-        statement: "Hauptaufgabe der Zellmembran ist die Wirkung als Diffusionsbarriere.",
+        statement: "Hauptaufgabe der Zellmembran ist die Wirkung als selektive Diffusionsbarriere.",
         answer: true,
-        solution: "Als selektiv durchlässige Barriere lässt die Zellmembran Wasser und kleine ungeladene Moleküle passieren, während grössere oder geladene Substanzen Kanalproteine oder aktive Transporter benötigen. Die Na+/K+-ATPase ist die wichtigste Ionenpumpe: Sie transportiert pro ATP-Molekül 3 Na+ aus der Zelle und 2 K+ hinein und erzeugt so das Ruhemembranpotential. Erleichterte Diffusion (z.B. Glukose durch GLUT) verläuft entlang des Gradienten ohne Energieverbrauch, aktiver Transport (z.B. Na+/K+-ATPase) gegen den Gradienten mit ATP. Phagozytose nimmt grosse feste Partikel auf, Pinozytose kleine Flüssigkeitstropfen – beide sind Formen der Endozytose. Osmose ist der passive Wassertransport durch eine semipermeable Membran von der verdünnteren zur konzentrierteren Lösung. Das Fluid-Mosaik-Modell beschreibt die Membran als flüssig-kristallines Gebilde mit lateral beweglichen Phospholipiden und eingelagerten Proteinen."
+        solution: "Die Na+/K+-ATPase ist die wichtigste aktive Ionenpumpe: Sie transportiert pro ATP-Molekül 3 Na+ aus der Zelle und 2 K+ hinein und erzeugt so das Ruhemembranpotential. Erleichterte Diffusion (z.B. Glukose durch GLUT-Transporter) läuft entlang des Konzentrationsgradienten ohne Energieverbrauch ab. Aktiver Transport (z.B. Na+/K+-ATPase) pumpt Moleküle gegen den Gradienten unter ATP-Verbrauch."
       }
     },
     harvestQuestions: [
@@ -328,15 +403,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Einen passiven Kanal für Na+ und K+ entlang des Konzentrationsgradienten", correct: false },
         { text: "Ein Enzym, das ATP aus Glukose synthetisiert", correct: false }
       ], explanation: "Die Na+/K+-ATPase ist eine aktive Ionenpumpe: Pro ATP-Molekül werden 3 Na+ aus der Zelle gepumpt und 2 K+ in die Zelle. Dadurch entsteht das Ruhemembranpotential (ca. -70 mV) und der hohe intrazelluläre K+-Gehalt. Sie verbraucht ca. 20–40% des zellularen ATP." },
-      { id: "zm_h3", type: "true_false", statement: "Der Unterschied zwischen erleichterter Diffusion und aktivem Transport liegt im Energieverbrauch: Erleichterte Diffusion ist passiv, aktiver Transport verbraucht ATP.", answer: true, explanation: "Erleichterte Diffusion (z.B. Glukose durch GLUT-Transporter) läuft entlang des Konzentrationsgradienten ohne Energieverbrauch ab. Aktiver Transport (z.B. Na+/K+-ATPase) pumpt Moleküle gegen ihren Gradienten und benötigt ATP. Beide verwenden Transportproteine." },
-      { id: "zm_h4", type: "true_false", statement: "Phagozytose und Pinozytose sind beides Formen der Endozytose, unterscheiden sich aber in der Grösse des aufgenommenen Materials.", answer: true, explanation: "Endozytose ist der Oberbegriff für die Aufnahme von Material durch Einstülpen der Membran. Phagozytose (griech. phagein = fressen) nimmt grosse feste Partikel auf (Bakterien, Zelltrümmer) – durch spezialisierte Zellen wie Makrophagen. Pinozytose (griech. pinein = trinken) nimmt kleine Flüssigkeitstropfen auf – in fast allen Zelltypen." },
-      { id: "zm_h5", type: "mc", question: "Was versteht man unter dem 'Fluid-Mosaik-Modell' der Zellmembran?", options: [
-        { text: "Die Membran ist eine bewegliche Phospholipid-Doppelschicht mit eingelagerten, lateral beweglichen Proteinen", correct: true },
-        { text: "Die Membran ist starr und unveränderlich wie eine Glasplatte", correct: false },
-        { text: "Die Membran besteht ausschliesslich aus Proteinen ohne Lipide", correct: false },
-        { text: "Die Proteine sind fest verankert und können sich nicht seitlich bewegen", correct: false }
-      ], explanation: "Das Fluid-Mosaik-Modell (Singer & Nicolson 1972) beschreibt die Membran als flüssig-kristallines Gebilde: Phospholipide bewegen sich lateral (Fluidität), Proteine sitzen wie Mosaiksteine in dieser Schicht und können sich ebenfalls bewegen. Diese Flexibilität erklärt die dynamische Anpassung der Membranfunktion." },
-      { id: "zm_h6", type: "true_false", statement: "Osmose ist der passive Wassertransport durch eine semipermeable Membran entlang eines Konzentrationsgradienten.", answer: true, explanation: "Osmose ist die Nettobewegung von Wasser von der Seite mit niedrigerer Gelöstkonzentration (hohe Wasseraktivität) zur Seite mit höherer Gelöstkonzentration. Bei Erythrozyten in hyperosmolarer Lösung tritt Wasser aus → Zelle schrumpft (Krenation). In hypoosmolarer Lösung tritt Wasser ein → Zelle schwillt (Lyse-Risiko)." }
+      { id: "zm_h3", type: "true_false", statement: "Der Unterschied zwischen erleichterter Diffusion und aktivem Transport liegt im Energieverbrauch: Erleichterte Diffusion ist passiv, aktiver Transport verbraucht ATP.", answer: true, explanation: "Erleichterte Diffusion (z.B. Glukose durch GLUT-Transporter) läuft entlang des Konzentrationsgradienten ohne Energieverbrauch ab. Aktiver Transport (z.B. Na+/K+-ATPase) pumpt Moleküle gegen ihren Gradienten und benötigt ATP. Beide verwenden Transportproteine." }
     ],
     phase4Questions: [
       { id: "zm_mc1", type: "mc", question: "Welche Transportprozesse sind passiv (kein ATP-Verbrauch)?", options: [
@@ -354,8 +421,40 @@ const ZYTOLOGIE_1031_PLANTS = [
     ]
   }),
   makeDetailedPlant({
-    id: "zellplasma_organellen",
-    title: "Zellplasma und Organellen",
+    id: "zellmembran_endozytose_modell",
+    title: "Zellmembran: Endozytose, Osmose und Fluid-Mosaik-Modell",
+    phase1: {
+      soil: {
+        statement: "Phagozytose und Pinozytose sind beides Formen der Endozytose.",
+        answer: true,
+        solution: "Phagozytose und Pinozytose sind beides Formen der Endozytose (Aufnahme von Material durch Einstülpen der Membran). Phagozytose nimmt grosse feste Partikel auf (Bakterien, Zelltrümmer); Pinozytose nimmt kleine Flüssigkeitstropfen auf. Beide sind aktive Prozesse, die Energie verbrauchen."
+      },
+      seed: {
+        statement: "Osmose ist ein aktiver Transportprozess, der ATP verbraucht.",
+        answer: false,
+        solution: "Osmose ist der passive Wassertransport durch eine semipermeable Membran von der Seite niedrigerer Konzentration zur Seite höherer Konzentration. In hyperosmolarer Lösung tritt Wasser aus der Zelle aus (Krenation bei Erythrozyten); in hypoosmolarer Lösung tritt Wasser ein (Lyse-Risiko)."
+      },
+      water: {
+        statement: "Das Fluid-Mosaik-Modell beschreibt die Membran als starres, unveränderliches Gebilde.",
+        answer: false,
+        solution: "Das Fluid-Mosaik-Modell (Singer & Nicolson 1972) beschreibt die Membran als flüssig-kristallines Gebilde: Phospholipide bewegen sich lateral (Fluidität). Proteine sitzen wie Mosaiksteine in dieser Schicht und können sich ebenfalls lateral bewegen. Diese Flexibilität ermöglicht die dynamische Anpassung der Membranfunktion."
+      }
+    },
+    harvestQuestions: [
+      { id: "zm_h4", type: "true_false", statement: "Phagozytose und Pinozytose sind beides Formen der Endozytose, unterscheiden sich aber in der Grösse des aufgenommenen Materials.", answer: true, explanation: "Endozytose ist der Oberbegriff für die Aufnahme von Material durch Einstülpen der Membran. Phagozytose (griech. phagein = fressen) nimmt grosse feste Partikel auf (Bakterien, Zelltrümmer) – durch spezialisierte Zellen wie Makrophagen. Pinozytose (griech. pinein = trinken) nimmt kleine Flüssigkeitstropfen auf – in fast allen Zelltypen." },
+      { id: "zm_h5", type: "mc", question: "Was versteht man unter dem 'Fluid-Mosaik-Modell' der Zellmembran?", options: [
+        { text: "Die Membran ist eine bewegliche Phospholipid-Doppelschicht mit eingelagerten, lateral beweglichen Proteinen", correct: true },
+        { text: "Die Membran ist starr und unveränderlich wie eine Glasplatte", correct: false },
+        { text: "Die Membran besteht ausschliesslich aus Proteinen ohne Lipide", correct: false },
+        { text: "Die Proteine sind fest verankert und können sich nicht seitlich bewegen", correct: false }
+      ], explanation: "Das Fluid-Mosaik-Modell (Singer & Nicolson 1972) beschreibt die Membran als flüssig-kristallines Gebilde: Phospholipide bewegen sich lateral (Fluidität), Proteine sitzen wie Mosaiksteine in dieser Schicht und können sich ebenfalls bewegen. Diese Flexibilität erklärt die dynamische Anpassung der Membranfunktion." },
+      { id: "zm_h6", type: "true_false", statement: "Osmose ist der passive Wassertransport durch eine semipermeable Membran entlang eines Konzentrationsgradienten.", answer: true, explanation: "Osmose ist die Nettobewegung von Wasser von der Seite mit niedrigerer Gelöstkonzentration (hohe Wasseraktivität) zur Seite mit höherer Gelöstkonzentration. Bei Erythrozyten in hyperosmolarer Lösung tritt Wasser aus → Zelle schrumpft (Krenation). In hypoosmolarer Lösung tritt Wasser ein → Zelle schwillt (Lyse-Risiko)." }
+    ],
+    phase4Questions: []
+  }),
+  makeDetailedPlant({
+    id: "organellen_ribosomen_er_golgi",
+    title: "Organellen: Ribosomen, ER und Golgi-Apparat",
     phase1: {
       soil: {
         statement: "Zum Zellplasma gehören verschiedene Organellen mit spezialisierten Aufgaben.",
@@ -363,14 +462,14 @@ const ZYTOLOGIE_1031_PLANTS = [
         solution: "Organellen sind membranumschlossene oder strukturell abgegrenzte Kompartimente im Zellplasma, die jeweils spezialisierte Teilfunktionen des Zellstoffwechsels übernehmen. Diese Arbeitsteilung ermöglicht hocheffiziente parallele Prozesse innerhalb einer einzigen Zelle."
       },
       seed: {
-        statement: "Organellen sind für Stoffwechsel und Zellfunktion weitgehend bedeutungslos.",
+        statement: "Freie und membrangebundene Ribosomen haben dieselbe Funktion.",
         answer: false,
-        solution: "Organellen sind für die Zellfunktion unverzichtbar. Freie Ribosomen im Zytosol synthetisieren zytosolische Proteine, membrangebundene Ribosomen am rauen ER synthetisieren Sekret- und Membranproteine. Das glatte ER (ohne Ribosomen) ist zuständig für Lipidsynthese und Steroidhormonsynthese. Lysosomen enthalten saure Hydrolasen bei einem pH von ca. 4,5 und bauen aufgenommene Partikel und beschädigte Organellen ab (Autophagie). Mitochondrien besitzen eine eigene zirkuläre DNA (mtDNA) und 70S-Ribosomen – Belege für ihre bakterielle Herkunft (Endosymbiosetheorie). Der Golgi-Apparat modifiziert Proteine durch Glykosylierung und leitet sie an ihre Zielorte weiter."
+        solution: "Freie Ribosomen im Zytosol synthetisieren zytosolische Proteine; membrangebundene Ribosomen am rauen ER synthetisieren Sekret- und Membranproteine. Das glatte ER (ohne Ribosomen) ist zuständig für Lipidsynthese, Steroidhormonsynthese und Detoxifikation."
       },
       water: {
-        statement: "Mitochondrien, ER, Ribosomen und Golgi-Apparat werden als zentrale Organellen behandelt.",
+        statement: "Der Golgi-Apparat modifiziert Proteine und verteilt sie auf ihre Zielorte.",
         answer: true,
-        solution: "Mitochondrien erzeugen ATP durch Zellatmung, Ribosomen synthetisieren Proteine, das raue ER verarbeitet Sekretproteine und der Golgi-Apparat sortiert und verpackt sie für die Weiterleitung. Diese vier Organellen bilden die zentrale Produktions- und Logistikkette der Zelle."
+        solution: "Der Golgi-Apparat empfängt Vesikel vom ER, modifiziert Proteine durch Glykosylierung und Phosphorylierung. Am trans-Golgi werden Proteine auf ihre Zielorte verteilt: Lysosomen, Sekretionsvesikel oder Plasmamembran. Mitochondrien erzeugen ATP durch oxidative Phosphorylierung in der inneren Membran."
       }
     },
     harvestQuestions: [
@@ -379,30 +478,55 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Golgi-Apparat", correct: false },
         { text: "Ribosom", correct: false },
         { text: "Lysosom", correct: false }
-      ], explanation: "Mitochondrien produzieren ATP durch oxidative Phosphorylierung in der inneren Membran (Cristä). Die Elektronentransportkette pumpt H+-Ionen, die ATP-Synthase antreiben. Pro Glukosemolekül entstehen ca. 30–32 ATP. Das Ribosom ist für Proteinsynthese, der Golgi für Sortierung, Lysosomen für den Abbau zuständig." },
+      ], explanation: "Mitochondrien produzieren ATP durch oxidative Phosphorylierung in der inneren Membran (Cristae). Die Elektronentransportkette pumpt H+-Ionen, die ATP-Synthase antreiben. Pro Glukosemolekül entstehen ca. 30–32 ATP. Das Ribosom ist für Proteinsynthese, der Golgi für Sortierung, Lysosomen für den Abbau zuständig." },
       { id: "zo_h2", type: "mc", question: "Welche Organelle ist für die Lipidsynthese und Steroidhormonsynthese hauptsächlich verantwortlich?", options: [
         { text: "Glattes endoplasmatisches Retikulum (glattes ER)", correct: true },
         { text: "Raues endoplasmatisches Retikulum (raues ER)", correct: false },
         { text: "Ribosom", correct: false },
         { text: "Peroxisom", correct: false }
       ], explanation: "Das glatte ER (ohne Ribosomen) ist Ort der Lipidsynthese, Steroidhormonsynthese und des Fremdstoffabbaus (Detoxifikation, v.a. in der Leber). Das raue ER (mit Ribosomen) ist primär für Proteinsynthese und -faltung von Sekretproteinen zuständig." },
-      { id: "zo_h3", type: "true_false", statement: "Lysosomen enthalten saure Hydrolasen und bauen zelleigene und aufgenommene Makromoleküle ab.", answer: true, explanation: "Lysosomen haben einen sauren Innen-pH (ca. 4,5–5) und enthalten über 50 verschiedene Hydrolasen (Lipasen, Proteasen, Nukleasen). Sie bauen aufgenommene Partikel (Phagosomen) und beschädigte Organellen (Autophagie) ab. Ein Mangel an lysosomalen Enzymen führt zu sog. lysosomalen Speicherkrankheiten." },
-      { id: "zo_h4", type: "true_false", statement: "Mitochondrien besitzen eine eigene zirkuläre DNA (mtDNA) und 70S-Ribosomen – Belege für ihre bakterielle Herkunft.", answer: true, explanation: "Die Endosymbiosetheorie (Lynn Margulis) erklärt die Mitochondrien als evolutionare Nachfahren alphaproteobakterieller Endosymbionten. Belege: eigene zirkuläre DNA (wie Bakterien), 70S-Ribosomen (wie Prokaryoten), binäre Teilung, maternale Vererbung der mtDNA, und doppelte Membran." },
       { id: "zo_h5", type: "mc", question: "Was ist der Unterschied zwischen freien und membrangebundenen Ribosomen?", options: [
         { text: "Freie Ribosomen synthetisieren zytosolische Proteine; membrangebundene am rauen ER Sekret- und Membranproteine", correct: true },
         { text: "Membrangebundene Ribosomen sind grösser und produzieren mehr Proteine", correct: false },
         { text: "Freie Ribosomen sitzen ausschliesslich im Zellkern", correct: false },
         { text: "Es gibt keinen funktionellen Unterschied", correct: false }
       ], explanation: "Freie Ribosomen im Zytosol produzieren Proteine, die in der Zelle bleiben (Zytoskelettproteine, Enzyme des Zytosols). Membrangebundene Ribosomen am rauen ER produzieren Proteine, die sekretiert werden (Antikörper, Hormone) oder in Membranen integriert werden (Rezeptoren, Transporter)." },
-      { id: "zo_h6", type: "true_false", statement: "Der Golgi-Apparat modifiziert Proteine aus dem ER durch Glykosilierung und leitet sie an ihren Zielort (trans-Golgi-Sortierung).", answer: true, explanation: "Der Golgi-Apparat empfängt Vesikel vom ER (cis-Golgi), modifiziert Proteine (Zuckeranbau = Glykosilierung, Phosphorylierung) und sortiert sie am trans-Golgi auf Zielorte: Lysosomen, Sekretionsvesikel für Exozytose oder direkt zur Plasmamembran. Ohne Golgi würden Proteine unkontrolliert in der Zelle verteilt." }
+      { id: "zo_h6", type: "true_false", statement: "Der Golgi-Apparat modifiziert Proteine aus dem ER durch Glykosylierung und leitet sie an ihren Zielort (trans-Golgi-Sortierung).", answer: true, explanation: "Der Golgi-Apparat empfängt Vesikel vom ER (cis-Golgi), modifiziert Proteine (Zuckeranbau = Glykosylierung, Phosphorylierung) und sortiert sie am trans-Golgi auf Zielorte: Lysosomen, Sekretionsvesikel für Exozytose oder direkt zur Plasmamembran. Ohne Golgi würden Proteine unkontrolliert in der Zelle verteilt." }
     ],
     phase4Questions: [
       { id: "zo_mc1", type: "mc", question: "Welche Organellen sind korrekt ihrer Hauptfunktion zugeordnet?", options: [
         { text: "Mitochondrium – oxidative Phosphorylierung (ATP)", correct: true },
         { text: "Lysosom – Abbau durch saure Hydrolasen", correct: true },
-        { text: "Golgi-Apparat – Proteinsortierung und Glykosilierung", correct: true },
+        { text: "Golgi-Apparat – Proteinsortierung und Glykosylierung", correct: true },
         { text: "Glattes ER – Proteinsynthese", correct: false }
-      ]},
+      ]}
+    ]
+  }),
+  makeDetailedPlant({
+    id: "organellen_mitochondrien_lysosomen",
+    title: "Organellen: Mitochondrien und Lysosomen",
+    phase1: {
+      soil: {
+        statement: "Mitochondrien besitzen eine eigene DNA und eigene Ribosomen.",
+        answer: true,
+        solution: "Mitochondrien besitzen eine eigene zirkuläre DNA (mtDNA) und 70S-Ribosomen – Belege für ihre bakterielle Herkunft (Endosymbiosetheorie nach Lynn Margulis). Sie entstanden evolutionär als Endosymbionten alphaproteobakterieller Vorfahren. Mitochondrien teilen sich durch binäre Teilung; ihre mtDNA wird maternal vererbt."
+      },
+      seed: {
+        statement: "Lysosomen bauen aufgenommene Partikel und beschädigte Organellen ab.",
+        answer: true,
+        solution: "Lysosomen enthalten saure Hydrolasen bei einem pH von ca. 4,5 und bauen aufgenommene Partikel (Phagosomen) und beschädigte Organellen ab (Autophagie). Ein Mangel an lysosomalen Enzymen führt zu lysosomalen Speicherkrankheiten."
+      },
+      water: {
+        statement: "Mitochondrien und Lysosomen erfüllen dieselbe Funktion in der Zelle.",
+        answer: false,
+        solution: "Mitochondrien bestehen aus einer äusseren und inneren Membran; die innere Membran ist zu Cristae gefaltet und trägt die Elektronentransportkette. Pro Glukosemolekül entstehen durch oxidative Phosphorylierung ca. 30–32 ATP (moderne Schätzung; ältere Angaben 36–38 gelten als überholt). Lysosomen und Mitochondrien haben damit ganz unterschiedliche Funktionen: Abbau (Lysosom) vs. ATP-Synthese (Mitochondrium)."
+      }
+    },
+    harvestQuestions: [
+      { id: "zo_h3", type: "true_false", statement: "Lysosomen enthalten saure Hydrolasen und bauen zelleigene und aufgenommene Makromoleküle ab.", answer: true, explanation: "Lysosomen haben einen sauren Innen-pH (ca. 4,5–5) und enthalten über 50 verschiedene Hydrolasen (Lipasen, Proteasen, Nukleasen). Sie bauen aufgenommene Partikel (Phagosomen) und beschädigte Organellen (Autophagie) ab. Ein Mangel an lysosomalen Enzymen führt zu sog. lysosomalen Speicherkrankheiten." },
+      { id: "zo_h4", type: "true_false", statement: "Mitochondrien besitzen eine eigene zirkuläre DNA (mtDNA) und 70S-Ribosomen – Belege für ihre bakterielle Herkunft.", answer: true, explanation: "Die Endosymbiosetheorie (Lynn Margulis) erklärt die Mitochondrien als evolutionäre Nachfahren alphaproteobakterieller Endosymbionten. Belege: eigene zirkuläre DNA (wie Bakterien), 70S-Ribosomen (wie Prokaryoten), binäre Teilung, maternale Vererbung der mtDNA, und doppelte Membran." }
+    ],
+    phase4Questions: [
       { id: "zo_mc2", type: "mc", question: "Warum stützt die mitochondriale DNA die Endosymbiosetheorie?", options: [
         { text: "Weil mtDNA zirkulär ist und 70S-Ribosomen besitzt wie Bakterien", correct: true },
         { text: "Weil Mitochondrien-DNA identisch mit der Kern-DNA ist", correct: false },
@@ -412,8 +536,8 @@ const ZYTOLOGIE_1031_PLANTS = [
     ]
   }),
   makeDetailedPlant({
-    id: "zellkern",
-    title: "Zellkern (Nukleus)",
+    id: "zellkern_chromosomen_chromatin",
+    title: "Zellkern: Chromosomen und Chromatin",
     phase1: {
       soil: {
         statement: "Der Zellkern wird als Steuerungszentrum der Zelle beschrieben.",
@@ -423,7 +547,7 @@ const ZYTOLOGIE_1031_PLANTS = [
       seed: {
         statement: "Die im Zellkern lokalisierte Erbinformation ist für Zellprozesse ohne Bedeutung.",
         answer: false,
-        solution: "Der Zellkern enthält das gesamte Erbgut in Form von 46 Chromosomen (44 Autosomen und 2 Gonosomen) und steuert über Genexpression alle wesentlichen Zellprozesse. Das Chromatin im Kern liegt in zwei Zuständen vor: Euchromatin ist aufgelockert und transkriptionsaktiv, Heterochromatin ist dicht kondensiert und weitgehend inaktiv. Kernporen in der Kernhülle regulieren den selektiven Transport von Molekülen zwischen Kern und Zytoplasma, und im Nukleolus werden die ribosomalen RNA-Untereinheiten assembliert. Die Kernform variiert je nach Zelltyp: Erythrozyten sind kernlos, Neutrophile haben mehrlappige Kerne, Skelettmuskelfasern sind vielkernig, weil sie durch Fusion vieler Myoblasten entstehen."
+        solution: "Der Zellkern enthält das gesamte Erbgut in Form von 46 Chromosomen (44 Autosomen und 2 Gonosomen) und steuert über Genexpression alle wesentlichen Zellprozesse. Das Chromatin liegt als Euchromatin (aufgelockert, transkriptionsaktiv) oder Heterochromatin (kondensiert, weitgehend inaktiv) vor. Der Verdichtungsgrad des Chromatins reguliert, welche Gene aktiv sind (epigenetische Regulation)."
       },
       water: {
         statement: "Form und Lage des Zellkerns sind je nach Zelltyp variabel: Erythrozyten sind kernlos, Neutrophile haben mehrlappige Kerne, Muskelzellen haben periphere längliche Kerne.",
@@ -437,16 +561,9 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Euchromatin ist nur in der Mitose sichtbar; Heterochromatin immer", correct: false },
         { text: "Heterochromatin enthält RNA; Euchromatin nur DNA", correct: false },
         { text: "Beide sind funktionell identisch", correct: false }
-      ], explanation: "Euchromatin ('echtes Chromatin') ist aufgelockert und zugänglich für RNA-Polymerase – Gene hier werden aktiv transkribiert. Heterochromatin ist dicht kondensiert und transcriptionsarm. Die Umwandlung zwischen beiden Zuständen reguliert Genexpression (epigenetische Regulation)." },
-      { id: "zk_h2", type: "true_false", statement: "Die Kernporen (nuclear pore complex, NPC) kontrollieren den selektiven Transport zwischen Kern und Zytoplasma.", answer: true, explanation: "Kernporen sind grosse Proteinkomplexe (~120 nm) in der Kernhülle. Kleine Moleküle diffundieren frei; grosse Moleküle (Proteine >40 kDa, mRNA) werden aktiv durch Importine/Exportine unter GTP-Verbrauch transportiert. mRNA verlasst den Kern durch Kernporen; Transkriptionsfaktoren werden aktiv importiert." },
+      ], explanation: "Euchromatin ('echtes Chromatin') ist aufgelockert und zugänglich für RNA-Polymerase – Gene hier werden aktiv transkribiert. Heterochromatin ist dicht kondensiert und transkriptionsarm. Die Umwandlung zwischen beiden Zuständen reguliert Genexpression (epigenetische Regulation)." },
       { id: "zk_h3", type: "true_false", statement: "Skelettmuskelfasern sind vielkernig, weil sie durch Fusion mehrerer Myoblasten entstehen.", answer: true, explanation: "Skelettmuskelfasern entstehen embryonal durch Fusion vieler Myoblasten (Myogenese). Das Ergebnis ist eine polynukleäre Riesenzelle mit bis zu mehreren hundert randständigen Kernen. Diese Vielkernigkeit ist normal und wichtig für die koordinierte Proteinexpression in der langen Faser." },
       { id: "zk_h4", type: "true_false", statement: "Der menschliche Zellkern enthält 46 Chromosomen, davon 44 Autosomen und 2 Gonosomen (Geschlechtschromosomen).", answer: true, explanation: "46 Chromosomen in 23 Paaren: 22 Autosomenpaare (Körperchromosomen, nummeriert 1–22) und 1 Gonosomenpaar (Geschlechtschromosomen: XX bei Frauen, XY bei Männern). Jedes Paar besteht aus einem maternalen und einem paternalen homologen Chromosom." },
-      { id: "zk_h5", type: "mc", question: "Wo werden die Untereinheiten der Ribosomen assembliert?", options: [
-        { text: "Im Nukleolus (innerhalb des Zellkerns)", correct: true },
-        { text: "Im rauen ER", correct: false },
-        { text: "Im Golgi-Apparat", correct: false },
-        { text: "Im Zytosol frei floating", correct: false }
-      ], explanation: "Der Nukleolus ist eine kernplasmische Struktur (ohne Membran), die rDNA-Gene enthält. Hier werden ribosomale RNA (rRNA) transkribiert und mit ribosomalen Proteinen zu 40S- und 60S-Untereinheiten (bei Eukaryoten) vorassembliert, die dann durch Kernporen ins Zytoplasma exportiert werden." },
       { id: "zk_h6", type: "true_false", statement: "Chromatin ist genetisch inaktives Reservematerial im Zellkern ohne Funktion.", answer: false, explanation: "Chromatin ist der funktionelle Zustand der DNA im Kern: Euchromatin ist aufgelockert und transkriptionsaktiv, Heterochromatin ist kondensiert und weitgehend inaktiv. Der Verdichtungsgrad des Chromatins reguliert also, welche Gene aktiv sind – Chromatin ist damit ein zentrales Regulationswerkzeug der Zelle." }
     ],
     phase4Questions: [
@@ -465,23 +582,54 @@ const ZYTOLOGIE_1031_PLANTS = [
     ]
   }),
   makeDetailedPlant({
-    id: "stoffwechsel",
-    title: "Physiologie: Stoffwechsel",
+    id: "zellkern_kernporen_nukleolus",
+    title: "Zellkern: Kernporen und Nukleolus",
+    phase1: {
+      soil: {
+        statement: "Kernporen regulieren den selektiven Transport zwischen Kern und Zytoplasma.",
+        answer: true,
+        solution: "Die Kernhülle besteht aus einer Doppelmembran mit Kernporen (nuclear pore complex, NPC). Kernporen kontrollieren den selektiven Transport zwischen Kern und Zytoplasma: Kleine Moleküle diffundieren frei; grosse Moleküle (Proteine, mRNA) werden aktiv durch Importine/Exportine unter GTP-Verbrauch transportiert."
+      },
+      seed: {
+        statement: "Der Nukleolus ist von einer eigenen Membran umschlossen.",
+        answer: false,
+        solution: "Der Nukleolus ist eine nicht membranumschlossene Struktur innerhalb des Zellkerns. Hier werden ribosomale RNA (rRNA) transkribiert und mit ribosomalen Proteinen zu 40S- und 60S-Untereinheiten vorassembliert. Die fertigen Untereinheiten werden durch Kernporen ins Zytoplasma exportiert."
+      },
+      water: {
+        statement: "mRNA verlässt den Kern durch Kernporen und wird im Zytoplasma am Ribosom translatiert.",
+        answer: true,
+        solution: "mRNA verlässt den Kern durch Kernporen und wird im Zytoplasma am Ribosom translatiert. Transkriptionsfaktoren (Proteine) werden aktiv durch Kernporen importiert. Diese räumliche Trennung von Transkription und Translation ist ein Merkmal aller Eukaryoten."
+      }
+    },
+    harvestQuestions: [
+      { id: "zk_h2", type: "true_false", statement: "Die Kernporen (nuclear pore complex, NPC) kontrollieren den selektiven Transport zwischen Kern und Zytoplasma.", answer: true, explanation: "Kernporen sind grosse Proteinkomplexe (~120 nm) in der Kernhülle. Kleine Moleküle diffundieren frei; grosse Moleküle (Proteine >40 kDa, mRNA) werden aktiv durch Importine/Exportine unter GTP-Verbrauch transportiert. mRNA verlässt den Kern durch Kernporen; Transkriptionsfaktoren werden aktiv importiert." },
+      { id: "zk_h5", type: "mc", question: "Wo werden die Untereinheiten der Ribosomen assembliert?", options: [
+        { text: "Im Nukleolus (innerhalb des Zellkerns)", correct: true },
+        { text: "Im rauen ER", correct: false },
+        { text: "Im Golgi-Apparat", correct: false },
+        { text: "Im Zytosol frei floating", correct: false }
+      ], explanation: "Der Nukleolus ist eine kernplasmische Struktur (ohne Membran), die rDNA-Gene enthält. Hier werden ribosomale RNA (rRNA) transkribiert und mit ribosomalen Proteinen zu 40S- und 60S-Untereinheiten (bei Eukaryoten) vorassembliert, die dann durch Kernporen ins Zytoplasma exportiert werden." }
+    ],
+    phase4Questions: []
+  }),
+  makeDetailedPlant({
+    id: "stoffwechsel_glykolyse_atp",
+    title: "Stoffwechsel: Glykolyse, Zitratzyklus und ATP-Bilanz",
     phase1: {
       soil: {
         statement: "Der zelluläre Stoffwechsel umfasst den Umgang mit Proteinen, Kohlenhydraten, Lipiden, Wasser und Enzymen.",
         answer: true,
-        solution: "Der zelluläre Stoffwechsel umfasst alle biochemischen Reaktionen, durch die Zellen Nährstoffe aufnehmen, umwandeln und verwerten. Proteine, Kohlenhydrate, Lipide, Wasser und Enzyme sind dabei die zentralen Substrate und Werkzeuge dieser Prozesse. Die Glykolyse – der Abbau von Glukose zu Pyruvat – findet ausschliesslich im Zytosol (Zytoplasma) statt und ist sowohl bei Prokaryoten als auch bei Eukaryoten gleich lokalisiert. Der nachfolgende Zitratzyklus (Krebszyklus) und die oxidative Phosphorylierung (Atmungskette) laufen dagegen in der Mitochondrienmatrix bzw. an der inneren Mitochondrienmembran ab."
+        solution: "Der zelluläre Stoffwechsel umfasst alle biochemischen Reaktionen, durch die Zellen Nährstoffe aufnehmen, umwandeln und verwerten. Die Glykolyse – Abbau von Glukose zu Pyruvat – findet ausschliesslich im Zytosol statt (bei Prokaryoten wie Eukaryoten). Der nachfolgende Zitratzyklus und die oxidative Phosphorylierung laufen in der Mitochondrienmatrix bzw. an der inneren Mitochondrienmembran ab."
       },
       seed: {
         statement: "Energieaspekte sind vom zellulären Stoffwechsel getrennt und kein Thema der Zytologie.",
         answer: false,
-        solution: "Energie ist eine zentrale Grösse im Zellstoffwechsel: Katabole Prozesse (Abbau) setzen Energie frei, anabole Prozesse (Aufbau) verbrauchen sie. ATP als universelle Energiewährung der Zelle verbindet beide Seiten des Stoffwechsels miteinander. Bei der vollständigen aeroben Oxidation eines Glukosemoleküls entstehen netto ca. 30–32 ATP (moderne Schätzung unter Berücksichtigung von Membranverlusten; ältere Angaben von 36–38 ATP gelten als überholt). Die Glykolyse allein liefert dabei nur 2 ATP netto; den grossen Rest liefern Zitratzyklus und Atmungskette. Das zentrale Dogma der Molekularbiologie (Crick 1958) beschreibt den Informationsfluss: Replikation (DNA → DNA), Transkription (DNA → mRNA im Zellkern) und Translation (mRNA → Protein am Ribosom)."
+        solution: "Katabole Prozesse (Abbau) setzen Energie frei, anabole Prozesse (Aufbau) verbrauchen sie – ATP verbindet als universelle Energiewährung beide Seiten. Bei der vollständigen aeroben Oxidation eines Glukosemoleküls entstehen ca. 30–32 ATP (moderne Schätzung; ältere Angaben von 36–38 gelten als überholt). Die Glykolyse allein liefert dabei nur 2 ATP netto; den grossen Rest liefern Zitratzyklus und Atmungskette."
       },
       water: {
-        statement: "Stoffwechselvorgänge sind für Zellfunktion und Anpassungsfähigkeit grundlegend.",
-        answer: true,
-        solution: "Ohne funktionierende Stoffwechselprozesse können Zellen nicht überleben, wachsen oder auf Veränderungen reagieren. Essentielle Aminosäuren können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden; beim gesunden Erwachsenen sind es 8 (u. a. Leucin, Tryptophan, Lysin, Valin). Pyruvat aus der Glykolyse wird vor dem Eintritt in den Zitratzyklus durch den Pyruvat-Dehydrogenase-Komplex in der Mitochondrienmatrix zu Acetyl-CoA umgewandelt – mit Freisetzung von CO2 und Gewinnung von NADH; erst Acetyl-CoA tritt in den Zitratzyklus ein."
+        statement: "Pyruvat aus der Glykolyse tritt direkt in den Zitratzyklus ein.",
+        answer: false,
+        solution: "Pyruvat aus der Glykolyse wird vor dem Eintritt in den Zitratzyklus durch den Pyruvat-Dehydrogenase-Komplex zu Acetyl-CoA umgewandelt (oxidative Decarboxylierung mit CO2-Freisetzung und NADH-Gewinnung). Erst Acetyl-CoA tritt in den Zitratzyklus ein. Diese Umwandlung findet in der Mitochondrienmatrix statt."
       }
     },
     harvestQuestions: [
@@ -491,20 +639,13 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Im Zellkern", correct: false },
         { text: "Im rauen ER", correct: false }
       ], explanation: "Die Glykolyse (Abbau von Glukose zu Pyruvat) findet ausschliesslich im Zytosol statt – bei Prokaryoten wie Eukaryoten. Der Zitratzyklus (Pyruvat-Weiterverarbeitung) und die oxidative Phosphorylierung (Atmungskette) sind dagegen auf die Mitochondrien beschränkt." },
-      { id: "sw_h2", type: "mc", question: "Wie viele ATP-Moleküle entstehen netto aus einem Glukosemolekül bei der aeroben Glykolyse (Gesamtbilanz)?", options: [
+      { id: "sw_h2", type: "mc", question: "Wie viele ATP-Moleküle entstehen netto aus einem Glukosemolekül bei der aeroben Oxidation (Gesamtbilanz)?", options: [
         { text: "Ca. 30–32 ATP (bei vollständiger Oxidation inkl. Atmungskette)", correct: true },
         { text: "2 ATP (nur Glykolyse ohne Atmungskette)", correct: false },
         { text: "38 ATP (veraltete Schätzung ohne Membranverluste)", correct: false },
         { text: "Keines – Glykolyse verbraucht ATP", correct: false }
       ], explanation: "Glykolyse allein ergibt netto 2 ATP. Der Zitratzyklus und die oxidative Phosphorylierung liefern den Rest. Moderne Werte liegen bei ca. 30–32 ATP (frühere 36–38 waren Schätzungen ohne Membranpotentialverluste). Bei anaerober Glykolyse entstehen nur 2 ATP." },
-      { id: "sw_h3", type: "true_false", statement: "Essentielle Aminosäuren können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden.", answer: true, explanation: "Von den 20 proteinogenen Aminosäuren sind beim gesunden Erwachsenen 8 essentiell (Valin, Leucin, Isoleucin, Methionin, Threonin, Phenylalanin, Tryptophan, Lysin) – d.h. der Körper kann sie nicht selbst herstellen. 2 weitere gelten als semi-essentiell in bestimmten Lebensphasen (Arginin, Histidin)." },
       { id: "sw_h4", type: "true_false", statement: "Katabolismus bezeichnet den abbauenden, Anabolismus den aufbauenden Teil des Stoffwechsels.", answer: true, explanation: "Katabolismus umfasst alle abbauenden Reaktionen (Glykolyse, Lipolyse, Proteolyse), bei denen komplexe Moleküle aufgespalten und Energie freigesetzt wird. Anabolismus umfasst aufbauende Reaktionen (Proteinsynthese, Glykogensynthese), die Energie verbrauchen und neue Biomoleküle erzeugen." },
-      { id: "sw_h5", type: "mc", question: "Welche Schritte umfasst das 'zentrale Dogma der Molekularbiologie'?", options: [
-        { text: "Replikation (DNA→DNA), Transkription (DNA→RNA), Translation (RNA→Protein)", correct: true },
-        { text: "Replikation, Osmose, Glykolyse", correct: false },
-        { text: "Transkription (RNA→DNA), Translation (Protein→RNA)", correct: false },
-        { text: "Nur Translation (DNA direkt zu Protein)", correct: false }
-      ], explanation: "Das zentrale Dogma (Crick 1958): Replikation = DNA wird zu DNA verdoppelt; Transkription = DNA wird im Kern zu mRNA umgeschrieben (durch RNA-Polymerase); Translation = mRNA wird am Ribosom zu Protein übersetzt. Reverse Transkription (RNA→DNA) ist möglich durch Retroviren, aber nicht der Standardweg." },
       { id: "sw_h6", type: "true_false", statement: "Beim Zitratzyklus (Krebszyklus) wird Pyruvat direkt weiterverarbeitet, ohne vorherige Umwandlung.", answer: false, explanation: "Pyruvat (aus der Glykolyse) wird zuerst durch den Pyruvat-Dehydrogenase-Komplex zu Acetyl-CoA umgewandelt (oxidative Decarboxylierung, mit CO2-Freisetzung und NADH-Gewinnung). Erst Acetyl-CoA tritt in den Zitratzyklus ein. Diese Umwandlung ist ein eigener regulierter Schritt in der Mitochondrienmatrix." }
     ],
     phase4Questions: [
@@ -513,7 +654,39 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Oxidative Phosphorylierung (in der inneren Membran)", correct: true },
         { text: "Glykolyse", correct: false },
         { text: "Proteinsynthese am Ribosom", correct: false }
-      ]},
+      ]}
+    ]
+  }),
+  makeDetailedPlant({
+    id: "stoffwechsel_dogma_aminosaeuren",
+    title: "Stoffwechsel: Zentrales Dogma und essentielle Aminosäuren",
+    phase1: {
+      soil: {
+        statement: "Das zentrale Dogma der Molekularbiologie beschreibt den Informationsfluss in der Zelle.",
+        answer: true,
+        solution: "Das zentrale Dogma der Molekularbiologie (Crick 1958) beschreibt den Informationsfluss in der Zelle: Replikation (DNA → DNA), Transkription (DNA → mRNA im Zellkern) und Translation (mRNA → Protein am Ribosom). Reverse Transkription (RNA→DNA) ist durch Retroviren möglich, aber nicht der Standardweg."
+      },
+      seed: {
+        statement: "Alle 20 Aminosäuren können vom gesunden menschlichen Körper selbst hergestellt werden.",
+        answer: false,
+        solution: "Essentielle Aminosäuren können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden. Beim gesunden Erwachsenen sind 8 Aminosäuren essentiell (u.a. Valin, Leucin, Tryptophan, Lysin, Methionin). 2 weitere gelten als semi-essentiell in bestimmten Lebensphasen (Arginin, Histidin)."
+      },
+      water: {
+        statement: "Stoffwechselvorgänge sind für Zellfunktion und Anpassungsfähigkeit grundlegend.",
+        answer: true,
+        solution: "Ohne funktionierende Stoffwechselprozesse können Zellen nicht überleben, wachsen oder auf Veränderungen reagieren. Proteine, Kohlenhydrate und Lipide sind die zentralen Substrate des Zellstoffwechsels; Enzyme katalysieren die biochemischen Reaktionen. Wasser ist als Lösungsmittel und Reaktionsmedium unverzichtbar."
+      }
+    },
+    harvestQuestions: [
+      { id: "sw_h3", type: "true_false", statement: "Essentielle Aminosäuren können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden.", answer: true, explanation: "Von den 20 proteinogenen Aminosäuren sind beim gesunden Erwachsenen 8 essentiell (Valin, Leucin, Isoleucin, Methionin, Threonin, Phenylalanin, Tryptophan, Lysin) – d.h. der Körper kann sie nicht selbst herstellen. 2 weitere gelten als semi-essentiell in bestimmten Lebensphasen (Arginin, Histidin)." },
+      { id: "sw_h5", type: "mc", question: "Welche Schritte umfasst das 'zentrale Dogma der Molekularbiologie'?", options: [
+        { text: "Replikation (DNA→DNA), Transkription (DNA→RNA), Translation (RNA→Protein)", correct: true },
+        { text: "Replikation, Osmose, Glykolyse", correct: false },
+        { text: "Transkription (RNA→DNA), Translation (Protein→RNA)", correct: false },
+        { text: "Nur Translation (DNA direkt zu Protein)", correct: false }
+      ], explanation: "Das zentrale Dogma (Crick 1958): Replikation = DNA wird zu DNA verdoppelt; Transkription = DNA wird im Kern zu mRNA umgeschrieben (durch RNA-Polymerase); Translation = mRNA wird am Ribosom zu Protein übersetzt. Reverse Transkription (RNA→DNA) ist möglich durch Retroviren, aber nicht der Standardweg." }
+    ],
+    phase4Questions: [
       { id: "sw_mc2", type: "mc", question: "Welche Aussagen zu essentiellen Aminosäuren sind korrekt?", options: [
         { text: "Sie können vom Körper nicht selbst synthetisiert werden", correct: true },
         { text: "Es gibt 8 essentielle Aminosäuren beim gesunden Erwachsenen", correct: true },
@@ -534,7 +707,7 @@ const ZYTOLOGIE_1031_PLANTS = [
       seed: {
         statement: "Bei der Mitose entstehen regelhaft vier haploide Tochterzellen.",
         answer: false,
-        solution: "Mitose führt zu genau zwei genetisch identischen, diploiden Tochterzellen – nicht vier haploide. In der G2-Phase der Interphase werden die replizierte DNA auf Fehler geprüft und Proteine für den Spindelapparat gebildet. Der Spindelapparat selbst besteht aus Mikrotubuli, die von den Zentrosomen an den Zellpolen ausgehen und in der Anaphase die Schwesterchromatiden zu den Polen ziehen. Nach der Kernteilung (Karyokinese) folgt die Zytoplasmateilung (Zytokinese), bei der in tierischen Zellen ein kontraktiler Aktin-Myosin-Ring das Zytoplasma teilt."
+        solution: "Mitose führt zu genau zwei genetisch identischen, diploiden Tochterzellen – nicht vier haploide. In der G2-Phase werden die replizierte DNA auf Fehler geprüft und Spindelproteine gebildet. Der Spindelapparat besteht aus Mikrotubuli von den Zentrosomen; die Zytokinese teilt danach das Zytoplasma durch einen kontraktilen Aktin-Myosin-Ring."
       },
       water: {
         statement: "Prophase, Metaphase, Anaphase und Telophase sind Kernphasen der Mitose.",
@@ -592,7 +765,7 @@ const ZYTOLOGIE_1031_PLANTS = [
       seed: {
         statement: "Meiose kommt nur bei Geschlechtszellen vor.",
         answer: true,
-        solution: "Meiose tritt ausschliesslich in den Keimdrüsengeweben (Hoden, Eierstock) auf. In der Prophase I lagern sich die homologen Chromosomenpaare zusammen (Synapsis) und bilden einen Synaptonemalkomplex. An Überkreuzungsstellen (Chiasmata) findet das Crossing-over statt: homologe DNA-Segmente werden ausgetauscht, was neue Allelkombinationen erzeugt. Die Interkinese zwischen Meiose I und Meiose II enthält keine vollständige DNA-Replikation – die DNA wird also nur einmal repliziert, aber zweimal geteilt."
+        solution: "Meiose tritt ausschliesslich in den Keimdrüsen auf; in der Prophase I lagern sich homologe Chromosomen zusammen (Synapsis) und bilden einen Synaptonemalkomplex. An Chiasmata findet das Crossing-over statt: DNA-Segmente werden ausgetauscht → neue Allelkombinationen. Die Interkinese zwischen Meiose I und II enthält keine vollständige DNA-Replikation – die DNA wird nur einmal repliziert, aber zweimal geteilt."
       },
       water: {
         statement: "Bei der Meiose entstehen aus einer diploiden Zelle vier haploide, nicht erbgleiche Zellen.",
@@ -650,7 +823,7 @@ const ZYTOLOGIE_1031_PLANTS = [
       water: {
         statement: "Es wird zwischen autosomalen und gonosomalen numerischen Aberrationen unterschieden.",
         answer: true,
-        solution: "Autosomale Aberrationen betreffen die Körperchromosomen (1–22), gonosomale die Geschlechtschromosomen (X, Y). Trisomie 21 (Down-Syndrom) ist autosomale Aberration, Turner-Syndrom (45, X0) und Klinefelter-Syndrom (47, XXY) sind gonosomale Aberrationen. Von den autosomalenTrisomien sind nur drei mit dem Leben vereinbar: Trisomie 21 (Down), Trisomie 18 (Edwards-Syndrom) und Trisomie 13 (Patau-Syndrom); alle anderen führen zur Fehlgeburt. Die Monosomie X (Turner, 45, X0) ist die einzige lebensfähige menschliche Monosomie, da Monosomien der Autosomen stets letal sind."
+        solution: "Autosomale Aberrationen betreffen Chromosomen 1–22, gonosomale die Geschlechtschromosomen X/Y. Trisomie 21 (Down) ist autosomal; Turner-Syndrom (45, X0) und Klinefelter-Syndrom (47, XXY) sind gonosomal. Von autosomalenTrisomien sind nur drei mit dem Leben vereinbar: Trisomie 21, 18 (Edwards) und 13 (Patau); die Monosomie X (Turner) ist die einzige lebensfähige menschliche Monosomie."
       }
     },
     harvestQuestions: [
