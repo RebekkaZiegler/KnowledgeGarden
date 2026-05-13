@@ -11277,7 +11277,7 @@ const HORMONSYSTEM_1042_PLANTS = [
       seed: {
         statement: "Hormone sind artspezifisch und wirken deshalb ausschließlich innerhalb derselben Spezies — ein menschliches Hormon hätte in einem Tier keine Wirkung.",
         answer: false,
-        solution: "Hormone sind grundsätzlich NICHT artspezifisch — sie wirken auch in anderen Spezies. Eine wichtige Ausnahme ist das Wachstumshormon (STH = Somatotropin): es ist artspezifisch und wirkt nur beim Menschen. Deshalb wird gentechnisch hergestelltes humanes Wachstumshormon für die Therapie verwendet. Alle anderen klassischen Hormone (Insulin, Schilddrüsenhormone usw.) sind nicht artspezifisch."
+        solution: "Hormone sind grundsätzlich NICHT artspezifisch — sie wirken auch in anderen Spezies. Eine wichtige Ausnahme ist das Wachstumshormon (STH = Somatotropin): es ist artspezifisch und wirkt nur beim Menschen, weshalb gentechnisch hergestelltes humanes Wachstumshormon für die Therapie verwendet wird. Alle anderen klassischen Hormone (Insulin, Schilddrüsenhormone usw.) sind nicht artspezifisch."
       },
       water: {
         statement: "Endokrine Drüsen besitzen keinen Ausführungsgang; sie sezernieren ihre Produkte direkt ins Blut, im Gegensatz zu exokrinen Drüsen (z. B. Speicheldrüsen), die über einen Gang nach außen abgeben.",
@@ -11475,12 +11475,12 @@ const HORMONSYSTEM_1042_PLANTS = [
       soil: {
         statement: "Die Schilddrüse (Glandula thyroidea) ist H-förmig (zwei Lappen + Isthmus), liegt unterhalb des Kehlkopfs und umgibt seitlich die Trachea; sie ist das am stärksten durchblutete Organ des menschlichen Körpers (ca. 5 Liter Blut pro Stunde); ihre Follikelepithelzellen (Thyreozyten) produzieren Thyreoglobulin und daraus T3 (Trijodthyronin) und T4 (Tetrajodthyronin); dafür wird Jod benötigt.",
         answer: true,
-        solution: "T3 ist etwa 5-mal stärker wirksam als T4. T4 kann nach der Sezernierung in T3 umgewandelt werden (periphere Konversion). Die Zahl der Jodatome gibt der Name an: T3 hat 3, T4 hat 4. Wirkungen beider: Steigerung des Grundumsatzes, Erhöhung von Herzfrequenz und Schlagkraft, Förderung von Wachstum und Reifungsprozessen, anabole Wirkung auf die Skelettmuskulatur, Förderung der Gehirnreifung. Außerdem regeln Schilddrüsenhormone Fett- und Wassereinlagerung."
+        solution: "T3 (3 Jodatome) ist ca. 5-mal stärker wirksam als T4 (4 Jodatome); T4 kann nach der Sezernierung peripher in T3 umgewandelt werden. Wirkungen beider: Steigerung des Grundumsatzes, Erhöhung von Herzfrequenz und Schlagkraft, Förderung von Wachstum und Reifungsprozessen, anabole Wirkung auf die Skelettmuskulatur, Förderung der Gehirnreifung sowie Regulation von Fett- und Wassereinlagerung."
       },
       seed: {
         statement: "Die Epiphyse (Zirbeldrüse) produziert lichtunabhängig gleichmäßig Cortisol, das den circadianen Schlaf-Wach-Rhythmus steuert.",
         answer: false,
-        solution: "Falsch in zwei Punkten: Erstens produziert die Epiphyse KEIN Cortisol (das ist die Nebennierenrinde) — sie produziert Melatonin. Zweitens ist Melatonin LICHTABHÄNGIG: Bei Dunkelheit steigt es an (fördert Schlaf), bei Licht sinkt es. Melatonin wird aus Tryptophan gebildet. Die Epiphyse (Zirbeldrüse) ist ca. 12 mm groß, wiegt ca. 170 mg, und liegt zapfenförmig im Gehirn. Bei Ausfall der Epiphyse kann eine Pubertas praecox (vorzeitige Pubertät) entstehen."
+        solution: "Falsch in zwei Punkten: Die Epiphyse produziert kein Cortisol (das ist die Nebennierenrinde), sondern Melatonin (aus Tryptophan); und Melatonin ist lichtabhängig — bei Dunkelheit steigt es an (fördert Schlaf), bei Licht sinkt es. Die Epiphyse (Zirbeldrüse, ca. 12 mm, ca. 170 mg) liegt zapfenförmig im Gehirn; bei ihrem Ausfall kann eine Pubertas praecox (vorzeitige Pubertät) entstehen."
       },
       water: {
         statement: "Calcitonin wird von den C-Zellen der Schilddrüse produziert und ist der Gegenspieler von Parathormon (PTH): es senkt den Kalziumspiegel im Blut durch Einbau von Calcium in die Knochen und Hemmung der Ca-Freisetzung aus Knochen.",
@@ -11579,7 +11579,7 @@ const HORMONSYSTEM_1042_PLANTS = [
       soil: {
         statement: "Die Nebenschilddrüsen (Glandulae parathyreoideae) liegen an der Rückseite der Schilddrüse innerhalb der Organkapsel; durchschnittlich besitzt jeder Mensch vier (Bandbreite 2–12); sie sind ca. 8 mm groß, 30–50 mg schwer und produzieren Parathormon (PTH), das den Kalziumspiegel im Blut erhöht — es ist der Gegenspieler von Calcitonin.",
         answer: true,
-        solution: "Eselsbrücke: 'Parathormon stellt Kalzium parat.' PTH erhöht den Ca²⁺-Spiegel durch: 1. Steigerung der Ca-Aufnahme aus dem Darm, 2. Verminderung der Ausscheidung durch die Niere (gesteigerte Rückresorption), 3. Freisetzung von Calcium aus den Knochen. Gleichzeitig steigert PTH die Phosphatausscheidung durch die Niere. PTH begünstigt zudem die Aktivierung von Vitamin D3: 25-Hydroxycalciferol (Calcidiol = Speicherform) → 1,25-Dihydroxycalciferol (Calcitriol = aktives Vitamin D3). Bei PTH-Ausfall kommt es zur Muskelverkrampfung (Tetanie)."
+        solution: "Eselsbrücke: 'Parathormon stellt Kalzium parat.' PTH erhöht den Ca²⁺-Spiegel durch: 1. Steigerung der Ca-Aufnahme aus dem Darm, 2. Verminderung der renalen Ausscheidung (gesteigerte Rückresorption), 3. Freisetzung von Calcium aus Knochen; gleichzeitig steigert PTH die Phosphatausscheidung und aktiviert Vitamin D3 (25-Hydroxycalciferol → 1,25-Dihydroxycalciferol). Bei PTH-Ausfall sinkt der Calciumspiegel → Muskelverkrampfung (Tetanie)."
       },
       seed: {
         statement: "Der Thymus ist nach der Pubertät das größte lymphatische Organ des Körpers und produziert dann am meisten Thymusfaktoren.",
@@ -11688,7 +11688,7 @@ const HORMONSYSTEM_1042_PLANTS = [
       seed: {
         statement: "Aldosteron wird in der Zona fasciculata der Nebennierenrinde gebildet und wirkt hemmend auf den Natriumhaushalt, indem es Na⁺ vermehrt ausscheidet.",
         answer: false,
-        solution: "Doppelt falsch: Aldosteron wird in der ZONA GLOMERULOSA (äußerste Schicht) gebildet, nicht in der Zona fasciculata. Und es wirkt genau UMGEKEHRT: Aldosteron fördert die Na⁺-RETENTION (Zurückhaltung) und K⁺-Ausscheidung. Na⁺ zieht Wasser nach sich, was den Blutdruck erhöht. Aldosteron ist das wichtigste Mineralokortikoid; sein Gegenspieler für den Wasserhaushalt ist ANF (Atrialer Natriuretischer Faktor des Herzens)."
+        solution: "Doppelt falsch: Aldosteron wird in der ZONA GLOMERULOSA (äußerste Schicht) gebildet, nicht in der Zona fasciculata — und es wirkt genau umgekehrt: Es fördert die Na⁺-RETENTION und K⁺-Ausscheidung; Na⁺ zieht Wasser nach sich, was den Blutdruck erhöht. Aldosteron ist das wichtigste Mineralokortikoid; sein Gegenspieler für den Wasserhaushalt ist ANF (Atrialer Natriuretischer Faktor des Herzens)."
       },
       water: {
         statement: "Cortisol wirkt entzündungshemmend und immunsuppressiv; im Zuckerstoffwechsel steigert es die Gluconeogenese und erhöht damit den Blutzucker, weshalb es als Gegenspieler des Insulins gilt.",
@@ -11787,12 +11787,12 @@ const HORMONSYSTEM_1042_PLANTS = [
       soil: {
         statement: "Das Nebennierenmark (NNM) ist kein klassisches Hormonorgan, sondern ein Ausläufer des vegetativen Nervensystems (Sympathikus); entwicklungsgeschichtlich stammt es vom Ektoderm, während die Nebennierenrinde vom Peritoneum (Bauchfell) abstammt; bei sympathischer Stimulation setzt das NNM die Katecholamine Adrenalin und Noradrenalin ins Blut frei.",
         answer: true,
-        solution: "Die Zellen des NNM entsprechen entwicklungsgeschichtlich einem Ganglion des Sympathikus. Statt elektrischer Weiterleitung schüttet das NNM bei sympathischer Stimulation Katecholamine direkt ins Blut aus. Zu den Katecholaminen gehören: Dopamin, Serotonin, Adrenalin und Noradrenalin. Im NNM werden vor allem Adrenalin und Noradrenalin gebildet. Beide gehören zu den Stresshormonen, die in akuten Situationen mobilisieren ('Fight-or-Flight'). Adrenalin und Noradrenalin sind Teilweise Gegenspieler, können sich aber auch ergänzen."
+        solution: "Die Zellen des NNM entsprechen entwicklungsgeschichtlich einem Ganglion des Sympathikus; statt elektrischer Weiterleitung schüttet das NNM bei sympathischer Stimulation Katecholamine (Dopamin, Serotonin, Adrenalin, Noradrenalin) direkt ins Blut aus. Im NNM werden vor allem Adrenalin und Noradrenalin als Stresshormone gebildet, die in akuten Situationen mobilisieren ('Fight-or-Flight'). Adrenalin und Noradrenalin sind teilweise Gegenspieler, können sich aber auch ergänzen."
       },
       seed: {
         statement: "Noradrenalin weitet die Bronchien und wirkt anregend auf das zentrale Nervensystem (ZNS), während Adrenalin die Herzfrequenz verringert.",
         answer: false,
-        solution: "Genau umgekehrt: ADRENALIN weitet die Bronchien (Bronchodilatation) und regt das ZNS an; NORADRENALIN verengt die Bronchien und hat kaum ZNS-Wirkung. Herzfrequenz: Adrenalin STEIGERT sie (Zeitvolumen und Frequenz↑), Noradrenalin VERRINGERT sie. Beide erhöhen jedoch den Blutdruck (systolisch). Adrenalin senkt dabei den diastolischen Druck (durch periphere Vasodilatation), Noradrenalin erhöht auch den diastolischen Druck."
+        solution: "Genau umgekehrt: ADRENALIN weitet die Bronchien (Bronchodilatation) und regt das ZNS an; NORADRENALIN verengt die Bronchien und hat kaum ZNS-Wirkung. Herzfrequenz: Adrenalin STEIGERT sie, Noradrenalin VERRINGERT sie; beide erhöhen jedoch den systolischen Blutdruck, während Adrenalin den diastolischen Druck senkt und Noradrenalin ihn erhöht."
       },
       water: {
         statement: "Adrenalin und Noradrenalin sind Stresshormone (Katecholamine); sie mobilisieren in akuten Stresssituationen die Energiereserven des Körpers, um angemessen zu reagieren ('Fight-or-Flight'); beide erhöhen den Blutdruck.",
@@ -11891,7 +11891,7 @@ const HORMONSYSTEM_1042_PLANTS = [
       soil: {
         statement: "Im hormonellen Regelkreis stimuliert der Hypothalamus über Releasing-Hormone die Hypophyse, die glandotrope Hormone an periphere Hormondrüsen (Effektorgane) abgibt; sobald die Hormonkonzentration im Blut hoch genug ist, wirkt eine Rückkopplung hemmend auf Hypothalamus und Hypophyse — sie stoppen die Produktion.",
         answer: true,
-        solution: "Regelkreis-Kaskade: ZNS → Hypothalamus (RH/IH) → HVL → glandotrope Hormone → periphere Drüsen → Hormone → Effektorgane; Rückkopplung: periphere Hormone gelangen über Blut zurück zu Hypothalamus und Hypophyse. Bei ausreichender Konzentration: negative Rückkopplung → Produktionsstopp. Bei sinkender Konzentration: Produktion wird wieder aufgenommen. Hypothalamus und HVL sind direkt durch ein Blutgefäßsystem miteinander verbunden."
+        solution: "Regelkreis-Kaskade: ZNS → Hypothalamus (RH/IH) → HVL → glandotrope Hormone → periphere Drüsen → Hormone → Effektorgane; Rückkopplung: periphere Hormone gelangen über das Blut zurück zu Hypothalamus und Hypophyse — bei ausreichender Konzentration negative Rückkopplung → Produktionsstopp, bei sinkender Konzentration Wiederaufnahme der Produktion. Hypothalamus und HVL sind direkt durch ein Pfortadersystem miteinander verbunden."
       },
       seed: {
         statement: "Gewebshormone wie Gastrin, Histamin und Serotonin werden durch den Hypothalamus zentral gesteuert und sind Teil des übergeordneten Regelkreises.",
@@ -11901,7 +11901,7 @@ const HORMONSYSTEM_1042_PLANTS = [
       water: {
         statement: "Beim neuroendokrinen Reflexbogen (Beispiel Stillen) lösen Druckrezeptoren der Brustdrüse über afferente Nervenbahnen die Prolaktinausschüttung (→ Milchproduktion) und Oxytocinausschüttung (→ Milchauspressung) aus; Rückkopplung erfolgt durch Prolaktin selbst, das über Dopamin die eigene Sekretion hemmt.",
         answer: true,
-        solution: "Ablauf des neuroendokrinen Reflexbogens (Stillen): 1. Saugen des Neugeborenen → Druckrezeptoren aktiviert → afferente Nervenbahn → Hypothalamus. 2. Hypothalamus setzt PRH frei → HVL setzt Prolaktin frei → Milchproduktion. 3. Oxytocin wird freigesetzt → Myoepithel der Brustdrüse kontrahiert → Milchauspressung. 4. Erhöhter Prolaktinspiegel → vermehrt Dopamin (= PIH = Prolaktin-Inhibiting-Hormon) → hemmt weitere Prolaktinsekretion (negative Rückkopplung). Dopamin und PIH sind identisch."
+        solution: "Ablauf (Stillen): Saugen des Neugeborenen → Druckrezeptoren → Hypothalamus → PRH → HVL → Prolaktin (Milchproduktion) + Oxytocin → Myoepithel-Kontraktion → Milchauspressung. Erhöhter Prolaktinspiegel → vermehrt Dopamin (= PIH = Prolaktin-Inhibiting-Hormon) → hemmt weitere Prolaktinsekretion (negative Rückkopplung)."
       }
     },
     harvestQuestions: [
@@ -11995,17 +11995,17 @@ const HORMONSYSTEM_1042_PLANTS = [
       soil: {
         statement: "Zur Diagnostik der Schilddrüse gehören: Palpation (von hinten, schluckverschieblich, glatt, nicht höckrig; schlechte Verschieblichkeit → CA-Verdacht), Grundumsatzbestimmung (Spirometrie/Gasanalyse), Hormonmessung im Blut (T3, T4 und TSH), Ultraschall/Röntgen sowie Szintigramm (radioaktives Jod zur Unterscheidung kalter/warmer/heißer Knoten).",
         answer: true,
-        solution: "Schilddrüsenpalpation immer von HINTEN: Patient sitzt, Untersucher tastet von hinten. Befunde: Schlechte Verschieblichkeit = Karzinom-Verdacht (CA!); Knoten = abklären; Schwirren (Vibrationsgefühl) = Überfunktion (Hyperthyreose). Szintigramm: radioaktives Jod wird aufgenommen; heiße Knoten (hohe Aktivität) = meist gutartig; kalte Knoten (keine Aktivität) = Karzinom-Verdacht höher. Blutwerte: T3, T4 (direkte Hormonmessung), TSH (Regelkreis-Aktivität). Grundumsatz: 1 Liter O₂-Verbrauch entspricht ca. 4,8 kcal."
+        solution: "Schilddrüsenpalpation immer von HINTEN: schlechte Verschieblichkeit = Karzinom-Verdacht; Knoten = abklären; Schwirren = Hyperthyreose. Szintigramm (radioaktives Jod): heiße Knoten (hohe Aktivität) = meist gutartig; kalte Knoten (keine Aktivität) = erhöhter Karzinom-Verdacht; Blutwerte: T3, T4, TSH; Grundumsatz: 1 Liter O₂-Verbrauch ≈ 4,8 kcal."
       },
       seed: {
         statement: "Glucosurie (Glucose im Urin) tritt auf, wenn die Nierenschwelle für Glucose von 200 mg/dl überschritten wird; bei Nüchternblutzucker über 100 mg/dl spricht man bereits von einem manifesten Diabetes mellitus.",
         answer: false,
-        solution: "Doppelt falsch: Die Nierenschwelle für Glucose liegt bei NORMAL 160–180 mg/dl (nicht 200 mg/dl). Ein manifester Diabetes mellitus wird diagnostiziert, wenn ZWEIMAL NÜCHTERN ein Wert über 120 mg/dl gemessen wird (nicht 100 mg/dl). Normwert Nüchtern-BZ: 60–100 mg/dl; pathologische Glukosetoleranz: 100–120 mg/dl; manifester Diabetes: >120 mg/dl. Postprandialer BZ (1–2h nach Essen): normal <140 mg/dl, manifester Diabetes: >200 mg/dl."
+        solution: "Doppelt falsch: Die Nierenschwelle liegt bei 160–180 mg/dl (nicht 200 mg/dl); manifester Diabetes wird diagnostiziert, wenn ZWEIMAL NÜCHTERN >120 mg/dl gemessen wird (nicht 100 mg/dl). Normwert Nüchtern-BZ: 60–100 mg/dl; pathologische Glukosetoleranz: 100–120 mg/dl; postprandial (1–2h): normal <140 mg/dl, manifester Diabetes >200 mg/dl."
       },
       water: {
         statement: "Der HbA1c-Wert ist das 'Blutzuckergedächtnis': er gibt den durchschnittlichen Blutzuckerspiegel der letzten 8–10 Wochen wieder; ein guter HbA1c liegt unter 6,5%; dieser Wert ist wichtig zur Langzeitkontrolle des Diabetes mellitus.",
         answer: true,
-        solution: "HbA1c entsteht durch irreversible Glykierung des Hämoglobins (nicht enzymatisch, dauernd bei erhöhtem BZ). Da Erythrozyten ca. 8–12 Wochen leben, spiegelt HbA1c den Durchschnitts-BZ dieser Zeit wider. Bewertung: <6,5% = gut; 6,5–7,5% = mittel; >7,5% = schlecht. Für Diabetes-Diagnostik: Wird zweimal nüchtern ein Wert über 120 mg/dl gemessen → manifester Diabetes. Ergänzende Tests: OGTT (oraler Glucosetoleranztest), Blutzuckerprofil (mehrmals täglich gemessen), Nüchtern-BZ, postprandialer BZ."
+        solution: "HbA1c entsteht durch irreversible Glykierung des Hämoglobins; da Erythrozyten ca. 8–12 Wochen leben, spiegelt HbA1c den Langzeit-Durchschnitts-BZ wider — Bewertung: <6,5% = gut; 6,5–7,5% = mittel; >7,5% = schlecht. Für Diabetes-Diagnostik: zweimal nüchtern >120 mg/dl → manifester Diabetes; ergänzende Tests: OGTT, Blutzuckerprofil, Nüchtern-BZ und postprandialer BZ."
       }
     },
     harvestQuestions: [
@@ -12109,7 +12109,7 @@ const HORMONSYSTEM_1042_PLANTS = [
       water: {
         statement: "Aminosäurederivate entstehen durch Umbildung einzelner Aminosäuren; Tyrosin ist Ausgangsstoff für Dopamin, Serotonin und Noradrenalin; für Schilddrüsenhormone (T3/T4) wird zusätzlich Jod von außen in die Aminosäure eingebaut.",
         answer: true,
-        solution: "Aminosäurederivate sind Abkömmlinge einzelner Aminosäuren: Tyrosin → Dopamin, Serotonin, Noradrenalin (Katecholamine des NNM). Schilddrüsenhormone T3/T4 sind ebenfalls Aminosäurederivate, brauchen aber den Einbau äußerer Stoffe (Jod). Auch Insulin ist ein Eiweißhormon — es besteht aus unterschiedlichen Aminosäuresequenzen (Proteohormon). Merke: Die drei biochemischen Klassen sind 1. Proteohormone (Polypeptide), 2. Steroidhormone (Cholesterin-Grundgerüst) und 3. Aminosäurederivate (Tyrosin-Abkömmlinge + modifizierte AS)."
+        solution: "Aminosäurederivate sind Abkömmlinge einzelner Aminosäuren: Tyrosin → Dopamin, Serotonin, Noradrenalin (Katecholamine des NNM); Schilddrüsenhormone T3/T4 sind ebenfalls Aminosäurederivate, brauchen aber zusätzlich eingebautes Jod. Die drei biochemischen Klassen: 1. Proteohormone (Polypeptide, z. B. Insulin, Glukagon, alle Hypophysenhormone), 2. Steroidhormone (Cholesterin-Grundgerüst, z. B. Cortisol, Testosteron), 3. Aminosäurederivate (Tyrosin-Abkömmlinge + modifizierte AS)."
       }
     },
     harvestQuestions: [
@@ -12198,17 +12198,17 @@ const HORMONSYSTEM_1042_PLANTS = [
       soil: {
         statement: "Das Pankreas (Inselorgan) reagiert ohne zentrale Steuerung direkt auf Blutzuckerveränderungen: B-Zellen produzieren Insulin bei Blutzuckeranstieg (→ Glucoseaufnahme und -oxidation, Glykogenaufbau, Blutzuckersenkung), A-Zellen produzieren Glukagon bei Blutzuckerabfall (→ Glykogenolyse, Gluconeogenese, Blutzuckererhöhung).",
         answer: true,
-        solution: "Das Pankreas (Bauchspeicheldrüse) ist gleichzeitig exokrin (Verdauungsenzyme) und endokrin (Insulinanteil). Die Langerhans-Inseln (Inselorgan) sind die endokrinen Anteile: B-Zellen (Insulin): Glucoseaufnahme in Zellen und Oxidation, Glykogenaufbau → Blutzucker↓. A-Zellen (Glukagon): Glykogenolyse (Glykogen→Glukose) + Gluconeogenese (Aufbau von Zucker aus Nicht-Zuckerstoffen) → Blutzucker↑. Insulin und Glukagon sind klassische Gegenspieler im Blutzuckerhaushalt. Das Pankreas reagiert direkt auf Blutzuckerkonzentrationsänderungen — ohne Hypothalamus-Umweg."
+        solution: "Das Pankreas ist gleichzeitig exokrin (Verdauungsenzyme) und endokrin (Langerhans-Inseln): B-Zellen → Insulin (Glucoseaufnahme, Glykogenaufbau → Blutzucker↓); A-Zellen → Glukagon (Glykogenolyse + Gluconeogenese → Blutzucker↑). Insulin und Glukagon sind klassische Gegenspieler; das Pankreas reagiert direkt auf Blutzuckerkonzentrationsänderungen ohne Hypothalamus-Umweg."
       },
       seed: {
         statement: "Erythropoetin (EPO) wird von den Herzvorhöfen produziert und stimuliert bei erhöhtem Blutdruck die Natriumausscheidung; der Atriale Natriuretische Faktor (ANF) kommt von der Niere.",
         answer: false,
-        solution: "Genau vertauscht: EPO (Erythropoetin) wird von der NIERE produziert — bei Sauerstoffmangel → stimuliert Bildung roter Blutkörperchen (Erythrozyten) im Knochenmark → verbessert O₂-Transport. ANF (Atrialer Natriuretischer Faktor) kommt von den VORHÖFEN des HERZENS — er bewirkt verstärkte Diurese (mehr Urin) und Natriurese (mehr Na⁺-Ausscheidung) → senkt Blutvolumen und Blutdruck. ANF ist Gegenspieler des Aldosterons (das Na⁺ zurückhält). Renin wird ebenfalls von der Niere produziert und ist Teil des RAAS (arbeitet mit Angiotensin II zusammen → Blutdrucksteigerung)."
+        solution: "Genau vertauscht: EPO (Erythropoetin) wird von der NIERE bei Sauerstoffmangel produziert → stimuliert Erythrozytenbildung im Knochenmark → verbessert O₂-Transport. ANF (Atrialer Natriuretischer Faktor) kommt von den VORHÖFEN des HERZENS → bewirkt verstärkte Diurese und Natriurese → senkt Blutvolumen und Blutdruck; ANF ist Gegenspieler des Aldosterons, Renin (Niere) ist Teil des RAAS (→ Blutdrucksteigerung)."
       },
       water: {
         statement: "Östrogene (Ovar/Plazenta) fördern Wachstum der weiblichen Sexualorgane und Proliferation der Uterusschleimhaut; Progesteron/Gestagen wandelt die Schleimhaut in die Sekretionsphase um und erhöht die Basaltemperatur nach dem Eisprung um ca. 0,4°C.",
         answer: true,
-        solution: "Gonaden-Hormone: Testes → Androgene/Testosteron: Wachstum der männlichen Sexualorgane, Spermatogenese, Proteinsynthese (anabole Wirkung). Ovar/Plazenta → Östrogene: Wachstum der weiblichen Sexualorgane, Proliferation der Uterusschleimhaut (Aufbauphase im Zyklus). Gestagen/Progesteron: Umwandlung der Uterusschleimhaut in die Sekretionsphase + Temperaturerhöhung um ca. 0,4°C nach dem Eisprung (= Basaltemperatur → Verhütungsmethode). Gastrointestinale Hormone: G-Zellen (Antrum/Dünndarm) → Gastrin: stimuliert Salzsäuresekretion; I-Zellen (oberer Dünndarm) → Cholecystokinin (CCK): stimuliert Pankreasenzymsekr. + Gallenblasenkontraktion."
+        solution: "Gonaden-Hormone: Testes → Testosteron (Wachstum männlicher Sexualorgane, Spermatogenese, anabole Wirkung); Ovar/Plazenta → Östrogene (Proliferation der Uterusschleimhaut) + Progesteron (Sekretionsphase + Basaltemperaturerhöhung um ca. 0,4°C nach dem Eisprung = Verhütungsmethode). Gastrointestinale Hormone: Gastrin (G-Zellen → Salzsäuresekretion), Cholecystokinin/CCK (I-Zellen → Pankreasenzyme + Gallenblasenkontraktion)."
       }
     },
     harvestQuestions: [
@@ -12524,7 +12524,7 @@ const NERVENSYSTEM_1043_PLANTS = [
       soil: {
         statement: "Das ZNS umfasst Gehirn und Rückenmark; alle 12 Hirnnerven und die 31 Spinalnerven gehören dagegen zum peripheren Nervensystem (PNS).",
         answer: true,
-        solution: "ZNS = Gehirn + Rückenmark. PNS = alle peripheren Nerven (Hirn- und Rückenmarksnerven). Das vegetative NS (Sympathikus + Parasympathikus) ist funktionell ein Teil des PNS. Das somatische NS ist willkürlich, das vegetative NS ist unwillkürlich."
+        solution: "ZNS = Gehirn + Rückenmark; PNS = alle peripheren Nerven (Hirn- und Rückenmarksnerven einschließlich Sympathikus + Parasympathikus). Das somatische NS ist willkürlich, das vegetative NS ist unwillkürlich."
       },
       seed: {
         statement: "Das Stammhirn besteht aus Medulla oblongata, Pons und Cerebellum und enthält Kreislauf- und Atemzentrum sowie die Formatio reticularis, die die Bewusstseinshelligkeit reguliert.",
@@ -12752,7 +12752,7 @@ const NERVENSYSTEM_1043_PLANTS = [
       water: {
         statement: "Das Diencephalon besteht aus 4 Etagen: Epithalamus (Epiphyse/Melatonin), Thalamus (Aufmerksamkeitsfilter), Hypothalamus (vegetative Grundfunktionen) und Metathalamus (Kniehöcker).",
         answer: false,
-        solution: "Das Diencephalon hat FÜNF Etagen: 1. Epithalamus (Epiphyse + Habenulae), 2. Thalamus (Aufmerksamkeitsfilter/Gedächtnis), 3. Subthalamus (Grobmotorik, Nucleus subthalamicus = Luys-Körper), 4. Hypothalamus (Schlaf/Wach, Temperatur, Wasser, Nahrung, Fortpflanzung), 5. Metathalamus (Kniehöcker: visuell + auditiv)."
+        solution: "Das Diencephalon hat FÜNF Etagen: 1. Epithalamus (Epiphyse + Habenulae), 2. Thalamus (Aufmerksamkeitsfilter/Gedächtnis), 3. Subthalamus (Grobmotorik, Nucleus subthalamicus = Luys-Körper), 4. Hypothalamus (Schlaf/Wach, Temperatur, Wasser, Nahrung, Fortpflanzung) und 5. Metathalamus (Kniehöcker: visuell + auditiv)."
       }
     },
     harvestQuestions: [
@@ -12861,7 +12861,7 @@ const NERVENSYSTEM_1043_PLANTS = [
       water: {
         statement: "Das limbische System liegt zwischen Großhirn und Hirnstamm und ist ausschließlich für die Geruchsverarbeitung zuständig; sein Wirkungsgebiet hat keinen Einfluss auf Emotionen oder das Gedächtnis.",
         answer: false,
-        solution: "Das limbische System ('Reptiliengehirn') hat vielfältige Funktionen: affektive Bewertung von Erlebnissen → Langzeitgedächtnisbildung, vegetative Reaktionen bei Emotionen (Herzschlag, Blutdruck), Geruchserinnerung, Triebverhalten. Es verbindet mit Hypothalamus und Formatio reticularis. Psychopharmaka wirken hier."
+        solution: "Das limbische System ('Reptiliengehirn') hat vielfältige Funktionen: affektive Bewertung von Erlebnissen → Langzeitgedächtnisbildung, vegetative Reaktionen bei Emotionen (Herzschlag, Blutdruck), Geruchserinnerung, Triebverhalten; es verbindet mit Hypothalamus und Formatio reticularis, weshalb Psychopharmaka hier ansetzen."
       }
     },
     harvestQuestions: [
@@ -13183,7 +13183,7 @@ const NERVENSYSTEM_1043_PLANTS = [
       seed: {
         statement: "Die Substantia alba (weiße Substanz) besteht aus markhaltigen Axonen und liegt im Großhirn außen als Kortex; die Substantia grisea (graue Substanz) besteht aus Nervenzellkörpern und liegt im Großhirn innen.",
         answer: false,
-        solution: "Vertauscht: Im Großhirn liegt die graue Substanz AUSSEN als Kortex, die weiße Substanz INNEN. Im Rückenmark ist es genau umgekehrt: grau innen (Schmetterlingsform), weiß außen. Die weiße Farbe der Substantia alba kommt vom hohen Eiweißgehalt der Lipoprotein-Myelinscheide."
+        solution: "Vertauscht: Im Großhirn liegt die graue Substanz AUSSEN als Kortex, die weiße Substanz INNEN; im Rückenmark ist es genau umgekehrt: grau innen (Schmetterlingsform), weiß außen. Die weiße Farbe der Substantia alba kommt vom hohen Eiweißgehalt der Lipoprotein-Myelinscheide."
       },
       water: {
         statement: "Die Großhirnrinde ist aus 6 Schichten (Laminae) aufgebaut; die Lamina pyramidalis (Schicht III) besteht aus pyramidenförmig angeordneten Neuronen und ist vor allem für motorische Bereiche (Willkürbewegungen) zuständig.",
