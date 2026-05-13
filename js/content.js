@@ -8767,7 +8767,7 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       soil: {
         statement: "Das Pankreas gliedert sich makroskopisch in Kopf (Caput), Körper (Corpus) und Schwanz (Cauda); seine Gesamtlänge beträgt 13–20 cm bei einem Gewicht von 70–100 g.",
         answer: true,
-        solution: "Das Pankreas ist ein unpaariges, primär exokrines Organ. Der Pankreaskopf liegt im hufeisenförmigen Bogen der Duodenalschlinge. Mikroskopisch bilden Acini (beerenförmig, je ca. 70 Acinuszellen) die exokrine Grundeinheit — ihre Gesamtheit ist das exokrine Pankreas. Die Blutversorgung erfolgt aus Ästen des Truncus coeliacus und der A. mesenterica superior; das venöse Blut fließt über die Pfortaderbahnen ab."
+        solution: "Das Pankreas ist ein unpaariges, primär exokrines Organ; der Pankreaskopf liegt im hufeisenförmigen Bogen der Duodenalschlinge. Mikroskopisch bilden Acini (beerenförmig, je ca. 70 Acinuszellen) die exokrine Grundeinheit. Die Blutversorgung erfolgt aus Ästen des Truncus coeliacus und der A. mesenterica superior; venöses Blut fließt über die Pfortaderbahnen ab."
       },
       seed: {
         statement: "Der endokrine Anteil der Bauchspeicheldrüse macht den Hauptteil des Gewebes aus und ist für die Produktion von Verdauungsenzymen zuständig.",
@@ -8866,7 +8866,7 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       soil: {
         statement: "Proteine bestehen hauptsächlich aus Kohlenstoff, Sauerstoff, Wasserstoff und Stickstoff; ihre Bausteine sind Aminosäuren, die durch Peptidbindungen verknüpft sind.",
         answer: true,
-        solution: "Proteine sind Aufbaustoffe mit vielfältigen Aufgaben: Bau- und Reparaturstoff (Muskeln, Blut, Enzyme, Hormone), Ausgangsstoffe für Katecholamine (Adrenalin, Dopamin), Serotonin und Gewebshormone. Tierische Quellen: Fleisch, Milch, Käse, Eier, Fisch. Pflanzliche Quellen: Soja, Nüsse, Bohnen, Hafer, Pilze. Resorption im oberen Jejunum durch passive Diffusion und aktiven Transport. 1 g EW = 4,1 kcal; Mindestbedarf 0,5 g/kg KG/Tag."
+        solution: "Proteine sind Aufbaustoffe mit vielfältigen Aufgaben: Bau- und Reparaturstoff (Muskeln, Blut, Enzyme, Hormone), Ausgangsstoffe für Katecholamine (Adrenalin, Dopamin), Serotonin und Gewebshormone. Quellen: tierisch (Fleisch, Milch, Käse, Eier, Fisch) und pflanzlich (Soja, Nüsse, Bohnen, Hafer, Pilze); Resorption im oberen Jejunum durch passive Diffusion und aktiven Transport. 1 g EW = 4,1 kcal; Mindestbedarf 0,5 g/kg KG/Tag."
       },
       seed: {
         statement: "Erwachsene können intakte native Proteinmoleküle direkt aus dem Darm resorbieren, ohne dass eine enzymatische Aufspaltung notwendig ist.",
@@ -8876,7 +8876,7 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       water: {
         statement: "Der tägliche Eiweißmindestbedarf liegt bei ca. 0,5 g/kg KG/Tag; für normale Leistungsfähigkeit werden 0,8–1 g/kg benötigt. 1 g Eiweiß liefert 4,1 kcal.",
         answer: true,
-        solution: "Die Umsatzrate körpereigener Aminosäuren beträgt im Durchschnitt 80–100 g/Tag. Körpereigene und darmresorbierte AS sind biochemisch identisch — sie bilden gemeinsam den Aminosäurenpool. Der tägliche EW-Bedarf deckt ca. 10–15% des Energiebedarfs. In der Niere werden die meisten aus dem Blut filtrierten Aminosäuren rückresorbiert."
+        solution: "Die Umsatzrate körpereigener Aminosäuren beträgt im Durchschnitt 80–100 g/Tag; körpereigene und darmresorbierte AS sind biochemisch identisch und bilden gemeinsam den Aminosäurenpool. Der tägliche EW-Bedarf deckt ca. 10–15% des Energiebedarfs. In der Niere werden die meisten aus dem Blut filtrierten Aminosäuren rückresorbiert."
       }
     },
     harvestQuestions: [
@@ -8965,12 +8965,12 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       soil: {
         statement: "Fette (Lipide) dienen als Energielieferant (1 g = 9,3 kcal), Reservestoff und Aufbaustoff; der tägliche Fettbedarf liegt bei ca. 25–30% des Energiebedarfs.",
         answer: true,
-        solution: "Die tägliche Fettaufnahme beträgt ca. 60–100 g. Hauptbestandteil sind Neutralfette (Triglyceride, 90%); dazu kommen Phospholipide, Cholesterinester und die fettlöslichen Vitamine E, D, A und K. Ca. 95% der Nahrungsfette werden im Dünndarm absorbiert. Man unterscheidet gesättigte, einfach ungesättigte und mehrfach ungesättigte Fettsäuren (essenziell). Strukturlipide sind Bestandteile der Zellmembran; Neutralfette werden in Fettdepots gespeichert."
+        solution: "Die tägliche Fettaufnahme beträgt ca. 60–100 g; Hauptbestandteil sind Neutralfette (Triglyceride, 90%), dazu Phospholipide, Cholesterinester und fettlösliche Vitamine (E, D, A, K). Man unterscheidet gesättigte, einfach ungesättigte und mehrfach ungesättigte Fettsäuren (letztere essenziell); ca. 95% der Nahrungsfette werden im Dünndarm absorbiert. Strukturlipide sind Bestandteile der Zellmembran; Neutralfette werden in Fettdepots gespeichert."
       },
       seed: {
         statement: "Fette werden im Magen durch Gallensäure chemisch emulgiert und können dort zu fast 100% resorbiert werden.",
         answer: false,
-        solution: "Die chemische Emulgierung erfolgt nicht im Magen, sondern im Dünndarm durch Gallensäure (Bildung von Mizellen). Im Magen findet nur eine mechanische Emulgierung statt. Gastrische Lipase spaltet lediglich 10–30% der Fette. 70–90% werden erst im Duodenum und oberen Jejunum verdaut und zu ca. 95% insgesamt resorbiert."
+        solution: "Die chemische Emulgierung erfolgt nicht im Magen, sondern im Dünndarm durch Gallensäure (Bildung von Mizellen); im Magen findet nur mechanische Emulgierung statt und gastrische Lipase spaltet lediglich 10–30% der Fette. Die restlichen 70–90% werden im Duodenum und oberen Jejunum verdaut. Insgesamt werden ca. 95% der Nahrungsfette resorbiert."
       },
       water: {
         statement: "Langkettige Fettsäuren werden in Enterozyten zu Triglyceriden aufgebaut, als Chylomikronen über die Lymphgefäße und den Ductus thoracicus in den Blutkreislauf eingeschleust; kurz-/mittelkettige Fettsäuren gelangen direkt über die Pfortader zur Leber.",
@@ -9064,7 +9064,7 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       soil: {
         statement: "Die Kohlenhydratverdauung beginnt bereits im Mund durch Ptyalin (Alpha-Amylase der Parotis); im Duodenum setzt Pankreas-Amylase die Aufspaltung fort, bis im Dünndarm Monosaccharide resorbiert werden.",
         answer: true,
-        solution: "Kohlenhydrate decken 50–60% des Kalorienbedarfs (1 g KH = 4,2 kcal). Polysaccharide → müssen zu Monosacchariden aufgespalten werden. Im Mund: Ptyalin (Alpha-Amylase) → Stärke zu Oligo-/Disacchariden. Im Duodenum: Pankreas-Alpha-Amylase → Dextrine + Maltose. Im Dünndarm: Maltase (Maltose → 2 Glucose), Saccharase (Saccharose → Glucose + Fruktose), Lactase aus Darmkrypten (Lactose → Galaktose + Glucose). Resorption: Monosaccharide → Pfortader → Blutkreislauf."
+        solution: "Kohlenhydrate decken 50–60% des Kalorienbedarfs (1 g KH = 4,2 kcal); Polysaccharide müssen schrittweise zu Monosacchariden aufgespalten werden: Mund (Ptyalin/Alpha-Amylase → Oligo-/Disaccharide), Duodenum (Pankreas-Alpha-Amylase → Dextrine + Maltose). Im Dünndarm spalten Maltase (Maltose → 2 Glucose), Saccharase (Saccharose → Glucose + Fruktose) und Lactase (Lactose → Galaktose + Glucose) die Reste. Die Monosaccharide werden dann über die Pfortader in den Blutkreislauf abgegeben."
       },
       seed: {
         statement: "Im Magen findet eine aktive enzymatische Kohlenhydratverdauung statt — Magensaft enthält ein spezifisches Kohlenhydrat-spaltendes Enzym.",
@@ -9267,7 +9267,7 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       soil: {
         statement: "Die Pankreaslipase ist das wichtigste Enzym der Fettverdauung; sie wird aktiv sezerniert, benötigt aber die Anwesenheit von Gallensäure als Emulgator zur Wirkungsentfaltung.",
         answer: true,
-        solution: "Fettspaltende Enzyme (Lipasen): Pankreaslipase, Phospholipasen (Lecithinasen) und Esterasen. Pankreaslipase ist das bedeutendste — ihr stündlicher Ausstoß reicht, um 175 g Olivenöl zu verdauen. Sie benötigt Gallensäure als Emulgator (Mizellen bieten große Angriffsfläche). Phospholipase hingegen wird inaktiv sezerniert und durch Trypsin im Duodenum aktiviert. Sie ist erst im Duodenum tätig."
+        solution: "Fettspaltende Enzyme sind Pankreaslipase, Phospholipasen (Lecithinasen) und Esterasen; die Pankreaslipase ist das bedeutendste — ihr stündlicher Ausstoß reicht, um 175 g Olivenöl zu verdauen, benötigt aber Gallensäure als Emulgator (Mizellen bieten große Angriffsfläche). Phospholipase hingegen wird inaktiv sezerniert und erst im Duodenum durch Trypsin aktiviert. Beide Enzyme ergänzen sich bei der vollständigen Fettverdauung im Dünndarm."
       },
       seed: {
         statement: "Phospholipase wird aktiv sezerniert und ist bereits im Magen an der Fettverdauung beteiligt.",
@@ -9277,7 +9277,7 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       water: {
         statement: "Nukleinsäurespaltende Enzyme (Ribonuklease, Desoxyribonuklease) zerlegen Nukleinsäuren schrittweise zu Ribosen sowie Purin- und Pyrimidinbasen, die aktiv transportiert und für den Aufbau neuer Nukleinsäuren genutzt werden.",
         answer: true,
-        solution: "Das Pankreas produziert Ribonuklease (spaltet RNA) und Desoxyribonuklease (spaltet DNA). Nach Aufspaltung der Nukleinsäuren im Darm zerlegen Enzyme der Schleimhautoberfläche weiter in Nucleosid + Phosphorsäure. Aus Nucleosiden entstehen schließlich Ribosen sowie Purin- und Pyrimidinbasen. Diese werden durch aktive Transportmechanismen resorbiert und dienen dem Aufbau neuer Nukleinsäuren."
+        solution: "Das Pankreas produziert Ribonuklease (spaltet RNA) und Desoxyribonuklease (spaltet DNA); Enzyme der Schleimhautoberfläche zerlegen die Spaltprodukte weiter in Nucleoside + Phosphorsäure, woraus schließlich Ribosen sowie Purin- und Pyrimidinbasen entstehen. Diese werden durch aktive Transportmechanismen resorbiert und dienen dem Aufbau neuer Nukleinsäuren."
       }
     },
     harvestQuestions: [
@@ -9366,17 +9366,17 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       soil: {
         statement: "Das exokrine Pankreas produziert täglich 1,2–2 Liter Pankreassaft mit einem pH von ca. 8; der hohe Bikarbonatanteil neutralisiert den sauren Chymus im Duodenum.",
         answer: true,
-        solution: "Pankreassaft ist blut-isoton (pH 8–8,4). Kationen: Na, K, Ca, Mg. Anionen: Bikarbonat (HCO₃), Cl, SO₄, HPO₄. 95% des Bikarbonats stammt aus dem Blut. Er enthält Enzyme und Proenzyme (Trypsinogen, Chymotrypsinogen, Procarboxypeptidasen, Proelastase, Ribonuklease, Lecithinase A, Pankreas-Lipase, Pankreas-Alpha-Amylase, Albumin, Globuline). Der Duodenalinhalt hat physiologisch pH 6,0–7,0; am Jejunum ist der Speisebrei nahezu neutral."
+        solution: "Pankreassaft ist blut-isoton (pH 8–8,4); Kationen: Na, K, Ca, Mg; Anionen: Bikarbonat (HCO₃, 95% aus dem Blut), Cl, SO₄, HPO₄. Er enthält Enzyme und Proenzyme (Trypsinogen, Chymotrypsinogen, Procarboxypeptidasen, Proelastase, Ribonuklease, Lecithinase A, Pankreas-Lipase, Pankreas-Alpha-Amylase). Das Bikarbonat neutralisiert den sauren Chymus im Duodenum auf pH 6,0–7,0; am Jejunum ist der Speisebrei nahezu neutral."
       },
       seed: {
         statement: "Die Hauptsekretion des Pankreassafts erfolgt in der kephalischen Phase durch Geruchs- und Geschmacksreize über den N. vagus.",
         answer: false,
-        solution: "Die Hauptsekretion erfolgt in der intestinalen Phase, wenn Chymus das Duodenum erreicht. Die kephalische Phase (N. vagus: Geschmack, Geruch, Anblick, Vorstellung von Speisen) leitet nur die Basissekretion ein. Die gastrische Phase (Speisebrei → Magen → Gastrin) regt die Pankreassaftsekretion ebenfalls an. In der intestinalen Phase sind Sekretin (pH < 4,5 → S-Zellen des Duodenums) und CCK die entscheidenden Regulatoren."
+        solution: "Die Hauptsekretion erfolgt in der intestinalen Phase, wenn Chymus das Duodenum erreicht; die kephalische Phase (N. vagus: Geschmack, Geruch, Anblick) leitet nur die Basissekretion ein und die gastrische Phase (Gastrin) regt die Pankreassaftsekretion ebenfalls an. In der intestinalen Phase sind Sekretin (pH < 4,5 → S-Zellen des Duodenums → Bikarbonat) und CCK (fettreicher Chymus → Enzyme) die entscheidenden Regulatoren."
       },
       water: {
         statement: "Sekretin wird in den S-Zellen des Duodenums bei pH < 4,5 freigesetzt, stimuliert die Bikarbonatsekretion des Pankreas, hemmt die Magensaftproduktion — und CCK stimuliert zusätzlich die Gallenblasenkontraction.",
         answer: true,
-        solution: "Sekretin (aus S-Zellen des Duodenums): Reiz = Fette + niedriger pH. Über den Blutweg → Pankreas → fördert Pankreassaft + Bikarbonat; hemmt Magensaftproduktion. CCK (Cholecystokinin, Pankreomyzin; aus endokrinen Zellen): Reiz = fettreicher Speisebrei → Enzymanreicherung des Pankreassafts + Gallenblasenkontraction. Die Regulation erfolgt also nerval (N. vagus) + humoral (Sekretin, CCK, Gastrin, Caerulein)."
+        solution: "Sekretin (aus S-Zellen des Duodenums; Reiz: niedriger pH + Fette) gelangt über den Blutweg zum Pankreas → fördert Bikarbonatsekretion und hemmt Magensaftproduktion. CCK (Cholecystokinin/Pankreomyzin; Reiz: fettreicher Speisebrei) bewirkt Enzymanreicherung des Pankreassafts und Gallenblasenkontraction. Die Regulation erfolgt also nerval (N. vagus) und humoral (Sekretin, CCK, Gastrin, Caerulein)."
       }
     },
     harvestQuestions: [
@@ -9465,17 +9465,17 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       soil: {
         statement: "Die Langerhans-Inseln enthalten drei Zelltypen: B-Zellen (75%, produzieren Insulin), A-Zellen (20%, produzieren Glukagon) und D-Zellen (5%, produzieren Somatostatin).",
         answer: true,
-        solution: "Jede Insel wird von einer eigenen Arteriole versorgt (→ Kapillarnetz); das abfließende Blut geht über die Pfortader zur Leber. Insulin wird im ER der B-Zellen gebildet → Golgi-Apparat → Basalmembran → Blutkreislauf. Ausgeschüttet bei steigender Glukosekonzentration. Insulinrezeptoren sitzen auf Zellmembranen; Insulin wirkt ohne in die Zelle zu gelangen. Halbwertzeit ca. 15 Min (Abbau durch Insulinasen); Tagesbedarf ca. 40 IE."
+        solution: "Jede Insel wird von einer eigenen Arteriole versorgt; das abfließende Blut geht über die Pfortader zur Leber. Insulin wird im ER der B-Zellen gebildet → Golgi-Apparat → Blutkreislauf; Insulinrezeptoren sitzen auf Zellmembranen (Insulin wirkt ohne in die Zelle zu gelangen), Halbwertzeit ca. 15 Min (Abbau durch Insulinasen), Tagesbedarf ca. 40 IE. Ausgeschüttet wird Insulin bei steigender Glukosekonzentration über einen direkten Rückkopplungsmechanismus."
       },
       seed: {
         statement: "Glukagon ist das einzige blutzuckersenkende Hormon im menschlichen Körper und wird bei steigender Glukosekonzentration aus den A-Zellen ausgeschüttet.",
         answer: false,
-        solution: "Insulin ist das einzige blutzuckersenkende Hormon — und wird bei steigender Glukosekonzentration ausgeschüttet. Glukagon ist sein Antagonist: Es erhöht den Blutzucker (katabol: Glykogenolyse, Gluconeogenese, Fettabbau, ↑Stoffwechselrate, ↑Herzschlagstärke). Halbwertzeit Glukagon: 5–10 Min. Gegenspieler des Insulins sind auch: STH, ACTH, Corticosteroide, Adrenalin, Thyroxin."
+        solution: "Insulin ist das einzige blutzuckersenkende Hormon und wird bei steigender Glukosekonzentration ausgeschüttet. Glukagon ist sein direkter Antagonist: Es erhöht den Blutzucker (katabol: Glykogenolyse, Gluconeogenese, Fettabbau, ↑Stoffwechselrate, ↑Herzschlagstärke; HWZ 5–10 Min). Weitere Gegenspieler des Insulins sind STH, ACTH, Corticosteroide, Adrenalin und Thyroxin."
       },
       water: {
         statement: "Insulin und Glukagon regulieren antagonistisch den Blutzucker: Glukagon fördert Glykogenabbau und Gluconeogenese (Blutzucker ↑), Insulin fördert Glykogensynthese, Glucoseaufnahme ins Gewebe und blockiert Glukoneogenese (Blutzucker ↓).",
         answer: true,
-        solution: "Insulin-Wirkungen: Fettgewebe (↑Glucoseeinstrom, ↑Fettsäuresynthese, ↑Triglyceridspeicherung, Aktivierung Lipoproteinlipase); Muskel (↑Glucoseeinstrom, ↑Glykogensynthese, ↑Aminosäureaufnahme, ↓Proteinabbau). Kontrolle durch direkten Rückkopplungsmechanismus (Regelkreis): Blutzucker ↑ → Insulinsekretion ↑. Weitere Insulinantagonisten: STH, ACTH, Corticosteroide, Adrenalin, Thyroxin."
+        solution: "Insulin-Wirkungen: Fettgewebe (↑Glucoseeinstrom, ↑Fettsäuresynthese, ↑Triglyceridspeicherung, Aktivierung Lipoproteinlipase) und Muskel (↑Glucoseeinstrom, ↑Glykogensynthese, ↑Aminosäureaufnahme, ↓Proteinabbau). Die Blutzuckerregelung erfolgt über direkten Rückkopplungsmechanismus: Blutzucker ↑ → Insulinsekretion ↑; Blutzucker ↓ → Glukagonsekretion ↑. Insulinantagonisten sind Glukagon sowie STH, ACTH, Corticosteroide, Adrenalin und Thyroxin."
       }
     },
     harvestQuestions: [
@@ -9575,7 +9575,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       soil: {
         statement: "Die Leber ist das größte Stoffwechselorgan und die größte exokrine Drüse des Körpers; sie wiegt ca. 1,5 kg (23×18×9 cm) und liegt im rechten Oberbauch unterhalb des Zwerchfells; ihre Perfusion beträgt ca. 2 l/min (gesamtes Blut passiert die Leber in ca. 3 Minuten).",
         answer: true,
-        solution: "Von ventral sind zwei große Lappen sichtbar: Lobus hepatis dexter und sinister, getrennt durch das Ligamentum falciforme hepatis (sichelförmig, war Ductus venosus). Von visceral kommen Lobus caudatus (oben) und Lobus quadratus (unten) hinzu. Das Ligamentum teres hepatis (rundes Leberband, Fortsetzung des Lig. falciforme, aus Nabelvenenstrang) liegt dorsal. Die Porta hepatis (Leberhilus) liegt auf der visceralen Seite in H-Form: Eintritt der Vena portae und Arteria hepatica, Austritt des Ductus hepaticus. Bei tiefer Einatmung wird die Leber ca. 2 Querfinger nach unten gedrückt."
+        solution: "Von ventral sind zwei Lappen sichtbar: Lobus hepatis dexter und sinister, getrennt durch das Ligamentum falciforme hepatis (sichelförmig, war Ductus venosus); von visceral kommen Lobus caudatus (oben) und Lobus quadratus (unten) hinzu. Die Porta hepatis (Leberhilus) liegt auf der visceralen Seite in H-Form: Eintritt der Vena portae und Arteria hepatica, Austritt des Ductus hepaticus. Das Ligamentum teres hepatis (dorsal, aus Nabelvenenstrang) liegt auf der Rückseite; bei tiefer Einatmung wird die Leber ca. 2 Querfinger nach unten gedrückt."
       },
       seed: {
         statement: "Von der Vorderseite (ventral) der Leber lassen sich vier Lappen unterscheiden: Lobus dexter, sinister, caudatus und quadratus.",
@@ -9585,7 +9585,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       water: {
         statement: "An der Porta hepatis treten die Vena portae und die Arteria hepatica in die Leber ein; der Ductus hepaticus (Gallengang) verlässt dort die Leber; der Ductus hepaticus ist kein Gefäß, sondern der gemeinsame Zusammenschluss aller Gallenkanälchen.",
         answer: true,
-        solution: "Die Porta hepatis liegt auf der visceralen Seite als Querverbindung in H-Form (zwischen zwei Furchen). Rechte Furche: vorne Gallenblase, hinten V. cava inferior. Linke Furche: Reste fetaler Gefäße. Die drei Strukturen der Porta hepatis: Vena portae (führt venöses Blut aus unpaaren Baucheingeweiden zur Leber), Arteria hepatica (vom Truncus coeliacus, arterielle Versorgung) und Ductus hepaticus (tritt aus — kein Gefäß im klassischen Sinne). Im Lobus dexter: Segmenta anterior + posterior; im Lobus sinister: Segmenta laterale + mediale."
+        solution: "Die Porta hepatis liegt auf der visceralen Seite als H-förmige Querverbindung: rechte Furche (vorne Gallenblase, hinten V. cava inferior), linke Furche (Reste fetaler Gefäße). An der Porta hepatis treten Vena portae (venöses Blut aus unpaaren Baucheingeweiden) und Arteria hepatica (vom Truncus coeliacus) ein; der Ductus hepaticus tritt aus. Im Lobus dexter: Segmenta anterior + posterior; im Lobus sinister: Segmenta laterale + mediale."
       }
     },
     harvestQuestions: [
@@ -9674,7 +9674,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       soil: {
         statement: "Die Leber synthetisiert fast alle Plasmaproteine: Albumin (mengenmäßig dominierend, volumenstabilisierender Effekt durch onkotischen Druck, Transport von Farbstoffen, freien Fettsäuren, Salzen, Hormonen und Pharmaka), Gerinnungsfaktoren (fast ausschließlich), Transferrin (Eisentransport) und CRP (Akute-Phase-Protein).",
         answer: true,
-        solution: "Albumin ist das wichtigste Transportprotein im Blut und bindet nicht-wasserlösliche Substanzen aus dem Intestinalflüssigkeitsraum, die dann in der Leber durch Kopplung an Glucuronsäure oder Schwefelsäure wasserlöslich und ausscheidbar werden. Fibrinogen (Faktor I) wird im retikuloendothelialen System der Leber gebildet; Prothrombin (Faktor II) unter Einfluss von Vitamin K. Transferrin dient dem Eisentransport. Das CRP setzt humorale und zelluläre Abwehrprozesse in Gang. Weitere leberspezifische Enzyme: Plasmacholinesterase, AST/ASAT (= GOT), ALT/ALAT (= GPT), Alkalische Phosphatase (AP)."
+        solution: "Albumin ist das wichtigste Transportprotein im Blut (onkotischer Druck, Transport von Fettsäuren, Hormonen, Pharmaka); Fibrinogen (Faktor I) und Prothrombin (Faktor II, Vitamin-K-abhängig) werden fast ausschließlich in der Leber gebildet. Transferrin dient dem Eisentransport; CRP setzt humorale und zelluläre Abwehrprozesse in Gang. Weitere leberspezifische Enzyme: Plasmacholinesterase, AST/ASAT (= GOT), ALT/ALAT (= GPT), Alkalische Phosphatase (AP)."
       },
       seed: {
         statement: "Immunglobuline werden fast ausschließlich in der Leber gebildet und machen einen Großteil der Plasmaproteine aus.",
@@ -9684,7 +9684,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       water: {
         statement: "Im Harnstoffzyklus wandelt die Leber giftiges Ammoniak (Endprodukt des Eiweißabbaus durch Darmbakterien) in ungiftigen Harnstoff um, der dann über die Niere ausgeschieden wird; bei schweren Lebererkrankungen steigt der Ammoniakspiegel und verursacht hepatische Enzephalopathie.",
         answer: true,
-        solution: "Ammoniak entsteht durch den Eiweißstoffwechsel und den bakteriellen Abbau von Aminosäuren im Darm. Es hat eine neurotoxische Wirkung und kann über die Blut-Hirn-Schranke ins ZNS gelangen. Die Harnstoffsynthese vollzieht sich fast ausschließlich in der Leber. Bei Leberversagen: Harnstoffsynthese ↓ → Ammoniak ↑ → hepatische Enzephalopathie. Die Gluconeogenese (Neubildung von Glucose aus Aminosäuren, z. B. bei Hungerstress) ist ebenfalls eine wichtige Funktion der Leber im Eiweißstoffwechsel."
+        solution: "Ammoniak entsteht durch bakteriellen Abbau von Aminosäuren im Darm, ist neurotoxisch und kann über die Blut-Hirn-Schranke ins ZNS gelangen; der Harnstoffzyklus läuft fast ausschließlich in der Leber ab. Bei Leberversagen sinkt die Harnstoffsynthese → Ammoniak ↑ → hepatische Enzephalopathie. Die Gluconeogenese (Neubildung von Glucose aus Aminosäuren, z. B. bei Hungerstress) ist ebenfalls eine wichtige Leberfunktion im Eiweißstoffwechsel."
       }
     },
     harvestQuestions: [
@@ -9778,12 +9778,12 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       seed: {
         statement: "Ketonkörper werden ausschließlich in den Muskeln produziert und können vom Gehirn nicht als Energiequelle genutzt werden.",
         answer: false,
-        solution: "Ketonkörper entstehen in der Leber aus Fettsäuren, wenn keine Glucose mehr verfügbar ist und die Glykogenspeicher geleert sind. Das Gehirn kann — neben Glucose — Ketonkörper als einzige alternative Energiequelle nutzen. Dies ist besonders bei Fasten oder ketogener Ernährung relevant. Die Muskeln können Ketonkörper ebenfalls verwerten, sind aber nicht der Produktionsort."
+        solution: "Ketonkörper entstehen in der Leber aus Fettsäuren, wenn keine Glucose mehr verfügbar ist und die Glykogenspeicher geleert sind — besonders bei Fasten oder ketogener Ernährung. Das Gehirn kann — neben Glucose — Ketonkörper als einzige alternative Energiequelle nutzen; auch die Muskeln können sie verwerten, sind aber nicht der Produktionsort."
       },
       water: {
         statement: "Die Leber wandelt Carotin in Vitamin A um, aktiviert Vitamin D3 (Cholecalciferol) in seine wirksame Form (fördert Kalziumeinbau in Knochen), und synthetisiert unter Einfluss von Vitamin K das Prothrombin (Gerinnungsfaktor II); fettlösliche Vitamine (E, D, K, A) werden mithilfe von Gallenflüssigkeit resorbiert.",
         answer: true,
-        solution: "Die Leber reguliert den gesamten Vitaminstoffwechsel: Carotin → Vitamin A (Umwandlung); Vitamin D3 wird teils in der Haut durch Sonnenlicht produziert oder mit der Nahrung aufgenommen → in der Leber in aktive Form umgewandelt → fördert Kalziumeinbau in Knochen und Kalziumaufnahme aus Darm; Vitamin K → Steigerung der Biosynthese des Prothrombins (Gerinnungsfaktor II). Vitamin A kann in der Leber gespeichert werden. Fettlösliche Vitamine (E, D, K, A) benötigen für ihre Resorption Gallenflüssigkeit."
+        solution: "Die Leber reguliert den gesamten Vitaminstoffwechsel: Carotin → Vitamin A (Umwandlung + Speicherung), Vitamin D3 → in der Leber in aktive Form umgewandelt → fördert Kalziumeinbau in Knochen, Vitamin K → steigert Biosynthese des Prothrombins (Gerinnungsfaktor II). Fettlösliche Vitamine (E, D, K, A) benötigen für ihre Resorption Gallenflüssigkeit."
       }
     },
     harvestQuestions: [
@@ -9872,12 +9872,12 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       soil: {
         statement: "Die Leber entgiftet körperfremde und körpereigene Substanzen (Pharmaka, Alkohol, Steroidhormone) durch biochemischen Umbau — meist durch Bindung an Glucuronsäure — und ermöglicht ihre Ausscheidung über Niere oder Galle.",
         answer: true,
-        solution: "Viele Substanzen, die im Stoffwechsel anfallen, sind nicht direkt ausscheidbar. Die Leber wandelt sie durch Konjugation (v. a. an Glucuronsäure oder Schwefelsäure) in wasserlösliche Formen um. Steroidhormone (Östrogen, Testosteron, Glucocorticoide, Mineralocorticoide) werden in der Leber inaktiviert; 40–70% werden über Niere und Darm ausgeschieden, der Rest zirkuliert im enterohepatischen Kreislauf. Bilirubin (aus überalterten Erythrozyten) muss ebenfalls erst konjugiert werden, bevor es ausgeschieden werden kann."
+        solution: "Die Leber wandelt nicht direkt ausscheidbare Substanzen durch Konjugation (v. a. an Glucuronsäure oder Schwefelsäure) in wasserlösliche Formen um. Steroidhormone (Östrogen, Testosteron, Glucocorticoide) werden in der Leber inaktiviert; 40–70% über Niere und Darm ausgeschieden, der Rest zirkuliert im enterohepatischen Kreislauf. Bilirubin (aus überalterten Erythrozyten) muss ebenfalls erst konjugiert werden, bevor es ausgeschieden werden kann."
       },
       seed: {
         statement: "Die Leber übernimmt die Blutbildung (Hämatopoese) dauerhaft im Erwachsenenalter als Hauptorgan.",
         answer: false,
-        solution: "Die Blutbildung (Hämatopoese) in der Leber findet hauptsächlich in der Embryonalzeit statt. Im Erwachsenenalter übernimmt das Knochenmark diese Funktion. Nur wenn das Knochenmark geschädigt ist, kann die Leber diese Aufgabe wieder wahrnehmen (extramedulläre Hämatopoese). Im Erwachsenenalter ist die Leber hingegen für die Blutmauserung (Abbau überalterter Erythrozyten nach 100–120 Tagen durch Kupffer-Zellen) und als Blutspeicher zuständig."
+        solution: "Die Hämatopoese in der Leber findet hauptsächlich in der Embryonalzeit statt; im Erwachsenenalter übernimmt das Knochenmark diese Funktion, und nur bei Knochenmarkschädigung kehrt die Leber zur extramedulläre Hämatopoese zurück. Im Erwachsenenalter ist die Leber für die Blutmauserung zuständig (Abbau überalterter Erythrozyten nach 100–120 Tagen durch Kupffer-Zellen) und dient als Blutspeicher."
       },
       water: {
         statement: "Die Leber synthetisiert wichtige Gerinnungsfaktoren: Fibrinogen (Faktor I) im retikuloendothelialen System und Prothrombin (Faktor II) unter Einfluss von Vitamin K; außerdem speichert sie Eisen aus dem Abbau überalterter Erythrozyten.",
@@ -9971,7 +9971,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       soil: {
         statement: "Das Leberläppchen (Lobulus hepatis) ist die kleinste funktionelle Einheit der Leber; es hat eine nahezu sechseckige Form (1,0–1,3 mm breit, 2 mm hoch); in den dreieckigen Bindegewebsfeldern zwischen den Läppchen liegt die Glisson-Trias: Ast der Leberarterie (A. interlobularis), Ast der Pfortader (V. interlobularis) und Gallenausgang (Ductus biliferus interlobularis).",
         answer: true,
-        solution: "Das gesamte Lebergewebe besteht aus Tausenden dieser birnenförmigen Läppchen. Die Leberzellbalken sind radiär zur Zentralvene angeordnete Reihen von Hepatozyten. Die Glisson-Kapsel ist die bindegewebige Kapsel über der gesamten Leber (nach dem Peritoneum). Hepatozyten haben: einen Kern (10% des Zellvolumens), granulä+agranuläres ER (Proteinsynthese + Stoffwechsel/Entgiftung), Golgi-Apparat (Konzentration von Ausscheidungsprodukten), über 1000 Mitochondrien/Leberzelle (hohe Stoffwechselaktivität), Mikrosomen (Zerlegung großer chemischer Verbindungen, Gallensäurenausscheidung)."
+        solution: "Das gesamte Lebergewebe besteht aus Tausenden birnenförmiger Läppchen; die Leberzellbalken sind radiär zur Zentralvene angeordnet, und die Glisson-Kapsel ist die bindegewebige Kapsel über der gesamten Leber. Hepatozyten haben: einen Kern (10% des Zellvolumens), granuläres/agranuläres ER (Proteinsynthese + Entgiftung), Golgi-Apparat, über 1000 Mitochondrien/Zelle (hohe Stoffwechselaktivität) und Mikrosomen (Zerlegung großer Verbindungen, Gallensäurenausscheidung)."
       },
       seed: {
         statement: "Kupffer-Zellen sind spezialisierte Hepatozyten, die Glykogen speichern und an der Proteinbiosynthese beteiligt sind.",
@@ -9981,7 +9981,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       water: {
         statement: "Die Sinusoide sind weitläufige Blutkapillaren zwischen den Leberzellreihen ohne Basalmembran (Gitterfasernetz mit Poren/Fensterung), in denen sich arterielles und venöses Blut vermischt; Lebererkrankungen gehen häufig mit erhöhten Transaminasen einher (AST/ASAT = GOT; ALT/ALAT = GPT); Gamma-GT reagiert sensibler auf Leber- und Gallenwegserkrankungen als Aminotransferasen.",
         answer: true,
-        solution: "Sinusoide haben keine Basalmembran als plastisches Skelett, sondern ein Gitterfasernetz; die innere Auskleidung bilden Endothelzellen mit zahlreichen Poren (Fensterung). Zwischen den Sinusoiden und dem Interzellularraum wird Gallenflüssigkeit filtriert. Wichtige Leberwerte: AST/ASAT (GOT) und ALT/ALAT (GPT) als Transaminasen; gamma-GT = Gama-Glutamyl-Transferase (sensibler, immer erhöht bei alkoholischem Schaden); LDH = Laktatdehydrogenase; GLDH = Glutamatdehydrogenase. Bei Durchblutungsstörung der Leber: Transaminasen auf 50–200-faches des Normwerts."
+        solution: "Sinusoide haben keine Basalmembran, sondern ein Gitterfasernetz mit Endothelzellen und zahlreichen Poren (Fensterung); zwischen Sinusoiden und Interzellularraum wird Gallenflüssigkeit filtriert. Wichtige Leberwerte: AST/ASAT (GOT) und ALT/ALAT (GPT) als Transaminasen; Gamma-GT (sensibler, immer erhöht bei alkoholischem Schaden); bei Durchblutungsstörung steigen Transaminasen auf das 50–200-fache des Normwerts."
       }
     },
     harvestQuestions: [
@@ -10080,7 +10080,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       water: {
         statement: "Die Leber wird zu 25% durch sauerstoffreiches Blut der A. hepatica und zu 75% durch Pfortaderblut (V. portae) versorgt; Nährstoffe für die Hepatozyten kommen hauptsächlich aus dem nährstoffreichen Pfortaderblut.",
         answer: true,
-        solution: "Blut aus A. hepatica und V. portae gelangt zusammen in die Sinusoide (weite Kapillaren), von dort in die V. hepatica und schließlich in die V. cava inferior. Die Leberarterie transportiert sauerstoffreiches Blut vom Herzen; die Pfortader liefert nährstoffreiches Blut aus Magen und Darm. Dabei wird die Leber sowohl mit sauerstoffreichem Blut (25%) als auch mit Pfortaderblut (75%) versorgt. Die Nährstoffzufuhr für die Leberzellen geschieht aus dem nährstoffreichen Blut der Pfortader."
+        solution: "Blut aus A. hepatica (sauerstoffreich, 25%) und V. portae (nährstoffreich, 75%) vereinigt sich in den Sinusoiden und fließt über die V. hepatica in die V. cava inferior. Die Nährstoffzufuhr für die Hepatozyten erfolgt hauptsächlich über das Pfortaderblut, das resorbierte Zucker, Aminosäuren und Fette aus dem Verdauungskanal enthält."
       }
     },
     harvestQuestions: [
@@ -10169,7 +10169,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       soil: {
         statement: "Die Gallenblase (Vesica fellea) ist birnenförmig, 7–10 cm lang, 4–5 cm breit, Fassungsvermögen 35–50 ml; sie konzentriert die kontinuierlich von der Leber produzierte Gallenflüssigkeit durch aktiven Transport von Na⁺ und Cl⁻ (Wasser folgt passiv) auf 1/5 bis 1/10 des ursprünglichen Volumens.",
         answer: true,
-        solution: "Die Leber produziert unabhängig von der Nahrungsaufnahme kontinuierlich ca. 0,5–1 L Gallenflüssigkeit täglich. Die Gallenblase speichert und konzentriert diese zwischen den Mahlzeiten. Aufbau der Gallenblase: Fundus vesicae felleae (oben), Corpus vesicae felleae (Mitte, Hauptabschnitt), Collum vesicae felleae (zugespitzt unten, geht in Ductus cysticus über). Innenschicht (Tunica mucosa): einschichtiges hohes Epithel mit Mikrovilli + Becherzellen (Schleim schützt vor Galle). Füllung der Gallenblase: durch Rückstau bei geschlossenem Sphincter ampullae."
+        solution: "Die Leber produziert kontinuierlich ca. 0,5–1 L Gallenflüssigkeit täglich; die Gallenblase speichert und konzentriert diese zwischen den Mahlzeiten (Füllung durch Rückstau bei geschlossenem Sphincter ampullae). Aufbau: Fundus (oben), Corpus (Mitte), Collum (zugespitzt, geht in Ductus cysticus über); Innenschicht (Tunica mucosa): einschichtiges Epithel mit Mikrovilli + Becherzellen (Schleim schützt vor Galle)."
       },
       seed: {
         statement: "Die Gallenblase produziert selbst kontinuierlich Gallenflüssigkeit und gibt diese direkt in den Dünndarm ab.",
@@ -10268,17 +10268,17 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       soil: {
         statement: "Die Gallenflüssigkeit enthält ca. 90% Wasser sowie Gallensäuren (synthetisiert aus Cholesterin; 2 primäre: Cholsäure + Chenodesoxycholsäure; Emulgatoren für Fette, aktivieren Lipasen), Bilirubin/Biliverdin, Cholesterin, Phospholipide, Lecithin, Hormone-Abbauprodukte und Pharmaka.",
         answer: true,
-        solution: "Lebergalle (gelb): Wasser 95–98 g/dl, Gallensalze 1,1 g/dl, Bilirubin 0,2 g/dl, Cholesterin 0,1 g/dl; pH 7,8–8,6. Blasengalle (grün-braun, 1/5–1/10 eingedickt): höhere Konzentrationen aller Inhaltsstoffe. Gallensäuren sind ampiphil (lipophile + hydrophile Seite) und lagern sich an Fette an → Emulsion → Lipase-Angriffsfläche. Gallensekretion wird gefördert durch: erhöhte Leberdurchblutung, Vagusreiz, erhöhte Gallensalzkonzentration im Blut, Sekretin und CCK. Phospholipide: hauptsächlich in der Leber synthetisiert; Transport und Aufnahme von Cholesterin. Pharmaka (große Arzneimittelmoleküle) und Antibiotika werden hauptsächlich biliär ausgeschieden."
+        solution: "Lebergalle (gelb, pH 7,8–8,6): Wasser 95–98 g/dl, Gallensalze 1,1 g/dl, Bilirubin 0,2 g/dl, Cholesterin 0,1 g/dl; Blasengalle (grün-braun, 1/5–1/10 eingedickt) enthält höhere Konzentrationen aller Inhaltsstoffe. Gallensäuren sind ampiphil, lagern sich an Fette an → Emulsion + Lipase-Aktivierung; Gallensekretion gefördert durch Vagusreiz, hohe Gallensalzkonzentration, Sekretin und CCK. Pharmaka und Antibiotika werden hauptsächlich biliär ausgeschieden."
       },
       seed: {
         statement: "90% der Gallensteine bestehen aus Phospholipiden; Cholesterin spielt bei der Gallensteinbildung keine wesentliche Rolle.",
         answer: false,
-        solution: "90% der Gallensteine bestehen aus Cholesterin und nur 10% aus Calciumbilirubinat. Cholesterin ist für die Gallensteinbildung von zentraler Bedeutung. Das Verhältnis zwischen Cholesterin, Phospholipiden und Lecithin in der Galle ist fein aufeinander abgestimmt — bei Abweichungen kommt es zur Auskristallisierung des Cholesterins, was eine Gallensteinbildung zur Folge hat. Auch bei der Bildung von Zellmembranen, Gallensäuren, Vitamin D und Steroidhormonen spielt Cholesterin eine zentrale Rolle."
+        solution: "90% der Gallensteine bestehen aus Cholesterin, nur 10% aus Calciumbilirubinat; das Verhältnis zwischen Cholesterin, Phospholipiden und Lecithin in der Galle ist fein abgestimmt — bei Abweichungen kristallisiert Cholesterin aus und es entstehen Gallensteine. Cholesterin spielt auch beim Aufbau von Zellmembranen, Gallensäuren, Vitamin D und Steroidhormonen eine zentrale Rolle."
       },
       water: {
         statement: "Im enterohepatischen Kreislauf zirkulieren Gallensäuren (Pool 2–4 g) täglich 8–10× zwischen Leber und Darm; ca. 90% werden im terminalen Ileum rückresorbiert; bei Ileum-Erkrankung entsteht chologen Diarrhö mit Fettverdauungsstörungen und Mangel an fettlöslichen Vitaminen.",
         answer: true,
-        solution: "Enterohepatischer Kreislauf: Gallensäuren aus Leber → Galle → Darm → zu 90% im terminalen Ileum rückresorbiert → über Pfortader zurück in die Leber. Ca. 0,6 g täglich neu gebildet; ca. die gleiche Menge mit dem Stuhl ausgeschieden. Vitamin B12 unterliegt ebenfalls dem enterohepatischen Kreislauf. Pathologisch: bei Erkrankung/Resektion des terminalen Ileums → Gallensäuren nicht rückresorbierbar → gelangen in Dickdarm → osmotisch → chologen Diarrhö; Fettverdauungsstörungen; fettlösliche Vitamine nur noch unzureichend resorbiert."
+        solution: "Enterohepatischer Kreislauf: Gallensäuren aus Leber → Galle → Darm → zu 90% im terminalen Ileum rückresorbiert → über Pfortader zurück in die Leber; ca. 0,6 g/Tag werden neu gebildet und in gleicher Menge mit dem Stuhl ausgeschieden. Pathologisch: bei Erkrankung/Resektion des terminalen Ileums → Gallensäuren nicht rückresorbierbar → gelangen in Dickdarm → chologen Diarrhö, Fettverdauungsstörungen, unzureichende Resorption fettlöslicher Vitamine."
       }
     },
     harvestQuestions: [
@@ -10367,17 +10367,17 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       soil: {
         statement: "Bilirubin entsteht aus dem Hämoglobin überalterter Erythrozyten (Lebensdauer 100–120 Tage): Häm → Biliverdin → Bilirubin (ca. 35 mg pro 1 g Hämoglobin); tägliche Bilirubinausscheidung: 200–250 mg; Sterkobilin (aus Bilirubin) gibt dem Stuhl seine braune Farbe, Urobilin dem Harn seine gelbe Farbe.",
         answer: true,
-        solution: "Erythrozyten werden in Kapillargefäßen der Leber, der Milz, im Knochenmark und in Makrophagen abgebaut. Hämoglobin → Globin (phagozytiert) + Häm. Eisen aus Häm → an Globuline gebunden → Leber (für neue Hb-Synthese oder gespeichert). Häm → Biliverdin → Bilirubin. Im Darm: Bakterien bauen Bilirubin zu Urobilinogen/Sterkobilinogen ab (farblos). Nach Oxidation → Urobilin (gelb, Harn) + Sterkobilin (braun, Stuhl). 15% des ausgeschiedenen Bilirubins wird unkonjugiert wieder resorbiert (enterohepatischer Kreislauf)."
+        solution: "Erythrozyten werden in Leber, Milz, Knochenmark und Makrophagen abgebaut: Hämoglobin → Globin (phagozytiert) + Häm; Eisen aus Häm → an Globuline → Leber (neue Hb-Synthese oder Speicherung); Häm → Biliverdin → Bilirubin. Im Darm bauen Bakterien Bilirubin zu Urobilinogen/Sterkobilinogen (farblos) ab; nach Oxidation entstehen Urobilin (gelb, Harn) und Sterkobilin (braun, Stuhl). Ca. 15% des Bilirubins wird unkonjugiert wieder resorbiert (enterohepatischer Kreislauf)."
       },
       seed: {
         statement: "Indirektes (freies) Bilirubin ist wasserlöslich und wird direkt über die Niere ausgeschieden.",
         answer: false,
-        solution: "Indirektes (freies, unkunjugiertes) Bilirubin ist wasserunlöslich, lipidlöslich und toxisch. Wegen seiner Wasserunlöslichkeit kann es nicht über die Niere ausgeschieden werden. Im Blutplasma wird es reversibel an Albumin gebunden. In der Leber wird es durch Glucuronyltransferase mit Glucuronsäure konjugiert → direktes (konjugiertes) Bilirubin → wasserlöslich → aktiv in Gallenkapillaren sezerniert → mit der Galle ausgeschieden. Beim Neugeborenen kann indirektes Bilirubin die Blut-Liquor-Schranke passieren → Kernikterus."
+        solution: "Indirektes (freies, unkonjugiertes) Bilirubin ist wasserunlöslich, lipidlöslich und toxisch; da es nicht renal ausgeschieden werden kann, wird es im Blutplasma reversibel an Albumin gebunden. In der Leber wird es durch Glucuronyltransferase konjugiert → direktes (wasserlösliches) Bilirubin → aktiv in Gallenkapillaren sezerniert → mit der Galle ausgeschieden. Beim Neugeborenen kann indirektes Bilirubin die Blut-Liquor-Schranke passieren und einen Kernikterus verursachen."
       },
       water: {
         statement: "In der Leber wird indirektes Bilirubin durch Glucuronyltransferase mit Glucuronsäure zu direktem (konjugiertem) Bilirubin umgewandelt — dieser Prozess macht es wasserlöslich und ermöglicht die Ausscheidung mit der Galle; beim Neugeborenen kann indirektes Bilirubin die Blut-Liquor-Schranke passieren und Kernikterus verursachen.",
         answer: true,
-        solution: "Der physiologische Gesamt-Bilirubingehalt des Plasmas beträgt 0,1–1,2 mg/dl. Steigt er über 1,2 mg/dl → zuerst Gelbfärbung der Augenbindehäute, dann der Haut (Ikterus). Direktes Bilirubin (konjugiert, wasserlöslich): wird aktiv in Gallenkapillaren sezerniert → Galle → Darm → bakteriell zu Sterkobilinogen/Urobilinogen abgebaut → größtenteils Sterkobilin (Stuhl) + Urobilin (Harn). Indirektes Bilirubin (lipophil) kann bei hoher Konzentration die Epithelschranken passieren, beim Neugeborenen auch die Blut-Liquor-Schranke → Kernikterus (ZNS-Schädigung)."
+        solution: "Der physiologische Gesamt-Bilirubingehalt des Plasmas beträgt 0,1–1,2 mg/dl; steigt er darüber, färben sich zuerst die Augenbindehäute, dann die Haut (Ikterus). Direktes Bilirubin (konjugiert, wasserlöslich) wird aktiv in Gallenkapillaren sezerniert → Galle → Darm → bakteriell zu Sterkobilin (Stuhl, braun) + Urobilin (Harn, gelb) abgebaut. Indirektes Bilirubin (lipophil) kann beim Neugeborenen die Blut-Liquor-Schranke passieren und einen Kernikterus (ZNS-Schädigung) verursachen."
       }
     },
     harvestQuestions: [
@@ -10471,7 +10471,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       seed: {
         statement: "Beim posthepatischen Ikterus ist hauptsächlich das indirekte (unkunjugierte) Bilirubin im Serum stark erhöht.",
         answer: false,
-        solution: "Beim posthepatischen Ikterus (Verschlussikterus) ist das direkte (konjugierte) Bilirubin stark erhöht — nicht das indirekte. Ursache ist eine Verlegung der Gallenwege (Cholestase), z. B. durch Gallensteine oder Tumore. Das bereits in der Leber konjugierte (direkte) Bilirubin kann nicht abfließen → staut sich zurück → tritt ins Blut über → stark erhöhtes direktes Bilirubin. Das indirekte Bilirubin ist beim posthepatischen Ikterus im Normbereich (o.B.)."
+        solution: "Beim posthepatischen Ikterus (Verschlussikterus) ist das direkte (konjugierte) Bilirubin stark erhöht — nicht das indirekte. Ursache ist eine Verlegung der Gallenwege (Cholestase) durch Gallensteine oder Tumore: das bereits konjugierte Bilirubin kann nicht abfließen → staut sich zurück → tritt ins Blut über. Das indirekte Bilirubin ist dabei im Normbereich (o.B.)."
       },
       water: {
         statement: "Differenzialdiagnostisch unterscheiden sich die drei Ikterusformen deutlich: prähepatisch zeigt hellen Urin + dunklen Stuhl + indirektes Bilirubin↑; intrahepatisch zeigt bierbraunen Urin + hellen Stuhl + beide Bilirubin-Arten↑ + ALT stark↑; posthepatisch zeigt bierbraunen Urin + hellen Stuhl + direktes Bilirubin↑ + Gamma-GT/AP stark↑.",
@@ -10572,7 +10572,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       soil: {
         statement: "Die beiden Nieren liegen retroperitoneal in der Lendengegend beiderseits der Wirbelsäule; sie sind bohnenförmig (10–12 cm lang, 5–6 cm breit, 3–4 cm dick, 120–200 g), kraniell konvergierend; der obere Pol liegt auf Höhe Th11–12, der untere Pol auf Höhe L3; die rechte Niere liegt wegen der Leber etwas tiefer als die linke.",
         answer: true,
-        solution: "An jedem oberen Nierenpol sitzt mützenförmig die Nebenniere (endokrines Organ). Der mediale konkave Rand enthält den Hilus renalis (Eingang in den Sinus renalis), durch den A. renalis, V. renalis, Nerven und Lymphgefäße ein- bzw. austreten. Der Sinus renalis enthält Nierenbecken (Pelvis renalis) mit Kelchen, Gefäßäste, Fettgewebe. Von außen nach innen: Fettkapsel (Capsula adiposa) → Capsula fibrosa (Tunica fibrosa + Tunica subfibrosa) → Cortex renalis (feinkörning, 6–10 mm) → Medulla renalis (16–20 Markpyramiden). Entwicklungsgeschichtlich: Vorniere (keine Filtrationsfunktion) → Urniere (z. B. bei Amphibien; beim Mann: Ausführungsgang des Hodens) → Nachniere (= heutige Niere, nur bei Säugern)."
+        solution: "An jedem oberen Nierenpol sitzt mützenförmig die Nebenniere; der mediale konkave Rand enthält den Hilus renalis (Eingang in den Sinus renalis), durch den A./V. renalis, Nerven und Lymphgefäße ein-/austreten; der Sinus renalis enthält Nierenbecken (Pelvis renalis) mit Kelchen, Gefäßästen und Fettgewebe. Von außen nach innen: Fettkapsel (Capsula adiposa) → Capsula fibrosa → Cortex renalis (feinkörning, 6–10 mm) → Medulla renalis (16–20 Markpyramiden). Entwicklungsgeschichtlich: Vorniere (keine Filtration) → Urniere (Filtration, bei Amphibien Hodenausführungsgang) → Nachniere (heutige Niere der Säuger)."
       },
       seed: {
         statement: "Die Vorniere besaß von allen drei Entwicklungsstadien des Urogenitalsystems die stärkste Filtrationsfunktion und bildete bei Amphibien den Ausführungsgang des Hodens.",
@@ -10671,7 +10671,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       soil: {
         statement: "Das Nephron ist die kleinste funktionelle Einheit der Niere (ca. 1–1,2 Millionen pro Niere); es besteht aus dem Nierenkörperchen (Glomerulus + Bowmansche Kapsel) und dem Tubulussystem (proximaler Tubulus, Henlesche Schleife, distaler Tubulus, Sammelrohr); Glomerulus und Bowmansche Kapsel zusammen heißen Malpighisches Körperchen.",
         answer: true,
-        solution: "Der Glomerulus ist ein Kapillarknäuel (20–40 Schleifen) mit rein arteriellem Charakter — er dient ausschließlich der Filtration, nicht der Sauerstoffversorgung. Die Gesamtkapillarlänge beider Nieren beträgt 25 km, die Gesamtoberfläche 1,5 m². Die Bowmansche Kapsel besitzt ein parietales (äußeres) und ein viszerales (eingeweidiges) Blatt; dazwischen liegt der Kapselraum, in den der Primärharn abfiltriert wird. Der proximale Tubulus ist der längste Abschnitt mit kubischem Epithel und Bürstensaum; er liegt in der Nierenrinde. Das Tubulussystem liegt im Nierenmark."
+        solution: "Der Glomerulus ist ein Kapillarknäuel (20–40 Schleifen) mit rein arteriellem Charakter — er dient ausschließlich der Filtration; die Gesamtkapillarlänge beider Nieren beträgt 25 km, die Gesamtoberfläche 1,5 m². Die Bowmansche Kapsel besitzt ein parietales (äußeres) und ein viszerales (eingeweidiges) Blatt; dazwischen liegt der Kapselraum, in den der Primärharn abfiltriert wird. Der proximale Tubulus (längster Abschnitt, kubisches Epithel mit Bürstensaum) liegt in der Nierenrinde; das restliche Tubulussystem liegt im Nierenmark."
       },
       seed: {
         statement: "Im Glomerulus findet neben der Filtration des Primärharns auch die Sauerstoffversorgung der Nierenrinde statt, da das Kapillarknäuel arterielles Blut führt.",
@@ -10770,7 +10770,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       soil: {
         statement: "Die tägliche Primärharnmenge beträgt ca. 150–180 Liter; der Primärharn ist isoosmotisch zum Plasma, frei von Blutkörperchen und enthält nur minimale Eiweißmengen; die Filtration ist ein passiver Vorgang, der von einem Blutdruck von ca. 70 mmHg abhängig ist und bei systolischen Werten von 80–180 mmHg fehlerlos funktioniert.",
         answer: true,
-        solution: "Dem glomerulären Kapillardruck wirken zwei Kräfte entgegen: der kolloidosmotische Druck (Eiweiße im Blut) und der Druck in der Bowmanschen Kapsel; der effektive Filtrationsdruck beträgt ca. 35 mmHg. Die Autoregulation erfolgt über Rezeptoren in den glatten Muskeln der Vasa afferentia — bei Hypovolämie sezernieren juxtaglomeruläre Zellen Renin. Ins Ultrafiltrat gehen: Wasser, Harnstoff, Harnsäure, Glukose, Salze, Aminosäuren. Vom Primärharn werden ca. 90–99% rückresorbiert; es verbleiben nur ca. 1,5–1,8 L Endharn täglich."
+        solution: "Dem glomerulären Kapillardruck wirken kolloidosmotischer Druck (Eiweiße im Blut) und Kapseldruck entgegen; der effektive Filtrationsdruck beträgt ca. 35 mmHg; ins Ultrafiltrat gehen Wasser, Harnstoff, Harnsäure, Glukose, Salze und Aminosäuren. Die Autoregulation erfolgt über Rezeptoren in den glatten Muskeln der Vasa afferentia — bei Hypovolämie sezernieren juxtaglomeruläre Zellen Renin. Vom Primärharn werden ca. 90–99% rückresorbiert; es verbleiben nur ca. 1,5–1,8 L Endharn täglich."
       },
       seed: {
         statement: "Die Rückresorption im Tubulussystem erfolgt ausschließlich passiv durch Diffusion; aktive Transportmechanismen spielen in der Niere keine Rolle.",
@@ -10869,17 +10869,17 @@ const UROGENITALTRAKT_1041_PLANTS = [
       soil: {
         statement: "Das Renin-Angiotensin-Aldosteron-System (RAAS) wird aktiviert bei Blutdruckabfall: Renin (aus Polkissen der Niere) → spaltet Angiotensinogen (Leber) → Angiotensin I → durch Converting-Enzyme → Angiotensin II (stärkste bekannte vasokonstriktive Substanz) → Aldosteron (Nebennierenrinde: Na⁺-Rückresorption ↑, Wasserausscheidung ↓).",
         answer: true,
-        solution: "Das RAAS wird aktiviert bei: Abnahme des Plasmavolumens/Blutdruckabfall, zur RR-Aufrechterhaltung nach Salzentzug und bei bestimmten Hypertonie-Formen. Angiotensin II wirkt stark vasokonstriktorisch und stimuliert die Aldosteronausschüttung aus der Nebennierenrinde. Aldosteron hält das Gleichgewicht von Natrium (extrazellulär) und Kalium (intrazellulär) aufrecht. Störungen dieses Systems → schwer einstellbarer Blutdruck mit starken Schwankungen."
+        solution: "Das RAAS wird aktiviert bei Plasmavolumenabnahme, Blutdruckabfall und Salzentzug: Angiotensin II wirkt stark vasokonstriktorisch und stimuliert die Aldosteronausschüttung aus der Nebennierenrinde. Aldosteron erhöht die Na⁺-Rückresorption und hält das Gleichgewicht von Natrium (extrazellulär) und Kalium (intrazellulär) aufrecht. Störungen dieses Systems führen zu schwer einstellbarem Blutdruck mit starken Schwankungen."
       },
       seed: {
         statement: "Beim Diabetes insipidus renalis liegt die Ursache in einer mangelnden ADH-Produktion im Hypophysenhinterlappen; die Therapie erfolgt durch ADH-Substitution (z. B. Minirin).",
         answer: false,
-        solution: "Das ist die Beschreibung des Diabetes insipidus centralis. Beim Diabetes insipidus renalis ist die Ursache eine ungenügende Anzahl oder überwiegend defekte Rezeptoren für ADH in der Niere — die ADH-Produktion selbst ist normal. Da keine funktionierenden Rezeptoren vorhanden sind, wirkt ADH-Substitution nicht; die Therapie ist sehr schwierig. Folge beider Formen: Polyurie (beim renalen Typ ca. 10 L/Tag)."
+        solution: "Das ist die Beschreibung des Diabetes insipidus centralis — beim renalen Typ ist die Ursache eine ungenügende Anzahl oder defekte Rezeptoren für ADH in der Niere bei normaler ADH-Produktion. Da keine funktionierenden Rezeptoren vorhanden sind, wirkt ADH-Substitution nicht, was die Therapie sehr schwierig macht. Folge beider Formen: Polyurie (beim renalen Typ ca. 10 L/Tag)."
       },
       water: {
         statement: "Die Niere reguliert den Säure-Basen-Haushalt durch Ausscheidung von H⁺-Ionen statt Na⁺ und Rückresorption von Bikarbonat in den Tubuluszellen; ergänzend reguliert die Lunge durch CO₂-Abatmung; beide Systeme sind durch die Puffereigenschaften des Blutes verknüpft.",
         answer: true,
-        solution: "In den Tubuluszellen entsteht aus Wasser und Kohlendioxid Kohlensäure, die in H⁺ und Bikarbonat dissoziiert. Das H⁺-Ion wird statt Na⁺ in den Harn abgegeben — das Natrium verbleibt im Körper. Eine weitere Natriumeinsparung erfolgt durch Bildung von Ammoniak aus Ammoniumchlorid. Störungen: Metabolische Azidose (Niere kann H⁺ nicht ausreichend ausscheiden), respiratorische Azidose (Lunge kann CO₂ nicht abatmen). Das Schwartz-Bartter-Syndrom entsteht durch überschießende ADH-Produktion → zu starke Wasserrückresorption → Oligurie."
+        solution: "In den Tubuluszellen entsteht aus Wasser und CO₂ Kohlensäure → H⁺ + Bikarbonat; das H⁺-Ion wird statt Na⁺ in den Harn abgegeben, das Natrium verbleibt im Körper; eine weitere Natriumeinsparung erfolgt durch Ammoniak-Bildung aus Ammoniumchlorid. Störungen: Metabolische Azidose (Niere kann H⁺ nicht ausreichend ausscheiden), respiratorische Azidose (Lunge kann CO₂ nicht abatmen). Das Schwartz-Bartter-Syndrom entsteht durch überschießende ADH-Produktion → zu starke Wasserrückresorption → Oligurie."
       }
     },
     harvestQuestions: [
@@ -10978,7 +10978,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       water: {
         statement: "Die weibliche Harnröhre ist mit <5 cm deutlich kürzer als die männliche (ca. 20 cm); diese anatomische Besonderheit führt zu einem erhöhten Risiko für Blaseninfektionen (Cystitis) bei der Frau; die männliche Harnröhre dient als gemeinsamer Harn- und Samenweg.",
         answer: true,
-        solution: "Die männliche Harnröhre (Urethra masculina, ca. 20 cm) gliedert sich in vier Abschnitte: Pars praeprostatica, Pars prostatica, Pars membranacea, Pars cavernosa. Sie wird daher auch als Harn-Samen-Röhre bezeichnet. Die weibliche Harnröhre (<5 cm) reicht von der Harnblase bis zum Orificium externum zwischen Klitoris und Vagina. Die Miktionsstörungen umfassen: Anurie (<100 ml/24h), Oligurie (100–500 ml), Polyurie (>3000 ml), Pollakisurie, Nykturie, Dysurie, Algurie, Hämaturie (Blut im Urin), Pyurie (Eiter im Urin), Inkontinenz."
+        solution: "Die männliche Harnröhre (ca. 20 cm) gliedert sich in vier Abschnitte (Pars praeprostatica, prostatica, membranacea, cavernosa) und dient als Harn-Samen-Röhre; die weibliche Harnröhre (<5 cm) reicht von der Harnblase bis zum Orificium externum zwischen Klitoris und Vagina. Miktionsstörungen: Anurie (<100 ml/24h), Oligurie (100–500 ml), Polyurie (>3000 ml), Pollakisurie, Nykturie, Dysurie, Algurie, Hämaturie (Blut im Urin), Pyurie (Eiter im Urin), Inkontinenz."
       }
     },
     harvestQuestions: [
@@ -11072,12 +11072,12 @@ const UROGENITALTRAKT_1041_PLANTS = [
       seed: {
         statement: "Das Sekret der Prostata ist sauer, um Bakterien in der Harnröhre abzutöten und die Samenzellen zu schützen; saures Milieu steigert die Beweglichkeit der Spermien.",
         answer: false,
-        solution: "Das Sekret der Prostata ist alkalisch und dünnflüssig. Seine Funktion ist genau das Gegenteil: Es schützt die empfindlichen Samenzellen vor dem sauren Milieu in der männlichen Harnröhre und der weiblichen Scheide. Saures Milieu hemmt die Beweglichkeit und zerstört in stärkerer Konzentration die Samenfäden. Die Beweglichkeit der Spermien ist am größten in leicht alkalischer Umgebung."
+        solution: "Das Sekret der Prostata ist alkalisch und dünnflüssig — genau das Gegenteil der Aussage: Es schützt die Samenzellen vor dem sauren Milieu der männlichen Harnröhre und der weiblichen Scheide. Saures Milieu hemmt die Spermienbeweglichkeit und zerstört sie in stärkerer Konzentration; die Beweglichkeit ist am größten in leicht alkalischer Umgebung."
       },
       water: {
         statement: "Die Erektion entsteht durch Dilatation der zuführenden arteriellen Gefäße → Bluteinström in venöse Bluträume (Schwellkörper) → Kompression der abführenden Venen durch Füllung → Blut wird zurückgehalten; der Penis besteht aus zwei paarigen Corpora cavernosa (Erektion) und einem unpaaren Corpus spongiosum (umschließt Urethra, geht in Eichel über).",
         answer: true,
-        solution: "Der Penis hat zwei Funktionen: Ausscheidungsorgan für Sekundärharn und Samentransport für die Fortpflanzung. Die Tunica albuginea umschließt die oberen Schwellkörper und wird bei Erektion angespannt, was einer weiteren Füllung entgegenwirkt. Die Cowper-Drüse (Glandula bulbourethralis) ist erbsengroß und sezerniert bei sexueller Erregung ein schleimiges Präejakulat zur Erhöhung der Gleitfähigkeit. Die Bläschendrüse (Vesicula seminalis = Glandula vesiculosa) produziert ein alkalisches Sekret mit Fructose zur Ernährung und Beweglichkeit der Spermien."
+        solution: "Der Penis dient als Harn- und Samenweg; die Tunica albuginea umschließt die oberen Schwellkörper und wirkt bei Erektion weiterer Füllung entgegen. Die Cowper-Drüse sezerniert bei sexueller Erregung ein schleimiges Präejakulat zur Gleitfähigkeit; die Bläschendrüse (Vesicula seminalis) produziert ein alkalisches Sekret mit Fructose zur Ernährung und Beweglichkeit der Spermien."
       }
     },
     harvestQuestions: [
@@ -11166,12 +11166,12 @@ const UROGENITALTRAKT_1041_PLANTS = [
       soil: {
         statement: "Die Eierstöcke (Ovarien) enthalten ca. 200.000 (und mehr) Primärfollikel (seit der Geburt vorhanden, nicht neu gebildet); über Bläschenfollikel reifen sie zu Graafschen Follikeln → Eisprung (Ovulation) ca. am 14. Zyklustag; Follikel produzieren Östrogene; der Gelbkörper (nach Ovulation aus dem umgebildeten Graafschen Follikel) produziert Gestagene (Progesteron).",
         answer: true,
-        solution: "Im Unterschied zu männlichen Keimzellen (laufend neu gebildet) sind weibliche Eizellen seit der Geburt im Körper. Die meisten Follikel gehen in unterschiedlichen Entwicklungsstadien zugrunde. Nur ein reifer Graafscher Follikel entlässt pro Monat eine Eizelle. Die Eizelle gelangt in die Bauchhöhle und wird von Flimmerhärchen/Trichterfasern des Eileiters aufgefangen. Befruchtung findet im Eileiter statt. Die Ovarien produzieren: Östrogen (Follikelphase) und Progesteron/Gestagen (Lutealphase/Gelbkörperphase). Beide Hormone sind für den Ovarial- und Menstruationszyklus verantwortlich."
+        solution: "Im Unterschied zu männlichen Keimzellen (laufend neu gebildet) sind weibliche Eizellen seit der Geburt vorhanden; die meisten Follikel gehen zugrunde, nur ein reifer Graafscher Follikel entlässt pro Monat eine Eizelle, die im Eileiter befruchtet wird. Die Ovarien produzieren Östrogen (Follikelphase) und Progesteron/Gestagen (Gelbkörperphase) — beide sind für den Menstruationszyklus verantwortlich."
       },
       seed: {
         statement: "Im weiblichen Zyklus findet der Eisprung am ersten Tag der Menstruation statt; unmittelbar danach beginnt der Aufbau der Gebärmutterschleimhaut unter Östrogeneinfluss.",
         answer: false,
-        solution: "Der Eisprung (Ovulation) findet ca. 14 Tage NACH dem ersten Tag der Menstruation statt, also in der Mitte des ca. 28-tägigen Zyklus. Der Zyklus beginnt mit der Menstruation (Tag 1–5, Abstoßung der Schleimhaut). Von Tag 5–14 baut sich die Schleimhaut wieder auf (Östrogenproduktion ↑, Proliferationsphase). Ab Tag 15 (nach Eisprung) → Progesteronsekretion → Schleimhaut verdichtet sich (Sekretionsphase). Bei keiner Befruchtung: Gelbkörper stellt Hormonproduktion ein → Regelblutung."
+        solution: "Der Eisprung findet ca. 14 Tage NACH dem ersten Tag der Menstruation statt (Mitte des 28-Tage-Zyklus); der Zyklus beginnt mit der Menstruation (Tag 1–5, Abstoßung), von Tag 5–14 baut sich die Schleimhaut unter Östrogen auf (Proliferationsphase), ab Tag 15 folgt Progesteronsekretion → Schleimhaut verdichtet sich (Sekretionsphase). Bei keiner Befruchtung stellt der Gelbkörper die Hormonproduktion ein → Regelblutung."
       },
       water: {
         statement: "Die kurze weibliche Harnröhre (<5 cm, gegenüber 20 cm beim Mann) bedingt eine erhöhte Anfälligkeit für Harnwegsinfekte (Cystitis); der Menstruationszyklus dauert durchschnittlich 28 Tage und wird durch das Hypothalamus-Hypophysen-System gesteuert; der Uterus besitzt drei Wandschichten: Endometrium, Myometrium und Perimetrium.",
