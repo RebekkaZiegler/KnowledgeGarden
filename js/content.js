@@ -5303,7 +5303,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       water: {
         statement: "Das Perikard umgibt das Herz und enthält Flüssigkeit zur Reibungsminderung.",
         answer: true,
-        solution: "Das Herz ist von drei Schichten umgeben: Epikard (äußerste Schicht, liegt dem Myokard auf), Myokard (Herzmuskel, die eigentliche Arbeitsschicht) und Endokard (innerste Schicht, kleidet die Hohlräume aus). Das Perikard (Herzbeutel) umschließt das Herz von außen. Zwischen Epikard und Perikard befindet sich ein Spaltraum mit Flüssigkeit (ca. 20–50 ml), die Reibung bei der Herzaktion vermindert. Das Herz gewinnt Energie bevorzugt aus der Verbrennung von Fettsäuren."
+        solution: "Das Herz ist von drei Schichten umgeben: Epikard (äußerste Schicht), Myokard (Herzmuskel, die eigentliche Arbeitsschicht) und Endokard (innerste Schicht, kleidet die Hohlräume aus). Das Perikard (Herzbeutel) umschließt das Herz von außen; zwischen Epikard und Perikard befindet sich ein Spaltraum mit Flüssigkeit (ca. 20–50 ml), die Reibung bei der Herzaktion vermindert. Das Herz gewinnt Energie bevorzugt aus der Verbrennung von Fettsäuren."
       }
     },
     harvestQuestions: [
@@ -5779,7 +5779,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       seed: {
         statement: "Der venöse Rücktransport wird ausschließlich durch den Herzunterdruck in der Diastole gewährleistet.",
         answer: false,
-        solution: "Der venöse Rücktransport wird durch mehrere Mechanismen gewährleistet: (1) Muskelpumpe: Kontraktion der Skelettmuskulatur komprimiert Venen, treibt Blut herzwärts. (2) Arteriovenöse Kopplung: Arterieller Puls überträgt sich auf benachbarte Venen. (3) Atemsog: Bei Einatmung entsteht Unterdruck im Thorax, der Blut ansaugt. (4) Herzunterdruck in der Diastole. Alle vier wirken zusammen."
+        solution: "Der venöse Rücktransport wird durch mehrere Mechanismen gewährleistet: Muskelpumpe (Skelettmuskelkontraktion komprimiert Venen herzwärts), arteriovenöse Kopplung (arterieller Puls überträgt sich auf benachbarte Venen) und Atemsog (bei Einatmung entsteht Thoraxunterdruck, der Blut ansaugt). Zusätzlich wirkt der Herzunterdruck in der Diastole. Alle vier Mechanismen wirken zusammen."
       },
       water: {
         statement: "Die Aorta ist die größte Arterie des Körpers und entspringt aus der linken Herzkammer.",
@@ -5871,7 +5871,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       seed: {
         statement: "Im fetalen Kreislauf gibt es drei Kurzschlüsse (Shunts), die nach der Geburt verschlossen werden.",
         answer: true,
-        solution: "Die drei fetalen Kurzschlüsse: (1) Ductus venosus: verbindet Nabelvene mit V. cava inferior, umgeht die Leber. (2) Foramen ovale: Öffnung im Vorhofseptum, leitet Blut vom rechten in den linken Vorhof (Lungenkreislauf wird umgangen). (3) Ductus arteriosus Botalli: verbindet Truncus pulmonalis mit Aorta, umgeht die noch nicht funktionierende Lunge. Alle drei Shunts schließen sich kurz nach der Geburt."
+        solution: "Die drei fetalen Kurzschlüsse sind: Ductus venosus (Nabelvene → V. cava inferior, umgeht Leber), Foramen ovale (rechter → linker Vorhof, umgeht Lungenkreislauf) und Ductus arteriosus Botalli (Truncus pulmonalis → Aorta, umgeht die noch nicht funktionierende Lunge). Alle drei Shunts schließen sich kurz nach der Geburt."
       },
       water: {
         statement: "Das Foramen ovale schließt sich nach der Geburt durch den Anstieg des linksatrialen Drucks.",
@@ -5958,7 +5958,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       seed: {
         statement: "Der APGAR-Score wird bei 1, 5 und 10 Minuten nach der Geburt erhoben und bewertet fünf Parameter.",
         answer: true,
-        solution: "Der APGAR-Score (0–10 Punkte) bewertet: Hautfarbe (A), Puls (P), Grimassieren/Reflexe (G), Aktivität/Muskeltonus (A), Atmung (R). Jeder Parameter wird mit 0, 1 oder 2 bewertet. 7–10 Punkte: gut, 4–6: mäßig (Reanimationsmaßnahmen), unter 4: kritisch. Er wird bei 1, 5 und 10 Minuten erhoben."
+        solution: "Der APGAR-Score (0–10 Punkte) bewertet fünf Parameter (jeweils 0–2 Punkte): Hautfarbe (A), Puls (P), Grimassieren/Reflexe (G), Aktivität/Muskeltonus (A), Atmung (R). Er wird bei 1, 5 und 10 Minuten nach der Geburt erhoben. 7–10 Punkte gelten als gut, 4–6 als mäßig (Reanimationsmaßnahmen nötig), unter 4 als kritisch."
       },
       water: {
         statement: "Das Neugeborenenscreening (erweitertes Screening) erfasst angeborene Stoffwechselkrankheiten und Endokrinopathien durch einen Bluttropfen aus der Ferse.",
@@ -6057,7 +6057,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       seed: {
         statement: "Neugeborene scheiden als ersten Stuhl Mekonium aus, das aus Fruchtwasser, Epithelzellen und Gallenbestandteilen besteht.",
         answer: true,
-        solution: "Mekonium (Kindspech) ist der erste Stuhl des Neugeborenen, schwarzgrün, zähflüssig. Er sollte innerhalb der ersten 24–48 Stunden abgehen. Normwerte Neugeborenes: Gewicht 3000–4000 g, Länge ~50 cm, Kopfumfang ~34 cm, Herzfrequenz 120–160/min, Atemfrequenz 40–60/min. Postnatale Adaptation: Lungen entfalten sich, fetale Kreislaufshunts schließen sich."
+        solution: "Mekonium (Kindspech) ist der erste Stuhl des Neugeborenen (schwarzgrün, zähflüssig) und sollte innerhalb der ersten 24–48 Stunden abgehen. Normwerte Neugeborenes: Gewicht 3000–4000 g, Länge ~50 cm, Herzfrequenz 120–160/min, Atemfrequenz 40–60/min. Postnatale Adaptation: Lungen entfalten sich, fetale Kreislaufshunts schließen sich."
       },
       water: {
         statement: "Muttermilch enthält maternale IgA-Antikörper, die dem Säugling einen passiven Infektionsschutz (Nestschutz) bieten.",
@@ -6272,7 +6272,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       water: {
         statement: "Das Down-Syndrom (Trisomie 21) ist die häufigste Chromosomenstörung und tritt in drei Formen auf: freie Trisomie, Translokation und Mosaik.",
         answer: true,
-        solution: "Down-Syndrom (Trisomie 21): Drei Formen: (1) Freie Trisomie 21 (~95 %): Nondisjunction in Meiose, Risiko steigt mit mütterlichem Alter. (2) Translokationstrisomie (~4 %): Chromosom 21 an anderes Chromosom angelagert — kann familiär vererbt werden. (3) Mosaikform (~1 %): Nicht alle Zellen betroffen, milderer Verlauf. Morphologie: Flaches Gesicht, Epikanthus, Muskelhypotonie, Lernbehinderung, erhöhtes Risiko für Herzfehler (AV-Kanal) und Leukämie. Klinefelter-Syndrom (47,XXY): nur Männer, Hodenunterfunktion, Hochwuchs, Gynäkomastie, Infertilität; Therapie: Testosteron-Substitution."
+        solution: "Down-Syndrom (Trisomie 21) tritt in drei Formen auf: Freie Trisomie 21 (~95 %, Nondisjunction, Risiko steigt mit mütterlichem Alter), Translokationstrisomie (~4 %, familiär vererbbar) und Mosaikform (~1 %, milderer Verlauf). Morphologie: flaches Gesicht, Epikanthus, Muskelhypotonie, Lernbehinderung, erhöhtes Risiko für Herzfehler und Leukämie. Klinefelter-Syndrom (47,XXY): nur Männer, Hodenunterfunktion, Hochwuchs, Gynäkomastie, Infertilität; Therapie: Testosteron-Substitution."
       }
     },
     harvestQuestions: [
@@ -6378,7 +6378,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       seed: {
         statement: "Der Erb-Punkt liegt im 2. Interkostalraum links und ist ein Auskultationspunkt speziell für die Aortenklappe.",
         answer: false,
-        solution: "Der Erb-Punkt liegt im 3. ICR links neben dem Sternum. Hier sind alle vier Herzklappen (besonders Aorten- und Pulmonalklappe) gut auskultierbar. Die Aortenklappe wird dagegen am besten im 2. ICR rechts gehört. Auskultationspunkte werden durch die Schallfortleitungsrichtung bestimmt, nicht allein durch die anatomische Lage der Klappen."
+        solution: "Der Erb-Punkt liegt im 3. ICR links neben dem Sternum, wo alle vier Herzklappen (besonders Aorten- und Pulmonalklappe) gut auskultierbar sind. Die Aortenklappe wird am besten im 2. ICR rechts gehört. Auskultationspunkte werden durch die Schallfortleitungsrichtung bestimmt, nicht allein durch die anatomische Lage der Klappen."
       },
       water: {
         statement: "Die Herzvorhöfe besitzen innen kammartige Muskelleisten (Mm. pectinati); die Kammern haben Trabeculae carneae und Mm. papillares.",
@@ -6478,7 +6478,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       soil: {
         statement: "Der pH-Wert des Blutplasmas liegt zwischen 7,36 und 7,44 und ist damit leicht alkalisch.",
         answer: true,
-        solution: "Das Blut macht 6–8 % des Körpergewichts aus (ca. 4–6 Liter). Blutplasma enthält 90–91 % Wasser, 6,6–8 % Proteine und hat einen leicht alkalischen pH von 7,36–7,44. Sinkt der pH unter 7,36, spricht man von Azidose; steigt er über 7,44, von Alkalose. Blutserum ist der flüssige Anteil ohne Fibrinogen (nach der Gerinnung), während Blutplasma = Serum + Fibrinogen ist."
+        solution: "Das Blut macht 6–8 % des Körpergewichts aus (ca. 4–6 Liter); Blutplasma enthält 90–91 % Wasser, 6,6–8 % Proteine und hat einen leicht alkalischen pH von 7,36–7,44. Sinkt der pH unter 7,36, spricht man von Azidose; steigt er über 7,44, von Alkalose. Blutserum ist der flüssige Anteil ohne Fibrinogen (nach der Gerinnung), während Blutplasma = Serum + Fibrinogen ist."
       },
       seed: {
         statement: "Der Hämatokrit beschreibt den prozentualen Anteil der Leukozyten am Gesamtblutvolumen.",
@@ -6676,17 +6676,17 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       soil: {
         statement: "Erythrozyten sind kernlos, ca. 7,5 µm groß und leben 100–120 Tage.",
         answer: true,
-        solution: "Erythrozyten (rote Blutkörperchen) sind kernlose, bikonkave Scheiben (ca. 7,5 µm Durchmesser) – durch den fehlenden Kern sind sie sehr verformbar und können enge Kapillaren passieren. Normalwerte: Männer 4,8–5,9 Mio/µl, Frauen 4,3–5,2 Mio/µl. Sie leben 100–120 Tage und werden in der Milz und Leber abgebaut. Gebildet werden sie im roten Knochenmark."
+        solution: "Erythrozyten (rote Blutkörperchen) sind kernlose, bikonkave Scheiben (ca. 7,5 µm Durchmesser); durch den fehlenden Kern sind sie sehr verformbar und können enge Kapillaren passieren. Normalwerte: Männer 4,8–5,9 Mio/µl, Frauen 4,3–5,2 Mio/µl. Sie leben 100–120 Tage, werden im roten Knochenmark gebildet und in Milz und Leber abgebaut."
       },
       seed: {
         statement: "Kohlenmonoxid (CO) bindet an Hämoglobin und kann problemlos durch frische Luft verdrängt werden.",
         answer: false,
-        solution: "CO bindet ca. 300-mal fester an Hämoglobin als Sauerstoff. Es blockiert die Sauerstoffbindungsstellen (Häm-Gruppen), kann aber mit 100 % Sauerstoff (Hyperbarkammer) verdrängt werden – nicht einfach durch frische Luft. Nitrit-Vergiftung wirkt anders: Sie oxidiert das Fe²⁺ im Hämoglobin zu Fe³⁺ (Methämoglobin), das O₂ zu fest bindet → Zyanose (Blue Babys). Myoglobin im Muskelgewebe hat nur 1 Häm-Gruppe und bindet O₂ noch stärker."
+        solution: "CO bindet ca. 300-mal fester an Hämoglobin als Sauerstoff; es blockiert die Häm-Gruppen, kann aber mit 100 % O₂ (Hyperbarkammer) verdrängt werden – nicht einfach durch frische Luft. Nitrit-Vergiftung oxidiert das Fe²⁺ im Hämoglobin zu Fe³⁺ (Methämoglobin), das O₂ zu fest bindet → Zyanose (Blue Babys). Myoglobin im Muskelgewebe hat nur 1 Häm-Gruppe und bindet O₂ noch stärker."
       },
       water: {
         statement: "Sauerstoffbindung an Hämoglobin ist eine Oxygenation, keine Oxidation – das Eisen bleibt Fe²⁺.",
         answer: true,
-        solution: "Hämoglobin besteht aus 4 Polypeptidketten (Globin) und 4 Häm-Gruppen, die je ein Fe²⁺-Ion enthalten. Die Bindung von O₂ an Fe²⁺ ist reversibel (Oxygenation), kein chemischer Verbrennungsvorgang (Oxidation). Ein Erythrozyt enthält ca. 280 Mio. Hämoglobinmoleküle; jedes kann 4 O₂ transportieren. Sauerstoff wird in den Kapillaren per Diffusion ans Gewebe abgegeben."
+        solution: "Hämoglobin besteht aus 4 Polypeptidketten (Globin) und 4 Häm-Gruppen mit je einem Fe²⁺-Ion; die Bindung von O₂ an Fe²⁺ ist reversibel (Oxygenation, keine Oxidation). Ein Erythrozyt enthält ca. 280 Mio. Hämoglobinmoleküle, jedes transportiert 4 O₂. Sauerstoff wird in den Kapillaren per Diffusion ans Gewebe abgegeben."
       }
     },
     harvestQuestions: [
@@ -6775,17 +6775,17 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       soil: {
         statement: "Neutrophile Granulozyten machen 50–70 % der Leukozyten aus und bekämpfen vorrangig bakterielle Infektionen.",
         answer: true,
-        solution: "Leukozyten (weiße Blutkörperchen) liegen normalerweise bei 4000–10.000/µl. Das Differenzialblutbild: Granulozyten 50–70 % (davon Neutrophile 30–70 %, Eosinophile 1–3 %, Basophile 0,5–1 %), Lymphozyten 20–40 %, Monozyten 2–6 %. Neutrophile Granulozyten sind stab- oder segmentkernig; Neutrophilie tritt bei akuten Bakterieninfekten, Eiterungen und Abszessen auf. Eine Linksverschiebung (mehr stabkernige Formen) zeigt erhöhten Bedarf."
+        solution: "Leukozyten liegen normalerweise bei 4000–10.000/µl; das Differenzialblutbild: Neutrophile 30–70 %, Eosinophile 1–3 %, Basophile 0,5–1 %, Lymphozyten 20–40 %, Monozyten 2–6 %. Neutrophile sind stab- oder segmentkernig; Neutrophilie tritt bei akuten Bakterieninfekten, Eiterungen und Abszessen auf. Eine Linksverschiebung (mehr stabkernige Formen) zeigt erhöhten Neutrophilenbedarf."
       },
       seed: {
         statement: "Eosinophile Granulozyten zeigen keinen Tagesrhythmus und sind bei Cushing-Syndrom erhöht.",
         answer: false,
-        solution: "Eosinophile zeigen einen charakteristischen Tagesrhythmus (morgens niedrig, nachts höher). Sie sind bei Allergien und Parasitenbefall erhöht (Eosinophilie). Erniedrigt sind sie bei Cushing-Syndrom und Bestrahlung (Eosinopenie). Basophile enthalten Heparin, Histamin und Serotonin; Basophilie tritt bei CML, Colitis ulcerosa, Diabetes und Allergien auf."
+        solution: "Eosinophile zeigen einen Tagesrhythmus (morgens niedrig, nachts höher), sind bei Allergien und Parasitenbefall erhöht (Eosinophilie) und bei Cushing-Syndrom erniedrigt (Eosinopenie). Basophile enthalten Heparin, Histamin und Serotonin; Basophilie tritt bei CML, Colitis ulcerosa, Diabetes und Allergien auf."
       },
       water: {
         statement: "Monozyten sind die größten Phagozyten im Blut und Vorläufer der Makrophagen.",
         answer: true,
-        solution: "Monozyten (2–6 % der Leukozyten) sind die größten Blutzellen überhaupt. Sie verlassen das Blut und differenzieren sich in den Geweben zu Makrophagen (z. B. Kupffer-Zellen in der Leber, Mikroglia im ZNS). Monozytose tritt auf bei Mononukleose, Masern, Mumps, Brucellose, Tuberkulose, Malaria und Hodgkin-Lymphom. Lymphozytose: lymphatische Leukämien, Keuchhusten, Röteln, Mumps, Syphilis."
+        solution: "Monozyten (2–6 % der Leukozyten) sind die größten Blutzellen und differenzieren sich in den Geweben zu Makrophagen (z. B. Kupffer-Zellen in der Leber, Mikroglia im ZNS). Monozytose tritt auf bei Mononukleose, Masern, Mumps, Brucellose, Tuberkulose, Malaria und Hodgkin-Lymphom. Lymphozytose kommt vor bei lymphatischen Leukämien, Keuchhusten, Röteln, Mumps und Syphilis."
       }
     },
     harvestQuestions: [
@@ -6879,12 +6879,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       seed: {
         statement: "Hämophilie A ist ein X-chromosomaler Erbgang, von dem auch Frauen regelmäßig betroffen sind.",
         answer: false,
-        solution: "Hämophilie A (Faktor-VIII-Mangel) und Hämophilie B (Faktor-IX-Mangel) werden X-chromosomal rezessiv vererbt. Da Männer nur ein X-Chromosom haben, erkranken fast ausschließlich Männer. Frauen sind Überträgerinnen (Konduktorinnen), erkranken aber selten (bräuchten zwei defekte X-Chromosomen). Hämophilie ist angeboren und muss von der Afibrinogenämie (Faktor I) und Hypoprothrombinämie (Faktor II, durch Vitamin-K-Mangel) unterschieden werden."
+        solution: "Hämophilie A (Faktor-VIII-Mangel) und Hämophilie B (Faktor-IX-Mangel) werden X-chromosomal rezessiv vererbt; da Männer nur ein X-Chromosom haben, erkranken fast ausschließlich Männer, Frauen sind Konduktorinnen. Afibrinogenämie (Faktor-I-Mangel) ist angeboren; Hypoprothrombinämie (Faktor-II-Mangel) entsteht durch Vitamin-K-Mangel."
       },
       water: {
         statement: "Heparin inaktiviert Gerinnungsfaktoren direkt und wirkt damit schneller als Cumarin/Marcumar.",
         answer: true,
-        solution: "Heparin wirkt direkt: Es aktiviert Antithrombin III und inaktiviert so sofort mehrere Gerinnungsfaktoren (IIa, Xa u. a.). Es wird aus Darm- und Lungengewebe von Rind oder Schwein gewonnen. Cumarin/Marcumar hingegen ist ein Vitamin-K-Antagonist: Es hemmt die Synthese Vitamin-K-abhängiger Gerinnungsfaktoren in der Leber – dieser Effekt tritt erst nach 24–48 h ein. ASS hemmt die Thrombozytenaggregation; Kombination ASS + Marcumar erhöht das GI-Blutungsrisiko."
+        solution: "Heparin wirkt direkt (aktiviert Antithrombin III → sofortige Inaktivierung von Faktor IIa, Xa u. a.) und wird aus Darm-/Lungengewebe von Rind oder Schwein gewonnen. Cumarin/Marcumar ist ein Vitamin-K-Antagonist und hemmt die Synthese Vitamin-K-abhängiger Gerinnungsfaktoren in der Leber – dieser Effekt tritt erst nach 24–48 h ein. ASS hemmt die Thrombozytenaggregation; die Kombination ASS + Marcumar erhöht das GI-Blutungsrisiko."
       }
     },
     harvestQuestions: [
@@ -6978,7 +6978,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       seed: {
         statement: "Rh-Antikörper entstehen bei Rh-negativen Personen spontan ohne vorherigen Kontakt mit Rh-positivem Blut.",
         answer: false,
-        solution: "Rh-Antikörper (anti-D) entstehen nur nach Exposition gegenüber Rh-positivem Blut (Sensibilisierung). Rh+ bedeutet: Agglutinogen D auf den Erythrozyten vorhanden (85 % der Bevölkerung); Rh- fehlt D (15 %). Erythroblastosis fetalis: Rh-negative Mutter, Rh-positives Kind → ab der 2. Schwangerschaft bildet die Mutter anti-D, das plazentagängige IgG zerstört die Erythrozyten des Kindes → lebensgefährlich. Anti-D-Prophylaxe: 28.–30. SSW + nach Geburt."
+        solution: "Rh-Antikörper (anti-D) entstehen nur nach Exposition gegenüber Rh-positivem Blut; Rh+ (85 %) = Agglutinogen D vorhanden, Rh- (15 %) = D fehlt. Erythroblastosis fetalis: Rh-negative Mutter mit Rh-positivem Kind → ab der 2. Schwangerschaft zerstören die mütterlichen anti-D-IgG die kindlichen Erythrozyten → lebensgefährlich. Anti-D-Prophylaxe: 28.–30. SSW + nach der Geburt."
       },
       water: {
         statement: "Blutgruppe AB ist der universelle Empfänger, weil keine Antikörper gegen A oder B im Plasma vorhanden sind.",
@@ -7082,7 +7082,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       water: {
         statement: "CRP (C-reaktives Protein) steigt bei systemischen Entzündungen innerhalb von Stunden um das bis zu 1000-fache an.",
         answer: true,
-        solution: "CRP ist ein Akute-Phase-Protein, das in der Leber produziert wird. Es ist ein empfindlicher Marker für Entzündungen, Infektionen und Gewebeschäden. Der Anstieg erfolgt innerhalb von 6–12 h nach dem Entzündungsreiz. Das unspezifische Abwehrsystem ist angeboren, schnell reaktiv und hat kein immunologisches Gedächtnis."
+        solution: "CRP (C-reaktives Protein) ist ein Akute-Phase-Protein, das in der Leber produziert wird und ein empfindlicher Marker für Entzündungen, Infektionen und Gewebeschäden ist; der Anstieg erfolgt innerhalb von 6–12 h. Das unspezifische Abwehrsystem ist angeboren, schnell reaktiv und hat kein immunologisches Gedächtnis."
       }
     },
     harvestQuestions: [
@@ -7468,12 +7468,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       soil: {
         statement: "Der Ductus thoracicus ist der größte Lymphgang und mündet in den linken oberen Venenwinkel.",
         answer: true,
-        solution: "Das Lymphgefäßsystem transportiert täglich 2–3 Liter Lymphe zurück ins Blut. Lymphgefäße beginnen blind in Kapillargebieten und besitzen Klappen. Der Ductus thoracicus (Milchbrustgang) ist der größte Lymphgang; er sammelt Lymphe aus Beinen, Becken, Bauch und der linken oberen Körperhälfte. Er beginnt an der Cisterna chyli (Höhe Zwerchfell) und mündet in den linken Angulus venosus (linker oberer Venenwinkel, wo V. jugularis interna und V. subclavia zusammentreffen). Der Ductus lymphaticus dexter sammelt Lymphe aus der rechten Kopf/Hals/Arm-Seite und mündet in den rechten Venenwinkel."
+        solution: "Das Lymphgefäßsystem transportiert täglich 2–3 Liter Lymphe zurück ins Blut; Lymphgefäße beginnen blind in Kapillargebieten und besitzen Klappen. Der Ductus thoracicus (Milchbrustgang) sammelt Lymphe aus Beinen, Becken, Bauch und der linken oberen Körperhälfte und mündet in den linken Angulus venosus. Der Ductus lymphaticus dexter drainiert die rechte Kopf/Hals/Arm-Seite und mündet in den rechten Venenwinkel."
       },
       seed: {
         statement: "Die Milz liegt im rechten Oberbauch und ist das einzige lymphatische Organ, das Blut filtert.",
         answer: false,
-        solution: "Die Milz liegt im linken Oberbauch, intraperitoneal, auf Höhe der 9.–11. Rippe (10–12 cm, 150–200 g). Sie ist das einzige lymphatische Organ, das Blut (nicht Lymphe) filtert. Aufgaben: Blutspeicherung (rote Pulpa), Erythrozytenabbau/Blutmauserung (Makrophagen phagozytieren überalterte Erythrozyten), Eisenspeicherung, Abwehr (weiße Pulpa prüft Blut auf Antigene). Bei Milzruptur → Splenektomie."
+        solution: "Die Milz liegt im linken Oberbauch (9.–11. Rippe, 10–12 cm, 150–200 g) und ist das einzige lymphatische Organ, das Blut (nicht Lymphe) filtert. Aufgaben: Blutspeicherung (rote Pulpa), Erythrozytenabbau/Blutmauserung, Eisenspeicherung, Abwehr (weiße Pulpa prüft Blut auf Antigene). Bei Milzruptur → Splenektomie."
       },
       water: {
         statement: "Der Waldeyer-Rachenring besteht aus Rachen-, Gaumen- und Zungenmandel und bildet einen lymphatischen Ring am Racheneingang.",
@@ -7567,7 +7567,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       soil: {
         statement: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten im Knochenmark und leben 5–11 Tage.",
         answer: true,
-        solution: "Thrombozyten (Blutplättchen) sind kernlose Zellfragmente mit einem Normalwert von 150.000–300.000/µl. Sie entstehen durch Abschnürung des Zytoplasmas von Megakaryozyten im roten Knochenmark. Ihre Lebensdauer beträgt 5–11 Tage. Sie sind unverzichtbar für die Blutgerinnung (primäre Hämostase). Erhöhte Thrombozytenzahl = Thrombozytose, erniedrigte = Thrombozytopenie."
+        solution: "Thrombozyten (Blutplättchen) sind kernlose Zellfragmente (Normalwert 150.000–300.000/µl), die durch Abschnürung des Zytoplasmas von Megakaryozyten im roten Knochenmark entstehen. Ihre Lebensdauer beträgt 5–11 Tage; sie sind unverzichtbar für die primäre Hämostase. Erhöhte Thrombozytenzahl = Thrombozytose, erniedrigte = Thrombozytopenie."
       },
       seed: {
         statement: "Das Blut hat nur zwei Hauptfunktionen: Transport von Nährstoffen und Entsorgung von Stoffwechselabfallprodukten.",
@@ -7577,7 +7577,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       water: {
         statement: "Im menschlichen Körper gibt es bis zu 700 Lymphknoten, die als biologische Filter wirken und in Rinde und Mark gegliedert sind.",
         answer: true,
-        solution: "Lymphknoten sind bohnenförmige Organe (0,5–1,5 cm) entlang der Lymphgefäße. Im Körper gibt es bis zu 700. Sie filtern die Lymphe biologisch: Makrophagen phagozytieren Erreger und Fremdstoffe; Lymphozyten in den Rindenfollikeln leiten die Immunantwort ein. Die Rinde enthält primäre (nicht aktiviert) und sekundäre Lymphfollikel (aktiviert, mit Keimzentrum). Lymphknotenschwellungen (Lymphadenopathie) entstehen bei Infektionen, Tumoren oder Autoimmunerkrankungen."
+        solution: "Lymphknoten sind bohnenförmige Organe (0,5–1,5 cm, bis zu 700 im Körper), die Lymphe biologisch filtern: Makrophagen phagozytieren Erreger, Lymphozyten in den Rindenfollikeln leiten die Immunantwort ein. Die Rinde enthält primäre (ruhend) und sekundäre Lymphfollikel (aktiviert, mit Keimzentrum). Lymphadenopathie (Lymphknotenschwellung) entsteht bei Infektionen, Tumoren oder Autoimmunerkrankungen."
       }
     },
     harvestQuestions: [
@@ -7672,7 +7672,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       soil: {
         statement: "Das Dauergebiss des Menschen besteht aus 32 Zähnen mit der Formel 2-1-2-3 pro Quadrant; der Durchbruch beginnt ab dem 6. Lebensjahr.",
         answer: true,
-        solution: "Das Dauergebiss hat 32 Zähne (Formel 2123/2123 × 2: 2 Schneidezähne, 1 Eckzahn, 2 Prämolaren, 3 Molaren pro Quadrant). Das Milchgebiss hat 20 Zähne (Formel 212/212 × 2) und bricht ab dem 6. Lebensmonat durch; abgeschlossen ist es ca. im 2. Lebensjahr. Die Molaren des Dauergebisses haben keine Milchzahn-Vorgänger — sie werden direkt als Dauerzähne angelegt. Das Mundhöhlenepithel ist mehrschichtig, unverhornt und plattenförmig."
+        solution: "Das Dauergebiss hat 32 Zähne (Formel 2123 pro Quadrant: 2 Schneidezähne, 1 Eckzahn, 2 Prämolaren, 3 Molaren). Das Milchgebiss hat 20 Zähne (Formel 212/212 × 2) und bricht ab dem 6. Lebensmonat durch; abgeschlossen ist es ca. im 2. Lebensjahr. Die Molaren des Dauergebisses haben keine Milchzahn-Vorgänger — sie werden direkt als Dauerzähne angelegt."
       },
       seed: {
         statement: "Der Zahnschmelz ist der Hauptbestandteil des Zahns nach Volumen und enthält Nerven sowie Blutgefäße.",
@@ -8068,7 +8068,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       soil: {
         statement: "Der Ösophagus besitzt drei physiologische Engstellen: Constrictio cricoidea (ca. 15 cm), Constrictio bronchoaortica (ca. 25 cm) und Constrictio diaphragmatica (ca. 40 cm) — gemessen ab der Zahnreihe.",
         answer: true,
-        solution: "Der Ösophagus ist 23–28 cm lang (Außendurchmesser 3–3,5 cm) und verläuft von C6/C7 bis Th9–Th11. Er gliedert sich in Pars cervicalis, Pars thoracalis und Pars abdominalis. Die drei Engstellen sind klinisch wichtig: An der Constrictio cricoidea (≈15 cm) entstehen Ösophagusvarizen. Die Constrictio bronchoaortica (≈25 cm, Th4, Aortenbogen) und die Constrictio diaphragmatica (≈40 cm, Hiatus oesophageus) sind weitere Engpässe."
+        solution: "Der Ösophagus ist 23–28 cm lang und gliedert sich in Pars cervicalis, Pars thoracalis und Pars abdominalis. Die drei klinisch wichtigen Engstellen: Constrictio cricoidea (≈15 cm), Constrictio bronchoaortica (≈25 cm, Höhe Aortenbogen/Th4) und Constrictio diaphragmatica (≈40 cm, Hiatus oesophageus)."
       },
       seed: {
         statement: "Der Ösophagus wird außen von einer Tunica serosa umhüllt, wie der restliche Magen-Darm-Trakt.",
@@ -8375,7 +8375,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       water: {
         statement: "Das enterische Nervensystem (Bauchhirn) besteht aus dem motorischen Plexus myentericus (Auerbach-Plexus) und dem sekretorischen Plexus submucosus (Meissner-Plexus).",
         answer: true,
-        solution: "Der Plexus myentericus (Auerbach-Plexus) liegt zwischen Längs- und Ringmuskelschicht und steuert die Motorik (koordiniert teils mit N. vagus). Der Plexus submucosus (Meissner-Plexus) liegt in der Submukosa und steuert die Sekretion. Zusammen bilden sie das enterische Nervensystem, das die Funktion des Darms weitgehend autonom regelt ('Bauchhirn'). Das terminale Ileum ist der einzige Ort für Vitamin-B₁₂-Resorption."
+        solution: "Der Plexus myentericus (Auerbach-Plexus) zwischen Längs- und Ringmuskelschicht steuert die Motorik; der Plexus submucosus (Meissner-Plexus) in der Submukosa steuert die Sekretion. Zusammen bilden sie das enterische Nervensystem, das den Darm weitgehend autonom regelt ('Bauchhirn'). Das terminale Ileum ist der einzige Ort für Vitamin-B₁₂-Resorption."
       }
     },
     harvestQuestions: [
@@ -8464,12 +8464,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       soil: {
         statement: "Der Dickdarm besitzt drei charakteristische äußere Merkmale: Taenien (3 Längsmuskelstreifen), Haustren (dynamische Ausbuchtungen) und Appendices epiploicae (goldgelbe Fettanhängsel).",
         answer: true,
-        solution: "Der 1,2–1,5 m lange Dickdarm gliedert sich in: Caecum (mit Appendix vermiformis; rudimentär; Lymphfollikel; Appendizitis), Colon ascendens, transversum, descendens, sigmoideum, Rectum und Anus. Die Bauhin-Klappe (Ostium ileocaecale) verhindert Rückfluss. Meckel-Divertikel (50–60 cm vor Einmündung) = Überbleibsel des Dottergangs. Haustren entstehen durch Plicae semilunares (dynamisch). Appendices epiploicae = fetthaltige Anhängsel, ernährungsabhängig in der Größe."
+        solution: "Der 1,2–1,5 m lange Dickdarm gliedert sich in: Caecum (mit Appendix vermiformis; Appendizitis-Ort), Colon ascendens, transversum, descendens, sigmoideum, Rectum und Anus; die Bauhin-Klappe (Ostium ileocaecale) verhindert Rückfluss. Haustren entstehen durch Plicae semilunares; Appendices epiploicae sind fetthaltige Anhängsel. Meckel-Divertikel (50–60 cm vor der Einmündung) ist ein Überbleibsel des Dottergangs."
       },
       seed: {
         statement: "Das Darmmikrobiom ist bereits bei der Geburt vollständig besiedelt und besteht aus ca. 100 Bakterienspezies.",
         answer: false,
-        solution: "Das Darmmikrobiom ist bei der Geburt steril und baut sich erst nach der Geburt auf. Beim Erwachsenen enthält es >1000 Bakterienspezies mit einer Gesamtmasse von ca. 1,5 kg; bis zu 99% sind anaerob. Es gibt drei Enterotypen: Bacteroides (bei fett-/proteinreicher Ernährung), Prevotella (bei KH-reicher Ernährung), Ruminococcus (Mischtyp). E. coli synthetisiert Vitamin K."
+        solution: "Das Darmmikrobiom ist bei der Geburt steril; beim Erwachsenen enthält es >1000 Bakterienspezies (ca. 1,5 kg, bis zu 99 % anaerob), wobei E. coli Vitamin K synthetisiert. Es gibt drei Enterotypen: Bacteroides (bei fett-/proteinreicher Ernährung), Prevotella (bei KH-reicher Ernährung), Ruminococcus (Mischtyp)."
       },
       water: {
         statement: "Der innere Schließmuskel (M. sphincter ani internus) ist glatte Muskulatur und unwillkürlich, der äußere (M. sphincter ani externus) ist quergestreift und willkürlich kontrolliert — ZNS-Kontrolle ab dem 2. Lebensjahr.",
@@ -8563,7 +8563,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       soil: {
         statement: "Der Douglas-Raum ist die tiefste Stelle der weiblichen Bauchhöhle und liegt zwischen Gebärmutter und Mastdarm — hier kann sich ein Douglas-Abszess entwickeln.",
         answer: true,
-        solution: "Das Peritoneum (Bauchfell) überzieht die Bauchhöhle und Organe. Intraperitoneal: Magen, Leber, Milz, Dünndarm (ohne Duodenum), Colon transversum, Colon sigmoideum. Primär retroperitoneal (nie peritonealisiert): Nieren, Nebennieren, Harnleiter, V. cava inferior, Aorta abdominalis. Sekundär retroperitoneal (ursprünglich intraperitoneal): Duodenum, Pankreas, Colon ascendens, Colon descendens, Caecum. Douglas-Raum = tiefste Stelle der Bauchhöhle; zwischen Uterus und Rectum."
+        solution: "Intraperitoneal: Magen, Leber, Milz, Jejunum/Ileum, Colon transversum, Colon sigmoideum. Primär retroperitoneal (nie peritonealisiert): Nieren, Nebennieren, Harnleiter, V. cava inferior, Aorta abdominalis; sekundär retroperitoneal (ursprünglich intraperitoneal): Duodenum, Pankreas, Colon ascendens/descendens, Caecum. Douglas-Raum = tiefste Stelle der Bauchhöhle (zwischen Uterus und Rectum)."
       },
       seed: {
         statement: "Das Duodenum liegt intraperitoneal, da es als Teil des Dünndarms vollständig von Bauchfell überzogen ist.",
@@ -8672,7 +8672,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       water: {
         statement: "Das Defäkationszentrum (Centrum anospinale) liegt im Sakralmark (S3–S4) und koordiniert den Defäkationsreflex.",
         answer: true,
-        solution: "Das Centrum anospinale liegt im Sakralmark S3–S4. Dehnungsrezeptoren im Rectum → Afferenz zum Centrum anospinale → Relaxation M. sphincter ani internus (glatte Muskulatur, unwillkürlich) + Pressreflex. Der M. sphincter ani externus (quergestreifte Muskulatur, willkürlich) kann die Defäkation bewusst hinausschieben. Bei Rückenmarksverletzungen oberhalb S3 → spinaler Automatismus (Reflexdefäkation); unterhalb S3 → schlaffer Sphinkter → Stuhlinkontinenz."
+        solution: "Das Centrum anospinale im Sakralmark S3–S4 koordiniert den Defäkationsreflex: Dehnungsrezeptoren im Rectum → Relaxation M. sphincter ani internus (glatte Muskulatur, unwillkürlich) + Pressreflex. Der M. sphincter ani externus (quergestreift, willkürlich) kann die Defäkation bewusst hinausschieben. Rückenmarksverletzungen oberhalb S3 → Reflexdefäkation; unterhalb S3 → schlaffer Sphinkter → Stuhlinkontinenz."
       }
     },
     harvestQuestions: [
