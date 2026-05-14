@@ -1372,8 +1372,35 @@ button:disabled {
   height: 30px;
   border-radius: 50% 50% 40% 40%;
   background: linear-gradient(180deg, var(--stem-hi, #68b877) 0%, var(--stem-lo, #3a7d48) 100%);
+  overflow: hidden;
   filter: url(#plant-organic);
   pointer-events: none;
+}
+
+/* Same diagonal hatching as branches */
+.plant-crown::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    125deg,
+    transparent 0px, transparent 2.5px,
+    rgba(0,0,0,0.07) 2.5px, rgba(0,0,0,0.07) 3px
+  );
+  pointer-events: none;
+}
+
+/* Midrib-style vein across the crown */
+.plant-crown::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 75%;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  transform: translateY(-50%);
+  border-radius: 999px;
 }
 
 /* Thirsty: droop all branches downward */
