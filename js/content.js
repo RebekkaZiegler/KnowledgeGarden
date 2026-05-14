@@ -6780,7 +6780,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       seed: {
         statement: "Eosinophile Granulozyten zeigen keinen Tagesrhythmus und sind bei Cushing-Syndrom erhöht.",
         answer: false,
-        solution: "Eosinophile zeigen einen Tagesrhythmus (morgens niedrig, nachts höher), sind bei Allergien und Parasitenbefall erhöht (Eosinophilie) und bei Cushing-Syndrom erniedrigt (Eosinopenie). Basophile enthalten Heparin, Histamin und Serotonin; Basophilie tritt bei CML, Colitis ulcerosa, Diabetes und Allergien auf."
+        solution: "Eosinophile zeigen einen Tagesrhythmus (morgens niedrig, nachts höher), sind bei Allergien und Parasitenbefall erhöht (Eosinophilie) und bei Cushing-Syndrom erniedrigt (Eosinopenie). Basophile enthalten Heparin, Histamin und Serotonin; Basophilie tritt bei CML, Colitis ulcerosa, Diabetes und Allergien auf. Medikamentöse Agranulozytose (starker Abfall der Granulozyten) kann als reversible Nebenwirkung von Paracetamol, Phenacetin und Pyrazol-Derivaten auftreten."
       },
       water: {
         statement: "Monozyten sind die größten Phagozyten im Blut und Vorläufer der Makrophagen.",
@@ -6922,21 +6922,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       {
         id: "haemostase_h4",
         type: "mc",
-        question: "Wie wirkt Natriumcitrat als Gerinnungshemmer im Labor?",
+        question: "Welche Aussage zu ASS (Acetylsalicylsäure) als Gerinnungshemmer ist korrekt?",
         options: [
-          { text: "Es bildet einen Komplex mit Ca²⁺ und entzieht es der Gerinnung", correct: true },
-          { text: "Es hemmt die Thrombozytenaggregation wie ASS", correct: false },
-          { text: "Es aktiviert Antithrombin III", correct: false },
-          { text: "Es blockiert die Vitamin-K-abhängige Synthese", correct: false }
+          { text: "ASS hemmt die Thrombozytenaggregation", correct: true },
+          { text: "ASS aktiviert Antithrombin III wie Heparin", correct: false },
+          { text: "ASS blockiert Vitamin-K-abhängige Gerinnungsfaktoren wie Cumarin", correct: false },
+          { text: "ASS ist bei gleichzeitiger Gabe von Marcumar unbedenklich", correct: false }
         ],
-        explanation: "Natriumcitrat (und EDTA) bilden Komplexe mit Ca²⁺-Ionen, die für die Blutgerinnung unentbehrlich sind → Gerinnung wird verhindert. Einsatz in BSG-Röhrchen und Gerinnungsdiagnostik."
+        explanation: "ASS hemmt die Thrombozytenaggregation irreversibel. Die Kombination ASS + Marcumar erhöht das GI-Blutungsrisiko und ist daher mit Vorsicht einzusetzen."
       },
       {
         id: "haemostase_h5",
         type: "true_false",
-        statement: "Die Fibrinolyse löst überschüssige Fibrinmengen auf und muss im Gleichgewicht zur Fibrinbildung stehen.",
+        statement: "Hämophilie A und Hämophilie B werden X-chromosomal rezessiv vererbt, weshalb fast ausschließlich Männer erkranken.",
         answer: true,
-        explanation: "Fibrinolyse (Plasmin löst Fibrin auf) verhindert übermäßige Gerinnselbildung und hält Gefäße durchgängig. Steht sie im Gleichgewicht mit der Gerinnung, bleibt das Hämostasesystem funktionsfähig."
+        explanation: "Hämophilie A (Faktor-VIII-Mangel) und Hämophilie B (Faktor-IX-Mangel) sind X-chromosomal rezessiv vererbt. Da Männer nur ein X-Chromosom haben, erkranken sie bei einem defekten Allel direkt; Frauen sind meist Konduktorinnen."
       }
     ],
     phase4Questions: [
@@ -7918,9 +7918,9 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "zunge_geschmack_h4",
         type: "true_false",
-        statement: "Die Zungenmuskulatur besteht aus quergestreifter Muskulatur, die willkürlich gesteuert werden kann.",
+        statement: "Die sublinguale Resorption (unter der Zunge) umgeht den First-Pass-Effekt der Leber, da Wirkstoffe direkt ins Blut gelangen.",
         answer: true,
-        explanation: "Das Corpus linguae (Zungenkörper) besteht aus quergestreifter Skelettmuskulatur, die willkürlich kontrolliert wird — das ermöglicht Sprechen, Kauen und den Schluckakt. Die Zunge gliedert sich in Radix (Mundboden), Corpus und Apex (Zungenspitze)."
+        explanation: "Sublinguale Wirkstoffe werden über die Mundschleimhaut direkt ins Blut aufgenommen und umgehen so den Abbau in der Leber (First-Pass-Effekt). Nitrolingual (Nitroglyzerin) und Adalat (Nifedipin) sind klassische Beispiele für diese Applikationsform."
       },
       {
         id: "zunge_geschmack_h5",
@@ -8413,14 +8413,14 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "duenndarm_h4",
         type: "mc",
-        question: "Welche Bewegungsform des Dünndarms dient hauptsächlich der Durchmischung des Chymus?",
+        question: "Welche Zellen in den Lieberkühnn-Krypten sezernieren Schleim (mucopolysaccharidreich)?",
         options: [
-          { text: "Segmentationsperistaltik (Ringmuskel)", correct: true },
-          { text: "Propulsive Peristaltik", correct: false },
-          { text: "Pendelbewegung", correct: false },
-          { text: "Retrograde Peristaltik", correct: false }
+          { text: "Becherzellen", correct: true },
+          { text: "Paneth-Zellen", correct: false },
+          { text: "Brunner-Drüsenzellen", correct: false },
+          { text: "Belegzellen", correct: false }
         ],
-        explanation: "Die Segmentationsperistaltik (rhythmische Kontraktion der Ringmuskulatur) teilt den Chymus in Segmente und durchmischt ihn mit Verdauungsenzymen — ohne Vorwärtsbewegung. Die propulsive Peristaltik transportiert den Chymus vorwärts. Pendelbewegungen (Längsmuskel, alle 8–10 Sek) unterstützen die Durchmischung."
+        explanation: "Becherzellen produzieren mucopolysaccharidreichen Schleim. Paneth-Zellen am Grund der Lieberkühnn-Krypten produzieren antimikrobielle Defensine. Brunner-Drüsen im Duodenum sezernieren alkalisches Sekret."
       },
       {
         id: "duenndarm_h5",
@@ -12585,14 +12585,14 @@ const NERVENSYSTEM_1043_PLANTS = [
       {
         type: "mc",
         id: "1043_03_h5",
-        question: "Welche Hirnanteile entstehen aus dem Rhombencephalon?",
+        question: "Was ist das somatische Nervensystem im Vergleich zum vegetativen Nervensystem?",
         options: [
-          { text: "Pons (Brücke), Cerebellum und Medulla oblongata", correct: true },
-          { text: "Telencephalon und Diencephalon", correct: false },
-          { text: "Nur das Mesencephalon", correct: false },
-          { text: "Hypothalamus und Thalamus", correct: false }
+          { text: "Das somatische NS ist willkürlich steuerbar; das vegetative NS ist unwillkürlich", correct: true },
+          { text: "Beide Systeme sind vollständig willkürlich steuerbar", correct: false },
+          { text: "Das somatische NS ist unwillkürlich; das vegetative NS ist willkürlich", correct: false },
+          { text: "Das vegetative NS umfasst Gehirn und Rückenmark", correct: false }
         ],
-        explanation: "Das Rhombencephalon differenziert sich in Metencephalon (Pons + Cerebellum) und Myelencephalon (Medulla oblongata). Telencephalon + Diencephalon entstehen aus dem Prosencephalon."
+        explanation: "Das somatische Nervensystem steuert willkürliche Bewegungen und Empfindungen; das vegetative (autonome) NS steuert unwillkürliche Funktionen wie Herzschlag, Atmung und Verdauung."
       }
     ],
     phase4Questions: [
@@ -12672,14 +12672,14 @@ const NERVENSYSTEM_1043_PLANTS = [
       {
         type: "mc",
         id: "1043_04_h3",
-        question: "Welcher Hirnnerv innerviert den M. sternocleidomastoideus und den M. trapezius?",
+        question: "Was innerviert der N. oculomotorius (III)?",
         options: [
-          { text: "N. accessorius (XI)", correct: true },
-          { text: "N. vagus (X)", correct: false },
-          { text: "N. facialis (VII)", correct: false },
-          { text: "N. hypoglossus (XII)", correct: false }
+          { text: "Alle anderen Augenmuskeln (nicht IV/VI), Akkommodation und Pupillenverengung", correct: true },
+          { text: "Nur den oberen schrägen Augenmuskel", correct: false },
+          { text: "Nur den äußeren geraden Augenmuskel", correct: false },
+          { text: "Ausschließlich die Pupillenreaktion, keine Augenmotilität", correct: false }
         ],
-        explanation: "Der XI. Hirnnerv (N. accessorius) innerviert M. sternocleidomastoideus und M. trapezius. Störung führt zu Schräghalten des Kopfes und Schulterheberschwäche."
+        explanation: "N. oculomotorius (III) innerviert alle Augenmuskeln außer dem oberen schrägen (IV) und dem äußeren geraden (VI), und steuert zusätzlich Akkommodation und Pupillenverengung (vegetative Funktion)."
       },
       {
         type: "true_false",
@@ -12694,14 +12694,14 @@ const NERVENSYSTEM_1043_PLANTS = [
       {
         type: "mc",
         id: "1043_04_h5",
-        question: "Was ist der Cornealreflex und welche zwei Hirnnerven sind beteiligt?",
+        question: "Zur welcher Seite weicht die Zunge bei einer Lähmung des N. hypoglossus (XII) ab?",
         options: [
-          { text: "Berühren der Cornea → Lidschluss; V (afferent) und VII (efferent)", correct: true },
-          { text: "Lichtreiz auf Pupille → Verengung; II (afferent) und III (efferent)", correct: false },
-          { text: "Berühren des Zäpfchens → Würgen; IX (afferent) und X (efferent)", correct: false },
-          { text: "Schallreiz → Schreckreaktion; VIII (afferent) und VII (efferent)", correct: false }
+          { text: "Zur kranken (gelähmten) Seite", correct: true },
+          { text: "Zur gesunden Seite", correct: false },
+          { text: "Sie weicht nicht ab, sondern bleibt mittig", correct: false },
+          { text: "Zur gesunden Seite, weil die intakte Gegenseite zieht", correct: false }
         ],
-        explanation: "Der Cornealreflex: Berühren der Hornhaut → N. trigeminus (V, afferent) → N. facialis (VII, efferent) → Lidschluss. Er prüft die Hirnstammintegrität."
+        explanation: "Bei N. hypoglossus-Lähmung weicht die Zunge zur KRANKEN Seite ab (die gelähmte Seite zieht nicht mehr). Im Gegensatz dazu weicht das Gaumenzäpfchen bei Vagus-Lähmung zur GESUNDEN Seite."
       }
     ],
     phase4Questions: [
