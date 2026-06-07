@@ -57,10 +57,9 @@
     <button id="open-map-btn" title="Restaurant">🍽️</button>
     <button id="open-lab-btn" title="Labor">🔬</button>
     <button id="open-trophies-btn" title="Trophäen">🏆</button>
+    <button id="open-memory-btn" title="Entspannungsmodus: Memory">🧘</button>
     <button id="toggle-settings-btn" title="Einstellungen">⚙️</button>
     <button id="update-nav-btn" title="App aktualisieren">🔄</button>
-    <button id="mute-music-btn" title="Musik stumm schalten">♪</button>
-    <button id="mute-sfx-btn" title="Soundeffekte stumm schalten">♪♩</button>
     <button id="quick-reset-btn" class="danger" title="Speicher löschen" onclick="if(confirm('Speicher wirklich löschen?')){localStorage.clear();location.reload();}">🗑️</button>
   </nav>
 
@@ -79,10 +78,6 @@
       <div id="settings-version" style="font-size:0.75rem;color:var(--muted);margin-top:0.5rem;text-align:center;"></div>
       <button id="update-btn" style="width:100%;margin-top:0.4rem;font-size:0.95rem;padding:0.6rem 1rem;">🔄 Auf neueste Version aktualisieren</button>
       <input id="import-file-input" type="file" accept="application/json,.json" style="display:none">
-      <div class="volume-settings">
-        <label>♪ Musik<input id="music-volume" type="range" min="0" max="100" value="10"></label>
-        <label>♪♩ Soundeffekte<input id="sfx-volume" type="range" min="0" max="100" value="100"></label>
-      </div>
       <div class="muted">Mit Esc wieder schließen.</div>
       <button id="close-settings-btn" class="modal-close-btn">Schließen</button>
     </div>
@@ -137,6 +132,21 @@
       <h2>🏆 Trophäenraum</h2>
       <div id="trophy-list" class="list"></div>
       <button id="close-trophies-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- Memory / relaxation mode -->
+  <div id="modal-memory" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <h2>🧘 Entspannungsmodus: Memory</h2>
+      <div id="memory-intro" class="muted" style="font-size:0.85rem;margin-bottom:0.6rem">Finde die Paare aus Themen, die du schon gepflanzt oder beantwortet hast — ganz ohne Zeitdruck oder Punkte.</div>
+      <div id="memory-stats" class="muted" style="font-size:0.8rem;margin-bottom:0.6rem"></div>
+      <div id="memory-board" class="memory-board"></div>
+      <div id="memory-done" class="memory-done" hidden></div>
+      <div class="row" style="margin-top:0.6rem">
+        <button id="memory-new-round-btn">🔄 Neue Runde</button>
+        <button id="close-memory-btn" class="modal-close-btn">Schließen</button>
+      </div>
     </div>
   </div>
 

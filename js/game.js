@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.25";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.26";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -46,10 +46,15 @@ const ACHIEVEMENTS = [
       const all = (b.plants||[]).flatMap(pl => [...(pl.harvestQuestions||[]), ...(pl.phase4Questions||[])]);
       return all.length > 0 && all.every(q => ans[q.id] === 'correct');
     }) },
+  // Memory (Entspannungsmodus) — bonus achievements, don't gate the finale
+  { id: 'mem_1',    icon: '🧘', name: 'Erste Runde',         desc: 'Erste Memory-Runde im Entspannungsmodus gespielt', check: s => (s.memoryRoundsPlayed || 0) >= 1 },
+  { id: 'mem_pairs_25', icon: '🍃', name: 'Gut gemerkt',     desc: '25 Paare im Memory gefunden',    check: s => (s.memoryPairsMatched || 0) >= 25 },
+  { id: 'mem_pairs_100', icon: '🌳', name: 'Gedächtniskünstler', desc: '100 Paare im Memory gefunden', check: s => (s.memoryPairsMatched || 0) >= 100 },
   // Finale
-  { id: 'heilpraktiker', icon: '🩺', name: 'Heilpraktiker!', desc: 'Alle Errungenschaften & alle Restaurantthemen gemeistert — Prüfung bestanden!',
+  { id: 'heilpraktiker', icon: '🩺', name: 'Heilpraktiker!', desc: 'Alle Lern-Errungenschaften & alle Restaurantthemen gemeistert — Prüfung bestanden!',
     check: (s, p) => {
-      const otherIds = ACHIEVEMENTS.filter(a => a.id !== 'heilpraktiker').map(a => a.id);
+      const FINALE_EXEMPT = new Set(['heilpraktiker', 'mem_1', 'mem_pairs_25', 'mem_pairs_100']);
+      const otherIds = ACHIEVEMENTS.filter(a => !FINALE_EXEMPT.has(a.id)).map(a => a.id);
       if (!otherIds.every(id => (s.unlockedAchievements || []).includes(id))) return false;
       return PACK_CONTENT.beds.filter(b => b.id !== 'hybrid').every(b => {
         const bs = p.beds[b.id]; if (!bs?.restaurantUnlocked) return false;
@@ -121,9 +126,9 @@ let uiViewMode = "full";
 let uiViewSection = "seed";
 let lastFaviconSignature = "";
 
-// ── Audio system ──
-let sfxMuted = false;
-let musicMuted = false;
+// ── Audio system ── (disabled — most players use the app muted anyway)
+let sfxMuted = true;
+let musicMuted = true;
 let sfxVolume = 1.0;
 const sfxCache = {};
 const prevPlantSoundStates = {}; // plantId → { harvestable, cooldownDone }
@@ -352,31 +357,6 @@ function bindEvents() {
     renderAll();
   });
 
-  const muteMusicBtn = document.getElementById("mute-music-btn");
-  const muteSfxBtn = document.getElementById("mute-sfx-btn");
-  if (muteMusicBtn) muteMusicBtn.addEventListener("click", () => {
-    musicMuted = !musicMuted;
-    muteMusicBtn.classList.toggle("muted-active", musicMuted);
-    if (musicMuted) {
-      bgMusic.pause();
-    } else {
-      bgMusicStarted = false;
-      startBgMusic();
-    }
-  });
-  if (muteSfxBtn) muteSfxBtn.addEventListener("click", () => {
-    sfxMuted = !sfxMuted;
-    muteSfxBtn.classList.toggle("muted-active", sfxMuted);
-  });
-
-  const musicVolumeSlider = document.getElementById("music-volume");
-  const sfxVolumeSlider = document.getElementById("sfx-volume");
-  if (musicVolumeSlider) musicVolumeSlider.addEventListener("input", () => {
-    bgMusic.volume = musicVolumeSlider.value / 100;
-  });
-  if (sfxVolumeSlider) sfxVolumeSlider.addEventListener("input", () => {
-    sfxVolume = sfxVolumeSlider.value / 100;
-  });
 }
 
 function setActiveBed(bedId) {
@@ -469,6 +449,8 @@ function createInitialState() {
           bestStreak: 0,
           totalQuestionsAnswered: 0,
           streakBuybacks: 0,
+          memoryRoundsPlayed: 0,
+          memoryPairsMatched: 0,
           activityLog: {},
           unlockedAchievements: [],
           achievementDates: {}
@@ -508,6 +490,8 @@ function normalizeLoadedState(inputState) {
   pack.stats.bestStreak           = pack.stats.bestStreak           ?? 0;
   pack.stats.totalQuestionsAnswered = pack.stats.totalQuestionsAnswered ?? 0;
   pack.stats.streakBuybacks       = pack.stats.streakBuybacks       ?? 0;
+  pack.stats.memoryRoundsPlayed   = pack.stats.memoryRoundsPlayed   ?? 0;
+  pack.stats.memoryPairsMatched   = pack.stats.memoryPairsMatched   ?? 0;
   if (!pack.stats.activityLog)       pack.stats.activityLog = {};
   if (!pack.stats.unlockedAchievements) pack.stats.unlockedAchievements = [];
   if (!pack.stats.achievementDates)     pack.stats.achievementDates = {};
@@ -4700,6 +4684,151 @@ function isBedMasteredInRestaurant(bedId) {
   return all.length > 0 && all.every(q => answers[q.id] === "correct");
 }
 
+// ── Memory / Entspannungsmodus ─────────────────────────────────────────────
+let memorySession = null;
+
+function getMemoryFact(q) {
+  if (q.type === "mc") {
+    const correct = (q.options || []).find(o => o.correct);
+    return correct?.text || null;
+  }
+  if (q.type === "true_false" && q.answer === true) {
+    return q.statement || null;
+  }
+  return null;
+}
+
+// One pair per qualifying plant: plant title ↔ a fact from one of its already
+// planted-or-answered harvest questions (so content always feels familiar).
+function getMemoryCandidatePairs() {
+  const pack = getPackState();
+  const pairs = [];
+  PACK_CONTENT.beds.forEach(bed => {
+    const bedState = pack.beds[bed.id];
+    if (!bedState) return;
+    const activeIds = bedState.activePlantIds || [];
+    (bed.plants || []).forEach(plant => {
+      const pState = bedState.plants?.[plant.id];
+      if (!pState) return;
+      const isPlanted = activeIds.includes(plant.id) || pState.harvestedOnce;
+      const eligible = (plant.harvestQuestions || []).filter(q => {
+        const status = pState.phase2Questions?.[q.id]?.status;
+        return isPlanted || status === "learned" || status === "wrong";
+      });
+      for (const q of eligible) {
+        const fact = getMemoryFact(q);
+        if (fact) { pairs.push({ id: `${plant.id}__${q.id}`, front: plant.title, back: fact }); break; }
+      }
+    });
+  });
+  return pairs;
+}
+
+function renderMemoryStats() {
+  const el = document.getElementById("memory-stats");
+  if (!el) return;
+  const stats = getPackState().stats;
+  if (!memorySession) { el.textContent = ""; return; }
+  el.textContent = `Diese Runde: ${memorySession.matchedPairs}/${memorySession.totalPairs} Paare · insgesamt im Entspannungsmodus: ${stats.memoryPairsMatched || 0} Paare in ${stats.memoryRoundsPlayed || 0} Runden`;
+}
+
+function startMemoryRound() {
+  const board = document.getElementById("memory-board");
+  const doneEl = document.getElementById("memory-done");
+  const introEl = document.getElementById("memory-intro");
+  if (!board || !doneEl || !introEl) return;
+  doneEl.hidden = true;
+  const allPairs = getMemoryCandidatePairs();
+  if (allPairs.length < 3) {
+    memorySession = null;
+    board.innerHTML = "";
+    introEl.textContent = "Du brauchst mindestens 3 gepflanzte oder beantwortete Themen für eine Runde — pflanze ein paar Samen oder beantworte ein paar Fragen, dann kannst du hier in Ruhe Paare suchen.";
+    renderMemoryStats();
+    return;
+  }
+  introEl.textContent = "Finde die Paare aus Themen, die du schon gepflanzt oder beantwortet hast — ganz ohne Zeitdruck oder Punkte.";
+  const roundSize = Math.min(8, allPairs.length);
+  const chosen = shuffle([...allPairs]).slice(0, roundSize);
+  const cards = [];
+  chosen.forEach(pair => {
+    cards.push({ pairId: pair.id, text: pair.front, matched: false });
+    cards.push({ pairId: pair.id, text: pair.back, matched: false });
+  });
+  memorySession = {
+    cards: shuffle(cards),
+    flippedIdx: [],
+    matchedPairs: 0,
+    totalPairs: chosen.length,
+    lock: false
+  };
+  renderMemoryBoard();
+  renderMemoryStats();
+}
+
+function renderMemoryBoard() {
+  const board = document.getElementById("memory-board");
+  if (!board || !memorySession) return;
+  board.innerHTML = memorySession.cards.map((card, idx) => {
+    const flipped = memorySession.flippedIdx.includes(idx) || card.matched;
+    const cls = card.matched ? "memory-card--matched" : (flipped ? "memory-card--flipped" : "");
+    return `<div class="memory-card ${cls}" data-idx="${idx}">${flipped ? escapeHtmlText(card.text) : ""}</div>`;
+  }).join("");
+  board.querySelectorAll(".memory-card").forEach(el => {
+    el.addEventListener("click", () => flipMemoryCard(parseInt(el.getAttribute("data-idx"), 10)));
+  });
+}
+
+function flipMemoryCard(idx) {
+  if (!memorySession || memorySession.lock) return;
+  const card = memorySession.cards[idx];
+  if (!card || card.matched || memorySession.flippedIdx.includes(idx)) return;
+  if (memorySession.flippedIdx.length >= 2) return;
+  memorySession.flippedIdx.push(idx);
+  renderMemoryBoard();
+  if (memorySession.flippedIdx.length === 2) {
+    const [i1, i2] = memorySession.flippedIdx;
+    const c1 = memorySession.cards[i1];
+    const c2 = memorySession.cards[i2];
+    if (c1.pairId === c2.pairId) {
+      c1.matched = true;
+      c2.matched = true;
+      memorySession.flippedIdx = [];
+      memorySession.matchedPairs += 1;
+      const pack = getPackState();
+      pack.stats.memoryPairsMatched = (pack.stats.memoryPairsMatched || 0) + 1;
+      saveState();
+      renderMemoryBoard();
+      renderMemoryStats();
+      if (memorySession.matchedPairs === memorySession.totalPairs) finishMemoryRound();
+    } else {
+      memorySession.lock = true;
+      setTimeout(() => {
+        memorySession.flippedIdx = [];
+        memorySession.lock = false;
+        renderMemoryBoard();
+      }, 900);
+    }
+  }
+}
+
+function finishMemoryRound() {
+  const pack = getPackState();
+  pack.stats.memoryRoundsPlayed = (pack.stats.memoryRoundsPlayed || 0) + 1;
+  saveState();
+  checkAndUnlockAchievements();
+  const doneEl = document.getElementById("memory-done");
+  if (doneEl) {
+    doneEl.hidden = false;
+    doneEl.textContent = `🌿 Geschafft! Alle ${memorySession.totalPairs} Paare gefunden.`;
+  }
+  renderMemoryStats();
+}
+
+function openMemoryModal() {
+  startMemoryRound();
+  openModal("modal-memory");
+}
+
 function openTrophyRoom() {
   const container = document.getElementById("trophy-list");
   if (!container) return;
@@ -4708,9 +4837,12 @@ function openTrophyRoom() {
 
   // ── Counter ──
   const totalAnswered = stats.totalQuestionsAnswered || 0;
+  const memoryPairs = stats.memoryPairsMatched || 0;
+  const memoryRounds = stats.memoryRoundsPlayed || 0;
   const counterHtml = `<div class="trophy-counter">
     <span class="trophy-counter-num">${totalAnswered}</span>
     <span class="trophy-counter-label">Fragen beantwortet</span>
+    ${memoryRounds > 0 ? `<div class="muted" style="font-size:0.8rem;margin-top:0.4rem">🧘 Entspannungsmodus: <strong>${memoryPairs}</strong> Paare in <strong>${memoryRounds}</strong> Runden gefunden</div>` : ''}
   </div>`;
 
   // ── Heatmap (last 90 days) ──
@@ -4964,6 +5096,9 @@ if (openLabBtn) openLabBtn.addEventListener("click", openLabModal);
 const openTrophiesBtn = document.getElementById("open-trophies-btn");
 if (openTrophiesBtn) openTrophiesBtn.addEventListener("click", openTrophyRoom);
 
+const openMemoryBtn = document.getElementById("open-memory-btn");
+if (openMemoryBtn) openMemoryBtn.addEventListener("click", openMemoryModal);
+
 const toggleSettingsBtn = document.getElementById("toggle-settings-btn");
 if (toggleSettingsBtn) toggleSettingsBtn.addEventListener("click", openSettingsPage);
 
@@ -5008,6 +5143,12 @@ if (closeLabBtn) closeLabBtn.addEventListener("click", () => closeModal("modal-l
 const closeTrophiesBtn = document.getElementById("close-trophies-btn");
 if (closeTrophiesBtn) closeTrophiesBtn.addEventListener("click", () => closeModal("modal-trophies"));
 
+const closeMemoryBtn = document.getElementById("close-memory-btn");
+if (closeMemoryBtn) closeMemoryBtn.addEventListener("click", () => { memorySession = null; closeModal("modal-memory"); });
+
+const memoryNewRoundBtn = document.getElementById("memory-new-round-btn");
+if (memoryNewRoundBtn) memoryNewRoundBtn.addEventListener("click", startMemoryRound);
+
 const openSessionEndBtn = document.getElementById("open-session-end-btn");
 if (openSessionEndBtn) openSessionEndBtn.addEventListener("click", openSessionEndModal);
 
@@ -5022,6 +5163,7 @@ document.querySelectorAll(".modal-overlay").forEach((overlay) => {
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       if (overlay.id === "modal-room") stopRestaurant();
+      if (overlay.id === "modal-memory") memorySession = null;
       overlay.hidden = true;
     }
   });

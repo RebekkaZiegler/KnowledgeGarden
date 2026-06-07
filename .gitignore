@@ -1,5 +1,5 @@
 .claude/
-# Large music files (>100MB, excluded from GitHub)
-assets/music/Home Beyond the Vale _ Fantasy Celtic Ambience _ Relaxing Music [No Ads].mp3
+# Sound is disabled in-app (most players run muted) — keep files locally but stop tracking them
+assets/music/*.mp3
 # Source PDFs — too large for git, stored locally
 Input/*.pdf
