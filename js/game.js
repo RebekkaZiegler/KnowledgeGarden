@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.23";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.24";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -1724,6 +1724,8 @@ function renderPlayer() {
     }
   }
 
+  const todayHtml = `<div class="stat-pace">Heute: <strong>${dailyDone}</strong> ${dailyDone === 1 ? 'Frage' : 'Fragen'} beantwortet</div>`;
+
   els.playerStats.innerHTML = `
     <div class="stat-row">
       <div>🌾 <strong>${curriculum.harvested}/${curriculum.total}</strong></div>
@@ -1731,6 +1733,7 @@ function renderPlayer() {
       ${streakHtml}
       ${dailyHtml}
     </div>
+    <div class="stat-row">${todayHtml}</div>
     <div class="stat-row">${paceHtml}</div>
   `;
   const buyBackBtn = els.playerStats.querySelector('#btn-buyback-streak');
@@ -3173,6 +3176,8 @@ function showBedPicker() {
   const title = document.getElementById("quick-pick-title");
   const list  = document.getElementById("quick-pick-list");
   if (!title || !list) return;
+  const closeBtn = document.getElementById("close-quick-pick-btn");
+  if (closeBtn) closeBtn.textContent = "Abbrechen";
   title.textContent = "Thema wählen";
   const unlockedIds = new Set(getBedProgress().unlockedBedIds);
   const unlocked = PACK_CONTENT.beds.filter(b => b.id !== "hybrid" && unlockedIds.has(b.id));
@@ -3196,6 +3201,8 @@ function showPlantPicker(bedId) {
   const bed      = PACK_CONTENT.beds.find(b => b.id === bedId);
   const bedState = pack.beds[bedId];
   if (!bed || !bedState) return;
+  const closeBtn = document.getElementById("close-quick-pick-btn");
+  if (closeBtn) closeBtn.textContent = "Abbrechen";
   title.textContent = bed.title;
   const activeIds = bedState.activePlantIds || [];
 
@@ -4568,6 +4575,10 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
   if (!restaurantSession) return;
   sessionStats.questionsAnswered++;
   if (ok) sessionStats.correct++; else sessionStats.wrong++;
+  trackDailyActivity();
+  checkAndUnlockAchievements();
+  saveState();
+  renderPlayer();
   const bedState = getPackState().beds[restaurantSession.bedId];
   const isRestock = unlock.type === "restock";
   const isClean   = unlock.type === "clean";
@@ -4599,7 +4610,7 @@ function applyReUnlockResult(ok, feedbackText, unlock) {
       bedState.restaurant.stocks[unlock.value] = (bedState.restaurant.stocks[unlock.value] || 0) + amt;
       saveState();
     }
-    if (!isRestock) { saveState(); renderPlayer(); }
+    if (!isRestock) saveState();
     reSyncCooks();
   }
   const area = document.getElementById("re-question-area");
@@ -4790,6 +4801,7 @@ function openTrophyRoom() {
       const done = el.getAttribute('data-ach-done') === 'true';
       const title = document.getElementById('quick-pick-title');
       const list  = document.getElementById('quick-pick-list');
+      const closeBtn = document.getElementById('close-quick-pick-btn');
       if (!title || !list) return;
       title.textContent = name;
       list.innerHTML = `
@@ -4798,6 +4810,7 @@ function openTrophyRoom() {
           ? `<div style="color:var(--accent);font-size:0.85rem">✅ Freigeschaltet am ${date}</div>`
           : `<div style="color:var(--muted);font-size:0.85rem">🔒 Noch nicht freigeschaltet</div>`}
       `;
+      if (closeBtn) closeBtn.textContent = 'Schließen';
       openModal('modal-quick-pick');
     });
   });
