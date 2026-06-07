@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.24";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.25";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -1717,10 +1717,10 @@ function renderPlayer() {
       const daysElapsed = Math.max(1, (now - stats.firstPlayDate) / 86400000);
       const pacePerDay = learnedQ / daysElapsed;
       const onTrack = pacePerDay >= neededPerDay;
-      paceHtml = `<div class="stat-pace ${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}">Du brauchst ${neededPerDay.toFixed(1)}/Tag · du schaffst ${pacePerDay.toFixed(1)}/Tag${onTrack ? ' ✓' : ' ⚠️'}</div>`;
+      paceHtml = `<div class="stat-pace ${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}" title="Durchschnitt seit deinem ersten Spieltag — zählt nur Fragen, die neu auf 'gelernt' wechseln, keine Wiederholungen.">Für dein Ziel brauchst du ${neededPerDay.toFixed(1)} neu gelernte/Tag · bisher im Schnitt ${pacePerDay.toFixed(1)} neu gelernte/Tag${onTrack ? ' ✓' : ' ⚠️'}</div>`;
     } else {
       const dl = new Date(EXAM_DEADLINE).toLocaleString('de-DE', { month: 'short', year: 'numeric' });
-      paceHtml = `<div class="stat-pace">Du brauchst ${neededPerDay.toFixed(1)} Fragen/Tag für ${dl}</div>`;
+      paceHtml = `<div class="stat-pace">Für dein Ziel ${dl} brauchst du ${neededPerDay.toFixed(1)} neu gelernte Fragen/Tag</div>`;
     }
   }
 
