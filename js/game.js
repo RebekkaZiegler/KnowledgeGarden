@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.26";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.27";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -452,6 +452,7 @@ function createInitialState() {
           memoryRoundsPlayed: 0,
           memoryPairsMatched: 0,
           activityLog: {},
+          learnedLog: {},
           unlockedAchievements: [],
           achievementDates: {}
         },
@@ -493,6 +494,7 @@ function normalizeLoadedState(inputState) {
   pack.stats.memoryRoundsPlayed   = pack.stats.memoryRoundsPlayed   ?? 0;
   pack.stats.memoryPairsMatched   = pack.stats.memoryPairsMatched   ?? 0;
   if (!pack.stats.activityLog)       pack.stats.activityLog = {};
+  if (!pack.stats.learnedLog)        pack.stats.learnedLog = {};
   if (!pack.stats.unlockedAchievements) pack.stats.unlockedAchievements = [];
   if (!pack.stats.achievementDates)     pack.stats.achievementDates = {};
 
@@ -1691,24 +1693,24 @@ function renderPlayer() {
   const dots = Array.from({ length: DAILY_GOAL }, (_, i) => `<span class="daily-dot${i < dailyDone ? ' daily-dot--done' : ''}"></span>`).join('');
   const dailyHtml = `<div class="stat-daily${dailyComplete ? ' stat-daily--done' : ''}" title="Tagesziel: ${DAILY_GOAL} Aktionen">${dots}</div>`;
 
-  // Pace tracker — per day
-  let paceHtml = '';
+  // Pace tracker — recent rolling average (reacts to recent effort, not a slow lifetime average)
+  let paceCoreHtml = '';
   const daysLeft = (EXAM_DEADLINE - now) / 86400000;
   if (totalQ > 0 && daysLeft > 0) {
     const remaining = totalQ - learnedQ;
     const neededPerDay = remaining / daysLeft;
     if (stats.firstPlayDate && learnedQ > 0) {
-      const daysElapsed = Math.max(1, (now - stats.firstPlayDate) / 86400000);
-      const pacePerDay = learnedQ / daysElapsed;
-      const onTrack = pacePerDay >= neededPerDay;
-      paceHtml = `<div class="stat-pace ${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}" title="Durchschnitt seit deinem ersten Spieltag — zählt nur Fragen, die neu auf 'gelernt' wechseln, keine Wiederholungen.">Für dein Ziel brauchst du ${neededPerDay.toFixed(1)} neu gelernte/Tag · bisher im Schnitt ${pacePerDay.toFixed(1)} neu gelernte/Tag${onTrack ? ' ✓' : ' ⚠️'}</div>`;
+      const { pace: recentPace, span } = getRecentLearnPace(stats, 7, now);
+      const onTrack = recentPace >= neededPerDay;
+      const title = `Ziel: ${neededPerDay.toFixed(1)} neu gelernte Fragen/Tag, um bis zur Prüfung durchzukommen. „Du“ ist dein Schnitt der letzten ${span} ${span === 1 ? 'Tag' : 'Tage'} (zählt nur neu gelernte Fragen, keine Wiederholungen — „heute“ rechts zählt alle heutigen Antworten).`;
+      paceCoreHtml = `<span class="${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}" title="${title}">🎯 ${neededPerDay.toFixed(1)}/Tag · Du ${recentPace.toFixed(1)}/Tag ${onTrack ? '✓' : '⚠️'}</span>`;
     } else {
       const dl = new Date(EXAM_DEADLINE).toLocaleString('de-DE', { month: 'short', year: 'numeric' });
-      paceHtml = `<div class="stat-pace">Für dein Ziel ${dl} brauchst du ${neededPerDay.toFixed(1)} neu gelernte Fragen/Tag</div>`;
+      paceCoreHtml = `<span title="Benötigtes Tempo, um bis ${dl} durchzukommen.">🎯 ${neededPerDay.toFixed(1)}/Tag nötig</span>`;
     }
   }
-
-  const todayHtml = `<div class="stat-pace">Heute: <strong>${dailyDone}</strong> ${dailyDone === 1 ? 'Frage' : 'Fragen'} beantwortet</div>`;
+  const todayLabel = `heute <strong>${dailyDone}</strong> ${dailyDone === 1 ? 'Frage' : 'Fragen'}`;
+  const paceHtml = `<div class="stat-pace">${paceCoreHtml}${paceCoreHtml ? ' · ' : ''}${todayLabel}</div>`;
 
   els.playerStats.innerHTML = `
     <div class="stat-row">
@@ -1717,7 +1719,6 @@ function renderPlayer() {
       ${streakHtml}
       ${dailyHtml}
     </div>
-    <div class="stat-row">${todayHtml}</div>
     <div class="stat-row">${paceHtml}</div>
   `;
   const buyBackBtn = els.playerStats.querySelector('#btn-buyback-streak');
@@ -1782,6 +1783,7 @@ function trackDailyActivity(questionCount = 1) {
     // Prune activity log older than 91 days on day rollover
     const cutoff = new Date(Date.now() - 91 * 86400000).toISOString().slice(0, 10);
     Object.keys(stats.activityLog || {}).forEach(k => { if (k < cutoff) delete stats.activityLog[k]; });
+    Object.keys(stats.learnedLog || {}).forEach(k => { if (k < cutoff) delete stats.learnedLog[k]; });
     stats.dailyActions = 0;
     stats.dailyDate = today;
   }
@@ -1789,6 +1791,32 @@ function trackDailyActivity(questionCount = 1) {
   stats.totalQuestionsAnswered = (stats.totalQuestionsAnswered || 0) + questionCount;
   if (!stats.activityLog) stats.activityLog = {};
   stats.activityLog[today] = (stats.activityLog[today] || 0) + 1;
+}
+
+// Logs a question reaching "learned" status for the first time, so the pace
+// stat can show a recent rolling average instead of a slow lifetime average.
+function trackNewlyLearned(count = 1) {
+  const pack = getPackState();
+  const stats = pack.stats;
+  const today = new Date().toISOString().slice(0, 10);
+  if (!stats.learnedLog) stats.learnedLog = {};
+  stats.learnedLog[today] = (stats.learnedLog[today] || 0) + count;
+}
+
+// Average of stats.learnedLog over the last `windowDays` days (or fewer if the
+// player started more recently) — a responsive "how am I doing lately" pace.
+function getRecentLearnPace(stats, windowDays, now) {
+  const log = stats.learnedLog || {};
+  const daysActive = stats.firstPlayDate
+    ? Math.max(1, Math.ceil((now - stats.firstPlayDate) / 86400000))
+    : 1;
+  const span = Math.min(windowDays, daysActive);
+  let sum = 0;
+  for (let i = 0; i < span; i++) {
+    const d = new Date(now - i * 86400000).toISOString().slice(0, 10);
+    sum += log[d] || 0;
+  }
+  return { pace: sum / span, span };
 }
 
 function checkAndUnlockAchievements() {
@@ -2613,6 +2641,7 @@ function renderPhase2Question() {
       const qStat = pState.phase2Questions[q.id];
       qStat.askedCount += 1;
       if (ok) {
+        if (qStat.status !== "learned") trackNewlyLearned();
         qStat.status = "learned";
       } else {
         qStat.status = "wrong";
