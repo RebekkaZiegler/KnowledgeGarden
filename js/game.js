@@ -1,11 +1,11 @@
-﻿const APP_VERSION = "1.0.22";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.23";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
 const HARVEST_PASS_RATE = 0.7;
 const INITIAL_UNLOCK_SLOTS = 2;
 const MAX_ACTIVE_BEDS = 1;
-const EXAM_DEADLINE = new Date('2028-02-01').getTime();
+const EXAM_DEADLINE = new Date('2027-06-01').getTime();
 const DAILY_GOAL = 3;
 const SEED_BEDS = PACK_CONTENT.beds;
 const PHASE2_UNSEEN_SCORE = 20;
@@ -89,9 +89,10 @@ function hashStr(s) {
 }
 function hashByte(h, idx) { return (h >>> (idx * 8)) & 0xFF; }
 
-const CHANGELOG_VERSION = "0.4";
+const CHANGELOG_VERSION = "0.5";
 const CHANGELOG_KEY = `kg_changelog_seen_${CHANGELOG_VERSION}`;
 const CHANGELOG = [
+  { type: "improve", text: "Prüfungsziel aktualisiert: Juni 2027; Pace wird jetzt bei App-Öffnung neu berechnet" },
   { type: "new",     text: "Neues Garten-Layout: alle Themenbeete gleichzeitig sichtbar (Plant Tycoon-Stil), kein Weltnavigieren mehr nötig" },
   { type: "new",     text: "Jedes Thema hat eigene Pflanzenfarben – Zytologie orange, Histologie blau, Knochen graugrün, Muskeln rot, Atmung türkis" },
   { type: "new",     text: "Hybridpflanzen übernehmen Stammfarbe von Elternteil 1 und Fruchtfarbe von Elternteil 2" },
@@ -202,6 +203,11 @@ startCooldownTicker();
 maybeShowChangelog();
 checkAndUnlockAchievements();
 saveState();
+
+// Ensure UI recalculates pace/deadline when the app is opened or regains focus
+document.addEventListener('visibilitychange', () => { if (!document.hidden) renderAll(); });
+window.addEventListener('focus', () => renderAll());
+window.addEventListener('pageshow', () => renderAll());
 
 // Show version in header and settings
 const vLabel = document.getElementById("app-version-label");
@@ -1713,7 +1719,8 @@ function renderPlayer() {
       const onTrack = pacePerDay >= neededPerDay;
       paceHtml = `<div class="stat-pace ${onTrack ? 'stat-pace--ok' : 'stat-pace--warn'}">Du brauchst ${neededPerDay.toFixed(1)}/Tag · du schaffst ${pacePerDay.toFixed(1)}/Tag${onTrack ? ' ✓' : ' ⚠️'}</div>`;
     } else {
-      paceHtml = `<div class="stat-pace">Du brauchst ${neededPerDay.toFixed(1)} Fragen/Tag für Feb 2028</div>`;
+      const dl = new Date(EXAM_DEADLINE).toLocaleString('de-DE', { month: 'short', year: 'numeric' });
+      paceHtml = `<div class="stat-pace">Du brauchst ${neededPerDay.toFixed(1)} Fragen/Tag für ${dl}</div>`;
     }
   }
 

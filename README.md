@@ -4,7 +4,7 @@ A browser-based learning RPG for Heilpraktiker exam prep.
 You grow plants by answering questions, harvest them when ready, and track progress toward your exam deadline.
 
 **Current version:** v1.0 — Heilpraktiker Pack  
-**Exam deadline tracked in-game:** February 2028
+**Exam deadline tracked in-game:** June 2027
 
 ---
 
@@ -89,7 +89,7 @@ Portrait-stacked layout, same on desktop and mobile:
 - Resets at midnight
 
 ### Pace tracker
-- Shows how many questions/day you need to finish all content by February 2028
+- Shows how many questions/day you need to finish all content by June 2027
 - Once you have a few days of history: shows your current pace vs. what's needed, and whether you're on track (green ✓) or behind (orange ⚠️)
 
 ### Achievements 🏆
