@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.28";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.29";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4727,6 +4727,25 @@ function getMemoryFact(q) {
   return null;
 }
 
+// Beds the player has actually engaged with (planted or harvested at least one
+// plant) — the shared "content feels familiar" gate for relaxation-mode content
+// (image memory pairs, label-exercise picker) that represents whole-topic concepts
+// rather than individual tracked questions.
+function getFamiliarBedIds() {
+  const pack = getPackState();
+  const familiarBedIds = new Set();
+  PACK_CONTENT.beds.forEach(bed => {
+    const bedState = pack.beds[bed.id];
+    if (!bedState) return;
+    const activeIds = bedState.activePlantIds || [];
+    (bed.plants || []).forEach(plant => {
+      const pState = bedState.plants?.[plant.id];
+      if (pState && (activeIds.includes(plant.id) || pState.harvestedOnce)) familiarBedIds.add(bed.id);
+    });
+  });
+  return familiarBedIds;
+}
+
 // One pair per qualifying plant: plant title ↔ a fact from one of its already
 // planted-or-answered harvest questions (so content always feels familiar).
 // Plus image↔concept pairs from DIAGRAM_MEMORY_PAIRS once a bed has been planted —
@@ -4735,7 +4754,7 @@ function getMemoryFact(q) {
 function getMemoryCandidatePairs() {
   const pack = getPackState();
   const pairs = [];
-  const familiarBedIds = new Set();
+  const familiarBedIds = getFamiliarBedIds();
   PACK_CONTENT.beds.forEach(bed => {
     const bedState = pack.beds[bed.id];
     if (!bedState) return;
@@ -4744,7 +4763,6 @@ function getMemoryCandidatePairs() {
       const pState = bedState.plants?.[plant.id];
       if (!pState) return;
       const isPlanted = activeIds.includes(plant.id) || pState.harvestedOnce;
-      if (isPlanted) familiarBedIds.add(bed.id);
       const eligible = (plant.harvestQuestions || []).filter(q => {
         const status = pState.phase2Questions?.[q.id]?.status;
         return isPlanted || status === "learned" || status === "wrong";
@@ -4871,7 +4889,152 @@ function finishMemoryRound() {
 
 function openMemoryModal() {
   startMemoryRound();
+  switchMemoryTab("memory");
   openModal("modal-memory");
+}
+
+// ── Beschriften (label-exercise practice within Entspannungsmodus) ─────────
+let labelPracticeSession = null;
+
+function switchMemoryTab(tab) {
+  const isMemory = tab === "memory";
+  const panelMemory = document.getElementById("mem-panel-memory");
+  const panelLabel = document.getElementById("mem-panel-label");
+  const tabMemory = document.getElementById("mem-tab-memory");
+  const tabLabel = document.getElementById("mem-tab-label");
+  if (panelMemory) panelMemory.hidden = !isMemory;
+  if (panelLabel) panelLabel.hidden = isMemory;
+  if (tabMemory) tabMemory.classList.toggle("tab-btn--active", isMemory);
+  if (tabLabel) tabLabel.classList.toggle("tab-btn--active", !isMemory);
+  if (!isMemory) { labelPracticeSession = null; renderLabelPracticePicker(); }
+}
+
+function getAvailableLabelExercises() {
+  const familiarBedIds = getFamiliarBedIds();
+  return (PACK_CONTENT.labelExercises || []).filter(ex => familiarBedIds.has(ex.bedId));
+}
+
+function renderLabelPracticePicker() {
+  const intro = document.getElementById("label-practice-intro");
+  const picker = document.getElementById("label-practice-picker");
+  const area = document.getElementById("label-practice-area");
+  if (!intro || !picker || !area) return;
+  area.innerHTML = "";
+  const exercises = getAvailableLabelExercises();
+  if (exercises.length === 0) {
+    intro.textContent = "Du brauchst mindestens ein gepflanztes oder geerntetes Thema mit Diagramm — pflanze ein paar Samen, dann erscheinen hier passende Beschriftungsübungen.";
+    picker.innerHTML = "";
+    return;
+  }
+  intro.textContent = "Wähle eine Beschriftungsübung aus deinen vertrauten Themen — ganz ohne Zeitdruck oder Kosten, beliebig oft wiederholbar.";
+  picker.innerHTML = exercises.map(ex =>
+    `<button class="label-chip" data-ex-id="${escapeHtmlText(ex.id)}">🏷️ ${escapeHtmlText(ex.title)}</button>`
+  ).join("");
+  picker.querySelectorAll("[data-ex-id]").forEach(btn => {
+    btn.addEventListener("click", () => startLabelPractice(btn.getAttribute("data-ex-id")));
+  });
+}
+
+function startLabelPractice(exId) {
+  const ex = (PACK_CONTENT.labelExercises || []).find(e => e.id === exId);
+  if (!ex) return;
+  labelPracticeSession = { ex, placed: {}, selectedLabel: null, result: null };
+  renderLabelPractice();
+}
+
+function renderLabelPractice() {
+  if (!labelPracticeSession) return;
+  const { ex, placed, selectedLabel, result } = labelPracticeSession;
+  const area = document.getElementById("label-practice-area");
+  if (!area) return;
+
+  const usedLabels = Object.values(placed).filter(Boolean);
+  const poolLabels = ex.zones.map(z => z.label).filter(l => !usedLabels.includes(l));
+
+  const zoneHtml = ex.zones.map(z => {
+    const filled = placed[z.id];
+    return `<div class="label-zone${filled ? " has-label" : ""}${selectedLabel !== null ? " targeted" : ""}"
+      data-zone-id="${z.id}"
+      style="left:${z.left}%;top:${z.top}%;width:${z.width}%;height:${z.height}%">
+      ${filled ? `<span class="label-zone-text">${escapeHtmlText(filled)}</span>` : ""}
+    </div>`;
+  }).join("");
+
+  const chipHtml = poolLabels.map(l => {
+    const sel = selectedLabel === l ? " selected" : "";
+    return `<button class="label-chip${sel}" data-label="${escapeHtmlText(l)}">${escapeHtmlText(l)}</button>`;
+  }).join("");
+
+  const resultHtml = result
+    ? `<div class="feedback ${result.ok ? "feedback--correct" : "feedback--wrong"}" style="margin-top:0.4rem">${escapeHtmlText(result.text)}</div>`
+    : "";
+
+  area.innerHTML = `
+    <div class="row" style="margin-bottom:0.4rem">
+      <button id="label-practice-back-btn" class="modal-close-btn">← Andere Übung</button>
+    </div>
+    <div style="font-size:.82rem;margin-bottom:.3rem;color:var(--muted)">🏷️ ${escapeHtmlText(ex.title)} — Beschrifte die Strukturen:</div>
+    <div class="label-diagram-wrapper" style="aspect-ratio:${ex.aspectRatio || "5/4"};max-height:48vh">${
+      ex.diagramType === "image"
+        ? `<img src="${ex.imagePath}" alt="${escapeHtmlText(ex.title)}" style="display:block;width:100%;height:100%;object-fit:contain">`
+        : (ex.svgContent || "")
+    }${zoneHtml}</div>
+    <div class="label-pool">${chipHtml || "<span class='muted'>Alle Labels platziert</span>"}</div>
+    ${resultHtml}
+    <div class="re-confirm-row">
+      <button class="mc-option re-confirm-btn" id="label-practice-submit">Auswerten (${Math.round((ex.passRate || 0.6) * 100)}% nötig)</button>
+      <button class="mc-option" id="label-practice-retry">🔄 Neu versuchen</button>
+    </div>
+  `;
+
+  area.querySelectorAll(".label-zone").forEach(zone => {
+    zone.addEventListener("click", () => {
+      const zid = zone.getAttribute("data-zone-id");
+      if (labelPracticeSession.selectedLabel) {
+        labelPracticeSession.placed[zid] = labelPracticeSession.selectedLabel;
+        labelPracticeSession.selectedLabel = null;
+      } else if (labelPracticeSession.placed[zid]) {
+        labelPracticeSession.selectedLabel = labelPracticeSession.placed[zid];
+        delete labelPracticeSession.placed[zid];
+      }
+      labelPracticeSession.result = null;
+      renderLabelPractice();
+    });
+  });
+
+  area.querySelectorAll(".label-chip[data-label]").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const l = chip.getAttribute("data-label");
+      labelPracticeSession.selectedLabel = labelPracticeSession.selectedLabel === l ? null : l;
+      renderLabelPractice();
+    });
+  });
+
+  document.getElementById("label-practice-submit")?.addEventListener("click", submitLabelPractice);
+  document.getElementById("label-practice-retry")?.addEventListener("click", () => {
+    labelPracticeSession.placed = {};
+    labelPracticeSession.selectedLabel = null;
+    labelPracticeSession.result = null;
+    renderLabelPractice();
+  });
+  document.getElementById("label-practice-back-btn")?.addEventListener("click", () => {
+    labelPracticeSession = null;
+    renderLabelPracticePicker();
+  });
+}
+
+function submitLabelPractice() {
+  if (!labelPracticeSession) return;
+  const { ex, placed } = labelPracticeSession;
+  let correct = 0;
+  ex.zones.forEach(z => { if ((placed[z.id] || "") === z.label) correct++; });
+  const ok = correct / ex.zones.length >= (ex.passRate || 0.6);
+  const pct = Math.round((correct / ex.zones.length) * 100);
+  labelPracticeSession.result = {
+    ok,
+    text: `${correct}/${ex.zones.length} Strukturen richtig (${pct}%)${ok ? " — geschafft! 🌿" : " — versuch's gern nochmal"}`
+  };
+  renderLabelPractice();
 }
 
 function openTrophyRoom() {
@@ -5189,10 +5352,18 @@ const closeTrophiesBtn = document.getElementById("close-trophies-btn");
 if (closeTrophiesBtn) closeTrophiesBtn.addEventListener("click", () => closeModal("modal-trophies"));
 
 const closeMemoryBtn = document.getElementById("close-memory-btn");
-if (closeMemoryBtn) closeMemoryBtn.addEventListener("click", () => { memorySession = null; closeModal("modal-memory"); });
+if (closeMemoryBtn) closeMemoryBtn.addEventListener("click", () => {
+  memorySession = null;
+  labelPracticeSession = null;
+  closeModal("modal-memory");
+});
 
 const memoryNewRoundBtn = document.getElementById("memory-new-round-btn");
 if (memoryNewRoundBtn) memoryNewRoundBtn.addEventListener("click", startMemoryRound);
+
+document.querySelectorAll("[data-mem-tab]").forEach(btn => {
+  btn.addEventListener("click", () => switchMemoryTab(btn.getAttribute("data-mem-tab")));
+});
 
 const openSessionEndBtn = document.getElementById("open-session-end-btn");
 if (openSessionEndBtn) openSessionEndBtn.addEventListener("click", openSessionEndModal);
