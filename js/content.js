@@ -5132,6 +5132,55 @@ const LABEL_EXERCISES = [
       { id: "z_zwoelf",       label: "Zwölffingerdarm", left:  0, top: 75, width: 16, height:  6 },
       { id: "z_pfoertner",    label: "Pförtner",        left: 11, top: 86, width: 18, height:  6 }
     ]
+  },
+  {
+    id: "leber_anatomie",
+    title: "Anatomie der Leber",
+    passRate: 0.6,
+    diagramType: "image",
+    imagePath: "assets/diagrams/leber_anatomie_numeriert.png",
+    bedId: "leber_gallenblase_1040",
+    aspectRatio: "874/544",
+    zones: [
+      { id: "z_re_lappen",     label: "rechter Leberlappen", left:  0, top: 28, width: 12, height: 8 },
+      { id: "z_li_lappen",     label: "linker Leberlappen",  left: 90, top: 30, width: 10, height: 8 },
+      { id: "z_gallenblase",   label: "Gallenblase",         left:  0, top: 77, width: 12, height: 8 },
+      { id: "z_lebergang",     label: "Lebergang",           left: 61, top: 79, width: 12, height: 8 },
+      { id: "z_gallengang",    label: "Gallengang",          left: 50, top: 89, width: 12, height: 8 },
+      { id: "z_rundes_band",   label: "rundes Leberband",    left: 84, top: 60, width: 12, height: 8 },
+      { id: "z_zwerchfell",    label: "Zwerchfell",          left: 70, top:  0, width: 12, height: 8 }
+    ]
+  },
+  {
+    id: "herzklappen",
+    title: "Die Herzklappen",
+    passRate: 0.6,
+    diagramType: "image",
+    imagePath: "assets/diagrams/herzklappen_numeriert.png",
+    bedId: "herzkreislauf_1036",
+    aspectRatio: "532/517",
+    zones: [
+      { id: "z_pulmonal",   label: "Pulmonalklappe",    left: 70, top:  1, width: 14, height: 8 },
+      { id: "z_aorten",     label: "Aortenklappe",      left: 80, top: 13, width: 14, height: 8 },
+      { id: "z_trikuspidal",label: "Trikuspidalklappe", left: 77, top: 90, width: 14, height: 7 },
+      { id: "z_mitral",     label: "Mitralklappe",      left:  0, top: 89, width: 14, height: 7 }
+    ]
+  },
+  {
+    id: "schilddruese_lage",
+    title: "Lage der Schilddrüse",
+    passRate: 0.6,
+    diagramType: "image",
+    imagePath: "assets/diagrams/schilddruese_numeriert.png",
+    bedId: "hormonsystem_1042",
+    aspectRatio: "467/888",
+    zones: [
+      { id: "z_schildknorpel", label: "Schildknorpel",            left: 31, top: 31, width: 16, height: 8 },
+      { id: "z_isthmus",       label: "Isthmus",                  left: 41, top: 62, width: 16, height: 8 },
+      { id: "z_re_lappen_sd",  label: "rechter Schilddrüsenlappen", left:  5, top: 57, width: 16, height: 8 },
+      { id: "z_li_lappen_sd",  label: "linker Schilddrüsenlappen",  left: 75, top: 56, width: 16, height: 8 },
+      { id: "z_luftroehre",    label: "Luftröhre",                left: 41, top: 80, width: 16, height: 8 }
+    ]
   }
 ];
 
