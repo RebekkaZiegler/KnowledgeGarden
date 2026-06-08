@@ -5081,6 +5081,57 @@ const LABEL_EXERCISES = [
       { id: "z_trans", label: "M. transversus abdominis",       left: 58, top: 28, width: 40, height:  9 },
       { id: "z_pyr",   label: "M. pyramidalis",                 left: 58, top: 38, width: 26, height:  9 }
     ]
+  },
+  {
+    id: "blutgefaess_zelltypen",
+    title: "Blutgefäß im Querschnitt",
+    passRate: 0.6,
+    diagramType: "image",
+    imagePath: "assets/diagrams/blutgefaess_zelltypen.png",
+    bedId: "blutlymphsystem_1037",
+    aspectRatio: "1474/2044",
+    zones: [
+      { id: "z_blutader", label: "Blutader mit Nervenzelle",            left: 44, top: 10, width: 26, height:  8 },
+      { id: "z_muskel",   label: "Muskelschicht (glatte Muskulatur)",   left: 30, top: 24, width: 24, height:  8 },
+      { id: "z_innenwand",label: "Gefäßinnenwand",                      left: 20, top: 33, width: 24, height:  8 },
+      { id: "z_lymph",    label: "Lymphzelle (Lymphozyt)",              left:  2, top: 37, width: 16, height:  8 },
+      { id: "z_thrombo",  label: "Blutplättchen (Thrombozyt)",          left: 24, top: 58, width: 22, height:  8 },
+      { id: "z_leuko",    label: "Weißes Blutkörperchen (Leukozyt)",    left: 58, top: 25, width: 26, height:  8 },
+      { id: "z_erythro",  label: "Rotes Blutkörperchen (Erythrozyt)",   left: 36, top: 68, width: 26, height:  9 }
+    ]
+  },
+  {
+    id: "ohr_querschnitt",
+    title: "Aufbau des Ohrs",
+    passRate: 0.6,
+    diagramType: "image",
+    imagePath: "assets/diagrams/ohr_numeriert_legende.png",
+    bedId: "sinnesorgane_geriatrie_1044",
+    aspectRatio: "1447/2122",
+    zones: [
+      { id: "z_ohrmuschel",   label: "Ohrmuschel",                          left: 76, top: 47, width: 22, height:  9 },
+      { id: "z_hoernerv",     label: "Hörnerv",                             left:  1, top: 24, width: 18, height:  8 },
+      { id: "z_bogengaenge",  label: "Bogengänge",                          left: 21, top: 24, width: 18, height:  8 },
+      { id: "z_schnecke",     label: "Schnecke",                            left: 30, top: 33, width: 16, height:  8 },
+      { id: "z_pauke",        label: "Paukenhöhle (Mittelohr)",             left: 18, top: 42, width: 18, height:  8 },
+      { id: "z_ohrtrompete",  label: "Ohrtrompete (Eustachische Röhre)",    left:  1, top: 51, width: 20, height:  9 }
+    ]
+  },
+  {
+    id: "magen_abschnitte",
+    title: "Abschnitte des Magens",
+    passRate: 0.6,
+    diagramType: "image",
+    imagePath: "assets/diagrams/magen_abschnitte_numeriert.png",
+    bedId: "verdauungstrakt_1038",
+    aspectRatio: "926/1820",
+    zones: [
+      { id: "z_speiseroehre", label: "Speiseröhre",     left:  2, top: 13, width: 18, height:  6 },
+      { id: "z_mageneingang", label: "Mageneingang",    left: 18, top: 23, width: 18, height:  6 },
+      { id: "z_hauptteil",    label: "Magenhauptteil",  left: 49, top: 48, width: 18, height:  6 },
+      { id: "z_zwoelf",       label: "Zwölffingerdarm", left:  0, top: 75, width: 16, height:  6 },
+      { id: "z_pfoertner",    label: "Pförtner",        left: 11, top: 86, width: 18, height:  6 }
+    ]
   }
 ];
 
