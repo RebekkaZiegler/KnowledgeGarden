@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.27";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.28";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4729,9 +4729,13 @@ function getMemoryFact(q) {
 
 // One pair per qualifying plant: plant title ↔ a fact from one of its already
 // planted-or-answered harvest questions (so content always feels familiar).
+// Plus image↔concept pairs from DIAGRAM_MEMORY_PAIRS once a bed has been planted —
+// these give visual, unambiguous matches (a diagram clearly "is" a Nephron, unlike
+// abstract facts such as "ca. 120 Mikrometer" which barely hint at "Zellgröße").
 function getMemoryCandidatePairs() {
   const pack = getPackState();
   const pairs = [];
+  const familiarBedIds = new Set();
   PACK_CONTENT.beds.forEach(bed => {
     const bedState = pack.beds[bed.id];
     if (!bedState) return;
@@ -4740,15 +4744,20 @@ function getMemoryCandidatePairs() {
       const pState = bedState.plants?.[plant.id];
       if (!pState) return;
       const isPlanted = activeIds.includes(plant.id) || pState.harvestedOnce;
+      if (isPlanted) familiarBedIds.add(bed.id);
       const eligible = (plant.harvestQuestions || []).filter(q => {
         const status = pState.phase2Questions?.[q.id]?.status;
         return isPlanted || status === "learned" || status === "wrong";
       });
       for (const q of eligible) {
         const fact = getMemoryFact(q);
-        if (fact) { pairs.push({ id: `${plant.id}__${q.id}`, front: plant.title, back: fact }); break; }
+        if (fact) { pairs.push({ id: `${plant.id}__${q.id}`, front: { text: plant.title }, back: { text: fact } }); break; }
       }
     });
+  });
+  DIAGRAM_MEMORY_PAIRS.forEach(d => {
+    if (!familiarBedIds.has(d.bedId)) return;
+    pairs.push({ id: `diagram__${d.id}`, front: { image: d.image, alt: d.concept }, back: { text: d.concept } });
   });
   return pairs;
 }
@@ -4780,8 +4789,8 @@ function startMemoryRound() {
   const chosen = shuffle([...allPairs]).slice(0, roundSize);
   const cards = [];
   chosen.forEach(pair => {
-    cards.push({ pairId: pair.id, text: pair.front, matched: false });
-    cards.push({ pairId: pair.id, text: pair.back, matched: false });
+    cards.push({ pairId: pair.id, text: pair.front.text, image: pair.front.image, alt: pair.front.alt, matched: false });
+    cards.push({ pairId: pair.id, text: pair.back.text, image: pair.back.image, alt: pair.back.alt, matched: false });
   });
   memorySession = {
     cards: shuffle(cards),
@@ -4800,7 +4809,14 @@ function renderMemoryBoard() {
   board.innerHTML = memorySession.cards.map((card, idx) => {
     const flipped = memorySession.flippedIdx.includes(idx) || card.matched;
     const cls = card.matched ? "memory-card--matched" : (flipped ? "memory-card--flipped" : "");
-    return `<div class="memory-card ${cls}" data-idx="${idx}">${flipped ? escapeHtmlText(card.text) : ""}</div>`;
+    const imgCls = card.image ? " memory-card--image" : "";
+    let inner = "";
+    if (flipped) {
+      inner = card.image
+        ? `<img src="${card.image}" alt="${escapeHtmlText(card.alt || card.text || "")}" class="memory-card-img">`
+        : escapeHtmlText(card.text || "");
+    }
+    return `<div class="memory-card ${cls}${imgCls}" data-idx="${idx}">${inner}</div>`;
   }).join("");
   board.querySelectorAll(".memory-card").forEach(el => {
     el.addEventListener("click", () => flipMemoryCard(parseInt(el.getAttribute("data-idx"), 10)));

@@ -939,11 +939,8 @@ const ZYTOLOGIE_1031_PLANTS = [
         type: "true_false",
         id: "zt_h5",
         statement: "Die Apoptose eliminiert unter anderem entartete Zellen und verhindert so die Tumorentstehung.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Apoptose = zelluläre Qualitätskontrolle: Elimination genetisch geschädigter oder entarteter Zellen ist ein Tumorsuppressmechanismus. Defekte Apoptose begünstigt Krebsentstehung.",
+        answer: true,
+        explanation: "Apoptose = zelluläre Qualitätskontrolle: Elimination genetisch geschädigter oder entarteter Zellen ist ein Tumorsuppressmechanismus. Defekte Apoptose begünstigt Krebsentstehung.",
       },
     ],
     phase4Questions: [
@@ -1048,11 +1045,8 @@ const ZYTOLOGIE_1031_PLANTS = [
         type: "true_false",
         id: "rb_h5",
         statement: "Bei Überlastung der Ausscheidungsorgane können sich Stoffwechselrückstände im Bindegewebe ansammeln und die Nährstoffversorgung der Zellen beeinträchtigen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr (nach Pischinger). Verschlackung: Ausscheidungsorgane überlastet → Stoffwechselrückstände im Bindegewebe → Nährstoffaufnahme der Zellen gestört → Befindlichkeitsstörungen jeglicher Art.",
+        answer: true,
+        explanation: "Verschlackung: Ausscheidungsorgane überlastet → Stoffwechselrückstände im Bindegewebe → Nährstoffaufnahme der Zellen gestört → Befindlichkeitsstörungen jeglicher Art.",
       },
     ],
     phase4Questions: [
@@ -1783,11 +1777,8 @@ const HISTOLOGIE_1032_PLANTS = [
         type: "true_false",
         id: "fg_h5",
         statement: "Gutartige Geschwülste aus Fettgewebe werden als Lipome bezeichnet.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Lipome sind die häufigsten gutartigen Weichteiltumoren des Menschen. Sie entstehen aus Adipozyten und wachsen langsam. Bösartige Fettgewebstumore heißen Liposarkome (selten). Das Fettgewebe unterliegt einem ständigen Molekülaustausch – die im Fettgewebe angehäuften Moleküle werden beständig erneuert.",
+        answer: true,
+        explanation: "Lipome sind die häufigsten gutartigen Weichteiltumoren des Menschen. Sie entstehen aus Adipozyten und wachsen langsam. Bösartige Fettgewebstumore heißen Liposarkome (selten). Das Fettgewebe unterliegt einem ständigen Molekülaustausch – die im Fettgewebe angehäuften Moleküle werden beständig erneuert.",
       },
     ],
     phase4Questions: [
@@ -2501,11 +2492,8 @@ makeDetailedPlant({
         type: "true_false",
         id: "hk_h5",
         statement: "Mittelhandknochen (Ossa metacarpalia) und Phalangen werden beide zu den Handknochen gezählt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Der Handknochen-Komplex umfasst: 8 Handwurzelknochen (Carpus) + 5 Mittelhandknochen (Metacarpus: Ossa metacarpalia I–V) + 14 Fingerknochen (Phalangen). Zwischen Mittelhandknochen und Grundgliedern liegen Metakarpophalangealgelenke (MCP-Gelenke); zwischen den Phalangen liegen Interphalangealgelenke (PIP/DIP).",
+        answer: true,
+        explanation: "Der Handknochen-Komplex umfasst: 8 Handwurzelknochen (Carpus) + 5 Mittelhandknochen (Metacarpus: Ossa metacarpalia I–V) + 14 Fingerknochen (Phalangen). Zwischen Mittelhandknochen und Grundgliedern liegen Metakarpophalangealgelenke (MCP-Gelenke); zwischen den Phalangen liegen Interphalangealgelenke (PIP/DIP).",
       },
     ],
     phase4Questions: [
@@ -2610,11 +2598,8 @@ makeDetailedPlant({
         type: "true_false",
         id: "fk_h5",
         statement: "Der Calcaneus (Fersenbein) ist der größte Knochen des Fußes.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Der Calcaneus ist der größte und kräftigste Knochen des Tarsus und bildet die Fersenauflage. An ihm setzt die Achillessehne (Tendo calcaneus) an. Über den Talus, der auf dem Calcaneus sitzt, werden Körpergewicht und Stoßbelastungen auf den Fuß übertragen.",
+        answer: true,
+        explanation: "Der Calcaneus ist der größte und kräftigste Knochen des Tarsus und bildet die Fersenauflage. An ihm setzt die Achillessehne (Tendo calcaneus) an. Über den Talus, der auf dem Calcaneus sitzt, werden Körpergewicht und Stoßbelastungen auf den Fuß übertragen.",
       },
     ],
     phase4Questions: [
@@ -2719,11 +2704,8 @@ makeDetailedPlant({
         type: "true_false",
         id: "kf_h5",
         statement: "Das Femur (Oberschenkelknochen) ist der größte, stärkste und längste Röhrenknochen des menschlichen Körpers.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Das Femur trägt das gesamte Körpergewicht beim Gehen und Stehen. Wichtige anatomische Landmarken: Caput femoris (Gelenkkopf im Acetabulum), Collum femoris (Schenkelhals, Frakturstelle), Trochanter major und minor (Muskelansätze), Condylus medialis und lateralis (Gelenkknochen des Kniegelenks). Die Körpergröße eines Menschen korreliert mit der Femurlänge.",
+        answer: true,
+        explanation: "Das Femur trägt das gesamte Körpergewicht beim Gehen und Stehen. Wichtige anatomische Landmarken: Caput femoris (Gelenkkopf im Acetabulum), Collum femoris (Schenkelhals, Frakturstelle), Trochanter major und minor (Muskelansätze), Condylus medialis und lateralis (Gelenkknochen des Kniegelenks). Die Körpergröße eines Menschen korreliert mit der Femurlänge.",
       },
     ],
     phase4Questions: [
@@ -2828,11 +2810,8 @@ makeDetailedPlant({
         type: "true_false",
         id: "sa_h5",
         statement: "Eine Syndesmose ist eine bindegewebige Verbindung zweier Knochen; ein Beispiel ist die Membrana interossea cruris zwischen Tibia und Fibula.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Bei der Syndesmose werden zwei Knochen durch kollagene oder elastische Bindegewebsfasern (Membrana interossea) zusammengehalten. Die Membrana interossea cruris zwischen Tibia und Fibula dient gleichzeitig als Ursprungsfläche für Muskeln. Eine Syndesmose erlaubt geringfügige Mikrobewegungen und überträgt Kräfte – daher ist eine Verletzung (z.B. bei Knöchelbruch) klinisch relevant.",
+        answer: true,
+        explanation: "Bei der Syndesmose werden zwei Knochen durch kollagene oder elastische Bindegewebsfasern (Membrana interossea) zusammengehalten. Die Membrana interossea cruris zwischen Tibia und Fibula dient gleichzeitig als Ursprungsfläche für Muskeln. Eine Syndesmose erlaubt geringfügige Mikrobewegungen und überträgt Kräfte – daher ist eine Verletzung (z.B. bei Knöchelbruch) klinisch relevant.",
       },
     ],
     phase4Questions: [
@@ -3541,11 +3520,8 @@ const MUSKELLEHRE_1034_PLANTS = [
         type: "true_false",
         id: "tl_h5",
         statement: "Der M. latissimus dorsi kann als exspiratorischer Atemhilfsmuskel wirken.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. M. latissimus dorsi senkt den Schultergürtel und komprimiert bei freiem Arm den Thorax von unten. Bei forcierter Ausatmung (z.B. Husten, Niesen, Sport) wird er als exspiratorischer Atemhilfsmuskel aktiv. Diese Doppelrolle gilt auch für andere Muskeln, die zwischen Rumpf und Schulter ziehen.",
+        answer: true,
+        explanation: "M. latissimus dorsi senkt den Schultergürtel und komprimiert bei freiem Arm den Thorax von unten. Bei forcierter Ausatmung (z.B. Husten, Niesen, Sport) wird er als exspiratorischer Atemhilfsmuskel aktiv. Diese Doppelrolle gilt auch für andere Muskeln, die zwischen Rumpf und Schulter ziehen.",
       },
     ],
     phase4Questions: [
@@ -3650,11 +3626,8 @@ const MUSKELLEHRE_1034_PLANTS = [
         type: "true_false",
         id: "dp_h5",
         statement: "Das Diaphragma wird vom N. phrenicus innerviert, der seinen Hauptursprung im Rückenmarkssegment C4 hat.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. N. phrenicus: Hauptwurzel C4, Beiträge von C3 und C5. Verläuft über den vorderen Skalenusmuskel nach kaudal durch den Thorax zum Diaphragma. Klinische Bedeutung: Halsmarkläsionen oberhalb C4 bedrohen die Atemfunktion. Merke: C4 ist das kritische Segment für die Eigenatmung.",
+        answer: true,
+        explanation: "N. phrenicus: Hauptwurzel C4, Beiträge von C3 und C5. Verläuft über den vorderen Skalenusmuskel nach kaudal durch den Thorax zum Diaphragma. Klinische Bedeutung: Halsmarkläsionen oberhalb C4 bedrohen die Atemfunktion. Merke: C4 ist das kritische Segment für die Eigenatmung.",
       },
     ],
     phase4Questions: [
@@ -3759,11 +3732,8 @@ const MUSKELLEHRE_1034_PLANTS = [
         type: "true_false",
         id: "ih_h5",
         statement: "Alle drei Hauptmuskeln der ischiokruralen Gruppe haben ihren Ursprung am Tuber ischiadicum.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr (mit Einschränkung): M. biceps femoris Caput longum, M. semitendinosus und M. semimembranosus entspringen alle am Tuber ischiadicum. Das Caput breve des M. biceps femoris entspringt an der Linea aspera femoris. Der gemeinsame Ursprung am Tuber ischiadicum erklärt Schmerzen beim Sitzen auf harten Flächen.",
+        answer: true,
+        explanation: "M. biceps femoris Caput longum, M. semitendinosus und M. semimembranosus entspringen alle am Tuber ischiadicum. Das Caput breve des M. biceps femoris entspringt an der Linea aspera femoris. Der gemeinsame Ursprung am Tuber ischiadicum erklärt Schmerzen beim Sitzen auf harten Flächen.",
       },
     ],
     phase4Questions: [
@@ -4465,11 +4435,8 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         type: "true_false",
         id: "med_h4",
         statement: "Durch den Hiatus aorticus auf Höhe Th12 treten Aorta und Ductus thoracicus durch das Zwerchfell.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Der Hiatus aorticus (Th12) liegt hinter dem Zwerchfell und ist kein echter Durchbruch durch die Muskulatur, sondern eine Lücke zwischen Zwerchfell und Wirbelkörper – daher kann er nicht durch Zwerchfellkontraktion verengt werden. Der Ductus thoracicus (größtes Lymphgefäß) begleitet die Aorta durch diesen Hiatus.",
+        answer: true,
+        explanation: "Der Hiatus aorticus (Th12) liegt hinter dem Zwerchfell und ist kein echter Durchbruch durch die Muskulatur, sondern eine Lücke zwischen Zwerchfell und Wirbelkörper – daher kann er nicht durch Zwerchfellkontraktion verengt werden. Der Ductus thoracicus (größtes Lymphgefäß) begleitet die Aorta durch diesen Hiatus.",
       },
       {
         type: "mc",
@@ -4573,11 +4540,8 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         type: "true_false",
         id: "atm_h4",
         statement: "Der Hering-Breuer-Reflex ist ein mechanisch-reflektorischer Schutz der Lunge vor Überdehnung.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Im Gegensatz zur chemischen Atemsteuerung (CO2/O2/pH) nutzt die mechanisch-reflektorische Steuerung Dehnungsrezeptoren (Mechanorezeptoren) als Sensoren. Der Hering-Breuer-Reflex ist ein negativer Feedback-Mechanismus: Je mehr sich die Lunge ausdehnt, desto stärker hemmt er die weitere Inspiration.",
+        answer: true,
+        explanation: "Im Gegensatz zur chemischen Atemsteuerung (CO2/O2/pH) nutzt die mechanisch-reflektorische Steuerung Dehnungsrezeptoren (Mechanorezeptoren) als Sensoren. Der Hering-Breuer-Reflex ist ein negativer Feedback-Mechanismus: Je mehr sich die Lunge ausdehnt, desto stärker hemmt er die weitere Inspiration.",
       },
       {
         type: "mc",
@@ -5118,6 +5082,37 @@ const LABEL_EXERCISES = [
       { id: "z_pyr",   label: "M. pyramidalis",                 left: 58, top: 38, width: 26, height:  9 }
     ]
   }
+];
+
+// Bild-Begriff-Paare für den Entspannungsmodus (Memory): zeigt ein Diagramm aus
+// assets/diagrams und lässt es mit seinem Begriff matchen, statt mit abstrakten
+// Detail-Fakten — macht das Zuordnen anschaulicher als z.B. "ca. 120 Mikrometer".
+// Erscheinen erst, wenn der Spieler das zugehörige Beet schon bepflanzt hat.
+const DIAGRAM_MEMORY_PAIRS = [
+  { id: "nephron", image: "assets/diagrams/nephron_aufbau.png", concept: "Nephron", bedId: "urogenitaltrakt_1041" },
+  { id: "niere_laengsschnitt", image: "assets/diagrams/niere_laengsschnitt.png", concept: "Niere im Längsschnitt", bedId: "urogenitaltrakt_1041" },
+  { id: "harnblase", image: "assets/diagrams/harnblase_aufbau.png", concept: "Harnblase", bedId: "urogenitaltrakt_1041" },
+  { id: "maennliches_becken", image: "assets/diagrams/maennliches_becken_sagittal.png", concept: "Männliches Becken im Sagittalschnitt", bedId: "urogenitaltrakt_1041" },
+  { id: "weibliches_becken", image: "assets/diagrams/weibliches_becken_sagittal.png", concept: "Weibliches Becken im Sagittalschnitt", bedId: "urogenitaltrakt_1041" },
+  { id: "weibliche_geschlechtsorgane", image: "assets/diagrams/innere_weibliche_geschlechtsorgane.png", concept: "Gebärmutter, Eileiter und Eierstöcke", bedId: "urogenitaltrakt_1041" },
+  { id: "auge_querschnitt", image: "assets/diagrams/auge_querschnitt.png", concept: "Auge im Querschnitt", bedId: "sinnesorgane_geriatrie_1044" },
+  { id: "ohr_anatomie", image: "assets/diagrams/ohr_anatomie_komplett.png", concept: "Ohr (Hörorgan)", bedId: "sinnesorgane_geriatrie_1044" },
+  { id: "ohrmuschel", image: "assets/diagrams/ohrmuschel_sketch.png", concept: "Ohrmuschel", bedId: "sinnesorgane_geriatrie_1044" },
+  { id: "neuron_synapse", image: "assets/diagrams/neuron_synapse_aufbau.png", concept: "Neuron und Synapse", bedId: "nervensystem_1043" },
+  { id: "gehirn_sagittal", image: "assets/diagrams/gehirn_sagittalschnitt.png", concept: "Gehirn im Sagittalschnitt", bedId: "nervensystem_1043" },
+  { id: "magen", image: "assets/diagrams/magen_aufbau_komplett.png", concept: "Magen", bedId: "verdauungstrakt_1038" },
+  { id: "zahn", image: "assets/diagrams/zahn_aufbau.png", concept: "Zahn im Längsschnitt", bedId: "verdauungstrakt_1038" },
+  { id: "mundrachenraum", image: "assets/diagrams/mundrachenraum_sagittal.png", concept: "Mund- und Rachenraum", bedId: "verdauungstrakt_1038" },
+  { id: "gallenblase", image: "assets/diagrams/gallenblase_gallengangsystem.png", concept: "Gallenblase und Gallengangsystem", bedId: "leber_gallenblase_1040" },
+  { id: "leber", image: "assets/diagrams/leber_illustration.png", concept: "Leber", bedId: "leber_gallenblase_1040" },
+  { id: "herz_klappen", image: "assets/diagrams/herz_querschnitt_klappen.png", concept: "Herz im Querschnitt mit Herzklappen", bedId: "herzkreislauf_1036" },
+  { id: "blutgefaess", image: "assets/diagrams/blutgefaess_zelltypen.png", concept: "Blutgefäß im Querschnitt", bedId: "blutlymphsystem_1037" },
+  { id: "erythrozyten", image: "assets/diagrams/erythrozyten_foto.png", concept: "Erythrozyten (rote Blutkörperchen)", bedId: "blutlymphsystem_1037" },
+  { id: "leukozyten", image: "assets/diagrams/leukozyten_foto.png", concept: "Leukozyten (weiße Blutkörperchen)", bedId: "blutlymphsystem_1037" },
+  { id: "mitochondrium", image: "assets/diagrams/mitochondrium.png", concept: "Mitochondrium", bedId: "zytologie_1031" },
+  { id: "epidermis", image: "assets/diagrams/epidermis_schichten.png", concept: "Epidermis (Hautschichten)", bedId: "histologie_1032" },
+  { id: "pankreas", image: "assets/diagrams/pankreas_abschnitte.png", concept: "Bauchspeicheldrüse (Pankreas)", bedId: "bauchspeicheldruese_1039" },
+  { id: "hormondruesen", image: "assets/diagrams/hormondruesen_uebersicht.png", concept: "Hormondrüsen im Körper", bedId: "hormonsystem_1042" },
 ];
 
 const DEBUG_PLANTS = [
@@ -12336,11 +12331,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_01_h2",
         statement: "Die Myelinscheide wird von Schwann-Zellen gebildet und besteht aus Lipoprotein.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Schwann-Zellen bilden die Myelinscheide aus Lipoprotein, die das Axon isoliert und die saltatorische Erregungsleitung ermöglicht."
+        answer: true,
+        explanation: "Schwann-Zellen bilden die Myelinscheide aus Lipoprotein, die das Axon isoliert und die saltatorische Erregungsleitung ermöglicht."
       },
       {
         type: "mc",
@@ -12358,11 +12350,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_01_h4",
         statement: "Ranvier-Schnürringe liegen alle ca. 15 mm voneinander entfernt.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Ranvier-Schnürringe liegen ca. alle 1,5 mm entlang des Axons – nicht 15 mm."
+        answer: false,
+        explanation: "Ranvier-Schnürringe liegen ca. alle 1,5 mm entlang des Axons – nicht 15 mm."
       },
       {
         type: "mc",
@@ -12445,11 +12434,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_02_h2",
         statement: "Curare blockiert die Acetylcholin-Rezeptoren und führt zu einer generalisierten Muskellähmung.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Curare besetzt kompetitiv die ACh-Rezeptoren an der motorischen Endplatte und verhindert so die Muskelkontraktion – es kommt zur Lähmung."
+        answer: true,
+        explanation: "Curare besetzt kompetitiv die ACh-Rezeptoren an der motorischen Endplatte und verhindert so die Muskelkontraktion – es kommt zur Lähmung."
       },
       {
         type: "mc",
@@ -12467,11 +12453,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_02_h4",
         statement: "Serotonin gehört zu den cholinergen Neurotransmittern.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Cholinerge Synapsen nutzen Acetylcholin. Serotonin gehört zu einer anderen Transmittergruppe, ebenso wie Dopamin und Noradrenalin (adrenerge Synapsen)."
+        answer: false,
+        explanation: "Cholinerge Synapsen nutzen Acetylcholin. Serotonin gehört zu einer anderen Transmittergruppe, ebenso wie Dopamin und Noradrenalin (adrenerge Synapsen)."
       },
       {
         type: "mc",
@@ -12554,11 +12537,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_03_h2",
         statement: "Die Formatio reticularis beeinflusst die Bewusstseinshelligkeit und den Wachzustand.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Formatio reticularis im Stammhirn reguliert Wachheit und Bewusstseinszustand. Schäden können zur Bewusstlosigkeit führen."
+        answer: true,
+        explanation: "Die Formatio reticularis im Stammhirn reguliert Wachheit und Bewusstseinszustand. Schäden können zur Bewusstlosigkeit führen."
       },
       {
         type: "mc",
@@ -12576,11 +12556,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_03_h4",
         statement: "Das vegetative Nervensystem kann willentlich gesteuert werden.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Das vegetative (autonome) Nervensystem reguliert unwillkürliche Körperfunktionen wie Herzschlag, Atmung und Verdauung – es entzieht sich dem Willen."
+        answer: false,
+        explanation: "Das vegetative (autonome) Nervensystem reguliert unwillkürliche Körperfunktionen wie Herzschlag, Atmung und Verdauung – es entzieht sich dem Willen."
       },
       {
         type: "mc",
@@ -12663,11 +12640,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_04_h2",
         statement: "Der N. hypoglossus (XII. Hirnnerv) steuert die Zungenbewegung und ist rein efferent.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Der N. hypoglossus ist der einzige rein efferente (motorische) Hirnnerv. Bei seiner Lähmung weicht die Zunge zur kranken Seite ab und es kommt zu Sprachstörungen."
+        answer: true,
+        explanation: "Der N. hypoglossus ist der einzige rein efferente (motorische) Hirnnerv. Bei seiner Lähmung weicht die Zunge zur kranken Seite ab und es kommt zu Sprachstörungen."
       },
       {
         type: "mc",
@@ -12685,11 +12659,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_04_h4",
         statement: "Bei einer Lähmung des N. vagus weicht das Gaumenzäpfchen zur kranken Seite ab.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Bei N. vagus-Lähmung weicht das Zäpfchen zur GESUNDEN Seite (es wird von der intakten Gegenseite weggezogen). Bei N. hypoglossus-Lähmung zeigt die Zunge zur KRANKEN Seite."
+        answer: false,
+        explanation: "Bei N. vagus-Lähmung weicht das Zäpfchen zur GESUNDEN Seite (es wird von der intakten Gegenseite weggezogen). Bei N. hypoglossus-Lähmung zeigt die Zunge zur KRANKEN Seite."
       },
       {
         type: "mc",
@@ -12772,11 +12743,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_05_h2",
         statement: "Der Thalamus wird als ‚Tor zum Bewusstsein' bezeichnet, weil er Informationen filtert, bevor sie ins Bewusstsein gelangen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Der Thalamus fungiert als Aufmerksamkeitsfilter und Schaltzentrale – er entscheidet, welche sensorischen Informationen weitergeleitet und bewusst wahrgenommen werden."
+        answer: true,
+        explanation: "Der Thalamus fungiert als Aufmerksamkeitsfilter und Schaltzentrale – er entscheidet, welche sensorischen Informationen weitergeleitet und bewusst wahrgenommen werden."
       },
       {
         type: "mc",
@@ -12794,11 +12762,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_05_h4",
         statement: "Das Neocerebellum ist für das Gleichgewicht im Ruhezustand zuständig.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Das Gleichgewicht im Ruhezustand ist Aufgabe des Archicerebellums. Das Neocerebellum ist für Feinmotorik sowie Tast- und Tiefensensibilität zuständig."
+        answer: false,
+        explanation: "Das Gleichgewicht im Ruhezustand ist Aufgabe des Archicerebellums. Das Neocerebellum ist für Feinmotorik sowie Tast- und Tiefensensibilität zuständig."
       },
       {
         type: "mc",
@@ -12881,11 +12846,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_06_h2",
         statement: "Das Broca-Areal im Frontallappen ist für die Sprachproduktion zuständig.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Das Broca-Areal im Frontallappen steuert die motorische Sprachproduktion. Eine Schädigung führt zur motorischen Aphasie: Sprechen ist schwer, Verstehen aber möglich."
+        answer: true,
+        explanation: "Das Broca-Areal im Frontallappen steuert die motorische Sprachproduktion. Eine Schädigung führt zur motorischen Aphasie: Sprechen ist schwer, Verstehen aber möglich."
       },
       {
         type: "mc",
@@ -12903,11 +12865,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_06_h4",
         statement: "Das limbische System hat keinen Bezug zur Gedächtnisbildung.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Das limbische System ist entscheidend für die affektive Bewertung von Erlebnissen und deren Überführung in das Langzeitgedächtnis."
+        answer: false,
+        explanation: "Das limbische System ist entscheidend für die affektive Bewertung von Erlebnissen und deren Überführung in das Langzeitgedächtnis."
       },
       {
         type: "mc",
@@ -12990,11 +12949,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_07_h2",
         statement: "Die Dura mater ist die innerste (weichste) der drei Hirnhäute.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Reihenfolge von außen nach innen: 1. Dura mater (harte Hirnhaut, liegt am Knochen), 2. Arachnoidea (Spinngewebshaut), 3. Pia mater (weiche Hirnhaut, liegt direkt am Gehirn)."
+        answer: false,
+        explanation: "Reihenfolge von außen nach innen: 1. Dura mater (harte Hirnhaut, liegt am Knochen), 2. Arachnoidea (Spinngewebshaut), 3. Pia mater (weiche Hirnhaut, liegt direkt am Gehirn)."
       },
       {
         type: "mc",
@@ -13012,11 +12968,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_07_h4",
         statement: "Der IV. Ventrikel liegt im Rautenhirn (Rhombencephalon).",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Der IV. Ventrikel liegt im Rautenhirn (Rhombencephalon). Er ist über den Aquaeductus cerebri mit dem III. Ventrikel verbunden."
+        answer: true,
+        explanation: "Der IV. Ventrikel liegt im Rautenhirn (Rhombencephalon). Er ist über den Aquaeductus cerebri mit dem III. Ventrikel verbunden."
       },
       {
         type: "mc",
@@ -13099,11 +13052,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_08_h2",
         statement: "Der Sympathikus hat seinen Ursprung im Thorakal- und oberen Lumbalmark (thorako-lumbales System).",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Der Sympathikus entspringt dem Thorakalmark und den ersten 2–3 Segmenten des Lumbalmarks (thorako-lumbales System). Der Parasympathikus hat seinen Ursprung cranio-sakral."
+        answer: true,
+        explanation: "Der Sympathikus entspringt dem Thorakalmark und den ersten 2–3 Segmenten des Lumbalmarks (thorako-lumbales System). Der Parasympathikus hat seinen Ursprung cranio-sakral."
       },
       {
         type: "mc",
@@ -13121,11 +13071,8 @@ const NERVENSYSTEM_1043_PLANTS = [
         type: "true_false",
         id: "1043_08_h4",
         statement: "Der Parasympathikus erhöht Herzfrequenz, Schlagkraft und Schlagvolumen des Herzens.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Der SYMPATHIKUS erhöht Herzfrequenz, Schlagkraft und Schlagvolumen (‚fight or flight'). Der Parasympathikus erniedrigt diese Parameter (trophotrope/erholende Wirkung)."
+        answer: false,
+        explanation: "Der SYMPATHIKUS erhöht Herzfrequenz, Schlagkraft und Schlagvolumen (‚fight or flight'). Der Parasympathikus erniedrigt diese Parameter (trophotrope/erholende Wirkung)."
       },
       {
         type: "mc",
@@ -13315,11 +13262,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_01_h2",
         statement: "Kalte Wickel werden bei Fieber, Entzündungen und Prellungen eingesetzt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Kalte Wickel leiten Wärme ab und wirken antiphlogistisch – daher geeignet bei Fieber, Entzündungen und akuten Verletzungen."
+        answer: true,
+        explanation: "Kalte Wickel leiten Wärme ab und wirken antiphlogistisch – daher geeignet bei Fieber, Entzündungen und akuten Verletzungen."
       },
       {
         type: "mc",
@@ -13337,11 +13281,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_01_h4",
         statement: "Kneipp-Güsse werden als harter Wasserstrahl direkt auf die Haut gerichtet.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Kneipp-Güsse werden fächerartig (kein harter Strahl) in aufsteigender Richtung über die Extremitäten geführt – schonender Flächenreiz, kein Schockstrahl."
+        answer: false,
+        explanation: "Kneipp-Güsse werden fächerartig (kein harter Strahl) in aufsteigender Richtung über die Extremitäten geführt – schonender Flächenreiz, kein Schockstrahl."
       },
       {
         type: "mc",
@@ -13424,11 +13365,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_02_h2",
         statement: "Die intravenöse Ozonzufuhr ist in Deutschland aus Sicherheitsgründen verboten.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die direkte i.v.-Gabe von Ozon ist in Deutschland verboten, da sie eine tödliche Gasembolie verursachen kann."
+        answer: true,
+        explanation: "Die direkte i.v.-Gabe von Ozon ist in Deutschland verboten, da sie eine tödliche Gasembolie verursachen kann."
       },
       {
         type: "mc",
@@ -13446,11 +13384,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_02_h4",
         statement: "Biomolekulare Therapie wirkt organspezifisch nach homöopathischem Prinzip.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. VitOrgan-Präparate aus gleichartigen Zellen werden organspezifisch eingesetzt und folgen dem homöopathischen Prinzip (Ähnliches mit Ähnlichem behandeln)."
+        answer: true,
+        explanation: "VitOrgan-Präparate aus gleichartigen Zellen werden organspezifisch eingesetzt und folgen dem homöopathischen Prinzip (Ähnliches mit Ähnlichem behandeln)."
       },
       {
         type: "mc",
@@ -13533,11 +13468,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_03_h2",
         statement: "LASER steht für Light Amplification by Stimulated Emission of Radiation.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Das Akronym LASER beschreibt das physikalische Prinzip: Lichtverstärkung durch stimulierte Emission von Strahlung."
+        answer: true,
+        explanation: "Das Akronym LASER beschreibt das physikalische Prinzip: Lichtverstärkung durch stimulierte Emission von Strahlung."
       },
       {
         type: "mc",
@@ -13555,11 +13487,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_03_h4",
         statement: "Lasertherapie steigert die ATP-Synthese in den Mitochondrien.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Photobiomodulation durch Laser regt Mitochondrien zur verstärkten ATP-Produktion an, was Zellstoffwechsel und Heilungsprozesse fördern."
+        answer: true,
+        explanation: "Die Photobiomodulation durch Laser regt Mitochondrien zur verstärkten ATP-Produktion an, was Zellstoffwechsel und Heilungsprozesse fördern."
       },
       {
         type: "mc",
@@ -13642,11 +13571,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_04_h2",
         statement: "In der Farbtherapie wird Rot vorsichtig eingesetzt, da es stark stimulierend wirkt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Rot ist wärmend und stark aktivierend (Durchblutung↑). Deshalb muss die Dosierung vorsichtig erfolgen, besonders bei sensiblen Patienten."
+        answer: true,
+        explanation: "Rot ist wärmend und stark aktivierend (Durchblutung↑). Deshalb muss die Dosierung vorsichtig erfolgen, besonders bei sensiblen Patienten."
       },
       {
         type: "mc",
@@ -13664,11 +13590,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_04_h4",
         statement: "Für die Eigenharntherapie wird Abendurin bevorzugt, da er die meisten Inhaltsstoffe enthält.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Es wird Morgenurin verwendet, da er konzentrierter ist und das längste Nüchternintervall repräsentiert – optimale Antigenkonzentration."
+        answer: false,
+        explanation: "Es wird Morgenurin verwendet, da er konzentrierter ist und das längste Nüchternintervall repräsentiert – optimale Antigenkonzentration."
       },
       {
         type: "mc",
@@ -13751,11 +13674,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_05_h2",
         statement: "Das Canthariden-Pflaster wird nach 18–20 Stunden entfernt, bevor die Blase platzt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Entfernung nach 18–20 Stunden verhindert, dass die Blase platzt und es zu Superinfektionen oder tieferen Gewebeschäden kommt."
+        answer: true,
+        explanation: "Die Entfernung nach 18–20 Stunden verhindert, dass die Blase platzt und es zu Superinfektionen oder tieferen Gewebeschäden kommt."
       },
       {
         type: "mc",
@@ -13773,11 +13693,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_05_h4",
         statement: "Pigmentveränderungen nach dem Baunscheidt-Verfahren können bis zu 3 Jahre anhalten.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Hautstiche und die Öl-Einreibung können zu Hyperpigmentierungen führen, die lange bestehen bleiben. Patienten müssen hierüber aufgeklärt werden."
+        answer: true,
+        explanation: "Die Hautstiche und die Öl-Einreibung können zu Hyperpigmentierungen führen, die lange bestehen bleiben. Patienten müssen hierüber aufgeklärt werden."
       },
       {
         type: "mc",
@@ -13860,11 +13777,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_06_h2",
         statement: "Bluteger dürfen bei Patienten mit Blutgerinnungsstörungen eingesetzt werden.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Blutgerinnungsstörungen sind eine Kontraindikation der Blutegeltherapie. Die gerinnungshemmende Wirkung des Hirudins würde die Störung verstärken."
+        answer: false,
+        explanation: "Blutgerinnungsstörungen sind eine Kontraindikation der Blutegeltherapie. Die gerinnungshemmende Wirkung des Hirudins würde die Störung verstärken."
       },
       {
         type: "mc",
@@ -13882,11 +13796,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_06_h4",
         statement: "Blutegel dürfen nach der Behandlung mit hochprozentigem Alkohol oder durch Einfrieren bei -18 °C entsorgt werden.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Medizinische Blutegel sind nach Gebrauch als Sondermüll zu behandeln. Erlaubte Methoden: hochprozentiger Alkohol oder Einfrieren bei -18 °C."
+        answer: true,
+        explanation: "Medizinische Blutegel sind nach Gebrauch als Sondermüll zu behandeln. Erlaubte Methoden: hochprozentiger Alkohol oder Einfrieren bei -18 °C."
       },
       {
         type: "mc",
@@ -13969,11 +13880,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_07_h2",
         statement: "Das Sekundenphänomen in der Neuraltherapie muss mindestens 8 Stunden anhalten, um als echter Heilerfolg zu gelten.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Huneke definierte das Sekundenphänomen: Nach Injektion ins Störfeld tritt sofortige Besserung ein. Diese muss ≥8 Stunden dauern, um als therapeutischer Erfolg zu gelten."
+        answer: true,
+        explanation: "Huneke definierte das Sekundenphänomen: Nach Injektion ins Störfeld tritt sofortige Besserung ein. Diese muss ≥8 Stunden dauern, um als therapeutischer Erfolg zu gelten."
       },
       {
         type: "mc",
@@ -13991,11 +13899,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_07_h4",
         statement: "In der TCM verlaufen Yang-Meridiane an der Innenseite des Körpers und der Bauchhöhle.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Yang-Meridiane verlaufen außen/dorsal (Rückenseite), Yin-Meridiane verlaufen innen/ventral (Bauchseite/Innenseite der Extremitäten)."
+        answer: false,
+        explanation: "Yang-Meridiane verlaufen außen/dorsal (Rückenseite), Yin-Meridiane verlaufen innen/ventral (Bauchseite/Innenseite der Extremitäten)."
       },
       {
         type: "mc",
@@ -14078,11 +13983,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_08_h2",
         statement: "Massage kann den Muskeltonus normalisieren und die Erythropoese (Bildung roter Blutkörperchen) fördern.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Massage normalisiert Hyper- und Hypotonus und steigert nachweislich die Bildung roter Blutkörperchen durch verbesserte Durchblutung und Stoffwechselaktivierung."
+        answer: true,
+        explanation: "Massage normalisiert Hyper- und Hypotonus und steigert nachweislich die Bildung roter Blutkörperchen durch verbesserte Durchblutung und Stoffwechselaktivierung."
       },
       {
         type: "mc",
@@ -14100,11 +14002,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
         type: "true_false",
         id: "1046_08_h4",
         statement: "Bewegungstherapie kann nur aktiv durchgeführt werden – passive Anwendungen sind nicht möglich.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Bewegungstherapie unterscheidet aktive (Patient bewegt selbst, langsam steigernd) und passive Anwendungen (bei Lähmungen/Bettlägerigkeit, durch Therapeuten geführt)."
+        answer: false,
+        explanation: "Bewegungstherapie unterscheidet aktive (Patient bewegt selbst, langsam steigernd) und passive Anwendungen (bei Lähmungen/Bettlägerigkeit, durch Therapeuten geführt)."
       },
       {
         type: "mc",
@@ -14293,11 +14192,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_01_h2",
         statement: "Die drei Gehörknöchelchen sind Hammer, Amboss und Steigbügel.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die drei Gehörknöchelchen (Malleus, Incus, Stapes) bilden eine Kette: Hammer am Trommelfell – Steigbügel am ovalen Fenster des Innenohrs."
+        answer: true,
+        explanation: "Die drei Gehörknöchelchen (Malleus, Incus, Stapes) bilden eine Kette: Hammer am Trommelfell – Steigbügel am ovalen Fenster des Innenohrs."
       },
       {
         type: "mc",
@@ -14315,11 +14211,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_01_h4",
         statement: "Die Tuba auditiva (Eustachische Röhre) verbindet das Mittelohr mit dem Nasen-Rachenraum und ermöglicht Druckausgleich.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Tuba auditiva öffnet sich beim Schlucken und gleicht den Luftdruck zwischen Mittelohr und Rachenraum aus."
+        answer: true,
+        explanation: "Die Tuba auditiva öffnet sich beim Schlucken und gleicht den Luftdruck zwischen Mittelohr und Rachenraum aus."
       },
       {
         type: "mc",
@@ -14402,11 +14295,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_02_h2",
         statement: "Das Corti-Organ liegt zwischen Basilar-Membran und Tektorial-Membran.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Das Corti-Organ ist zwischen Basilar-Membran (unten) und Tektorial-Membran (oben) eingebettet. Die Verschiebung beider Membranen gegeneinander stimuliert die Haarzellen."
+        answer: true,
+        explanation: "Das Corti-Organ ist zwischen Basilar-Membran (unten) und Tektorial-Membran (oben) eingebettet. Die Verschiebung beider Membranen gegeneinander stimuliert die Haarzellen."
       },
       {
         type: "mc",
@@ -14424,11 +14314,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_02_h4",
         statement: "Die Haarzellen im Corti-Organ sind alle auf dieselbe Schallfrequenz abgestimmt.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Die Haarzellen sind auf ganz bestimmte Frequenzen abgestimmt. Jede Zelle hat eine eigene Nervenfaser, sodass verschiedene Töne differenziert wahrgenommen werden können."
+        answer: false,
+        explanation: "Die Haarzellen sind auf ganz bestimmte Frequenzen abgestimmt. Jede Zelle hat eine eigene Nervenfaser, sodass verschiedene Töne differenziert wahrgenommen werden können."
       },
       {
         type: "mc",
@@ -14511,11 +14398,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_03_h2",
         statement: "Der Schlemm-Kanal dient dem Abfluss des Kammerwassers. Bei Blockierung entsteht ein Glaukom.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Der Schlemm-Kanal liegt am Übergang Lederhaut–Hornhaut. Wird der Abfluss des Kammerwassers behindert, steigt der Augeninnendruck → Glaukom (Grüner Star)."
+        answer: true,
+        explanation: "Der Schlemm-Kanal liegt am Übergang Lederhaut–Hornhaut. Wird der Abfluss des Kammerwassers behindert, steigt der Augeninnendruck → Glaukom (Grüner Star)."
       },
       {
         type: "mc",
@@ -14533,11 +14417,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_03_h4",
         statement: "Das Chiasma opticum ist die Stelle, an der sich die Sehnerven beider Augen kreuzen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Im Chiasma opticum (im Diencephalon) kreuzen sich Teile der Sehnervfasern beider Augen, was die binokulare Verarbeitung im Gehirn ermöglicht."
+        answer: true,
+        explanation: "Im Chiasma opticum (im Diencephalon) kreuzen sich Teile der Sehnervfasern beider Augen, was die binokulare Verarbeitung im Gehirn ermöglicht."
       },
       {
         type: "mc",
@@ -14620,11 +14501,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_04_h2",
         statement: "Stäbchen sind für das Hell-Dunkel-Sehen zuständig und enthalten den Sehfarbstoff Rhodopsin.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Stäbchen enthalten Rhodopsin (= Retinal + Opsin), das bei Belichtung zerfällt und ein Aktionspotential auslöst. Bei Vitamin-A-Mangel leidet das Dämmerungssehen."
+        answer: true,
+        explanation: "Die Stäbchen enthalten Rhodopsin (= Retinal + Opsin), das bei Belichtung zerfällt und ein Aktionspotential auslöst. Bei Vitamin-A-Mangel leidet das Dämmerungssehen."
       },
       {
         type: "mc",
@@ -14642,11 +14520,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_04_h4",
         statement: "Rhodopsin wird im Auge selbst produziert.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Rhodopsin wird in der Leber synthetisiert, von dort mit dem Blut transportiert und von den Stäbchen aufgenommen. Vitamin A (bzw. Betacarotin) ist die Vorstufe des Retinals."
+        answer: false,
+        explanation: "Rhodopsin wird in der Leber synthetisiert, von dort mit dem Blut transportiert und von den Stäbchen aufgenommen. Vitamin A (bzw. Betacarotin) ist die Vorstufe des Retinals."
       },
       {
         type: "mc",
@@ -14729,11 +14604,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_05_h2",
         statement: "Das Stratum lucidum ist nur an dicken Hautstellen (Handflächen, Fußsohlen) vorhanden.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Das Stratum lucidum (Glanzschicht) schützt gegen mechanische Beanspruchung und ist nur an besonders beanspruchten Körperstellen ausgeprägt."
+        answer: true,
+        explanation: "Das Stratum lucidum (Glanzschicht) schützt gegen mechanische Beanspruchung und ist nur an besonders beanspruchten Körperstellen ausgeprägt."
       },
       {
         type: "mc",
@@ -14751,11 +14623,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_05_h4",
         statement: "Langerhans-Zellen sind Immunzellen der Haut und befinden sich im Stratum spinosum.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Langerhans-Zellen sind dendritische Zellen im Stratum spinosum, die Antigene phagozytieren und dem Immunsystem präsentieren."
+        answer: true,
+        explanation: "Langerhans-Zellen sind dendritische Zellen im Stratum spinosum, die Antigene phagozytieren und dem Immunsystem präsentieren."
       },
       {
         type: "mc",
@@ -14838,11 +14707,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_06_h2",
         statement: "Die Epidermis enthält keine Blutgefäße und wird durch Diffusion aus dem Corium ernährt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Epidermis ist gefäßfrei. Nährstoffe diffundieren aus den Blutgefäßen des Coriums in die Epidermis. Das erklärt, warum oberflächliche Hautschnitte kaum bluten."
+        answer: true,
+        explanation: "Die Epidermis ist gefäßfrei. Nährstoffe diffundieren aus den Blutgefäßen des Coriums in die Epidermis. Das erklärt, warum oberflächliche Hautschnitte kaum bluten."
       },
       {
         type: "mc",
@@ -14860,11 +14726,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_06_h4",
         statement: "Ruffini-Körperchen befinden sich in der Subcutis und registrieren Vibrationsreize.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Ruffini-Körperchen liegen im Corium (Stratum reticulare) und registrieren Dehnung. Vibration/Tiefensensibilität werden durch Vater-Pacini-Lamellenkörperchen in der Subcutis wahrgenommen."
+        answer: false,
+        explanation: "Ruffini-Körperchen liegen im Corium (Stratum reticulare) und registrieren Dehnung. Vibration/Tiefensensibilität werden durch Vater-Pacini-Lamellenkörperchen in der Subcutis wahrgenommen."
       },
       {
         type: "mc",
@@ -14947,11 +14810,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_07_h2",
         statement: "Das biologische Alter entspricht immer dem biographischen Alter (Geburtsdatum).",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Das biologische Alter beschreibt den aktuellen Gesundheitszustand und kann vom biographischen Alter erheblich abweichen – je nach Lebensstil, Erkrankungen und genetischen Faktoren."
+        answer: false,
+        explanation: "Das biologische Alter beschreibt den aktuellen Gesundheitszustand und kann vom biographischen Alter erheblich abweichen – je nach Lebensstil, Erkrankungen und genetischen Faktoren."
       },
       {
         type: "mc",
@@ -14969,11 +14829,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_07_h4",
         statement: "Die vier großen geriatrischen Syndrome sind: Instabilität, Immobilität, Intellektueller Abbau und Inkontinenz.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Diese vier 'geriatrischen I's' sind die wichtigsten Syndrome. Daneben gibt es weitere wie Isolation, Inappetenz, Insomnia, Iatrogenie, Colon irritabile, Impaired eyes and ears, Impecunity."
+        answer: true,
+        explanation: "Diese vier 'geriatrischen I's' sind die wichtigsten Syndrome. Daneben gibt es weitere wie Isolation, Inappetenz, Insomnia, Iatrogenie, Colon irritabile, Impaired eyes and ears, Impecunity."
       },
       {
         type: "mc",
@@ -15056,11 +14913,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_08_h2",
         statement: "Die glomeruläre Filtrationsrate (GFR) bei einem 80-Jährigen beträgt nur noch etwa 50% eines 20-Jährigen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Die Nierenfunktion nimmt mit dem Alter deutlich ab. Die GFR bei 80-Jährigen beträgt etwa die Hälfte der eines 20-Jährigen – daher müssen renal ausgeschiedene Medikamente niedriger dosiert werden."
+        answer: true,
+        explanation: "Die Nierenfunktion nimmt mit dem Alter deutlich ab. Die GFR bei 80-Jährigen beträgt etwa die Hälfte der eines 20-Jährigen – daher müssen renal ausgeschiedene Medikamente niedriger dosiert werden."
       },
       {
         type: "mc",
@@ -15078,11 +14932,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         type: "true_false",
         id: "1044_08_h4",
         statement: "Akute Verwirrtheit bei älteren Menschen ist immer ein Zeichen einer beginnenden Demenz.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Akute Verwirrtheit (Delir) ist häufig reversibel und hat behandelbare Ursachen: Hyponatriämie, Sauerstoffmangel (TIA), Infekte, Medikamente, Flüssigkeitsmangel. Sie muss von einer Demenz abgegrenzt werden."
+        answer: false,
+        explanation: "Akute Verwirrtheit (Delir) ist häufig reversibel und hat behandelbare Ursachen: Hyponatriämie, Sauerstoffmangel (TIA), Infekte, Medikamente, Flüssigkeitsmangel. Sie muss von einer Demenz abgegrenzt werden."
       },
       {
         type: "mc",
@@ -15272,11 +15123,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_01_h2",
         statement: "Arnikaöl kann in normaler Dosis problemlos innerlich eingenommen werden.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Arnika darf innerlich nur in homöopathischer Verdünnung (D6 oder D12) angewendet werden. Unverdünntes Arnikaöl ist innerlich giftig."
+        answer: false,
+        explanation: "Arnika darf innerlich nur in homöopathischer Verdünnung (D6 oder D12) angewendet werden. Unverdünntes Arnikaöl ist innerlich giftig."
       },
       {
         type: "mc",
@@ -15294,11 +15142,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_01_h4",
         statement: "Menthol wirkt im Respirationstrakt schleimlösend.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Menthol wirkt belebend (durch Kältereiz), aber nicht schleimlösend. Schleimlösend sind Thymian, Anis, Eukalyptus, Fenchel und Latschenkiefer."
+        answer: false,
+        explanation: "Menthol wirkt belebend (durch Kältereiz), aber nicht schleimlösend. Schleimlösend sind Thymian, Anis, Eukalyptus, Fenchel und Latschenkiefer."
       },
       {
         type: "mc",
@@ -15381,11 +15226,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_02_h2",
         statement: "Kampfer, Rosmarin, Terpentin und Senföl wirken auf der Haut entzündungshemmend.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Kampfer, Rosmarin, Terpentin und Senföl wirken durchblutungsfördernd. Entzündungshemmend auf der Haut wirken Kamille, Ringelblumenöl und Arnikaöl."
+        answer: false,
+        explanation: "Kampfer, Rosmarin, Terpentin und Senföl wirken durchblutungsfördernd. Entzündungshemmend auf der Haut wirken Kamille, Ringelblumenöl und Arnikaöl."
       },
       {
         type: "mc",
@@ -15403,11 +15245,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_02_h4",
         statement: "Kamille und Schafgarbe wirken im Verdauungstrakt auch antihistaminisch.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Kamille und Schafgarbe enthalten ätherische Öle, die neben entzündungshemmenden Eigenschaften auch Histaminrezeptoren blockieren (Antihistaminwirkung)."
+        answer: true,
+        explanation: "Kamille und Schafgarbe enthalten ätherische Öle, die neben entzündungshemmenden Eigenschaften auch Histaminrezeptoren blockieren (Antihistaminwirkung)."
       },
       {
         type: "mc",
@@ -15490,11 +15329,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_03_h2",
         statement: "Große Mengen Gerbstoffe wirken entzündungshemmend und adstringierend.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Kleine Mengen Gerbstoffe wirken adstringierend und entzündungshemmend. Große Mengen dagegen wirken entzündungserregend und können als Abführ- oder Brechmittel wirken."
+        answer: false,
+        explanation: "Kleine Mengen Gerbstoffe wirken adstringierend und entzündungshemmend. Große Mengen dagegen wirken entzündungserregend und können als Abführ- oder Brechmittel wirken."
       },
       {
         type: "mc",
@@ -15512,11 +15348,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_03_h4",
         statement: "Wasserlösliche Gerbstoffe lassen sich gut als Tee zubereiten.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Wasserlösliche Gerbstoffe gehen beim Teeaufguss in Lösung. Catechingerbstoffe dagegen sind wasserunlöslich und müssen als Tinktur oder Pulver verabreicht werden."
+        answer: true,
+        explanation: "Wasserlösliche Gerbstoffe gehen beim Teeaufguss in Lösung. Catechingerbstoffe dagegen sind wasserunlöslich und müssen als Tinktur oder Pulver verabreicht werden."
       },
       {
         type: "mc",
@@ -15599,11 +15432,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_04_h2",
         statement: "Schleimstoffe werden im Dünndarm vollständig resorbiert und entfalten dort ihre Wirkung.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Schleimstoffe werden nicht resorbiert. Sie wirken rein mechanisch als Schutzfilm und bleiben im Magen-Darm-Trakt."
+        answer: false,
+        explanation: "Schleimstoffe werden nicht resorbiert. Sie wirken rein mechanisch als Schutzfilm und bleiben im Magen-Darm-Trakt."
       },
       {
         type: "mc",
@@ -15621,11 +15451,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_04_h4",
         statement: "Die Anwendung von Alkaloiden ist dem Arzt vorbehalten, weil wirksame und giftige Dosis sehr nahe beieinanderliegen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Alkaloide haben eine sehr geringe therapeutische Breite – der Abstand zwischen wirksamer und toxischer Dosis ist klein. Deshalb erfordern sie ärztliche Kontrolle."
+        answer: true,
+        explanation: "Alkaloide haben eine sehr geringe therapeutische Breite – der Abstand zwischen wirksamer und toxischer Dosis ist klein. Deshalb erfordern sie ärztliche Kontrolle."
       },
       {
         type: "mc",
@@ -15708,11 +15535,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_05_h2",
         statement: "Für Schleimstoffe und Saponine sind Tinkturen die optimale Zubereitungsform.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Schleimstoffe und Saponine lösen sich nicht in Alkohol. Für diese Wirkstoffe eignen sich Mazeration (Kaltwasserauszug) oder Teeaufguss."
+        answer: false,
+        explanation: "Schleimstoffe und Saponine lösen sich nicht in Alkohol. Für diese Wirkstoffe eignen sich Mazeration (Kaltwasserauszug) oder Teeaufguss."
       },
       {
         type: "mc",
@@ -15730,11 +15554,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_05_h4",
         statement: "Die Mazeration (kalter Auszug) ist besonders geeignet für schleimstoff- und saponinhaltige Drogen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Für schleimstoff- und saponinhaltige Drogen empfiehlt sich die Mazeration, da Schleimstoffe und Saponine sich in kaltem bis mäßig warmem Wasser besser lösen als in Alkohol."
+        answer: true,
+        explanation: "Für schleimstoff- und saponinhaltige Drogen empfiehlt sich die Mazeration, da Schleimstoffe und Saponine sich in kaltem bis mäßig warmem Wasser besser lösen als in Alkohol."
       },
       {
         type: "mc",
@@ -15817,11 +15638,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_06_h2",
         statement: "Warme Wickel sind bei fieberhaften Erkrankungen und Arteriosklerose indiziert.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Bei Fieber und Arteriosklerose werden kalte Wickel eingesetzt. Warme Wickel sind bei Koliken, Blasen-, Darm- und Gallenerkrankungen indiziert."
+        answer: false,
+        explanation: "Bei Fieber und Arteriosklerose werden kalte Wickel eingesetzt. Warme Wickel sind bei Koliken, Blasen-, Darm- und Gallenerkrankungen indiziert."
       },
       {
         type: "mc",
@@ -15839,11 +15657,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_06_h4",
         statement: "Ätherische Öle können direkt dem Badewasser beigemischt werden, da sie sich gut in Wasser lösen.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Ätherische Öle sind wasserunlöslich. Sie müssen mit Emulgatoren und Fetten vermischt werden (Bademilch) oder ganz ohne Wasser als Badeöl verwendet werden."
+        answer: false,
+        explanation: "Ätherische Öle sind wasserunlöslich. Sie müssen mit Emulgatoren und Fetten vermischt werden (Bademilch) oder ganz ohne Wasser als Badeöl verwendet werden."
       },
       {
         type: "mc",
@@ -15926,11 +15741,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_07_h2",
         statement: "Ferrum phosphoricum (Nr. 3) wird beim 2. Entzündungsstadium (Schleimhautkatarrhe) eingesetzt.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Ferrum phosphoricum gehört zum 1. Entzündungsstadium (akute, fieberhafte, plötzlich auftretende Entzündungen). Das 2. Entzündungsstadium (Schleimhautkatarrhe) ist Kalium chloratum (Nr. 4)."
+        answer: false,
+        explanation: "Ferrum phosphoricum gehört zum 1. Entzündungsstadium (akute, fieberhafte, plötzlich auftretende Entzündungen). Das 2. Entzündungsstadium (Schleimhautkatarrhe) ist Kalium chloratum (Nr. 4)."
       },
       {
         type: "mc",
@@ -15948,11 +15760,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_07_h4",
         statement: "Magnesium phosphoricum (Nr. 7) ist das Hauptmittel gegen Krämpfe aller Art.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Korrekt. Magnesium phosphoricum findet sich in Skelett, Muskeln, Nerven und Gehirn. Bei Mangel entstehen Schmerzen, Krämpfe und Lähmungen. Indikationen: Krämpfe aller Art und Neuralgien."
+        answer: true,
+        explanation: "Magnesium phosphoricum findet sich in Skelett, Muskeln, Nerven und Gehirn. Bei Mangel entstehen Schmerzen, Krämpfe und Lähmungen. Indikationen: Krämpfe aller Art und Neuralgien."
       },
       {
         type: "mc",
@@ -16035,11 +15844,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_08_h2",
         statement: "Nach Dr. Bach hat der Körper bei der Behandlung von Erkrankungen Vorrang vor der Psyche.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Bach betonte ausdrücklich, dass die Psyche des Menschen bei Erkrankungen größere Bedeutung hat als der Körper. Seiner Theorie nach liegt jeder Krankheit ein negativer Seelenzustand zugrunde."
+        answer: false,
+        explanation: "Bach betonte ausdrücklich, dass die Psyche des Menschen bei Erkrankungen größere Bedeutung hat als der Körper. Seiner Theorie nach liegt jeder Krankheit ein negativer Seelenzustand zugrunde."
       },
       {
         type: "mc",
@@ -16057,11 +15863,8 @@ const NATURHEILVERFAHREN1_1045_PLANTS = [
         type: "true_false",
         id: "1045_08_h4",
         statement: "Enzyme wirken nach dem Schlüssel-Schloss-Prinzip und werden dabei selbst verändert (verbraucht).",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Enzyme sind Biokatalysatoren und werden bei ihrer Wirkung nicht selbst verändert. Das Schlüssel-Schloss-Prinzip beschreibt die Substratspezifität: Das Enzym muss exakt in die Form des Substrats passen."
+        answer: false,
+        explanation: "Enzyme sind Biokatalysatoren und werden bei ihrer Wirkung nicht selbst verändert. Das Schlüssel-Schloss-Prinzip beschreibt die Substratspezifität: Das Enzym muss exakt in die Form des Substrats passen."
       },
       {
         type: "mc",
@@ -16250,11 +16053,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_01_h2",
         statement: "Tryptophan hat den höchsten täglichen Bedarf unter den unentbehrlichen Aminosäuren.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Tryptophan hat mit 0,25 g/Tag den niedrigsten Bedarf unter den 8 unentbehrlichen Aminosäuren. Den höchsten Bedarf haben Phenylalanin, Leucin und Methionin (je 1,1 g/Tag)."
+        answer: false,
+        explanation: "Tryptophan hat mit 0,25 g/Tag den niedrigsten Bedarf unter den 8 unentbehrlichen Aminosäuren. Den höchsten Bedarf haben Phenylalanin, Leucin und Methionin (je 1,1 g/Tag)."
       },
       {
         type: "mc",
@@ -16284,11 +16084,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_01_h5",
         statement: "Harnstoff entsteht beim Eiweißabbau in der Niere.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Harnstoff entsteht in der Leber (Harnstoffzyklus) und wird über die Nieren ausgeschieden. Bei Leberversagen ist die Harnstoffsynthese gestört, bei Nierenversagen die Ausscheidung."
+        answer: false,
+        explanation: "Harnstoff entsteht in der Leber (Harnstoffzyklus) und wird über die Nieren ausgeschieden. Bei Leberversagen ist die Harnstoffsynthese gestört, bei Nierenversagen die Ausscheidung."
       }
     ],
     phase4Questions: [
@@ -16357,11 +16154,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_02_h2",
         statement: "Langkettige Fettsäuren gelangen nach der Resorption direkt über die Pfortader ins Blut.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Langkettige Fettsäuren werden in Chylomikronen verpackt und gelangen über die Lymphe ins Blut. Nur kurz- und mittelkettige FS gehen direkt über die Pfortader."
+        answer: false,
+        explanation: "Langkettige Fettsäuren werden in Chylomikronen verpackt und gelangen über die Lymphe ins Blut. Nur kurz- und mittelkettige FS gehen direkt über die Pfortader."
       },
       {
         type: "mc",
@@ -16391,11 +16185,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_02_h5",
         statement: "Blutlipidwerte sollten nach 12 Stunden Nahrungskarenz gemessen werden.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Nach einer Mahlzeit zirkulieren noch Chylomikronen im Blut, die die Messwerte verfälschen. Valide Lipidwerte erhält man nur nach 12-stündiger Nahrungskarenz."
+        answer: true,
+        explanation: "Nach einer Mahlzeit zirkulieren noch Chylomikronen im Blut, die die Messwerte verfälschen. Valide Lipidwerte erhält man nur nach 12-stündiger Nahrungskarenz."
       }
     ],
     phase4Questions: [
@@ -16464,11 +16255,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_03_h2",
         statement: "Hyperkaliämie kann zu zeltförmigen T-Wellen im EKG führen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Zeltförmige (überhöhte, spitze) T-Wellen sind das klassische EKG-Zeichen der Hyperkaliämie. Im weiteren Verlauf können Kammerflimmern und Herzstillstand auftreten."
+        answer: true,
+        explanation: "Zeltförmige (überhöhte, spitze) T-Wellen sind das klassische EKG-Zeichen der Hyperkaliämie. Im weiteren Verlauf können Kammerflimmern und Herzstillstand auftreten."
       },
       {
         type: "mc",
@@ -16498,11 +16286,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_03_h5",
         statement: "Hypokaliämie kann zu paralytischem Ileus führen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Kaliumm­angel führt zu schlaffen Lähmungen der glatten Muskulatur – einschließlich der Darmmuskulatur. Ein paralytischer Ileus (funktioneller Darmverschluss) ist eine gefürchtete Komplikation."
+        answer: true,
+        explanation: "Kaliumm­angel führt zu schlaffen Lähmungen der glatten Muskulatur – einschließlich der Darmmuskulatur. Ein paralytischer Ileus (funktioneller Darmverschluss) ist eine gefürchtete Komplikation."
       }
     ],
     phase4Questions: [
@@ -16571,11 +16356,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_04_h2",
         statement: "Vitamin C verbessert die Eisenaufnahme aus der Nahrung.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Vitamin C (Ascorbinsäure) reduziert Fe³⁺ zu Fe²⁺, das besser resorbiert wird. Daher empfiehlt sich z. B. ein Glas Orangensaft zu eisenreichen Mahlzeiten."
+        answer: true,
+        explanation: "Vitamin C (Ascorbinsäure) reduziert Fe³⁺ zu Fe²⁺, das besser resorbiert wird. Daher empfiehlt sich z. B. ein Glas Orangensaft zu eisenreichen Mahlzeiten."
       },
       {
         type: "mc",
@@ -16593,11 +16375,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_04_h4",
         statement: "Fe³⁺ (dreiwertiges Eisen) wird vom Darm besser resorbiert als Fe²⁺.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Fe²⁺ (zweiwertiges, Häm-Eisen) wird besser resorbiert als Fe³⁺. Vitamin C verbessert die Resorption von Fe³⁺ durch Reduktion zu Fe²⁺."
+        answer: false,
+        explanation: "Fe²⁺ (zweiwertiges, Häm-Eisen) wird besser resorbiert als Fe³⁺. Vitamin C verbessert die Resorption von Fe³⁺ durch Reduktion zu Fe²⁺."
       },
       {
         type: "mc",
@@ -16678,11 +16457,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_05_h2",
         statement: "Beri-Beri ist eine Mangelerkrankung des Vitamin B2.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Beri-Beri ist ein Mangelsyndrom des Vitamin B1 (Thiamin). Vitamin-B2-Mangel (Riboflavin) äußert sich in Stomatitis, Glossitis, Mundwinkelrhagaden und Keratitis."
+        answer: false,
+        explanation: "Beri-Beri ist ein Mangelsyndrom des Vitamin B1 (Thiamin). Vitamin-B2-Mangel (Riboflavin) äußert sich in Stomatitis, Glossitis, Mundwinkelrhagaden und Keratitis."
       },
       {
         type: "mc",
@@ -16700,11 +16476,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_05_h4",
         statement: "Eine Überdosierung von Vitamin C kann zu Nierensteinen führen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Überdosierung von Vitamin C führt zu erhöhter renaler Oxalatausscheidung und kann Oxalatsteine in den Nieren verursachen."
+        answer: true,
+        explanation: "Überdosierung von Vitamin C führt zu erhöhter renaler Oxalatausscheidung und kann Oxalatsteine in den Nieren verursachen."
       },
       {
         type: "mc",
@@ -16785,11 +16558,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_06_h2",
         statement: "Vitamin D kann vom menschlichen Körper durch UV-Licht selbst synthetisiert werden.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Vitamin D wird aus Cholesterin durch UV-Licht in der Haut gebildet und gilt daher als Prohormon, nicht als klassisches Vitamin. Die aktive Form Calcitriol entsteht in Leber und Niere."
+        answer: true,
+        explanation: "Vitamin D wird aus Cholesterin durch UV-Licht in der Haut gebildet und gilt daher als Prohormon, nicht als klassisches Vitamin. Die aktive Form Calcitriol entsteht in Leber und Niere."
       },
       {
         type: "mc",
@@ -16807,11 +16577,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_06_h4",
         statement: "Lösliche Ballaststoffe wie Pektin können vom menschlichen Verdauungssystem nicht verwertet werden.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Lösliche Ballaststoffe wie Pektin, Inulin und Beta-Glucan werden von Darmbakterien im Dickdarm fermentiert. Dabei entstehen kurzkettige Fettsäuren (z. B. Butyrat), die die Darmschleimhaut ernähren und antientzündlich wirken."
+        answer: false,
+        explanation: "Lösliche Ballaststoffe wie Pektin, Inulin und Beta-Glucan werden von Darmbakterien im Dickdarm fermentiert. Dabei entstehen kurzkettige Fettsäuren (z. B. Butyrat), die die Darmschleimhaut ernähren und antientzündlich wirken."
       },
       {
         type: "mc",
@@ -16892,11 +16659,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_07_h2",
         statement: "Bei akuter Pankreatitis beginnt der Kostaufbau in Stufe 1 mit ungesüßtem Tee.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Stufe 1 der Pankreatitis-Kost bedeutet absolute Nahrungskarenz (NPO) – nur Infusionstherapie zur künstlichen Ernährung. Ungesüßter Tee ist erst Stufe 2."
+        answer: false,
+        explanation: "Stufe 1 der Pankreatitis-Kost bedeutet absolute Nahrungskarenz (NPO) – nur Infusionstherapie zur künstlichen Ernährung. Ungesüßter Tee ist erst Stufe 2."
       },
       {
         type: "mc",
@@ -16914,11 +16678,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_07_h4",
         statement: "Bei Lebererkrankungen empfiehlt man heute strenge Schonkost mit wenig Eiweiß und Fett.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Früher wurde strenge Schonkost empfohlen, heute gilt: vollwertige Mischkost, die gut bekömmlich ist. Das oberste Gebot ist Alkoholverzicht, keine generelle Einschränkung von Eiweiß und Fett."
+        answer: false,
+        explanation: "Früher wurde strenge Schonkost empfohlen, heute gilt: vollwertige Mischkost, die gut bekömmlich ist. Das oberste Gebot ist Alkoholverzicht, keine generelle Einschränkung von Eiweiß und Fett."
       },
       {
         type: "mc",
@@ -16999,11 +16760,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_08_h2",
         statement: "Bei Gicht sollten Lebensmittel bevorzugt gebraten werden, da dies Purine zerstört.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Braten konzentriert Purine in Lebensmitteln. Bei Gicht sollten Lebensmittel daher lieber gedünstet oder gekocht werden."
+        answer: false,
+        explanation: "Braten konzentriert Purine in Lebensmitteln. Bei Gicht sollten Lebensmittel daher lieber gedünstet oder gekocht werden."
       },
       {
         type: "mc",
@@ -17021,11 +16779,8 @@ const ERNAEHRUNGSMEDIZIN_1047_PLANTS = [
         type: "true_false",
         id: "1047_08_h4",
         statement: "Fruchtzucker kann den Harnsäurespiegel erhöhen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Fruchtzucker wird in der Leber fast ausschließlich verstoffwechselt und erhöht dort den Purin-Pool. Dies steigert die Harnsäureproduktion. Daher ist bei Gicht auch Fruchtzucker (z. B. in Limonaden) zu meiden."
+        answer: true,
+        explanation: "Fruchtzucker wird in der Leber fast ausschließlich verstoffwechselt und erhöht dort den Purin-Pool. Dies steigert die Harnsäureproduktion. Daher ist bei Gicht auch Fruchtzucker (z. B. in Limonaden) zu meiden."
       },
       {
         type: "mc",
@@ -17121,11 +16876,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_01_h3",
         statement: "Die Entdeckung des Ähnlichkeitsprinzips war zur Zeit Hahnemanns völlig neu und in der Medizingeschichte unbekannt.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Bereits Hippokrates und Paracelsus kannten das Simile-Prinzip, auch in den indischen Veden wurde es beschrieben. Hahnemann entwickelte es jedoch als Erster konsequent weiter und machte es zum Grundpfeiler einer eigenen Heilmethode."
+        answer: false,
+        explanation: "Bereits Hippokrates und Paracelsus kannten das Simile-Prinzip, auch in den indischen Veden wurde es beschrieben. Hahnemann entwickelte es jedoch als Erster konsequent weiter und machte es zum Grundpfeiler einer eigenen Heilmethode."
       },
       {
         type: "mc",
@@ -17143,11 +16895,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_01_h5",
         statement: "Die Homöopathie hat in der Notfallmedizin ihren wichtigsten Einsatzbereich.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Die Homöopathie hat in der Notfallmedizin keinen Platz. Wenn die Selbstheilungskräfte nicht mehr aktivierbar sind oder akute Gefahr besteht, müssen schulmedizinische Mittel eingesetzt werden."
+        answer: false,
+        explanation: "Die Homöopathie hat in der Notfallmedizin keinen Platz. Wenn die Selbstheilungskräfte nicht mehr aktivierbar sind oder akute Gefahr besteht, müssen schulmedizinische Mittel eingesetzt werden."
       }
     ],
     phase4Questions: [
@@ -17216,11 +16965,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_02_h2",
         statement: "Bei der Potenzierung ist die Verdünnung selbst wichtiger als die Verschüttelung.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Wichtiger für die Wirkung ist die Verschüttelung/Verreibung nach jedem Verdünnungsschritt – nicht die Verdünnung selbst. Erst durch diesen Vorgang wird die Substanz 'dynamisiert'."
+        answer: false,
+        explanation: "Wichtiger für die Wirkung ist die Verschüttelung/Verreibung nach jedem Verdünnungsschritt – nicht die Verdünnung selbst. Erst durch diesen Vorgang wird die Substanz 'dynamisiert'."
       },
       {
         type: "mc",
@@ -17250,11 +16996,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_02_h5",
         statement: "Das Simile muss immer dasselbe sein, egal welcher Patient dieselbe Erkrankung hat.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Die Homöopathie ist individuell: Drei Patienten mit derselben Diagnose (z. B. Fieber) können drei verschiedene Mittel benötigen, weil sie unterschiedlich auf die Erkrankung reagieren."
+        answer: false,
+        explanation: "Die Homöopathie ist individuell: Drei Patienten mit derselben Diagnose (z. B. Fieber) können drei verschiedene Mittel benötigen, weil sie unterschiedlich auf die Erkrankung reagieren."
       }
     ],
     phase4Questions: [
@@ -17323,11 +17066,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_03_h2",
         statement: "Ab der Potenz D24 / C12 befindet sich statistisch kein Molekül der Ausgangssubstanz mehr im Arzneimittel.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Ab D24 / C12 / LM3 ist laut Avogadro-Konstante (6,022 × 10²³ Teilchen/mol) kein Molekül mehr nachweisbar. Hochpotenzen wirken nach homöopathischer Theorie als Informationsträger."
+        answer: true,
+        explanation: "Ab D24 / C12 / LM3 ist laut Avogadro-Konstante (6,022 × 10²³ Teilchen/mol) kein Molekül mehr nachweisbar. Hochpotenzen wirken nach homöopathischer Theorie als Informationsträger."
       },
       {
         type: "mc",
@@ -17357,11 +17097,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_03_h5",
         statement: "LM-Potenzen wurden von Hahnemann selbst entwickelt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Die C- und LM-Potenzen gehen direkt auf Hahnemann zurück. LM-Potenzen (Verdünnung 1:50.000) wirken besonders weich und eignen sich für chronisch Kranke."
+        answer: true,
+        explanation: "Die C- und LM-Potenzen gehen direkt auf Hahnemann zurück. LM-Potenzen (Verdünnung 1:50.000) wirken besonders weich und eignen sich für chronisch Kranke."
       }
     ],
     phase4Questions: [
@@ -17430,11 +17167,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_04_h2",
         statement: "Bei akuten Erkrankungen muss nach der dritten Gabe eine Verbesserung eintreten, sonst ist das Mittel falsch gewählt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Spätestens nach der dritten Gabe muss eine Verbesserung eintreten, sonst wurde das falsche Mittel gewählt. Bei akuten Erkrankungen muss die Heilung spätestens nach einer Woche eingetreten sein."
+        answer: true,
+        explanation: "Spätestens nach der dritten Gabe muss eine Verbesserung eintreten, sonst wurde das falsche Mittel gewählt. Bei akuten Erkrankungen muss die Heilung spätestens nach einer Woche eingetreten sein."
       },
       {
         type: "mc",
@@ -17464,11 +17198,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_04_h5",
         statement: "Homöopathische Salben können bedenkenlos in offene Wunden gegeben werden.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Salben sollten nur in Ausnahmefällen angewendet werden und dürfen nie in offene Wunden gegeben werden, da das Fett die Wunde verschmutzt und die Heilung behindert."
+        answer: false,
+        explanation: "Salben sollten nur in Ausnahmefällen angewendet werden und dürfen nie in offene Wunden gegeben werden, da das Fett die Wunde verschmutzt und die Heilung behindert."
       }
     ],
     phase4Questions: [
@@ -17537,11 +17268,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_05_h2",
         statement: "Calcium carbonicum-Patienten zeigen trotz ihrer scheinbaren Robustheit eine Neigung zu Infekten.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Obwohl Calcium carbonicum-Typen grobknochig und eher korpulent sind und robust wirken, neigen sie zu Infekten. Die scheinbare Robustheit täuscht."
+        answer: true,
+        explanation: "Obwohl Calcium carbonicum-Typen grobknochig und eher korpulent sind und robust wirken, neigen sie zu Infekten. Die scheinbare Robustheit täuscht."
       },
       {
         type: "mc",
@@ -17559,11 +17287,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_05_h4",
         statement: "Sepia-Patienten zeigen charakteristischerweise abendliche Schwäche und morgendliche Munterkeit.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Sepia zeigt das umgekehrte Muster: morgendliche Schwäche und abendliche Munterkeit. Das ist ein charakteristisches Leitsymptom des Sepia-Bildes."
+        answer: false,
+        explanation: "Sepia zeigt das umgekehrte Muster: morgendliche Schwäche und abendliche Munterkeit. Das ist ein charakteristisches Leitsymptom des Sepia-Bildes."
       },
       {
         type: "mc",
@@ -17644,11 +17369,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_06_h2",
         statement: "Sulfur kann heftige Erstverschlimmerungen auslösen und Patienten müssen darauf aufmerksam gemacht werden.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Sulfur ist bekannt dafür, heftige Erstverschlimmerungen auszulösen. Da Sulfur ein reaktionssteigerndes Mittel ist, können Patienten mit starken Reaktionen überrascht werden."
+        answer: true,
+        explanation: "Sulfur ist bekannt dafür, heftige Erstverschlimmerungen auszulösen. Da Sulfur ein reaktionssteigerndes Mittel ist, können Patienten mit starken Reaktionen überrascht werden."
       },
       {
         type: "mc",
@@ -17678,11 +17400,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_06_h5",
         statement: "Bei Phosphorus-Patienten liegt die typische Besserung auf der linken Körperseite.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Phosphorus-Patienten fühlen sich besser, wenn sie auf der rechten Seite liegen. Liegen auf der linken Seite führt zur Verschlimmerung."
+        answer: false,
+        explanation: "Phosphorus-Patienten fühlen sich besser, wenn sie auf der rechten Seite liegen. Liegen auf der linken Seite führt zur Verschlimmerung."
       }
     ],
     phase4Questions: [
@@ -17751,11 +17470,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_07_h2",
         statement: "Graphites ist besonders indiziert bei honigartigen Sekreten aus Hautausschlägen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Die schmierigen Hautausschläge mit honigartigen Sekret sind ein klassisches Leitsymptom von Graphites. Ekzeme hinter den Ohren und zwischen den Zehen sind ebenfalls typisch."
+        answer: true,
+        explanation: "Die schmierigen Hautausschläge mit honigartigen Sekret sind ein klassisches Leitsymptom von Graphites. Ekzeme hinter den Ohren und zwischen den Zehen sind ebenfalls typisch."
       },
       {
         type: "mc",
@@ -17773,11 +17489,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_07_h4",
         statement: "Komplexmittel haben eine strenge Arzneimittelprüfung am Gesunden durchlaufen.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Komplexmittel haben keine Arzneimittelprüfung hinter sich. Sie werden nach allopathischen (symptomatischen) Gesichtspunkten eingesetzt und berücksichtigen nicht die individuelle Gesamtsymptomatik."
+        answer: false,
+        explanation: "Komplexmittel haben keine Arzneimittelprüfung hinter sich. Sie werden nach allopathischen (symptomatischen) Gesichtspunkten eingesetzt und berücksichtigen nicht die individuelle Gesamtsymptomatik."
       },
       {
         type: "mc",
@@ -17870,11 +17583,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_08_h3",
         statement: "Bei Hepar sulfuris bestimmt die Potenz die Wirkungsrichtung auf die Eiterung.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false }
-        ],
-        explanation: "Wahr. Bei Hepar sulfuris gilt: Tiefpotenz = Eiterung ausspülen; Mittelpotenz = Eiterung stoppen/einschmelzen; Hochpotenz = Entzündung ausheilen. Dies ist einzigartig in der Homöopathie."
+        answer: true,
+        explanation: "Bei Hepar sulfuris gilt: Tiefpotenz = Eiterung ausspülen; Mittelpotenz = Eiterung stoppen/einschmelzen; Hochpotenz = Entzündung ausheilen. Dies ist einzigartig in der Homöopathie."
       },
       {
         type: "mc",
@@ -17892,11 +17602,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         id: "1048_08_h5",
         statement: "Camphora kann gleichzeitig mit anderen homöopathischen Mitteln eingenommen werden.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true }
-        ],
-        explanation: "Falsch. Camphora antidotiert alle anderen homöopathischen Mittel – es hebt ihre Wirkung auf. Camphora darf daher nie gleichzeitig mit anderen Homöopathika gegeben werden."
+        answer: false,
+        explanation: "Camphora antidotiert alle anderen homöopathischen Mittel – es hebt ihre Wirkung auf. Camphora darf daher nie gleichzeitig mit anderen Homöopathika gegeben werden."
       }
     ],
     phase4Questions: [
@@ -18105,11 +17812,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_01_h5",
         statement: "Pathogenese und Ätiologie sind Synonyme für dieselbe wissenschaftliche Disziplin.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true },
-        ],
-        explanation: "Falsch. Ätiologie = Ursachenlehre. Pathogenese = Beschreibung von Entwicklung und Verlauf der Krankheit nach Einwirken des ätiologischen Faktors.",
+        answer: false,
+        explanation: "Ätiologie = Ursachenlehre. Pathogenese = Beschreibung von Entwicklung und Verlauf der Krankheit nach Einwirken des ätiologischen Faktors.",
       },
     ],
     phase4Questions: [
@@ -18214,11 +17918,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_02_h5",
         statement: "Ein Rezidiv bezeichnet das dauerhaft vollständige Abklingen einer Erkrankung.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true },
-        ],
-        explanation: "Falsch. Rezidiv = erneuter Ausbruch einer bereits überwunden geglaubten Krankheit. Remission = vorübergehendes oder dauerhaftes Nachlassen der Beschwerden.",
+        answer: false,
+        explanation: "Rezidiv = erneuter Ausbruch einer bereits überwunden geglaubten Krankheit. Remission = vorübergehendes oder dauerhaftes Nachlassen der Beschwerden.",
       },
     ],
     phase4Questions: [
@@ -18323,11 +18024,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_03_h5",
         statement: "Supravitale Erscheinungen (intermediäres Leben) sind Reaktionen einzelner Gewebe, die noch nach dem klinischen Tod auf Reize ansprechen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Intermediäres Leben = supravitale Erscheinungen: z. B. Pupillenreaktion auf Atropin, Muskeln reagieren noch auf elektrische Reize kurz nach dem Tod.",
+        answer: true,
+        explanation: "Intermediäres Leben = supravitale Erscheinungen: z. B. Pupillenreaktion auf Atropin, Muskeln reagieren noch auf elektrische Reize kurz nach dem Tod.",
       },
     ],
     phase4Questions: [
@@ -18432,11 +18130,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_04_h5",
         statement: "Bei höherer Gewebetemperatur steigt die Anfälligkeit für Hypoxieschäden, weil der Sauerstoffbedarf zunimmt.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Temperatur ist ein Einflussfaktor: höhere Temperatur → höherer Stoffwechsel → höherer O₂-Bedarf → schnellere Schädigung bei O₂-Mangel.",
+        answer: true,
+        explanation: "Temperatur ist ein Einflussfaktor: höhere Temperatur → höherer Stoffwechsel → höherer O₂-Bedarf → schnellere Schädigung bei O₂-Mangel.",
       },
     ],
     phase4Questions: [
@@ -18541,11 +18236,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_05_h5",
         statement: "Verbrennung Grad IIb hinterlässt Narben, weil tiefe Anteile der Dermis zerstört werden.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Grad IIa (oberflächlich): Regeneration aus Haarfollikeln/Drüsen → narbenlos. Grad IIb (tief): Stammzellreserve zerstört → Narbenbildung erforderlich.",
+        answer: true,
+        explanation: "Grad IIa (oberflächlich): Regeneration aus Haarfollikeln/Drüsen → narbenlos. Grad IIb (tief): Stammzellreserve zerstört → Narbenbildung erforderlich.",
       },
     ],
     phase4Questions: [
@@ -18650,11 +18342,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_06_h5",
         statement: "Überlastungshyperplasie tritt auf, wenn Zellen durch dauerhaft erhöhte Beanspruchung häufiger teilen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Überlastungshyperplasie: erhöhte funktionelle Last → vermehrte Zellteilung. Beispiel: Epidermis bei Druckbelastung (Schwiele). Vs. Überlastungshypertrophie: Herzmuskel (kann nicht teilen).",
+        answer: true,
+        explanation: "Überlastungshyperplasie: erhöhte funktionelle Last → vermehrte Zellteilung. Beispiel: Epidermis bei Druckbelastung (Schwiele). Vs. Überlastungshypertrophie: Herzmuskel (kann nicht teilen).",
       },
     ],
     phase4Questions: [
@@ -18759,11 +18448,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_07_h5",
         statement: "Fibrinoide Nekrose tritt bei Autoimmunerkrankungen und Kollagenosen auf.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Fibrinoide Nekrose: Fibrin-ähnliches Material in Gefäßwänden. Typisch für Autoimmunerkrankungen (z. B. systemischer Lupus, rheumatoide Arthritis, Kollagenosen).",
+        answer: true,
+        explanation: "Fibrinoide Nekrose: Fibrin-ähnliches Material in Gefäßwänden. Typisch für Autoimmunerkrankungen (z. B. systemischer Lupus, rheumatoide Arthritis, Kollagenosen).",
       },
     ],
     phase4Questions: [
@@ -18868,11 +18554,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_08_h5",
         statement: "Entzündlich bedingte Ödeme entstehen durch erhöhte Kapillarpermeabilität.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Entzündung → Histamin, Bradykinin, Prostaglandine → erhöhte Kapillarpermeabilität → Proteine und Flüssigkeit treten ins Gewebe → entzündliches Ödem (exsudatives Ödem).",
+        answer: true,
+        explanation: "Entzündung → Histamin, Bradykinin, Prostaglandine → erhöhte Kapillarpermeabilität → Proteine und Flüssigkeit treten ins Gewebe → entzündliches Ödem (exsudatives Ödem).",
       },
     ],
     phase4Questions: [
@@ -18977,11 +18660,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_09_h5",
         statement: "Thalidomid (Contergan) ist ein bekanntes teratogenes Agens, das Phokomelie verursachte.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Thalidomid in den 1950/60er Jahren → Phokomelie (Robbengliedmaßen) und andere Fehlbildungen. Teratogene Ursachen: Strahlung, Röteln, Thalidomid, Alkohol (FAS).",
+        answer: true,
+        explanation: "Thalidomid in den 1950/60er Jahren → Phokomelie (Robbengliedmaßen) und andere Fehlbildungen. Teratogene Ursachen: Strahlung, Röteln, Thalidomid, Alkohol (FAS).",
       },
     ],
     phase4Questions: [
@@ -19086,11 +18766,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_10_h5",
         statement: "BSG (Blutkörperchensenkungsgeschwindigkeit) ist bei Entzündung erniedrigt.",
-        options: [
-          { text: "Wahr", correct: false },
-          { text: "Falsch", correct: true },
-        ],
-        explanation: "Falsch. BSG ist bei Entzündung erhöht (Akute-Phase-Proteine erhöhen die Geldrollen-Bildung der Erythrozyten → schnellere Senkung). BSG ↑ = unspezifischer Entzündungsmarker.",
+        answer: false,
+        explanation: "BSG ist bei Entzündung erhöht (Akute-Phase-Proteine erhöhen die Geldrollen-Bildung der Erythrozyten → schnellere Senkung). BSG ↑ = unspezifischer Entzündungsmarker.",
       },
     ],
     phase4Questions: [
@@ -19195,11 +18872,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_11_h5",
         statement: "Ein Karbunkel entsteht durch das Konfluieren mehrerer Furunkel.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Furunkel = einzelne eitrige Haarfollikelentzündung. Karbunkel = mehrere konfluierende Furunkel mit tiefer Infektion des Unterhautgewebes.",
+        answer: true,
+        explanation: "Furunkel = einzelne eitrige Haarfollikelentzündung. Karbunkel = mehrere konfluierende Furunkel mit tiefer Infektion des Unterhautgewebes.",
       },
     ],
     phase4Questions: [
@@ -19304,11 +18978,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_12_h5",
         statement: "Tumorviren können durch Integration ihrer DNA/RNA in das Wirtsgenom zur malignen Transformation führen.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. DNA-Tumorviren (HPV, EBV, HBV) und RNA-Tumorviren (Retroviren, HTLV) können durch Genomintegration Proto-Onkogene aktivieren oder Tumorsuppressoren inaktivieren.",
+        answer: true,
+        explanation: "DNA-Tumorviren (HPV, EBV, HBV) und RNA-Tumorviren (Retroviren, HTLV) können durch Genomintegration Proto-Onkogene aktivieren oder Tumorsuppressoren inaktivieren.",
       },
     ],
     phase4Questions: [
@@ -19413,11 +19084,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_13_h5",
         statement: "Mammakarzinom metastasiert bevorzugt in Knochen, Lunge, Leber und Gehirn.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Mammakarzinom: lymphogen (axilläre Lymphknoten), hämatogen in Knochen (Wirbelsäule, Becken), Lunge, Leber, Gehirn. Häufigster Tumor der Frau.",
+        answer: true,
+        explanation: "Mammakarzinom: lymphogen (axilläre Lymphknoten), hämatogen in Knochen (Wirbelsäule, Becken), Lunge, Leber, Gehirn. Häufigster Tumor der Frau.",
       },
     ],
     phase4Questions: [
@@ -19522,11 +19190,8 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         type: "true_false",
         id: "1049_14_h5",
         statement: "Autoimmunerkrankungen sind mit bestimmten HLA-Typen (MHC) assoziiert.",
-        options: [
-          { text: "Wahr", correct: true },
-          { text: "Falsch", correct: false },
-        ],
-        explanation: "Wahr. Beispiele: HLA-B27 → Ankylosierende Spondylitis (M. Bechterew). HLA-DR3/DR4 → Typ-1-Diabetes. HLA-DR4 → Rheumatoide Arthritis. HLA-Assoziation erklärt genetische Suszeptibilität für Autoimmunerkrankungen.",
+        answer: true,
+        explanation: "Beispiele: HLA-B27 → Ankylosierende Spondylitis (M. Bechterew). HLA-DR3/DR4 → Typ-1-Diabetes. HLA-DR4 → Rheumatoide Arthritis. HLA-Assoziation erklärt genetische Suszeptibilität für Autoimmunerkrankungen.",
       },
     ],
     phase4Questions: [
