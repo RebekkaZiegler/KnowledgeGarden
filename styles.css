@@ -1640,9 +1640,9 @@ button:disabled {
 
 .label-zone {
   position: absolute;
-  border: 2px dashed var(--line);
+  border: 2px solid rgba(248, 196, 54, 0.85);
   border-radius: 6px;
-  background: rgba(20, 30, 25, 0.55);
+  background: rgba(248, 196, 54, 0.18);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1659,7 +1659,8 @@ button:disabled {
 
 .label-zone.targeted {
   border-color: #f59e0b;
-  background: rgba(40, 35, 15, 0.7);
+  border-width: 3px;
+  background: rgba(245, 158, 11, 0.35);
 }
 
 .label-zone-text {

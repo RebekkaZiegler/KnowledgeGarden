@@ -1,4 +1,4 @@
-﻿const APP_VERSION = "1.0.30";   // ← bump this with every push
+﻿const APP_VERSION = "1.0.31";   // ← bump this with every push
 const SAVE_KEY = "kg_rpg_mvp_v6";
 const COOLDOWN_MS_NORMAL = 5 * 60 * 1000;
 const COOLDOWN_MS_DEV_FAST = 10 * 1000;
@@ -4516,9 +4516,9 @@ function reRenderLabelExercise() {
   area.innerHTML = `<div class="re-question-panel re-question-panel--label">
     <div class="re-question-header">${typeLabel}</div>
     <div style="font-size:.82rem;margin-bottom:.3rem;color:var(--muted)">🏷️ ${ex.title} — Beschrifte die Strukturen:</div>
-    <div class="label-diagram-wrapper" style="aspect-ratio:${ex.aspectRatio || '5/4'};max-height:48vh">${
+    <div class="label-diagram-wrapper" style="aspect-ratio:${ex.aspectRatio || '5/4'};width:min(100%,calc(48vh * ${(ex.aspectRatio || '5/4').split('/')[0]} / ${(ex.aspectRatio || '5/4').split('/')[1]}))">${
       ex.diagramType === "image"
-        ? `<img src="${ex.imagePath}" style="display:block;width:100%;height:100%;object-fit:contain">`
+        ? `<img src="${ex.imagePath}" style="display:block;width:100%;height:100%;object-fit:fill">`
         : (ex.svgContent || "")
     }${zoneHtml}</div>
     <div class="label-pool">${chipHtml || "<span class='muted'>Alle Labels platziert</span>"}</div>
@@ -4974,9 +4974,9 @@ function renderLabelPractice() {
       <button id="label-practice-back-btn" class="modal-close-btn">← Andere Übung</button>
     </div>
     <div style="font-size:.82rem;margin-bottom:.3rem;color:var(--muted)">🏷️ ${escapeHtmlText(ex.title)} — Beschrifte die Strukturen:</div>
-    <div class="label-diagram-wrapper" style="aspect-ratio:${ex.aspectRatio || "5/4"};max-height:48vh">${
+    <div class="label-diagram-wrapper" style="aspect-ratio:${ex.aspectRatio || "5/4"};width:min(100%,calc(48vh * ${(ex.aspectRatio || "5/4").split("/")[0]} / ${(ex.aspectRatio || "5/4").split("/")[1]}))">${
       ex.diagramType === "image"
-        ? `<img src="${ex.imagePath}" alt="${escapeHtmlText(ex.title)}" style="display:block;width:100%;height:100%;object-fit:contain">`
+        ? `<img src="${ex.imagePath}" alt="${escapeHtmlText(ex.title)}" style="display:block;width:100%;height:100%;object-fit:fill">`
         : (ex.svgContent || "")
     }${zoneHtml}</div>
     <div class="label-pool">${chipHtml || "<span class='muted'>Alle Labels platziert</span>"}</div>
