@@ -1,4 +1,7 @@
 .claude/
+node_modules/
+package-lock.json
+memory/
 # Sound is disabled in-app (most players run muted) — keep files locally but stop tracking them
 assets/music/*.mp3
 # Source PDFs — too large for git, stored locally
