@@ -36,27 +36,45 @@
 
     <!-- CENTER: Restaurant -->
     <section id="screen-restaurant" class="screen screen--center">
+      <!-- Sleep / end-of-day summary overlay -->
+      <div id="sleep-overlay" hidden>
+        <div id="sleep-stats">
+          <div id="sleep-day-label"></div>
+          <div id="sleep-stats-grid"></div>
+          <button id="btn-new-day">🌅 Neuer Tag</button>
+        </div>
+      </div>
+
       <div id="restaurant-closed-overlay">
         <span>🌙</span>
         <p>Geschlossen</p>
       </div>
+      <div id="re-stats-row"></div>
       <div id="re-scene">
         <div id="re-sprites"></div>
         <div id="re-tables"></div>
       </div>
       <div id="re-controls">
-        <button id="btn-open-restaurant" class="re-control-btn">🍽️ Öffnen</button>
-        <button id="btn-last-call" class="re-control-btn" hidden>🔔 Last Call</button>
-        <button id="btn-sleep" class="re-control-btn re-control-btn--sleep" hidden>🌙 Schlafen</button>
-        <button id="btn-raven" class="re-control-btn re-control-btn--raven" title="Raben-Lieferung">🪶</button>
+        <button id="btn-open-restaurant" class="re-control-btn">🍽️&nbsp;Öffnen</button>
+        <button id="btn-last-call" class="re-control-btn" hidden>🔔&nbsp;Last Call</button>
+        <button id="btn-sleep" class="re-control-btn re-control-btn--sleep" hidden>🌙&nbsp;Schlafen</button>
+        <button id="btn-raven" class="re-control-btn re-control-btn--raven" title="Raben-Lieferung"><img src="assets/images/raven_btn.png" class="raven-btn-img" alt="Rabe"></button>
         <button id="btn-kitchen" class="re-control-btn" title="Küche">🍕</button>
       </div>
       <div id="re-question-area" hidden></div>
-      <div id="re-stats-row"></div>
     </section>
 
+    <!-- RIGHT: Cleaning -->
+    <section id="screen-cleaning" class="screen">
+      <div class="cleaning-header">
+        <span id="cleaning-soap">🧼 Seife: 10/10</span>
+        <button id="cleaning-buy-soap" class="cleaning-buy-btn" onclick="buySoap()" hidden>Seife kaufen (1 Frage)</button>
+      </div>
+      <div id="cleaning-grid" class="cleaning-grid"></div>
+    </section>
 
   </div>
+
 
   <!-- ═══════════════════════════════════════════════════
        BOTTOM NAV
@@ -114,7 +132,7 @@
   ════════════════════════════════════════════════════ -->
   <div id="modal-raven" class="modal-overlay" hidden>
     <div class="modal-box">
-      <h2>🪶 Raben-Lieferung</h2>
+      <h2><img src="assets/images/raven_btn.png" class="raven-modal-img" alt="Rabe"> Raben-Lieferung</h2>
       <p class="muted" style="font-size:0.82rem;margin-bottom:0.8rem">Jede bestellte Einheit kostet eine Frage. Lieferung kommt nach dem nächsten Schlafen.</p>
       <div id="raven-order-list" class="raven-order-list"></div>
       <div id="raven-pending" class="raven-pending"></div>

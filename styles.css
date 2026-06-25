@@ -31,12 +31,15 @@
   background: rgba(100, 150, 120, 0.65);
 }
 
-html, body {
+html {
   height: 100%;
+  background: #050908;
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 430px;
+  height: 100%;
   font-family: 'Lora', Georgia, serif;
   font-size: 16px;
   font-weight: 600;
@@ -2126,22 +2129,76 @@ button:disabled {
 
 .re-table {
   position: absolute;
-  width: 36px; height: 36px;
-  background: radial-gradient(circle at 35% 35%, #9a6840, #6a4010);
-  border-radius: 50%;
-  border: 2px solid #4a2c08;
   transform: translate(-50%, -50%);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.35);
+  cursor: pointer;
   z-index: 2;
+  text-align: center;
 }
 .re-table--locked { opacity: 0.25; filter: grayscale(1); cursor: pointer; }
 .re-table--locked:hover { opacity: 0.45; }
-.re-table::after {
-  content: '';
+
+.re-table-badges {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 3px;
+  min-height: 20px;
+}
+.re-patron-badge {
+  font-size: 1.15rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.7));
+}
+.re-patron-hungry {}
+
+.re-table-food {
   position: absolute;
-  inset: 5px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
+  width: 35%;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.re-table-drink {
+  position: absolute;
+  bottom: 4px;
+  width: 22%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.re-table-dirty-dish {
+  position: absolute;
+  bottom: 4px;
+  width: 30%;
+  object-fit: contain;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.re-table-patrons {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: -6px;
+  padding: 0 2px;
+  pointer-events: none;
+}
+.re-patron-sprite {
+  height: 54px;
+  width: auto;
+  display: block;
+}
+
+/* Raven order icons for bottle / keg */
+.drink-order-bottle,
+.drink-order-keg {
+  font-size: 1.2rem;
+  display: inline-block;
+  line-height: 1;
+}
+.drink-order-keg {
+  filter: sepia(1) saturate(2) hue-rotate(20deg) brightness(0.9);
 }
 
 .re-sprite {
@@ -3041,18 +3098,20 @@ body.plant-open #back-to-garden-btn { display: block; }
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  /* hide horizontal scrollbar */
   scrollbar-width: none;
+}
+#screen-container.sc-ready {
+  overflow-x: scroll;
 }
 #screen-container::-webkit-scrollbar { display: none; }
 
 .screen {
-  min-width: 100vw;
-  max-width: 100vw;
+  width: min(100vw, 430px);
+  min-width: min(100vw, 430px);
+  max-width: min(100vw, 430px);
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -3100,99 +3159,77 @@ body.plant-open #back-to-garden-btn { display: block; }
 
 /* ── Garden screen ── */
 #screen-garden {
-  background:
-    url('assets/images/Garden Room Wall Background.png') center bottom / cover;
-  padding: 0.6rem;
-  gap: 0.5rem;
+  background: url('assets/images/garden.png') center top / cover no-repeat;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
 }
 
 #garden-grid {
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding-bottom: 0.5rem;
 }
 
-.garden-bed {
-  background: linear-gradient(180deg, rgba(45,31,14,0.3) 0%, rgba(61,41,18,0.25) 100%);
-  border: 2px solid rgba(74, 48, 24, 0.5);
-  border-radius: 8px;
-  padding: 0.5rem 0.6rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.garden-bed-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(15, 9, 3, 0.7);
-  border-radius: 4px;
-  padding: 0.2rem 0.5rem;
-  margin-bottom: 0.4rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #c8a87a;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-.bed-ready-badge {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #e8c860;
-  letter-spacing: 0;
-  text-transform: none;
-}
-.bed-planted-count {
-  font-size: 0.7rem;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0;
-  margin-left: auto;
-}
-
-.garden-slots {
+.garden-patches {
+  flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.4rem;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 4px;
+  padding: 4px;
 }
 
 /* ── base slot ── */
 .garden-slot {
-  border-radius: 6px;
-  border: 1px dashed rgba(74, 48, 24, 0.5);
-  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+  border: 1px solid rgba(60, 35, 10, 0.6);
+  background: url('assets/images/soil.png') center / cover;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
   padding: 0.35rem 0.25rem 0.25rem;
   min-height: 80px;
   text-align: center;
 }
-.garden-slot:hover { background: rgba(100, 180, 120, 0.08); border-color: var(--accent); }
+.garden-slot:hover        { border-color: var(--accent); box-shadow: inset 0 0 0 2px rgba(100,200,120,0.25); }
+.garden-slot:active       { box-shadow: inset 0 0 0 2px rgba(100,200,120,0.4); }
 
-/* ── empty slot ── */
-.garden-slot--empty { color: var(--muted); }
-.slot-add-icon { font-size: 1.3rem; line-height: 1; color: rgba(150,120,80,0.5); }
+/* ── empty slot — transparent, no soil shown ── */
+.garden-slot--empty {
+  background: transparent !important;
+  border-color: rgba(255,255,255,0.08);
+  filter: none;
+}
+.garden-slot--empty:hover {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(220,180,110,0.4);
+}
+.slot-add-icon { font-size: 1.3rem; line-height: 1; color: rgba(220,180,110,0.5); }
 
 /* ── planted slot ── */
 .garden-slot--planted {
   border-style: solid;
   border-color: rgba(74, 48, 24, 0.7);
+  /* dry soil = slightly lighter/dusty */
+  filter: brightness(0.82) sepia(0.15);
 }
-.garden-slot--watered { border-color: rgba(80, 140, 200, 0.6); }
+/* watered = darker, richer soil colour */
+.garden-slot--watered {
+  border-color: rgba(80, 140, 200, 0.55);
+  filter: brightness(1) saturate(1.2);
+}
 
-/* ── ready slot — golden glow ── */
-.garden-slot--ready {
-  border-color: #e8c860;
-  box-shadow: 0 0 10px rgba(232, 200, 96, 0.5), inset 0 0 8px rgba(232, 200, 96, 0.08);
-  animation: slot-pulse 2s ease-in-out infinite;
-}
+/* ── ready slot ── */
+.garden-slot--ready {}
 @keyframes slot-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(232,200,96,0.45), inset 0 0 6px rgba(232,200,96,0.07); }
-  50%       { box-shadow: 0 0 16px rgba(232,200,96,0.75), inset 0 0 10px rgba(232,200,96,0.14); }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.92; }
 }
 
 /* ── 5 crop emojis ── */
@@ -3219,8 +3256,85 @@ body.plant-open #back-to-garden-btn { display: block; }
   transform: scale(1.15);
 }
 
-/* ── name + status ── */
+/* ── sprite images in garden slots ── */
+.slot-crop-sprite {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  transition: height 0.3s;
+}
+.slot-crop-sprite.slot-crop--s0 { height: 28px; }
+.slot-crop-sprite.slot-crop--s1 { height: 40px; }
+.slot-crop-sprite.slot-crop--s2 { height: 52px; }
+.slot-crop-sprite.slot-crop--s3 {
+  height: 62px;
+  filter: drop-shadow(0 0 4px rgba(255,220,80,0.8));
+  cursor: pointer;
+}
+.slot-crop-sprite.slot-crop--s3:hover {
+  filter: drop-shadow(0 0 6px rgba(255,220,80,1)) brightness(1.1);
+  transform: scale(1.06);
+}
+
+/* ── wheat CSS sprite (background-position per stage) ── */
+/* wheat_sprites.png: 1536x740, 4 frames of 384px each                */
+/* Displayed at 40px wide per frame → scale = 40/384 = 0.104          */
+/* bg-size: 160x77px; offsets: 0, -40, -80, -120                      */
+.slot-wheat-sprite {
+  display: inline-block;
+  width: 40px;
+  height: 77px;
+  background-image: url('assets/images/wheat_sprites.png');
+  background-size: 160px 77px;
+  background-repeat: no-repeat;
+  transition: background-position 0.4s;
+}
+.slot-wheat-sprite.slot-crop--s0 { background-position:   0px 0; }
+.slot-wheat-sprite.slot-crop--s1 { background-position: -40px 0; }
+.slot-wheat-sprite.slot-crop--s2 { background-position: -80px 0; }
+.slot-wheat-sprite.slot-crop--s3 {
+  background-position: -120px 0;
+  filter: drop-shadow(0 0 4px rgba(255,220,80,0.8));
+  cursor: pointer;
+}
+.slot-wheat-sprite.slot-crop--s3:hover {
+  filter: drop-shadow(0 0 6px rgba(255,220,80,1)) brightness(1.1);
+  transform: scale(1.06);
+}
+
+/* ── raven button image ── */
+.raven-btn-img {
+  height: 28px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 4px;
+  display: inline-block;
+}
+.raven-modal-img {
+  height: 36px;
+  width: auto;
+  vertical-align: middle;
+}
+
+/* ── Water glass icon ── */
+.water-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.35em;
+  background: linear-gradient(180deg, rgba(160,215,255,0.25) 0%, rgba(80,165,235,0.45) 100%);
+  border: 1.5px solid rgba(130,200,255,0.8);
+  border-radius: 1px 1px 5px 5px;
+  font-size: 0.6em;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* ── name + status — hidden, graphics convey everything ── */
 .slot-name {
+  display: none;
   font-size: 0.62rem;
   color: var(--text);
   margin-top: 0.25rem;
@@ -3230,13 +3344,7 @@ body.plant-open #back-to-garden-btn { display: block; }
   max-width: 100%;
 }
 .slot-status {
-  font-size: 0.6rem;
-  color: var(--muted);
-  margin-top: 0.1rem;
-}
-.slot-status--ready {
-  color: #e8c860;
-  font-weight: 700;
+  display: none;
 }
 
 /* ── Wilderness screen ── */
@@ -3282,9 +3390,90 @@ body.plant-open #back-to-garden-btn { display: block; }
 /* ── Restaurant screen ── */
 #screen-restaurant {
   position: relative;
-  background: var(--bg);
   overflow: hidden;
+  background: url('assets/images/restaurant%20hintergrund.png') center top / cover no-repeat;
 }
+
+/* ── Sleep overlay ── */
+#sleep-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2.5rem;
+}
+#sleep-overlay[hidden] { display: none; }
+#sleep-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('assets/images/nightscreen.png') center / cover no-repeat;
+  opacity: 1;
+  z-index: -1;
+}
+
+#sleep-stats {
+  width: 90%;
+  background: rgba(8, 5, 18, 0.45);
+  border: 1px solid rgba(120, 90, 200, 0.35);
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  backdrop-filter: blur(6px);
+}
+
+#sleep-day-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c8b8f0;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+#sleep-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+}
+
+.sleep-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.sleep-stat-label {
+  font-size: 0.68rem;
+  color: rgba(180, 160, 220, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.sleep-stat-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #e8e0ff;
+}
+.sleep-stat-value.good  { color: #7eda9c; }
+.sleep-stat-value.bad   { color: #e07070; }
+
+#btn-new-day {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3d5a8a, #5a3d8a);
+  border: 1px solid rgba(140, 100, 220, 0.5);
+  border-radius: 10px;
+  color: #e8e0ff;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  letter-spacing: 0.03em;
+}
+#btn-new-day:active { transform: translateY(1px); filter: brightness(0.9); }
 
 #restaurant-closed-overlay {
   position: absolute;
@@ -3307,6 +3496,7 @@ body.plant-open #back-to-garden-btn { display: block; }
   position: relative;
   min-height: 0;
   overflow: hidden;
+  background: transparent;
 }
 
 #re-sprites { position: absolute; inset: 0; pointer-events: none; }
@@ -3321,35 +3511,56 @@ body.plant-open #back-to-garden-btn { display: block; }
   border-top: 1px solid var(--line);
   flex-wrap: wrap;
   align-items: center;
+  touch-action: manipulation;
 }
 
 .re-control-btn {
-  padding: 0.45rem 0.9rem;
-  font-size: 0.88rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 1.05rem;
   font-family: 'Lora', Georgia, serif;
   font-weight: 700;
-  background: var(--bg2);
-  border: 1px solid var(--line);
+  background: none;
+  border: none;
   border-radius: 6px;
   color: var(--text);
+  touch-action: manipulation;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: opacity 0.15s, transform 0.1s;
+  line-height: 1;
 }
-.re-control-btn:hover:enabled { background: var(--bg3); border-color: var(--accent); }
-.re-control-btn:disabled      { opacity: 0.35; cursor: not-allowed; }
+.re-control-btn:hover:enabled  { opacity: 0.75; transform: scale(1.08); }
+.re-control-btn:active:enabled { transform: scale(0.95); }
+.re-control-btn:disabled       { opacity: 0.25; cursor: not-allowed; }
 
-.re-control-btn--sleep  { margin-left: auto; }
-.re-control-btn--raven  { margin-left: auto; }
+.re-control-btn--sleep { margin-left: auto; }
+.re-control-btn--raven { margin-left: auto; }
+
+#btn-kitchen { font-size: 2rem; padding: 0.1rem 0.4rem; }
+
+.raven-btn-img { height: 48px; }
 
 #re-stats-row {
   flex-shrink: 0;
   display: flex;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.25rem 0.5rem;
   padding: 0.25rem 0.6rem;
   font-size: 0.78rem;
   color: var(--muted);
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--line);
+  background: rgba(0,0,0,0.45);
+}
+#re-stats-row::-webkit-scrollbar { display: none; }
+.re-stat-mood { margin-right: 0.3rem; }
+.re-stat-item {
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+  white-space: nowrap;
 }
 
 /* ── Chapter list modal ── */
@@ -3560,12 +3771,134 @@ body.plant-open #back-to-garden-btn { display: block; }
     font-size: 1.35rem;
   }
 
-  .garden-slots { grid-template-columns: repeat(3, 1fr); gap: 0.3rem; }
-  .garden-slot  { min-height: 64px; }
+  .garden-patches { gap: 0.3rem; }
+  .garden-slot    { min-height: 64px; }
 
   #wilderness-grid { gap: 0.5rem; }
   .wilderness-spot { min-height: 95px; }
 
   .question-text { font-size: 0.95rem; }
   .question-option-btn { padding: 0.6rem 0.85rem; font-size: 0.9rem; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   CLEANING SCREEN
+══════════════════════════════════════════════════════════ */
+
+#screen-cleaning {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  overflow-y: auto;
+  background: url('assets/images/sink_full.png') center top / cover no-repeat;
+}
+
+.cleaning-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.cleaning-buy-btn {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.cleaning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.cleaning-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
+  padding: 2rem 0;
+}
+
+.cleaning-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: transparent;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cleaning-item--locked {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.cleaning-item--done {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.cleaning-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cleaning-clean-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.cleaning-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  height: 65%;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+/* Badge on cleaning button */
+.cleaning-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  background: var(--danger);
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 16px;
+  text-align: center;
+}
+
+#btn-cleaning {
+  position: relative;
+  font-size: 1.4rem;
 }

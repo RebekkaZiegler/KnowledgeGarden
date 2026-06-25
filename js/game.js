@@ -9,32 +9,54 @@ const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
 const DAILY_GOAL     = 3;
 
-const GARDEN_BEDS          = 5;
-const GARDEN_SLOTS_PER_BED = 6;
-const PLANT_GROW_DAYS      = 3;
+const GARDEN_PATCHES   = 18;
+const PLANT_GROW_DAYS  = 2;
 const RAVEN_DELIVER_DAYS   = 1;
 
-// Food crops grown in the garden — each harvest yields CROP_YIELD units
-const CROP_YIELD = 5;
+// Food crops grown in the garden — each harvest yields the per-crop yield
+const CROP_YIELD = 10;
+function cropStages(prefix) {
+  return [1,2,3,4].map(n => `assets/images/${prefix}_${n}.png`);
+}
+
 const FOOD_CROPS = [
-  { id: "wheat",      name: "Weizen",     emoji: "🌾", ingredient: "wheat"      },
-  { id: "tomato",     name: "Tomate",     emoji: "🍅", ingredient: "tomato"     },
-  { id: "mushroom",   name: "Pilze",      emoji: "🍄", ingredient: "mushrooms"  },
-  { id: "pepper",     name: "Paprika",    emoji: "🫑", ingredient: "bell_pepper"},
-  { id: "basil",      name: "Basilikum",  emoji: "🌿", ingredient: "basil"      },
-  { id: "olive",      name: "Oliven",     emoji: "🫒", ingredient: "olives"     },
-  { id: "onion",      name: "Zwiebel",    emoji: "🧅", ingredient: "onion"      },
-  { id: "garlic",     name: "Knoblauch",  emoji: "🧄", ingredient: "garlic"     },
+  { id: "wheat",    name: "Weizen",     emoji: "🌾", ingredient: "wheat",       stages: cropStages("wheat"),    spriteCount: 3, yield: 15 },
+  { id: "tomato",   name: "Tomate",     emoji: "🍅", ingredient: "tomato",      stages: cropStages("tomatoes"),                  yield: 15 },
+  { id: "mushroom", name: "Pilze",      emoji: "🍄", ingredient: "mushrooms",   stages: cropStages("mushr")    },
+  { id: "pepper",   name: "Paprika",    emoji: "🫑", ingredient: "bell_pepper", stages: cropStages("paprika")  },
+  { id: "basil",    name: "Basilikum",  emoji: "🌿", ingredient: "basil",       stages: cropStages("basil")    },
+  { id: "olive",    name: "Oliven",     emoji: "🫒", ingredient: "olives",      stages: cropStages("olives")   },
+  { id: "onion",    name: "Zwiebel",    emoji: "🧅", ingredient: "onion",       stages: cropStages("onion")    },
+  { id: "garlic",   name: "Knoblauch",  emoji: "🧄", ingredient: "garlic",      stages: cropStages("garlic")   },
 ];
 
 
-// Raven animal products — pizza-relevant only
+// Drinks — only entries with table sprites; ordered via raven
+const DRINKS = [
+  { id: "wine", name: "Wein", emoji: "🍷", needsGlass: "wine", batch: 4,
+    orderHtml: '<span class="drink-order-bottle">🍾</span>', tableImg: "assets/images/wine_full.png" },
+  { id: "beer", name: "Bier", emoji: "🍺", needsGlass: "beer", batch: 4,
+    orderHtml: '<span class="drink-order-keg">🛢️</span>',   tableImg: "assets/images/beer_full.png" },
+];
+
+// Dishware — ordered via raven in batches of 5
+const DISHWARE_CFG = [
+  { id: "plates",      name: "Teller",      emoji: "🍽️", batch: 5,
+    cleanImg: "assets/images/clean plate.png", dirtyImg: "assets/images/dirt.png", dirtyIsOverlay: true },
+  { id: "wineGlasses", name: "Weingläser",  emoji: "🍷", batch: 5,
+    cleanImg: "assets/images/wine_clean.png", dirtyImg: "assets/images/wine_dirty.png" },
+  { id: "beerGlasses", name: "Biergläser",  emoji: "🍺", batch: 5,
+    cleanImg: "assets/images/beer_clean.png", dirtyImg: "assets/images/beer.png" },
+];
+
+// Raven animal products + drinks (all orderable via raven)
 const RAVEN_ITEMS_CFG = [
-  { id: "mozzarella", name: "Mozzarella", emoji: "🧀" },
-  { id: "salami",     name: "Salami",     emoji: "🥩" },
-  { id: "ham",        name: "Schinken",   emoji: "🍖" },
-  { id: "anchovies",  name: "Sardellen",  emoji: "🐟" },
-  { id: "eggs",       name: "Eier",       emoji: "🥚" },
+  { id: "mozzarella", name: "Mozzarella", emoji: "🧀", batch: 10 },
+  { id: "salami",     name: "Salami",     emoji: "🥩", batch: 10 },
+  { id: "ham",        name: "Schinken",   emoji: "🍖", batch: 10 },
+  { id: "anchovies",  name: "Sardellen",  emoji: "🐟", batch: 10 },
+  { id: "eggs",       name: "Eier",       emoji: "🥚", batch: 10 },
+  ...DRINKS.filter(d => !d.alwaysAvailable),
 ];
 
 // Pizza toppings with sprite images — ingredientId links to G.inventory
@@ -76,17 +98,20 @@ const ALL_INGREDIENTS = [
   { id: "ham",         name: "Schinken",   emoji: "🍖", source: "raven" },
   { id: "anchovies",   name: "Sardellen",  emoji: "🐟", source: "raven" },
   { id: "eggs",        name: "Eier",       emoji: "🥚", source: "raven" },
+  // Drinks (bottles in inventory)
+  { id: "wine",  name: "Wein",  emoji: "🍾", source: "raven" },
+  { id: "beer",  name: "Bier",  emoji: "🛢️", source: "raven" },
 ];
 
 
 // Restaurant: 4×2-seat + 2×4-seat tables (positions as % of scene)
 const TABLE_CFG = [
-  { id: "t1", seats: 2, x: 6,  y: 18 },
-  { id: "t2", seats: 2, x: 38, y: 18 },
-  { id: "t3", seats: 2, x: 6,  y: 52 },
-  { id: "t4", seats: 2, x: 38, y: 52 },
-  { id: "t5", seats: 4, x: 70, y: 15 },
-  { id: "t6", seats: 4, x: 70, y: 55 },
+  { id: "t1", seats: 2, x: 45, y: 45, img: "assets/images/table_rect.png" },
+  { id: "t2", seats: 2, x: 65, y: 34, img: "assets/images/table_rect.png" },
+  { id: "t3", seats: 2, x: 45, y: 67, img: "assets/images/table_rect.png" },
+  { id: "t4", seats: 2, x: 65, y: 56, img: "assets/images/table_rect.png" },
+  { id: "t5", seats: 2, x: 45, y: 89, img: "assets/images/table_rect.png" },
+  { id: "t6", seats: 2, x: 65, y: 78, img: "assets/images/table_rect.png" },
 ];
 
 const PATRON_COLORS    = ["#e8a080","#80b8e8","#a0e8a0","#e8e080","#c0a0e8","#e8a0c0","#80e8d8","#e8c080"];
@@ -110,10 +135,7 @@ function defaultState() {
     chapters: {},
 
     garden: {
-      beds: Array.from({ length: GARDEN_BEDS }, (_, i) => ({
-        id: `bed_${i}`,
-        slots: Array(GARDEN_SLOTS_PER_BED).fill(null),
-      }))
+      patches: Array(GARDEN_PATCHES).fill(null),
     },
 
     inventory: {},
@@ -121,14 +143,22 @@ function defaultState() {
     ravenOrders: [],
     ravenSeeds:  [],
 
+    supplies: {
+      plates:      { clean: 0, dirty: 0 },
+      wineGlasses: { clean: 0, dirty: 0 },
+      beerGlasses: { clean: 0, dirty: 0 },
+      soapCharges: 10,
+    },
 
     restaurant: {
       isOpen:        false,
       lastCallFired: false,
       patrons:       [],
       recipes:       [{ id: "basic", name: "Basic Pizza", toppings: [], active: true, deletable: false, orderedCount: 0 }],
-      unlocks:       { chefs: 1, cleaner: false },
-      sessionStats:  { veryHappy: 0, happy: 0, neutral: 0, sad: 0 },
+      unlocks:         { chefs: 1, cleaner: false },
+      sessionStats:    { veryHappy: 0, happy: 0, neutral: 0, sad: 0 },
+      sessionCorrect:  0,
+      sessionAnswered: 0,
     },
 
     stats: {
@@ -146,6 +176,7 @@ function defaultState() {
       firstPlayDate:         null,
       dailyDate:             null,
       dailyCorrect:          0,
+      dailyAnswered:         0,
       learnedLog:            {},
     },
   };
@@ -162,16 +193,28 @@ function loadState() {
 }
 
 function normalizeState(s) {
-  const d    = defaultState();
-  s.settings = Object.assign({}, d.settings,    s.settings  || {});
-  s.stats    = Object.assign({}, d.stats,        s.stats     || {});
-  s.restaurant = Object.assign({}, d.restaurant, s.restaurant || {});
-  s.restaurant.patrons      = [];
-  s.restaurant.sessionStats = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
+  const d      = defaultState();
+  s.currentDay = s.currentDay ?? d.currentDay;
+  s.phase      = s.phase      ?? d.phase;
+  s.settings   = Object.assign({}, d.settings,    s.settings  || {});
+  s.stats      = Object.assign({}, d.stats,        s.stats     || {});
+  s.restaurant = Object.assign({}, d.restaurant,   s.restaurant || {});
+  s.restaurant.patrons         = [];
+  s.restaurant.sessionStats    = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
+  s.restaurant.sessionCorrect  = 0;
+  s.restaurant.sessionAnswered = 0;
   s.chapters    = s.chapters    || {};
   s.inventory   = s.inventory   || {};
   s.ravenOrders = s.ravenOrders || [];
   s.ravenSeeds  = s.ravenSeeds  || [];
+  const ds = (defaultState()).supplies;
+  if (!s.supplies) s.supplies = ds;
+  else {
+    s.supplies.plates      = Object.assign({}, ds.plates,      s.supplies.plates      || {});
+    s.supplies.wineGlasses = Object.assign({}, ds.wineGlasses, s.supplies.wineGlasses || {});
+    s.supplies.beerGlasses = Object.assign({}, ds.beerGlasses, s.supplies.beerGlasses || {});
+    if (s.supplies.soapCharges === undefined) s.supplies.soapCharges = ds.soapCharges;
+  }
   // Migrate old ingredients-array recipe format to toppings format
   if (s.restaurant && s.restaurant.recipes) {
     s.restaurant.recipes = s.restaurant.recipes.map(r => {
@@ -188,12 +231,17 @@ function normalizeState(s) {
   delete s.wilderness;
   if (!s.garden) {
     s.garden = d.garden;
+  } else if (s.garden.beds) {
+    // Migrate old bed-based layout to flat patches
+    const flat = [];
+    for (const bed of s.garden.beds) for (const slot of (bed.slots || [])) flat.push(slot);
+    s.garden.patches = flat.slice(0, GARDEN_PATCHES);
+    while (s.garden.patches.length < GARDEN_PATCHES) s.garden.patches.push(null);
+    delete s.garden.beds;
   } else {
-    while (s.garden.beds.length < GARDEN_BEDS)
-      s.garden.beds.push({ id: `bed_${s.garden.beds.length}`, slots: Array(GARDEN_SLOTS_PER_BED).fill(null) });
-    s.garden.beds.forEach(bed => {
-      while (bed.slots.length < GARDEN_SLOTS_PER_BED) bed.slots.push(null);
-    });
+    if (!s.garden.patches) s.garden.patches = d.garden.patches;
+    s.garden.patches = s.garden.patches.slice(0, GARDEN_PATCHES);
+    while (s.garden.patches.length < GARDEN_PATCHES) s.garden.patches.push(null);
   }
   return s;
 }
@@ -221,7 +269,7 @@ function ensureQuestionState(chapterId, questionId) {
 }
 
 function isQuestionMastered(qs) {
-  return qs && new Set(qs.correctDays).size >= 2;
+  return qs && new Set(qs.correctDays).size >= 3;
 }
 
 function isChapterComplete(chapterId) {
@@ -268,11 +316,14 @@ function pickNextQuestion() {
   const pool = buildQuestionPool();
   if (!pool.length) return null;
 
-  const unseen  = pool.filter(e => !e.state || e.state.correctDays.length === 0);
+  const unseen   = pool.filter(e => !e.state || e.state.correctDays.length === 0);
   if (unseen.length) return unseen[Math.floor(Math.random() * unseen.length)];
 
-  const partial = pool.filter(e => e.state && e.state.correctDays.length === 1);
-  if (partial.length) return partial[Math.floor(Math.random() * partial.length)];
+  const once     = pool.filter(e => e.state && e.state.correctDays.length === 1);
+  if (once.length) return once[Math.floor(Math.random() * once.length)];
+
+  const twice    = pool.filter(e => e.state && e.state.correctDays.length === 2);
+  if (twice.length) return twice[Math.floor(Math.random() * twice.length)];
 
   return pool[Math.floor(Math.random() * pool.length)];
 }
@@ -287,14 +338,21 @@ function recordAnswer(chapterId, questionId, correct) {
 
   // Daily tracking
   if (G.stats.dailyDate !== today) {
-    G.stats.dailyDate    = today;
-    G.stats.dailyCorrect = 0;
+    G.stats.dailyDate     = today;
+    G.stats.dailyCorrect  = 0;
+    G.stats.dailyAnswered = 0;
   }
+  G.stats.dailyAnswered = (G.stats.dailyAnswered || 0) + 1;
+  G.restaurant.sessionAnswered = (G.restaurant.sessionAnswered || 0) + 1;
 
   if (correct) {
     G.stats.totalCorrect++;
-    G.stats.dailyCorrect++;
-    if (!qs.correctDays.includes(G.currentDay)) qs.correctDays.push(G.currentDay);
+    G.restaurant.sessionCorrect = (G.restaurant.sessionCorrect || 0) + 1;
+    const firstTimeToday = !qs.correctDays.includes(G.currentDay);
+    if (firstTimeToday) {
+      G.stats.dailyCorrect++;
+      qs.correctDays.push(G.currentDay);
+    }
     qs.wrongThisSession = false;
     sessionWrongQueue = sessionWrongQueue.filter(e => !(e.chapterId === chapterId && e.questionId === questionId));
     // Track newly mastered questions for pace calculation
@@ -310,6 +368,7 @@ function recordAnswer(chapterId, questionId, correct) {
       sessionWrongQueue.push({ chapterId, questionId });
   }
   checkTrophies();
+  renderStats();
   saveState();
 }
 
@@ -325,6 +384,15 @@ function checkChapterCompletion(chapterId) {
 /* ══════════════════════════════════════════════════════════
    QUESTION UI
 ══════════════════════════════════════════════════════════ */
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function isMultiCorrect(q) {
   return q.type === "mc" && (q.options || []).filter(o => o.correct).length > 1;
 }
@@ -362,7 +430,7 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
     hint.textContent = "Mehrere Antworten möglich — alle richtigen auswählen";
     optsEl.appendChild(hint);
 
-    const btnEls = (q.options || []).map(opt => {
+    const btnEls = shuffleArray(q.options || []).map(opt => {
       const btn = document.createElement("button");
       btn.className   = "question-option-btn question-option-btn--toggle";
       btn.textContent = opt.text;
@@ -387,7 +455,7 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
 
   } else {
     // Single-correct mc: click one to answer immediately
-    (q.options || []).forEach(opt => {
+    shuffleArray(q.options || []).forEach(opt => {
       const btn = document.createElement("button");
       btn.className   = "question-option-btn";
       btn.textContent = opt.text;
@@ -407,6 +475,7 @@ function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDo
 
   Array.from(optsEl.querySelectorAll(".question-option-btn")).forEach(btn => {
     btn.disabled = true;
+    btn.classList.remove("question-option-btn--selected");
     if (q.type === "true_false") {
       const btnIsTrue = btn.textContent === "Wahr";
       if (btnIsTrue === (q.answer === true)) btn.classList.add("question-option-btn--correct");
@@ -556,94 +625,96 @@ function closeModal(id) { const e = document.getElementById(id); if (e) e.hidden
 window.openModal  = openModal;
 window.closeModal = closeModal;
 
+const SCREEN_ORDER = ["screen-garden", "screen-restaurant", "screen-cleaning"];
+
 function scrollToScreen(screenId) {
   const container = document.getElementById("screen-container");
-  const target    = document.getElementById(screenId);
-  if (!container || !target) return;
-  container.scrollLeft = target.offsetLeft;
+  if (!container) return;
+  const idx = SCREEN_ORDER.indexOf(screenId);
+  if (idx < 0) return;
+  container.scrollTo({ left: idx * window.innerWidth, behavior: "instant" });
 }
+window.scrollToScreen = scrollToScreen;
 
 /* ══════════════════════════════════════════════════════════
    GARDEN
 ══════════════════════════════════════════════════════════ */
+
+function getCropYield(crop) {
+  return crop?.yield || CROP_YIELD;
+}
+
 function renderGarden() {
   const grid = document.getElementById("garden-grid");
   if (!grid) return;
   grid.innerHTML = "";
 
-  G.garden.beds.forEach((bed, bedIdx) => {
-    const bedEl = document.createElement("div");
-    bedEl.className = "garden-bed";
+  const patchesEl = document.createElement("div");
+  patchesEl.className = "garden-patches";
 
-    // Bed header: show how many slots are planted / ready
-    const planted = bed.slots.filter(s => s).length;
-    const readyCount = bed.slots.filter(s => s && (G.currentDay - s.plantedDay) >= PLANT_GROW_DAYS).length;
-    const header = document.createElement("div");
-    header.className = "garden-bed-header";
-    header.innerHTML = `Beet ${bedIdx + 1}` +
-      (readyCount ? ` <span class="bed-ready-badge">✨ ${readyCount} reif</span>` : "") +
-      (planted ? ` <span class="bed-planted-count muted">${planted}/6</span>` : "");
-    bedEl.appendChild(header);
+  G.garden.patches.forEach((slot, patchIdx) => {
+    const slotEl = document.createElement("div");
 
-    const slotsEl = document.createElement("div");
-    slotsEl.className = "garden-slots";
+    if (!slot) {
+      slotEl.className = "garden-slot garden-slot--empty";
+      slotEl.innerHTML = `<span class="slot-add-icon">＋</span>`;
+      slotEl.onclick = () => openSeedPicker(patchIdx);
+    } else {
+      const crop      = FOOD_CROPS.find(c => c.id === slot.plantId);
+      const daysGrown = G.currentDay - slot.plantedDay;
+      const daysLeft  = Math.max(0, PLANT_GROW_DAYS - daysGrown);
+      const ready     = daysLeft === 0;
+      const watered   = slot.wateredToday === G.currentDay;
 
-    bed.slots.forEach((slot, slotIdx) => {
-      const slotEl = document.createElement("div");
+      const stage = ready ? 3 : Math.min(daysGrown, 2);
+      const STAGE_EMOJI = ["🫘", "🌱", "🌿", crop ? crop.emoji : "🌾"];
+      const emoji = STAGE_EMOJI[stage];
 
-      if (!slot) {
-        slotEl.className = "garden-slot garden-slot--empty";
-        slotEl.innerHTML = `<span class="slot-add-icon">＋</span>`;
-        slotEl.onclick = () => openSeedPicker(bedIdx, slotIdx);
+      slotEl.className = `garden-slot garden-slot--planted${ready ? " garden-slot--ready" : ""}${watered ? " garden-slot--watered" : ""}`;
+
+      const cropsDiv = document.createElement("div");
+      cropsDiv.className = "slot-crops";
+
+      if (crop && crop.stages) {
+        const spriteCount  = crop.spriteCount || 1;
+        const remaining    = ready ? spriteCount - (slot.harvestedCount || 0) : spriteCount;
+        for (let p = 0; p < remaining; p++) {
+          const img = document.createElement("img");
+          img.src = crop.stages[stage];
+          img.className = `slot-crop-sprite slot-crop--s${stage}`;
+          img.draggable = false;
+          if (ready) img.onclick = (e) => { e.stopPropagation(); harvestOnePlant(patchIdx); };
+          cropsDiv.appendChild(img);
+        }
       } else {
-        const crop      = FOOD_CROPS.find(c => c.id === slot.plantId);
-        const emoji     = crop ? crop.emoji : "🌱";
-        const daysGrown = G.currentDay - slot.plantedDay;
-        const daysLeft  = Math.max(0, PLANT_GROW_DAYS - daysGrown);
-        const ready     = daysLeft === 0;
-        const watered   = slot.wateredToday === G.currentDay;
-
-        // Growth stage 0–3 drives emoji size via CSS class
-        const stage = ready ? 3 : Math.min(daysGrown, 2);
-
-        slotEl.className = `garden-slot garden-slot--planted${ready ? " garden-slot--ready" : ""}${watered ? " garden-slot--watered" : ""}`;
-
-        // 5 individual emoji spans — clickable when ready
-        const emojiSpans = Array.from({ length: CROP_YIELD }, (_, i) => {
-          const span = document.createElement("span");
-          span.className = `slot-crop slot-crop--s${stage}`;
-          span.textContent = emoji;
-          if (ready) span.onclick = (e) => { e.stopPropagation(); harvestPlant(bedIdx, slotIdx); };
-          return span;
-        });
-
-        const cropsDiv = document.createElement("div");
-        cropsDiv.className = "slot-crops";
-        emojiSpans.forEach(s => cropsDiv.appendChild(s));
-
-        const nameEl = document.createElement("div");
-        nameEl.className = "slot-name";
-        nameEl.textContent = slot.plantTitle || slot.plantId;
-
-        const statusEl = document.createElement("div");
-        statusEl.className = `slot-status${ready ? " slot-status--ready" : ""}`;
-        statusEl.textContent = ready ? "✨ Reif!" : (watered ? `💧 ${daysLeft}T` : `🏜️ ${daysLeft}T`);
-
-        slotEl.appendChild(cropsDiv);
-        slotEl.appendChild(nameEl);
-        slotEl.appendChild(statusEl);
-
-        if (!ready) slotEl.onclick = () => openSlotActions(bedIdx, slotIdx, ready, watered);
+        const span = document.createElement("span");
+        span.className = `slot-crop slot-crop--s${stage}`;
+        span.textContent = emoji;
+        if (ready) span.onclick = (e) => { e.stopPropagation(); harvestOnePlant(patchIdx); };
+        cropsDiv.appendChild(span);
       }
-      slotsEl.appendChild(slotEl);
-    });
 
-    bedEl.appendChild(slotsEl);
-    grid.appendChild(bedEl);
+      const nameEl = document.createElement("div");
+      nameEl.className = "slot-name";
+      nameEl.textContent = slot.plantTitle || slot.plantId;
+
+      const statusEl = document.createElement("div");
+      statusEl.className = `slot-status${ready ? " slot-status--ready" : ""}`;
+      statusEl.textContent = ready ? "✨ Reif!" : (watered ? `💧 ${daysLeft}T` : `🏜️ ${daysLeft}T`);
+
+      slotEl.appendChild(cropsDiv);
+      slotEl.appendChild(nameEl);
+      slotEl.appendChild(statusEl);
+
+      if (!ready) slotEl.onclick = () => openSlotActions(patchIdx, ready, watered);
+    }
+    patchesEl.appendChild(slotEl);
   });
+
+  grid.appendChild(patchesEl);
 }
 
-function openSeedPicker(bedIdx, slotIdx) {
+function openSeedPicker(patchIdx) {
   const available = FOOD_CROPS.filter(c => (G.inventory[`seed_${c.id}`] || 0) > 0);
   if (!available.length) {
     showToast("Keine Samen! Bestelle Samen per 🪶 Raben-Lieferung.");
@@ -651,11 +722,11 @@ function openSeedPicker(bedIdx, slotIdx) {
   }
   showPickerModal("Pflanze auswählen", available.map(c => ({
     label: `${c.emoji} ${c.name}`,
-    sub:   `→ ${CROP_YIELD}× ${getIngredientName(c.ingredient)} | Lager: ${G.inventory[`seed_${c.id}`]}`,
+    sub:   `→ ${getCropYield(c)}× ${getIngredientName(c.ingredient)} | Lager: ${G.inventory[`seed_${c.id}`]}`,
     value: c,
   })), chosen => {
     closeModal("modal-picker");
-    plantSeed(bedIdx, slotIdx, chosen.value.id, chosen.value.name);
+    plantSeed(patchIdx, chosen.value.id, chosen.value.name);
   });
 }
 
@@ -664,35 +735,35 @@ function getAvailableSeeds() {
     .map(c => ({ cropId: c.id, plantTitle: c.name, qty: G.inventory[`seed_${c.id}`] }));
 }
 
-function plantSeed(bedIdx, slotIdx, cropId, cropName) {
-  G.garden.beds[bedIdx].slots[slotIdx] = { plantId: cropId, plantTitle: cropName, plantedDay: G.currentDay, wateredToday: null };
+function plantSeed(patchIdx, cropId, cropName) {
+  G.garden.patches[patchIdx] = { plantId: cropId, plantTitle: cropName, plantedDay: G.currentDay, wateredToday: null };
   const key = `seed_${cropId}`;
   if ((G.inventory[key] || 0) > 0) G.inventory[key]--;
   saveState();
   renderGarden();
 }
 
-function openSlotActions(bedIdx, slotIdx, ready, wateredToday) {
-  const slot = G.garden.beds[bedIdx].slots[slotIdx];
+function openSlotActions(patchIdx, ready, wateredToday) {
+  const slot = G.garden.patches[patchIdx];
   if (!slot) return;
   const actions = [];
-  if (ready)          actions.push({ label: "🌿 Ernten",            value: "harvest" });
-  else if (!wateredToday) actions.push({ label: "💧 Wässern (1 Frage)", value: "water" });
-  else                actions.push({ label: "💧 Heute schon gewässert", value: null });
+  if (ready)               actions.push({ label: "🌿 Ernten",                value: "harvest" });
+  else if (!wateredToday)  actions.push({ label: "💧 Wässern (1 Frage)",     value: "water" });
+  else                     actions.push({ label: "💧 Heute schon gewässert", value: null });
   actions.push({ label: "🗑️ Entfernen", value: "remove" });
 
   showPickerModal(slot.plantTitle, actions, chosen => {
     closeModal("modal-picker");
-    if (chosen.value === "harvest") harvestPlant(bedIdx, slotIdx);
-    else if (chosen.value === "water") waterPlant(bedIdx, slotIdx);
+    if (chosen.value === "harvest") harvestPlant(patchIdx);
+    else if (chosen.value === "water") waterPlant(patchIdx);
     else if (chosen.value === "remove") {
-      G.garden.beds[bedIdx].slots[slotIdx] = null;
+      G.garden.patches[patchIdx] = null;
       saveState(); renderGarden();
     }
   });
 }
 
-function waterPlant(bedIdx, slotIdx) {
+function waterPlant(patchIdx) {
   if (!hasActiveQuestions()) {
     showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚.");
     return;
@@ -701,26 +772,34 @@ function waterPlant(bedIdx, slotIdx) {
   if (!entry) { showToast("Keine Fragen verfügbar."); return; }
 
   showQuestion("💧 Wässern", entry,
-    () => { G.garden.beds[bedIdx].slots[slotIdx].wateredToday = G.currentDay; },
+    () => { G.garden.patches[patchIdx].wateredToday = G.currentDay; },
     () => {},
     () => { saveState(); renderGarden(); }
   );
 }
 
-function harvestPlant(bedIdx, slotIdx) {
-  const slot = G.garden.beds[bedIdx].slots[slotIdx];
+function harvestOnePlant(patchIdx) {
+  const slot = G.garden.patches[patchIdx];
   if (!slot) return;
-  const crop = FOOD_CROPS.find(c => c.id === slot.plantId);
-  const ingredient = crop ? crop.ingredient : "wheat";
-  const qty = CROP_YIELD;
-  addInventory(ingredient, qty);
+  const crop        = FOOD_CROPS.find(c => c.id === slot.plantId);
+  const ingredient  = crop ? crop.ingredient : "wheat";
+  const spriteCount = crop?.spriteCount || 1;
+  const perPlant    = Math.max(1, Math.round(getCropYield(crop) / spriteCount));
+
+  slot.harvestedCount = (slot.harvestedCount || 0) + 1;
+  addInventory(ingredient, perPlant);
   G.stats.totalHarvests++;
-  G.garden.beds[bedIdx].slots[slotIdx] = null;
+  showToast(`${crop ? crop.emoji : "🌿"} +${perPlant} ${getIngredientName(ingredient)}`);
+
+  if (slot.harvestedCount >= spriteCount) {
+    G.garden.patches[patchIdx] = null;
+  }
   saveState();
   renderGarden();
   renderRestaurantStats();
-  showToast(`${crop ? crop.emoji : "🌿"} ${slot.plantTitle} geerntet! +${qty} ${getIngredientName(ingredient)}`);
 }
+
+function harvestPlant(patchIdx) { harvestOnePlant(patchIdx); }
 
 function addInventory(id, qty) {
   G.inventory[id] = (G.inventory[id] || 0) + qty;
@@ -742,7 +821,9 @@ function openRestaurant() {
   G.phase                   = "service";
   G.restaurant.isOpen       = true;
   G.restaurant.lastCallFired = false;
-  G.restaurant.sessionStats  = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
+  G.restaurant.sessionStats   = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
+  G.restaurant.sessionCorrect = 0;
+  G.restaurant.sessionAnswered = 0;
   updateRestaurantUI();
   startRestaurantLoop();
   saveState();
@@ -757,15 +838,64 @@ function doLastCall() {
 
 function doSleep() {
   stopRestaurantLoop();
-  G.restaurant.isOpen    = false;
-  G.phase                = "timeless";
-  G.restaurant.patrons   = [];
+  G.restaurant.isOpen  = false;
+  G.phase              = "timeless";
+  G.restaurant.patrons = [];
+
+  // Snapshot today's stats before advancing the day
+  const ss = G.restaurant.sessionStats;
+  const totalGuests  = ss.veryHappy + ss.happy + ss.neutral + ss.sad;
+  const todayCorrect = G.restaurant.sessionCorrect  || 0;
+  const todayTotal   = G.restaurant.sessionAnswered || 0;
+
+  // Build stat cards
+  const stats = [
+    { label: "Tag",          value: `${G.currentDay}`,           cls: "" },
+    { label: "Gäste",        value: `${totalGuests}`,            cls: "" },
+    { label: "Fragen",       value: `${todayTotal}`,             cls: "" },
+    { label: "Richtig",      value: `${todayCorrect}`,           cls: todayCorrect > 0 ? "good" : "" },
+    { label: "Falsch",       value: `${todayTotal - todayCorrect}`, cls: todayTotal - todayCorrect > 0 ? "bad" : "" },
+    { label: "😊 Sehr glücklich", value: `${ss.veryHappy}`, cls: ss.veryHappy > 0 ? "good" : "" },
+    { label: "🙂 Glücklich",      value: `${ss.happy}`,     cls: "" },
+    { label: "😐 Neutral",        value: `${ss.neutral}`,   cls: "" },
+    { label: "😞 Traurig",        value: `${ss.sad}`,        cls: ss.sad > 0 ? "bad" : "" },
+  ];
+
+  const dayLabel = document.getElementById("sleep-day-label");
+  const statsGrid = document.getElementById("sleep-stats-grid");
+  const overlay   = document.getElementById("sleep-overlay");
+
+  if (dayLabel)  dayLabel.textContent = `🌙 Ende von Tag ${G.currentDay}`;
+  if (statsGrid) statsGrid.innerHTML  = stats.map(s => `
+    <div class="sleep-stat">
+      <div class="sleep-stat-label">${s.label}</div>
+      <div class="sleep-stat-value ${s.cls}">${s.value}</div>
+    </div>`).join("");
+  if (overlay) overlay.hidden = false;
+
+  saveState();
+  updateRestaurantUI();
+}
+
+function commitNewDay() {
+  const overlay = document.getElementById("sleep-overlay");
+  if (overlay) overlay.hidden = true;
 
   G.currentDay++;
   G.stats.daysPlayed++;
+  G.stats.dailyCorrect  = 0;
+  G.stats.dailyAnswered = 0;
+  G.restaurant.sessionStats = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
 
   // Process deliveries
-  G.ravenOrders.filter(o => o.arrivesOnDay <= G.currentDay).forEach(o => addInventory(o.itemId, o.qty));
+  G.ravenOrders.filter(o => o.arrivesOnDay <= G.currentDay).forEach(o => {
+    if (o.isSupply) {
+      const pool = G.supplies[o.itemId];
+      if (pool) pool.clean += o.qty;
+    } else {
+      addInventory(o.itemId, o.qty);
+    }
+  });
   G.ravenOrders = G.ravenOrders.filter(o => o.arrivesOnDay > G.currentDay);
   G.ravenSeeds.filter(o => o.arrivesOnDay <= G.currentDay).forEach(o => {
     const key = `seed_${o.plantId}`;
@@ -837,15 +967,24 @@ function spawnPatron() {
   const seat   = freeSeats[Math.floor(Math.random() * freeSeats.length)];
   const color  = PATRON_COLORS[rePatronIdCtr % PATRON_COLORS.length];
   const craving = pickRandomIngredient();
+  const dislikableIds = [...new Set(RE_TOPPINGS.map(t => t.ingredientId))]
+    .filter(id => !["mozzarella","tomato","wheat"].includes(id) && id !== craving);
+  const dislikedTopping = Math.random() < 0.5 && dislikableIds.length
+    ? dislikableIds[Math.floor(Math.random() * dislikableIds.length)]
+    : null;
   G.restaurant.patrons.push({
     id: `p_${++rePatronIdCtr}`,
     tableId: seat.tableId,
     seatIdx: seat.seatIdx,
+    spriteType: (rePatronIdCtr % 2) + 1,
     color,
     craving,
+    dislikedTopping,
+    drinkCraving: DRINKS[Math.floor(Math.random() * DRINKS.length)].id,
     state: "hungry",
     arrivedAt: Date.now(),
     servedItem: null,
+    servedDrink: null,
     happiness: null,
   });
   renderRestaurantScene();
@@ -871,33 +1010,117 @@ function tickPatrons() {
   });
 }
 
+const BREAK_CHANCE = { veryHappy: 0, happy: 0.05, neutral: 0.05, sad: 0.15 };
+
 function serveTable(tableId) {
   if (G.phase !== "service") return;
   const hungry = G.restaurant.patrons.filter(p => p.tableId === tableId && p.state === "hungry");
   if (!hungry.length) return;
 
-  const servable = G.restaurant.recipes.filter(canServeRecipe);
+  const servable = G.restaurant.recipes.filter(r => r.active && canServeRecipe(r));
   if (!servable.length) {
-    showToast("Keine Zutaten / Gerichte! Küche → Gericht erstellen.");
+    showToast("Keine Zutaten / aktive Gerichte! Küche öffnen.");
     return;
   }
-  const recipe = servable[0];
-  const needed = pizzaToppingNeeds(recipe);
-  Object.entries(needed).forEach(([id, qty]) => { G.inventory[id] = Math.max(0, (G.inventory[id] || 0) - qty); });
-  recipe.orderedCount = (recipe.orderedCount || 0) + 1;
+
+  // Check plate availability
+  if (G.supplies.plates.clean < hungry.length) {
+    showToast(`Zu wenig saubere Teller! (${G.supplies.plates.clean} vorhanden, ${hungry.length} nötig)`);
+    return;
+  }
+
+  function pickDrink(p) {
+    const craved = DRINKS.find(d => d.id === p.drinkCraving);
+    if (craved && (G.inventory[craved.id] || 0) > 0) {
+      G.inventory[craved.id] = Math.max(0, (G.inventory[craved.id] || 0) - 1);
+      return craved.id;
+    }
+    const any = DRINKS.find(d => (G.inventory[d.id] || 0) > 0);
+    if (any) { G.inventory[any.id] = Math.max(0, (G.inventory[any.id] || 0) - 1); return any.id; }
+    return null;
+  }
+
+  function deductGlass(drinkId) {
+    const drink = DRINKS.find(d => d.id === drinkId);
+    if (!drink || !drink.needsGlass) return null;
+    const pool = G.supplies[drink.needsGlass === "wine" ? "wineGlasses" : "beerGlasses"];
+    if (pool && pool.clean > 0) { pool.clean--; return drink.needsGlass; }
+    return null;
+  }
+
+  G.supplies.plates.clean = Math.max(0, G.supplies.plates.clean - hungry.length);
 
   hungry.forEach(p => {
-    p.servedItem = recipe.id;
-    p.state      = "eating";
+    const current  = G.restaurant.recipes.filter(r => r.active && canServeRecipe(r));
+    const tp       = RE_TOPPINGS.find(x => x.ingredientId === p.craving);
+    const hatedTpIds = p.dislikedTopping
+      ? RE_TOPPINGS.filter(x => x.ingredientId === p.dislikedTopping).map(x => x.id)
+      : [];
+    const hasHated = r => hatedTpIds.length && (r.toppings || []).some(t => hatedTpIds.includes(t.id));
+    const preferred      = tp ? current.filter(r => (r.toppings || []).some(t => t.id === tp.id)) : [];
+    const preferredClean = preferred.filter(r => !hasHated(r));
+    const preferredDirty = preferred.filter(r =>  hasHated(r));
+    const allClean       = current.filter(r => !hasHated(r));
+
+    let recipe;
+    if (preferredClean.length) {
+      // Loved + no hated — always pick this
+      recipe = preferredClean[Math.floor(Math.random() * preferredClean.length)];
+    } else if (preferredDirty.length && allClean.length) {
+      // Only loved pizzas also have hated topping — 50/50: take it or pick a clean one
+      recipe = Math.random() < 0.5
+        ? preferredDirty[Math.floor(Math.random() * preferredDirty.length)]
+        : allClean[Math.floor(Math.random() * allClean.length)];
+    } else if (preferred.length) {
+      recipe = preferred[Math.floor(Math.random() * preferred.length)];
+    } else {
+      recipe = (allClean.length ? allClean : current)[Math.floor(Math.random() * (allClean.length || current.length))];
+    }
+    if (!recipe) return;
+
+    const needed = pizzaToppingNeeds(recipe);
+    Object.entries(needed).forEach(([id, qty]) => { G.inventory[id] = Math.max(0, (G.inventory[id] || 0) - qty); });
+    recipe.orderedCount = (recipe.orderedCount || 0) + 1;
+
+    p.servedItem  = recipe.id;
+    p.servedDrink = pickDrink(p);
+    p.usedGlass   = deductGlass(p.servedDrink);
+    p.state       = "eating";
     setTimeout(() => {
-      const tp = RE_TOPPINGS.find(x => x.ingredientId === p.craving);
-      const match = tp ? (recipe.toppings || []).filter(t => t.id === tp.id).length : 0;
-      p.happiness = match >= 2 ? "veryHappy" : match >= 1 ? "happy" : "neutral";
+      const tp         = RE_TOPPINGS.find(x => x.ingredientId === p.craving);
+      const foodMatch  = tp ? (recipe.toppings || []).some(t => t.id === tp.id) : false;
+      const drinkMatch = !!(p.servedDrink && p.servedDrink === p.drinkCraving);
+      p.happiness = (foodMatch && drinkMatch) ? "veryHappy" : (foodMatch || drinkMatch) ? "happy" : "neutral";
+      // Disliked topping penalty — drop one level, never below neutral
+      if (p.dislikedTopping) {
+        const hIds = RE_TOPPINGS.filter(x => x.ingredientId === p.dislikedTopping).map(x => x.id);
+        if ((recipe.toppings || []).some(t => hIds.includes(t.id))) {
+          if (p.happiness === "veryHappy") p.happiness = "happy";
+          else if (p.happiness === "happy") p.happiness = "neutral";
+        }
+      }
       G.restaurant.sessionStats[p.happiness]++;
-      p.state = "leaving";
+
+      // Plate dirty/broken
+      const breakChance = BREAK_CHANCE[p.happiness] ?? 0.05;
+      if (Math.random() >= breakChance) G.supplies.plates.dirty++;
+      // Glass dirty/broken
+      if (p.usedGlass) {
+        const glassPool = p.usedGlass === "wine" ? G.supplies.wineGlasses : G.supplies.beerGlasses;
+        if (Math.random() >= breakChance) glassPool.dirty++;
+      }
+
+      p.state = "done";
       renderRestaurantScene();
       renderRestaurantStats();
+      renderCleaningBadge();
       saveState();
+      setTimeout(() => {
+        p.state = "leaving";
+        renderRestaurantScene();
+        renderRestaurantStats();
+        saveState();
+      }, 2000);
     }, G.settings.devMode ? 2000 : 5000);
   });
 
@@ -907,7 +1130,7 @@ function serveTable(tableId) {
 }
 
 function pizzaToppingNeeds(r) {
-  const needed = { wheat: 1, tomato: 1 };
+  const needed = { wheat: 1, tomato: 1, mozzarella: 1 };
   (r.toppings || []).forEach(t => {
     const tp = RE_TOPPINGS.find(x => x.id === t.id);
     if (tp) needed[tp.ingredientId] = (needed[tp.ingredientId] || 0) + 1;
@@ -931,17 +1154,52 @@ function renderRestaurantScene() {
   tablesEl.innerHTML = TABLE_CFG.map(t => {
     const patrons   = G.restaurant.patrons.filter(p => p.tableId === t.id && p.state !== "leaving");
     const hasHungry = patrons.some(p => p.state === "hungry");
-    const w = t.seats <= 2 ? 70 : 95;
-    const h = t.seats <= 2 ? 44 : 44;
-    const border = hasHungry ? "#e8c860" : "#2d3a35";
-    const icons  = patrons.map(p => `<span style="font-size:1.3rem">${p.happiness ? happinessEmoji(p.happiness) : p.state === "eating" ? "🍽️" : "👤"}</span>`).join("");
+    const eating    = patrons.filter(p => p.state === "eating");
 
-    return `<div class="re-table" data-tid="${t.id}"
-      style="position:absolute;left:${t.x}%;top:${t.y}%;width:${w}px;min-height:${h}px;
-      background:var(--bg2);border:2px solid ${border};border-radius:8px;
-      display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
-      gap:3px;padding:4px;cursor:pointer;box-shadow:${hasHungry ? "0 0 8px rgba(232,200,96,0.4)" : "none"}">
-      ${icons || '<span style="color:var(--muted);font-size:0.8rem">🪑</span>'}
+    const shadow = "drop-shadow(0 3px 6px rgba(0,0,0,0.8))";
+
+    // One small pizza + drink per eating/done patron
+    const foodHtml = patrons.filter(p => p.state === "eating" || p.state === "done").map(p => {
+      const recipe   = G.restaurant.recipes.find(r => r.id === p.servedItem);
+      const pizzaSide = p.seatIdx === 0 ? "left:8%" : "right:8%";
+      let html = "";
+      if (recipe) {
+        const tops = (recipe.toppings || []).map(tp => {
+          const cfg = RE_TOPPINGS.find(x => x.id === tp.id);
+          return cfg ? `<img src="${cfg.img}" style="position:absolute;width:30%;left:${tp.x}%;top:${tp.y}%;pointer-events:none" draggable="false">` : "";
+        }).join("");
+        html += `<div style="position:absolute;width:22%;${pizzaSide};top:18%;pointer-events:none">
+          <div style="position:relative;display:block">
+            <img src="assets/images/Pizza/basic.png" style="width:100%;display:block" draggable="false">
+            ${tops}
+          </div>
+        </div>`;
+      }
+      const drinkCfg = DRINKS.find(d => d.id === p.servedDrink);
+      if (drinkCfg?.tableImg) {
+        const drinkSide = p.seatIdx === 0 ? "left:31%" : "right:31%";
+        html += `<img src="${drinkCfg.tableImg}" style="position:absolute;width:11%;${drinkSide};bottom:10%;pointer-events:none" draggable="false">`;
+      }
+      return html;
+    }).join("");
+
+    // Patron sprites — with happiness badge in "done" state
+    const patronSprites = patrons.map(p => {
+      const type   = p.spriteType || 1;
+      const facing = p.seatIdx === 0 ? "rightfacing" : "leftfacing";
+      const side   = p.seatIdx === 0 ? "left:-5%" : "right:-5%";
+      const badge  = p.state === "done" && p.happiness
+        ? `<div style="position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:1.1rem;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.9))">${happinessEmoji(p.happiness)}</div>`
+        : "";
+      return `<div style="position:absolute;height:45%;top:8%;${side};pointer-events:none">${badge}<img src="assets/images/patron_${type}_${facing}.png" style="height:100%;width:auto;display:block" draggable="false"></div>`;
+    }).join("");
+
+    return `<div class="re-table" data-tid="${t.id}" style="left:${t.x}%;top:${t.y}%;width:120px">
+      <div style="position:relative">
+        <img src="${t.img}" style="width:100%;display:block;filter:${shadow}" draggable="false">
+        ${foodHtml}
+        ${patronSprites}
+      </div>
     </div>`;
   }).join("");
 
@@ -950,18 +1208,33 @@ function renderRestaurantScene() {
   });
 }
 
+
 function renderRestaurantStats() {
   const el = document.getElementById("re-stats-row");
   if (!el) return;
-  const s   = G.restaurant.sessionStats;
-  const inv = Object.entries(G.inventory)
-    .filter(([k, v]) => !k.startsWith("seed_") && v > 0)
-    .slice(0, 6)
-    .map(([k, v]) => `${getIngredientEmoji(k)}×${v}`)
-    .join(" ");
-  el.innerHTML = `
-    <span>😊${s.veryHappy} 🙂${s.happy} 😐${s.neutral} 😞${s.sad}</span>
-    <span style="margin-left:auto;font-size:0.78rem">${inv || "Lager leer"}</span>`;
+  const s = G.restaurant.sessionStats;
+
+  const items = [];
+  // All ingredients and drinks with qty > 0
+  Object.entries(G.inventory).forEach(([k, v]) => {
+    if (k.startsWith("seed_") || v <= 0) return;
+    const tp = RE_TOPPINGS.find(x => x.ingredientId === k);
+    const icon = k === "wheat"
+      ? `<img src="assets/images/dough.PNG" style="height:1.1em;vertical-align:middle">`
+      : tp
+        ? `<img src="${tp.img}" style="height:1.1em;vertical-align:middle">`
+        : getIngredientEmoji(k);
+    items.push(`${icon}×${v}`);
+  });
+  // Dishes and glasses (always show)
+  const sup = G.supplies || {};
+  items.push(`🍽️×${sup.plates?.clean ?? 0}`);
+  items.push(`<img src="assets/images/wine_clean.png" style="height:1em;vertical-align:middle">×${sup.wineGlasses?.clean ?? 0}`);
+  items.push(`<img src="assets/images/beer_clean.png" style="height:1em;vertical-align:middle">×${sup.beerGlasses?.clean ?? 0}`);
+
+  const moodHtml   = `<span class="re-stat-mood">😊${s.veryHappy} 🙂${s.happy} 😐${s.neutral} 😞${s.sad}</span>`;
+  const stockHtml  = items.length ? items.map(i => `<span class="re-stat-item">${i}</span>`).join("") : `<span class="re-stat-item muted">Lager leer</span>`;
+  el.innerHTML = moodHtml + stockHtml;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1175,9 +1448,11 @@ function renderRavenModal() {
   let html = `<div style="font-size:0.78rem;font-weight:700;color:var(--muted);margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.05em">🥩 Tierische Produkte (Pizza-Belag)</div>`;
   html += RAVEN_ITEMS_CFG.map(item => {
     ravenQtys[item.id] = 0;
+    const iconHtml = item.orderHtml || `<span style="font-size:1rem">${item.emoji}</span>`;
+    const batchNote = item.batch > 1 ? ` <span style="color:var(--muted);font-size:0.72rem">×${item.batch} / Frage</span>` : "";
     return `<div class="raven-order-item">
-      <span style="font-size:1rem">${item.emoji}</span>
-      <span class="raven-order-item-name">${item.name}</span>
+      ${iconHtml}
+      <span class="raven-order-item-name">${item.name}${batchNote}</span>
       <button class="raven-order-qty-btn" data-key="${item.id}" data-d="-1">−</button>
       <span class="raven-order-qty" id="rqty-${item.id}">0</span>
       <button class="raven-order-qty-btn" data-key="${item.id}" data-d="1">+</button>
@@ -1191,10 +1466,25 @@ function renderRavenModal() {
     const inStock = G.inventory[key] || 0;
     return `<div class="raven-order-item">
       <span style="font-size:1rem">${crop.emoji}</span>
-      <span class="raven-order-item-name">${crop.name} <span style="color:var(--muted);font-size:0.75rem">→${CROP_YIELD}× ${getIngredientName(crop.ingredient)}</span>${inStock ? ` <span style="color:#7fc98a;font-size:0.72rem">(${inStock} im Lager)</span>` : ""}</span>
+      <span class="raven-order-item-name">${crop.name} <span style="color:var(--muted);font-size:0.75rem">→${getCropYield(crop)}× ${getIngredientName(crop.ingredient)}</span>${inStock ? ` <span style="color:#7fc98a;font-size:0.72rem">(${inStock} im Lager)</span>` : ""}</span>
       <button class="raven-order-qty-btn" data-key="${key}" data-d="-1">−</button>
       <span class="raven-order-qty" id="rqty-${key}">0</span>
       <button class="raven-order-qty-btn" data-key="${key}" data-d="1">+</button>
+    </div>`;
+  }).join("");
+
+  html += `<div style="font-size:0.78rem;font-weight:700;color:var(--muted);margin:0.7rem 0 0.3rem;text-transform:uppercase;letter-spacing:0.05em">🍽️ Geschirr (je 5 Stück / Frage)</div>`;
+  html += DISHWARE_CFG.map(dw => {
+    ravenQtys[dw.id] = 0;
+    const clean = G.supplies[dw.id]?.clean || 0;
+    const dirty = G.supplies[dw.id]?.dirty || 0;
+    const stockInfo = (clean || dirty) ? ` <span style="color:var(--muted);font-size:0.72rem">(${clean} sauber, ${dirty} schmutzig)</span>` : "";
+    return `<div class="raven-order-item">
+      <span style="font-size:1rem">${dw.emoji}</span>
+      <span class="raven-order-item-name">${dw.name}${stockInfo}</span>
+      <button class="raven-order-qty-btn" data-key="${dw.id}" data-d="-1">−</button>
+      <span class="raven-order-qty" id="rqty-${dw.id}">0</span>
+      <button class="raven-order-qty-btn" data-key="${dw.id}" data-d="1">+</button>
     </div>`;
   }).join("");
 
@@ -1255,8 +1545,14 @@ function placeRavenOrder() {
           const plantId = key.slice(5);
           G.ravenSeeds.push({ id: `rs${Date.now()}${Math.random()}`, plantId, qty, arrivesOnDay: G.currentDay + RAVEN_DELIVER_DAYS });
         } else {
-          const item = RAVEN_ITEMS_CFG.find(i => i.id === key);
-          G.ravenOrders.push({ id: `ro${Date.now()}${Math.random()}`, itemId: key, itemName: item ? item.name : key, qty, arrivesOnDay: G.currentDay + RAVEN_DELIVER_DAYS });
+          const dw = DISHWARE_CFG.find(d => d.id === key);
+          if (dw) {
+            G.ravenOrders.push({ id: `ro${Date.now()}${Math.random()}`, itemId: key, itemName: dw.name, qty: qty * dw.batch, isSupply: true, arrivesOnDay: G.currentDay + RAVEN_DELIVER_DAYS });
+          } else {
+            const item = RAVEN_ITEMS_CFG.find(i => i.id === key);
+            const deliverQty = item?.batch ? qty * item.batch : qty;
+            G.ravenOrders.push({ id: `ro${Date.now()}${Math.random()}`, itemId: key, itemName: item ? item.name : key, qty: deliverQty, arrivesOnDay: G.currentDay + RAVEN_DELIVER_DAYS });
+          }
         }
       }
       ravenQtys = {};
@@ -1660,6 +1956,153 @@ function findChapterForPlant(plantId) {
 }
 
 /* ══════════════════════════════════════════════════════════
+   CLEANING SCREEN
+══════════════════════════════════════════════════════════ */
+
+function totalDirty() {
+  const s = G.supplies;
+  return (s.plates.dirty || 0) + (s.wineGlasses.dirty || 0) + (s.beerGlasses.dirty || 0);
+}
+
+function renderCleaningBadge() {
+  const badge = document.getElementById("cleaning-badge");
+  const n = totalDirty();
+  if (badge) { badge.textContent = n; badge.hidden = n === 0; }
+}
+
+function renderCleaningScreen() {
+  const grid   = document.getElementById("cleaning-grid");
+  const soapEl = document.getElementById("cleaning-soap");
+  if (!grid) return;
+
+  const { plates, wineGlasses, beerGlasses, soapCharges } = G.supplies;
+  if (soapEl) soapEl.textContent = `🧼 Seife: ${soapCharges}/10`;
+
+  const screen = document.getElementById("screen-cleaning");
+  if (screen) {
+    const img = soapCharges > 0 ? "sink_full.png" : "sink_empty.png";
+    screen.style.background = `url('assets/images/${img}') center top / cover no-repeat`;
+  }
+
+  const needSoap = soapCharges === 0;
+  const buyBtn   = document.getElementById("cleaning-buy-soap");
+  if (buyBtn) buyBtn.hidden = !needSoap;
+
+  const items = [];
+  for (let i = 0; i < plates.dirty;      i++) items.push({ type: "plate", idx: i });
+  for (let i = 0; i < wineGlasses.dirty; i++) items.push({ type: "wine",  idx: i });
+  for (let i = 0; i < beerGlasses.dirty; i++) items.push({ type: "beer",  idx: i });
+
+  if (!items.length) {
+    const hasAny = (plates.clean + plates.dirty + wineGlasses.clean + wineGlasses.dirty + beerGlasses.clean + beerGlasses.dirty) > 0;
+    grid.innerHTML = `<p class="cleaning-empty">${hasAny ? "Alles sauber! ✨" : "Kein Geschirr! Bestelle beim 🪶 Raben."}</p>`;
+    return;
+  }
+
+  grid.innerHTML = items.map((item, i) => {
+    const cfg = DISHWARE_CFG.find(d =>
+      item.type === "plate" ? d.id === "plates" :
+      item.type === "wine"  ? d.id === "wineGlasses" : d.id === "beerGlasses"
+    );
+    return `<div class="cleaning-item ${needSoap ? "cleaning-item--locked" : ""}" data-type="${item.type}" data-idx="${i}">
+      <div class="cleaning-img-wrap">
+        <img src="${cfg.cleanImg}" class="cleaning-clean-img" draggable="false">
+        <canvas class="cleaning-canvas" id="ccanvas-${i}" data-type="${item.type}" data-item-idx="${i}"></canvas>
+      </div>
+    </div>`;
+  }).join("");
+
+  if (!needSoap) {
+    items.forEach((item, i) => {
+      const canvas = document.getElementById(`ccanvas-${i}`);
+      if (canvas) setupCleaningCanvas(canvas, item.type, i);
+    });
+  }
+}
+
+function setupCleaningCanvas(canvas, type, itemIdx) {
+  const cfg = DISHWARE_CFG.find(d =>
+    type === "plate" ? d.id === "plates" :
+    type === "wine"  ? d.id === "wineGlasses" : d.id === "beerGlasses"
+  );
+  const ctx = canvas.getContext("2d");
+  const img = new Image();
+  img.onload = () => {
+    canvas.width  = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    if (cfg.dirtyIsOverlay) {
+      // For plates: draw dirt overlay on transparent canvas
+      ctx.drawImage(img, 0, 0);
+    } else {
+      // For glasses: draw the dirty glass image
+      ctx.drawImage(img, 0, 0);
+    }
+  };
+  img.src = cfg.dirtyImg;
+
+  let isDown = false;
+  canvas.addEventListener("pointerdown", e => { isDown = true; canvas.setPointerCapture(e.pointerId); eraseAt(e); });
+  canvas.addEventListener("pointermove", e => { if (isDown) eraseAt(e); });
+  canvas.addEventListener("pointerup",   () => { isDown = false; checkIfClean(canvas, type, itemIdx); });
+
+  function eraseAt(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width  / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top)  * scaleY;
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, Math.max(canvas.width * 0.12, 20), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalCompositeOperation = "source-over";
+  }
+}
+
+function checkIfClean(canvas, type, itemIdx) {
+  const ctx  = canvas.getContext("2d");
+  const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  let alphaSum = 0;
+  const step = 8;
+  let count = 0;
+  for (let i = 3; i < data.length; i += 4 * step) { alphaSum += data[i]; count++; }
+  const avgAlpha = alphaSum / (count * 255);
+  if (avgAlpha < 0.02) markItemCleaned(canvas, type);
+}
+
+function markItemCleaned(canvas, type) {
+  canvas.closest(".cleaning-item")?.classList.add("cleaning-item--done");
+  // Deduct from dirty, add to clean
+  if (type === "plate") {
+    G.supplies.plates.dirty = Math.max(0, G.supplies.plates.dirty - 1);
+    G.supplies.plates.clean++;
+  } else if (type === "wine") {
+    G.supplies.wineGlasses.dirty = Math.max(0, G.supplies.wineGlasses.dirty - 1);
+    G.supplies.wineGlasses.clean++;
+  } else {
+    G.supplies.beerGlasses.dirty = Math.max(0, G.supplies.beerGlasses.dirty - 1);
+    G.supplies.beerGlasses.clean++;
+  }
+  G.supplies.soapCharges = Math.max(0, G.supplies.soapCharges - 1);
+  saveState();
+  renderCleaningBadge();
+  // Remove the cleaned item and re-render after short delay
+  setTimeout(() => renderCleaningScreen(), 400);
+}
+
+function buySoap() {
+  if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
+  askQuestions("🧼 Seife kaufen", 1, () => {
+    G.supplies.soapCharges = 10;
+    saveState();
+    renderCleaningScreen();
+    showToast("🧼 Seife aufgefüllt!");
+  }, null);
+}
+
+window.buySoap = buySoap;
+
+/* ══════════════════════════════════════════════════════════
    RENDER ALL
 ══════════════════════════════════════════════════════════ */
 function renderAll() {
@@ -1667,15 +2110,15 @@ function renderAll() {
   updateDayInfo();
   renderGarden();
   updateRestaurantUI();
+  renderCleaningBadge();
+  renderCleaningScreen();
 }
 
 /* ══════════════════════════════════════════════════════════
    BOOT
 ══════════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
-  G = loadState();
-  requestAnimationFrame(() => scrollToScreen("screen-restaurant"));
-  renderAll();
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
   // Bottom nav
   document.getElementById("btn-chapters")?.addEventListener("click", () => { renderChapterModal(); openModal("modal-chapters"); });
@@ -1687,8 +2130,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-open-restaurant")?.addEventListener("click", openRestaurant);
   document.getElementById("btn-last-call")?.addEventListener("click",       doLastCall);
   document.getElementById("btn-sleep")?.addEventListener("click",           doSleep);
+  document.getElementById("btn-new-day")?.addEventListener("click",         commitNewDay);
   document.getElementById("btn-raven")?.addEventListener("click",   () => { renderRavenModal(); openModal("modal-raven"); });
   document.getElementById("btn-kitchen")?.addEventListener("click", () => { renderKitchen(); openModal("modal-kitchen"); });
+  document.getElementById("btn-cleaning")?.addEventListener("click", () => { scrollToScreen("screen-cleaning"); renderCleaningScreen(); });
 
   // Chapter complete popup
   document.getElementById("chapter-complete-no-btn")?.addEventListener("click",  () => closeModal("modal-chapter-complete"));
@@ -1746,4 +2191,50 @@ document.addEventListener("DOMContentLoaded", () => {
     const open = document.querySelector(".modal-overlay:not([hidden])");
     if (open) open.hidden = true;
   });
+
+  // Load game state and render — after listeners so a crash doesn't lose them
+  try {
+    G = loadState();
+    renderAll();
+  } catch (e) {
+    const stack = (e.stack || "").split("\n").slice(0, 8).join("<br>");
+    document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.8rem"><b>Ladefehler:</b> ${e.message}<br><br>${stack}<br><br><button onclick="localStorage.clear();location.reload()" style="padding:0.5rem 1rem;font-size:1rem">Zurücksetzen</button></div>`;
+    return;
+  }
+
+  // Pause restaurant loop when swiped away, resume + re-render when swiped back
+  const _reScreen = document.getElementById("screen-restaurant");
+  if (_reScreen) {
+    new IntersectionObserver(entries => {
+      const visible = entries[0].isIntersecting;
+      if (visible) {
+        if (G.restaurant.isOpen && !G.restaurant.lastCallFired) {
+          startRestaurantLoop();
+        }
+        renderRestaurantScene();
+        renderRestaurantStats();
+      } else {
+        stopRestaurantLoop();
+      }
+    }, { threshold: 0.5 }).observe(_reScreen);
+  }
+
+  // Force restaurant (index 1) as the initial screen and prevent browser
+  // scroll-restoration from overriding it. We block any scroll events during
+  // the two-frame init window, then release once position is locked.
+  const _c = document.getElementById("screen-container");
+  if (_c) {
+    let _initDone = false;
+    const _lockScroll = () => { if (!_initDone) _c.scrollLeft = window.innerWidth; };
+    _c.addEventListener("scroll", _lockScroll, { passive: true });
+    requestAnimationFrame(() => {
+      _c.classList.add("sc-ready");   // make scrollable first
+      _c.scrollLeft = window.innerWidth; // then set position
+      requestAnimationFrame(() => {
+        _c.scrollLeft = window.innerWidth; // final override after browser restore
+        _initDone = true;
+        _c.removeEventListener("scroll", _lockScroll);
+      });
+    });
+  }
 });
