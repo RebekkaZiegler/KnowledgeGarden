@@ -108,7 +108,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Organe sind kleiner als Gewebe", correct: false },
         { text: "Gleichartig differenzierte Zellen bilden einen Gewebeverband", correct: true },
         { text: "Ein Organismus besteht aus maximal einem Organsystem", correct: false }
-      ]}
+      ], explanation: "Zellen sind die Grundbausteine des Lebens: Gleichartige Zellen bilden Gewebe, Gewebe verbinden sich zu Organen, Organe zu Organsystemen und diese zum Organismus." }
     ]
   }),
   makeDetailedPlant({
@@ -141,7 +141,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Sie sind zu gross für eine Zelle", correct: false },
         { text: "Sie besitzen keine Nukleinsäuren", correct: false },
         { text: "Sie fehlen in prokaryonten Organismen", correct: false }
-      ]}
+      ], explanation: "Viren besitzen keinen eigenen Stoffwechsel und keine Zellstruktur, weshalb sie sich nur durch Nutzung des Stoffwechsels einer Wirtszelle vermehren können." }
     ]
   }),
   makeDetailedPlant({
@@ -193,25 +193,25 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Sie besitzen keinen Zellkern", correct: true },
         { text: "Sie gewinnen ATP durch anaerobe Glykolyse", correct: true },
         { text: "Sie enthalten Mitochondrien zur oxidativen Phosphorylierung", correct: false }
-      ]},
+      ], explanation: "Erythrozyten sind kernlos und haben bikonkave Scheibenform (7-8 µm); sie gewinnen ATP ausschließlich durch anaerobe Glykolyse, da ihnen Mitochondrien fehlen." },
       { id: "zf_mc2", type: "mc", question: "Welche Zelle hat den grössten Durchmesser aller menschlichen Zellen?", options: [
         { text: "Eizelle (Ovum, ca. 120 µm)", correct: true },
         { text: "Makrophage (ca. 20 µm)", correct: false },
         { text: "Erythrozyt (ca. 7–8 µm)", correct: false },
         { text: "Neutrophiler Granulozyt (ca. 12 µm)", correct: false }
-      ]},
+      ], explanation: "Die reife Eizelle hat mit ca. 120 µm den größten Durchmesser aller menschlichen Zellen, da sie Nährstoffreserven für die frühe Embryonalentwicklung speichern muss." },
       { id: "zf_mc3", type: "mc", question: "Welche Zellformen sind den genannten Zelltypen korrekt zugeordnet?", options: [
         { text: "Erythrozyt – bikonkave Scheibe", correct: true },
         { text: "Glatte Muskelzelle – spindelförmig mit zentralem Kern", correct: true },
         { text: "Nervenzelle – kugelig ohne Fortsätze", correct: false },
         { text: "Skelettmuskelfaser – spindelförmig mit zentralem Kern", correct: false }
-      ]},
+      ], explanation: "Erythrozyten sind bikonkav scheibenförmig und glatte Muskelzellen spindelförmig mit zentralem Kern, während Nervenzellen vielgestaltige Fortsätze und Skelettmuskelfasern mehrere randständige Kerne besitzen." },
       { id: "zf_mc4", type: "mc", question: "Welche Zellform ist typisch für Epithelzellen, die eine Grenzfläche bedecken?", options: [
         { text: "Flach (platt), um möglichst viel Fläche abzudecken", correct: true },
         { text: "Spindelförmig, um Kontraktionskräfte zu erzeugen", correct: false },
         { text: "Kuboidal mit langen Ausläufern für die Signalleitung", correct: false },
         { text: "Bikonkav, um die Sauerstoffkapazität zu maximieren", correct: false }
-      ]}
+      ], explanation: "Epithelzellen, die Grenzflächen bedecken, sind flach (platt), um mit minimalem Materialaufwand eine maximale Fläche abzudecken, wie im einschichtigen Plattenepithel der Blutkapillaren." }
     ]
   }),
   makeDetailedPlant({
@@ -289,7 +289,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Weil Pilze keine Zellwand besitzen", correct: false },
         { text: "Weil Pilze prokaryonte Zellen ohne Zellkern sind", correct: false },
         { text: "Weil Antibiotika ausschliesslich auf Viren wirken", correct: false }
-      ]}
+      ], explanation: "Pilze sind Eukaryoten mit 80S-Ribosomen ähnlich menschlichen Zellen, weshalb Antibiotika gegen prokaryonte 70S-Ribosomen Pilzzellen nicht schädigen." }
     ]
   }),
   makeDetailedPlant({
@@ -328,7 +328,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Differenzierung verändert das Genexpressionsmuster, nicht die DNA", correct: true },
         { text: "Pluripotente Stammzellen können alle somatischen Zelltypen bilden", correct: true },
         { text: "Hoch differenzierte Neuronen teilen sich regelmässig im Erwachsenenalter", correct: false }
-      ]}
+      ], explanation: "Bei der Zelldifferenzierung bleibt die DNA-Sequenz unverändert; lediglich das Genexpressionsmuster ändert sich epigenetisch, sodass pluripotente Stammzellen alle somatischen Zelltypen bilden können." }
     ]
   }),
   makeDetailedPlant({
@@ -367,7 +367,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Multipotenz → Pluripotenz → Totipotenz", correct: false },
         { text: "Pluripotenz → Totipotenz → Multipotenz", correct: false },
         { text: "Alle drei Begriffe bezeichnen dasselbe", correct: false }
-      ]}
+      ], explanation: "Die Differenzierungspotenz nimmt ab von totipotent (gesamter Organismus) über pluripotent (alle somatischen Zelltypen) zu multipotent (mehrere verwandte Zelltypen)." }
     ]
   }),
   makeDetailedPlant({
@@ -411,13 +411,13 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Erleichterte Diffusion (z.B. Glukose durch GLUT)", correct: true },
         { text: "Osmose (Wassertransport)", correct: true },
         { text: "Na+/K+-ATPase", correct: false }
-      ]},
+      ], explanation: "Einfache Diffusion, erleichterte Diffusion und Osmose sind passive Transportprozesse, da sie entlang von Konzentrations- oder Druckgefällen ohne ATP-Verbrauch ablaufen." },
       { id: "zm_mc2", type: "mc", question: "Was bewirkt die Na+/K+-ATPase pro Transportzyklus?", options: [
         { text: "3 Na+ aus der Zelle, 2 K+ in die Zelle – unter Verbrauch von 1 ATP", correct: true },
         { text: "2 Na+ in die Zelle, 3 K+ aus der Zelle", correct: false },
         { text: "ATP-Synthese durch Na+-Rückstrom", correct: false },
         { text: "Gleichmässige Verteilung von Na+ und K+ ohne ATP-Verbrauch", correct: false }
-      ]}
+      ], explanation: "Die Na+/K+-ATPase pumpt pro Zyklus 3 Na+ aus der Zelle heraus und 2 K+ hinein, wobei 1 ATP hydrolysiert wird, was das Ruhemembranpotential aufrechthält." }
     ]
   }),
   makeDetailedPlant({
@@ -499,7 +499,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Lysosom – Abbau durch saure Hydrolasen", correct: true },
         { text: "Golgi-Apparat – Proteinsortierung und Glykosylierung", correct: true },
         { text: "Glattes ER – Proteinsynthese", correct: false }
-      ]}
+      ], explanation: "Mitochondrien (ATP), Lysosomen (saure Hydrolasen) und Golgi-Apparat (Sortierung/Glykosylierung) sind korrekt zugeordnet; das glatte ER synthetisiert Lipide, nicht Proteine." }
     ]
   }),
   makeDetailedPlant({
@@ -532,7 +532,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Weil Mitochondrien-DNA identisch mit der Kern-DNA ist", correct: false },
         { text: "Weil Mitochondrien keine eigene DNA besitzen", correct: false },
         { text: "Weil die mtDNA linear wie eukaryonte Chromosomen ist", correct: false }
-      ]}
+      ], explanation: "Die zirkuläre mtDNA und 70S-Ribosomen der Mitochondrien ähneln Bakterien und stützen die Endosymbiosetheorie, wonach Mitochondrien aus freilebenden Prokaryoten entstanden." }
     ]
   }),
   makeDetailedPlant({
@@ -572,13 +572,13 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv", correct: true },
         { text: "Kernporen kontrollieren den Transport zwischen Kern und Zytoplasma", correct: true },
         { text: "Der Nukleolus ist von einer eigenen Membran umschlossen", correct: false }
-      ]},
+      ], explanation: "Diploide Körperzellen enthalten 46 Chromosomen; Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv; Kernporen regulieren den Transport, der Nukleolus besitzt keine eigene Membran." },
       { id: "zk_mc2", type: "mc", question: "Warum sind Skelettmuskelfasern vielkernig?", options: [
         { text: "Weil sie embryonal durch Fusion vieler Myoblasten entstehen", correct: true },
         { text: "Weil sie sich durch Mitose extrem stark teilen", correct: false },
         { text: "Weil jeder Abschnitt der Faser einen eigenen Kern benötigt wie ein eigener Organismus", correct: false },
         { text: "Weil Skelettmuskelfasern prokaryonte Zellen sind", correct: false }
-      ]}
+      ], explanation: "Skelettmuskelfasern sind vielkernig, weil sie embryonal durch Fusion vieler einkerniger Myoblasten entstehen und nicht durch Kernteilung." }
     ]
   }),
   makeDetailedPlant({
@@ -654,7 +654,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Oxidative Phosphorylierung (in der inneren Membran)", correct: true },
         { text: "Glykolyse", correct: false },
         { text: "Proteinsynthese am Ribosom", correct: false }
-      ]}
+      ], explanation: "Der Zitratzyklus läuft in der Mitochondrienmatrix ab, die oxidative Phosphorylierung an der inneren Membran; die Glykolyse dagegen findet im Zytoplasma statt." }
     ]
   }),
   makeDetailedPlant({
@@ -692,7 +692,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Es gibt 8 essentielle Aminosäuren beim gesunden Erwachsenen", correct: true },
         { text: "Leucin und Tryptophan gehören dazu", correct: true },
         { text: "Alle 20 Aminosäuren sind essentiell", correct: false }
-      ]}
+      ], explanation: "Essentielle Aminosäuren (beim Erwachsenen 8, darunter Leucin und Tryptophan) können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden." }
     ]
   }),
   makeDetailedPlant({
@@ -744,13 +744,13 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Metaphase: Ausrichtung der Chromosomen in der Äquatorialplatte", correct: true },
         { text: "Anaphase: Trennung der Schwesterchromatiden zu den Zellpolen", correct: true },
         { text: "Anaphase: Bildung neuer Kernhüllenl", correct: false }
-      ]},
+      ], explanation: "In der Prophase kondensieren Chromosomen und die Kernhülle löst sich auf, in der Metaphase ordnen sie sich in der Äquatorialplatte, in der Anaphase trennen sich Schwesterchromatiden zu den Polen." },
       { id: "mi_mc2", type: "mc", question: "Was ist korrekt bezueglich des Spindelapparats?", options: [
         { text: "Er besteht aus Mikrotubuli, die von Zentrosomen ausgehen", correct: true },
         { text: "Er zieht Chromosomen in der Anaphase zu den Zellpolen", correct: true },
         { text: "Er besteht aus Aktinfilamenten", correct: false },
         { text: "Er bildet sich in der Interphase, nicht während der Mitose", correct: false }
-      ]}
+      ], explanation: "Der Spindelapparat besteht aus Mikrotubuli (von Zentrosomen), zieht in der Anaphase Chromosomen zu den Zellpolen und besteht nicht aus Aktinfilamenten." }
     ]
   }),
   makeDetailedPlant({
@@ -803,7 +803,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "DNA-Replikation und Zellkernauflösung", correct: false },
         { text: "Karyokinese und Zytokinese", correct: false },
         { text: "Centrosom-Spaltung und Membranfusion", correct: false }
-      ]}
+      ], explanation: "Genetische Vielfalt bei der Meiose entsteht durch Crossing-over in der Prophase I (Rekombination) und zufällige Verteilung homologer Chromosomen in der Metaphase I." }
     ]
   }),
   makeDetailedPlant({
@@ -855,13 +855,13 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "45, X0 – Turner-Syndrom", correct: true },
         { text: "47, +21 – Down-Syndrom", correct: true },
         { text: "47, +18 – Klinefelter-Syndrom", correct: false }
-      ]},
+      ], explanation: "47,XXY ist das Klinefelter-Syndrom, 45,X0 das Turner-Syndrom und 47,+21 das Down-Syndrom; 47,+18 ist die Trisomie 18 (Edwards-Syndrom), nicht Klinefelter." },
       { id: "ca_mc2", type: "mc", question: "Was unterscheidet numerische von strukturellen Chromosomenaberrationen?", options: [
         { text: "Numerisch = Änderung der Chromosomenzahl; strukturell = Änderung der Chromosomenstruktur bei gleicher Zahl", correct: true },
         { text: "Numerisch = nur Gonosomen betroffen; strukturell = nur Autosomen betroffen", correct: false },
         { text: "Beide Begriffe bezeichnen dieselbe Art von Aberration", correct: false },
         { text: "Strukturelle Aberrationen sind nie klinisch relevant", correct: false }
-      ]}
+      ], explanation: "Numerische Aberrationen verändern die Chromosomenzahl (z.B. Trisomie), während strukturelle Aberrationen (Deletion, Duplikation, Translokation) die Chromosomenstruktur bei gleicher Zahl verändern." }
     ]
   }),
 
@@ -962,9 +962,9 @@ const ZYTOLOGIE_1031_PLANTS = [
         question: "Warum ist Apoptose für die Entwicklung eines Organismus unerlässlich?",
         options: [
           { text: "Weil sie Zellzahl reguliert, entartete Zellen eliminiert, Zellturnover sichert und genetisch intakte Keimzellen selektiert", correct: true },
-          { text: "Weil sie das Zellwachstum unbegrenzt fördert", correct: false },
-          { text: "Weil sie ausschließlich in Tumorzellen vorkommt", correct: false },
-          { text: "Weil sie Entzündungsreaktionen auslöst, die Infektionen bekämpfen", correct: false },
+          { text: "Weil sie das Zellwachstum unbegrenzt fördert und durch Aktivierung von Wachstumsgenen (Onkogenen) die gesamte Organentwicklung antreibt", correct: false },
+          { text: "Weil sie ausschließlich in malignen Tumorzellen aktiviert wird und deshalb für die normale Embryonal- und Gewebeentwicklung bedeutungslos ist", correct: false },
+          { text: "Weil sie durch NF-κB-Aktivierung Entzündungsreaktionen mit Zytokinausschüttung auslöst, die systemische Infektionen des Organismus bekämpfen", correct: false },
         ],
         explanation: "Apoptose ist multifunktional: 1. Kontrolle der Zellanzahl/Gewebegröße. 2. Elimination entarteter Zellen. 3. Zellturnover (z. B. Riechepithel). 4. Selektion genetisch intakter Keimzellen.",
       },
@@ -1128,19 +1128,19 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Gap Junction – Connexin", correct: true },
         { text: "Desmosom – Keratin (verankert durch Desmoplakin)", correct: true },
         { text: "Adhärens-Junction – Connexin", correct: false }
-      ]},
+      ], explanation: "Tight Junctions (Claudin/Occludin), Gap Junctions (Connexin) und Desmosomen (Keratin/Desmoplakin) sind korrekt zugeordnet; Adhärens-Junctions verwenden Cadherin, nicht Connexin." },
       { id: "hi_zv_mc2", type: "mc", question: "Welche Zellverbindung ist an der Blut-Hirn-Schranke für die Abdichtung verantwortlich?", options: [
         { text: "Tight Junctions zwischen Gehirn-Endothelzellen", correct: true },
         { text: "Gap Junctions", correct: false },
         { text: "Desmosomen", correct: false },
         { text: "Adhärens-Junctions", correct: false }
-      ]},
+      ], explanation: "Tight Junctions zwischen Gehirn-Endothelzellen verschließen den parazellulären Spalt vollständig und verhindern den unkontrollierten Durchtritt von Substanzen ins Hirngewebe." },
       { id: "hi_zv_mc3", type: "mc", question: "Welche Aussagen zu Gap Junctions und ihrer physiologischen Bedeutung sind korrekt?", options: [
         { text: "Gap Junctions ermöglichen direkten Ionen- und Kleinmolekültransfer zwischen benachbarten Zellen", correct: true },
         { text: "Im Herzmuskel koppeln Gap Junctions die elektrische Erregung zwischen Kardiomyozyten", correct: true },
         { text: "Gap Junctions lassen Proteine und DNA frei passieren", correct: false },
         { text: "Gap Junctions bestehen aus Claudin-Proteinen", correct: false }
-      ]}
+      ], explanation: "Gap Junctions aus Connexinen ermöglichen direkten Ionen- und Kleinmolekültransfer zwischen Zellen und koppeln im Herzmuskel die elektrische Erregung; Makromoleküle können nicht passieren." }
     ]
   }),
   makeDetailedPlant({
@@ -1186,7 +1186,7 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Eigene Kapillaren innerhalb des Epithelverbands", correct: false },
         { text: "Resorption direkt aus dem Organlumen", correct: false },
         { text: "Ernährung erfolgt ausschliesslich über Lymphgefässe", correct: false }
-      ]},
+      ], explanation: "Epithelgewebe ist gefäßlos und erhält Nährstoffe ausschließlich durch Diffusion aus dem darunter liegenden Bindegewebe durch die Basalmembran." },
       { id: "hi_ep_mc3", type: "mc", question: "Welche Aussagen zum Epithelgewebe sind korrekt?", options: [
         { text: "Epithelgewebe ist avaskular und wird durch Diffusion aus dem Bindegewebe ernährt", correct: true },
         { text: "Flimmerepithel transportiert durch Zilienarbeit Sekrete und Fremdkörper", correct: true },
@@ -1232,13 +1232,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Kerne liegen auf verschiedenen Höhen (Pseudostratifizierung)", correct: true },
         { text: "Nur die unterste Zellreihe berührt die Basalmembran", correct: false },
         { text: "Es kommt typischerweise in der Harnblase vor", correct: false }
-      ]},
+      ], explanation: "Beim mehrreihigen Epithel berühren alle Zellen die Basalmembran, ihre Kerne liegen aber auf verschiedenen Höhen (Pseudostratifizierung), weshalb es mehrstockig wirkt." },
       { id: "hi_od_mc2", type: "mc", question: "Welcher Epitheltyp ist für mechanische Belastung (z.B. Haut, Mundhöhleschleimhaut) am besten geeignet?", options: [
         { text: "Mehrschichtiges Plattenepithel", correct: true },
         { text: "Einschichtiges Plattenepithel", correct: false },
         { text: "Mehrreihiges Flimmerepithel", correct: false },
         { text: "Einschichtiges Würfelepithel", correct: false }
-      ]},
+      ], explanation: "Mehrschichtiges Plattenepithel ist für mechanische Belastung am besten geeignet, da die vielen Zelllagen Druck und Reibung kompensieren können." },
       { id: "hi_od_mc3", type: "mc", question: "Welche Aussagen zum Deckepithel sind korrekt?", options: [
         { text: "Mehrschichtiges verhorntes Plattenepithel bildet die Epidermis der Haut", correct: true },
         { text: "Übergangsepithel (Urothel) verändert seine Schichtdicke je nach Füllungszustand der Harnblase", correct: true },
@@ -1289,13 +1289,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Endokrine Drüsen geben Hormone direkt ins Blut ab", correct: true },
         { text: "Exokrine Drüsen geben Sekret direkt ins Blut ab", correct: false },
         { text: "Endokrine Drüsen haben immer Ausführungsgänge", correct: false }
-      ]},
+      ], explanation: "Exokrine Drüsen besitzen Ausführungsgänge, durch die sie Sekret auf Oberflächen abgeben; endokrine Drüsen sind ganglos und geben Hormone direkt ins Blut ab." },
       { id: "hi_dr_mc2", type: "mc", question: "Welche Sekretionsart bezeichnet das vollständige Abtrennen des apikalen Zellpols mit Sekretinhalt?", options: [
         { text: "Apokrine Sekretion", correct: true },
         { text: "Holokrine Sekretion", correct: false },
         { text: "Merokrine (ekkrine) Sekretion", correct: false },
         { text: "Endokrine Sekretion", correct: false }
-      ]},
+      ], explanation: "Bei der apokrinen Sekretion wird der apikale Zellpol mit seinem Inhalt abgetrennt und abgegeben, wie es bei den apokrinen Schweißdrüsen der Achselhöhle der Fall ist." },
       { id: "hi_dr_mc3", type: "mc", question: "Welche Aussagen zum Drüsenepithel sind korrekt?", options: [
         { text: "Exokrine Drüsen besitzen Ausführungsgänge; endokrine Drüsen geben Hormone direkt ins Blut ab", correct: true },
         { text: "Holokrine Sekretion: die gesamte Drüsenzelle wird zum Sekret (z.B. Talgdrüse)", correct: true },
@@ -1346,13 +1346,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Sie sind die einzigen Epithelzellen mit Basalmembrananbindung", correct: false },
         { text: "Sie sezernieren Hormone direkt ins Blut", correct: false },
         { text: "Sie sind kernlos wie Erythrozyten", correct: false }
-      ]},
+      ], explanation: "Myoepithelzellen besitzen kontraktile Aktinfilamente und können sich wie glatte Muskelzellen zusammenziehen, obwohl sie epithelialer Herkunft sind und der Basalmembran aufsitzen." },
       { id: "hi_sm_mc2", type: "mc", question: "Welche Sinnesepithelien und ihre Reizqualitäten sind korrekt zugeordnet?", options: [
         { text: "Haarzellen Innenohr – Schall- und Gleichgewichtsreize", correct: true },
         { text: "Riechepithel Nasenschleimhaut – chemische Reize", correct: true },
         { text: "Photorezeptoren Retina – Lichtreize", correct: true },
         { text: "Makulazellen der Haut – Temperaturreize (korrekte Bezeichnung)", correct: false }
-      ]},
+      ], explanation: "Haarzellen im Innenohr nehmen Schall- und Gleichgewichtsreize auf, Riechepithelzellen reagieren auf chemische Reize, und Photorezeptoren der Retina werden durch Licht aktiviert." },
       { id: "hi_sm_mc3", type: "mc", question: "Welche Aussagen zu Sinnesepithel und Myoepithelzellen sind korrekt?", options: [
         { text: "Sinnesepithel wandelt Reize in elektrische Signale um (Transduktion)", correct: true },
         { text: "Myoepithelzellen haben epithelialen Ursprung, aber kontraktile Aktinfilamente", correct: true },
@@ -1403,13 +1403,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Kollagen Typ II – hyaliner Knorpel", correct: true },
         { text: "Kollagen Typ IV – Basalmembran", correct: true },
         { text: "Kollagen Typ I – Basalmembran", correct: false }
-      ]},
+      ], explanation: "Kollagen Typ I dominiert in Sehnen und Knochen (Zugfestigkeit), Typ II in hyalinem Knorpel und Typ IV bildet Netzwerke in Basalmembranen." },
       { id: "hi_bg_mc2", type: "mc", question: "Was sind ortsständige (sessile) Bindegewebszellen (mehrere können korrekt sein)?", options: [
         { text: "Fibroblast (Matrixsynthese)", correct: true },
         { text: "Mastzelll (Histamin, Allergie)", correct: true },
         { text: "Neutrophiler Granulozyt (wandert ein, kurzlebig)", correct: false },
         { text: "Thrombozyt (Blutgerinnung)", correct: false }
-      ]},
+      ], explanation: "Fibroblasten (Matrixsynthese) und Mastzellen (Histaminfreisetzung) sind ortsständige sessile Bindegewebszellen; Neutrophile wandern nur temporär ein, Thrombozyten zirkulieren im Blut." },
       { id: "hi_bg_mc3", type: "mc", question: "Welche Aussagen zum Bindegewebe sind korrekt?", options: [
         { text: "Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten", correct: true },
         { text: "Mastzellen sezernieren Histamin bei allergischen Reaktionen", correct: true },
@@ -1460,13 +1460,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Elastischer Knorpel – Ohrmuschel, Epiglottis", correct: true },
         { text: "Faserknorpel – Bandscheiben, Menisken, Symphysis pubica", correct: true },
         { text: "Faserknorpel – Gelenkflächen grosser Gelenke", correct: false }
-      ]},
+      ], explanation: "Hyaliner Knorpel bedeckt Gelenkflächen, elastischer Knorpel bildet Ohrmuschel und Epiglottis, und Faserknorpel gibt es in Bandscheiben, Menisken und Symphysis pubica." },
       { id: "hi_kg_mc2", type: "mc", question: "Warum heilen Knorpelschäden schlecht?", options: [
         { text: "Weil Knorpelgewebe avaskular ist und Chondrozyten nur eingeschränkt proliferieren", correct: true },
         { text: "Weil Knorpelgewebe reichlich Blutgefässe hat, die die Regeneration stören", correct: false },
         { text: "Weil Chondrozyten keine Kollagensynthese betreiben können", correct: false },
         { text: "Weil Knorpelgewebe aus Prokaryoten besteht", correct: false }
-      ]},
+      ], explanation: "Knorpelgewebe ist avaskular und Chondrozyten proliferieren kaum, weshalb nach Knorpelschäden weder ausreichende Vaskularisierung noch Zellregeneration möglich ist." },
       { id: "hi_kg_mc3", type: "mc", question: "Welche Aussagen zu Knorpelgewebe sind korrekt?", options: [
         { text: "Knorpelgewebe ist avaskular und heilt deshalb schlecht", correct: true },
         { text: "Hyaliner Knorpel (Kollagen Typ II) findet sich an Gelenkflächen und im Rippenknorpel", correct: true },
@@ -1517,13 +1517,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Osteozyten – eingemauerte ehemalige Osteoblasten, Erhalt des Knochens", correct: true },
         { text: "Osteoklasten – mehrkernige Riesenzellen, Knochenabbau durch Säuresekretion", correct: true },
         { text: "Osteoblasten – Knochenabbau durch Salzsäure-Sekretion", correct: false }
-      ]},
+      ], explanation: "Osteoblasten bauen Knochen auf (Osteoid-Synthese/Mineralisation), Osteozyten erhalten ihn als eingemauerte ehemalige Osteoblasten, und Osteoklasten bauen ihn durch Salzsäuresekretion ab." },
       { id: "hi_kn_mc2", type: "mc", question: "Was sind die Hauptbestandteile der mineralisierten Knochenmatrix?", options: [
         { text: "Kollagen Typ I (organisch) und Hydroxylapatit Ca10(PO4)6(OH)2 (anorganisch)", correct: true },
         { text: "Elastin und Hyaluronsäure", correct: false },
         { text: "Kollagen Typ II und Kalziumkarbonat", correct: false },
         { text: "Glykogen und Chondroitin", correct: false }
-      ]},
+      ], explanation: "Die mineralisierte Knochenmatrix besteht aus Kollagen Typ I (organisch, für Zugfestigkeit) und Hydroxylapatit (anorganisch, für Druckfestigkeit)." },
       { id: "hi_kn_mc3", type: "mc", question: "Welche Aussagen zur Knochenhistologie sind korrekt?", options: [
         { text: "Das Osteon (Havers-System) besteht aus konzentrischen Lamellen um einen Blutgefäss-führenden Havers-Kanal", correct: true },
         { text: "Osteoblasten bauen auf; Osteoklasten bauen ab; Osteozyten erhalten den Knochen", correct: true },
@@ -1574,13 +1574,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Eosinophile Granulozyten – Abwehr von Parasiten und allergischen Reaktionen", correct: true },
         { text: "Lymphozyten (B-Zellen) – Antikörperproduktion", correct: true },
         { text: "Erythrozyten – Phagozytose von Bakterien", correct: false }
-      ]},
+      ], explanation: "Neutrophile phagozytieren Bakterien, Eosinophile bekämpfen Parasiten und vermitteln Allergien, und B-Lymphozyten produzieren Antikörper; Erythrozyten transportieren Sauerstoff." },
       { id: "hi_bl_mc2", type: "mc", question: "Was beschreibt der Begriff 'Differentialblutbild'?", options: [
         { text: "Die prozentuale Aufteilung der Leukozytentypen (Neutrophile, Lymphozyten, Monozyten, Eosinophile, Basophile)", correct: true },
         { text: "Die Messung des Hämatokrits", correct: false },
         { text: "Die Grösse und Form der Erythrozyten", correct: false },
         { text: "Den Fibrinogengehalt des Plasmas", correct: false }
-      ]},
+      ], explanation: "Das Differentialblutbild gibt die prozentuale Verteilung der Leukozytentypen (Neutrophile, Lymphozyten, Monozyten, Eosinophile, Basophile) an und dient der Diagnostik von Infektionen." },
       { id: "hi_bl_mc3", type: "mc", question: "Welche Aussagen zu Blut und Blutbestandteilen sind korrekt?", options: [
         { text: "Erythrozyten transportieren O2 über Hämoglobin (Fe2+)", correct: true },
         { text: "Neutrophile Granulozyten sind die häufigsten Leukozyten und phagozytieren Bakterien", correct: true },
@@ -1631,13 +1631,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Herz: zentraler Kern, Querstreifung, Disci intercalares, unwillkürlich", correct: true },
         { text: "Glatt: zentraler ovaler Kern, keine Streifung, unwillkürlich", correct: true },
         { text: "Herz: randständige Kerne, keine Streifung, unwillkürlich", correct: false }
-      ]},
+      ], explanation: "Skelettmuskel hat randständige Kerne und Querstreifung (willkürlich), Herzmuskel hat zentralen Kern, Querstreifung und Disci intercalares (unwillkürlich), glatter Muskel hat ovalen Kern ohne Streifung (unwillkürlich)." },
       { id: "hi_mg_mc2", type: "mc", question: "Was ermöglicht die elektrische Kopplung der Herzmuskelzellen?", options: [
         { text: "Gap Junctions in den Disci intercalares", correct: true },
         { text: "Motorische Endplatten wie bei Skelettmuskeln", correct: false },
         { text: "Spannungsgesteuerte Natriumkanäle ohne Zell-Zell-Kontakt", correct: false },
         { text: "Myelinisierte Nervenfasern", correct: false }
-      ]},
+      ], explanation: "Die elektrische Kopplung der Herzmuskelzellen erfolgt über Gap Junctions in den Disci intercalares, die Ionenströme direkt zwischen benachbarten Kardiomyozyten weiterleiten." },
       { id: "hi_mg_mc3", type: "mc", question: "Welche Aussagen zur Muskelhistologie sind korrekt?", options: [
         { text: "Herzmuskelzellen haben quergestreifte Sarkomere und Disci intercalares", correct: true },
         { text: "Glatte Muskelzellen haben keinen Sarkomeraufbau und sind nicht quergestreift", correct: true },
@@ -1688,13 +1688,13 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Schwann-Zellen – Myelinisierung im PNS", correct: true },
         { text: "Mikroglia – Immunzellen des ZNS (ZNS-Makrophagen)", correct: true },
         { text: "Astrozyten – Erregungsleitung durch Aktionspotentiale", correct: false }
-      ]},
+      ], explanation: "Oligodendrozyten myelinisieren ZNS-Axone, Schwann-Zellen PNS-Axone, und Mikroglia fungiert als Immunzelle des ZNS; Astrozyten stützen Neurone, leiten aber keine Aktionspotentiale." },
       { id: "hi_ng_mc2", type: "mc", question: "Was unterscheidet myelinisierte von nicht-myelinisierten Axonen?", options: [
         { text: "Myelinisierte Axone leiten schneller durch saltatorische Erregungsleitung", correct: true },
         { text: "Myelinisierte Axone sind dünner und leiten langsamer", correct: false },
         { text: "Nicht-myelinisierte Axone leiten schneller als myelinisierte", correct: false },
         { text: "Myelinisierung kommt nur im PNS vor", correct: false }
-      ]},
+      ], explanation: "Myelinisierte Axone leiten Impulse schneller durch saltatorische Erregungsleitung (Sprünge zwischen Ranvier-Schnürringen), nicht durch kontinuierliche Depolarisation der gesamten Membran." },
       { id: "hi_ng_mc3", type: "mc", question: "Welche Aussagen zum Nervengewebe sind korrekt?", options: [
         { text: "Astrozyten bilden die Blut-Hirn-Schranke durch Endfüsschen um Kapillaren", correct: true },
         { text: "Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring", correct: true },
@@ -1755,9 +1755,9 @@ const HISTOLOGIE_1032_PLANTS = [
         question: "Welche Funktionen übernimmt das Fettgewebe im Körper?",
         options: [
           { text: "Energiespeicher, Wärmeisolierung, Wärmeproduktion (braunes Fett), mechanischer Schutz (Stoßdämpfer) und Organfixierung (Baufett)", correct: true },
-          { text: "Ausschließlich Energiespeicherung und keine anderen Aufgaben", correct: false },
-          { text: "Nur mechanischer Schutz, kein Stoffwechselbeitrag", correct: false },
-          { text: "Fettgewebe ist metabolisch inaktiv und dient nur der Isolation", correct: false },
+          { text: "Ausschließlich Energiespeicherung als Triglyceride (9,3 kcal/g) ohne Beitrag zu Wärmeschutz, Wärmeproduktion oder struktureller Fixierung", correct: false },
+          { text: "Ausschließlich mechanischer Schutz als Stoßdämpfer und Organpolsterung — keinerlei metabolische Aktivität oder Beteiligung am Energiestoffwechsel", correct: false },
+          { text: "Fettgewebe ist vollständig metabolisch inaktiv und dient ausschließlich der thermischen Isolation (vergleichbar mit Mineralwolle)", correct: false },
         ],
         explanation: "Fettgewebe ist multifunktional: 1. Energiereservoir (Triglyceride), 2. Thermische Isolierung (Fett = schlechter Wärmeleiter), 3. Wärmeproduktion (braunes Fettgewebe, besonders bei Neugeborenen), 4. Mechanisch: Stoßdämpfer und Polster, 5. Baufett: fixiert Organe (z. B. Augapfel in der Orbita). Fettgewebe ist zudem stark innerviert und reich durchblutet.",
       },
@@ -1767,9 +1767,9 @@ const HISTOLOGIE_1032_PLANTS = [
         question: "Was unterscheidet Baufett von Speicherfettgewebe?",
         options: [
           { text: "Baufett hat mechanische/strukturelle Funktion und bleibt bei Abmagerung erhalten; Speicherfett ist ernährungsabhängig und variiert mit Energiebilanz", correct: true },
-          { text: "Baufett liegt nur in der Unterhaut; Speicherfett nur in inneren Organen", correct: false },
-          { text: "Beide sind identisch – eine Unterscheidung ist klinisch irrelevant", correct: false },
-          { text: "Speicherfett hat eine mechanische Funktion; Baufett dient der Energiegewinnung", correct: false },
+          { text: "Baufett liegt ausschließlich in der Unterhaut (subkutan) mit thermischer Funktion; Speicherfett liegt nur in inneren Organen (viszeral)", correct: false },
+          { text: "Beide sind strukturell und funktionell identisch — eine klinische oder histologische Unterscheidung zwischen Bau- und Speicherfett existiert nicht", correct: false },
+          { text: "Speicherfett hat eine mechanische Schutzfunktion und bleibt bei Abmagerung erhalten; Baufett ist das ernährungsabhängige metabolisch aktive Depot", correct: false },
         ],
         explanation: "Baufett: Augenhöhlen, Wangen, Fußsohlen, Nierenlager – fixiert Organe, polstert Druckbelastungen ab. Es bleibt auch bei extremer Abmagerung weitgehend erhalten. Speicherfett: subkutan und viszeral, variiert stark mit Ernährungszustand und Energiestoffwechsel.",
       },
@@ -1800,9 +1800,9 @@ const HISTOLOGIE_1032_PLANTS = [
         question: "Warum unterscheidet sich braunes von weißem Fettgewebe?",
         options: [
           { text: "Braunes Fettgewebe hat viele Mitochondrien und dient der Wärmeproduktion (Thermogenese); weißes Fettgewebe dient primär der Energiespeicherung", correct: true },
-          { text: "Braunes Fettgewebe hat weniger Mitochondrien und speichert mehr Energie", correct: false },
-          { text: "Beide Typen sind funktionell identisch und unterscheiden sich nur in der Farbe", correct: false },
-          { text: "Weißes Fettgewebe produziert mehr Wärme als braunes", correct: false },
+          { text: "Braunes Fettgewebe hat weniger Mitochondrien als weißes Fettgewebe und speichert deshalb mehr Energie pro Gramm als Triglyceride", correct: false },
+          { text: "Beide Fettgewebstypen sind funktionell völlig identisch — sie unterscheiden sich lediglich durch den Cytochrom-Eisengehalt in der Farbe", correct: false },
+          { text: "Weißes Fettgewebe produziert durch höhere Stoffwechselaktivität und mehr Mitochondrien deutlich mehr Wärme als das braune Fettgewebe", correct: false },
         ],
         explanation: "Braunes Fettgewebe: viele Mitochondrien (daher braune Farbe), enthält Uncoupling Protein 1 (UCP1/Thermogenin) → Entkopplung der Atmungskette → Wärme statt ATP. Wichtig bei Neugeborenen und Winterschläfern. Weißes Fettgewebe: Energiespeicher in Form von Triglyceriden, wenige Mitochondrien.",
       },
@@ -1854,13 +1854,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Calcitonin – hemmt Osteoklasten, senkt Blutkalzium", correct: true },
         { text: "Östrogen – schützt Knochen vor Abbau", correct: true },
         { text: "Insulin – ist der Hauptregulator des Knochenstoffwechsels", correct: false }
-      ]},
+      ], explanation: "PTH steigert die Osteoklastenaktivität und erhöht das Blutkalzium, Calcitonin hemmt Osteoklasten und senkt das Blutkalzium, und Östrogen schützt Knochen vor übermäßigem Abbau." },
       { id: "ko_st_mc2", type: "mc", question: "Was erklärt den Knochenverlust bei Astronauten in der Schwerelosigkeit?", options: [
         { text: "Fehlende mechanische Belastung → reduzierte Osteoblastenaktivität gemäss Wolff'schem Gesetz", correct: true },
         { text: "Überschuss an Parathormon im Weltall", correct: false },
         { text: "Vitamin-D-Mangel durch fehlende UV-Strahlung", correct: false },
         { text: "Inhibition der Osteoklasten durch kosmische Strahlung", correct: false }
-      ]},
+      ], explanation: "Nach dem Wolff'schen Gesetz passt sich Knochen mechanischen Belastungen an; fehlende Schwerkraft führt zu verminderter Osteoblastenaktivität und damit zu Knochenverlust." },
       { id: "ko_st_mc3", type: "mc", question: "Welche Aussagen zum Knochenstoffwechsel sind korrekt?", options: [
         { text: "Osteoblasten bauen Knochen auf, Osteoklasten bauen ab – beide sind lebenslang aktiv", correct: true },
         { text: "Östrogenmangel nach der Menopause erhöht das Osteoporoserisiko", correct: true },
@@ -1911,13 +1911,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Lange Röhrenknochen (Femur, Humerus)", correct: false },
         { text: "Rippen und Brustbein", correct: false },
         { text: "Beckenknochen", correct: false }
-      ]},
+      ], explanation: "Schädelknochen wie Stirn-, Scheitel- und Hinterhauptsknochen entstehen durch desmale Ossifikation direkt aus Bindegewebe, ohne einen Knorpelvorläufer." },
       { id: "ko_bau_mc2", type: "mc", question: "Welche Phasen der Frakturheilung verlaufen in korrekter Reihenfolge?", options: [
         { text: "Hämatom → Granulationsgewebe → Kallus (Geflechtknochen) → Lamellenknochen", correct: true },
         { text: "Lamellenknochen → Geflechtknochen → Kallus → Hämatom", correct: false },
         { text: "Direkte Ossifikation ohne Knorpelphase bei allen Knochen", correct: false },
         { text: "Hämatom → sofortige Lamellenknochenbildung ohne Zwischenschritte", correct: false }
-      ]},
+      ], explanation: "Die Frakturheilung verläuft in Phasen: Hämatom, Granulationsgewebe, Kallus (Geflechtknochen), dann Umbau zu Lamellenknochen über Monate." },
       { id: "ko_bau_mc3", type: "mc", question: "Welche Aussagen zu Knochenaufbau und -umbau sind korrekt?", options: [
         { text: "Osteoklasten bauen Knochen durch Salzsäuresekretion ab", correct: true },
         { text: "Das Wolff'sche Gesetz: Knochen passt sich an mechanische Belastung an", correct: true },
@@ -1968,13 +1968,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Schilddrüsenhormone (T3, T4)", correct: true },
         { text: "Sexualhormone (Östrogen/Testosteron – fördern und später verschliessen Epiphysenfugen)", correct: true },
         { text: "Calcitonin (haupstimulator des Längenwachstums)", correct: false }
-      ]},
+      ], explanation: "Wachstumshormon/IGF-1, Schilddrüsenhormone und Sexualhormone steuern das Längenwachstum; Calcitonin ist kein Hauptstimulator des Längenwachstums." },
       { id: "ko_w_mc2", type: "mc", question: "Was ist der radiologische Befund beim Epiphysenfugenschluss?", options: [
         { text: "Die Epiphysenfuge ist als helle (radioluzente) Linie zwischen Epi- und Diaphyse nicht mehr sichtbar", correct: true },
         { text: "Die Epiphysenfuge verbreitert sich und wird radiopak (weiss)", correct: false },
         { text: "Epiphysen und Diaphyse trennen sich im Röntgenbild", correct: false },
         { text: "Epiphysenfugen sind im Röntgenbild nie sichtbar", correct: false }
-      ]},
+      ], explanation: "Beim Epiphysenfugenschluss verknöchert der Knorpel, wodurch die radioluzente Linie zwischen Epi- und Diaphyse verschwindet und kein Längenwachstum mehr möglich ist." },
       { id: "ko_w_mc3", type: "mc", question: "Welche Aussagen zum Knochenwachstum sind korrekt?", options: [
         { text: "Schilddrüsenhormone (T3, T4) sind für normales Längenwachstum unerlässlich", correct: true },
         { text: "Sexualhormone fördern zunächst Wachstum, dann bewirken sie Fugenschluss", correct: true },
@@ -2030,13 +2030,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Fusswärts, in Richtung Unterschenkel", correct: false },
         { text: "Zur Körpermitte hin (medial)", correct: false },
         { text: "Zur Körperoberfläche hin (superfizial)", correct: false }
-      ]},
+      ], explanation: "Kranial bedeutet kopfwärts in Richtung Schädel, als anatomische Lagebezeichnung zur Beschreibung der Position relativ zum Kopf." },
       { id: "ko_lb_mc2", type: "mc", question: "Welche Ebene teilt den Körper in eine vordere (ventrale) und hintere (dorsale) Hälfte?", options: [
         { text: "Frontalebene (Koronarebene)", correct: true },
         { text: "Sagittalebene", correct: false },
         { text: "Transversalebene", correct: false },
         { text: "Medianebene", correct: false }
-      ]},
+      ], explanation: "Die Frontalebene teilt den Körper in eine ventrale (vordere) und dorsale (hintere) Hälfte; die Sagittalebene in links und rechts; die Transversalebene in oben und unten." },
       { id: "ko_lb_mc3", type: "mc", question: "Welche Aussagen zu Lagebezeichnungen und Körperebenen sind korrekt?", options: [
         { text: "Sagittalebene teilt den Körper in rechte und linke Hälfte", correct: true },
         { text: "Proximal = rumpfnah; distal = rumpffern (an Extremitäten)", correct: true },
@@ -2092,13 +2092,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Kurzer Knochen", correct: false },
         { text: "Platter Knochen", correct: false },
         { text: "Unregelmässiger Knochen", correct: false }
-      ]},
+      ], explanation: "Der Femur ist ein langer Knochen (Röhrenknochen), da seine Längsausdehnung deutlich größer als sein Querschnitt ist und er aus Diaphyse, Metaphysen und Epiphysen besteht." },
       { id: "ko_fo_mc2", type: "mc", question: "Was kennzeichnet kurze Knochen?", options: [
         { text: "Annähernd gleiche Ausdehnung in alle Richtungen, z. B. Hand-/Fusswurzelknochen", correct: true },
         { text: "Eine deutlich längere als breite Form", correct: false },
         { text: "Eine sehr dünne plattenförmige Gestalt", correct: false },
         { text: "Ausschliessliches Vorkommen im Schädel", correct: false }
-      ]},
+      ], explanation: "Kurze Knochen (z.B. Hand- und Fusswurzelknochen) haben annähernd gleiche Ausdehnung in alle Richtungen und bestehen hauptsächlich aus Spongiosa mit dünner Kortikalis." },
       { id: "ko_fo_mc3", type: "mc", question: "Welche Aussagen zu Knochenformen sind korrekt?", options: [
         { text: "Platte Knochen enthalten auch im Erwachsenenalter rotes Knochenmark", correct: true },
         { text: "Sesambeine sind in Sehnen eingelagert und vergrössern den Hebelarm", correct: true },
@@ -2154,13 +2154,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Schulterblatt, Schlüsselbein und Rippen", correct: false },
         { text: "Becken, Femur und Humerus", correct: false },
         { text: "Wirbelsäule, Becken und untere Extremität", correct: false }
-      ]},
+      ], explanation: "Das Achsenskelett bildet die Körperlängsachse und besteht aus Schädel, Wirbelsäule und dem knöchernen Brustkorb; Extremitäten und Beckengürtel gehören zum Appendikularskelett." },
       { id: "ko_as_mc2", type: "mc", question: "In wie viele Abschnitte wird die Wirbelsäule gegliedert?", options: [
         { text: "Fünf: HWS, BWS, LWS, Sakrum und Steissbein", correct: true },
         { text: "Drei: Hals-, Brust- und Lendenwirbelsäule", correct: false },
         { text: "Vier: Hals-, Brust-, Lenden- und Kreuzwirbel", correct: false },
         { text: "Sechs Abschnitte mit jeweils eigener Bogenstruktur", correct: false }
-      ]},
+      ], explanation: "Die Wirbelsäule gliedert sich in fünf Abschnitte: 7 Halswirbel (HWS), 12 Brustwirbel (BWS), 5 Lendenwirbel (LWS), Sakrum (5 verwachsene Wirbel) und Steissbein." },
       { id: "ko_as_mc3", type: "mc", question: "Welche Aussagen zum Achsenskelett sind korrekt?", options: [
         { text: "Schädel schützt Gehirn, Wirbelsäule schützt Rückenmark, Brustkorb schützt Herz und Lunge", correct: true },
         { text: "Costae fluctuantes (freie Rippen) haben keine sternale Verbindung", correct: true },
@@ -2216,13 +2216,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Knochenernährung und Blutversorgung der Wirbelkörper", correct: false },
         { text: "Ausschliesslich passive Verbindung ohne Dämpfungsfunktion", correct: false },
         { text: "Stabilisierung durch aktive Muskelkontraktion", correct: false }
-      ]},
+      ], explanation: "Bandscheiben bestehen aus Anulus fibrosus und Nucleus pulposus und dienen der Stossdämpfung sowie der Ermöglichung von Beweglichkeit zwischen benachbarten Wirbelkörpern." },
       { id: "ko_ws_mc2", type: "mc", question: "Welches Band verläuft entlang der Vorderflähe der Wirbelkörper?", options: [
         { text: "Ligamentum longitudinale anterius", correct: true },
         { text: "Ligamentum longitudinale posterius", correct: false },
         { text: "Ligamentum flavum", correct: false },
         { text: "Ligamentum interspinale", correct: false }
-      ]},
+      ], explanation: "Das Ligamentum longitudinale anterius verläuft entlang der Vorderfläche der Wirbelkörper und verhindert eine übermäßige Extension der Wirbelsäule." },
       { id: "ko_ws_mc3", type: "mc", question: "Welche Aussagen zur Wirbelsäule sind korrekt?", options: [
         { text: "HWS und LWS zeigen Lordose, BWS und Sakrum zeigen Kyphose", correct: true },
         { text: "Das Rückenmark endet auf Höhe LWK 1-2 als Conus medullaris", correct: true },
@@ -2278,13 +2278,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Humerus, Radius, Ulna und Handwurzelknochen", correct: false },
         { text: "Klavikula, Skapula, Humerus und Radius", correct: false },
         { text: "Becken, Femur, Patella und Humerus", correct: false }
-      ]},
+      ], explanation: "Die untere Extremität besteht aus Femur (Oberschenkel), Tibia und Fibula (Unterschenkel), Patella sowie Fuss- und Zehenknochen." },
       { id: "ko_ex_mc2", type: "mc", question: "Welche Knochen bilden den Schultergürte?", options: [
         { text: "Klavikula (Schlüsselbein) und Skapula (Schulterblatt)", correct: true },
         { text: "Humerus und Klavikula", correct: false },
         { text: "Skapula und Humerus", correct: false },
         { text: "Sternum und Klavikula allein", correct: false }
-      ]},
+      ], explanation: "Der Schultergürtel besteht aus Klavikula (Schlüsselbein) und Skapula (Schulterblatt) und verbindet die obere Extremität mit dem Achsenskelett." },
       { id: "ko_ex_mc3", type: "mc", question: "Welche Aussagen zum Extremitätenskelett sind korrekt?", options: [
         { text: "Die Klavikula verbindet Schultergürtel (Sternoklavikulargelenk) mit dem Achsenskelett", correct: true },
         { text: "Das Kniegelenk verbindet Femur, Tibia und Patella", correct: true },
@@ -2340,13 +2340,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Synarthrosen ermöglichen die grösste Beweglichkeit", correct: false },
         { text: "Diarthrosen sind nicht von einer Gelenkkapsel umhüllt", correct: false },
         { text: "Synarthrosen kommen nur in der unteren Extremität vor", correct: false }
-      ]},
+      ], explanation: "Echte Gelenke (Diarthrosen) besitzen einen flüssigkeitsgefüllten Gelenkspalt mit Synovia, während Synarthrosen keine Gelenkhöhle haben und wenig oder keine Bewegung erlauben." },
       { id: "ko_gk_mc2", type: "mc", question: "Welche Struktur produziert die Gelenkflüssigkeit (Synovia)?", options: [
         { text: "Die Synovialmembran (Membrana synovialis)", correct: true },
         { text: "Das Periost", correct: false },
         { text: "Der Gelenkknorpel", correct: false },
         { text: "Das Stratum fibrosum der Gelenkkapsel", correct: false }
-      ]},
+      ], explanation: "Die Synovialmembran als innere Schicht der Gelenkkapsel produziert die Gelenkflüssigkeit (Synovia), die Reibung vermindert und den Gelenkknorpel ernährt." },
       { id: "ko_gk_mc3", type: "mc", question: "Welche Aussagen zu Gelenkgrundlagen sind korrekt?", options: [
         { text: "Diarthrosen besitzen zwingend Gelenkknorpel, Gelenkhöhle und Kapsel", correct: true },
         { text: "Synovia ernährt den avaskulären Gelenkknorpel durch Diffusion", correct: true },
@@ -2402,13 +2402,13 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Scharniergelenk (z. B. Kniegelenk)", correct: false },
         { text: "Zapfengelenk (z. B. proximales Radioulnargelenk)", correct: false },
         { text: "Eigelenk (z. B. Handgelenk)", correct: false }
-      ]},
+      ], explanation: "Das Kugelgelenk (z.B. Schultergelenk) erlaubt Bewegungen in allen Raumebenen (Flexion/Extension, Abduktion/Adduktion, Rotation), da die Kugel in der Pfanne allseitig gleiten kann." },
       { id: "ko_ga_mc2", type: "mc", question: "Welchem Gelenktyp entspricht das Kniegelenk hauptsächlich?", options: [
         { text: "Scharniergelenk (Ginglymus)", correct: true },
         { text: "Kugelgelenk", correct: false },
         { text: "Sattelgelenk", correct: false },
         { text: "Amphiarthrose", correct: false }
-      ]},
+      ], explanation: "Das Kniegelenk ist hauptsächlich ein Scharniergelenk (Ginglymus), das primär Flexion und Extension erlaubt, mit geringer Rotationsmöglichkeit bei gebeugtem Knie." },
       { id: "ko_ga_mc3", type: "mc", question: "Welche Aussagen zu Gelenkarten sind korrekt?", options: [
         { text: "Kugelgelenk (z.B. Schulter) ist triaxial und ermöglicht auch Rotation", correct: true },
         { text: "Zapfengelenk erlaubt nur Rotation um die Längsachse", correct: true },
@@ -2446,9 +2446,9 @@ makeDetailedPlant({
         question: "Wie viele Handwurzelknochen gibt es und wie lautet der zugehörige Merkspruch?",
         options: [
           { text: "8 Knochen; Merkspruch: \u201eEin Kahn, der fährt im Mondenschein im Dreieck um das Erbsenbein, Vieleck groß, Vieleck klein, am Kopf, da muss ein Haken sein\u201c", correct: true },
-          { text: "7 Knochen; kein standardisierter Merkspruch", correct: false },
-          { text: "10 Knochen in drei Reihen", correct: false },
-          { text: "5 Knochen, identisch mit den Mittelhandknochen", correct: false },
+          { text: "7 Knochen; kein standardisierter Merkspruch — die Reihenfolge wird ohne Eselsbrücke direkt auswendig gelernt", correct: false },
+          { text: "10 Knochen in drei Reihen (proximal 4, mittig 2, distal 4); Merkspruch: „Zehn Knochen, drei Reihen, ein Erbsenbein“", correct: false },
+          { text: "5 Knochen, direkt als Verlängerung der Mittelhandknochen; kein eigener Merkspruch, da mit Ossa metacarpi identisch", correct: false },
         ],
         explanation: "Die 8 Handwurzelknochen (proximal nach distal): Os scaphoideum (Kahnbein), Os lunatum (Mondbein), Os triquetrum (Dreieckbein), Os pisiforme (Erbsenbein), Os trapezium (großes Vieleckbein), Os trapezoideum (kleines Vieleckbein), Os capitatum (Kopfbein), Os hamatum (Hakenbein). Der Merkspruch hilft, die Reihenfolge zu behalten.",
       },
@@ -2658,9 +2658,9 @@ makeDetailedPlant({
         question: "Was ist der Unterschied zwischen Genu varum und Genu valgum?",
         options: [
           { text: "Genu varum (O-Bein): Bein weicht nach außen (medialer Winkel kleiner als normal); Genu valgum (X-Bein): Bein krümmt sich nach medial (medialer Winkel größer als normal)", correct: true },
-          { text: "Genu varum = X-Bein; Genu valgum = O-Bein", correct: false },
-          { text: "Beide Begriffe beschreiben dasselbe Fehlstellungsbild", correct: false },
-          { text: "Genu varum ist immer pathologisch; Genu valgum ist physiologisch normal", correct: false },
+          { text: "Genu varum = X-Bein (Knie nach innen, medialer Winkel größer als 174°); Genu valgum = O-Bein (Knie nach außen, medialer Winkel kleiner)", correct: false },
+          { text: "Beide Begriffe beschreiben dasselbe Fehlstellungsbild — varum und valgum unterscheiden sich nur durch den betroffenen Extremitätenabschnitt", correct: false },
+          { text: "Genu varum ist immer behandlungsbedürftig und pathologisch; Genu valgum ist bei Kleinkindern (2.–6. Lj.) vollständig physiologisch", correct: false },
         ],
         explanation: "Genu varum (O-Bein): Der mediale Winkel am Kniegelenk ist kleiner als der physiologische Wert → Beine weichen bogenförmig nach außen aus (wie ein ‚O'). Genu valgum (X-Bein): Der mediale Winkel ist größer → Knie krümmen sich nach innen (wie ein ‚X'). Physiologisch: Winkel Collum/Corpus femoris ≈ 126–128° beim Erwachsenen.",
       },
@@ -2776,9 +2776,9 @@ makeDetailedPlant({
         question: "Was ist der Unterschied zwischen einer Symphyse und einer Synchondrose?",
         options: [
           { text: "Symphyse: Verbindung durch Faserknorpel (z.B. Schambeinfuge); Synchondrose: durch hyalinen Knorpel (z.B. Synchondrosis xiphosternalis)", correct: true },
-          { text: "Symphyse: knöchern; Synchondrose: durch Faserknorpel", correct: false },
-          { text: "Beide sind identisch – nur der Name ist verschieden", correct: false },
-          { text: "Symphyse: im Schädel; Synchondrose: im Becken", correct: false },
+          { text: "Symphyse: direkt knöcherne Verbindung beider Knochen (Synostose) z.B. Os sacrum; Synchondrose: durch Faserknorpel z.B. Schambeinfuge", correct: false },
+          { text: "Beide sind strukturell identisch und bestehen aus hyalinem Knorpel — die Namen bezeichnen nur anatomisch verschiedene Lokalisationen", correct: false },
+          { text: "Symphyse: ausschließlich an Schädelnähten zwischen Scheitel- und Stirnbein; Synchondrose: ausschließlich im Becken als Schambeinfuge", correct: false },
         ],
         explanation: "Symphyse: zwei Knochen durch Faserknorpel verbunden. Beispiele: Symphysis pubica (Schambeinfuge), Symphysis intervertebralis (Bandscheiben). Synchondrose: Verbindung durch hyalinen Knorpel. Beispiele: Synchondrosis xiphosternalis (Schwertfortsatz–Sternum), Synchondrosis sphenooccipitalis (Keilbein–Hinterhauptsbein, verknöchert ~18. Lj.). Beide erlauben minimale Federbewegungen.",
       },
@@ -2892,13 +2892,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Filtration von Blut", correct: false },
         { text: "Produktion von Hormonen", correct: false },
         { text: "Gasaustausch in der Lunge", correct: false }
-      ]},
+      ], explanation: "Skelettmuskulatur erzeugt Bewegung, produziert Wärme (bis zu 85% der Körperwärme) und stabilisiert Gelenke durch aktive Muskelspannung." },
       { id: "mu_allg_mc2", type: "mc", question: "Womit kontrahiert der Skelettmuskel auf molekularer Ebene?", options: [
         { text: "Durch Verkürzung der Sarkomere über Aktin-Myosin-Wechselwirkung", correct: true },
         { text: "Durch Quellung von Bindegewebe im Muskel", correct: false },
         { text: "Durch elektrische Ladungsverschiebung ohne Strukturänderung", correct: false },
         { text: "Durch passive Dehnung der Muskelfasern", correct: false }
-      ]},
+      ], explanation: "Die Muskelkontraktion basiert auf dem Gleitfilamentmechanismus: ATP-abhängige Querbrückenzyklen zwischen Aktin und Myosin verkürzen die Sarkomere." },
       { id: "mu_allg_mc3", type: "mc", question: "Welche Aussagen zur Skelettmuskulatur sind korrekt?", options: [
         { text: "Muskulatur erzeugt bis zu 70% der Körpereigenwärme", correct: true },
         { text: "Aktiver Bewegungsapparat = Muskeln; passiver = Knochen, Bänder, Kapseln", correct: true },
@@ -2949,13 +2949,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Myofibrille → Muskelfaser → Muskelfaserbündel → Muskel → Sarkomer", correct: false },
         { text: "Sarkomer → Muskel → Myofibrille → Muskelfaser", correct: false },
         { text: "Muskel → Myofibrille → Muskelfaserbündel → Sarkomer", correct: false }
-      ]},
+      ], explanation: "Der Skelettmuskel ist hierarchisch aufgebaut: Muskel, Muskelfaserbündel (Perimysium), Muskelfaser, Myofibrille, Sarkomer als kleinste kontraktile Einheit." },
       { id: "mu_auf_mc2", type: "mc", question: "Wie heisst die Bindegewebshülle, die den gesamten Muskel umhüllt?", options: [
         { text: "Epimysium", correct: true },
         { text: "Perimysium", correct: false },
         { text: "Endomysium", correct: false },
         { text: "Epineurium", correct: false }
-      ]},
+      ], explanation: "Das Epimysium ist die äußerste Bindegewebshülle des gesamten Muskels und geht an den Enden in die Sehne über; Perimysium umhüllt Bündel, Endomysium einzelne Fasern." },
       { id: "mu_auf_mc3", type: "mc", question: "Welche Aussagen zum Muskelaufbau und Sarkomer sind korrekt?", options: [
         { text: "Das Sarkomer liegt zwischen zwei Z-Scheiben und ist die kleinste Kontraktionseinheit", correct: true },
         { text: "Epimysium → Perimysium → Endomysium ist die hierarchische Bindegewebsstruktur von aussen nach innen", correct: true },
@@ -3006,13 +3006,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Kraftentfaltung mit gleichbleibender Muskelspannung", correct: false },
         { text: "Erschlaffung des Muskels ohne Kraftentfaltung", correct: false },
         { text: "Passive Dehnung des Muskels durch äussere Kraft", correct: false }
-      ]},
+      ], explanation: "Bei isometrischer Arbeit entwickelt der Muskel Kraft ohne Längenänderung, z.B. beim Halten einer Last, weil sich die Länge konstant hält, die innere Spannung aber zunimmt." },
       { id: "mu_fk_mc2", type: "mc", question: "Was versteht man unter Kontraktilität des Muskels?", options: [
         { text: "Die Fähigkeit, aktiv Kraft zu entwickeln und sich zu verkürzen", correct: true },
         { text: "Die Fähigkeit, passiv gedehnt zu werden", correct: false },
         { text: "Die Fähigkeit zur elektrischen Selbsterregung", correct: false },
         { text: "Die Fähigkeit zur schnellen Erschlaffung nach Kontraktion", correct: false }
-      ]},
+      ], explanation: "Kontraktilität bezeichnet die aktive Fähigkeit des Muskels, durch Aktin-Myosin-Interaktion Kraft zu entwickeln und sich zu verkürzen, im Gegensatz zur passiven Elastizität." },
       { id: "mu_fk_mc3", type: "mc", question: "Welche Aussagen zu Kontraktionsformen sind korrekt?", options: [
         { text: "Konzentrisch: Muskel verkürzt sich unter Kraftentwicklung", correct: true },
         { text: "Vollständiger Tetanus erzeugt mehr Kraft als Einzelzuckungen", correct: true },
@@ -3063,13 +3063,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Ein Muskel mit all seinen Nerven und Gefässen", correct: false },
         { text: "Die Gesamtheit aller Motoneuronen im Rückenmark", correct: false },
         { text: "Eine einzelne Muskelfaser mit ihrem Zellkern", correct: false }
-      ]},
+      ], explanation: "Eine motorische Einheit besteht aus einem alpha-Motoneuron und allen von ihm innervierten Muskelfasern; die Anzahl der Fasern pro Einheit bestimmt die Kraftabstufung." },
       { id: "mu_in_mc2", type: "mc", question: "An welcher Struktur wird die nervale Erregung auf die Muskelfaser übertragen?", options: [
         { text: "An der motorischen Endplatte (neuromuskuläre Synapse)", correct: true },
         { text: "Im Spinalganglion", correct: false },
         { text: "An der Ranvierschen Schnürring", correct: false },
         { text: "Im Muskelspindel", correct: false }
-      ]},
+      ], explanation: "Die motorische Endplatte (neuromuskuläre Synapse) ist die Kontaktstelle zwischen Nervenfaserende und Muskelfaser, wo Acetylcholin die Kontraktion auslöst." },
       { id: "mu_in_mc3", type: "mc", question: "Welche Aussagen zur neuromuskulären Innervation sind korrekt?", options: [
         { text: "ACh bindet an nikotinische Rezeptoren an der motorischen Endplatte", correct: true },
         { text: "T-Tubuli leiten das AP ins Innere der Muskelfaser und lösen Ca2+-Freisetzung aus dem SR aus", correct: true },
@@ -3125,13 +3125,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Glukose", correct: false },
         { text: "Fettsäuren", correct: false },
         { text: "Laktat", correct: false }
-      ]},
+      ], explanation: "ATP ist die einzige direkt nutzbare Energiequelle der Muskelkontraktion; Glukose, Fettsäuren und Kreatinphosphat müssen erst in ATP umgewandelt werden." },
       { id: "mu_er_mc2", type: "mc", question: "Was entsteht bei intensiver anaerober Belastung als Stoffwechselprodukt?", options: [
         { text: "Laktat (Milchsäure)", correct: true },
         { text: "Harnstoff", correct: false },
         { text: "Glukose als Endprodukt", correct: false },
         { text: "Sauerstoff", correct: false }
-      ]},
+      ], explanation: "Bei intensiver anaerober Belastung entsteht Laktat (Milchsäure) durch Reduktion von Pyruvat, wenn zu wenig Sauerstoff für den Zitratzyklus vorhanden ist." },
       { id: "mu_er_mc3", type: "mc", question: "Welche Aussagen zur Muskelenergetik sind korrekt?", options: [
         { text: "Kreatinphosphat liefert Energie für ca. 6–10 Sekunden maximaler Intensität", correct: true },
         { text: "Fettsäuren dominieren bei langen aeroben Belastungen (>30 min)", correct: true },
@@ -3187,13 +3187,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Skelettmuskulatur", correct: false },
         { text: "Glatte Muskulatur", correct: false },
         { text: "Alle drei Muskelarten gleichermassen", correct: false }
-      ]},
+      ], explanation: "Die Herzmuskulatur ist histologisch quergestreift wie Skelettmuskel, wird aber unwillkürlich durch das Erregungsleitungssystem gesteuert, im Gegensatz zum willkürlichen Skelettmuskel." },
       { id: "mu_art_mc2", type: "mc", question: "Wo kommt glatte Muskulatur vor?", options: [
         { text: "In Hohlorganen wie Darm, Blutgefässen und Harnblase", correct: true },
         { text: "Ausschliesslich im Herzmuskel", correct: false },
         { text: "In Skelettmuskeln als Teil der Muskelfasern", correct: false },
         { text: "Nur in der Haut (Arrector pili)", correct: false }
-      ]},
+      ], explanation: "Glatte Muskulatur kommt in Hohlorganen (Darm, Blutgefässe, Harnblase, Gebärmutter) vor und wird unwillkürlich durch das vegetative Nervensystem gesteuert." },
       { id: "mu_art_mc3", type: "mc", question: "Welche Aussagen zum Herzmuskel sind korrekt?", options: [
         { text: "Herzmuskelzellen sind quergestreift und unwillkürlich gesteuert", correct: true },
         { text: "Disci intercalares ermöglichen elektrische Kopplung benachbarter Herzmuskelzellen", correct: true },
@@ -3249,13 +3249,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Bewegung eines Körperteils zur Körpermitte hin", correct: false },
         { text: "Beugung (Verkleinerung des Gelenkwinkels)", correct: false },
         { text: "Streckung (Vergrösserung des Gelenkwinkels)", correct: false }
-      ]},
+      ], explanation: "Abduktion ist die Bewegung eines Körperteils von der Körperlängsachse weg, z.B. das Heben des Arms seitlich nach oben, im Gegensatz zur Adduktion zur Mitte hin." },
       { id: "mu_bew_mc2", type: "mc", question: "Was beschreibt der Begriff Pronation?", options: [
         { text: "Einwärtsdrehung des Unterarms (Handteller zeigt nach unten)", correct: true },
         { text: "Auswärtsdrehung des Unterarms (Supination)", correct: false },
         { text: "Plantarflexion des Fusses", correct: false },
         { text: "Seitwärtsneigung der Wirbelsäule", correct: false }
-      ]},
+      ], explanation: "Pronation ist die Einwärtsdrehung des Unterarms, bei der sich die Handinnenfläche nach unten dreht, durch Überkreuzung von Radius und Ulna." },
       { id: "mu_bew_mc3", type: "mc", question: "Welche Aussagen zu Bewegungsarten sind korrekt?", options: [
         { text: "Supination dreht den Unterarm so, dass die Handfläche nach oben zeigt", correct: true },
         { text: "Zirkumduktion erfordert mindestens ein Zweiachsengelenk (z.B. Kugelgelenk)", correct: true },
@@ -3306,13 +3306,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Nervus trigeminus (V)", correct: false },
         { text: "Nervus hypoglossus (XII)", correct: false },
         { text: "Nervus vagus (X)", correct: false }
-      ]},
+      ], explanation: "Der N. facialis (VII. Hirnnerv) versorgt die mimische Muskulatur motorisch; der N. trigeminus (V) innerviert die Kaumuskulatur und vermittelt die Gesichtssensibilität." },
       { id: "mu_kopf_mc2", type: "mc", question: "Welcher Muskel gilt als stärkster Kaumuskel?", options: [
         { text: "Musculus masseter", correct: true },
         { text: "Musculus temporalis", correct: false },
         { text: "Musculus pterygoideus medialis", correct: false },
         { text: "Musculus buccinator", correct: false }
-      ]},
+      ], explanation: "Der M. masseter gilt als stärkster Kaumuskel, da er einen grossen Querschnitt hat und über einen günstigen Hebelarm vom Unterkieferast zum Jochbogen wirkt." },
       { id: "mu_kopf_mc3", type: "mc", question: "Welche Aussagen zu Kopfmuskeln und ihrer Innervation sind korrekt?", options: [
         { text: "Mimische Muskulatur wird durch N. facialis (VII) innerviert", correct: true },
         { text: "Bei peripherer Fazialisparese ist die Stirn auf der betroffenen Seite mitgelähmt", correct: true },
@@ -3368,13 +3368,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "M. rectus abdominis und M. obliquus externus", correct: false },
         { text: "Mm. intercostales interni", correct: false },
         { text: "M. erector spinä", correct: false }
-      ]},
+      ], explanation: "M. sternocleidomastoideus und Mm. scaleni sind primäre Atemhilfsmuskeln bei der Inspiration, da sie den oberen Brustkorb anheben und das Atemvolumen vergrössern." },
       { id: "mu_rumpf_mc2", type: "mc", question: "Welche Funktion hat der M. rectus abdominis?", options: [
         { text: "Rumpfbeugung (Flexion) und Erhöhung des Bauchdrucks", correct: true },
         { text: "Rumpfstreckung und Unterstützung der Inspiration", correct: false },
         { text: "Ausschliesslich seitliche Rumpfneigung zur rechten Seite", correct: false },
         { text: "Passive Bauchdeckenstabilisierung ohne Kraftentfaltung", correct: false }
-      ]},
+      ], explanation: "Der M. rectus abdominis beugt den Rumpf (Flexion der Wirbelsäule) und erhöht den intraabdominellen Druck, z.B. beim Husten, Pressen und Defäkation." },
       { id: "mu_rumpf_mc3", type: "mc", question: "Welche Aussagen zur Rumpfmuskulatur sind korrekt?", options: [
         { text: "Die autochthone Rückenmuskulatur wird durch dorsale Äste der Spinalnerven innerviert", correct: true },
         { text: "Mm. intercostales interni unterstützen die forcierte Exspiration", correct: true },
@@ -3430,13 +3430,13 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "M. biceps femoris", correct: false },
         { text: "M. gastrocnemius", correct: false },
         { text: "M. gracilis", correct: false }
-      ]},
+      ], explanation: "Der M. quadriceps femoris ist der stärkste Kniestrecker mit vier Köpfen, die alle an der Patellasehne zusammenlaufen." },
       { id: "mu_ext_mc2", type: "mc", question: "Welche Muskeln bilden die Rotatorenmanschette der Schulter?", options: [
         { text: "M. supraspinatus, infraspinatus, teres minor und subscapularis", correct: true },
         { text: "M. deltoideus, biceps brachii und triceps brachii", correct: false },
         { text: "M. pectoralis major und serratus anterior", correct: false },
         { text: "M. trapezius und latissimus dorsi", correct: false }
-      ]},
+      ], explanation: "Die Rotatorenmanschette (SITS: Supraspinatus, Infraspinatus, Teres minor, Subscapularis) zentriert den Humeruskopf in der Schultergelenkpfanne." },
       { id: "mu_ext_mc3", type: "mc", question: "Welche Aussagen zur Extremitätenmuskulatur sind korrekt?", options: [
         { text: "Rotatorenmanschette (SITS) stabilisiert den Humeruskopf in der Glenoidpfanne", correct: true },
         { text: "M. biceps brachii führt Ellenbogenflexion und Supination aus (N. musculocutaneus)", correct: true },
@@ -3592,9 +3592,9 @@ const MUSKELLEHRE_1034_PLANTS = [
         question: "Was passiert physiologisch beim Diaphragma bei Ein- und Ausatmung?",
         options: [
           { text: "Einatmung: Kontraktion/Abflachung → Thoraxvolumen steigt → Luft strömt ein; Ausatmung: Erschlaffung/Hochsteigen → Volumen sinkt → Luft strömt aus", correct: true },
-          { text: "Einatmung: Erschlaffung des Diaphragmas; Ausatmung: Kontraktion", correct: false },
-          { text: "Das Diaphragma ist bei ruhiger Atmung passiv und wird nur bei forcierter Atmung aktiviert", correct: false },
-          { text: "Einatmung: Diaphragma steigt nach oben; Ausatmung: Diaphragma flacht sich ab", correct: false },
+          { text: "Einatmung: passives Erschlaffen des Diaphragmas durch elastische Rückstellkräfte; Ausatmung: aktive Kontraktion und Abflachung des Muskels", correct: false },
+          { text: "Das Diaphragma ist bei ruhiger Ruheatmung vollständig passiv; aktive Kontraktion erfolgt ausschließlich bei forcierter Einatmung > 60 L/min", correct: false },
+          { text: "Einatmung: Diaphragma steigt nach oben und verdrängt das Lungenvolumen nach kranial; Ausatmung: Diaphragma flacht sich kaudalwärts ab", correct: false },
         ],
         explanation: "Atemmechanik: Inspiration = aktive Kontraktion → kuppelförmiges Diaphragma flacht sich ab → Thoraxraum vergrößert sich → Druck sinkt unter Atmosphärendruck → Luft strömt ein. Exspiration = Erschlaffung → Diaphragma wölbt sich nach oben → Thoraxraum verkleinert sich → Luft strömt aus. Bei forcierter Ausatmung helfen zusätzlich Bauchmuskeln.",
       },
@@ -3649,9 +3649,9 @@ const MUSKELLEHRE_1034_PLANTS = [
         question: "Was unterscheidet die Funktion des M. serratus anterior von der des M. pectoralis major?",
         options: [
           { text: "Serratus anterior: fixiert Scapula am Thorax, ermöglicht Armhebung über die Horizontale; Pectoralis major: adduziert und innenrotiert den Arm", correct: true },
-          { text: "Beide führen identische Arm-Bewegungen aus; Serratus zusätzlich Atemfunktion", correct: false },
-          { text: "Pectoralis major fixiert die Scapula; Serratus anterior adduziert den Arm", correct: false },
-          { text: "Kein funktioneller Unterschied — beide werden vom N. thoracicus longus innerviert", correct: false },
+          { text: "Beide führen funktionell identische Armbewegungen aus (Adduktion, Innenrotation); Serratus anterior übernimmt zusätzlich eine Atemhilfsfunktion", correct: false },
+          { text: "Pectoralis major fixiert die Scapula durch seine Ursprungssehnen am Thorax; Serratus anterior adduziert und innenrotiert den Arm am Schultergelenk", correct: false },
+          { text: "Kein relevanter funktioneller Unterschied — beide Muskeln werden ausschließlich vom N. thoracicus longus (C5–C7) innerviert und kontrolliert", correct: false },
         ],
         explanation: "M. serratus anterior (N. thoracicus longus): zieht Scapula nach lateral/vorne, presst sie an den Thorax, ermöglicht Armhebung über 90 Grad. M. pectoralis major (Nn. pectorales): bewegt den Arm (Adduktion, Innenrotation, Anteversion). Verschiedene Innervation, verschiedene Ansatzpunkte, verschiedene Primärfunktionen.",
       },
@@ -3815,13 +3815,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Trachea und Hauptbronchien", correct: false },
         { text: "Lunge und Bronchiolen", correct: false },
         { text: "Kehlkopf und Trachea", correct: false }
-      ]},
+      ], explanation: "Die oberen Atemwege umfassen Nase, Nasennebenhöhlen und Rachenraum; Kehlkopf, Trachea und Bronchien gehören zu den unteren Atemwegen." },
       { id: "at_ü_mc2", type: "mc", question: "Wo findet der eigentliche Gasaustausch statt?", options: [
         { text: "In den Alveolen der Lunge", correct: true },
         { text: "In der Trachea", correct: false },
         { text: "In den Hauptbronchien", correct: false },
         { text: "In den Nasenmuscheln", correct: false }
-      ]},
+      ], explanation: "Der eigentliche Gasaustausch findet in den Alveolen statt, wo die Blut-Luft-Schranke nur ca. 0,5 µm dünn ist und die Diffusion von O2 und CO2 ermöglicht." },
       { id: "at_ü_mc3", type: "mc", question: "Welche Aussagen zum Überblick des Atmungssystems sind korrekt?", options: [
         { text: "300 Mio. Alveolen bieten 50–100 m² Austauschfläche für Gasaustausch", correct: true },
         { text: "Anatomischer Totraum (~150 ml) nimmt nicht am Gasaustausch teil", correct: true },
@@ -3863,13 +3863,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Stirnhöhlel, Schläfenhöhlel, Kieferhöhlel und Wangenhöhlel", correct: false },
         { text: "Vordere, mittlere, hintere und tiefe Nasennebenhöhlel", correct: false },
         { text: "Siebbein-, Keilbein-, Stirn- und Jochbeinhöhlel", correct: false }
-      ]},
+      ], explanation: "Die vier Nasennebenhöhlen sind Sinus frontalis (Stirnhöhle), Sinus sphenoidalis (Keilbeinhöhle), Cellulae ethmoidales (Siebbeinzellen) und Sinus maxillaris (Kieferhöhle)." },
       { id: "at_nnh_mc2", type: "mc", question: "Was bezeichnen die Choanä?", options: [
         { text: "Die inneren Öffnungen der Nasenhöhlele in den Rachenraum", correct: true },
         { text: "Die Nasenmuscheln (Conchä nasales)", correct: false },
         { text: "Die äusseren Nasenöfffnungen (Nares)", correct: false },
         { text: "Die Ausführungsganege der Nasennebenhöhllen", correct: false }
-      ]},
+      ], explanation: "Die Choanae sind die inneren Öffnungen der Nasenhöhle in den Epipharynx, durch die die gereinigte und erwärmte Luft den Rachenraum erreicht." },
       { id: "at_nnh_mc3", type: "mc", question: "Welche Aussagen zur Nase und ihren Nebenhöhlen sind korrekt?", options: [
         { text: "3 Nasenmuscheln teilen die Nasenhöhle in 4 Gänge und vergrössern die Schleimhautfläche", correct: true },
         { text: "Choanalatresie beim Neugeborenen führt zu Atemnot (obligate Nasenatmer)", correct: true },
@@ -3911,13 +3911,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Epipharynx (Pars nasalis)", correct: false },
         { text: "Hypopharynx (Pars laryngea)", correct: false },
         { text: "Nasopharynx (Pars inferior)", correct: false }
-      ]},
+      ], explanation: "Der Mesopharynx (Pars oralis) ist die Kreuzungsstelle von Luft- und Speiseweg, weshalb Schlucken und Atmen nicht gleichzeitig möglich sind." },
       { id: "at_ra_mc2", type: "mc", question: "Welche Strukturen bilden den Waldeyer-Rachenring?", options: [
         { text: "Pharyngealtonsille, Gaumenmandeln und Zungenmandel", correct: true },
         { text: "Schildknorpel, Ringknorpel und Stellknorpel", correct: false },
         { text: "Nasenmuscheln und Nasenscheidewand", correct: false },
         { text: "Choanä, Fauces und Epiglottis", correct: false }
-      ]},
+      ], explanation: "Der Waldeyer-Rachenring besteht aus Pharyngealtonsille, Gaumenmandeln und Zungenmandel und bildet eine immunologische Abwehrzone am Atemwegseingang." },
       { id: "at_ra_mc3", type: "mc", question: "Welche Aussagen zum Rachenraum (Pharynx) sind korrekt?", options: [
         { text: "Epipharynx: Verbindung zur Nase (Choanae) und Mittelohr (Tuba auditiva)", correct: true },
         { text: "Hypopharynx: Kreuzung Atemweg–Speiseweg; Epiglottis schützt vor Aspiration", correct: true },
@@ -3959,13 +3959,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Ringknorpel (Cartilago cricoidea)", correct: false },
         { text: "Stellknorpel (Arytenoidknorpel)", correct: false },
         { text: "Kehldeckelknorpel (Epiglottis)", correct: false }
-      ]},
+      ], explanation: "Der Schildknorpel (Cartilago thyroidea) ist der grösste Kehlkopfknorpel und bildet beim Mann den Adamsapfel; er schützt die Stimmlippen." },
       { id: "at_kk_mc2", type: "mc", question: "Wo liegen die echten Stimmbänder (Plicä vocales)?", options: [
         { text: "Zwischen den Stellknorpeln und dem Schildknorpel", correct: true },
         { text: "Zwischen Epiglottis und Ringknorpel", correct: false },
         { text: "Unterhalb des Ringknorpels", correct: false },
         { text: "Im Mesopharynx zwischen den Gaumenmandeln", correct: false }
-      ]},
+      ], explanation: "Die echten Stimmlippen (Plicae vocales) verlaufen von den Stellknorpeln hinten zum Schildknorpel vorne und erzeugen durch Schwingung die Stimme." },
       { id: "at_kk_mc3", type: "mc", question: "Welche Aussagen zum Kehlkopf sind korrekt?", options: [
         { text: "Schildknorpel ist der grösste Kehlkopfknorpel", correct: true },
         { text: "Ringknorpel ist einziger vollständig geschlossener Ring, bildet die Kehlkopfbasis", correct: true },
@@ -4007,13 +4007,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Elastischem Knorpel", correct: false },
         { text: "Faserknorpel", correct: false },
         { text: "Knochengewebe", correct: false }
-      ]},
+      ], explanation: "Die Knorpelspangen der Trachea bestehen aus hyalinem Knorpel, der dem Atemweg Stabilität verleiht und gleichzeitig Flexibilität beim Schlucken erlaubt." },
       { id: "at_tr_mc2", type: "mc", question: "Was bezeichnet die Bifurcatio tracheä?", options: [
         { text: "Die Aufzweigung der Trachea in linken und rechten Hauptbronchus", correct: true },
         { text: "Den Übergang vom Kehlkopf zur Trachea", correct: false },
         { text: "Die Teilung der Hauptbronchien in Lappenbronchien", correct: false },
         { text: "Den hufeisenförmigen Querschnitt der Knorpelspangen", correct: false }
-      ]},
+      ], explanation: "Die Bifurcatio tracheae ist die Aufzweigung der Trachea in linken und rechten Hauptbronchus auf Höhe des Brustwirbels Th4/5 (Carina tracheae)." },
       { id: "at_tr_mc3", type: "mc", question: "Welche Aussagen zur Trachea sind korrekt?", options: [
         { text: "16–20 C-förmige Knorpelspangen aus hyalinem Knorpel verhindern Kollaps", correct: true },
         { text: "Fremdkörper gelangen häufiger rechts, da der rechte Hauptbronchus steiler ist", correct: true },
@@ -4055,13 +4055,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Zwei (für Ober- und Unterlappen)", correct: false },
         { text: "Vier", correct: false },
         { text: "Fünf Lappenbronchien", correct: false }
-      ]},
+      ], explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen) und entsprechend drei Lappenbronchien; die linke Lunge hat nur zwei Lappen und zwei Lappenbronchien." },
       { id: "at_br_mc2", type: "mc", question: "Was ist korrekt bezueglich der Bronchiolen?", options: [
         { text: "Sie enthalten keinen Knorpel mehr in ihrer Wand", correct: true },
         { text: "Sie besitzen noch Knorpelspangen wie die Trachea", correct: false },
         { text: "Sie sind der Hauptort des Gasaustauschs", correct: false },
         { text: "Sie sind ausschliesslich mit mehrschichtigem Plattenepithel ausgekleidet", correct: false }
-      ]},
+      ], explanation: "Bronchiolen (<1 mm) haben keine Knorpelspangen mehr und werden nur durch glatten Muskel offen gehalten; daher kollabieren sie bei Asthma bronchiale." },
       { id: "at_br_mc3", type: "mc", question: "Welche Aussagen zu Bronchialsystem und Alveolen sind korrekt?", options: [
         { text: "Pneumozyten Typ I bilden die Gastauschmembran, Typ II produzieren Surfactant", correct: true },
         { text: "Adrenalin führt zur Bronchodilatation über β2-Rezeptoren", correct: true },
@@ -4103,13 +4103,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Zwei (Ober- und Unterlappen)", correct: false },
         { text: "Vier Lappen", correct: false },
         { text: "Einen ungegliederten Lappen", correct: false }
-      ]},
+      ], explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen), die linke nur zwei, da der Herzspitze auf der linken Seite Platz gelassen wird." },
       { id: "at_lu_mc2", type: "mc", question: "Was befindet sich im Pleuraspalt?", options: [
         { text: "Seröse Flüssigkeit, die Reibung vermindert und Adhäsionskräfte erzeugt", correct: true },
         { text: "Luft, die den Unterdruck ausgleicht", correct: false },
         { text: "Lymphflüssigkeit zur Immunabwehr", correct: false },
         { text: "Blut aus den Pleuragefässen", correct: false }
-      ]},
+      ], explanation: "Der Pleuraspalt enthält seröse Flüssigkeit, die Reibung vermindert und durch Adhäsionskräfte die Lunge an der Thoraxwand hält." },
       { id: "at_lu_mc3", type: "mc", question: "Welche Aussagen zur Lunge und Pleura sind korrekt?", options: [
         { text: "Rechte Lunge: 3 Lappen; linke Lunge: 2 Lappen (Herzraum beansprucht Platz)", correct: true },
         { text: "Am Hilus tritt die A. pulmonalis ein und die Vv. pulmonales treten aus", correct: true },
@@ -4156,13 +4156,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Das Diaphragma entspannt sich und wölbt sich nach oben", correct: false },
         { text: "Der Thorax verkleinert sich passiv durch Muskelerschlaffung", correct: false },
         { text: "Nur die Rippenmuskeln arbeiten, das Diaphragma bleibt passiv", correct: false }
-      ]},
+      ], explanation: "Bei der Inspiration kontrahiert das Zwerchfell und flacht ab, wodurch der Thoraxraum und der Unterdruck in der Pleurahöhle vergrössern werden und Luft einströmt." },
       { id: "at_ap_mc2", type: "mc", question: "Wie hoch ist der CO2-Anteil der ausgeatmeten Luft ungefähr?", options: [
         { text: "Ca. 4 %", correct: true },
         { text: "Ca. 0,04 % (wie in der Aussenluft)", correct: false },
         { text: "Ca. 21 %", correct: false },
         { text: "Ca. 16 % (entspricht dem O2-Gehalt der Ausatemluft)", correct: false }
-      ]},
+      ], explanation: "Die ausgeatmete Luft enthält ca. 4% CO2 (gegenüber 0,04% Aussenluft), da CO2 als Stoffwechselprodukt der Zellatmung ins Blut und dann in die Alveolen diffundiert." },
       { id: "at_ap_mc3", type: "mc", question: "Welche Aussagen zum Atmungsprozess sind korrekt?", options: [
         { text: "Inspiration ist aktiv (Diaphragma kontrahiert), Exspiration in Ruhe ist passiv", correct: true },
         { text: "Thoraxvolumenzunahme senkt den Alveolardruck unter Atmosphärendruck → Luft strömt ein", correct: true },
@@ -4204,13 +4204,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Mm. intercostales interni und M. rectus abdominis", correct: false },
         { text: "M. transversus abdominis und M. obliquus internus", correct: false },
         { text: "Nur das Diaphragma, Interkostalmuskeln sind exspiratorisch", correct: false }
-      ]},
+      ], explanation: "Zwerchfell und äussere Interkostalmuskeln sind die primären inspiratorischen Muskeln, da sie den Thoraxraum vergrössern und damit den intrapleuralen Druck senken." },
       { id: "at_am_mc2", type: "mc", question: "Was ist die Atemhilfsmuskulatur?", options: [
         { text: "Zusatzliche Muskeln, die bei erhöhtem Atembedarf aktiviert werden", correct: true },
         { text: "Muskeln, die ausschliesslich bei der Exspiration eingesetzt werden", correct: false },
         { text: "Eine Bezeichnung für die Herzmuskulatur im Atembezug", correct: false },
         { text: "Die Rückenmuskulatur als dauerhafter Atemantagonist", correct: false }
-      ]},
+      ], explanation: "Atemhilfsmuskeln (z.B. M. sternocleidomastoideus, Mm. scaleni) werden bei erhöhtem Atembedarf zusätzlich zur Vergrösserung des Thoraxraums aktiviert." },
       { id: "at_am_mc3", type: "mc", question: "Welche Aussagen zur Atemmuskulatur sind korrekt?", options: [
         { text: "Diaphragma und Mm. intercostales externi wirken inspiratorisch", correct: true },
         { text: "Ruhige Exspiration ist passiv (elastische Rückstellkraft der Lunge)", correct: true },
@@ -4257,13 +4257,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Durch aktiven Transport mit Energieverbrauch", correct: false },
         { text: "Durch Osmose über die Alveolarmembran", correct: false },
         { text: "Durch Pinozytose der Alveolarzellen", correct: false }
-      ]},
+      ], explanation: "Der Gasaustausch in der Lunge (äussere Atmung) erfolgt durch Diffusion: O2 diffundiert vom höheren Partialdruck in den Alveolen zum niedrigeren im venösen Blut." },
       { id: "at_ga_mc2", type: "mc", question: "Was bezeichnet man als 'innere Atmung'?", options: [
         { text: "Den Gasaustausch zwischen Blut und Körperzellen", correct: true },
         { text: "Den Gasaustausch in den Alveolen der Lunge", correct: false },
         { text: "Die Steuerung der Atmung durch das Atemzentrum", correct: false },
         { text: "Die Atemmuskelaktivität bei der Inspiration", correct: false }
-      ]},
+      ], explanation: "Die innere Atmung bezeichnet den Gasaustausch zwischen dem Kapillarblut und den Körperzellen im Gewebe, wo O2 aufgenommen und CO2 abgegeben wird." },
       { id: "at_ga_mc3", type: "mc", question: "Welche Aussagen zum Gasaustausch sind korrekt?", options: [
         { text: "O2 diffundiert aus den Alveolen (pO2 ~100 mmHg) ins Blut (pO2 ~40 mmHg)", correct: true },
         { text: "Äussere Atmung = Gasaustausch Lunge–Blut; innere Atmung = Gasaustausch Blut–Gewebe", correct: true },
@@ -4305,13 +4305,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Ca. 1500 ml", correct: false },
         { text: "Ca. 3000 ml", correct: false },
         { text: "Ca. 6000 ml", correct: false }
-      ]},
+      ], explanation: "Das Atemzugvolumen in Ruhe beträgt ca. 500 ml, wobei ca. 150 ml im anatomischen Totraum verbleiben und nicht am Gasaustausch teilnehmen." },
       { id: "at_lv_mc2", type: "mc", question: "Welches Lungenvolumen kann auch nach maximaler Ausatmung NICHT ausgeatmet werden?", options: [
         { text: "Das Residualvolumen", correct: true },
         { text: "Das exspiratorische Reservevolumen", correct: false },
         { text: "Das Atemzugvolumen", correct: false },
         { text: "Das inspiratorische Reservevolumen", correct: false }
-      ]},
+      ], explanation: "Das Residualvolumen verbleibt auch nach maximaler Ausatmung in der Lunge und verhindert deren Kollaps; es ist nicht willkürlich ausatembar." },
       { id: "at_lv_mc3", type: "mc", question: "Welche Aussagen zu Lungenvolumina sind korrekt?", options: [
         { text: "Vitalkapazität = AZV + IRV + ERV ≈ 4,5 l", correct: true },
         { text: "Totalkapazität = Vitalkapazität + Residualvolumen ≈ 6 l", correct: true },
@@ -4358,13 +4358,13 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Temperatur, Osmolarität und Glukosegehalt des Blutes", correct: false },
         { text: "Ausschliesslich der CO2-Gehalt als einzige Regelgrösse", correct: false },
         { text: "Sauerstoff, Stickstoff und Wasserdampfgehalt der Atemluft", correct: false }
-      ]},
+      ], explanation: "Das Atemzentrum in der Medulla oblongata wird chemisch durch O2-Partialdruck, CO2-Partialdruck und pH des Blutes reguliert, wobei CO2/pH die stärksten Reize sind." },
       { id: "at_as_mc2", type: "mc", question: "Was bewirkt eine Hyperkapnie (erhöhter CO2-Gehalt im Blut)?", options: [
         { text: "Steigerung der Atemfrequenz und -tiefe", correct: true },
         { text: "Verlangsamung der Atmung", correct: false },
         { text: "Atemstillstand", correct: false },
         { text: "Keine Veränderung der Atemfrequenz", correct: false }
-      ]},
+      ], explanation: "Hyperkapnie senkt den Blut-pH, was über Chemorezeptoren das Atemzentrum stimuliert und Atemfrequenz sowie -tiefe steigert." },
       { id: "at_as_mc3", type: "mc", question: "Welche Aussagen zur chemischen Atemsteuerung sind korrekt?", options: [
         { text: "Zentrale Chemorezeptoren in der Medulla reagieren auf CO2 und pH im Liquor", correct: true },
         { text: "Periphere Chemorezeptoren in Karotis- und Aortakörperchen reagieren auf O2-Mangel", correct: true },
@@ -5281,7 +5281,8 @@ const DEBUG_PLANTS = [
           { text: "Es enthält Testpflanzen ohne Prüfungsrelevanz", correct: true },
           { text: "Es ist Teil des Heilpraktiker-Curriculums", correct: false },
           { text: "Es enthält nur eine Pflanze", correct: false }
-        ]
+        ],
+        explanation: "Das Debug-Beet dient ausschließlich dem Testen von Spielfunktionen und enthält Testpflanzen ohne Prüfungsrelevanz für den Heilpraktiker.",
       },
       {
         id: "de1_mc2",
@@ -5292,7 +5293,8 @@ const DEBUG_PLANTS = [
           { text: "Sie ist eine Testpflanze", correct: true },
           { text: "Schwarzer Stamm und grüne Früchte", correct: false },
           { text: "Sie wächst im Labor", correct: false }
-        ]
+        ],
+        explanation: "Debug Eins ist eine Testpflanze mit pinkem Stamm und weißen Früchten, die ausschließlich für Entwicklungszwecke dient.",
       }
     ]
   }),
@@ -5361,7 +5363,8 @@ const DEBUG_PLANTS = [
           { text: "Sie hat grüne Früchte", correct: true },
           { text: "Sie hat einen pinken Stamm", correct: false },
           { text: "Sie ist prüfungsrelevant", correct: false }
-        ]
+        ],
+        explanation: "Debug Zwei ist eine Testpflanze mit schwarzem Stamm und grünen Früchten, die ausschließlich für Entwicklungszwecke dient.",
       },
       {
         id: "de2_mc2",
@@ -5372,7 +5375,8 @@ const DEBUG_PLANTS = [
           { text: "Es dient dem Testen aller Spielmechaniken", correct: true },
           { text: "Es gehört zum Heilpraktiker-Curriculum", correct: false },
           { text: "Es hat keine phase4Questions", correct: false }
-        ]
+        ],
+        explanation: "Das Debug-Beet enthält zwei Testpflanzen und dient dem Testen aller Spielmechaniken ohne Prüfungsrelevanz für den Heilpraktiker.",
       }
     ]
   })
@@ -5463,7 +5467,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Glanzstreifen ermöglichen die elektrische Kopplung benachbarter Herzmuskelzellen", correct: true },
           { text: "Das Epikard kleidet die Hohlräume des Herzens aus", correct: false },
           { text: "Das Herz liegt vollständig in der rechten Brusthälfte", correct: false }
-        ]
+        ],
+        explanation: "Das Herzmuskelgewebe ist als einziges Muskelgewebe quergestreift und unwillkürlich gesteuert, wobei Glanzstreifen (Disci intercalares) über Gap Junctions die elektrische Erregung von Zelle zu Zelle weiterleiten.",
       },
       {
         id: "herz_aufbau_mc2",
@@ -5474,7 +5479,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Das Perikard liegt dem Myokard direkt auf", correct: false },
           { text: "Zwischen Epikard und Perikard befindet sich ein flüssigkeitsgefüllter Spaltraum", correct: true },
           { text: "Das Myokard ist die äußerste Herzschicht", correct: false }
-        ]
+        ],
+        explanation: "Das Herz hat vier Schichten von innen nach außen: Endokard, Myokard, Epikard und Perikard, wobei zwischen Epi- und Perikard ein flüssigkeitsgefüllter Spaltraum (Cavum pericardii) reibungsarme Bewegungen ermöglicht.",
       }
     ]
   }),
@@ -5562,7 +5568,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die Mitralklappe hat drei Segel", correct: false },
           { text: "Aorten- und Pulmonalklappe sind Taschenklappen", correct: true },
           { text: "Chordae tendineae verhindern das Umstülpen der Taschenklappen", correct: false }
-        ]
+        ],
+        explanation: "AV-Klappen (Segel) trennen Vorhöfe von Kammern — die Mitralklappe hat zwei (nicht drei) Segel — während Taschenklappen (Semilunarklappen) den Ausfluss aus den Kammern sichern; Chordae tendineae verhindern das Umstülpen der Segelklappen.",
       },
       {
         id: "herzklappen_mc2",
@@ -5573,7 +5580,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Der 2. Herzton markiert den Beginn der Diastole", correct: true },
           { text: "Das Schlagvolumen beträgt in Ruhe ca. 150 ml", correct: false },
           { text: "Der 1. Herzton entsteht beim Schluss der Taschenklappen", correct: false }
-        ]
+        ],
+        explanation: "In der Systole (Kontraktionsphase, Schlagvolumen ~70 ml in Ruhe) wird Blut ausgeworfen; der 2. Herzton entsteht beim Schluss der Taschenklappen und markiert den Beginn der Diastole.",
       }
     ]
   }),
@@ -5661,7 +5669,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Der AV-Knoten überträgt Erregung ohne Verzögerung auf die Kammern", correct: false },
           { text: "Purkinje-Fasern verteilen die Erregung im Arbeitsmyokard", correct: true },
           { text: "Der Kammereigenrhythmus liegt bei 60–80/min", correct: false }
-        ]
+        ],
+        explanation: "Der Sinusknoten ist primärer Schrittmacher mit 60-80/min, der AV-Knoten verzögert die Überleitung auf die Kammern um ~0,1 s (kein sofortiger Transfer), und Purkinje-Fasern verteilen die Erregung schnell im Arbeitsmyokard.",
       },
       {
         id: "erregung_mc2",
@@ -5672,7 +5681,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Das Herz hört sofort auf zu schlagen", correct: false },
           { text: "Die Kammermuskulatur übernimmt mit 20–40/min, wenn auch der AV-Knoten ausfällt", correct: true },
           { text: "Die Purkinje-Fasern werden zum primären Schrittmacher", correct: false }
-        ]
+        ],
+        explanation: "Das Herz hat ein hierarchisches Ersatzschrittmachersystem: AV-Knoten übernimmt bei Sinusknotenausfall mit 40-50/min, und fällt auch dieser aus, springt der Kammereigenrhythmus mit 20-40/min ein.",
       }
     ]
   }),
@@ -5753,7 +5763,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Der RIVA ist ein Ast der linken Koronararterie", correct: true },
           { text: "Zwischen den Koronararterien bestehen gut ausgebildete Anastomosen", correct: false },
           { text: "Die A. coronaria dextra versorgt hauptsächlich den linken Ventrikel", correct: false }
-        ]
+        ],
+        explanation: "Die Koronararterien werden hauptsächlich in der Diastole durchblutet, da der Herzmuskel in der Systole die Gefäße komprimiert; der RIVA ist ein Hauptast der linken Koronararterie und versorgt den linken Ventrikel und das Septum.",
       },
       {
         id: "koronar_mc2",
@@ -5764,7 +5775,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die Vv. pulmonales führen sauerstoffreiches Blut zum linken Herzen", correct: true },
           { text: "Der kleine Kreislauf beginnt im linken Herzen", correct: false },
           { text: "Im Lungenkreislauf fließt sauerstoffreiches Blut von rechts zur Lunge", correct: false }
-        ]
+        ],
+        explanation: "Im großen Kreislauf pumpt das linke Herz sauerstoffreiches Blut durch die Aorta; die Vv. pulmonales bringen sauerstoffreiches Blut von der Lunge zum linken Herzen; der kleine Kreislauf beginnt im rechten (nicht linken) Herzen.",
       }
     ]
   }),
@@ -5845,7 +5857,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Elastische Arterien (Aorta) haben viel glatte Muskulatur in der Media", correct: false },
           { text: "Kapillaren bestehen nur aus Endothel und ermöglichen Stoffaustausch", correct: true },
           { text: "Arteriolen haben eine schwach ausgeprägte Tunica media", correct: false }
-        ]
+        ],
+        explanation: "Alle Blutgefäße haben drei Wandschichten (Intima, Media, Adventitia), die von der Arterie zur Vene abnehmen; Kapillaren bestehen nur aus Endothel und ermöglichen so den direkten Stoffaustausch.",
       },
       {
         id: "gefaess_mc2",
@@ -5856,7 +5869,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Windkesselfunktion: Dämpfung des pulsatilen Blutflusses", correct: true },
           { text: "Typischer Vertreter: A. femoralis", correct: false },
           { text: "Viel glatte Muskulatur, wenig elastische Fasern", correct: false }
-        ]
+        ],
+        explanation: "Elastische Arterien wie die Aorta haben eine stark elastische Tunica media (nicht viel glatte Muskulatur), die den systolischen Druckstoß puffert (Windkesselfunktion) und den Blutfluss gleichmäßiger macht.",
       }
     ]
   }),
@@ -5937,7 +5951,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Atemsog bei Inspiration", correct: true },
           { text: "Windkesselfunktion der Aorta", correct: false },
           { text: "Arteriovenöse Kopplung", correct: true }
-        ]
+        ],
+        explanation: "Der venöse Rückstrom wird durch Skelettmuskelpumpe, Atemsog bei Inspiration und arteriovenöse Kopplung gefördert; die Windkesselfunktion betrifft dagegen nur den arteriellen Kreislauf.",
       },
       {
         id: "venen_mc2",
@@ -5948,7 +5963,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die V. saphena magna ist eine oberflächliche Beinvene, die variköse Veränderungen zeigen kann", correct: true },
           { text: "Venen besitzen generell keine Klappen", correct: false },
           { text: "Die Aorta entspringt aus dem rechten Ventrikel", correct: false }
-        ]
+        ],
+        explanation: "Venenklappen verhindern in den Extremitätenvenen den Rückfluss gegen die Schwerkraft; die V. saphena magna ist eine häufig von Varizen betroffene oberflächliche Beinvene; die Aorta entspringt aus dem linken (nicht rechten) Ventrikel.",
       }
     ]
   }),
@@ -6024,7 +6040,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Das Foramen ovale umgeht den Lungenkreislauf, indem es rechten und linken Vorhof verbindet", correct: true },
           { text: "Der Ductus venosus verbindet Truncus pulmonalis und Aorta", correct: false },
           { text: "Die Nabelvene führt sauerstoffarmes Blut", correct: false }
-        ]
+        ],
+        explanation: "Im fetalen Kreislauf übernimmt die Plazenta den Gasaustausch; das Foramen ovale verbindet die Vorhöfe und leitet Blut am nicht belüfteten Lungenkreislauf vorbei; der Ductus arteriosus verbindet Truncus pulmonalis und Aorta (nicht Ductus venosus).",
       },
       {
         id: "fetal_mc2",
@@ -6035,7 +6052,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Ductus arteriosus schließt sich funktionell durch O₂-Anstieg und Bradykinin", correct: true },
           { text: "Der Ductus venosus bleibt ein Leben lang offen", correct: false },
           { text: "Das Foramen ovale öffnet sich weiter, um die Lunge zu entlasten", correct: false }
-        ]
+        ],
+        explanation: "Nach der Geburt verschließt der O2-Anstieg funktionell den Ductus arteriosus, der Anstieg des linksatrialen Drucks schließt das Foramen ovale, und der Ductus venosus obliteriert ebenfalls — alle fetalen Shunts werden somit verschlossen.",
       }
     ]
   }),
@@ -6123,7 +6141,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Alle invasiven Methoden ermöglichen eine Karyotypisierung", correct: true },
           { text: "Die Amniozentese hat ein höheres Fehlgeburtsrisiko als die Chorionzottenbiopsie", correct: false },
           { text: "Die Cordozentese wird ab der 5. SSW durchgeführt", correct: false }
-        ]
+        ],
+        explanation: "NIPT analysiert zellfreie fetale DNA im mütterlichen Blut nicht-invasiv; die Chorionzottenbiopsie hat ein höheres Fehlgeburtsrisiko als die Amniozentese (nicht umgekehrt); alle invasiven Methoden erlauben eine vollständige Karyotypisierung.",
       },
       {
         id: "prae_mc2",
@@ -6134,7 +6153,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Das Neugeborenenscreening erfolgt durch einen Fersenbluttropfen am 3. Lebenstag", correct: true },
           { text: "Der APGAR-Score bewertet das Gestationsalter des Neugeborenen", correct: false },
           { text: "7–10 APGAR-Punkte gelten als kritisch", correct: false }
-        ]
+        ],
+        explanation: "Der APGAR-Score bewertet 5 Vitalparameter (nicht das Gestationsalter) bei 1, 5 und 10 Minuten nach der Geburt; 7-10 Punkte gelten als gut; das Neugeborenenscreening erfolgt durch Fersenblut am 3. Lebenstag.",
       }
     ]
   }),
@@ -6234,7 +6254,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Persistierende archaische Reflexe nach dem 2. Lebensjahr können neurologische Störungen anzeigen", correct: true },
           { text: "Frühkindliche Reflexe persistieren ein Leben lang", correct: false },
           { text: "Der Babinski-Reflex ist beim Neugeborenen pathologisch", correct: false }
-        ]
+        ],
+        explanation: "Archaische Reflexe (Moro, Saug, Greifen) sind physiologisch beim Neugeborenen und sollten in den ersten Lebensmonaten verschwinden; der Babinski-Reflex ist beim Neugeborenen normal und persistierende Reflexe nach dem 2. Lebensjahr deuten auf neurologische Störungen hin.",
       },
       {
         id: "neugeb_mc2",
@@ -6245,7 +6266,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Kopfkontrolle ab ca. 3 Monaten", correct: true },
           { text: "Laufen ohne Stütze typischerweise schon ab 6 Monaten", correct: false },
           { text: "Erste sinnvolle Einzelworte ab ca. 12 Monaten", correct: true }
-        ]
+        ],
+        explanation: "Entwicklungseckpunkte: soziales Lächeln ab ~6 Wochen, Kopfkontrolle ab ~3 Monaten, freies Laufen typischerweise erst ab 12-15 Monaten (nicht 6 Monaten), erste sinnvolle Einzelworte ab ~12 Monaten.",
       }
     ]
   }),
@@ -6333,7 +6355,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Herdenimmunität schützt auch Ungeimpfte, wenn der Anteil Immuner hoch genug ist", correct: true },
           { text: "Für Masern reicht eine Durchimpfungsrate von 70 % für Herdenimmunität", correct: false },
           { text: "Lebendimpfstoffe sind für immunsupprimierte Personen sicher", correct: false }
-        ]
+        ],
+        explanation: "STIKO gibt Impfempfehlungen heraus; für Masern-Herdenimmunität sind >95% (nicht 70%) Durchimpfung nötig; Lebendimpfstoffe sind für Immunsupprimierte kontraindiziert, da abgeschwächte Erreger noch replizieren können.",
       },
       {
         id: "impf_mc2",
@@ -6344,7 +6367,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Einverständnis des Patienten/Erziehungsberechtigten ist erforderlich", correct: true },
           { text: "Impfreaktionen müssen als Impfschäden gemeldet werden", correct: false },
           { text: "Eine Aufklärung ist nur bei Erstimpfungen notwendig", correct: false }
-        ]
+        ],
+        explanation: "Impfaufklärung muss rechtzeitig vor jeder Impfung (nicht nur Erstimpfungen) erfolgen und das Einverständnis ist immer einzuholen; normale Impfreaktionen (Rötung, Schwellung) sind keine meldepflichtigen Impfschäden.",
       }
     ]
   }),
@@ -6444,7 +6468,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Translokationstrisomie kann familiär vererbt werden", correct: true },
           { text: "Das Risiko für Down-Syndrom sinkt mit zunehmendem mütterlichem Alter", correct: false },
           { text: "Alle drei Formen (freie Trisomie, Translokation, Mosaik) haben identischen klinischen Verlauf", correct: false }
-        ]
+        ],
+        explanation: "Beim Down-Syndrom macht die freie Trisomie 21 (durch Nondisjunction) ca. 95% der Fälle aus; das Risiko steigt mit zunehmendem mütterlichem Alter; die Translokationstrisomie kann familiär vererbt werden und hat kein altersabhängiges Risiko.",
       },
       {
         id: "chromosom_mc2",
@@ -6455,7 +6480,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Alkohol → häufigste nicht-genetische geistige Behinderung (FAS)", correct: true },
           { text: "Röteln in der Frühschwangerschaft → Gregg-Trias (Herzfehler, Katarakt, Schwerhörigkeit)", correct: true },
           { text: "Rauchen → ausschließlich Herzfehler ohne Wachstumsfolgen", correct: false }
-        ]
+        ],
+        explanation: "Zu den wichtigsten pränatalen Noxen gehören Rauchen (Wachstumsretardierung + SIDS-Risiko), Alkohol (fetales Alkoholsyndrom, häufigste nicht-genetische geistige Behinderung) und Röteln (Gregg-Trias: Herzfehler, Katarakt, Schwerhörigkeit).",
       }
     ]
   }),
@@ -6543,7 +6569,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Aortenklappe: 2. ICR rechts neben dem Sternum", correct: true },
           { text: "Pulmonalklappe: 2. ICR rechts neben dem Sternum", correct: false },
           { text: "Erb-Punkt: 3. ICR links neben dem Sternum", correct: true }
-        ]
+        ],
+        explanation: "Auskultationspunkte: Mitralklappe im 5. ICR links (Herzspitze), Aortenklappe im 2. ICR rechts, Pulmonalklappe im 2. ICR links (nicht rechts), Erb-Punkt im 3. ICR links — die Punkte liegen dort, wo die Klangübertragung am besten ist.",
       },
       {
         id: "auskultation_mc2",
@@ -6554,7 +6581,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Mm. papillares halten über Chordae tendineae die Segelklappen in den Kammern", correct: true },
           { text: "Der Sinus coronarius mündet in den linken Vorhof", correct: false },
           { text: "Trabeculae carneae sind unregelmäßige Muskelstränge in den Herzkammern", correct: true }
-        ]
+        ],
+        explanation: "Im Herzinnenraum dienen Mm. pectinati (Vorhöfe) und Trabeculae carneae (Kammern) der Wandstruktur; Mm. papillares halten über Chordae tendineae die Segelklappen; der Sinus coronarius mündet in den rechten (nicht linken) Vorhof.",
       }
     ]
   })
@@ -6648,7 +6676,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Der Hämatokrit beschreibt den Erythrozytenanteil am Gesamtblutvolumen", correct: true },
           { text: "Blutserum enthält Fibrinogen, Blutplasma nicht", correct: false },
           { text: "Die Gesamtkonzentration von Kationen und Anionen im Plasma beträgt je 155 mmol/l (Isotonie)", correct: true }
-        ]
+        ],
+        explanation: "Blutplasma ist leicht alkalisch (pH 7,36-7,44); der Hämatokrit beschreibt den Erythrozytenanteil; Blutserum enthält kein Fibrinogen (wurde durch Gerinnung verbraucht), Blutplasma dagegen schon; Isotonie entsteht durch je 155 mmol/l Kationen und Anionen.",
       },
       {
         id: "blut_zusammensetzung_mc2",
@@ -6659,7 +6688,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Ein pH unter 7,36 wird als Alkalose bezeichnet", correct: false },
           { text: "Plasma enthält 90–91 % Wasser", correct: true },
           { text: "Das Blut macht ca. 6–8 % des Körpergewichts aus", correct: true }
-        ]
+        ],
+        explanation: "Normwerte: Hämatokrit Frauen 37-48%, Plasma enthält 90-91% Wasser, Blut ca. 6-8% des Körpergewichts; ein pH unter 7,36 ist eine Azidose (nicht Alkalose).",
       }
     ]
   }),
@@ -6747,7 +6777,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Gamma-Globuline sind Immunglobuline und dienen der Infektabwehr", correct: true },
           { text: "Beta-Globuline hemmen eiweißspaltende Enzyme", correct: false },
           { text: "Albuminmangel kann zu Ödemen führen", correct: true }
-        ]
+        ],
+        explanation: "Albumin ist das häufigste Plasmaprotein und erzeugt den kolloid-osmotischen Druck; Albuminmangel (z.B. bei Leberzirrhose) führt zu Ödemen, weil Flüssigkeit ins Interstitium austritt; Gamma-Globuline sind Immunglobuline.",
       },
       {
         id: "plasmaproteine_mc2",
@@ -6758,7 +6789,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Beta-Globuline transportieren Eisen", correct: true },
           { text: "Alpha-2-Globuline sind Immunglobuline", correct: false },
           { text: "Alpha-2-Globuline hemmen Proteasen", correct: true }
-        ]
+        ],
+        explanation: "Globuline haben spezifische Transportfunktionen: Alpha-1-Globuline transportieren Fett (Lipoproteine), Beta-Globuline transportieren Eisen (Transferrin), Alpha-2-Globuline hemmen Proteasen; Immunglobuline sind Gamma-Globuline.",
       }
     ]
   }),
@@ -6846,7 +6878,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Hämoglobin enthält 4 Häm-Gruppen mit je einem Fe²⁺-Ion", correct: true },
           { text: "Erythrozyten werden in der Milz gebildet und im Knochenmark abgebaut", correct: false },
           { text: "CO bindet ca. 300-mal stärker an Hämoglobin als O₂", correct: true }
-        ]
+        ],
+        explanation: "Erythrozyten sind kernlos, leben 100-120 Tage und tragen Hämoglobin mit 4 Häm-Gruppen (je Fe2+); CO bindet ca. 300-fach stärker als O2 und blockiert damit die Sauerstoffversorgung; sie werden im Knochenmark gebildet und in Milz und Leber abgebaut.",
       },
       {
         id: "erythrozyten_mc2",
@@ -6857,7 +6890,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Myoglobin hat 4 Häm-Gruppen wie Hämoglobin", correct: false },
           { text: "Die O₂-Bindung an Hämoglobin ist eine Oxygenation, keine Oxidation", correct: true },
           { text: "CO-Vergiftung ist irreversibel und daher immer tödlich", correct: false }
-        ]
+        ],
+        explanation: "Nitritvergiftung oxidiert Fe2+ zu Fe3+ (Methämoglobin, kann kein O2 abgeben); Myoglobin hat nur 1 (nicht 4) Häm-Gruppe; CO-Vergiftung ist reversibel (Therapie: reiner O2 oder Hyperbare-O2); O2-Bindung ist eine Oxygenation, keine chemische Oxidation.",
       }
     ]
   }),
@@ -6945,7 +6979,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Eosinophile zeigen einen Tagesrhythmus und sind bei Allergien erhöht", correct: true },
           { text: "Monozyten sind die kleinsten Leukozyten", correct: false },
           { text: "Basophile enthalten Heparin und Histamin", correct: true }
-        ]
+        ],
+        explanation: "Neutrophile sind mit 30-70% die häufigsten Leukozyten; Eosinophile zeigen Tagesrhythmus und steigen bei Allergien an; Basophile enthalten Heparin und Histamin; Monozyten sind die größten (nicht kleinsten) Leukozyten.",
       },
       {
         id: "leukozyten_mc2",
@@ -6956,7 +6991,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Zytostatika-Therapie", correct: true },
           { text: "Akute Bakterieninfektionen", correct: false },
           { text: "Knochenmarkschädigungen", correct: true }
-        ]
+        ],
+        explanation: "Leukopenie entsteht durch direkte Virusschädigung (HIV, Influenza, Masern), Hemmung der Knochenmarkproduktion durch Zytostatika oder Knochenmarkschädigungen; akute Bakterieninfektionen verursachen dagegen eine Leukozytose.",
       }
     ]
   }),
@@ -7044,7 +7080,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Der von-Willebrand-Faktor vermittelt die Thrombozytenadhäsion", correct: true },
           { text: "Extrinsische Aktivierung verläuft langsamer als intrinsische", correct: false },
           { text: "Fibrinogen wird durch Thrombin zu Fibrin umgewandelt", correct: true }
-        ]
+        ],
+        explanation: "Die primäre Hämostase (1-3 Min, weißer Thrombus) wird vom von-Willebrand-Faktor vermittelt; in der sekundären Hämostase wandelt Thrombin Fibrinogen zu Fibrin; die extrinsische Gerinnungskaskade läuft schneller ab als die intrinsische.",
       },
       {
         id: "haemostase_mc2",
@@ -7055,7 +7092,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Cumarin/Marcumar ist ein Vitamin-K-Antagonist", correct: true },
           { text: "ASS hemmt die Thrombozytenaggregation", correct: true },
           { text: "Natriumcitrat aktiviert Antithrombin III", correct: false }
-        ]
+        ],
+        explanation: "Antikoagulantien: Heparin aktiviert Antithrombin III (wirkt sofort), Cumarin blockiert Vitamin-K-abhängige Gerinnungsfaktoren, ASS hemmt irreversibel die Thrombozytenaggregation; Natriumcitrat bindet Calcium und wird nur ex vivo eingesetzt.",
       }
     ]
   }),
@@ -7143,7 +7181,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Agglutinogene sind Antigene auf den Erythrozyten", correct: true },
           { text: "Blutgruppe 0 hat A- und B-Antigene auf den Erythrozyten", correct: false },
           { text: "Vor Transfusionen sind Kreuzprobe und Bedside-Test obligat", correct: true }
-        ]
+        ],
+        explanation: "Blutgruppe AB hat keine Antikörper und ist universeller Empfänger; Blutgruppe 0 hat keine A/B-Antigene auf Erythrozyten (aber beide Antikörper); vor Transfusionen sind Kreuzprobe und Bedside-Test obligat.",
       },
       {
         id: "blutgruppen_mc2",
@@ -7154,7 +7193,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Erythroblastosis fetalis kann ab der zweiten Schwangerschaft auftreten", correct: true },
           { text: "85 % der Bevölkerung sind Rh-negativ", correct: false },
           { text: "Anti-D-Prophylaxe wird in der 28.–30. SSW und nach der Geburt gegeben", correct: true }
-        ]
+        ],
+        explanation: "Ca. 85% der Menschen sind Rh-positiv (nicht negativ); Rh-Antikörper entstehen erst nach Sensibilisierung; Erythroblastosis fetalis tritt ab der zweiten Schwangerschaft auf, weshalb Anti-D-Prophylaxe in der 28.-30. SSW und nach der Geburt gegeben wird.",
       }
     ]
   }),
@@ -7242,7 +7282,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "NK-Zellen erkennen Tumorzellen ohne vorherige Sensibilisierung", correct: true },
           { text: "CRP ist ein spezifischer Antikörper gegen bestimmte Bakterien", correct: false },
           { text: "Unspezifische Abwehr hat kein immunologisches Gedächtnis", correct: true }
-        ]
+        ],
+        explanation: "Die unspezifische Abwehr reagiert sofort ohne Gedächtnis: Komplementsystem lysiert Bakterien direkt und opsoniert sie, NK-Zellen erkennen MHC-I-Verlust auf Tumorzellen ohne Sensibilisierung; CRP ist ein unspezifisches Akute-Phase-Protein (kein Antikörper).",
       },
       {
         id: "abwehr_unspezifisch_mc2",
@@ -7253,7 +7294,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Makrophagen (MMS – Mikroglia, Kupffer-Zellen, Alveolar-Makrophagen)", correct: true },
           { text: "Plasmazellen (Antikörperproduktion)", correct: false },
           { text: "NK-Zellen (Zytotoxine gegen infizierte Zellen)", correct: true }
-        ]
+        ],
+        explanation: "Die zelluläre unspezifische Abwehr umfasst Neutrophile (Phagozytose), Makrophagen in verschiedenen Geweben (Mikroglia, Kupffer-Zellen, Alveolarmakrophagen) und NK-Zellen; Plasmazellen produzieren Antikörper und gehören zur spezifischen humoralen Abwehr.",
       }
     ]
   }),
@@ -7341,7 +7383,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "IgM ist das erste Immunglobulin der primären Immunantwort", correct: true },
           { text: "IgE vermittelt allergische Reaktionen über Mastzellen", correct: true },
           { text: "IgA ist plazentagängig und schützt das Neugeborene", correct: false }
-        ]
+        ],
+        explanation: "IgG ist das einzige plazentagängige Immunglobulin (Nestschutz), IgM dominiert die Primärantwort, IgE vermittelt Typ-I-Allergien über Mastzellen; IgA schützt Schleimhäute und ist nicht plazentagängig.",
       },
       {
         id: "abwehr_spezifisch_mc2",
@@ -7352,7 +7395,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "T-Helferzellen aktivieren Makrophagen und fördern die Antikörperproduktion", correct: true },
           { text: "Zytotoxische T-Zellen produzieren Antikörper", correct: false },
           { text: "T-Gedächtniszellen ermöglichen eine schnellere Reaktion beim Zweitkontakt", correct: true }
-        ]
+        ],
+        explanation: "T-Lymphozyten werden im Thymus geprägt; T-Helferzellen (CD4+) aktivieren Makrophagen und B-Zellen; zytotoxische T-Zellen (CD8+) töten direkt infizierte Zellen und produzieren keine Antikörper; Gedächtniszellen ermöglichen die schnellere Sekundärantwort.",
       }
     ]
   }),
@@ -7440,7 +7484,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Lebendimpfstoffe enthalten abgeschwächte, noch vermehrungsfähige Erreger", correct: true },
           { text: "Aktive Immunisierung bietet sofortigen Schutz wie Hyperimmunserum", correct: false },
           { text: "Toxoidimpfstoffe enthalten inaktivierte Toxine (z. B. Tetanus, Diphtherie)", correct: true }
-        ]
+        ],
+        explanation: "Aktive Immunisierung bildet Gedächtniszellen für Langzeitschutz (nicht sofortig wie Serum); Lebendimpfstoffe enthalten vermehrungsfähige abgeschwächte Erreger; Toxoidimpfstoffe enthalten inaktivierte Toxine (Tetanus, Diphtherie).",
       },
       {
         id: "impfungen_mc2",
@@ -7451,7 +7496,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Simultanimpfung kombiniert aktive und passive Immunisierung", correct: true },
           { text: "Passive Immunisierung bildet Gedächtniszellen für Langzeitschutz", correct: false },
           { text: "Hyperimmunserum wird u. a. bei Tetanus, Tollwut und Schlangenbiss eingesetzt", correct: true }
-        ]
+        ],
+        explanation: "Passive Immunisierung durch Hyperimmunserum bietet sofortigen, aber kurzfristigen Schutz ohne Gedächtniszellen, weshalb sie bei akuter Gefährdung (Tetanus, Tollwut, Schlangenbiss) eingesetzt wird; Simultanimpfung kombiniert aktive und passive Immunisierung.",
       }
     ]
   }),
@@ -7539,7 +7585,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Typ IV: T-Lymphozyten → verzögerte Reaktion 12–72 h", correct: true },
           { text: "Typ III: Ablagerung von Immunkomplexen in Gefäßwänden", correct: true },
           { text: "Kontaktekzeme entstehen durch Typ-I-Reaktion", correct: false }
-        ]
+        ],
+        explanation: "Typ I (IgE/Mastzellen, Sofort), Typ II (zytotoxisch, IgG/IgM), Typ III (Immunkomplexablagerung in Gefäßwänden), Typ IV (T-Zell-vermittelt, verzögert 12-72 h); Kontaktekzeme entstehen durch Typ IV, nicht Typ I.",
       },
       {
         id: "allergien_mc2",
@@ -7550,7 +7597,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Adrenalin i.m. ist die Erstbehandlung beim anaphylaktischen Schock", correct: true },
           { text: "Typ II wird durch T-Lymphozyten vermittelt", correct: false },
           { text: "Transfusionshämolyse kann eine Typ-II-Reaktion sein", correct: true }
-        ]
+        ],
+        explanation: "Anaphylaxie ist die schwerste Typ-I-Reaktion mit sofortiger i.m.-Adrenalintherapie; Typ-II-Reaktionen werden durch IgG/IgM (nicht T-Lymphozyten) vermittelt und umfassen z.B. Transfusionshämolyse.",
       }
     ]
   }),
@@ -7638,7 +7686,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Lymphgefäße beginnen blind und besitzen Klappen", correct: true },
           { text: "Die Milz liegt im rechten Oberbauch", correct: false },
           { text: "Täglich werden 2–3 Liter Lymphe ins Blut zurückgeführt", correct: true }
-        ]
+        ],
+        explanation: "Der Ductus thoracicus mündet in den linken Angulus venosus; Lymphgefäße beginnen blind im Gewebe; täglich werden 2-3 L Lymphe ins Blut zurückgeführt; die Milz liegt im linken (nicht rechten) Oberbauch.",
       },
       {
         id: "lymphsystem_mc2",
@@ -7649,7 +7698,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Der Thymus involiert in der Pubertät und ist beim Erwachsenen kaum noch aktiv", correct: true },
           { text: "Die Rachenmandel wird bei Tonsillektomie entfernt", correct: false },
           { text: "Peyer-Plaques und Appendix bilden das GALT", correct: true }
-        ]
+        ],
+        explanation: "Die Milz baut überalterte Erythrozyten ab (Blutmauserung); der Thymus involiert nach der Pubertät; die Adenotomie entfernt die Rachenmandel (nicht Tonsillektomie); Peyer-Plaques und Appendix bilden das GALT.",
       }
     ]
   }),
@@ -7737,7 +7787,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten", correct: true },
           { text: "Thrombozyten leben 100–120 Tage wie Erythrozyten", correct: false },
           { text: "Der Normalwert für Thrombozyten beträgt 150.000–300.000/µl", correct: true }
-        ]
+        ],
+        explanation: "Blut übernimmt Transport-, Abwehr- und Regulationsfunktionen (pH, Temperatur, Elektrolyte); Thrombozyten entstehen durch Abschnürung von Megakaryozyten und leben nur 5-11 Tage (nicht 100-120 Tage wie Erythrozyten).",
       },
       {
         id: "blutfkt_mc2",
@@ -7748,7 +7799,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Lymphknoten filtern Lymphe biologisch durch Makrophagen und Lymphozyten", correct: true },
           { text: "Aktivierte Lymphfollikel in der Rinde besitzen ein Keimzentrum", correct: true },
           { text: "Lymphknoten filtern Blut wie die Milz", correct: false }
-        ]
+        ],
+        explanation: "Bis zu 700 Lymphknoten filtern Lymphe biologisch durch Makrophagen und Lymphozyten; aktivierte Lymphfollikel bilden Keimzentren; Blut wird durch die Milz (nicht Lymphknoten) gefiltert.",
       }
     ]
   })
@@ -7842,7 +7894,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die Pulpa enthält Nerven und Blutgefäße", correct: true },
           { text: "Zahnschmelz ist die härteste Substanz des Körpers", correct: true },
           { text: "Dentin ist nervenlos und bildet nur die äußere Zahnoberfläche", correct: false }
-        ]
+        ],
+        explanation: "Zahnschmelz ist die härteste Substanz des Körpers; die Pulpa enthält Nerven und Gefäße (Schmerzempfindung); Dentin ist über Odontoblastenfortsätze innerviert, bildet aber nicht die äußere Zahnoberfläche — das ist der Schmelz.",
       },
       {
         id: "mundhoehl_zaehne_mc2",
@@ -7853,7 +7906,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Das Milchgebiss hat 20 Zähne", correct: true },
           { text: "Molaren sind ausschließlich im Dauergebiss vorhanden", correct: true },
           { text: "Das Dauergebiss bricht ab dem 6. Lebensmonat durch", correct: false }
-        ]
+        ],
+        explanation: "Das Milchgebiss hat 20 Zähne, das Dauergebiss 32 (einschließlich Weisheitszähne); Molaren kommen nur im Dauergebiss vor; das Dauergebiss bricht ab dem 6. Lebensjahr (nicht Monat) durch.",
       }
     ]
   }),
@@ -7941,7 +7995,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Speichel enthält Alpha-Amylase (Ptyalin) zur Kohlenhydratverdauung", correct: true },
           { text: "Die tägliche Speichelproduktion beträgt ca. 1,5 Liter", correct: true },
           { text: "Speichel wird ausschließlich durch mechanische Kaureize produziert", correct: false }
-        ]
+        ],
+        explanation: "Die Glandula parotis liegt paarig vor dem Ohr; Speichel enthält Alpha-Amylase (Ptyalin) für die orale Kohlenhydratverdauung, ca. 1,5 L/Tag; Speichelproduktion wird durch mechanische, olfaktorische und visuelle Reize ausgelöst.",
       },
       {
         id: "speicheldruesen_mc2",
@@ -7952,7 +8007,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Speichel kann zur Diagnose einer Schwermetallvergiftung genutzt werden", correct: true },
           { text: "Kleinspeicheldrüsen sezernieren dauerhaft Gleitspeichel", correct: true },
           { text: "Speichel besteht zu 100 % aus Wasser ohne Enzyme", correct: false }
-        ]
+        ],
+        explanation: "Speichel hat bakterizide Wirkung (IgA, Lysozym), ist als Diagnostikmaterial nutzbar (Schwermetalle, Hormone), und Kleinspeicheldrüsen sezernieren kontinuierlich Gleitspeichel; Speichel enthält Wasser, Enzyme, Elektrolyte und Muzine — nicht nur Wasser.",
       }
     ]
   }),
@@ -8040,7 +8096,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Papillae vallatae sind V-förmig im hinteren Zungenbereich angeordnet", correct: true },
           { text: "Papillae filiformes enthalten Geschmacksknospen", correct: false },
           { text: "Papillae foliatae befinden sich am hinteren Zungenrand und nehmen am Geschmack teil", correct: true }
-        ]
+        ],
+        explanation: "Drei Papillentypen tragen Geschmacksknospen: fungiformes (verteilt über die Zunge), vallatae (V-förmig, 8-12 Stück hinten) und foliatae (seitlich hinten); Papillae filiformes dienen nur dem mechanischen Ertasten und haben keine Geschmacksknospen.",
       },
       {
         id: "zunge_geschmack_mc2",
@@ -8051,7 +8108,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Sublinguale Resorption ermöglicht Wirkstoffaufnahme ohne First-Pass-Effekt", correct: true },
           { text: "Die Zunge kann eine Saugkraft von ca. 0,15 bar (1,5 m Wassersäule) aufbauen", correct: true },
           { text: "Die Zunge besteht aus glatter Muskulatur und ist unwillkürlich gesteuert", correct: false }
-        ]
+        ],
+        explanation: "Die fünf Grundgeschmacksrichtungen sind süß, sauer, salzig, bitter und umami (glutamatsensitiv); sublinguale Resorption umgeht den First-Pass-Effekt der Leber; die Zunge besteht aus quergestreifter Skelettmuskulatur und ist willkürlich steuerbar.",
       }
     ]
   }),
@@ -8139,7 +8197,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Stimmlippen schließen sich zum Schutz der unteren Atemwege", correct: true },
           { text: "Die Epiglottis kippt nach hinten und schützt den Larynx", correct: true },
           { text: "Die Tonsillen blockieren den Speiseweg zur Verbesserung der Passage", correct: false }
-        ]
+        ],
+        explanation: "In der pharyngealen Phase werden die Atemwege dreifach gesichert: Gaumensegel + Passavant-Wulst (Nasopharynx), Stimmritzenschluss und Epiglottis-Abkippen; die Tonsillen haben dabei keine Sperrfunktion für den Speiseweg.",
       },
       {
         id: "rachen_schluckakt_mc2",
@@ -8150,7 +8209,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die orale Vorbereitungsphase ist willkürlich steuerbar", correct: true },
           { text: "Der Schluckreflex wird durch N. glossopharyngeus und N. vagus ausgelöst", correct: true },
           { text: "Der gesamte Schluckakt ist von Beginn an ein unwillkürlicher Reflex", correct: false }
-        ]
+        ],
+        explanation: "Der Schluckakt beginnt willkürlich (orale Phase), wird dann durch Berühren der Rachenhinterwand reflexartig über N. glossopharyngeus (IX) und N. vagus (X) ausgelöst; der Epipharynx dient ausschließlich als Luftweg.",
       }
     ]
   }),
@@ -8238,7 +8298,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die Constrictio bronchoaortica liegt ca. 25 cm von der Zahnreihe entfernt", correct: true },
           { text: "Die Constrictio diaphragmatica liegt ca. 40 cm von der Zahnreihe entfernt", correct: true },
           { text: "Es gibt insgesamt vier physiologische Engstellen des Ösophagus", correct: false }
-        ]
+        ],
+        explanation: "Der Ösophagus hat drei (nicht vier) physiologische Engstellen: Constrictio cricoidea (~15 cm), bronchoaortica (~25 cm) und diaphragmatica (~40 cm) — dort bleiben Fremdkörper und Karzinome bevorzugt hängen.",
       },
       {
         id: "oesophagus_mc2",
@@ -8249,7 +8310,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die äußerste Schicht ist eine Tunica adventitia (keine Serosa)", correct: true },
           { text: "Die Tunica submucosa enthält Glandulae oesophageae", correct: true },
           { text: "Der Ösophagus hat außen eine Serosa wie Magen und Dünndarm", correct: false }
-        ]
+        ],
+        explanation: "Im Gegensatz zum restlichen Verdauungstrakt hat der Ösophagus mehrschichtiges unverhorntes Plattenepithel und außen eine Adventitia (keine Serosa), was Ösophagusperforation schwerer abgrenzt; die Submucosa enthält schleimproduzierende Glandulae oesophageae.",
       }
     ]
   }),
@@ -8337,7 +8399,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Im Fundus sammeln sich Luftblasen, was Aufstoßen erklärt", correct: true },
           { text: "Der Pylorus wird durch den M. sphincter pylori kontrolliert", correct: true },
           { text: "Die Curvatura major liegt rechts und hängt das Omentum minus", correct: false }
-        ]
+        ],
+        explanation: "An der Kardia begünstigt der Epithelübergang Barrett-Ösophagus; im Fundus sammeln sich Luftblasen; der Pylorus wird durch den M. sphincter pylori kontrolliert; das Omentum minus hängt an der Curvatura minor (nicht major) zur Leber.",
       },
       {
         id: "magen_aufbau_mc2",
@@ -8348,7 +8411,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die schräge Muskelschicht dient der Chymus-Durchmischung", correct: true },
           { text: "Die Magenstraße dient dem Transport, nicht der Verdauung", correct: true },
           { text: "Das Omentum majus hängt an der Curvatura minor in Richtung Leber", correct: false }
-        ]
+        ],
+        explanation: "Die drei Muskelschichten des Magens (Längs-, Ring-, Schräg-) ermöglichen Knetbewegungen; die schräge Schicht dient der Durchmischung; die Magenstraße entlang der kleinen Kurvatur dient dem schnellen Flüssigkeitstransport; das Omentum majus hängt an der Curvatura major.",
       }
     ]
   }),
@@ -8436,7 +8500,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Hauptzellen produzieren Pepsinogen (7 eiweißspaltende Enzyme)", correct: true },
           { text: "Nebenzellen produzieren Muzin und können sich zu Hauptzellen differenzieren", correct: true },
           { text: "Belegzellen produzieren Gastrin als stärksten HCl-Stimulus", correct: false }
-        ]
+        ],
+        explanation: "Belegzellen (Parietalzellen) bilden HCl und den Intrinsic-Faktor (Vitamin-B12-Resorption), Hauptzellen produzieren Pepsinogen, Nebenzellen Muzin; Gastrin wird von G-Zellen im Antrum produziert (nicht Belegzellen).",
       },
       {
         id: "magen_sekretion_mc2",
@@ -8447,7 +8512,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Gastrin ist der stärkste Stimulus für die HCl-Produktion", correct: true },
           { text: "Sekretin ist ein Gastrin-Antagonist, ausgelöst durch pH < 4 im Duodenum", correct: true },
           { text: "Hyposekretion bei Stress führt zu Gastritis und Geschwüren", correct: false }
-        ]
+        ],
+        explanation: "Die drei Sekretionsphasen: cephalisch (N. vagus), gastrisch (Gastrin, stärkster HCl-Stimulus), intestinal (Sekretin als Gastrin-Antagonist bei pH < 4 im Duodenum); Hypersekretion (nicht Hyposekretion) bei Stress führt zu Gastritis und Geschwüren.",
       }
     ]
   }),
@@ -8535,7 +8601,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Mikrovilli erhöhen die Gesamtoberfläche auf ca. 200–400 m²", correct: true },
           { text: "Die Gesamtoberfläche ohne Falten beträgt ca. 0,4 m²", correct: true },
           { text: "Brunner-Drüsen kommen im gesamten Dünndarm vor und sezernieren sauren Schleim", correct: false }
-        ]
+        ],
+        explanation: "Die dreifache Oberflächenvergrößerung im Dünndarm: Kerckring-Falten (~1,2 m2), Darmzotten und Mikrovilli (Gesamtfläche ~200-400 m2); Brunner-Drüsen kommen nur im Duodenum (nicht im gesamten Dünndarm) vor und sezernieren alkalischen Schleim.",
       },
       {
         id: "duenndarm_mc2",
@@ -8546,7 +8613,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Der Plexus submucosus (Meissner-Plexus) steuert die Sekretion", correct: true },
           { text: "Das terminale Ileum ist der einzige Ort der Vitamin-B₁₂-Resorption", correct: true },
           { text: "Propulsive Peristaltik dient der Durchmischung des Chymus", correct: false }
-        ]
+        ],
+        explanation: "Auerbach-Plexus (myenterisch) steuert Motorik, Meissner-Plexus (submukös) steuert Sekretion; Vitamin B12 wird nur im terminalen Ileum resorbiert; propulsive Peristaltik transportiert (nicht durchmischt) den Chymus.",
       }
     ]
   }),
@@ -8634,7 +8702,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Haustren (dynamische Ausbuchtungen) mit Plicae semilunares", correct: true },
           { text: "Appendices epiploicae (goldgelbe Fettanhängsel)", correct: true },
           { text: "Kerckring-Falten (Plicae circulares) wie im Dünndarm", correct: false }
-        ]
+        ],
+        explanation: "Der Dickdarm ist morphologisch erkennbar an Taenien (3 Längsmuskelstreifen), Haustren (Ausbuchtungen mit Plicae semilunares) und Appendices epiploicae (Fettanhängsel); Kerckring-Falten kommen nur im Dünndarm vor.",
       },
       {
         id: "dickdarm_mc2",
@@ -8645,7 +8714,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die Gesamtbakterienmasse beträgt beim Erwachsenen ca. 1,5 kg", correct: true },
           { text: "E. coli synthetisiert Vitamin K im Dickdarm", correct: true },
           { text: "Der Enterotyp Prevotella dominiert bei fett- und proteinreicher Ernährung", correct: false }
-        ]
+        ],
+        explanation: "Das Darmmikrobiom entwickelt sich erst nach der Geburt (steriler Darm); beim Erwachsenen ca. 1,5 kg Darmbakterienmasse; E. coli synthetisiert Vitamin K2; der Enterotyp Bacteroides (nicht Prevotella) dominiert bei fett- und proteinreicher Ernährung.",
       }
     ]
   }),
@@ -8733,7 +8803,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Milz", correct: true },
           { text: "Colon sigmoideum", correct: true },
           { text: "Duodenum", correct: false }
-        ]
+        ],
+        explanation: "Intraperitoneal liegende Organe sind allseitig von Peritoneum umgeben: Magen, Milz, Leber, Jejunum, Ileum, Colon transversum und sigmoideum; das Duodenum liegt sekundär retroperitoneal.",
       },
       {
         id: "peritoneum_lage_mc2",
@@ -8744,7 +8815,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Duodenum und Pankreas liegen sekundär retroperitoneal", correct: true },
           { text: "Der Douglas-Raum liegt zwischen Gebärmutter und Mastdarm", correct: true },
           { text: "Das Colon sigmoideum liegt retroperitoneal", correct: false }
-        ]
+        ],
+        explanation: "Primär retroperitoneal (z.B. Nieren) hatten nie Peritonealbezug; sekundär retroperitoneal (Duodenum, Pankreas) ursprünglich intraperitoneal dann fixiert; der Douglas-Raum zwischen Uterus und Rektum ist klinisch relevant für Aszites; Colon sigmoideum liegt intraperitoneal.",
       }
     ]
   }),
@@ -8832,7 +8904,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Große Colonbewegungen treten 1–3x täglich auf", correct: true },
           { text: "Der gastro-colische Reflex hemmt die Colonmotorik nach einer Mahlzeit", correct: false },
           { text: "Haustren-Peristaltik dient der Durchmischung des Darminhalts", correct: true }
-        ]
+        ],
+        explanation: "Haustren-Peristaltik dient der Durchmischung, retrograde Peristaltik verlangsamt den Transport, große Colonbewegungen 1-3x/Tag fördern den Stuhlvorschub; der gastro-colische Reflex steigert (nicht hemmt) die Colonmotorik nach einer Mahlzeit.",
       },
       {
         id: "dickdarmmot_mc2",
@@ -8843,7 +8916,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Dehnungsrezeptoren im Rectum lösen den Defäkationsreflex aus", correct: true },
           { text: "Der M. sphincter ani externus kann den Defäkationsreflex willkürlich hemmen", correct: true },
           { text: "Der M. sphincter ani internus besteht aus quergestreifter Muskulatur und ist willkürlich kontrollierbar", correct: false }
-        ]
+        ],
+        explanation: "Das Centrum anospinale (S3-S4) steuert den Defäkationsreflex; Dehnungsrezeptoren im Rektum lösen ihn aus; der innere Sphinkter (glatte Muskulatur) ist unwillkürlich, der äußere (Skelettmuskulatur) erlaubt willkürliche Kontrolle.",
       }
     ]
   })
@@ -8937,7 +9011,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Der Pankreaskopf liegt im hufeisenförmigen Bogen der Duodenalschlinge", correct: true },
           { text: "Der Sphinkter Oddi kontrolliert den Sekretfluss aus Ductus pancreaticus und Ductus choledochus", correct: true },
           { text: "Der endokrine Anteil (Langerhans-Inseln) macht ca. 50% des Pankreasgewebes aus", correct: false }
-        ]
+        ],
+        explanation: "Das Pankreas liegt sekundär retroperitoneal mit dem Kopf in der Duodenalschlinge; Sphinkter Oddi kontrolliert den gemeinsamen Ausfluss; der endokrine Anteil (Langerhans-Inseln) macht nur ~2% (nicht 50%) des Gewebes aus.",
       },
       {
         id: "pankreas_anatomie_mc2",
@@ -8948,7 +9023,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Die Gesamtheit aller Langerhans-Inseln bildet das endokrine Pankreas (Inselorgan)", correct: true },
           { text: "Das venöse Blut der Langerhans-Inseln wird über die Pfortader zur Leber geleitet", correct: true },
           { text: "Die Acini produzieren Insulin und Glukagon", correct: false }
-        ]
+        ],
+        explanation: "Exokrines Pankreas = Acini (~98%), endokrines Pankreas = Langerhans-Inseln (~2%); das Inselblut gelangt über die Pfortader direkt zur Leber; Insulin und Glukagon werden in den Inseln (nicht Acini) gebildet.",
       }
     ]
   }),
@@ -9036,7 +9112,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Aminosäuren werden vorwiegend im oberen Jejunum resorbiert", correct: true },
           { text: "1 g Eiweiß liefert 4,1 kcal", correct: true },
           { text: "Intakte native Proteine können beim Erwachsenen direkt ohne Aufspaltung resorbiert werden", correct: false }
-        ]
+        ],
+        explanation: "Proteine bestehen aus C, O, H, N (+ Schwefel); nach enzymatischer Aufspaltung werden Aminosäuren aktiv vor allem im oberen Jejunum resorbiert; intakte Proteine können beim gesunden Erwachsenen nicht resorbiert werden.",
       },
       {
         id: "proteinstoffwechsel_mc2",
@@ -9047,7 +9124,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Eiweiß dient als Bau- und Reparaturstoff für Muskeln, Enzyme und Hormone", correct: true },
           { text: "Aminosäuren sind Ausgangsstoffe für Katecholamine (Adrenalin, Dopamin) und Serotonin", correct: true },
           { text: "Eiweiß deckt ca. 50–60% des täglichen Energiebedarfs", correct: false }
-        ]
+        ],
+        explanation: "Eiweiß ist Bau- und Reparaturstoff und Ausgangsstoff für Katecholamine (aus Tyrosin) und Serotonin (aus Tryptophan); Mindestbedarf ~0,5 g/kg/Tag; Eiweiß deckt nur 10-15% (nicht 50-60%) des Energiebedarfs.",
       }
     ]
   }),
@@ -9135,7 +9213,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Gallensäure emulgiert Fette im Dünndarm chemisch und bildet Mizellen", correct: true },
           { text: "Ca. 95% der Nahrungsfette werden im Dünndarm absorbiert", correct: true },
           { text: "Fette werden hauptsächlich im Dickdarm resorbiert", correct: false }
-        ]
+        ],
+        explanation: "Im Magen werden Fette mechanisch emulgiert und zu 10-30% gespalten; im Dünndarm emulgiert Gallensäure chemisch und bildet Mizellen für die Pankreaslipase; ca. 95% der Nahrungsfette werden im Dünndarm absorbiert.",
       },
       {
         id: "lipidstoffwechsel_mc2",
@@ -9146,7 +9225,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Langkettige Fettsäuren gelangen als Chylomikronen über Lymphgefäße in den Blutkreislauf", correct: true },
           { text: "Strukturlipide sind Bestandteile der Zellmembran und Zellorganellen", correct: true },
           { text: "Kurz- und mittelkettige Fettsäuren werden als Chylomikronen über Lymphgefäße transportiert", correct: false }
-        ]
+        ],
+        explanation: "Fette sind mit 9,3 kcal/g energiereich; langkettige Fettsäuren werden als Chylomikronen über Lymphgefäße transportiert, kurz- und mittelkettige gehen direkt ins Pfortaderblut; Strukturlipide (Phospholipide) sind Bestandteile der Zellmembranen.",
       }
     ]
   }),
@@ -9234,7 +9314,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Im Magen findet keine enzymatische Kohlenhydratverdauung statt", correct: true },
           { text: "Im Dünndarm werden Monosaccharide über die Pfortader in den Blutkreislauf abgegeben", correct: true },
           { text: "Polysaccharide können direkt ohne Aufspaltung resorbiert werden", correct: false }
-        ]
+        ],
+        explanation: "Kohlenhydrate werden im Mund durch Ptyalin (Alpha-Amylase der Parotis) begonnen, im Magen enzymatisch nicht weiterverarbeitet und im Dünndarm zu Monosacchariden zerlegt, die über die Pfortader resorbiert werden.",
       },
       {
         id: "kh_stoffwechsel_mc2",
@@ -9245,7 +9326,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Maltase: Maltose → 2 Glucose-Einheiten", correct: true },
           { text: "Saccharase: Saccharose → Glucose + Fruktose", correct: true },
           { text: "Saccharase: Lactose → Galaktose + Glucose", correct: false }
-        ]
+        ],
+        explanation: "Alpha-Amylase → Polysaccharide zu Dextrinen + Maltose; Maltase → Maltose zu 2x Glucose; Saccharase → Saccharose zu Glucose + Fruktose; Lactose wird durch Laktase (nicht Saccharase) zu Galaktose + Glucose gespalten.",
       }
     ]
   }),
@@ -9338,7 +9420,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Trypsin aktiviert Chymotrypsinogen, Proelastase und Procarboxypeptidasen", correct: true },
           { text: "Proenzyme werden als Zymogene sezerniert, um Selbstverdauung zu verhindern", correct: true },
           { text: "Proenzyme werden bereits im Pankreas selbst aktiviert", correct: false }
-        ]
+        ],
+        explanation: "Proenzyme werden zum Schutz des Pankreas als inaktive Zymogene sezerniert; Enterokinase aktiviert Trypsinogen zu Trypsin, das dann alle übrigen Proenzyme aktiviert — Aktivierung findet im Duodenum (nicht im Pankreas) statt.",
       },
       {
         id: "pankreasenzyme_protein_mc2",
@@ -9349,7 +9432,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Im Zwölffingerdarm spalten Endopeptidasen (Trypsin, pH-Optimum 7,5) Polypeptide weiter", correct: true },
           { text: "Exopeptidasen (Carboxypeptidasen A+B) spalten Aminosäuren vom Carboxylende ab", correct: true },
           { text: "Die Eiweißverdauung beginnt im Mund durch Alpha-Amylase", correct: false }
-        ]
+        ],
+        explanation: "HCl denaturiert Proteine, Pepsin spaltet sie im sauren Magen; im Duodenum übernehmen Endopeptidasen (Trypsin pH 7,5) und Exopeptidasen (Carboxypeptidasen A+B) die weitere Aufspaltung; Alpha-Amylase spaltet Kohlenhydrate, nicht Eiweiß.",
       }
     ]
   }),
@@ -9437,7 +9521,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Pankreaslipase benötigt Gallensäure (Emulgator) zur Wirkungsentfaltung", correct: true },
           { text: "Phospholipase wird inaktiv sezerniert und durch Trypsin im Duodenum aktiviert", correct: true },
           { text: "Phospholipase wird aktiv sezerniert und ist bereits im Magen tätig", correct: false }
-        ]
+        ],
+        explanation: "Pankreaslipase ist das Hauptenzym der Fettverdauung und benötigt Gallensäure als Emulgator; Phospholipase A2 wird inaktiv sezerniert und erst durch Trypsin im Duodenum aktiviert.",
       },
       {
         id: "pankreasenzyme_fett_nuklein_mc2",
@@ -9448,7 +9533,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Glukagon und Calcitonin (in hohen Dosen) hemmen die Pankreassekretion", correct: true },
           { text: "Ribonuklease und Desoxyribonuklease spalten Nukleinsäuren", correct: true },
           { text: "Eine Reduktion der Sekretionskapazität auf 10% des Normalwertes führt sofort zu Verdauungsstörungen", correct: false }
-        ]
+        ],
+        explanation: "Pankreassekretion wird stimuliert durch CCK, Sekretin und Caerulein sowie gehemmt durch Glukagon und Calcitonin; Ribonuklease und Desoxyribonuklease spalten Nukleinsäuren; erst unter 10% Restkapazität entstehen Verdauungsstörungen.",
       }
     ]
   }),
@@ -9536,7 +9622,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Die gastrische Phase wird durch Gastrin ausgelöst", correct: true },
           { text: "Die intestinale Phase mit Sekretin und CCK liefert die Hauptsekretion", correct: true },
           { text: "Die Hauptsekretion erfolgt bereits in der kephalischen Phase", correct: false }
-        ]
+        ],
+        explanation: "Drei Phasen der Pankreassekretion: kephalisch (N. vagus, ~20%), gastrisch (Gastrin, ~10%), intestinal (Sekretin + CCK, ~70% = Hauptsekretion) — die intestinale Phase liefert das Hauptvolumen.",
       },
       {
         id: "pankreassekretion_regulation_mc2",
@@ -9547,7 +9634,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Der Pankreassaft enthält sowohl aktive Enzyme als auch inaktive Proenzyme (Zymogene)", correct: true },
           { text: "Das Bikarbonat des Pankreassaftes neutralisiert den sauren Chymus im Duodenum", correct: true },
           { text: "Der Pankreassaft wird kontinuierlich unabhängig von Mahlzeiten in großen Mengen produziert", correct: false }
-        ]
+        ],
+        explanation: "Pankreassaft hat pH ~8 durch Bikarbonat, das den sauren Chymus im Duodenum neutralisiert und das optimale Enzymmilieu schafft; er enthält sowohl aktive Enzyme (Lipase, Amylase) als auch inaktive Zymogene; Produktion ist mahlzeitenabhängig.",
       }
     ]
   }),
@@ -9640,7 +9728,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "A-Zellen (20%) produzieren Glukagon", correct: true },
           { text: "D-Zellen (5%) produzieren Somatostatin", correct: true },
           { text: "A-Zellen (75%) sind die häufigsten Inselzellen und produzieren Insulin", correct: false }
-        ]
+        ],
+        explanation: "Die Langerhans-Inseln: B-Zellen (75%) → Insulin, A-Zellen (20%) → Glukagon, D-Zellen (5%) → Somatostatin — B-Zellen sind dominant, weshalb Insulinmangel (Diabetes) häufiger vorkommt als Glukagonmangel.",
       },
       {
         id: "insulin_glukagon_mc2",
@@ -9651,7 +9740,8 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
           { text: "Insulin fördert im Muskel die Glykogensynthese und Aminosäureaufnahme", correct: true },
           { text: "Insulin blockiert Glukoneogenese und Lipolyse", correct: true },
           { text: "Glukagon senkt den Blutzucker durch Förderung der Glykogensynthese", correct: false }
-        ]
+        ],
+        explanation: "Insulin ist das einzige blutzuckersenkende Hormon und wirkt anabol (Glykogensynthese, Aminosäureaufnahme, Fettsynthese, hemmt Glukoneogenese und Lipolyse); Glukagon erhöht den Blutzucker durch Glykogenolyse (gegenteilig zu Insulin).",
       }
     ]
   })
@@ -9745,7 +9835,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Die Perfusion beträgt ca. 2 l/min — das gesamte Blut passiert die Leber in ca. 3 Minuten", correct: true },
           { text: "Das Ligamentum falciforme hepatis teilt die Leber ventral in linken und rechten Lappen", correct: true },
           { text: "Die Leber liegt im linken Oberbauch unterhalb der Milz", correct: false }
-        ]
+        ],
+        explanation: "Die Leber liegt im rechten (nicht linken) Oberbauch (~1,5 kg, 23x18x9 cm) und wird mit ~2 l/min durchblutet (gesamtes Blutvolumen passiert die Leber in ~3 Min); das Ligamentum falciforme trennt ventral linken und rechten Leberlappen.",
       },
       {
         id: "leber_anatomie_makroskopie_mc2",
@@ -9756,7 +9847,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "V. portae führt venöses Blut aus den unpaaren Baucheingeweiden zur Leber", correct: true },
           { text: "Lobus dexter enthält Segmenta anterior und posterior", correct: true },
           { text: "Der Ductus hepaticus tritt in die Leber ein (nicht aus)", correct: false }
-        ]
+        ],
+        explanation: "Die Porta hepatis liegt auf der Unterseite der Leber in H-Form; V. portae bringt venöses Nährstoffblut aus den unpaaren Bauchorganen; der Ductus hepaticus communis tritt aus der Leber aus (nicht ein).",
       }
     ]
   }),
@@ -9789,9 +9881,9 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
         question: "Welche Funktion hat Albumin im Körper?",
         options: [
           { text: "Volumenstabilisierung (onkotischer Druck) und Transport von Farbstoffen, freien Fettsäuren, Hormonen und Pharmaka", correct: true },
-          { text: "Ausschließlich Eisentransport", correct: false },
-          { text: "Synthese von Gerinnungsfaktoren", correct: false },
-          { text: "Bildung von Immunglobulinen", correct: false }
+          { text: "Ausschließlich Eisentransport als Transferrin — Albumin hat keine zusätzlichen Bindungsstellen für andere Moleküle oder Liganden", correct: false },
+          { text: "Ausschließlich Synthese von Gerinnungsfaktoren (Fibrinogen, Prothrombin, Faktor V) ohne jegliche Transportfunktion im Blutplasma", correct: false },
+          { text: "Ausschließlich Bildung von Immunglobulinen (IgG, IgM, IgA) als hepatische Abwehrproteine ohne onkotischen Druckbeitrag", correct: false }
         ],
         explanation: "Albumin ist das mengenmäßig dominierende Transportprotein im Blut. Es stabilisiert das Blutvolumen durch seinen onkotischen Druck und transportiert zahlreiche nicht-wasserlösliche Substanzen (Farbstoffe, freie Fettsäuren, Salze, Hormone, Pharmaka). Transferrin dient dem Eisentransport; Gerinnungsfaktoren werden ebenfalls in der Leber gebildet."
       },
@@ -9844,7 +9936,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Transferrin dient dem Eisentransport", correct: true },
           { text: "Gerinnungsfaktoren (Fibrinogen, Prothrombin) werden fast ausschließlich in der Leber gebildet", correct: true },
           { text: "Immunglobuline werden fast ausschließlich in der Leber gebildet", correct: false }
-        ]
+        ],
+        explanation: "Die Leber produziert Albumin (onkotischer Druck), Transferrin (Eisentransport) und fast alle Gerinnungsfaktoren; Immunglobuline werden von Plasmazellen gebildet (nicht in der Leber).",
       },
       {
         id: "leber_eiweissstoffwechsel_mc2",
@@ -9855,7 +9948,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Harnstoff wird über die Nieren ausgeschieden", correct: true },
           { text: "Bei schwerem Leberversagen steigt der Ammoniakspiegel → hepatische Enzephalopathie", correct: true },
           { text: "Ammoniak ist ungiftig und kann direkt über die Nieren ausgeschieden werden", correct: false }
-        ]
+        ],
+        explanation: "Ammoniak aus dem Eiweißstoffwechsel und von Darmbakterien ist neurotoxisch und muss in der Leber zu Harnstoff umgewandelt werden; bei Leberversagen steigt der Ammoniakspiegel und verursacht hepatische Enzephalopathie.",
       }
     ]
   }),
@@ -9943,7 +10037,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Glykogenolyse (Glykogenabbau) wird durch Adrenalin und Glukagon stimuliert", correct: true },
           { text: "Ketonkörper entstehen in der Leber aus Fettsäuren bei Glukosemangel; Gehirn kann sie nutzen", correct: true },
           { text: "Muskeln sind der einzige Glykogenspeicher im Körper", correct: false }
-        ]
+        ],
+        explanation: "Die Leber speichert Glykogen und hält den Blutglukosespiegel konstant; Adrenalin und Glukagon stimulieren die Glykogenolyse; Ketonkörper aus Fettsäuren entstehen bei Glukosemangel; Muskeln speichern Glykogen ausschließlich für den Eigenbedarf.",
       },
       {
         id: "leber_kh_fett_vitamine_mc2",
@@ -9954,7 +10049,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Vitamin D3 (Cholecalciferol) wird in der Leber in seine aktive Form umgewandelt", correct: true },
           { text: "Vitamin K fördert die Biosynthese von Prothrombin (Gerinnungsfaktor II) in der Leber", correct: true },
           { text: "Fettlösliche Vitamine (E, D, K, A) werden ohne Gallenflüssigkeit problemlos resorbiert", correct: false }
-        ]
+        ],
+        explanation: "Die Leber ist zentral für den Vitaminstoffwechsel: Carotin → Vitamin A, Vitamin D3 → 25-OH-D3 (Speicherform), Vitamin K ermöglicht Synthese der Gerinnungsfaktoren II, VII, IX, X; alle fettlöslichen Vitamine benötigen Gallenflüssigkeit zur Resorption.",
       }
     ]
   }),
@@ -10025,9 +10121,9 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
         question: "Was passiert mit dem Eisen, das beim Abbau überalterter Erythrozyten freigesetzt wird?",
         options: [
           { text: "Es wird an Globuline gebunden, zur Leber transportiert und für neue Hämoglobinsynthese genutzt oder gespeichert", correct: true },
-          { text: "Es wird direkt mit dem Urin ausgeschieden", correct: false },
-          { text: "Es wird in der Gallenblase als Gallenstein abgelagert", correct: false },
-          { text: "Es wird in der Milz dauerhaft gespeichert", correct: false }
+          { text: "Es wird direkt mit dem Urin durch glomeruläre Filtration ausgeschieden — als freies Fe2+ ohne vorherige Bindung an Transportproteine", correct: false },
+          { text: "Es wird in der Gallenblase als Pigmentgallenstein (Eisenbilirubinat) dauerhaft abgelagert und kann nicht für neue Hämoglobinsynthese genutzt werden", correct: false },
+          { text: "Es wird in der Milz dauerhaft als Hämosiderin gespeichert und steht damit dem Knochenmark für die Erythropoese nicht zur Verfügung", correct: false }
         ],
         explanation: "Bei der Blutmauserung wird das Hämoglobin gespalten: Das Globin wird phagozytiert; das Eisen (aus dem Häm-Teil) wird an Globuline (v. a. Transferrin) gebunden und zur Leber transportiert, wo es entweder direkt für die Bildung neuen Hämoglobins verwendet oder als Reserveeisen gespeichert wird."
       }
@@ -10042,7 +10138,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Die Konjugation macht lipidlösliche Substanzen wasserlöslich und ermöglicht ihre Ausscheidung", correct: true },
           { text: "40–70% der inaktivierten Steroidhormone werden über Niere und Darm ausgeschieden", correct: true },
           { text: "Die Entgiftung findet ausschließlich in den Kupffer-Zellen statt", correct: false }
-        ]
+        ],
+        explanation: "Hepatozyten entgiften durch Konjugation (v.a. Glucuronsäure) lipophile Fremdstoffe in wasserlösliche ausscheidbare Verbindungen; Kupffer-Zellen sind für die zelluläre Immunabwehr zuständig, nicht für die chemische Entgiftung.",
       },
       {
         id: "leber_entgiftung_kreislauffunktionen_mc2",
@@ -10053,7 +10150,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Kupffer-Zellen phagozytieren überalterte Erythrozyten (Blutmauserung) in den Sinusoiden", correct: true },
           { text: "Fibrinogen (Faktor I) und Prothrombin (Faktor II) werden in der Leber synthetisiert", correct: true },
           { text: "Die Leber ist im Erwachsenenalter das Hauptorgan der Blutbildung", correct: false }
-        ]
+        ],
+        explanation: "Die Leber dient als Blutspeicher; Kupffer-Zellen phagozytieren überalterte Erythrozyten (Blutmauserung); Gerinnungsfaktoren werden in der Leber produziert; im Erwachsenenalter ist das Knochenmark (nicht die Leber) der Hauptort der Blutbildung.",
       }
     ]
   }),
@@ -10086,9 +10184,9 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
         question: "Aus welchen drei Strukturen besteht die Glisson-Trias (periportale Trias)?",
         options: [
           { text: "Ast der Leberarterie + Ast der Pfortader + Gallenausgang (in dreieckigen Bindegewebsfeldern)", correct: true },
-          { text: "Zentralvene + Leberarterie + Gallenblase", correct: false },
-          { text: "Kupffer-Zellen + Hepatozyten + Sinusoide", correct: false },
-          { text: "V. cava + Pfortader + Ductus choledochus", correct: false }
+          { text: "Zentralvene + Ast der A. hepatica + Gallenblase als dreigliedrige periportale Struktur (Trias) in den Bindegewebsfeldern", correct: false },
+          { text: "Kupffer-Zellen + Hepatozyten + Sinusoide als funktionelle Einheit des Leberläppchens im Bereich der periportalen Bindegewebsfelder", correct: false },
+          { text: "V. cava inferior + V. portae + Ductus choledochus als großes Venengefäßsystem, das die Leber von allen drei Seiten umgibt", correct: false }
         ],
         explanation: "In den mikroskopisch sichtbaren dreieckigen Bindegewebsfeldern zwischen den Leberläppchen liegt jeweils die Glisson-Trias (periportale Trias): ein Ast der Leberarterie (A. interlobularis), ein Ast der Pfortader (V. interlobularis) und ein Gallenausgang (Ductus biliferus interlobularis). Diese Anordnung ist charakteristisch für die Leberarchitektur."
       },
@@ -10141,7 +10239,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Die Glisson-Trias besteht aus Ast der Leberarterie, Ast der Pfortader und Gallengang", correct: true },
           { text: "Hepatozyten haben >1000 Mitochondrien (hohe Stoffwechselaktivität)", correct: true },
           { text: "Kupffer-Zellen sind spezialisierte Hepatozyten für die Glykogenspeicherung", correct: false }
-        ]
+        ],
+        explanation: "Das hexagonale Leberläppchen (~1 mm) ist die kleinste Einheit mit Glisson-Trias an den Ecken; Hepatozyten haben >1000 Mitochondrien (hohe Stoffwechselaktivität); Kupffer-Zellen sind residente Makrophagen, keine spezialisierten Hepatozyten.",
       },
       {
         id: "leber_mikrostruktur_sinusoide_mc2",
@@ -10152,7 +10251,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Gamma-GT reagiert sensibler auf Leber- und Gallenwegserkrankungen als Aminotransferasen", correct: true },
           { text: "Bei Durchblutungsstörung steigen Transaminasen auf das 50–200-fache des Normwerts", correct: true },
           { text: "Ein erhöhter Gamma-GT-Wert schließt alkoholischen Leberschaden aus", correct: false }
-        ]
+        ],
+        explanation: "AST/ALT zeigen Leberzellschäden an; Gamma-GT ist sensitiver für Leber- und Gallenwegserkrankungen und ein empfindlicher Marker für Alkohol; bei akuter Durchblutungsstörung steigen Transaminasen auf das 50-200-fache; erhöhter Gamma-GT ist häufig Zeichen für alkoholischen Leberschaden.",
       }
     ]
   }),
@@ -10240,7 +10340,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Pfortaderkreislauf: V. portae → venöses Blut aus Bauchorganen (75%)", correct: true },
           { text: "Blut beider Kreisläufe vereinigt sich in den Sinusoiden", correct: true },
           { text: "Die Leber wird zu 75% arteriell und zu 25% über die Pfortader versorgt", correct: false }
-        ]
+        ],
+        explanation: "Die Leber erhält 25% sauerstoffreiches Blut aus der A. hepatica und 75% nährstoffreiches venöses Blut aus der V. portae — beide vereinigen sich in den Sinusoiden (die umgekehrten Prozentsätze sind falsch).",
       },
       {
         id: "leber_kreislaeufe_pfortader_mc2",
@@ -10251,7 +10352,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "First-Pass-Effect: oral eingenommene Medikamente werden in der Leber (teil)abgebaut", correct: true },
           { text: "Blut aus Sinusoiden → Zentralvene → V. hepatica → V. cava inferior", correct: true },
           { text: "Der First-Pass-Effect tritt ausschließlich bei intravenöser Medikamentengabe auf", correct: false }
-        ]
+        ],
+        explanation: "V. portae sammelt Blut aus Magen, Darm, Pankreas und Milz; First-Pass-Effekt = oraler Wirkstoffabbau beim ersten Leberpassage; Intravenöse Gabe umgeht diesen Effekt; Blut fließt Sinusoide → Zentralvene → V. hepatica → V. cava inferior.",
       }
     ]
   }),
@@ -10339,7 +10441,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Eindicken der Galle auf 1/5–1/10 durch aktiven Na⁺/Cl⁻-Transport", correct: true },
           { text: "Abgabe der Galle: hormonell (CCK) + reflektorisch (Geruchs-/Geschmacksreize)", correct: true },
           { text: "Die Gallenblase produziert selbst kontinuierlich Gallenflüssigkeit", correct: false }
-        ]
+        ],
+        explanation: "Gallenblase speichert und konzentriert Lebergalle durch aktiven Na+/Cl--Transport auf 1/5 bis 1/10; Entleerung durch CCK und Reflexe; Galle wird in der Leber produziert (nicht in der Gallenblase selbst).",
       },
       {
         id: "gallenblase_gallenwege_mc2",
@@ -10350,7 +10453,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Ductus cysticus verbindet Gallenblase mit Ductus choledochus", correct: true },
           { text: "Ductus choledochus + Ductus pancreaticus münden an Papilla vateri ins Duodenum", correct: true },
           { text: "Der M. sphincter Oddi ist ein willkürlicher Schließmuskel", correct: false }
-        ]
+        ],
+        explanation: "Extrahepatische Gallenwege: Ductus hepaticus dexter + sinister → communis; + Ductus cysticus (Gallenblase) → Ductus choledochus; mündet mit Ductus pancreaticus an Papilla Vateri; Sphinkter Oddi ist glatter, unwillkürlicher Muskel.",
       }
     ]
   }),
@@ -10383,9 +10487,9 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
         question: "Woraus werden Gallensäuren in der Leber synthetisiert?",
         options: [
           { text: "Aus Cholesterin; die 2 primären Gallensäuren sind Cholsäure und Chenodesoxycholsäure", correct: true },
-          { text: "Aus Bilirubin und Albumin", correct: false },
-          { text: "Aus Glykogen und Aminosäuren", correct: false },
-          { text: "Aus Phospholipiden und Harnstoff", correct: false }
+          { text: "Aus Bilirubin (Hämoglobinabbauprodukt) und Albumin als Trägerprotein — beide werden in der Leber zu Gallensäuren synthetisiert", correct: false },
+          { text: "Aus Glykogen (als Kohlenstoffquelle) und Aminosäuren (als Stickstoffquelle) durch hepatische Biosynthese in den Mitochondrien", correct: false },
+          { text: "Aus Phospholipiden (v.a. Phosphatidylcholin) und Harnstoff als stickstoffhaltiger Quelle durch Kondensationsreaktion in der Leber", correct: false }
         ],
         explanation: "Gallensäuren werden in der Leber aus Cholesterin synthetisiert. Es gibt insgesamt vier verschiedene Gallensäuren — die beiden primären sind Cholsäure und Chenodesoxycholsäure. Sie liegen in der Galle als gallensaure Salze (Natrium- und Kaliumsalze) vor und wirken als Emulgatoren für Fette im Dünndarm."
       },
@@ -10402,9 +10506,9 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
         question: "Was passiert bei Erkrankung oder Resektion des terminalen Ileums in Bezug auf die Gallensäuren?",
         options: [
           { text: "Gallensäuren können nicht rückresorbiert werden → chologen Diarrhö + Fettverdauungsstörungen + Mangel fettlöslicher Vitamine", correct: true },
-          { text: "Gallensäuren werden vollständig im Dickdarm resorbiert", correct: false },
-          { text: "Die Leber produziert kompensatorisch keine Gallensäuren mehr", correct: false },
-          { text: "Nur Vitamin B12-Resorption ist betroffen, die Fettverdauung bleibt intakt", correct: false }
+          { text: "Gallensäuren werden vollständig im proximalen Dickdarm (Colon ascendens) durch passive Diffusion resorbiert und gelangen zur Leber", correct: false },
+          { text: "Die Leber stellt kompensatorisch die Gallensäuresynthese vollständig ein, da sie das Fehlen des rückresorbierten Pools erkennt", correct: false },
+          { text: "Ausschließlich die Vitamin-B12-Resorption (über Intrinsic-Faktor) ist betroffen — die Fettverdauung und Gallensäurenrückresorption bleiben vollständig intakt", correct: false }
         ],
         explanation: "Das terminale Ileum ist der einzige Ort, wo Gallensäuren rückresorbiert werden können. Bei Erkrankung oder Resektion fehlt diese Möglichkeit → Gallensäuren gelangen in den Dickdarm → osmotische Wirkung → chologen Diarrhö. Durch den Mangel an Gallensäuren entstehen Fettverdauungsstörungen, und fettlösliche Vitamine (E, D, K, A) werden nur noch unzureichend resorbiert."
       },
@@ -10438,7 +10542,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Gallensteine bestehen zu 90% aus Cholesterin und zu 10% aus Calciumbilirubinat", correct: true },
           { text: "Lebergalle ist gelb, Blasengalle ist grün-braun und stärker konzentriert", correct: true },
           { text: "Gallenflüssigkeit enthält hauptsächlich Enzyme zur Fettverdauung", correct: false }
-        ]
+        ],
+        explanation: "Gallensäuren (aus Cholesterin) emulgieren Fette im Dünndarm; Gallenflüssigkeit enthält keine Verdauungsenzyme (diese kommen aus dem Pankreas); Cholesteringallensteine (90%) entstehen bei Cholesterinübersättigung der Galle.",
       },
       {
         id: "gallenflüssigkeit_enterohepatisch_mc2",
@@ -10449,7 +10554,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Ca. 90% der Gallensäuren werden im terminalen Ileum rückresorbiert", correct: true },
           { text: "Bei Ileum-Resektion entstehen chologen Diarrhö und Fettverdauungsstörungen", correct: true },
           { text: "Der enterohepatische Kreislauf betrifft ausschließlich Bilirubin", correct: false }
-        ]
+        ],
+        explanation: "Der Gallensäurepool (2-4 g) zirkuliert 8-10x/Tag; ~90% werden aktiv im terminalen Ileum rückresorbiert; nach Ileum-Resektion gelangen Gallensäuren in den Dickdarm und verursachen chologene Diarrhö; der enterohepatische Kreislauf betrifft hauptsächlich Gallensäuren (nicht nur Bilirubin).",
       }
     ]
   }),
@@ -10537,7 +10643,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Indirektes Bilirubin ist wasserunlöslich, toxisch und an Albumin gebunden", correct: true },
           { text: "In der Leber wird indirektes Bilirubin durch Glucuronyltransferase konjugiert → direktes Bilirubin", correct: true },
           { text: "Indirektes Bilirubin ist wasserlöslich und wird direkt renal ausgeschieden", correct: false }
-        ]
+        ],
+        explanation: "Bilirubin entsteht beim Hämoglobinabbau (Erythrozyten leben 100-120 Tage); indirektes (unkonjugiertes) Bilirubin ist wasserunlöslich, toxisch und wird an Albumin transportiert; in der Leber wird es durch Glucuronyltransferase zu direktem (wasserlöslichem) Bilirubin konjugiert.",
       },
       {
         id: "bilirubin_stoffwechsel_mc2",
@@ -10548,7 +10655,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Urobilin gibt dem Harn seine gelbe Farbe", correct: true },
           { text: "1 g Hämoglobin ergibt ca. 35 mg Bilirubin", correct: true },
           { text: "Direktes Bilirubin entsteht durch bakteriellen Abbau im Dickdarm", correct: false }
-        ]
+        ],
+        explanation: "Sterkobilin (durch Darmbakterien) gibt dem Stuhl braune Farbe; Urobilin (renal ausgeschieden) gibt dem Harn gelbe Farbe; direktes Bilirubin entsteht durch hepatische Konjugation, der bakterielle Dickdarmabbau produziert Sterkobilinogen/Urobilinogen.",
       }
     ]
   }),
@@ -10581,9 +10689,9 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
         question: "Was ist die Ursache des prähepatischen Ikterus?",
         options: [
           { text: "Hämolyse (gesteigerter Erythrozytenabbau) → Überproduktion von Bilirubin → Überlastung des Glucuronidierungssystems", correct: true },
-          { text: "Schädigung der Leberzellen durch Hepatitis oder Zirrhose", correct: false },
-          { text: "Verlegung der Gallenwege durch Gallensteine (Cholelithiasis)", correct: false },
-          { text: "Mangel an Glucuronyltransferase durch genetischen Defekt", correct: false }
+          { text: "Schädigung der Hepatozyten durch Hepatitis-Viren (A, B, C) oder alkoholische Leberzirrhose → Konjugierungsstörung des Bilirubins", correct: false },
+          { text: "Verlegung der extrahepatischen Gallenwege durch Gallensteine (Cholelithiasis) → Rückstau des konjugierten Bilirubins → Cholestase-Ikterus", correct: false },
+          { text: "Angeborener Mangel an hepatischer Glucuronyltransferase (Crigler-Najjar-Syndrom) → gestörte Konjugation → indirektes Bilirubin steigt an", correct: false }
         ],
         explanation: "Beim prähepatischen Ikterus (Hämolytischer/Überproduktionsikterus) kommt es durch gesteigertem Erythrozytenabbau (Hämolyse) zu einem vermehrten Hämoglobinanfall → Überproduktion von indirektem Bilirubin → das Glucuronidierungssystem der Leber wird überlastet → indirektes Bilirubin steigt stark an."
       },
@@ -10636,7 +10744,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Serum: indirektes Bilirubin stark erhöht, direktes Bilirubin im Normbereich (o.B.)", correct: true },
           { text: "Urin: stark erhöhtes Urobilinogen, helle/normale Farbe", correct: true },
           { text: "Beim prähepatischen Ikterus ist direktes Bilirubin im Serum stark erhöht", correct: false }
-        ]
+        ],
+        explanation: "Beim prähepatischen Ikterus übersteigt Hämolyse die Konjugationskapazität: indirektes Bilirubin stark erhöht, direktes im Normbereich; im Urin viel Urobilinogen, aber kein Bilirubin; direktes Bilirubin ist beim prähepatischen Ikterus gerade nicht erhöht.",
       },
       {
         id: "ikterus_formen_mc2",
@@ -10647,7 +10756,8 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
           { text: "Posthepatischer Ikterus: direktes Bilirubin stark↑, Gamma-GT + AP stark↑, Stuhl hell", correct: true },
           { text: "Beim posthepatischen Ikterus ist die Ursache eine Verlegung der Gallenwege (Cholestase)", correct: true },
           { text: "Beim prähepatischen Ikterus ist der Stuhl hell und das Urobilinogen im Urin normal", correct: false }
-        ]
+        ],
+        explanation: "Charakteristische Labormuster: prähepatisch (indirektes Bilirubin hoch, dunkler Stuhl), intrahepatisch (ALT stark hoch, beide Bilirubin leicht erhöht, Stuhl hell), posthepatisch/Cholestase (direktes Bilirubin + Gamma-GT + AP stark erhöht, Stuhl hell durch fehlende Gallensäuren).",
       }
     ]
   })
@@ -10742,7 +10852,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Oberer Pol: Th11–12; unterer Pol: L3", correct: true },
           { text: "Nierengröße ca. 10–12 cm lang, 5–6 cm breit, 120–200 g", correct: true },
           { text: "Die linke Niere liegt tiefer als die rechte, weil die Milz sie nach unten drängt", correct: false }
-        ]
+        ],
+        explanation: "Beide Nieren liegen retroperitoneal; die rechte Niere liegt tiefer als die linke (wegen der Leber, nicht Milz); Normwerte: oberer Pol Th11-12, unterer Pol L3, Größe 10-12 cm lang, 120-200 g.",
       },
       {
         id: "niere_anatomie_makroskopie_mc2",
@@ -10753,7 +10864,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Die Niere produziert Renin (Blutdruckregulation) und Erythropoetin (Blutbildung)", correct: true },
           { text: "Kompensatorische Hypertrophie: nach Entfernung einer Niere wächst die verbleibende auf fast die doppelte Größe", correct: true },
           { text: "Die Vorniere war das am stärksten filtrierende Entwicklungsstadium", correct: false }
-        ]
+        ],
+        explanation: "Die Niere produziert Renin (Blutdruckregulation) und Erythropoetin (Erythropoese-Stimulation); nach Nephrektomie wächst die verbleibende Niere kompensatorisch auf fast Doppelgröße; die Vorniere war die primitivste (nicht stärkste) Entwicklungsform.",
       }
     ]
   }),
@@ -10841,7 +10953,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Glomerulus + Bowmansche Kapsel = Malpighisches Körperchen", correct: true },
           { text: "Der Primärharn wird in den Kapselraum der Bowmanschen Kapsel abfiltriert", correct: true },
           { text: "Im Glomerulus erfolgt neben der Filtration auch die Sauerstoffversorgung der Rinde", correct: false }
-        ]
+        ],
+        explanation: "Das Nephron besteht aus Malpighischem Körperchen (Glomerulus + Bowmansche Kapsel) und Tubulussystem; der Primärharn wird durch passiven Filtrationsdruck in den Kapselraum abfiltriert; im Glomerulus findet nur Filtration statt, keine Sekretion.",
       },
       {
         id: "nephron_feinbau_mc2",
@@ -10852,7 +10965,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Nierenrinde erhält ca. 90% der Gesamtdurchblutung, Nierenmark ca. 10%", correct: true },
           { text: "Die Polkissen des juxtaglomerulären Apparats sezernieren Renin bei Blutdruckabfall", correct: true },
           { text: "Die Macula densa misst den Kalziumgehalt des Tubulusfiltrats", correct: false }
-        ]
+        ],
+        explanation: "Die Niere wird täglich von ~1500-1800 L Blut durchflossen; Rinde erhält ~90% der Durchblutung für die glomeruläre Filtration; Polkissen sezernieren Renin bei Blutdruckabfall; die Macula densa misst den NaCl-Gehalt (nicht Kalzium) des Tubulusfiltrats.",
       }
     ]
   }),
@@ -10916,9 +11030,9 @@ const UROGENITALTRAKT_1041_PLANTS = [
         question: "Was versteht man unter der Clearance einer Substanz?",
         options: [
           { text: "Das Plasmavolumen, das pro Minute durch die Niere von der betreffenden Substanz vollständig befreit wird (= renale Volumenklärrate)", correct: true },
-          { text: "Die Gesamtmenge einer Substanz, die täglich im Urin ausgeschieden wird", correct: false },
-          { text: "Der Prozentsatz einer Substanz, der im Tubulussystem rückresorbiert wird", correct: false },
-          { text: "Die Konzentration einer Substanz im Primärharn im Vergleich zum Plasma", correct: false }
+          { text: "Die Gesamtmenge einer Substanz (in Gramm/24h), die täglich im Urin ausgeschieden wird — unabhängig vom filtrierten Plasmavolumen", correct: false },
+          { text: "Der Prozentsatz einer Substanz, der im proximalen und distalen Tubulus sowie der Henleschleife rückresorbiert wird (Resorptionsquote)", correct: false },
+          { text: "Die Konzentration einer Substanz im Primärharn (nach glomerulärer Filtration) im direkten Verhältnis zur Plasmakonzentration (Konzentrationsfaktor)", correct: false }
         ],
         explanation: "Clearance (C) = Urinkonzentration (U) × Nierenminutenvolumen (M) / Plasmakonzentration (P). Sie ist eine substanzbezogene Volumenklärrate des Blutplasmas. Zur Messung verwendet man Inulin oder Paraaminohippursäure, die nur filtriert und nicht rückresorbiert werden."
       },
@@ -10940,7 +11054,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Filtration ist passiv, abhängig vom Blutdruck; effektiver Filtrationsdruck ca. 35 mmHg", correct: true },
           { text: "Autoregulation über Rezeptoren in den glatten Muskeln der Vasa afferentia", correct: true },
           { text: "Der Primärharn enthält große Mengen Eiweiß, die dann vollständig rückresorbiert werden", correct: false }
-        ]
+        ],
+        explanation: "Glomeruläre Filtration ist passiv und druckabhängig (~35 mmHg effektiver Druck); es entstehen ~150-180 L Primärharn täglich, isoosmotisch zum Plasma ohne Blutkörperchen; der Primärharn enthält nur geringe Spuren kleiner Proteine, keine großen Eiweißmoleküle.",
       },
       {
         id: "harnbereitung_mc2",
@@ -10951,7 +11066,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Aktiv rückresorbiert: Na⁺, K⁺, Aminosäuren, Glukose, Ascorbinsäure", correct: true },
           { text: "Glukose wird zu fast 100% im proximalen Tubulus resorbiert; Nierenschwelle: 180 mg/dl", correct: true },
           { text: "Wasser wird ausschließlich im proximalen Tubulus rückresorbiert, unabhängig von Hormonen", correct: false }
-        ]
+        ],
+        explanation: "Von 150-180 L Primärharn werden 99% rückresorbiert (nur 1,5-1,8 L Endharn); Glukose wird bis zur Nierenschwelle (180 mg/dl) vollständig im proximalen Tubulus resorbiert; Wasser wird in verschiedenen Abschnitten rückresorbiert, im Sammelrohr ADH-abhängig.",
       }
     ]
   }),
@@ -10996,9 +11112,9 @@ const UROGENITALTRAKT_1041_PLANTS = [
         question: "Worin unterscheiden sich Diabetes insipidus centralis und renalis?",
         options: [
           { text: "Centralis: mangelnde ADH-Produktion (Therapie: ADH-Substitution); Renalis: defekte ADH-Rezeptoren in der Niere (Therapie sehr schwierig)", correct: true },
-          { text: "Centralis: defekte ADH-Rezeptoren; Renalis: mangelnde ADH-Produktion", correct: false },
-          { text: "Beide werden durch ADH-Substitution behandelt", correct: false },
-          { text: "Beim Diabetes insipidus centralis besteht Oligurie, beim renalen Typ Polyurie", correct: false }
+          { text: "Centralis: defekte oder fehlende ADH-Rezeptoren in der Niere ohne Produktionsstörung; Renalis: mangelnde ADH-Synthese im Hypophysenhinterlappen", correct: false },
+          { text: "Beide Formen sprechen gleich gut auf ADH-Substitution an — bei centralem Typ besser, beim renalen Typ durch höhere Dosierung erreichbar", correct: false },
+          { text: "Beim centralen Typ besteht ausgeprägte Oligurie durch überschießende ADH-Wirkung; beim renalen Typ Polyurie durch ADH-Resistenz der Tubuli", correct: false }
         ],
         explanation: "Diabetes insipidus centralis: Ursache ist eine mangelnde ADH-Produktion im HHL → Wasserrückresorption ↓ → Polyurie → Therapie: ADH-Substitution (z. B. Minirin). Diabetes insipidus renalis: Ursache sind defekte/ungenügende ADH-Rezeptoren in der Niere → ADH wirkt nicht → Polyurie ca. 10 L/Tag → Therapie sehr schwierig. Schwartz-Bartter-Syndrom: überschießende ADH-Produktion → Oligurie."
       },
@@ -11039,7 +11155,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "ADH-Ausschüttung: über Osmorezeptoren im Hypothalamus und Volumenrezeptoren in Lungenvenen/linkem Vorhof", correct: true },
           { text: "Diabetes insipidus centralis: mangelnde ADH-Produktion → Polyurie → Therapie: ADH-Substitution", correct: true },
           { text: "Beim Diabetes insipidus renalis helfen ADH-Substitutionspräparate zuverlässig", correct: false }
-        ]
+        ],
+        explanation: "ADH erhöht die Wasserpermeabilität über Aquaporine im distalen Tubulus und Sammelrohr; bei ADH-Mangel (Diabetes insipidus centralis) → Polyurie, behandelbar mit ADH; beim renalen Typ spricht die Niere nicht auf ADH an, weshalb Substitution nicht hilft.",
       },
       {
         id: "niere_regulation_mc2",
@@ -11050,7 +11167,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Angiotensin II ist die stärkste bekannte vasokonstriktive Substanz", correct: true },
           { text: "Niere: H⁺ statt Na⁺ in Harn → Na⁺ verbleibt; Lunge: CO₂-Abatmung — beides reguliert den pH", correct: true },
           { text: "Aldosteron steigert die Kaliumrückresorption und vermindert die Natriumausscheidung nicht", correct: false }
-        ]
+        ],
+        explanation: "RAAS: Blutdruckabfall → Renin → Angiotensin I → II (stärkste vasokonstriktive Substanz) → Aldosteron (fördert Na+-Rückresorption + K+-Ausscheidung); Niere und Lunge regulieren gemeinsam den pH-Haushalt.",
       }
     ]
   }),
@@ -11138,7 +11256,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "3 physiologische Engstellen: Nierenbecken, Beckengefäß-Überkreuzung, Blasenwand-Durchtritt", correct: true },
           { text: "Harndrang bei ca. 300–350 ml; willkürlich bis ca. 700 ml zurückhaltbar", correct: true },
           { text: "Die Harnblase ist mit Plattenepithel ausgekleidet, das sich nicht ausdehnen kann", correct: false }
-        ]
+        ],
+        explanation: "Harnleiter sind ~25-30 cm lang, retroperitoneal, mit 1-4 peristaltischen Wellen/min; 3 Engstellen (Nierenbecken, Beckengefäß, Blasenwand) sind Prädilektionsstellen für Steine; Harnblase ist mit dehnbarem Urothel (Übergangsepithel) ausgekleidet.",
       },
       {
         id: "harnleiter_blase_roehre_mc2",
@@ -11149,7 +11268,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Hämaturie = Blut im Urin; Pyurie = Eiter im Urin", correct: true },
           { text: "Die weibliche Harnröhre (<5 cm) erhöht das Risiko für Harnwegsinfekte", correct: true },
           { text: "Die männliche Harnröhre hat nur einen Abschnitt und dient ausschließlich der Harnleitung", correct: false }
-        ]
+        ],
+        explanation: "Normwerte: Anurie < 100 ml, Oligurie 100-500 ml, Polyurie > 3000 ml/24h; die kurze weibliche Harnröhre (< 5 cm) erhöht das HWI-Risiko; die männliche Harnröhre hat mehrere Abschnitte und dient auch der Ejakulation.",
       }
     ]
   }),
@@ -11201,9 +11321,9 @@ const UROGENITALTRAKT_1041_PLANTS = [
         question: "Welche Aussage zur Prostata ist korrekt?",
         options: [
           { text: "Die Prostata liegt kastanienförmig unterhalb der Blase; ihr alkalisches Sekret schützt Spermien vor dem sauren Milieu der Harnröhre und Vagina", correct: true },
-          { text: "Die Prostata produziert ein saures Sekret zur Desinfektion der Harnröhre", correct: false },
-          { text: "Die Prostata liegt oberhalb der Harnblase und produziert Testosteron", correct: false },
-          { text: "Das Prostatasekret enthält Fructose zur Ernährung der Spermien", correct: false }
+          { text: "Die Prostata produziert ein saures Sekret (pH 4–5) zur Desinfektion der Harnröhre und schützt Spermien vor bakteriellen Infektionen", correct: false },
+          { text: "Die Prostata liegt direkt oberhalb der Harnblase und produziert Testosteron sowie andere androgene Steroide für die Spermienreifung", correct: false },
+          { text: "Das Prostatasekret enthält Fructose als Hauptenergielieferant für Spermien und PSA (prostata-spezifisches Antigen) als Verflüssiger", correct: false }
         ],
         explanation: "Die Prostata (Vorsteherdrüse) ist eine kastanienförmige Drüse direkt unterhalb der Harnblase. Ihr alkalisches, dünnflüssiges Sekret schützt die empfindlichen Samenzellen vor dem sauren Milieu der männlichen Harnröhre und der weiblichen Scheide. Die Spermienbeweglickeit ist in leicht alkalischer Umgebung am größten. Fructose wird von der Bläschendrüse produziert, nicht der Prostata."
       },
@@ -11237,7 +11357,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Nebenhoden: Reifung und Speicherung der Spermien; im Nebenhoden noch unbeweglich", correct: true },
           { text: "Samenweg: Hoden → Nebenhoden → Ductus deferens → Ductus ejaculatorius → Urethra", correct: true },
           { text: "Die Bläschendrüse produziert saures Sekret zur Aktivierung der Spermien", correct: false }
-        ]
+        ],
+        explanation: "Hoden: Sertoli-Zellen = Spermatogenese, Leydig-Zellen = Testosteron; Nebenhoden = Reifung + Speicherung; Bläschendrüse (Vesikulardrüse) produziert alkalisches fruktosehaltiges Sekret (nicht saures) für Spermienernährung.",
       },
       {
         id: "fortpflanzung_mann_mc2",
@@ -11248,7 +11369,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Bläschendrüse: alkalisches Sekret mit Fructose → Ernährung und Beweglichkeit der Spermien", correct: true },
           { text: "Penis: 2 Corpora cavernosa (paarig) + 1 Corpus spongiosum (unpaar, umschließt Urethra)", correct: true },
           { text: "Cowper-Drüse produziert das Hauptvolumen des Ejakulats und enthält Spermien", correct: false }
-        ]
+        ],
+        explanation: "Prostata und Bläschendrüse produzieren alkalisches Sekret zum Schutz der Spermien; die Bläschendrüse liefert ~60-70% des Ejakulatvolumens; Cowper-Drüsen produzieren nur präejakulatorisches Gleitsekret (kein Hauptvolumen, keine Spermien).",
       }
     ]
   }),
@@ -11336,7 +11458,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Eisprung ca. 14 Tage nach Beginn der Menstruation; Befruchtung im Eileiter", correct: true },
           { text: "Uterus-Wandschichten: Endometrium + Myometrium + Perimetrium", correct: true },
           { text: "Die Eizelle wird nach dem Eisprung direkt im Uterus befruchtet", correct: false }
-        ]
+        ],
+        explanation: "Frauen werden mit allen Primärfollikeln geboren; Eisprung ~Tag 14, Befruchtung im äußeren Eileiterdrittel (nicht im Uterus); Uteruswandschichten: Endometrium, Myometrium, Perimetrium.",
       },
       {
         id: "fortpflanzung_frau_zyklus_mc2",
@@ -11347,7 +11470,8 @@ const UROGENITALTRAKT_1041_PLANTS = [
           { text: "Tag 1–5: Menstruation; Tag 5–14: Schleimhautaufbau (Östrogen↑); ab Tag 15: Progesteron → Schleimhaut verdichtet", correct: true },
           { text: "Bei keiner Befruchtung: Gelbkörper regrediert → Hormonspiegel fällt → Regelblutung", correct: true },
           { text: "Die Vagina ist mit Zylinderepithel ausgekleidet und hat ein basisches Milieu durch Milchsäurebakterien", correct: false }
-        ]
+        ],
+        explanation: "Zyklus: Follikelphase (Östrogen, Tag 1-14) → Ovulation (~Tag 14) → Lutealphase (Progesteron, ab Tag 15); ohne Befruchtung regrediert der Gelbkörper → Hormonspiegel fällt → Menstruation; Vagina ist mit mehrschichtigem Plattenepithel ausgekleidet und hat saures Milieu.",
       }
     ]
   })
@@ -11442,7 +11566,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Hormone werden in Leber und Niere abgebaut", correct: true },
           { text: "Alle Hormone wirken artspezifisch", correct: false },
           { text: "Endokrine Drüsen besitzen keinen Ausführungsgang", correct: true }
-        ]
+        ],
+        explanation: "Hormone sind chemische Botenstoffe ohne Eigenenergie, werden in endokrinen Drüsen (ohne Ausführungsgang) gebildet, über das Blut transportiert und in Leber/Niere abgebaut; Hormone wirken nicht artspezifisch (Insulin z.B. wirkt bei vielen Tierarten).",
       },
       {
         id: "hormonsystem_einleitung_mc2",
@@ -11453,7 +11578,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Das endokrine System wirkt langsam chemisch über das Blut", correct: true },
           { text: "Das Wachstumshormon (STH) ist artspezifisch", correct: true },
           { text: "Das endokrine System ersetzt das Nervensystem bei schnellen Reaktionen", correct: false }
-        ]
+        ],
+        explanation: "Nervensystem (schnell, elektrisch, ms) und endokrines System (langsam, chemisch, h-d) sind komplementäre Steuersysteme; STH (Wachstumshormon) ist artspezifisch; das endokrine System ersetzt das Nervensystem nicht bei Schnellreaktionen.",
       }
     ]
   }),
@@ -11546,7 +11672,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Er wandelt nervöse Reize in chemische (hormonelle) Signale um", correct: true },
           { text: "Er produziert Releasing-Hormone (RH) und Inhibiting-Hormone (IH)", correct: true },
           { text: "Er speichert ADH und Oxytocin im Hypophysenvorderlappen (HVL)", correct: false }
-        ]
+        ],
+        explanation: "Hypothalamus liegt im Zwischenhirn, wandelt nervöse in hormonelle Signale um und produziert RH + IH; ADH und Oxytocin werden im Hypothalamus produziert und im Hypophysenhinterlappen (nicht HVL) gespeichert und freigesetzt.",
       },
       {
         id: "hypothalamus_hypophyse_mc2",
@@ -11557,7 +11684,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Der HVL (Adenohypophyse) produziert, speichert und setzt eigene Hormone frei", correct: true },
           { text: "Glandotrope HVL-Hormone sind TSH, ACTH, FSH und LH", correct: true },
           { text: "Der HHL produziert ADH und Oxytocin selbst", correct: false }
-        ]
+        ],
+        explanation: "Hypophyse (~0,6 g, Sella turcica): HVL (Adenohypophyse) produziert eigene Hormone (TSH, ACTH, FSH, LH, GH, Prolaktin); HHL (Neurohypophyse) speichert und setzt ADH und Oxytocin frei — produziert sie aber nicht selbst.",
       }
     ]
   }),
@@ -11650,7 +11778,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Erhöhung von Herzfrequenz und Schlagkraft", correct: true },
           { text: "Anabole Wirkung auf die Skelettmuskulatur", correct: true },
           { text: "Senkung der Körpertemperatur", correct: false }
-        ]
+        ],
+        explanation: "Schilddrüsenhormone (T3 stärker als T4) steigern Grundumsatz, Herzfrequenz, Schlagkraft und wirken anabol auf die Skelettmuskulatur; sie erhöhen (nicht senken) die Körpertemperatur durch gesteigerten Energieumsatz.",
       },
       {
         id: "schilddrüse_epiphyse_mc2",
@@ -11661,7 +11790,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Calcitonin (C-Zellen) senkt den Kalziumspiegel im Blut", correct: true },
           { text: "Die Epiphyse produziert lichtabhängig Melatonin aus Tryptophan", correct: true },
           { text: "T4 ist 5-mal stärker als T3", correct: false }
-        ]
+        ],
+        explanation: "Schilddrüse benötigt Jod für T3/T4; Calcitonin (C-Zellen) senkt den Kalziumspiegel; Epiphyse produziert Melatonin aus Tryptophan bei Dunkelheit; T3 ist 5-mal stärker als T4 (nicht umgekehrt).",
       }
     ]
   }),
@@ -11754,7 +11884,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Steigerung der Ca-Aufnahme aus dem Darm", correct: true },
           { text: "Hemmung der renalen Ca-Ausscheidung (gesteigerte Rückresorption)", correct: true },
           { text: "Senkung des Kalziumspiegels (wie Calcitonin)", correct: false }
-        ]
+        ],
+        explanation: "PTH erhöht den Kalziumspiegel durch Osteoklastenaktivierung, gesteigerte intestinale Ca-Aufnahme und verminderte renale Ca-Ausscheidung; PTH wirkt antagonistisch zu Calcitonin (nicht gleichsinnig).",
       },
       {
         id: "nebenschilddrüsen_thymus_mc2",
@@ -11765,7 +11896,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Er produziert Thymopoetin und Thymosin", correct: true },
           { text: "Er ist beim Neugeborenen noch voll entfaltet", correct: true },
           { text: "Nach der Pubertät wächst er weiter an", correct: false }
-        ]
+        ],
+        explanation: "Thymus liegt im vorderen Mediastinum hinter dem Sternum, ist beim Neugeborenen relativ am größten und produziert Thymopoetin und Thymosin; nach der Pubertät involiert er zu einem Fettkörper (wächst nicht weiter).",
       }
     ]
   }),
@@ -11858,7 +11990,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Steigert Gluconeogenese → Blutzucker↑", correct: true },
           { text: "Fördert Lipolyse (Fettsäurenfreisetzung)", correct: true },
           { text: "Senkt den Blutzucker wie Insulin", correct: false }
-        ]
+        ],
+        explanation: "Cortisol ist das Hauptstresshormon: entzündungshemmend (hemmt Phospholipase A2), immunsuppressiv, katabol (Glukoneogenese hoch, Lipolyse hoch) — es erhöht den Blutzucker (gegenteilig zu Insulin, nicht gleichsinnig).",
       },
       {
         id: "nebenniere_nnr_mc2",
@@ -11869,7 +12002,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Aldosteron reguliert den Elektrolyt- und Wasserhaushalt (RAAS)", correct: true },
           { text: "Testosteron ist das wichtigste Androgen der NNR", correct: true },
           { text: "Cortisol wird in der Zona glomerulosa gebildet", correct: false }
-        ]
+        ],
+        explanation: "Alle NNR-Hormone sind Steroidhormone mit Cholesterin; Zona glomerulosa → Aldosteron, Zona fasciculata → Cortisol, Zona reticularis → Androgene; Testosteron ist das wichtigste Androgen der NNR; Cortisol wird in der Zona fasciculata (nicht glomerulosa) gebildet.",
       }
     ]
   }),
@@ -11962,7 +12096,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Weitet die Bronchien (Bronchodilatation)", correct: true },
           { text: "Regt das ZNS an", correct: true },
           { text: "Erhöht den diastolischen Blutdruck wie Noradrenalin", correct: false }
-        ]
+        ],
+        explanation: "Adrenalin steigert Herzminutenvolumen und -frequenz, erweitert die Bronchien und aktiviert das ZNS; im Gegensatz zu Noradrenalin erhöht Adrenalin vor allem den systolischen Blutdruck und senkt den peripheren Widerstand.",
       },
       {
         id: "nebenniere_nnm_mc2",
@@ -11973,7 +12108,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Es bildet Adrenalin und Noradrenalin als Katecholamine", correct: true },
           { text: "Adrenalin und Noradrenalin sind Stresshormone (Fight-or-Flight)", correct: true },
           { text: "Das NNM ist eine klassische Hormondrüse ohne Nervenverbindung", correct: false }
-        ]
+        ],
+        explanation: "Das Nebennierenmark entstand aus Neuralleistenzellen (Ektoderm) und entspricht einem modifizierten Sympathikusganglion, das direkt durch sympathische Nerven stimuliert wird und Katecholamine (Adrenalin, Noradrenalin) freisetzt.",
       }
     ]
   }),
@@ -12066,7 +12202,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Rückkopplung hemmt bei ausreichender Hormonkonzentration die Produktion", correct: true },
           { text: "Hypothalamus und HVL sind direkt durch ein Blutgefäßsystem verbunden", correct: true },
           { text: "Gewebshormone (Gastrin, Histamin) unterliegen der zentralen Hypothalamus-Steuerung", correct: false }
-        ]
+        ],
+        explanation: "Hypothalamus (Hierarchiespitze) ist mit dem HVL durch ein Portalgefäßsystem verbunden; negative Rückkopplung hemmt bei ausreichender Hormonkonzentration die Produktion; Gewebshormone (Gastrin, Histamin) wirken lokal ohne Hypothalamus-Steuerung.",
       },
       {
         id: "hormon_regelkreis_mc2",
@@ -12077,7 +12214,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "PRH bewirkt Prolaktinausschüttung aus dem HVL → Milchproduktion", correct: true },
           { text: "Oxytocin bewirkt Milchauspressung durch Myoepithel-Kontraktion", correct: true },
           { text: "Dopamin (= PIH) fördert die Prolaktinsekretion (positive Rückkopplung)", correct: false }
-        ]
+        ],
+        explanation: "Beim Stillen: Saugreiz → Hypothalamus → PRH → Prolaktin (Milchproduktion) + Oxytocin → Myoepithel-Kontraktion (Milchauspressung); Dopamin (= PIH) hemmt (nicht fördert) die Prolaktinsekretion.",
       }
     ]
   }),
@@ -12170,7 +12308,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Es dient der Beurteilung der Aktivitätsverteilung in der Schilddrüse", correct: true },
           { text: "Es kann kalte, warme und heiße Knoten unterscheiden", correct: true },
           { text: "Es ersetzt vollständig die Bluthormonbestimmung", correct: false }
-        ]
+        ],
+        explanation: "Schilddrüsenszintigramm mit radioaktivem Jod zeigt die Aktivitätsverteilung und unterscheidet kalte (potenziell maligne), warme und heiße (meist funktionelle Adenome) Knoten; es ergänzt die Bluthormonbestimmung und ersetzt sie nicht.",
       },
       {
         id: "diagnostik_endokrinium_mc2",
@@ -12181,7 +12320,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "HbA1c unter 6,5% gilt als gute Einstellung", correct: true },
           { text: "Manifester Diabetes: zweimal nüchtern über 120 mg/dl", correct: true },
           { text: "Postprandial gilt bereits ein Wert über 140 mg/dl als manifester Diabetes", correct: false }
-        ]
+        ],
+        explanation: "Glukosurie bei Überschreitung der Nierenschwelle (~160-180 mg/dl); HbA1c < 6,5% gilt als gute Langzeiteinstellung; manifester Diabetes: zweimal nüchtern > 126 mg/dl (WHO) oder postprandial > 200 mg/dl.",
       }
     ]
   }),
@@ -12269,7 +12409,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Neurohormone entstehen in spezialisierten Nervenzellen (z. B. Hypothalamus)", correct: true },
           { text: "Gewebshormone unterliegen der zentralen Steuerung des Hypothalamus", correct: false },
           { text: "Gewebshormone sind z. B. Gastrin, Sekretin, Östrogen und Renin", correct: true }
-        ]
+        ],
+        explanation: "Drüsenhormone (endokrine Drüsen ohne Ausführungsgang), Neurohormone (Hypothalamus) und Gewebshormone (lokale Produktion: Gastrin, Sekretin, Östrogen, Renin) sind die drei Bildungsortkategorien; Gewebshormone unterliegen nicht der Hypothalamus-Steuerung.",
       },
       {
         id: "hormondiff_mc2",
@@ -12280,7 +12421,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Steroidhormone haben Cholesterin (Gonan-Ringsystem) als Grundsubstanz", correct: true },
           { text: "Aminosäurederivate: Tyrosin ist Ausgangsstoff für Dopamin und Noradrenalin", correct: true },
           { text: "Steroidhormone sind Polypeptide mit zusätzlichem Jodanteil", correct: false }
-        ]
+        ],
+        explanation: "Biochemische Klassen: Proteohormone (Polypeptide, z.B. Insulin), Steroidhormone (Cholesterin als Grundsubstanz, z.B. Cortisol, Östrogen) und Aminosäurederivate (Tyrosin → Dopamin/Noradrenalin); Schilddrüsenhormone sind Iodaminosäuren, keine Steroidhormone.",
       }
     ]
   }),
@@ -12373,7 +12515,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "A-Zellen produzieren Glukagon (→ Blutzuckererhöhung)", correct: true },
           { text: "Das Pankreas reagiert ohne zentrale Hypothalamus-Steuerung direkt auf Blutzuckeränderungen", correct: true },
           { text: "Insulin fördert die Glykogenolyse und erhöht damit den Blutzucker", correct: false }
-        ]
+        ],
+        explanation: "Das endokrine Pankreas reagiert direkt auf Blutzuckeränderungen: B-Zellen sezernieren Insulin (senkt Blutzucker), A-Zellen Glukagon (erhöht Blutzucker durch Glykogenolyse) — Insulin fördert Glykogensynthese (hemmt nicht Glykogenolyse durch direkte Förderung).",
       },
       {
         id: "periph_horm_mc2",
@@ -12384,7 +12527,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "ANF (Herzvorhöfe) bewirkt Diurese und Natriurese (Blutdrucksenkung)", correct: true },
           { text: "Testosteron (Testes) fördert Spermatogenese und Proteinsynthese", correct: true },
           { text: "Östrogene wandeln die Uterusschleimhaut in die Sekretionsphase um (wie Progesteron)", correct: false }
-        ]
+        ],
+        explanation: "EPO (Niere) stimuliert Erythropoese bei Sauerstoffmangel; ANF (Herzvorhöfe) senkt Blutdruck durch Diurese/Natriurese; Testosteron fördert Spermatogenese; Progesteron (nicht Östrogen) wandelt die Uterusschleimhaut in die Sekretionsphase um.",
       }
     ]
   })
@@ -17995,10 +18139,10 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         id: "1049_02_h3",
         question: "Was bezeichnet die perinatale Sterblichkeit?",
         options: [
-          { text: "Todesfälle im ersten Lebensjahr", correct: false },
+          { text: "Todesfälle im ersten Lebensjahr pro 1000 Lebendgeborenen — also alle Todesfälle ab Geburt bis zum vollendeten 12. Lebensmonat", correct: false },
           { text: "Summe aller vor, während und bis zu einer Woche nach der Geburt Verstorbenen pro 1000 Lebend- und Totgeborenen", correct: true },
-          { text: "Anteil der Totgeburten an allen Geburten", correct: false },
-          { text: "Müttersterblichkeit während der Geburt", correct: false },
+          { text: "Anteil der Totgeburten (ab 500 g oder 24. SSW) an allen Geburten (Lebend- und Totgeborene) pro 1000 Geburten ohne Einschluss der Neonatalperiode", correct: false },
+          { text: "Müttersterblichkeit während Schwangerschaft, Geburt und Wochenbett pro 100.000 Lebendgeborenen (maternale Mortalität), nicht kindliche Todesfälle", correct: false },
         ],
         explanation: "Perinatale Sterblichkeit = Summe aller vor, während und bis zu einer Woche nach der Geburt verstorbenen Kinder pro 1000 Lebend- und Totgeborenen.",
       },
@@ -18407,10 +18551,10 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         id: "1049_06_h2",
         question: "Was ist kompensatorische Hypertrophie?",
         options: [
-          { text: "Hypertrophie durch Hormonstimulation", correct: false },
+          { text: "Hormonell bedingte Hypertrophie: Vergrößerung durch Wachstumshormon oder Östrogen als ausschließliche Ursache jeder Organvergrößerung", correct: false },
           { text: "Vergrößerung eines Organs als Reaktion auf erhöhte funktionelle Anforderungen oder den Ausfall des paarigen Organs", correct: true },
-          { text: "Pathologische Zunahme der Zellzahl mit Zellatypien", correct: false },
-          { text: "Rückbildung eines Organs bei Inaktivität", correct: false },
+          { text: "Pathologische Zunahme der Zellzahl (Hyperplasie) mit Kernatypien und erhöhter Mitoserate als Anpassungsreaktion auf erhöhte Anforderungen", correct: false },
+          { text: "Rückbildung eines Organs bei mangelnder Beanspruchung (Inaktivitätsatrophie) — das Gegenteil einer kompensatorischen Reaktion", correct: false },
         ],
         explanation: "Kompensatorische Hypertrophie: z. B. Linkes Herz bei Bluthochdruck, Niere nach Nephrektomie, Leber nach Resektion, Skelettmuskel bei Training.",
       },
@@ -18559,9 +18703,9 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         question: "Wie verläuft die Frakturheilung zeitlich?",
         options: [
           { text: "Hämatom → Granulozyten → Granulationsgewebe → bindegewebiger Kallus (2–8 Tage) → knöcherner Kallus (1–4 Wochen) → lamellärer Knochen (4–6 Wochen)", correct: true },
-          { text: "Sofortige Knochenneubildung → Hämatom → Narbenbildung", correct: false },
-          { text: "Hämatom → Osteoklasten → Knochenschwund → Narbe", correct: false },
-          { text: "Granulationsgewebe → Hämatom → lamellärer Knochen ohne Kallusphase", correct: false },
+          { text: "Sofortige Knochenneubildung durch Osteoblasten innerhalb der ersten 24 h → Hämatom als zweite Phase → Narbenbildung statt Kallus", correct: false },
+          { text: "Hämatom → Osteoklasten bauen Knochen ab (1–3 Tage) → fortschreitender Knochenschwund im Frakturbereich → Narbenbildung ohne Remodelling", correct: false },
+          { text: "Granulationsgewebe bildet sich zuerst → Hämatom entsteht sekundär → direkter Umbau zu lamellärem Knochen ohne zwischengeschaltete Kallusphase", correct: false },
         ],
         explanation: "Frakturheilung: 1. Hämatom. 2. Entzündung/Granulozyten. 3. Granulationsgewebe. 4. Weicher (bindegewebiger) Kallus (2–8 Tage). 5. Harter (knöcherner) Kallus (1–4 Wochen). 6. Lamellärer Knochen (4–6 Wochen).",
       },
@@ -18771,9 +18915,9 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         question: "Wie unterscheiden sich Gametopathie, Blastopathie, Embryopathie und Fetopathie zeitlich?",
         options: [
           { text: "Gametopathie: Keimzellschaden vor Befruchtung; Blastopathie: 1.–14. Tag; Embryopathie: 15. Tag – 3. Monat; Fetopathie: ab 4. Monat", correct: true },
-          { text: "Alle entstehen im 1. Trimenon", correct: false },
-          { text: "Fetopathie bezeichnet Schäden vor der Befruchtung", correct: false },
-          { text: "Blastopathie und Embryopathie sind identisch", correct: false },
+          { text: "Alle vier Schädigungsformen entstehen ausschließlich im 1. Trimenon (1.–12. SSW) und unterscheiden sich nur im Schweregrad", correct: false },
+          { text: "Fetopathie bezeichnet Schäden vor der Befruchtung (Keimzelle); Blastopathie umfasst Schäden ab dem 4. Monat der Schwangerschaft", correct: false },
+          { text: "Blastopathie und Embryopathie sind identisch und bezeichnen beide Schäden während der gesamten Organogenese (15. Tag bis 3. Monat)", correct: false },
         ],
         explanation: "Zeitliche Abfolge: Gametopathie (Keimzelle) → Blastopathie (1.–14. Tag → 50% Frühabort) → Embryopathie (15. Tag–3. Monat, Organogenese, schwerste Fehlbildungen) → Fetopathie (ab 4. Monat, Entwicklungsstörungen).",
       },
@@ -18962,9 +19106,9 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         question: "Was kennzeichnet spezifische Entzündungen?",
         options: [
           { text: "Durch einen bestimmten Erreger bedingte Entzündung mit charakteristischem morphologischen Bild (z. B. Granulom bei TBC)", correct: true },
-          { text: "Entzündungen, die nur durch chemische Reize ausgelöst werden", correct: false },
-          { text: "Entzündungen mit rein serösem Exsudat", correct: false },
-          { text: "Entzündungen, die ausschließlich akut verlaufen", correct: false },
+          { text: "Entzündungen, die ausschließlich durch chemisch-toxische Reize (Säuren, Laugen, Schwermetalle) ausgelöst werden — ohne biologischen Erreger", correct: false },
+          { text: "Entzündungen mit ausschließlich serösem Exsudat ohne Fibrin, Eiter oder Hämorrhagie — unabhängig vom Erreger", correct: false },
+          { text: "Entzündungen, die ausschließlich als akute Reaktion (perakut bis akut, max. 4 Wochen) verlaufen — chronische Verläufe sind nicht möglich", correct: false },
         ],
         explanation: "Spezifische Entzündung: charakteristisches histologisches Bild durch bestimmten Erreger, z. B. epitheloides Granulom bei TBC. Unspezifische Entzündung: einheitliches Reaktionsmuster unabhängig vom Erreger.",
       },
@@ -18995,9 +19139,9 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         question: "Wie unterscheiden sich Abszess, Phlegmone und Empyem?",
         options: [
           { text: "Abszess = abgekapselt (neu gebildeter Hohlraum); Phlegmone = diffus, nicht abgekapselt; Empyem = in präformierter Höhle", correct: true },
-          { text: "Alle drei sind dasselbe, nur unterschiedliche Fachbegriffe", correct: false },
-          { text: "Phlegmone ist immer in der Lunge, Abszess in der Haut", correct: false },
-          { text: "Empyem entsteht nur durch Tuberkulose", correct: false },
+          { text: "Alle drei bezeichnen dasselbe Phänomen — eitrige Entzündungen — und sind nur unterschiedliche Fachbegriffe für die gleiche Erkrankung", correct: false },
+          { text: "Phlegmone ist ausschließlich eine Lungenerkrankung mit diffuser Einschmelzung; Abszess ist auf die Haut und subkutanes Gewebe beschränkt", correct: false },
+          { text: "Empyem entsteht ausschließlich bei tuberkulöser Infektion der Pleura (Pleuratuberkulose) — andere Erreger können keine Empyeme bilden", correct: false },
         ],
         explanation: "Eitrige Entzündungsformen: Abszess (abgekapselt, neo-gebildeter Hohlraum), Phlegmone (diffus, Bindegewebe), Empyem (präformierte Körperhöhle), Furunkel (Haarfollikel), Karbunkel (multiple Furunkel).",
       },
@@ -19056,9 +19200,9 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         question: "Wie unterscheiden sich Onkogene von Tumorsuppressor-Genen?",
         options: [
           { text: "Onkogene = fördern Zellwachstum (Mutation → Überaktivität); Tumorsuppressoren = hemmen Wachstum (Mutation → Funktionsverlust)", correct: true },
-          { text: "Onkogene hemmen das Tumorwachstum; Tumorsuppressoren fördern es", correct: false },
-          { text: "Beide Gene wirken identisch auf die Zellteilung", correct: false },
-          { text: "Onkogene kommen nur bei viralen Tumoren vor", correct: false },
+          { text: "Onkogene hemmen das Tumorwachstum durch dauerhaften Zellzyklusarrest; Tumorsuppressoren fördern die Proliferation durch Wachstumssignale", correct: false },
+          { text: "Beide Genklassen wirken völlig identisch auf die Zellteilung — Onkogene und Tumorsuppressoren sind nur Synonyme für dasselbe Konzept", correct: false },
+          { text: "Onkogene kommen ausschließlich bei virusassoziierten Tumoren vor (HPV, EBV) und fehlen bei spontanen oder chemisch induzierten Neoplasien", correct: false },
         ],
         explanation: "Onkogene: mutierte Proto-Onkogene → Wachstumssignal dauerhaft aktiv → unkontrollierte Proliferation. Tumorsuppressoren: hemmen Zellzyklus (Zwei-Treffer-Hypothese: beide Allele müssen mutieren).",
       },
@@ -19089,9 +19233,9 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         question: "Welche 5 Metastasierungswege gibt es und je ein Beispiel?",
         options: [
           { text: "Lymphogen (Lymphknoten), hämatogen (Leber-/Lungenmetastasen), kavitär (Peritonealkarzinose), kanalikulär (Bronchialmetastasen), Impfmetastasen (Narbenmetastasen)", correct: true },
-          { text: "Nur lymphogen und hämatogen; andere Wege existieren nicht", correct: false },
-          { text: "Lymphogen, hämatogen, perineuronal, perkutan, kanalikulär", correct: false },
-          { text: "Hämatogen (5 Typen), lymphogen (2 Typen), keine weiteren", correct: false },
+          { text: "Nur lymphogen (Lymphknoten) und hämatogen (über Blutgefäße); andere Wege wie kavitär oder kanalikulär existieren nicht", correct: false },
+          { text: "Lymphogen (Lymphknoten), hämatogen (Blutgefäße), perineuronal (Nervenscheiden), perkutan (durch die Haut), kanalikulär", correct: false },
+          { text: "Hämatogen (5 Typen: Lungen-, Leber-, Wirbelsäulen-, Kava-, Pfortader-), lymphogen (2 Typen), keine weiteren Wege", correct: false },
         ],
         explanation: "5 Wege: 1. Lymphogen (Lymphknoten-Filialen). 2. Hämatogen (4 Typen: Lungen-, Leber-, Wirbelsäulen-, Kavameter-Typ). 3. Kavitär (Peritoneum, Pleura). 4. Kanalikulär (Bronchien, Ductus). 5. Impfmetastasen (iatrogen).",
       },
@@ -19149,10 +19293,10 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         id: "1049_13_h2",
         question: "Was ist Grading bei Tumoren?",
         options: [
-          { text: "Die Beschreibung der Tumorgröße (T1–T4)", correct: false },
+          { text: "Die Beschreibung der Tumorgröße (T1 = klein bis T4 = groß/invasiv) als Teil der TNM-Klassifikation des Primärtumors", correct: false },
           { text: "Die histologische Differenzierung des Tumors (G1 = gut differenziert, G3/G4 = schlecht differenziert)", correct: true },
-          { text: "Die Anzahl der Lymphknotenmetastasen", correct: false },
-          { text: "Das klinische Stadium nach TNM", correct: false },
+          { text: "Die Anzahl der befallenen regionären Lymphknoten (N0 = kein Befall bis N3 = ausgedehnt) gemäß TNM-Klassifikation", correct: false },
+          { text: "Das klinische Gesamtstadium (Stadium I–IV) nach Kombination aller TNM-Parameter und bildgebenden Untersuchungsergebnissen", correct: false },
         ],
         explanation: "Grading = histologischer Differenzierungsgrad: G1 (gut differenziert, günstig) → G2 (mäßig) → G3 (schlecht differenziert) → G4 (undifferenziert, anaplastisch, ungünstig).",
       },
@@ -19313,9 +19457,9 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         question: "Beschreiben Sie das WHO-Schmerzstufenschema:",
         options: [
           { text: "Stufe 1: Nicht-Opioide; Stufe 2: schwach wirksame Opioide; Stufe 3: stark wirksame Opioide (jeweils ± Koanalgetika)", correct: true },
-          { text: "Stufe 1: Opioide; Stufe 2: NSAR; Stufe 3: Paracetamol", correct: false },
-          { text: "Nur 2 Stufen: leichte und schwere Analgetika", correct: false },
-          { text: "Stufe 1: Tramadol; Stufe 2: Morphin; Stufe 3: Fentanyl", correct: false },
+          { text: "Stufe 1: starke Opioide (Morphin); Stufe 2: NSAR (Ibuprofen, Diclofenac) ± schwache Opioide; Stufe 3: Paracetamol als Basisanalgetikum", correct: false },
+          { text: "Nur 2 Stufen (leichte nicht-opioidartige und schwere opioidartige Analgetika) — das Schema kennt keine mittlere Stufe mit schwachen Opioiden", correct: false },
+          { text: "Stufe 1: Tramadol (schwaches Opioid) als erstes Mittel der Wahl; Stufe 2: Morphin (starkes Opioid); Stufe 3: Fentanyl transderm", correct: false },
         ],
         explanation: "WHO-Stufenschema (3 Stufen): 1 = Nicht-Opioide (ASS, Ibuprofen, Paracetamol). 2 = schwach wirksame Opioide (Tramadol, Codein) + Stufe-1. 3 = stark wirksame Opioide (Morphin, Oxycodon, Fentanyl) + Stufe-1. Bei jeder Stufe: Koanalgetika möglich.",
       },

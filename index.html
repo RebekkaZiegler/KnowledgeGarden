@@ -8,7 +8,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Knowledge Garden RPG - MVP 0.5</title>
+  <title>Knowledge Garden</title>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="assets/images/icon-192.png">
   <link rel="stylesheet" href="./styles.css">
@@ -16,59 +16,175 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>Knowledge Garden RPG</h1>
-    <p id="app-version-label">MVP 0.5 - Heilpraktiker</p>
-    <div id="player-stats" class="stats header-stats"></div>
-    <div id="header-info">
-      <span id="cooldown-info" class="header-info-item muted"></span>
-      <span id="curriculum-status" class="header-info-item muted"></span>
-    </div>
-    <div class="icon-legend-wrap">
-      <canvas id="favicon-preview" width="32" height="32" aria-label="Spiel-Icon – Bedeutung der Farben" role="img"></canvas>
-      <div class="icon-legend-tooltip" role="tooltip">
-        <div><strong>Spiel-Icon Farben</strong></div>
-        <div><span class="legend-dot legend-dot--red"></span> Rot: Kampf bereit</div>
-        <div><span class="legend-dot legend-dot--orange"></span> Orange: Ernte bereit</div>
-        <div><span class="legend-dot legend-dot--blue"></span> Blau: Lernaktion bereit</div>
-      </div>
-    </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       HEADER — stats bar, always visible
+  ════════════════════════════════════════════════════ -->
+  <header id="stats-header">
+    <div id="player-stats"></div>
   </header>
 
-  <div id="garden-layout">
+  <!-- ═══════════════════════════════════════════════════
+       SWIPE SCREENS
+  ════════════════════════════════════════════════════ -->
+  <div id="screen-container">
 
-    <!-- Left panel: always visible (Plant Tycoon style) -->
-    <aside id="left-panel">
-      <div class="left-panel-divider"></div>
-      <div id="left-panel-visual"></div>
-      <button id="back-to-garden-btn">← Zurück zum Garten</button>
-      <div id="plant-detail" class="detail">Keine Pflanze ausgewählt.<br><br>Klicke eine Pflanze im Garten an.</div>
-    </aside>
+    <!-- LEFT: Garden -->
+    <section id="screen-garden" class="screen">
+      <div id="garden-grid"></div>
+    </section>
 
-    <!-- Garden room: topic shelves with plant pots, rendered by renderGardenRoom() -->
-    <main id="garden-room"></main>
+    <!-- CENTER: Restaurant -->
+    <section id="screen-restaurant" class="screen screen--center">
+      <div id="restaurant-closed-overlay">
+        <span>🌙</span>
+        <p>Geschlossen</p>
+      </div>
+      <div id="re-scene">
+        <div id="re-sprites"></div>
+        <div id="re-tables"></div>
+      </div>
+      <div id="re-controls">
+        <button id="btn-open-restaurant" class="re-control-btn">🍽️ Öffnen</button>
+        <button id="btn-last-call" class="re-control-btn" hidden>🔔 Last Call</button>
+        <button id="btn-sleep" class="re-control-btn re-control-btn--sleep" hidden>🌙 Schlafen</button>
+        <button id="btn-raven" class="re-control-btn re-control-btn--raven" title="Raben-Lieferung">🪶</button>
+        <button id="btn-kitchen" class="re-control-btn" title="Küche">🍕</button>
+      </div>
+      <div id="re-question-area" hidden></div>
+      <div id="re-stats-row"></div>
+    </section>
+
 
   </div>
 
-  <!-- Bottom navigation bar -->
+  <!-- ═══════════════════════════════════════════════════
+       BOTTOM NAV
+  ════════════════════════════════════════════════════ -->
   <nav id="bottom-nav">
-    <button id="open-session-end-btn" title="Sitzung beenden">🚪</button>
-    <button id="open-catalog-btn" title="Pflanzen">🌱</button>
-    <button id="open-map-btn" title="Restaurant">🍽️</button>
-    <button id="open-lab-btn" title="Labor">🔬</button>
-    <button id="open-trophies-btn" title="Trophäen">🏆</button>
-    <button id="open-memory-btn" title="Entspannungsmodus: Memory">🧘</button>
-    <button id="toggle-settings-btn" title="Einstellungen">⚙️</button>
-    <button id="update-nav-btn" title="App aktualisieren">🔄</button>
-    <button id="quick-reset-btn" class="danger" title="Speicher löschen" onclick="if(confirm('Speicher wirklich löschen?')){localStorage.clear();location.reload();}">🗑️</button>
+    <button id="btn-chapters" title="Kapitel">📚</button>
+    <button id="btn-trophies" title="Trophäen">🏆</button>
+    <button id="btn-memory" title="Entspannungsmodus">🧘</button>
+    <button id="btn-settings" title="Einstellungen">⚙️</button>
   </nav>
 
-  <!-- Settings modal -->
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Question overlay (used everywhere)
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-question" class="modal-overlay" hidden>
+    <div class="modal-box modal-box--question">
+      <div id="question-context" class="question-context muted"></div>
+      <div id="question-text" class="question-text"></div>
+      <div id="question-options" class="question-options"></div>
+      <div id="question-feedback" class="question-feedback" hidden></div>
+      <button id="question-continue-btn" class="question-continue-btn" hidden>Weiter →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Chapter selection
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-chapters" class="modal-overlay" hidden>
+    <div class="modal-box modal-box--wide">
+      <h2>📚 Kapitel</h2>
+      <p class="muted" style="font-size:0.82rem;margin-bottom:0.8rem">Wähle aktive Kapitel — ihre Fragen kommen in deinen Lernpool.</p>
+      <div id="chapter-list" class="chapter-list"></div>
+      <button id="close-chapters-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Chapter complete popup
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-chapter-complete" class="modal-overlay" hidden>
+    <div class="modal-box modal-box--narrow">
+      <div style="font-size:2rem;text-align:center;margin-bottom:0.5rem">🎉</div>
+      <h2 style="text-align:center">Kapitel abgeschlossen!</h2>
+      <p id="chapter-complete-name" style="text-align:center;font-weight:600;margin:0.4rem 0 0.8rem"></p>
+      <p class="muted" style="font-size:0.85rem;text-align:center;margin-bottom:1rem">Alle Fragen gemeistert. Möchtest du neue Kapitel aktivieren?</p>
+      <div style="display:flex;gap:0.5rem">
+        <button id="chapter-complete-yes-btn" style="flex:1">📚 Kapitel wählen</button>
+        <button id="chapter-complete-no-btn" style="flex:1;opacity:0.6">Später</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Raven order
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-raven" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <h2>🪶 Raben-Lieferung</h2>
+      <p class="muted" style="font-size:0.82rem;margin-bottom:0.8rem">Jede bestellte Einheit kostet eine Frage. Lieferung kommt nach dem nächsten Schlafen.</p>
+      <div id="raven-order-list" class="raven-order-list"></div>
+      <div id="raven-pending" class="raven-pending"></div>
+      <button id="close-raven-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Kitchen / Pizza creation
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-kitchen" class="modal-overlay" hidden>
+    <div class="modal-box modal-box--wide">
+      <h2>🍕 Küche</h2>
+      <div id="kitchen-content"></div>
+      <button id="close-kitchen-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Trophies
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-trophies" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <h2>🏆 Trophäenraum</h2>
+      <div id="trophy-list" class="list"></div>
+      <button id="close-trophies-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Memory / relaxation mode
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-memory" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <h2>🧘 Entspannungsmodus</h2>
+      <div class="tabs">
+        <button id="mem-tab-memory" class="tab-btn tab-btn--active" data-mem-tab="memory">🧠 Memory</button>
+        <button id="mem-tab-label" class="tab-btn" data-mem-tab="label">🏷️ Beschriften</button>
+      </div>
+
+      <div id="mem-panel-memory">
+        <div id="memory-intro" class="muted" style="font-size:0.85rem;margin-bottom:0.6rem">Finde die Paare aus Themen, die du schon gelernt hast — ganz ohne Zeitdruck oder Punkte.</div>
+        <div id="memory-stats" class="muted" style="font-size:0.8rem;margin-bottom:0.6rem"></div>
+        <div id="memory-board" class="memory-board"></div>
+        <div id="memory-done" class="memory-done" hidden></div>
+        <div class="row" style="margin-top:0.6rem">
+          <button id="memory-new-round-btn">🔄 Neue Runde</button>
+        </div>
+      </div>
+
+      <div id="mem-panel-label" hidden>
+        <div id="label-practice-intro" class="muted" style="font-size:0.85rem;margin-bottom:0.6rem">Wähle eine Beschriftungsübung — ganz ohne Zeitdruck oder Kosten, beliebig oft wiederholbar.</div>
+        <div id="label-practice-picker" class="label-pool"></div>
+        <div id="label-practice-area"></div>
+      </div>
+
+      <div class="row" style="margin-top:0.6rem">
+        <button id="close-memory-btn" class="modal-close-btn">Schließen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Settings
+  ════════════════════════════════════════════════════ -->
   <div id="modal-settings" class="modal-overlay" hidden>
     <div class="modal-box">
       <h2>Einstellungen</h2>
       <div id="settings-row" class="row">
-        <button id="dev-mode-btn">Dev-Cooldown: Aus</button>
+        <button id="dev-mode-btn">Dev-Modus: Aus</button>
         <button id="save-btn">Speichern</button>
         <button id="export-btn">Export</button>
         <button id="import-btn">Import</button>
@@ -78,17 +194,8 @@
       <div id="settings-version" style="font-size:0.75rem;color:var(--muted);margin-top:0.5rem;text-align:center;"></div>
       <button id="update-btn" style="width:100%;margin-top:0.4rem;font-size:0.95rem;padding:0.6rem 1rem;">🔄 Auf neueste Version aktualisieren</button>
       <input id="import-file-input" type="file" accept="application/json,.json" style="display:none">
-      <div class="muted">Mit Esc wieder schließen.</div>
+      <div class="muted" style="font-size:0.8rem;margin-top:0.5rem">Mit Esc wieder schließen.</div>
       <button id="close-settings-btn" class="modal-close-btn">Schließen</button>
-    </div>
-  </div>
-
-  <!-- Seed catalog modal -->
-  <div id="modal-catalog" class="modal-overlay" hidden>
-    <div class="modal-box modal-box--wide">
-      <h2>Pflanzen-Katalog</h2>
-      <div id="seed-library" class="list"></div>
-      <button id="close-catalog-btn" class="modal-close-btn">Schließen</button>
     </div>
   </div>
 
@@ -106,87 +213,9 @@
     </div>
   </div>
 
-  <!-- Room / Restaurant modal -->
-  <div id="modal-room" class="modal-overlay" hidden>
-    <div class="modal-box modal-box--map">
-      <h2 id="room-title">Restaurant</h2>
-      <div id="room-content">
-      </div>
-      <button id="close-room-btn" class="modal-close-btn">Schließen</button>
-    </div>
-  </div>
-
-  <!-- Lab modal -->
-  <div id="modal-lab" class="modal-overlay" hidden>
-    <div class="modal-box">
-      <h2>Labor</h2>
-      <div id="lab-status" class="muted"></div>
-      <div id="lab-list" class="list"></div>
-      <button id="close-lab-btn" class="modal-close-btn">Schließen</button>
-    </div>
-  </div>
-
-  <!-- Trophy room modal -->
-  <div id="modal-trophies" class="modal-overlay" hidden>
-    <div class="modal-box">
-      <h2>🏆 Trophäenraum</h2>
-      <div id="trophy-list" class="list"></div>
-      <button id="close-trophies-btn" class="modal-close-btn">Schließen</button>
-    </div>
-  </div>
-
-  <!-- Memory / relaxation mode -->
-  <div id="modal-memory" class="modal-overlay" hidden>
-    <div class="modal-box">
-      <h2>🧘 Entspannungsmodus</h2>
-      <div class="tabs">
-        <button id="mem-tab-memory" class="tab-btn tab-btn--active" data-mem-tab="memory">🧠 Memory</button>
-        <button id="mem-tab-label" class="tab-btn" data-mem-tab="label">🏷️ Beschriften</button>
-      </div>
-
-      <div id="mem-panel-memory">
-        <div id="memory-intro" class="muted" style="font-size:0.85rem;margin-bottom:0.6rem">Finde die Paare aus Themen, die du schon gepflanzt oder beantwortet hast — ganz ohne Zeitdruck oder Punkte.</div>
-        <div id="memory-stats" class="muted" style="font-size:0.8rem;margin-bottom:0.6rem"></div>
-        <div id="memory-board" class="memory-board"></div>
-        <div id="memory-done" class="memory-done" hidden></div>
-        <div class="row" style="margin-top:0.6rem">
-          <button id="memory-new-round-btn">🔄 Neue Runde</button>
-        </div>
-      </div>
-
-      <div id="mem-panel-label" hidden>
-        <div id="label-practice-intro" class="muted" style="font-size:0.85rem;margin-bottom:0.6rem">Wähle eine Beschriftungsübung aus deinen vertrauten Themen — ganz ohne Zeitdruck oder Kosten, beliebig oft wiederholbar.</div>
-        <div id="label-practice-picker" class="label-pool"></div>
-        <div id="label-practice-area"></div>
-      </div>
-
-      <div class="row" style="margin-top:0.6rem">
-        <button id="close-memory-btn" class="modal-close-btn">Schließen</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Quick-pick: bed selector, plant selector, or achievement detail -->
-  <div id="modal-quick-pick" class="modal-overlay" hidden>
-    <div class="modal-box modal-box--narrow">
-      <h2 id="quick-pick-title"></h2>
-      <div id="quick-pick-list" class="quick-pick-list"></div>
-      <button id="close-quick-pick-btn" class="modal-close-btn">Abbrechen</button>
-    </div>
-  </div>
-
-  <!-- End session modal -->
-  <div id="modal-session-end" class="modal-overlay" hidden>
-    <div class="modal-box">
-      <h2>Sitzung beenden?</h2>
-      <div id="session-end-stats" class="session-end-stats"></div>
-      <div class="row" style="margin-top:1rem">
-        <button id="session-end-yes-btn" class="danger">Ja, Spiel beenden</button>
-        <button id="session-end-no-btn">Weiterspielen</button>
-      </div>
-    </div>
-  </div>
-
+  <!-- ═══════════════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════════════════ -->
   <script src="./js/content.js"></script>
   <script>
     (function () {
@@ -196,41 +225,23 @@
         sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + String(Math.random());
         sessionStorage.setItem(sidKey, sid);
       }
-
       const post = (path, useBeacon) => {
-        if (useBeacon && navigator.sendBeacon) {
-          navigator.sendBeacon(path, sid);
-          return;
-        }
-        fetch(path, {
-          method: "POST",
-          headers: { "x-app-session": sid },
-          keepalive: true
-        }).catch(() => {});
+        if (useBeacon && navigator.sendBeacon) { navigator.sendBeacon(path, sid); return; }
+        fetch(path, { method: "POST", headers: { "x-app-session": sid }, keepalive: true }).catch(() => {});
       };
-
       post("/__app_open", false);
       const timer = setInterval(() => post("/__app_ping", false), 20000);
-
-      // Re-ping immediately when window regains visibility (browser throttles intervals in background)
-      document.addEventListener("visibilitychange", () => {
-        if (!document.hidden) post("/__app_ping", false);
-      });
-
-      window.addEventListener("beforeunload", () => {
-        clearInterval(timer);
-        post("/__app_close", true);
-      });
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) post("/__app_ping", false); });
+      window.addEventListener("beforeunload", () => { clearInterval(timer); post("/__app_close", true); });
     })();
   </script>
   <script src="./js/game.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(reg => {
-        reg.update();
-      }).catch(() => {});
+      navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(reg => { reg.update(); }).catch(() => {});
     }
   </script>
+
   <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden;">
     <defs>
       <filter id="plant-organic" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
@@ -239,5 +250,6 @@
       </filter>
     </defs>
   </svg>
+
 </body>
 </html>
