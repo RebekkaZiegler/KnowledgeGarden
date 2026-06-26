@@ -3871,6 +3871,8 @@ body.plant-open #back-to-garden-btn { display: block; }
   object-fit: contain;
   pointer-events: none;
 }
+.cleaning-item[data-type="wine"] .cleaning-clean-img,
+.cleaning-item[data-type="beer"] .cleaning-clean-img { height: 60%; }
 
 .cleaning-canvas {
   position: absolute;
