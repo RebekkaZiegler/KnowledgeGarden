@@ -2068,15 +2068,21 @@ function setupCleaningCanvas(canvas, type, itemIdx) {
   const ctx = canvas.getContext("2d");
   const img = new Image();
   img.onload = () => {
-    // Size canvas to match the clean image's rendered rect so the dirty overlay aligns
-    const cleanImg = canvas.closest(".cleaning-img-wrap")?.querySelector(".cleaning-clean-img");
-    const rect = cleanImg ? cleanImg.getBoundingClientRect() : null;
-    if (rect && rect.width > 0) {
-      canvas.width  = Math.round(rect.width);
-      canvas.height = Math.round(rect.height);
-      canvas.style.width  = rect.width  + "px";
-      canvas.style.height = rect.height + "px";
+    if (type !== "plate") {
+      // Glasses: match canvas to the clean image's rendered size so dirty overlay aligns
+      const cleanImg = canvas.closest(".cleaning-img-wrap")?.querySelector(".cleaning-clean-img");
+      const rect = cleanImg ? cleanImg.getBoundingClientRect() : null;
+      if (rect && rect.width > 0) {
+        canvas.width  = Math.round(rect.width);
+        canvas.height = Math.round(rect.height);
+        canvas.style.width  = rect.width  + "px";
+        canvas.style.height = rect.height + "px";
+      } else {
+        canvas.width  = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+      }
     } else {
+      // Plates: natural dirty image size, CSS stays at 65×65% from stylesheet
       canvas.width  = img.naturalWidth;
       canvas.height = img.naturalHeight;
     }
