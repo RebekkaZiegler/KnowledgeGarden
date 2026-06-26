@@ -1526,7 +1526,6 @@ button:disabled {
 
 /* ── Plant ready indicators — static glow + stars, per-bed colour ── */
 .plant-sparkle--harvest {
-  filter: drop-shadow(0 0 8px var(--fruit-hi)) drop-shadow(0 0 18px var(--stem-hi));
 }
 
 .plant-sparkle--harvest::before,
