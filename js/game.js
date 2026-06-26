@@ -157,6 +157,7 @@ function defaultState() {
       recipes:       [{ id: "basic", name: "Basic Pizza", toppings: [], active: true, deletable: false, orderedCount: 0 }],
       unlocks:         { chefs: 1, cleaner: false },
       sessionStats:    { veryHappy: 0, happy: 0, neutral: 0, sad: 0 },
+      totalStats:      { veryHappy: 0, happy: 0, neutral: 0, sad: 0 },
       sessionCorrect:  0,
       sessionAnswered: 0,
     },
@@ -201,6 +202,7 @@ function normalizeState(s) {
   s.restaurant = Object.assign({}, d.restaurant,   s.restaurant || {});
   s.restaurant.patrons         = [];
   s.restaurant.sessionStats    = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
+  s.restaurant.totalStats      = Object.assign({ veryHappy: 0, happy: 0, neutral: 0, sad: 0 }, s.restaurant.totalStats || {});
   s.restaurant.sessionCorrect  = 0;
   s.restaurant.sessionAnswered = 0;
   s.chapters    = s.chapters    || {};
@@ -1098,6 +1100,7 @@ function serveTable(tableId) {
         }
       }
       G.restaurant.sessionStats[p.happiness]++;
+      G.restaurant.totalStats[p.happiness]++;
 
       // Plate dirty/broken
       const breakChance = BREAK_CHANCE[p.happiness] ?? 0.05;
@@ -1210,7 +1213,7 @@ function renderRestaurantScene() {
 function renderRestaurantStats() {
   const el = document.getElementById("re-stats-row");
   if (!el) return;
-  const s = G.restaurant.sessionStats;
+  const s = G.restaurant.totalStats || { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
 
   const items = [];
   // All ingredients and drinks with qty > 0
