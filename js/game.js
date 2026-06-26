@@ -883,8 +883,6 @@ function commitNewDay() {
 
   G.currentDay++;
   G.stats.daysPlayed++;
-  G.stats.dailyCorrect  = 0;
-  G.stats.dailyAnswered = 0;
   G.restaurant.sessionStats = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
 
   // Process deliveries
