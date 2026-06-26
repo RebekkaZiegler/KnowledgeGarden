@@ -14,14 +14,14 @@ const PLANT_GROW_DAYS  = 2;
 const RAVEN_DELIVER_DAYS   = 1;
 
 // Food crops grown in the garden — each harvest yields the per-crop yield
-const CROP_YIELD = 10;
+const CROP_YIELD = 20;
 function cropStages(prefix) {
   return [1,2,3,4].map(n => `assets/images/${prefix}_${n}.png`);
 }
 
 const FOOD_CROPS = [
-  { id: "wheat",    name: "Weizen",     emoji: "🌾", ingredient: "wheat",       stages: cropStages("wheat"),    spriteCount: 3, yield: 15 },
-  { id: "tomato",   name: "Tomate",     emoji: "🍅", ingredient: "tomato",      stages: cropStages("tomatoes"),                  yield: 15 },
+  { id: "wheat",    name: "Weizen",     emoji: "🌾", ingredient: "wheat",       stages: cropStages("wheat"),    spriteCount: 3, yield: 25 },
+  { id: "tomato",   name: "Tomate",     emoji: "🍅", ingredient: "tomato",      stages: cropStages("tomatoes"),                  yield: 25 },
   { id: "mushroom", name: "Pilze",      emoji: "🍄", ingredient: "mushrooms",   stages: cropStages("mushr")    },
   { id: "pepper",   name: "Paprika",    emoji: "🫑", ingredient: "bell_pepper", stages: cropStages("paprika")  },
   { id: "basil",    name: "Basilikum",  emoji: "🌿", ingredient: "basil",       stages: cropStages("basil")    },
@@ -41,21 +41,21 @@ const DRINKS = [
 
 // Dishware — ordered via raven in batches of 5
 const DISHWARE_CFG = [
-  { id: "plates",      name: "Teller",      emoji: "🍽️", batch: 5,
+  { id: "plates",      name: "Teller",      emoji: "🍽️", batch: 15,
     cleanImg: "assets/images/clean plate.png", dirtyImg: "assets/images/dirt.png", dirtyIsOverlay: true },
-  { id: "wineGlasses", name: "Weingläser",  emoji: "🍷", batch: 5,
+  { id: "wineGlasses", name: "Weingläser",  emoji: "🍷", batch: 15,
     cleanImg: "assets/images/wine_clean.png", dirtyImg: "assets/images/wine_dirty.png" },
-  { id: "beerGlasses", name: "Biergläser",  emoji: "🍺", batch: 5,
+  { id: "beerGlasses", name: "Biergläser",  emoji: "🍺", batch: 15,
     cleanImg: "assets/images/beer_clean.png", dirtyImg: "assets/images/beer.png" },
 ];
 
 // Raven animal products + drinks (all orderable via raven)
 const RAVEN_ITEMS_CFG = [
-  { id: "mozzarella", name: "Mozzarella", emoji: "🧀", batch: 10 },
-  { id: "salami",     name: "Salami",     emoji: "🥩", batch: 10 },
-  { id: "ham",        name: "Schinken",   emoji: "🍖", batch: 10 },
-  { id: "anchovies",  name: "Sardellen",  emoji: "🐟", batch: 10 },
-  { id: "eggs",       name: "Eier",       emoji: "🥚", batch: 10 },
+  { id: "mozzarella", name: "Mozzarella", emoji: "🧀", batch: 20 },
+  { id: "salami",     name: "Salami",     emoji: "🥩", batch: 20 },
+  { id: "ham",        name: "Schinken",   emoji: "🍖", batch: 20 },
+  { id: "anchovies",  name: "Sardellen",  emoji: "🐟", batch: 20 },
+  { id: "eggs",       name: "Eier",       emoji: "🥚", batch: 20 },
   ...DRINKS.filter(d => !d.alwaysAvailable),
 ];
 
@@ -128,7 +128,7 @@ let G = null;
 function defaultState() {
   return {
     version:    SAVE_VERSION,
-    settings:   { devMode: false },
+    settings:   {},
     currentDay: 1,
     phase:      "timeless",
 
@@ -143,11 +143,13 @@ function defaultState() {
     ravenOrders: [],
     ravenSeeds:  [],
 
+    tutorial: { step: 0, completed: false },
+
     supplies: {
       plates:      { clean: 0, dirty: 0 },
       wineGlasses: { clean: 0, dirty: 0 },
       beerGlasses: { clean: 0, dirty: 0 },
-      soapCharges: 10,
+      soapCharges: 20,
     },
 
     restaurant: {
@@ -179,6 +181,7 @@ function defaultState() {
       dailyCorrect:          0,
       dailyAnswered:         0,
       learnedLog:            {},
+      activityLog:           {},
     },
   };
 }
@@ -199,12 +202,17 @@ function normalizeState(s) {
   s.phase      = s.phase      ?? d.phase;
   s.settings   = Object.assign({}, d.settings,    s.settings  || {});
   s.stats      = Object.assign({}, d.stats,        s.stats     || {});
+  s.stats.activityLog = s.stats.activityLog || {};
+  s.stats.learnedLog  = s.stats.learnedLog  || {};
   s.restaurant = Object.assign({}, d.restaurant,   s.restaurant || {});
   s.restaurant.patrons         = [];
   s.restaurant.sessionStats    = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
   s.restaurant.totalStats      = Object.assign({ veryHappy: 0, happy: 0, neutral: 0, sad: 0 }, s.restaurant.totalStats || {});
   s.restaurant.sessionCorrect  = 0;
   s.restaurant.sessionAnswered = 0;
+  // Skip tutorial for existing saves that never had tutorial data
+  const isExistingPlayer = !s.tutorial && (s.currentDay > 1 || (s.stats && s.stats.totalQuestionsAnswered > 0));
+  s.tutorial    = Object.assign({ step: 0, completed: isExistingPlayer }, s.tutorial || {});
   s.chapters    = s.chapters    || {};
   s.inventory   = s.inventory   || {};
   s.ravenOrders = s.ravenOrders || [];
@@ -332,7 +340,6 @@ function pickNextQuestion() {
 
 function recordAnswer(chapterId, questionId, correct) {
   const qs = ensureQuestionState(chapterId, questionId);
-  const wasAlreadyMastered = isQuestionMastered(qs);
   const today = new Date().toISOString().slice(0, 10);
 
   G.stats.totalQuestionsAnswered++;
@@ -346,6 +353,8 @@ function recordAnswer(chapterId, questionId, correct) {
   }
   G.stats.dailyAnswered = (G.stats.dailyAnswered || 0) + 1;
   G.restaurant.sessionAnswered = (G.restaurant.sessionAnswered || 0) + 1;
+  G.stats.activityLog = G.stats.activityLog || {};
+  G.stats.activityLog[today] = (G.stats.activityLog[today] || 0) + 1;
 
   if (correct) {
     G.stats.totalCorrect++;
@@ -354,14 +363,18 @@ function recordAnswer(chapterId, questionId, correct) {
     if (firstTimeToday) {
       G.stats.dailyCorrect++;
       qs.correctDays.push(G.currentDay);
+      G.stats.learnedLog = G.stats.learnedLog || {};
+      G.stats.learnedLog[today] = (G.stats.learnedLog[today] || 0) + 1;
+      // Update streak when daily goal is first reached today
+      if (G.stats.dailyCorrect === DAILY_GOAL && G.stats.lastStreakDate !== today) {
+        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+        G.stats.streak = (G.stats.lastStreakDate === yesterday) ? (G.stats.streak || 0) + 1 : 1;
+        G.stats.lastStreakDate = today;
+        if (G.stats.streak > (G.stats.bestStreak || 0)) G.stats.bestStreak = G.stats.streak;
+      }
     }
     qs.wrongThisSession = false;
     sessionWrongQueue = sessionWrongQueue.filter(e => !(e.chapterId === chapterId && e.questionId === questionId));
-    // Track newly mastered questions for pace calculation
-    if (!wasAlreadyMastered && isQuestionMastered(qs)) {
-      G.stats.learnedLog = G.stats.learnedLog || {};
-      G.stats.learnedLog[today] = (G.stats.learnedLog[today] || 0) + 1;
-    }
     checkChapterCompletion(chapterId);
   } else {
     qs.wrongThisSession    = true;
@@ -741,6 +754,8 @@ function plantSeed(patchIdx, cropId, cropName) {
   G.garden.patches[patchIdx] = { plantId: cropId, plantTitle: cropName, plantedDay: G.currentDay, wateredToday: null };
   const key = `seed_${cropId}`;
   if ((G.inventory[key] || 0) > 0) G.inventory[key]--;
+  if (tutorialStepId() === "plant_wheat" && cropId === "wheat") advanceTutorial("plant_wheat");
+  else if (tutorialStepId() === "plant_tomato" && cropId === "tomato") advanceTutorial("plant_tomato");
   saveState();
   renderGarden();
 }
@@ -776,7 +791,14 @@ function waterPlant(patchIdx) {
   showQuestion("💧 Wässern", entry,
     () => { G.garden.patches[patchIdx].wateredToday = G.currentDay; },
     () => {},
-    () => { saveState(); renderGarden(); }
+    () => {
+      saveState(); renderGarden();
+      if (["water_plants", "water_day3"].includes(tutorialStepId())) {
+        const planted = G.garden.patches.filter(Boolean);
+        const allWatered = planted.length >= 2 && planted.every(s => s.wateredToday === G.currentDay);
+        if (allWatered) advanceTutorial(tutorialStepId());
+      }
+    }
   );
 }
 
@@ -799,6 +821,11 @@ function harvestOnePlant(patchIdx) {
   saveState();
   renderGarden();
   renderRestaurantStats();
+  if (tutorialStepId() === "harvest") {
+    const hasWheat  = (G.inventory["wheat"]  || 0) > 0;
+    const hasTomato = (G.inventory["tomato"] || 0) > 0;
+    if (hasWheat && hasTomato) advanceTutorial("harvest");
+  }
 }
 
 function harvestPlant(patchIdx) { harvestOnePlant(patchIdx); }
@@ -820,6 +847,7 @@ function getIngredientEmoji(id) {
    DAY SYSTEM
 ══════════════════════════════════════════════════════════ */
 function openRestaurant() {
+  advanceTutorial("open_restaurant");
   G.phase                   = "service";
   G.restaurant.isOpen       = true;
   G.restaurant.lastCallFired = false;
@@ -874,6 +902,10 @@ function doSleep() {
       <div class="sleep-stat-value ${s.cls}">${s.value}</div>
     </div>`).join("");
   if (overlay) overlay.hidden = false;
+
+  // Tutorial: advance on sleep steps
+  const sleepSteps = ["raven_ordered", "sleep_day2", "sleep_day3"];
+  if (sleepSteps.includes(tutorialStepId())) advanceTutorial(tutorialStepId());
 
   saveState();
   updateRestaurantUI();
@@ -999,7 +1031,7 @@ function pickRandomIngredient() {
 }
 
 function tickPatrons() {
-  const patience = G.settings.devMode ? 15000 : PATIENCE_MS;
+  const patience = PATIENCE_MS;
   const now      = Date.now();
   G.restaurant.patrons = G.restaurant.patrons.filter(p => {
     if (p.state === "leaving") return false;
@@ -1013,6 +1045,14 @@ function tickPatrons() {
         const pool = pd.glass === "wine" ? G.supplies.wineGlasses : G.supplies.beerGlasses;
         pool.dirty++;
       });
+    }
+    // Lingering patron leaves after half patience if not served their post-meal drink
+    if (p.state === "lingering" && (now - p.arrivedAt) > patience * 1.5) {
+      if (p.postMealDrink?.glass) {
+        const pool = p.postMealDrink.glass === "wine" ? G.supplies.wineGlasses : G.supplies.beerGlasses;
+        pool.dirty++;
+      }
+      p.state = "leaving";
     }
     return true;
   });
@@ -1054,7 +1094,26 @@ function deductGlass(drinkId) {
 }
 
 function serveTable(tableId) {
+  advanceTutorial("serve_patron");
   if (G.phase !== "service") return;
+
+  // Serve lingering patrons their post-meal drink first
+  const lingering = G.restaurant.patrons.filter(p => p.tableId === tableId && p.state === "lingering");
+  if (lingering.length) {
+    lingering.forEach(p => {
+      if (p.postMealDrink?.glass) {
+        const pool = p.postMealDrink.glass === "wine" ? G.supplies.wineGlasses : G.supplies.beerGlasses;
+        if (Math.random() >= 0.05) pool.dirty++;
+      }
+      p.state = "leaving";
+    });
+    renderRestaurantScene();
+    renderRestaurantStats();
+    renderCleaningBadge();
+    saveState();
+    return;
+  }
+
   const hungry = G.restaurant.patrons.filter(p => p.tableId === tableId && p.state === "hungry");
   if (!hungry.length) return;
 
@@ -1145,12 +1204,25 @@ function serveTable(tableId) {
       renderCleaningBadge();
       saveState();
       setTimeout(() => {
+        // 35% chance to order one more drink after the meal
+        if (Math.random() < 0.35) {
+          const drinkId = pickDrink(p);
+          if (drinkId) {
+            const glass = deductGlass(drinkId);
+            p.postMealDrink = { drinkId, glass };
+            p.state = "lingering";
+            renderRestaurantScene();
+            renderRestaurantStats();
+            saveState();
+            return;
+          }
+        }
         p.state = "leaving";
         renderRestaurantScene();
         renderRestaurantStats();
         saveState();
       }, 2000);
-    }, G.settings.devMode ? 2000 : 5000);
+    }, 5000);
   });
 
   saveState();
@@ -1222,6 +1294,14 @@ function renderRestaurantScene() {
       }).join("");
     }).join("");
 
+    // Post-meal drink for lingering patrons
+    const lingerHtml = patrons.filter(p => p.state === "lingering" && p.postMealDrink?.drinkId).map(p => {
+      const cfg = DRINKS.find(d => d.id === p.postMealDrink.drinkId);
+      if (!cfg?.tableImg) return "";
+      const side = p.seatIdx === 0 ? "left:44%" : "right:44%";
+      return `<img src="${cfg.tableImg}" style="position:absolute;width:11%;${side};top:35%;pointer-events:none;filter:drop-shadow(0 0 4px rgba(100,200,255,0.6))" draggable="false">`;
+    }).join("");
+
     // Patron sprites — with happiness badge in "done" state
     const patronSprites = patrons.map(p => {
       const type   = p.spriteType || 1;
@@ -1238,6 +1318,7 @@ function renderRestaurantScene() {
         <img src="${t.img}" style="width:100%;display:block;filter:${shadow}" draggable="false">
         ${foodHtml}
         ${preorderHtml}
+        ${lingerHtml}
         ${patronSprites}
       </div>
     </div>`;
@@ -1291,6 +1372,7 @@ function buildMiniPizzaHtml(toppings) {
 }
 
 function renderKitchen() {
+  advanceTutorial("kitchen");
   const el = document.getElementById("kitchen-content");
   if (!el) return;
   rePizzaCreatorState = null;
@@ -1329,11 +1411,13 @@ function renderKitchen() {
         <div class="re-pc-body">
           <div class="re-pc-left">
             <div class="re-pc-canvas" id="re-pc-canvas"
+              onclick="reOnPizzaCanvasClick(event)"
+              ontouchend="reOnPizzaCanvasClick(event)"
               ondragover="reOnPizzaDragOver(event)" ondrop="reOnPizzaDrop(event)">
               <img src="assets/images/Pizza/basic.png" class="re-pc-base" draggable="false">
               <div id="re-pc-toppings"></div>
             </div>
-            <div class="re-pc-counter"><span id="re-pc-count">0</span>/${RE_PIZZA_MAX_TOPPINGS} · Topping klicken zum Entfernen</div>
+            <div class="re-pc-counter"><span id="re-pc-count">0</span>/${RE_PIZZA_MAX_TOPPINGS} · Zuerst Topping antippen, dann Pizza antippen</div>
             <div class="re-pc-name-row">
               <input id="re-pc-name" type="text" placeholder="Pizza benennen…" maxlength="28" class="re-pc-name-input">
               <button onclick="savePizzaRecipe()" class="re-pc-save-btn">Speichern</button>
@@ -1347,7 +1431,7 @@ function renderKitchen() {
 
 function openPizzaCreator(editId) {
   const existing = editId ? G.restaurant.recipes.find(r => r.id === editId) : null;
-  rePizzaCreatorState = { toppings: existing ? existing.toppings.map(t => ({ ...t })) : [], editingId: editId || null };
+  rePizzaCreatorState = { toppings: existing ? existing.toppings.map(t => ({ ...t })) : [], editingId: editId || null, selectedTopping: null };
   const overlay = document.getElementById("re-pizza-creator");
   if (!overlay) return;
   const nameEl = document.getElementById("re-pc-name");
@@ -1368,13 +1452,15 @@ function buildPizzaPalette() {
   if (!palette) return;
   const placed = {};
   (rePizzaCreatorState?.toppings || []).forEach(t => { placed[t.id] = (placed[t.id] || 0) + 1; });
+  const sel = rePizzaCreatorState?.selectedTopping;
 
   palette.innerHTML = RE_TOPPINGS.map(t => {
     const stock     = G.inventory[t.ingredientId] || 0;
     const available = stock - (placed[t.id] || 0);
     const empty     = available <= 0;
-    return `<div class="re-pc-tile${empty ? " re-pc-tile--empty" : ""}"
-        ${!empty ? `draggable="true" ondragstart="reOnDragStart(event,'${t.id}')"` : ""}
+    const selected  = sel === t.id;
+    return `<div class="re-pc-tile${empty ? " re-pc-tile--empty" : ""}${selected ? " re-pc-tile--selected" : ""}"
+        ${!empty ? `onclick="reSelectTopping('${t.id}')"` : ""}
         title="${t.label}${empty ? " (kein Vorrat)" : ` (${available} verfügbar)`}">
       <img src="${t.img}" class="re-pc-tile-img" draggable="false">
       <span class="re-pc-tile-lbl">${t.label}</span>
@@ -1393,11 +1479,16 @@ function reRenderPizzaCanvas() {
     const tp = RE_TOPPINGS.find(x => x.id === t.id);
     return tp
       ? `<img src="${tp.img}" class="re-pc-placed" style="left:${t.x}%;top:${t.y}%"
-           title="${tp.label} — klicken zum Entfernen" draggable="false"
+           title="${tp.label} — tippen zum Entfernen" draggable="false"
            onclick="rePizzaRemoveTopping(${idx})">`
       : "";
   }).join("");
   buildPizzaPalette();
+  // Update canvas hint
+  const canvas = document.getElementById("re-pc-canvas");
+  if (canvas) {
+    canvas.style.outline = rePizzaCreatorState.selectedTopping ? "2px solid #f8c436" : "";
+  }
 }
 
 function rePizzaRemoveTopping(idx) {
@@ -1406,16 +1497,40 @@ function rePizzaRemoveTopping(idx) {
   reRenderPizzaCanvas();
 }
 
+function reSelectTopping(id) {
+  if (!rePizzaCreatorState) return;
+  rePizzaCreatorState.selectedTopping = rePizzaCreatorState.selectedTopping === id ? null : id;
+  reRenderPizzaCanvas();
+}
+
+function reOnPizzaCanvasClick(event) {
+  if (!rePizzaCreatorState || !rePizzaCreatorState.selectedTopping) return;
+  if (rePizzaCreatorState.toppings.length >= RE_PIZZA_MAX_TOPPINGS) {
+    showToast("Maximale Anzahl Toppings erreicht!");
+    return;
+  }
+  const id = rePizzaCreatorState.selectedTopping;
+  const tp = RE_TOPPINGS.find(t => t.id === id);
+  if (!tp) return;
+  const placed    = rePizzaCreatorState.toppings.filter(t => t.id === id).length;
+  const available = (G.inventory[tp.ingredientId] || 0) - placed;
+  if (available <= 0) { showToast(`${tp.label} — kein Vorrat mehr!`); return; }
+  const canvas = document.getElementById("re-pc-canvas");
+  if (!canvas) return;
+  const rect   = canvas.getBoundingClientRect();
+  const touch  = event.changedTouches ? event.changedTouches[0] : event;
+  const x = Math.max(5, Math.min(95, Math.round(((touch.clientX - rect.left) / rect.width)  * 100)));
+  const y = Math.max(5, Math.min(95, Math.round(((touch.clientY - rect.top)  / rect.height) * 100)));
+  rePizzaCreatorState.toppings.push({ id, x, y });
+  reRenderPizzaCanvas();
+}
+
+// Keep drag-and-drop as desktop fallback
 function reOnDragStart(event, toppingId) {
   event.dataTransfer.setData("toppingId", toppingId);
   event.dataTransfer.effectAllowed = "copy";
 }
-
-function reOnPizzaDragOver(event) {
-  event.preventDefault();
-  event.dataTransfer.dropEffect = "copy";
-}
-
+function reOnPizzaDragOver(event) { event.preventDefault(); }
 function reOnPizzaDrop(event) {
   event.preventDefault();
   if (!rePizzaCreatorState || rePizzaCreatorState.toppings.length >= RE_PIZZA_MAX_TOPPINGS) return;
@@ -1428,8 +1543,8 @@ function reOnPizzaDrop(event) {
   const canvas = document.getElementById("re-pc-canvas");
   if (!canvas) return;
   const rect = canvas.getBoundingClientRect();
-  const x = Math.max(5, Math.min(95, Math.round(((event.clientX - rect.left)  / rect.width)  * 100)));
-  const y = Math.max(5, Math.min(95, Math.round(((event.clientY - rect.top)   / rect.height) * 100)));
+  const x = Math.max(5, Math.min(95, Math.round(((event.clientX - rect.left) / rect.width)  * 100)));
+  const y = Math.max(5, Math.min(95, Math.round(((event.clientY - rect.top)  / rect.height) * 100)));
   rePizzaCreatorState.toppings.push({ id, x, y });
   reRenderPizzaCanvas();
 }
@@ -1473,6 +1588,8 @@ window.reOnDragStart        = reOnDragStart;
 window.reOnPizzaDragOver    = reOnPizzaDragOver;
 window.reOnPizzaDrop        = reOnPizzaDrop;
 window.rePizzaRemoveTopping = rePizzaRemoveTopping;
+window.reSelectTopping      = reSelectTopping;
+window.reOnPizzaCanvasClick = reOnPizzaCanvasClick;
 
 /* ══════════════════════════════════════════════════════════
    RAVEN ORDERS
@@ -1480,6 +1597,7 @@ window.rePizzaRemoveTopping = rePizzaRemoveTopping;
 let ravenQtys = {};
 
 function renderRavenModal() {
+  advanceTutorial("raven_intro");
   const listEl = document.getElementById("raven-order-list");
   const pendEl = document.getElementById("raven-pending");
   if (!listEl) return;
@@ -1570,6 +1688,18 @@ function placeRavenOrder() {
   const total = Object.values(ravenQtys).reduce((s, v) => s + v, 0);
   if (!total) return;
 
+  // Tutorial: block order if required items are missing
+  if (tutorialStepId() === "raven_order") {
+    const ok = (ravenQtys["seed_wheat"]  || 0) >= 1 &&
+               (ravenQtys["seed_tomato"] || 0) >= 1 &&
+               (ravenQtys["mozzarella"] || 0) >= 1 &&
+               (ravenQtys["plates"]     || 0) >= 1;
+    if (!ok) {
+      showToast("🧙 Du brauchst noch: Weizensamen, Tomatensamen, Mozzarella und Teller!");
+      return;
+    }
+  }
+
   if (!hasActiveQuestions()) {
     showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚.");
     return;
@@ -1598,6 +1728,7 @@ function placeRavenOrder() {
       ravenQtys = {};
       saveState();
       showToast(`🪶 Bestellung aufgegeben! Lieferung nach dem Schlafen.`);
+      advanceTutorial("raven_order");
     },
     null
   );
@@ -1788,13 +1919,13 @@ function renderLabelPicker() {
 function startLabelExercise(exId) {
   const ex = (PACK_CONTENT.labelExercises || []).find(e => e.id === exId);
   if (!ex) return;
-  labelPracticeSession = { ex, placed: {}, selectedLabel: null, result: null };
+  labelPracticeSession = { ex, placed: {}, selectedLabel: null, result: null, checkedZones: {} };
   renderLabelExercise();
 }
 
 function renderLabelExercise() {
   if (!labelPracticeSession) return;
-  const { ex, placed, selectedLabel, result } = labelPracticeSession;
+  const { ex, placed, selectedLabel, result, checkedZones } = labelPracticeSession;
   const area = document.getElementById("label-practice-area");
   if (!area) return;
 
@@ -1803,7 +1934,14 @@ function renderLabelExercise() {
 
   const zoneHtml = ex.zones.map(z => {
     const filled = placed[z.id];
-    return `<div class="label-zone${filled ? " has-label" : ""}${selectedLabel ? " targeted" : ""}"
+    const checked = checkedZones?.[z.id];
+    const cls = [
+      "label-zone",
+      filled ? "has-label" : "",
+      selectedLabel ? "targeted" : "",
+      checked ? `zone-${checked}` : ""
+    ].filter(Boolean).join(" ");
+    return `<div class="${cls}"
       data-zone-id="${escapeHtmlText(z.id)}"
       style="left:${z.left}%;top:${z.top}%;width:${z.width}%;height:${z.height}%">
       ${filled ? `<span class="label-zone-text">${escapeHtmlText(filled)}</span>` : ""}
@@ -1823,7 +1961,7 @@ function renderLabelExercise() {
     : "";
 
   const diagramContent = ex.diagramType === "image"
-    ? `<img src="${ex.imagePath}" alt="${escapeHtmlText(ex.title)}" style="display:block;width:100%;height:auto">`
+    ? `<img src="${ex.imagePath}" alt="${escapeHtmlText(ex.title)}" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:fill">`
     : (ex.svgContent || "");
 
   const ratio = ex.aspectRatio || "5/4";
@@ -1834,7 +1972,7 @@ function renderLabelExercise() {
       <button id="label-back-btn" class="modal-close-btn" style="font-size:0.8rem;padding:0.25rem 0.6rem">← Zurück</button>
     </div>
     <div style="font-size:0.82rem;margin-bottom:0.3rem;color:var(--muted)">🏷️ ${escapeHtmlText(ex.title)} — Beschrifte die Strukturen:</div>
-    <div class="label-diagram-wrapper" style="width:min(100%,calc(48vh * ${rw} / ${rh}))">${diagramContent}${zoneHtml}</div>
+    <div class="label-diagram-wrapper" style="width:min(100%,calc(48vh * ${rw} / ${rh}));aspect-ratio:${rw}/${rh}">${diagramContent}${zoneHtml}</div>
     <div class="label-pool">${chipHtml || "<span class='muted' style='font-size:0.82rem'>Alle Labels platziert ✓</span>"}</div>
     ${resultHtml}
     <div style="display:flex;gap:0.5rem;margin-top:0.5rem">
@@ -1853,6 +1991,7 @@ function renderLabelExercise() {
         delete labelPracticeSession.placed[zid];
       }
       labelPracticeSession.result = null;
+      labelPracticeSession.checkedZones = {};
       renderLabelExercise();
     });
   });
@@ -1868,9 +2007,17 @@ function renderLabelExercise() {
   document.getElementById("label-submit-btn")?.addEventListener("click", () => {
     const { ex, placed } = labelPracticeSession;
     let correct = 0;
-    ex.zones.forEach(z => { if ((placed[z.id] || "") === z.label) correct++; });
+    const checkedZones = {};
+    ex.zones.forEach(z => {
+      if (placed[z.id] !== undefined) {
+        const ok = placed[z.id] === z.label;
+        checkedZones[z.id] = ok ? "correct" : "wrong";
+        if (ok) correct++;
+      }
+    });
     const ok  = correct / ex.zones.length >= (ex.passRate || 0.6);
     const pct = Math.round((correct / ex.zones.length) * 100);
+    labelPracticeSession.checkedZones = checkedZones;
     labelPracticeSession.result = {
       ok,
       text: `${correct}/${ex.zones.length} Strukturen richtig (${pct}%)${ok ? " — geschafft! 🌿" : " — versuch's nochmal"}`
@@ -1882,6 +2029,7 @@ function renderLabelExercise() {
     labelPracticeSession.placed = {};
     labelPracticeSession.selectedLabel = null;
     labelPracticeSession.result = null;
+    labelPracticeSession.checkedZones = {};
     renderLabelExercise();
   });
 
@@ -1891,23 +2039,35 @@ function renderLabelExercise() {
 /* ══════════════════════════════════════════════════════════
    TROPHIES
 ══════════════════════════════════════════════════════════ */
-const TROPHY_DEFS = [
-  { id: "first_q",     title: "Erste Frage",    desc: "1 Frage beantwortet",          check: s => s.totalQuestionsAnswered >= 1 },
-  { id: "q_10",        title: "10 Fragen",       desc: "10 Fragen beantwortet",         check: s => s.totalQuestionsAnswered >= 10 },
-  { id: "q_50",        title: "50 Fragen",       desc: "50 Fragen beantwortet",         check: s => s.totalQuestionsAnswered >= 50 },
-  { id: "q_100",       title: "100 Fragen",      desc: "100 Fragen beantwortet",        check: s => s.totalQuestionsAnswered >= 100 },
-  { id: "first_harv",  title: "Erste Ernte",     desc: "Erste Pflanze geerntet",        check: s => s.totalHarvests >= 1 },
-  { id: "day_5",       title: "5 Tage",          desc: "5 Tage gespielt",               check: s => s.daysPlayed >= 5 },
-  { id: "day_30",      title: "Ein Monat",       desc: "30 Tage gespielt",              check: s => s.daysPlayed >= 30 },
-  { id: "mem_5",       title: "Memory-Fan",      desc: "5 Memory-Runden gespielt",      check: s => s.memoryRoundsPlayed >= 5 },
+const ACHIEVEMENTS = [
+  { id: 'q_1',       icon: '🌱', name: 'Erste Frage',      desc: '1 Frage beantwortet',                check: s => s.totalQuestionsAnswered >= 1 },
+  { id: 'q_10',      icon: '📚', name: 'Fleißig',           desc: '10 Fragen beantwortet',              check: s => s.totalQuestionsAnswered >= 10 },
+  { id: 'q_50',      icon: '📖', name: 'Wissbegierig',      desc: '50 Fragen beantwortet',              check: s => s.totalQuestionsAnswered >= 50 },
+  { id: 'q_100',     icon: '💯', name: 'Hundert!',          desc: '100 Fragen beantwortet',             check: s => s.totalQuestionsAnswered >= 100 },
+  { id: 'q_500',     icon: '🧠', name: 'Bücherwurm',        desc: '500 Fragen beantwortet',             check: s => s.totalQuestionsAnswered >= 500 },
+  { id: 'q_1000',    icon: '⭐', name: 'Tausend!',          desc: '1000 Fragen beantwortet',            check: s => s.totalQuestionsAnswered >= 1000 },
+  { id: 'h_1',       icon: '🌾', name: 'Erste Ernte',       desc: 'Erste Pflanze geerntet',             check: s => (s.totalHarvests || 0) >= 1 },
+  { id: 'h_5',       icon: '🌿', name: 'Gartenarbeit',      desc: '5 Pflanzen geerntet',                check: s => (s.totalHarvests || 0) >= 5 },
+  { id: 'h_10',      icon: '🪴', name: 'Grüner Daumen',     desc: '10 Pflanzen geerntet',               check: s => (s.totalHarvests || 0) >= 10 },
+  { id: 's_3',       icon: '🔥', name: 'Drei Tage',         desc: '3 Tage Streak',                      check: s => (s.bestStreak || 0) >= 3 },
+  { id: 's_7',       icon: '🔥', name: 'Eine Woche',        desc: '7 Tage Streak',                      check: s => (s.bestStreak || 0) >= 7 },
+  { id: 's_14',      icon: '💪', name: 'Zwei Wochen',       desc: '14 Tage Streak',                     check: s => (s.bestStreak || 0) >= 14 },
+  { id: 's_30',      icon: '🏆', name: 'Ein Monat',         desc: '30 Tage Streak',                     check: s => (s.bestStreak || 0) >= 30 },
+  { id: 'r_open',    icon: '🍽️', name: 'Eröffnung',        desc: 'Restaurant zum ersten Mal geöffnet', check: s => (s.daysPlayed || 0) >= 1 },
+  { id: 'r_serve',   icon: '🧑‍🍳', name: 'Erster Service',  desc: '10 Gäste bedient',                   check: () => { const ts = G.restaurant.totalStats || {}; return (ts.veryHappy||0)+(ts.happy||0)+(ts.neutral||0)+(ts.sad||0) >= 10; } },
+  { id: 'r_master1', icon: '⭐', name: 'Küchenchef',        desc: 'Ein Kapitel vollständig gemeistert', check: () => PACK_CONTENT.beds.some(b => isChapterComplete(b.id)) },
+  { id: 'mem_1',     icon: '🧘', name: 'Entspannung',       desc: 'Erste Memory-Runde gespielt',        check: s => (s.memoryRoundsPlayed || 0) >= 1 },
+  { id: 'mem_25',    icon: '🍃', name: 'Gut gemerkt',       desc: '25 Paare im Memory gefunden',        check: s => (s.memoryPairsMatched || 0) >= 25 },
+  { id: 'day_5',     icon: '📅', name: '5 Tage',            desc: '5 Tage gespielt',                    check: s => (s.daysPlayed || 0) >= 5 },
+  { id: 'day_30',    icon: '🗓️', name: 'Ein Monat',         desc: '30 Tage gespielt',                   check: s => (s.daysPlayed || 0) >= 30 },
 ];
 
 function checkTrophies() {
-  TROPHY_DEFS.forEach(t => {
+  ACHIEVEMENTS.forEach(t => {
     if (!G.stats.unlockedAchievements.includes(t.id) && t.check(G.stats)) {
       G.stats.unlockedAchievements.push(t.id);
-      G.stats.achievementDates[t.id] = G.currentDay;
-      showToast(`🏆 ${t.title}!`);
+      G.stats.achievementDates[t.id] = new Date().toISOString().slice(0, 10);
+      showToast(`🏆 ${t.name}!`);
     }
   });
 }
@@ -1915,13 +2075,86 @@ function checkTrophies() {
 function renderTrophies() {
   const el = document.getElementById("trophy-list");
   if (!el) return;
-  el.innerHTML = TROPHY_DEFS.map(t => {
-    const u = G.stats.unlockedAchievements.includes(t.id);
-    return `<div style="display:flex;align-items:center;gap:0.7rem;padding:0.5rem 0;border-bottom:1px solid var(--line);opacity:${u ? 1 : 0.35}">
-      <span style="font-size:1.3rem">${u ? "🏆" : "🔒"}</span>
-      <div><strong style="font-size:0.88rem">${t.title}</strong><div style="font-size:0.78rem;color:var(--muted)">${t.desc}</div></div>
-    </div>`;
-  }).join("");
+
+  // Counter
+  const totalAnswered = G.stats.totalQuestionsAnswered || 0;
+  const memPairs  = G.stats.memoryPairsMatched || 0;
+  const memRounds = G.stats.memoryRoundsPlayed || 0;
+  const counterHtml = `<div class="trophy-counter">
+    <span class="trophy-counter-num">${totalAnswered}</span>
+    <span class="trophy-counter-label">Fragen beantwortet</span>
+    ${memRounds > 0 ? `<div class="muted" style="font-size:0.8rem;margin-top:0.4rem">🧘 ${memPairs} Paare in ${memRounds} Runden</div>` : ''}
+  </div>`;
+
+  // 90-day activity heatmap
+  const log = G.stats.activityLog || {};
+  const now = Date.now();
+  const heatCells = [];
+  const firstDay = new Date(now - 89 * 86400000);
+  const dow = (firstDay.getDay() + 6) % 7;
+  for (let p = 0; p < dow; p++) heatCells.push(`<span class="hm-cell hm-empty"></span>`);
+  for (let i = 89; i >= 0; i--) {
+    const d = new Date(now - i * 86400000);
+    const key = d.toISOString().slice(0, 10);
+    const count = log[key] || 0;
+    const lvl = count === 0 ? 0 : count < DAILY_GOAL ? 1 : 2;
+    heatCells.push(`<span class="hm-cell hm-${lvl}" title="${d.toLocaleDateString('de-DE')}: ${count}"></span>`);
+  }
+  const heatmapHtml = `
+    <div class="trophy-section-label">Aktivität (90 Tage)</div>
+    <div class="heatmap">${heatCells.join('')}</div>
+    <div class="hm-legend"><span class="hm-cell hm-0"></span> keine <span class="hm-cell hm-1"></span> wenig <span class="hm-cell hm-2"></span> Tagesziel</div>`;
+
+  // Achievements grid
+  const unlocked = G.stats.unlockedAchievements || [];
+  const achHtml = `
+    <div class="trophy-section-label">Errungenschaften</div>
+    <div class="ach-grid">${ACHIEVEMENTS.map(a => {
+      const done = unlocked.includes(a.id);
+      const dateStr = done && G.stats.achievementDates?.[a.id]
+        ? new Date(G.stats.achievementDates[a.id]).toLocaleDateString('de-DE')
+        : '';
+      return `<div class="ach-badge${done ? '' : ' ach-badge--locked'}">
+        <div class="ach-icon">${done ? a.icon : '🔒'}</div>
+        <div class="ach-name">${a.name}</div>
+        ${done && dateStr ? `<div class="ach-date">${dateStr}</div>` : ''}
+      </div>`;
+    }).join('')}</div>`;
+
+  // Chapter progress
+  const { total, mastered } = getLearningProgress();
+  const chapterHtml = `
+    <div class="trophy-section-label">Kapitelfortschritt</div>
+    ${PACK_CONTENT.beds.map(bed => {
+      const ch = G.chapters[bed.id];
+      const isActive = ch && ch.activated;
+      if (!isActive) return `<div class="trophy-item trophy-item--locked">
+        <div class="trophy-icon">🔒</div>
+        <div class="trophy-info"><div class="trophy-name">${bed.title}</div>
+        <div class="muted" style="font-size:.8rem">Noch nicht aktiviert</div></div>
+      </div>`;
+      let chTotal = 0, chMastered = 0;
+      bed.plants.forEach(p => {
+        [...(p.harvestQuestions||[]), ...(p.phase4Questions||[])].forEach(q => {
+          chTotal++;
+          if (isQuestionMastered(ch.questions[q.id])) chMastered++;
+        });
+      });
+      const pct = chTotal > 0 ? Math.round(chMastered / chTotal * 100) : 0;
+      const complete = isChapterComplete(bed.id);
+      return `<div class="trophy-item${complete ? ' trophy-item--mastered' : ''}">
+        <div class="trophy-icon">${complete ? '🏆' : '📖'}</div>
+        <div class="trophy-info">
+          <div class="trophy-name">${bed.title}</div>
+          <div class="trophy-bar-wrap"><div class="trophy-bar" style="width:${pct}%"></div></div>
+          <div class="muted" style="font-size:.8rem">${complete
+            ? `<strong style="color:#5ada80">Gemeistert!</strong>`
+            : `${chMastered}/${chTotal} gemeistert`}</div>
+        </div>
+      </div>`;
+    }).join('')}`;
+
+  el.innerHTML = counterHtml + heatmapHtml + achHtml + chapterHtml;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -1930,8 +2163,6 @@ function renderTrophies() {
 function renderSettings() {
   const v = document.getElementById("settings-version");
   if (v) v.textContent = `v${APP_VERSION}`;
-  const d = document.getElementById("dev-mode-btn");
-  if (d) d.textContent = `Dev-Modus: ${G.settings.devMode ? "An" : "Aus"}`;
 }
 
 function exportSave() {
@@ -2016,7 +2247,7 @@ function renderCleaningScreen() {
   if (!grid) return;
 
   const { plates, wineGlasses, beerGlasses, soapCharges } = G.supplies;
-  if (soapEl) soapEl.textContent = `🧼 Seife: ${soapCharges}/10`;
+  if (soapEl) soapEl.textContent = `🧼 Seife: ${soapCharges}/20`;
 
   const screen = document.getElementById("screen-cleaning");
   if (screen) {
@@ -2143,7 +2374,7 @@ function markItemCleaned(canvas, type) {
 function buySoap() {
   if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
   askQuestions("🧼 Seife kaufen", 1, () => {
-    G.supplies.soapCharges = 10;
+    G.supplies.soapCharges = 20;
     saveState();
     renderCleaningScreen();
     showToast("🧼 Seife aufgefüllt!");
@@ -2162,6 +2393,91 @@ function renderAll() {
   updateRestaurantUI();
   renderCleaningBadge();
   renderCleaningScreen();
+  renderTutorial();
+}
+
+/* ══════════════════════════════════════════════════════════
+   TUTORIAL
+══════════════════════════════════════════════════════════ */
+const TUTORIAL_STEPS = [
+  { id: 'welcome',          btn: 'Los geht\'s! →',
+    msg: '🧙 <strong>Willkommen, Tavernenwirt!</strong><br>Ich bin der Geist dieser Taverne. In unserer Welt wird Wissen mit Waren bezahlt — beweise, dass du klug bist, und du bekommst alles was du brauchst.' },
+  { id: 'raven_intro',      highlight: '#btn-raven',
+    msg: '🪶 Um Waren zu bestellen, beauftragst du den <strong>Raben</strong>. Klick auf ihn!' },
+  { id: 'raven_order',
+    msg: '📦 Bestell mindestens:<br>• 1× <strong>Weizensamen</strong><br>• 1× <strong>Tomatensamen</strong><br>• 1× <strong>Mozzarella</strong><br>• 1× <strong>Teller</strong><br><br>Das ist die Basis für eine Pizza – sie hält Gäste glücklich. Du kannst auch mehr bestellen! Bestätige danach die Bestellung.' },
+  { id: 'raven_ordered',    highlight: '#btn-sleep',
+    msg: '🌙 Gut gemacht! Der Rabe macht sich auf den Weg – er braucht einen Tag. <strong>Schlaf jetzt</strong>, damit ein neuer Tag beginnt.' },
+  { id: 'day2_garden',
+    msg: '🌅 Guten Morgen! Deine Waren sind eingetroffen. <strong>Wisch nach links</strong>, um in den Garten zu kommen.' },
+  { id: 'plant_wheat',      highlight: '.garden-slot:not(.garden-slot--planted)',
+    msg: '🌾 Klick auf ein <strong>leeres Feld</strong> und pflanze den <strong>Weizen</strong>!' },
+  { id: 'plant_tomato',     highlight: '.garden-slot:not(.garden-slot--planted)',
+    msg: '🍅 Super! Jetzt noch die <strong>Tomate</strong> ins nächste Feld.' },
+  { id: 'water_plants',
+    msg: '💧 Pflanzen wachsen durch Wasser — und Wasser gibt es durch <strong>Wissen</strong>. Klick auf jede Pflanze und wähle "Wässern", um eine Frage zu beantworten.' },
+  { id: 'sleep_day2',       highlight: '#btn-sleep',
+    msg: '✅ Wunderbar! Wisch nach rechts zur Taverne und <strong>schlaf</strong>, damit die Pflanzen wachsen können.' },
+  { id: 'water_day3',
+    msg: '🌿 Neuer Tag! Geh in den Garten und <strong>wässere die Pflanzen</strong> erneut.' },
+  { id: 'sleep_day3',       highlight: '#btn-sleep',
+    msg: '🌙 Noch eine Nacht schlafen — morgen sind die Pflanzen reif!' },
+  { id: 'harvest',          highlight: '.garden-slot--ready',
+    msg: '🌾✨ Die Pflanzen sind reif! <strong>Klick auf sie</strong>, um Weizen und Tomaten zu ernten.' },
+  { id: 'kitchen',          highlight: '#btn-kitchen',
+    msg: '🍕 Schau dir die <strong>Küche</strong> an! Eine einfache Pizza braucht kein Rezept — die Küchengeister wissen wie. Für besondere Pizzen kannst du hier Rezepte erstellen. Gäste haben Lieblingstoppings, also lohnt sich Abwechslung!' },
+  { id: 'open_restaurant',  highlight: '#btn-open-restaurant',
+    msg: '🍽️ Du hast Mehl, Tomaten und Käse — genug für die erste Pizza! <strong>Öffne jetzt die Taverne.</strong>' },
+  { id: 'serve_patron',
+    msg: '🧑 Ein Gast hat Platz genommen! <strong>Klick auf den Tisch</strong>, wenn du ihn bedienen möchtest.' },
+  { id: 'cleaning',
+    msg: '🫧 Das schmutzige Geschirr muss gewaschen werden! <strong>Wisch nach rechts</strong> zur Reinigung und wische den Schmutz vom Teller. Ab und zu muss die Seife aufgefüllt werden.' },
+  { id: 'done',             btn: 'Spielen! 🍕',
+    msg: '🌿 <strong>Du hast die Grundlagen gelernt, Tavernenwirt!</strong><br>Sorge für Nachschub, kreiere neue Pizzarezepte und halte deine Gäste glücklich. Viel Erfolg!' },
+];
+
+function isTutorialActive() {
+  return G.tutorial && !G.tutorial.completed && G.tutorial.step < TUTORIAL_STEPS.length;
+}
+
+function renderTutorial() {
+  if (!isTutorialActive()) {
+    document.getElementById("tut-bubble")?.remove();
+    document.querySelectorAll(".tut-highlight").forEach(el => el.classList.remove("tut-highlight"));
+    return;
+  }
+  const step = TUTORIAL_STEPS[G.tutorial.step];
+  let bubble = document.getElementById("tut-bubble");
+  if (!bubble) {
+    bubble = document.createElement("div");
+    bubble.id = "tut-bubble";
+    document.body.appendChild(bubble);
+  }
+  bubble.className = "tut-bubble";
+  bubble.innerHTML = `<div class="tut-msg">${step.msg}</div>
+    ${step.btn ? `<button class="tut-btn" id="tut-next-btn">${step.btn}</button>` : ""}`;
+  if (step.btn) {
+    document.getElementById("tut-next-btn")?.addEventListener("click", () => advanceTutorial(step.id));
+  }
+  document.querySelectorAll(".tut-highlight").forEach(el => el.classList.remove("tut-highlight"));
+  if (step.highlight) {
+    document.querySelectorAll(step.highlight).forEach(el => el.classList.add("tut-highlight"));
+  }
+}
+
+function advanceTutorial(expectedStepId) {
+  if (!isTutorialActive()) return;
+  const cur = TUTORIAL_STEPS[G.tutorial.step];
+  if (expectedStepId && cur.id !== expectedStepId) return;
+  G.tutorial.step++;
+  if (G.tutorial.step >= TUTORIAL_STEPS.length) G.tutorial.completed = true;
+  saveState();
+  renderTutorial();
+}
+
+function tutorialStepId() {
+  if (!isTutorialActive()) return null;
+  return TUTORIAL_STEPS[G.tutorial.step].id;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -2204,10 +2520,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ].forEach(([btnId, modalId]) => document.getElementById(btnId)?.addEventListener("click", () => closeModal(modalId)));
 
   // Settings
-  document.getElementById("dev-mode-btn")?.addEventListener("click", () => {
-    G.settings.devMode = !G.settings.devMode;
-    saveState(); renderSettings();
-  });
   document.getElementById("save-btn")?.addEventListener("click",   () => { saveState(); showToast("Gespeichert!"); });
   document.getElementById("export-btn")?.addEventListener("click", exportSave);
   document.getElementById("import-btn")?.addEventListener("click", () => document.getElementById("import-file-input")?.click());
@@ -2216,6 +2528,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (confirm("Spielstand wirklich löschen?")) {
       localStorage.removeItem(SAVE_KEY); G = defaultState(); saveState(); renderAll(); closeModal("modal-settings"); showToast("Zurückgesetzt.");
     }
+  });
+  document.getElementById("tutorial-reset-btn")?.addEventListener("click", () => {
+    G.tutorial = { step: 0, completed: false };
+    saveState();
+    closeModal("modal-settings");
+    renderTutorial();
+    showToast("Tutorial gestartet!");
   });
   document.getElementById("changelog-btn")?.addEventListener("click", () => {
     alert(`Knowledge Garden v${APP_VERSION}\n\nNeues Design: Fantasy-Management-Spiel\n• Garten: Pflanzen anbauen & ernten\n• Wildnis: Zutaten sammeln\n• Restaurant: Gäste bewirten\n• Raben-Lieferungen bestellen\n• Kapitel aktivieren & meistern`);
@@ -2246,6 +2565,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try {
     G = loadState();
     renderAll();
+    renderTutorial();
   } catch (e) {
     const stack = (e.stack || "").split("\n").slice(0, 8).join("<br>");
     document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.8rem"><b>Ladefehler:</b> ${e.message}<br><br>${stack}<br><br><button onclick="localStorage.clear();location.reload()" style="padding:0.5rem 1rem;font-size:1rem">Zurücksetzen</button></div>`;
@@ -2267,6 +2587,25 @@ document.addEventListener("DOMContentLoaded", () => {
         stopRestaurantLoop();
       }
     }, { threshold: 0.5 }).observe(_reScreen);
+  }
+
+  // Tutorial: advance to plant_wheat when garden screen becomes visible
+  const _gardenScreen = document.getElementById("screen-garden");
+  if (_gardenScreen) {
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
+        if (tutorialStepId() === "water_day3")  renderTutorial();
+      }
+    }, { threshold: 0.5 }).observe(_gardenScreen);
+  }
+  const _cleaningScreen = document.getElementById("screen-cleaning");
+  if (_cleaningScreen) {
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        if (tutorialStepId() === "cleaning") advanceTutorial("cleaning");
+      }
+    }, { threshold: 0.5 }).observe(_cleaningScreen);
   }
 
   // Force restaurant (index 1) as the initial screen and prevent browser
