@@ -1,16 +1,16 @@
 # KnowledgeGarden
 
 A browser-based learning RPG for Heilpraktiker exam prep.  
-You grow plants by answering questions, harvest them when ready, and track progress toward your exam deadline.
+You run a fantasy tavern — grow ingredients, cook pizzas, serve guests — and pay for everything with anatomical knowledge.
 
-**Current version:** v1.0 — Heilpraktiker Pack  
-**Exam deadline tracked in-game:** June 2027
+**Current version:** v2.0 — Fantasy Tavern  
+**Exam goal:** Heilpraktiker
 
 ---
 
 ## Play on your phone (recommended)
 
-The game is a PWA — it installs to your home screen and runs like a native app.
+The game is a PWA — installs to your home screen and runs like a native app.
 
 **First install:**
 1. Open `https://rebekkaziegler.github.io/KnowledgeGarden` in Chrome (Android) or Safari (iOS)
@@ -22,15 +22,12 @@ The game is a PWA — it installs to your home screen and runs like a native app
 
 Once installed, tap **⚙️ → 🔄 Auf neueste Version aktualisieren** inside the app. Wait ~5 minutes after a new release before pressing it (GitHub Pages CDN propagation delay).
 
-If the update button isn't visible yet or doesn't work:
+If the update button doesn't work:
+- **Android Chrome:** open the URL in Chrome → 3-dot menu → *Hard Reload*, or clear cached files only in browser settings
+- **iOS Safari:** hold the reload button → *Reload Without Content Blockers*, or close all Safari tabs and reopen
+- **Quickest:** delete the home screen icon, open the URL fresh in the browser, re-add to home screen
 
-- **Android Chrome:** open the URL in Chrome (not the home screen icon) → tap the 3-dot menu → *Reload* or *Hard Reload*. If that doesn't work: Settings → Privacy → Clear browsing data → tick only *Cached images and files* (NOT cookies or site data).
-- **iOS Safari:** open the URL in Safari → hold the reload button → *Reload Without Content Blockers*, or just close all Safari tabs and reopen.
-- **Quickest option:** delete the home screen icon, open the URL fresh in the browser, re-add to home screen.
-
-> ⚠️ **Your save lives in `localStorage`.** Clearing *Cache* is safe — it only removes downloaded files, not your progress. Clearing *Site Data / Storage / Website Data* **will delete your save**. If you need to do a full wipe, use **Settings → Export** first to save a backup file.
-
-The app now checks for updates on every launch, so this should be rare going forward.
+> ⚠️ **Your save lives in `localStorage`.** Clearing *Cache* is safe. Clearing *Site Data / Website Data* **will delete your save**. Use **⚙️ → Export** to back up first.
 
 ---
 
@@ -42,134 +39,123 @@ The app now checks for updates on every launch, so this should be rare going for
 git clone https://github.com/RebekkaZiegler/KnowledgeGarden.git
 cd KnowledgeGarden
 npm install
-```
-
-```bash
-npm run run    # starts server + app window (recommended)
-npm run serve  # server only → open http://localhost:5173
-npm run check  # syntax check
+npm run serve   # → open http://localhost:5173
 ```
 
 ---
 
 ## UI layout
 
-Portrait-stacked layout, same on desktop and mobile:
+Three screens, swiped left/right:
 
-- **Header** — harvest progress (🌾), fruits (🍎), streak (🔥), daily goal dots, pace tracker
-- **Garden** (main area) — up to 2 topic shelves with plants in pots
-- **Detail panel** — opens below the garden when you tap a plant; shows questions, lesson text, cooldown
-- **Bottom nav** (2 rows on mobile) — 🚪 🌱 🍽️ 🔬 🏆 / ⚙️ ♪ ♪♩ 🗑️
+| ← | Center | → |
+|---|---|---|
+| 🌱 Garden | 🍽️ Restaurant (start here) | 🧹 Cleaning |
+
+**Bottom nav:** 📚 Chapters · 🏆 Trophy room · 🃏 Memory/Labels · ⚙️ Settings
 
 ---
 
 ## Core game loop
 
-1. **Catalog (🌱)** — choose a topic bed, plant a seed
-2. **Phase 1** — three setup steps (soil → seed → water), each with a lesson + true/false question
-3. **Phase 2** — water / trim / fertilize actions, each asks a harvest question; cooldown between each (5 min)
-4. After answering, the app **auto-returns to the garden** — come back when the cooldown is done
-5. Once all questions are learned, **harvest** the plant — all questions asked again, all must be correct
-6. Wrong harvest answers send only those questions back to Phase 2; correct ones are done
-7. **Restaurant (🍽️)** — real-time minigame; answer questions to unlock upgrades and earn fruits
-8. **Lab (🔬)** — synthesize hybrid plants once their source plants are harvested
+### 1. Order supplies (🪶 Raven)
+- Tap the raven button to open the order screen
+- Order seeds, animal products (pizza toppings), and dishware
+- Each item batch costs one answered question
+- Delivery arrives the next in-game day (after sleeping)
+
+### 2. Grow ingredients (Garden ←)
+- Plant seeds in empty garden patches (uses seed inventory)
+- Plants take 2 days to grow; water them daily by answering questions
+- Harvest ripe plants to add ingredients to your inventory (wheat, tomato, etc.)
+
+### 3. Run the restaurant (Restaurant center)
+- Tap **Öffnen** to open the tavern
+- Patrons arrive and sit at tables; click a table to serve them
+- The kitchen auto-makes a basic pizza (wheat + tomato + mozzarella) — no recipe needed
+- Patrons have a preferred pizza topping and a disliked topping; happiness depends on what they get
+- After eating, patrons sometimes order a second drink before leaving
+- Tap **Last Call** when you're done, then **Schlafen** to end the day
+
+### 4. Wash dishes (Cleaning →)
+- After service, plates and glasses are dirty
+- Swipe right to the cleaning screen; scrub dirt off items to return them to inventory
+- Soap runs out — refill by answering a question (20 charges per refill)
+
+### 5. Advance knowledge (📚 Chapters)
+- Activate anatomy chapters to unlock question pools
+- Answer questions to progress toward mastery
+- Mastered chapters show in the trophy room
 
 ---
 
-## Motivation system
+## Pizza system
 
-### Streak 🔥
-- Increments by 1 each calendar day you answer at least one question
-- Resets if you miss a day
-- **Buy-back:** if you miss a day, a *Zurückkaufen (3🍎)* button appears — spend 3 fruits to restore your streak
-- Can only buy back once; can't buy two days in a row
-
-### Daily goal
-- Three dots in the header — fill one per phase 2 action completed
-- Resets at midnight
-
-### Pace tracker
-- Shows how many questions/day you need to finish all content by June 2027
-- Once you have a few days of history: shows your current pace vs. what's needed, and whether you're on track (green ✓) or behind (orange ⚠️)
-
-### Achievements 🏆
-Unlock badges for milestones — visible in the trophy room:
-- **Questions:** 1, 10, 50, 100, 500, 1000 answered
-- **Harvests:** 1, 5, 10, all plants
-- **Streak:** 3, 7, 14, 30 days
-- **Comeback** — bought a streak back
-
-### Trophy room (🏆)
-- Big counter: total questions answered ever
-- 90-day activity heatmap (like GitHub's contribution graph)
-- Achievement badge grid — locked badges show as 🔒
-- Per-topic learning progress bars
+- **Basic pizza** (wheat + tomato + mozzarella) is always available — no recipe needed
+- Tap 🍕 (Kitchen) to create custom pizza recipes with extra toppings
+- Tap a topping in the palette to select it (yellow outline), then tap the pizza to place it
+- Active recipes are offered to patrons; up to 4 recipes can be active at once
+- Order animal products via the raven to unlock more topping variety
 
 ---
 
-## Plant mechanics
+## Patron happiness
 
-### Phase 1 — Setup
-- Three steps: soil → seed → first watering
-- Each shows a lesson, then a true/false question
-- Wrong answer: retry immediately, no progression until correct
+| Result | Condition |
+|---|---|
+| 😊 Very happy | Food matches preference AND drink matches craving |
+| 🙂 Happy | Food OR drink matches |
+| 😐 Neutral | Served, but nothing matched — or disliked topping present |
+| 😞 Sad | Patience ran out before being served |
 
-### Phase 2 — Practice
-- Actions: water (💧), trim (✂️), fertilize (🌿)
-- Each action asks one harvest question; correct = learned, wrong = stays in queue
-- **Cooldown:** 5 minutes between actions (dev mode: 10 seconds)
-- After answering, app auto-returns to garden view
-- 3 wrong answers on the same question → plant withers and resets to Phase 1
-- All questions learned → plant turns sparkly, ready to harvest
-
-### Harvest
-- All harvest questions in random order; all must be answered correctly
-- Wrong answers reset only those questions to Phase 2
-- Success: fruits earned, plant removed from active bed, counts toward completion
-
-### Plant selector
-- By default only shows **new (unplanted, unharvested)** plants
-- *Geerntete anzeigen* button reveals previously harvested plants for replanting
+- Patrons have a **disliked topping** (50% chance) — serving it lowers happiness by one level (never below neutral)
+- Patrons pre-order drinks while waiting (up to 2, optional)
+- After eating, 35% chance to linger and order one more drink
 
 ---
 
-## Colors per topic
+## Trophy room (🏆)
 
-| Topic | Stem | Fruit |
-|---|---|---|
-| Zytologie | orange | yellow |
-| Histologie | blue | purple |
-| Knochenlehre | grey-green | olive |
-| Muskellehre | red | red |
-| Atmungssystem | teal | light blue |
+- **Counter:** total questions answered
+- **90-day activity heatmap** — shows days you studied (like GitHub contributions)
+- **Achievement grid** — 20 badges for questions, harvests, streaks, restaurant, memory
+- **Chapter progress bars** — per-chapter mastery percentage
 
-Hybrid plants: stem color from source 1, fruit color from source 2.
+---
+
+## Raven orders
+
+| Category | Per question |
+|---|---|
+| Animal products (mozzarella, salami, ham, anchovies, eggs) | 20× |
+| Dishware (plates, wine glasses, beer glasses) | 15× |
+| Seeds | 1 bag |
+
+Crop yields per harvest: wheat/tomato → 25, all others → 20.
 
 ---
 
 ## Save system
 
-- Saved automatically in `localStorage` — persists across app restarts
-- **Export/Import** available in Settings (⚙️) — saves as a JSON file
-- Clearing browser *cache* does **not** delete saves; clearing *site data / localStorage* does
-- Dev mode: fast cooldown toggle in Settings
+- Saved automatically in `localStorage`
+- **Export/Import** in Settings — saves as JSON
+- Clearing browser *cache* does **not** delete saves; clearing *site data* does
 
 ---
 
 ## Project structure
 
 ```
-index.html        — app shell, PWA manifest link, bottom nav
+index.html        — app shell, all HTML screens
 styles.css        — all UI and game styling
 js/
-  content.js      — all question/plant/hybrid data
+  content.js      — all questions, plants, label exercises
   game.js         — game logic, rendering, state management
-sw.js             — service worker (network-first caching)
-manifest.json     — PWA manifest
-assets/           — images, sounds
+sw.js             — service worker (cache version controlled)
+manifest.json     — PWA manifest (raven icon)
+assets/           — images (pizza toppings, patrons, dishes, garden)
 scripts/
   serve.js        — local dev server
-  run.js          — server + app-window launcher
 ```
 
 ---
@@ -178,4 +164,5 @@ scripts/
 
 - UI and content are in German (Heilpraktiker exam material)
 - Designed for portrait orientation on mobile; works on desktop too
+- First-time players get a tutorial (can be replayed via ⚙️ → Tutorial anzeigen)
 - This is an active prototype — content and mechanics evolve frequently
