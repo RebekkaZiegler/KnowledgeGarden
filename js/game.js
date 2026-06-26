@@ -983,6 +983,8 @@ function spawnPatron() {
     drinkCraving: DRINKS[Math.floor(Math.random() * DRINKS.length)].id,
     state: "hungry",
     arrivedAt: Date.now(),
+    lastPreorderAt: 0,
+    preorderDrinks: [],
     servedItem: null,
     servedDrink: null,
     happiness: null,
@@ -1005,12 +1007,51 @@ function tickPatrons() {
       p.happiness = "sad";
       p.state     = "leaving";
       G.restaurant.sessionStats.sad++;
+      G.restaurant.totalStats.sad++;
+      (p.preorderDrinks || []).forEach(pd => {
+        if (!pd.glass) return;
+        const pool = pd.glass === "wine" ? G.supplies.wineGlasses : G.supplies.beerGlasses;
+        pool.dirty++;
+      });
     }
     return true;
+  });
+
+  // Pre-order drinks: hungry patrons may order a drink while waiting (max 2, once per 15s, 40% chance)
+  const PREORDER_INTERVAL = 15000;
+  const PREORDER_MAX      = 2;
+  G.restaurant.patrons.filter(p => p.state === "hungry").forEach(p => {
+    if ((p.preorderDrinks || []).length >= PREORDER_MAX) return;
+    if (now - (p.lastPreorderAt || 0) < PREORDER_INTERVAL) return;
+    if (Math.random() > 0.4) return;
+    const drinkId = pickDrink(p);
+    if (!drinkId) return;
+    const glass = deductGlass(drinkId);
+    p.preorderDrinks = [...(p.preorderDrinks || []), { drinkId, glass }];
+    p.lastPreorderAt = now;
   });
 }
 
 const BREAK_CHANCE = { veryHappy: 0, happy: 0.05, neutral: 0.05, sad: 0.15 };
+
+function pickDrink(p) {
+  const craved = DRINKS.find(d => d.id === p.drinkCraving);
+  if (craved && (G.inventory[craved.id] || 0) > 0) {
+    G.inventory[craved.id] = Math.max(0, (G.inventory[craved.id] || 0) - 1);
+    return craved.id;
+  }
+  const any = DRINKS.find(d => (G.inventory[d.id] || 0) > 0);
+  if (any) { G.inventory[any.id] = Math.max(0, (G.inventory[any.id] || 0) - 1); return any.id; }
+  return null;
+}
+
+function deductGlass(drinkId) {
+  const drink = DRINKS.find(d => d.id === drinkId);
+  if (!drink || !drink.needsGlass) return null;
+  const pool = G.supplies[drink.needsGlass === "wine" ? "wineGlasses" : "beerGlasses"];
+  if (pool && pool.clean > 0) { pool.clean--; return drink.needsGlass; }
+  return null;
+}
 
 function serveTable(tableId) {
   if (G.phase !== "service") return;
@@ -1027,25 +1068,6 @@ function serveTable(tableId) {
   if (G.supplies.plates.clean < hungry.length) {
     showToast(`Zu wenig saubere Teller! (${G.supplies.plates.clean} vorhanden, ${hungry.length} nötig)`);
     return;
-  }
-
-  function pickDrink(p) {
-    const craved = DRINKS.find(d => d.id === p.drinkCraving);
-    if (craved && (G.inventory[craved.id] || 0) > 0) {
-      G.inventory[craved.id] = Math.max(0, (G.inventory[craved.id] || 0) - 1);
-      return craved.id;
-    }
-    const any = DRINKS.find(d => (G.inventory[d.id] || 0) > 0);
-    if (any) { G.inventory[any.id] = Math.max(0, (G.inventory[any.id] || 0) - 1); return any.id; }
-    return null;
-  }
-
-  function deductGlass(drinkId) {
-    const drink = DRINKS.find(d => d.id === drinkId);
-    if (!drink || !drink.needsGlass) return null;
-    const pool = G.supplies[drink.needsGlass === "wine" ? "wineGlasses" : "beerGlasses"];
-    if (pool && pool.clean > 0) { pool.clean--; return drink.needsGlass; }
-    return null;
   }
 
   G.supplies.plates.clean = Math.max(0, G.supplies.plates.clean - hungry.length);
@@ -1105,11 +1127,17 @@ function serveTable(tableId) {
       // Plate dirty/broken
       const breakChance = BREAK_CHANCE[p.happiness] ?? 0.05;
       if (Math.random() >= breakChance) G.supplies.plates.dirty++;
-      // Glass dirty/broken
+      // Glass dirty/broken — meal glass
       if (p.usedGlass) {
         const glassPool = p.usedGlass === "wine" ? G.supplies.wineGlasses : G.supplies.beerGlasses;
         if (Math.random() >= breakChance) glassPool.dirty++;
       }
+      // Pre-order glasses dirty/broken
+      (p.preorderDrinks || []).forEach(pd => {
+        if (!pd.glass) return;
+        const pool = pd.glass === "wine" ? G.supplies.wineGlasses : G.supplies.beerGlasses;
+        if (Math.random() >= breakChance) pool.dirty++;
+      });
 
       p.state = "done";
       renderRestaurantScene();
@@ -1184,6 +1212,16 @@ function renderRestaurantScene() {
       return html;
     }).join("");
 
+    // Pre-order drinks for hungry patrons
+    const preorderHtml = patrons.filter(p => p.state === "hungry" && (p.preorderDrinks||[]).length).map(p => {
+      return (p.preorderDrinks || []).map((pd, i) => {
+        const cfg = DRINKS.find(d => d.id === pd.drinkId);
+        if (!cfg?.tableImg) return "";
+        const side = p.seatIdx === 0 ? `left:${38 + i * 13}%` : `right:${38 + i * 13}%`;
+        return `<img src="${cfg.tableImg}" style="position:absolute;width:11%;${side};top:35%;pointer-events:none" draggable="false">`;
+      }).join("");
+    }).join("");
+
     // Patron sprites — with happiness badge in "done" state
     const patronSprites = patrons.map(p => {
       const type   = p.spriteType || 1;
@@ -1199,6 +1237,7 @@ function renderRestaurantScene() {
       <div style="position:relative">
         <img src="${t.img}" style="width:100%;display:block;filter:${shadow}" draggable="false">
         ${foodHtml}
+        ${preorderHtml}
         ${patronSprites}
       </div>
     </div>`;
