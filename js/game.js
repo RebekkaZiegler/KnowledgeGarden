@@ -2029,15 +2029,19 @@ function setupCleaningCanvas(canvas, type, itemIdx) {
   const ctx = canvas.getContext("2d");
   const img = new Image();
   img.onload = () => {
-    canvas.width  = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    if (cfg.dirtyIsOverlay) {
-      // For plates: draw dirt overlay on transparent canvas
-      ctx.drawImage(img, 0, 0);
+    // Size canvas to match the clean image's rendered rect so the dirty overlay aligns
+    const cleanImg = canvas.closest(".cleaning-img-wrap")?.querySelector(".cleaning-clean-img");
+    const rect = cleanImg ? cleanImg.getBoundingClientRect() : null;
+    if (rect && rect.width > 0) {
+      canvas.width  = Math.round(rect.width);
+      canvas.height = Math.round(rect.height);
+      canvas.style.width  = rect.width  + "px";
+      canvas.style.height = rect.height + "px";
     } else {
-      // For glasses: draw the dirty glass image
-      ctx.drawImage(img, 0, 0);
+      canvas.width  = img.naturalWidth;
+      canvas.height = img.naturalHeight;
     }
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
   };
   img.src = cfg.dirtyImg;
 
