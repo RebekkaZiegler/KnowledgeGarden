@@ -1162,7 +1162,7 @@ function renderRestaurantScene() {
     // One small pizza + drink per eating/done patron
     const foodHtml = patrons.filter(p => p.state === "eating" || p.state === "done").map(p => {
       const recipe   = G.restaurant.recipes.find(r => r.id === p.servedItem);
-      const pizzaSide = p.seatIdx === 0 ? "left:20%" : "right:20%";
+      const pizzaSide = p.seatIdx === 0 ? "left:28%" : "right:28%";
       let html = "";
       if (recipe) {
         const tops = (recipe.toppings || []).map(tp => {
@@ -1178,8 +1178,8 @@ function renderRestaurantScene() {
       }
       const drinkCfg = DRINKS.find(d => d.id === p.servedDrink);
       if (drinkCfg?.tableImg) {
-        const drinkSide = p.seatIdx === 0 ? "left:43%" : "right:43%";
-        html += `<img src="${drinkCfg.tableImg}" style="position:absolute;width:11%;${drinkSide};bottom:10%;pointer-events:none" draggable="false">`;
+        const drinkSide = p.seatIdx === 0 ? "left:20%" : "right:20%";
+        html += `<img src="${drinkCfg.tableImg}" style="position:absolute;width:11%;${drinkSide};top:35%;pointer-events:none" draggable="false">`;
       }
       return html;
     }).join("");
@@ -1188,7 +1188,7 @@ function renderRestaurantScene() {
     const patronSprites = patrons.map(p => {
       const type   = p.spriteType || 1;
       const facing = p.seatIdx === 0 ? "rightfacing" : "leftfacing";
-      const side   = p.seatIdx === 0 ? "left:2%" : "right:2%";
+      const side   = p.seatIdx === 0 ? "left:8%" : "right:8%";
       const badge  = p.state === "done" && p.happiness
         ? `<div style="position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:1.1rem;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.9))">${happinessEmoji(p.happiness)}</div>`
         : "";
