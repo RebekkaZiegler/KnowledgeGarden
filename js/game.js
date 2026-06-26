@@ -1310,9 +1310,10 @@ function renderRestaurantScene() {
       return `<div style="position:absolute;height:45%;top:8%;${side};pointer-events:none">${badge}<img src="assets/images/patron_${type}_${facing}.png" style="height:100%;width:auto;display:block" draggable="false"></div>`;
     }).join("");
 
+    const tableImg = G.restaurant.isOpen ? t.img : "assets/images/table_night.png";
     return `<div class="re-table" data-tid="${t.id}" style="left:${t.x}%;top:${t.y}%;width:120px">
       <div style="position:relative">
-        <img src="${t.img}" style="width:100%;display:block;filter:${shadow}" draggable="false">
+        <img src="${tableImg}" style="width:100%;display:block;filter:${shadow}" draggable="false">
         ${foodHtml}
         ${preorderHtml}
         ${lingerHtml}
