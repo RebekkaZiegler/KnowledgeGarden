@@ -157,7 +157,6 @@ function defaultState() {
       lastCallFired: false,
       patrons:       [],
       recipes:       [{ id: "basic", name: "Basic Pizza", toppings: [], active: true, deletable: false, orderedCount: 0 }],
-      unlocks:         { chefs: 1, cleaner: false },
       sessionStats:    { veryHappy: 0, happy: 0, neutral: 0, sad: 0 },
       totalStats:      { veryHappy: 0, happy: 0, neutral: 0, sad: 0 },
       sessionCorrect:  0,
@@ -628,8 +627,6 @@ function renderStats() {
     </div>
   `;
 }
-
-function updateDayInfo() {}
 
 /* ══════════════════════════════════════════════════════════
    MODAL HELPERS
@@ -2388,7 +2385,6 @@ window.buySoap = buySoap;
 ══════════════════════════════════════════════════════════ */
 function renderAll() {
   renderStats();
-  updateDayInfo();
   renderGarden();
   updateRestaurantUI();
   renderCleaningBadge();
