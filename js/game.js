@@ -1178,7 +1178,7 @@ function renderRestaurantScene() {
       }
       const drinkCfg = DRINKS.find(d => d.id === p.servedDrink);
       if (drinkCfg?.tableImg) {
-        const drinkSide = p.seatIdx === 0 ? "left:20%" : "right:20%";
+        const drinkSide = p.seatIdx === 0 ? "left:38%" : "right:38%";
         html += `<img src="${drinkCfg.tableImg}" style="position:absolute;width:11%;${drinkSide};top:35%;pointer-events:none" draggable="false">`;
       }
       return html;
