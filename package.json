@@ -8,6 +8,7 @@
     "run": "node scripts/run.js"
   },
   "devDependencies": {
-    "sharp": "^0.35.2"
+    "sharp": "^0.35.2",
+    "playwright": "^1.61.1"
   }
 }

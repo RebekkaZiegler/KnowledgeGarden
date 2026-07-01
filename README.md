@@ -1,33 +1,28 @@
 # KnowledgeGarden
 
 A browser-based learning RPG for Heilpraktiker exam prep.  
-You run a fantasy tavern — grow ingredients, cook pizzas, serve guests — and pay for everything with anatomical knowledge.
+Three game modes share one question engine; every correct answer counts toward mastery across all modes.
 
-**Current version:** v2.0 — Fantasy Tavern  
 **Exam goal:** Heilpraktiker
 
 ---
 
 ## Play on your phone (recommended)
 
-The game is a PWA — installs to your home screen and runs like a native app.
+The game is a PWA that installs to your home screen and runs like a native app.
 
-**First install:**
-1. Open `https://rebekkaziegler.github.io/KnowledgeGarden` in Chrome (Android) or Safari (iOS)
-2. **Android Chrome:** tap the 3-dot menu → *Add to Home Screen*
-3. **iOS Safari:** tap the Share button → *Add to Home Screen*
-4. Open the app from the home screen — it runs fullscreen, no browser bar
+**Install (Android Chrome):**
+1. Open `https://rebekkaziegler.github.io/KnowledgeGarden` in Chrome
+2. Tap the 3-dot menu → *Add to Home Screen*
+3. Open the app from the home screen and it runs fullscreen, no browser bar
 
 **Getting updates:**
 
 Once installed, tap **⚙️ → 🔄 Auf neueste Version aktualisieren** inside the app. Wait ~5 minutes after a new release before pressing it (GitHub Pages CDN propagation delay).
 
-If the update button doesn't work:
-- **Android Chrome:** open the URL in Chrome → 3-dot menu → *Hard Reload*, or clear cached files only in browser settings
-- **iOS Safari:** hold the reload button → *Reload Without Content Blockers*, or close all Safari tabs and reopen
-- **Quickest:** delete the home screen icon, open the URL fresh in the browser, re-add to home screen
+If the update button doesn't work, open the URL directly in Chrome → 3-dot menu → *Hard Reload*, or clear cached files in Chrome's site settings.
 
-> ⚠️ **Your save lives in `localStorage`.** Clearing *Cache* is safe. Clearing *Site Data / Website Data* **will delete your save**. Use **⚙️ → Export** to back up first.
+> ⚠️ **Your save lives in `localStorage`.** Clearing *Cache* is safe. Clearing *Site Data* **will delete your save**. Use **⚙️ → Export** to back up first.
 
 ---
 
@@ -44,58 +39,84 @@ npm run serve   # → open http://localhost:5173
 
 ---
 
-## UI layout
+## Game modes
 
-Three screens, swiped left/right:
+Three tabs at the top switch between modes. Question mastery is shared; a question answered correctly in any mode counts toward its spaced-repetition progress.
 
-| ← | Center | → |
-|---|---|---|
-| 🌱 Garden | 🍽️ Restaurant (start here) | 🧹 Cleaning |
+### 🍕 Taverne (fantasy tavern management)
 
-**Bottom nav:** 📚 Chapters · 🏆 Trophy room · 🃏 Memory/Labels · ⚙️ Settings
+Run a medieval tavern:
+
+- **Garden (swipe left):** plant seeds, water plants by answering questions (each correct answer = +1 growth); harvest ripe plants for ingredients
+- **Restaurant (center):** open the tavern, serve patrons at tables, answer questions mid-service
+- **Cleaning (swipe right):** wash dirty plates and glasses after service
+
+**Raven orders (🪶):** Order seeds, supplies, and items by answering questions. Delivery is instant; answer the question and the items arrive immediately.
+
+### 📈 Wissen (knowledge clicker)
+
+Cookie-Clicker-style study mode:
+
+- Tap **Frage beantworten** to answer a question and earn Wissenspunkte (KP)
+- Buy buildings (Forscher, Gelehrter, Bibliothek, Institut) for passive KP/sec income
+- Unlock Entdeckungen (multiplier milestones) as total KP accumulates
+- Combo streak bonus: 3 correct in a row = +25%, 7 = +50%, 15 = +100%
+
+### 🏥 Klinik (clinic management)
+
+Manage a village clinic while studying:
+
+- **Patienten:** patients arrive in the waiting room; tap *Behandeln* to consult them (triggers a question); correct = gold + reputation + village health; wrong = reputation loss
+- **Wissensturm:** bar chart showing mastery progress per chapter (gray = inactive, colors = partial progress, gold = 100% mastered)
+- **Upgrades:** buy waiting room expansions, nurses (auto-heal), equipment, and signs to grow the clinic
+
+Village health decays slowly over time; stay active to keep it up.
 
 ---
 
-## Core game loop
+## Shared question mechanics
+
+All modes draw from the same question pool and track the same mastery state.
+
+- **Mastery:** a question is mastered once answered correctly on 3 different calendar days
+- **Spaced repetition:** unseen questions first, then wrong ones, then unmastered ones
+- **Combo streak:** consecutive correct answers in a session give a KP/yield bonus (resets on wrong answer)
+- **Chapters (📚):** activate anatomy chapters to add their questions to your pool
+
+---
+
+## Core tavern loop
 
 ### 1. Order supplies (🪶 Raven)
 - Tap the raven button to open the order screen
 - Order seeds, animal products (pizza toppings), and dishware
-- Each item batch costs one answered question
-- Delivery arrives the next in-game day (after sleeping)
+- Each batch costs one answered question; delivery is immediate
 
 ### 2. Grow ingredients (Garden ←)
-- Plant seeds in empty garden patches (uses seed inventory)
-- Plants take 2 days to grow; water them daily by answering questions
-- Harvest ripe plants to add ingredients to your inventory (wheat, tomato, etc.)
+- Plant seeds in empty garden patches
+- Water plants by answering questions (2 correct answers = fully grown)
+- Harvest ripe plants to add ingredients to your inventory
 
 ### 3. Run the restaurant (Restaurant center)
 - Tap **Öffnen** to open the tavern
 - Patrons arrive and sit at tables; click a table to serve them
-- The kitchen auto-makes a basic pizza (wheat + tomato + mozzarella) — no recipe needed
-- Patrons have a preferred pizza topping and a disliked topping; happiness depends on what they get
-- After eating, patrons sometimes order a second drink before leaving
-- Tap **Last Call** when you're done, then **Schlafen** to end the day
+- Patrons have a preferred topping and sometimes a disliked one
+- After eating, patrons sometimes order a drink before leaving
+- Tap **Last Call** when done, then **Schlafen** to end the day
 
 ### 4. Wash dishes (Cleaning →)
 - After service, plates and glasses are dirty
-- Swipe right to the cleaning screen; scrub dirt off items to return them to inventory
-- Soap runs out — refill by answering a question (20 charges per refill)
-
-### 5. Advance knowledge (📚 Chapters)
-- Activate anatomy chapters to unlock question pools
-- Answer questions to progress toward mastery
-- Mastered chapters show in the trophy room
+- Scrub dirt off items to return them to inventory
+- Soap runs out; refill by answering a question (20 charges per refill)
 
 ---
 
 ## Pizza system
 
-- **Basic pizza** (wheat + tomato + mozzarella) is always available — no recipe needed
-- Tap 🍕 (Kitchen) to create custom pizza recipes with extra toppings
-- Tap a topping in the palette to select it (yellow outline), then tap the pizza to place it
-- Active recipes are offered to patrons; up to 4 recipes can be active at once
+- **Basic pizza** (wheat + tomato + mozzarella) is always available
+- Tap 🍕 (Kitchen) to create custom recipes with extra toppings
 - Order animal products via the raven to unlock more topping variety
+- Up to 4 recipes can be active at once
 
 ---
 
@@ -105,40 +126,24 @@ Three screens, swiped left/right:
 |---|---|
 | 😊 Very happy | Food matches preference AND drink matches craving |
 | 🙂 Happy | Food OR drink matches |
-| 😐 Neutral | Served, but nothing matched — or disliked topping present |
+| 😐 Neutral | Served, but nothing matched, or disliked topping present |
 | 😞 Sad | Patience ran out before being served |
-
-- Patrons have a **disliked topping** (50% chance) — serving it lowers happiness by one level (never below neutral)
-- Patrons pre-order drinks while waiting (up to 2, optional)
-- After eating, 35% chance to linger and order one more drink
 
 ---
 
 ## Trophy room (🏆)
 
 - **Counter:** total questions answered
-- **90-day activity heatmap** — shows days you studied (like GitHub contributions)
-- **Achievement grid** — 20 badges for questions, harvests, streaks, restaurant, memory
-- **Chapter progress bars** — per-chapter mastery percentage
-
----
-
-## Raven orders
-
-| Category | Per question |
-|---|---|
-| Animal products (mozzarella, salami, ham, anchovies, eggs) | 20× |
-| Dishware (plates, wine glasses, beer glasses) | 15× |
-| Seeds | 1 bag |
-
-Crop yields per harvest: wheat/tomato → 25, all others → 20.
+- **90-day activity heatmap:** shows days you studied
+- **Achievement grid:** badges for questions, harvests, streaks, restaurant, memory
+- **Chapter progress bars:** per-chapter mastery percentage
 
 ---
 
 ## Save system
 
 - Saved automatically in `localStorage`
-- **Export/Import** in Settings — saves as JSON
+- **Export/Import** in Settings, saves as JSON
 - Clearing browser *cache* does **not** delete saves; clearing *site data* does
 
 ---
@@ -146,16 +151,16 @@ Crop yields per harvest: wheat/tomato → 25, all others → 20.
 ## Project structure
 
 ```
-index.html        — app shell, all HTML screens
-styles.css        — all UI and game styling
+index.html       app shell, all HTML screens and mode divs
+styles.css       all UI and game styling
 js/
-  content.js      — all questions, plants, label exercises
-  game.js         — game logic, rendering, state management
-sw.js             — service worker (cache version controlled)
-manifest.json     — PWA manifest (raven icon)
-assets/           — images (pizza toppings, patrons, dishes, garden)
+  content.js     all questions, plants, label exercises
+  game.js        game logic, rendering, state management
+sw.js            service worker (cache version controlled)
+manifest.json    PWA manifest
+assets/          images (pizza toppings, patrons, dishes, garden)
 scripts/
-  serve.js        — local dev server
+  serve.js       local dev server
 ```
 
 ---
@@ -165,4 +170,3 @@ scripts/
 - UI and content are in German (Heilpraktiker exam material)
 - Designed for portrait orientation on mobile; works on desktop too
 - First-time players get a tutorial (can be replayed via ⚙️ → Tutorial anzeigen)
-- This is an active prototype — content and mechanics evolve frequently

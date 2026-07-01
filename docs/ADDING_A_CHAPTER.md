@@ -5,22 +5,22 @@ Alles spielt sich ausschliesslich in `js/content.js` ab — kein anderer Code mu
 
 ---
 
-## Spielmechanik: Pflanzphase und Restaurant
+## Spielmechanik: Fragenpool und Modi
 
-Das Spiel hat zwei Hauptphasen, die für jedes Bett (= Kapitel) nacheinander freigeschaltet werden:
+Das Spiel hat drei Modi, die alle denselben Fragenpool und denselben Masteryfortschritt teilen. Kapitel (= Betten) werden vom Spieler aktiviert — erst dann fließen ihre Fragen in den Pool.
 
-### Pflanzphase (Phase 1–3)
-Jede Pflanze durchläuft einen Lebenszyklus:
-- **Phase 1** — Lernphase: Der Spieler liest `solution`-Texte und beantwortet True/False-Aussagen (`statement`).
-- **Phase 2** — Wachstumsphase: Die `harvestQuestions` werden als Quizfragen gestellt. Richtige Antworten lassen die Pflanze wachsen; falsche blockieren sie.
-- **Phase 3** — Ernte: Die Pflanze wird geerntet (`harvestedOnce = true`). Danach beginnt ein neuer Wachstumszyklus.
+### Fragen im Spiel
+- **`harvestQuestions`** erscheinen überall: beim Bewässern von Pflanzen (Taverne), beim Drücken von „Frage beantworten" (Klicker), beim Behandeln von Patienten (Klinik), beim Raben-Bestellen und beim Reinigen.
+- **`phase4Questions`** erscheinen im Restaurant und in der Klinik — sie setzen voraus, dass der Spieler das Thema bereits durch die Ernte kennt.
 
-### Restaurant (Phase 4)
-Das Restaurant wird freigeschaltet, sobald **alle Pflanzen eines Betts mindestens einmal geerntet wurden**.
+### Mastery
+Eine Frage gilt als gemeistert, wenn sie an **3 verschiedenen Kalendertagen** korrekt beantwortet wurde. Der Wissensturm in der Klinik zeigt den Fortschritt pro Kapitel als Balkendiagramm.
 
-Im Restaurant betreibt der Spieler eine Pizzeria: Kunden kommen herein, werden bedient, und zwischendurch erscheinen Quizfragen auf dem Bildschirm. Richtige Antworten bringen Belohnungen (neue Zutaten, Köche, Tische).
+### Pflanzenwachstum (Taverne)
+Pflanzen wachsen nicht über Tage, sondern über richtige Antworten: Jede korrekte Antwort beim Bewässern gibt `+1 growthPoint`. Nach 2 Punkten ist die Pflanze erntereif. Es gibt keinen Tageszyklus mehr — Wachstum ist sofort nach der Antwort sichtbar.
 
-**Welche Fragen erscheinen im Restaurant?** Alle `harvestQuestions` UND alle `phase4Questions` des Betts — in zufälliger Reihenfolge, zuerst ungesehene, dann falsch beantwortete.
+### Raben-Lieferungen
+Bestellungen werden sofort geliefert, sobald die zugehörige Frage korrekt beantwortet wurde. Kein Warten auf den nächsten Tag.
 
 ### Konsequenzen für die Fragengestaltung
 
@@ -161,7 +161,7 @@ Diese Liste ist die Grundlage für alles Weitere. Sie wird in Schritt 7 (Coverag
 
 ## Schritt 1 — Pflanzen-Array anlegen
 
-Direkt vor dem `PACK_CONTENT`-Block (aktuell Zeile ~3906) einen neuen Block einfügen:
+Direkt vor dem `PACK_CONTENT`-Block (aktuell Zeile ~16312) einen neuen Block einfügen:
 
 ```javascript
 const KAPITELNAME_XXXX_PLANTS = [

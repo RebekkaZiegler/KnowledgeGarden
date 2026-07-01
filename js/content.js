@@ -16378,7 +16378,7 @@ const PACK_CONTENT = {
     },
     {
       id: "nervensystem_1043",
-      label: "1043 – Strukturen und Funktion des Nervensystems",
+      title: "1043 – Strukturen und Funktion des Nervensystems",
       plants: NERVENSYSTEM_1043_PLANTS
     },
     {

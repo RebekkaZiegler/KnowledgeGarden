@@ -119,6 +119,14 @@ const PATIENCE_MS      = 60000;
 const RE_LOOP_INTERVAL = 5000;
 let   reLoopTimer      = null;
 let   rePatronIdCtr    = 0;
+let   sessionStreak    = 0;   // correct-answer combo; resets on wrong answer
+
+function getStreakBonus() {
+  if (sessionStreak >= 15) return 100;
+  if (sessionStreak >= 7)  return 50;
+  if (sessionStreak >= 3)  return 25;
+  return 0;
+}
 
 /* ══════════════════════════════════════════════════════════
    STATE & SAVE
@@ -163,6 +171,26 @@ function defaultState() {
       sessionAnswered: 0,
     },
 
+    activeMode: "tavern",
+
+    clicker: {
+      kp:          0,
+      kpTotal:     0,
+      buildings:   {},
+      discoveries: [],
+      lastTick:    null,
+    },
+
+    clinic: {
+      gold:            50,
+      reputation:      10,
+      villageHealth:   50,
+      patientsHealed:  0,
+      patientsAngry:   0,
+      waitingPatients: [],
+      upgrades:        { room: 0, nurse: 0, equipment: 0, sign: 0 },
+    },
+
     stats: {
       totalQuestionsAnswered: 0,
       totalCorrect:           0,
@@ -197,8 +225,15 @@ function loadState() {
 
 function normalizeState(s) {
   const d      = defaultState();
-  s.currentDay = s.currentDay ?? d.currentDay;
-  s.phase      = s.phase      ?? d.phase;
+  s.currentDay  = s.currentDay  ?? d.currentDay;
+  s.phase       = s.phase       ?? d.phase;
+  s.activeMode  = s.activeMode  ?? d.activeMode;
+  s.clicker     = Object.assign({}, d.clicker,  s.clicker  || {});
+  s.clicker.buildings   = Object.assign({}, s.clicker.buildings   || {});
+  s.clicker.discoveries = s.clicker.discoveries || [];
+  s.clinic      = Object.assign({}, d.clinic,   s.clinic   || {});
+  s.clinic.upgrades         = Object.assign({}, d.clinic.upgrades, s.clinic.upgrades || {});
+  s.clinic.waitingPatients  = []; // never restore mid-session patients
   s.settings   = Object.assign({}, d.settings,    s.settings  || {});
   s.stats      = Object.assign({}, d.stats,        s.stats     || {});
   s.stats.activityLog = s.stats.activityLog || {};
@@ -237,6 +272,28 @@ function normalizeState(s) {
       s.restaurant.recipes.unshift({ id: "basic", name: "Basic Pizza", toppings: [], active: true, deletable: false, orderedCount: 0 });
     }
   }
+  // Deliver any raven orders that were queued under the old day-based system
+  if (s.ravenOrders && s.ravenOrders.length) {
+    s.inventory = s.inventory || {};
+    s.supplies  = s.supplies  || (defaultState()).supplies;
+    s.ravenOrders.forEach(o => {
+      if (o.isSupply) {
+        if (s.supplies[o.itemId]) s.supplies[o.itemId].clean = (s.supplies[o.itemId].clean || 0) + o.qty;
+      } else {
+        s.inventory[o.itemId] = (s.inventory[o.itemId] || 0) + o.qty;
+      }
+    });
+    s.ravenOrders = [];
+  }
+  if (s.ravenSeeds && s.ravenSeeds.length) {
+    s.inventory = s.inventory || {};
+    s.ravenSeeds.forEach(o => {
+      const k = `seed_${o.plantId}`;
+      s.inventory[k] = (s.inventory[k] || 0) + o.qty;
+    });
+    s.ravenSeeds = [];
+  }
+
   delete s.wilderness;
   if (!s.garden) {
     s.garden = d.garden;
@@ -252,6 +309,18 @@ function normalizeState(s) {
     s.garden.patches = s.garden.patches.slice(0, GARDEN_PATCHES);
     while (s.garden.patches.length < GARDEN_PATCHES) s.garden.patches.push(null);
   }
+
+  // Migrate plant slots from day-based (plantedDay) to growthPoints
+  if (s.garden && s.garden.patches) {
+    s.garden.patches = s.garden.patches.map(slot => {
+      if (!slot || slot.growthPoints !== undefined) return slot;
+      const daysGrown   = Math.max(0, (s.currentDay || 1) - (slot.plantedDay || s.currentDay || 1));
+      const growthPoints = Math.min(daysGrown + (slot.wateredToday != null ? 1 : 0), PLANT_GROW_DAYS);
+      const { plantedDay, wateredToday, ...rest } = slot;
+      return { ...rest, growthPoints };
+    });
+  }
+
   return s;
 }
 
@@ -505,6 +574,20 @@ function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDo
 
   fbEl.hidden    = false;
   contBtn.hidden = false;
+
+  // Combo streak — update before recordAnswer so renderStats sees new value
+  if (isCorrect) {
+    sessionStreak++;
+    const milestones = [3, 7, 10, 15, 20];
+    if (milestones.includes(sessionStreak)) {
+      const b = getStreakBonus();
+      showToast(`⚡ ${sessionStreak}× KOMBO! +${b}% Bonus auf Ernte & Lieferung!`);
+    }
+  } else {
+    if (sessionStreak >= 3) showToast(`💔 Kombo gebrochen (war ${sessionStreak}×)`);
+    sessionStreak = 0;
+  }
+
   recordAnswer(entry.chapterId, entry.question.id, isCorrect);
   if (isCorrect) onCorrect && onCorrect();
   else onWrong && onWrong();
@@ -614,11 +697,19 @@ function renderStats() {
   const totalChapters = PACK_CONTENT.beds.length;
   const doneChapters  = PACK_CONTENT.beds.filter(b => isChapterComplete(b.id)).length;
 
+  const comboBonus  = getStreakBonus();
+  const comboClass  = sessionStreak >= 15 ? " stat-combo--max"
+                    : sessionStreak >= 7  ? " stat-combo--hot"
+                    : sessionStreak >= 3  ? " stat-combo--active"
+                    : "";
+  const comboLabel  = comboBonus ? ` +${comboBonus}%` : "";
+
   el.innerHTML = `
     <div class="stat-row">
       <div>📖 <strong>${remaining}</strong> offen</div>
       <div>🟢 <strong>${doneChapters}/${totalChapters}</strong></div>
       <div class="stat-streak${streakOn ? " stat-streak--active" : ""}">🔥 ${streak}</div>
+      <div class="stat-combo${comboClass}" title="Kombo: ${sessionStreak} richtige in Folge">⚡ ${sessionStreak}${comboLabel}</div>
       <div class="stat-daily${dailyComplete ? " stat-daily--done" : ""}" title="Tagesziel: ${DAILY_GOAL} korrekte Antworten">${dots}</div>
     </div>
     <div class="stat-row">
@@ -660,6 +751,7 @@ function renderGarden() {
   const grid = document.getElementById("garden-grid");
   if (!grid) return;
   grid.innerHTML = "";
+  if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
 
   const patchesEl = document.createElement("div");
   patchesEl.className = "garden-patches";
@@ -672,17 +764,14 @@ function renderGarden() {
       slotEl.innerHTML = `<span class="slot-add-icon">＋</span>`;
       slotEl.onclick = () => openSeedPicker(patchIdx);
     } else {
-      const crop      = FOOD_CROPS.find(c => c.id === slot.plantId);
-      const daysGrown = G.currentDay - slot.plantedDay;
-      const daysLeft  = Math.max(0, PLANT_GROW_DAYS - daysGrown);
-      const ready     = daysLeft === 0;
-      const watered   = slot.wateredToday === G.currentDay;
-
-      const stage = ready ? 3 : Math.min(daysGrown, 2);
+      const crop         = FOOD_CROPS.find(c => c.id === slot.plantId);
+      const growthPoints = slot.growthPoints || 0;
+      const ready        = growthPoints >= PLANT_GROW_DAYS;
+      const stage        = Math.min(growthPoints, 3);
       const STAGE_EMOJI = ["🫘", "🌱", "🌿", crop ? crop.emoji : "🌾"];
       const emoji = STAGE_EMOJI[stage];
 
-      slotEl.className = `garden-slot garden-slot--planted${ready ? " garden-slot--ready" : ""}${watered ? " garden-slot--watered" : ""}`;
+      slotEl.className = `garden-slot garden-slot--planted${ready ? " garden-slot--ready" : ""}`;
 
       const cropsDiv = document.createElement("div");
       cropsDiv.className = "slot-crops";
@@ -712,13 +801,13 @@ function renderGarden() {
 
       const statusEl = document.createElement("div");
       statusEl.className = `slot-status${ready ? " slot-status--ready" : ""}`;
-      statusEl.textContent = ready ? "✨ Reif!" : (watered ? `💧 ${daysLeft}T` : `🏜️ ${daysLeft}T`);
+      statusEl.textContent = ready ? "✨ Reif!" : `💧 ${growthPoints}/${PLANT_GROW_DAYS}`;
 
       slotEl.appendChild(cropsDiv);
       slotEl.appendChild(nameEl);
       slotEl.appendChild(statusEl);
 
-      if (!ready) slotEl.onclick = () => openSlotActions(patchIdx, ready, watered);
+      if (!ready) slotEl.onclick = () => openSlotActions(patchIdx, ready);
     }
     patchesEl.appendChild(slotEl);
   });
@@ -748,7 +837,7 @@ function getAvailableSeeds() {
 }
 
 function plantSeed(patchIdx, cropId, cropName) {
-  G.garden.patches[patchIdx] = { plantId: cropId, plantTitle: cropName, plantedDay: G.currentDay, wateredToday: null };
+  G.garden.patches[patchIdx] = { plantId: cropId, plantTitle: cropName, growthPoints: 0 };
   const key = `seed_${cropId}`;
   if ((G.inventory[key] || 0) > 0) G.inventory[key]--;
   if (tutorialStepId() === "plant_wheat" && cropId === "wheat") advanceTutorial("plant_wheat");
@@ -757,13 +846,12 @@ function plantSeed(patchIdx, cropId, cropName) {
   renderGarden();
 }
 
-function openSlotActions(patchIdx, ready, wateredToday) {
+function openSlotActions(patchIdx, ready) {
   const slot = G.garden.patches[patchIdx];
   if (!slot) return;
   const actions = [];
-  if (ready)               actions.push({ label: "🌿 Ernten",                value: "harvest" });
-  else if (!wateredToday)  actions.push({ label: "💧 Wässern (1 Frage)",     value: "water" });
-  else                     actions.push({ label: "💧 Heute schon gewässert", value: null });
+  if (ready) actions.push({ label: "🌿 Ernten",          value: "harvest" });
+  else       actions.push({ label: "💧 Wässern (1 Frage)", value: "water" });
   actions.push({ label: "🗑️ Entfernen", value: "remove" });
 
   showPickerModal(slot.plantTitle, actions, chosen => {
@@ -786,14 +874,22 @@ function waterPlant(patchIdx) {
   if (!entry) { showToast("Keine Fragen verfügbar."); return; }
 
   showQuestion("💧 Wässern", entry,
-    () => { G.garden.patches[patchIdx].wateredToday = G.currentDay; },
+    () => {
+      const slot = G.garden.patches[patchIdx];
+      if (!slot) return;
+      slot.growthPoints = (slot.growthPoints || 0) + 1;
+      const crop = FOOD_CROPS.find(c => c.id === slot.plantId);
+      if (slot.growthPoints >= PLANT_GROW_DAYS) {
+        showToast(`✨ ${crop ? crop.emoji : "🌿"} ${slot.plantTitle} ist reif!`);
+      }
+    },
     () => {},
     () => {
       saveState(); renderGarden();
-      if (["water_plants", "water_day3"].includes(tutorialStepId())) {
+      if (tutorialStepId() === "water_plants") {
         const planted = G.garden.patches.filter(Boolean);
-        const allWatered = planted.length >= 2 && planted.every(s => s.wateredToday === G.currentDay);
-        if (allWatered) advanceTutorial(tutorialStepId());
+        const allReady = planted.length >= 2 && planted.every(s => (s.growthPoints || 0) >= PLANT_GROW_DAYS);
+        if (allReady) advanceTutorial("water_plants");
       }
     }
   );
@@ -804,13 +900,15 @@ function harvestOnePlant(patchIdx) {
   if (!slot) return;
   const crop        = FOOD_CROPS.find(c => c.id === slot.plantId);
   const ingredient  = crop ? crop.ingredient : "wheat";
-  const spriteCount = crop?.spriteCount || 1;
-  const perPlant    = Math.max(1, Math.round(getCropYield(crop) / spriteCount));
+  const spriteCount  = crop?.spriteCount || 1;
+  const streakMult   = 1 + getStreakBonus() / 100;
+  const perPlant     = Math.max(1, Math.round(getCropYield(crop) / spriteCount * streakMult));
 
   slot.harvestedCount = (slot.harvestedCount || 0) + 1;
   addInventory(ingredient, perPlant);
   G.stats.totalHarvests++;
-  showToast(`${crop ? crop.emoji : "🌿"} +${perPlant} ${getIngredientName(ingredient)}`);
+  const bonusLabel = streakMult > 1 ? ` ⚡×${streakMult.toFixed(2).replace(/\.?0+$/, "")}` : "";
+  showToast(`${crop ? crop.emoji : "🌿"} +${perPlant} ${getIngredientName(ingredient)}${bonusLabel}`);
 
   if (slot.harvestedCount >= spriteCount) {
     G.garden.patches[patchIdx] = null;
@@ -900,9 +998,7 @@ function doSleep() {
     </div>`).join("");
   if (overlay) overlay.hidden = false;
 
-  // Tutorial: advance on sleep steps
-  const sleepSteps = ["raven_ordered", "sleep_day2", "sleep_day3"];
-  if (sleepSteps.includes(tutorialStepId())) advanceTutorial(tutorialStepId());
+  // (no tutorial steps advance on sleep anymore — all steps are action-driven)
 
   saveState();
   updateRestaurantUI();
@@ -1644,7 +1740,8 @@ function renderRavenModal() {
     </div>`;
   }).join("");
 
-  html += `<button id="raven-confirm-btn" class="raven-order-confirm-btn" disabled>📦 Bestellen (0 Fragen)</button>`;
+  const bonusTip = getStreakBonus() > 0 ? ` · ⚡+${getStreakBonus()}% Bonus!` : "";
+  html += `<button id="raven-confirm-btn" class="raven-order-confirm-btn" disabled>⚡ Sofort bestellen (0 Fragen${bonusTip})</button>`;
   listEl.innerHTML = html;
 
   listEl.querySelectorAll(".raven-order-qty-btn").forEach(btn => {
@@ -1660,24 +1757,15 @@ function renderRavenModal() {
 
   document.getElementById("raven-confirm-btn").onclick = placeRavenOrder;
 
-  // Pending deliveries
-  let pend = "";
-  if (G.ravenOrders.length || G.ravenSeeds.length) {
-    pend = "<strong>Ausstehend:</strong>";
-    G.ravenOrders.forEach(o => { pend += `<div class="raven-pending-item">• ${o.qty}× ${o.itemName} → Tag ${o.arrivesOnDay}</div>`; });
-    G.ravenSeeds.forEach(o => {
-      const crop = FOOD_CROPS.find(c => c.id === o.plantId);
-      pend += `<div class="raven-pending-item">• ${o.qty}× Samen (${crop ? crop.emoji + " " + crop.name : o.plantId}) → Tag ${o.arrivesOnDay}</div>`;
-    });
-  }
-  pendEl.innerHTML = pend;
+  pendEl.innerHTML = "";
 }
 
 function updateRavenTotal() {
-  const total = Object.values(ravenQtys).reduce((s, v) => s + v, 0);
-  const btn   = document.getElementById("raven-confirm-btn");
+  const total     = Object.values(ravenQtys).reduce((s, v) => s + v, 0);
+  const btn       = document.getElementById("raven-confirm-btn");
+  const bonusTip  = getStreakBonus() > 0 ? ` · ⚡+${getStreakBonus()}%` : "";
   if (btn) {
-    btn.textContent = `📦 Bestellen (${total} Fragen)`;
+    btn.textContent = `⚡ Sofort bestellen (${total} Fragen${bonusTip})`;
     btn.disabled    = total === 0;
   }
 }
@@ -1707,26 +1795,38 @@ function placeRavenOrder() {
   const snapshot = { ...ravenQtys };
   askQuestions("🪶 Raben-Bestellung", total,
     () => {
+      const streakMult = 1 + getStreakBonus() / 100;
+      const bonusLabel = streakMult > 1 ? ` ⚡+${getStreakBonus()}%` : "";
+      const delivered  = [];
+
       for (const [key, qty] of Object.entries(snapshot)) {
         if (!qty) continue;
         if (key.startsWith("seed_")) {
-          const plantId = key.slice(5);
-          G.ravenSeeds.push({ id: `rs${Date.now()}${Math.random()}`, plantId, qty, arrivesOnDay: G.currentDay + RAVEN_DELIVER_DAYS });
+          const seedQty = Math.round(qty * streakMult);
+          G.inventory[key] = (G.inventory[key] || 0) + seedQty;
+          const crop = FOOD_CROPS.find(c => `seed_${c.id}` === key);
+          delivered.push(`${crop ? crop.emoji : "🌱"} ${seedQty}× Samen`);
         } else {
           const dw = DISHWARE_CFG.find(d => d.id === key);
           if (dw) {
-            G.ravenOrders.push({ id: `ro${Date.now()}${Math.random()}`, itemId: key, itemName: dw.name, qty: qty * dw.batch, isSupply: true, arrivesOnDay: G.currentDay + RAVEN_DELIVER_DAYS });
+            const supplyQty = Math.round(qty * dw.batch * streakMult);
+            G.supplies[key].clean += supplyQty;
+            delivered.push(`${dw.emoji || "📦"} +${supplyQty} ${dw.name}`);
           } else {
             const item = RAVEN_ITEMS_CFG.find(i => i.id === key);
-            const deliverQty = item?.batch ? qty * item.batch : qty;
-            G.ravenOrders.push({ id: `ro${Date.now()}${Math.random()}`, itemId: key, itemName: item ? item.name : key, qty: deliverQty, arrivesOnDay: G.currentDay + RAVEN_DELIVER_DAYS });
+            const deliverQty = Math.round((item?.batch ? qty * item.batch : qty) * streakMult);
+            addInventory(key, deliverQty);
+            delivered.push(`${item?.emoji || "📦"} +${deliverQty} ${item?.name || key}`);
           }
         }
       }
+
       ravenQtys = {};
       saveState();
-      showToast(`🪶 Bestellung aufgegeben! Lieferung nach dem Schlafen.`);
+      renderAll();
+      showToast(`🪶 Sofort geliefert!${bonusLabel} · ${delivered.slice(0, 3).join(" · ")}`);
       advanceTutorial("raven_order");
+      if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
     },
     null
   );
@@ -2397,40 +2497,32 @@ function renderAll() {
    TUTORIAL
 ══════════════════════════════════════════════════════════ */
 const TUTORIAL_STEPS = [
-  { id: 'welcome',          btn: 'Los geht\'s! →',
-    msg: '🧙 <strong>Willkommen, Tavernenwirt!</strong><br>Ich bin der Geist dieser Taverne. In unserer Welt wird Wissen mit Waren bezahlt — beweise, dass du klug bist, und du bekommst alles was du brauchst.' },
-  { id: 'raven_intro',      highlight: '#btn-raven',
-    msg: '🪶 Um Waren zu bestellen, beauftragst du den <strong>Raben</strong>. Klick auf ihn!' },
+  { id: 'welcome',         btn: 'Los geht\'s! →',
+    msg: '🧙 <strong>Willkommen, Tavernenwirt!</strong><br>Wissen ist Währung hier — beantworte Fragen richtig und du bekommst <em>sofort</em>, was du brauchst.' },
+  { id: 'raven_intro',     highlight: '#btn-raven',
+    msg: '🪶 Klick auf den <strong>Raben</strong>, um Waren zu bestellen. Beantworte die Fragen und die Lieferung kommt augenblicklich!' },
   { id: 'raven_order',
-    msg: '📦 Bestell mindestens:<br>• 1× <strong>Weizensamen</strong><br>• 1× <strong>Tomatensamen</strong><br>• 1× <strong>Mozzarella</strong><br>• 1× <strong>Teller</strong><br><br>Das ist die Basis für eine Pizza – sie hält Gäste glücklich. Du kannst auch mehr bestellen! Bestätige danach die Bestellung.' },
-  { id: 'raven_ordered',    highlight: '#btn-sleep',
-    msg: '🌙 Gut gemacht! Der Rabe macht sich auf den Weg – er braucht einen Tag. <strong>Schlaf jetzt</strong>, damit ein neuer Tag beginnt.' },
+    msg: '📦 Bestell mindestens:<br>• 1× <strong>Weizensamen</strong><br>• 1× <strong>Tomatensamen</strong><br>• 1× <strong>Mozzarella</strong><br>• 1× <strong>Teller</strong><br><br>Dann „Sofort bestellen" klicken und die Fragen beantworten!' },
   { id: 'day2_garden',
-    msg: '🌅 Guten Morgen! Deine Waren sind eingetroffen. <strong>Wisch nach links</strong>, um in den Garten zu kommen.' },
-  { id: 'plant_wheat',      highlight: '.garden-slot:not(.garden-slot--planted)',
+    msg: '✅ Waren eingetroffen! <strong>Wisch nach links</strong> zum Garten.' },
+  { id: 'plant_wheat',     highlight: '.garden-slot:not(.garden-slot--planted)',
     msg: '🌾 Klick auf ein <strong>leeres Feld</strong> und pflanze den <strong>Weizen</strong>!' },
-  { id: 'plant_tomato',     highlight: '.garden-slot:not(.garden-slot--planted)',
+  { id: 'plant_tomato',    highlight: '.garden-slot:not(.garden-slot--planted)',
     msg: '🍅 Super! Jetzt noch die <strong>Tomate</strong> ins nächste Feld.' },
   { id: 'water_plants',
-    msg: '💧 Pflanzen wachsen durch Wasser — und Wasser gibt es durch <strong>Wissen</strong>. Klick auf jede Pflanze und wähle "Wässern", um eine Frage zu beantworten.' },
-  { id: 'sleep_day2',       highlight: '#btn-sleep',
-    msg: '✅ Wunderbar! Wisch nach rechts zur Taverne und <strong>schlaf</strong>, damit die Pflanzen wachsen können.' },
-  { id: 'water_day3',
-    msg: '🌿 Neuer Tag! Geh in den Garten und <strong>wässere die Pflanzen</strong> erneut.' },
-  { id: 'sleep_day3',       highlight: '#btn-sleep',
-    msg: '🌙 Noch eine Nacht schlafen — morgen sind die Pflanzen reif!' },
-  { id: 'harvest',          highlight: '.garden-slot--ready',
-    msg: '🌾✨ Die Pflanzen sind reif! <strong>Klick auf sie</strong>, um Weizen und Tomaten zu ernten.' },
-  { id: 'kitchen',          highlight: '#btn-kitchen',
-    msg: '🍕 Schau dir die <strong>Küche</strong> an! Eine einfache Pizza braucht kein Rezept — die Küchengeister wissen wie. Für besondere Pizzen kannst du hier Rezepte erstellen. Gäste haben Lieblingstoppings, also lohnt sich Abwechslung!' },
-  { id: 'open_restaurant',  highlight: '#btn-open-restaurant',
-    msg: '🍽️ Du hast Mehl, Tomaten und Käse — genug für die erste Pizza! <strong>Öffne jetzt die Taverne.</strong>' },
+    msg: '💧 Pflanzen wachsen durch Wasser — jede Pflanze braucht <strong>2× Wässern</strong>. Klick auf eine Pflanze → „Wässern" → Frage beantworten → sie wächst sofort!' },
+  { id: 'harvest',         highlight: '.garden-slot--ready',
+    msg: '🌾✨ Beide Pflanzen sind reif! <strong>Klick auf sie</strong>, um Weizen und Tomaten zu ernten.' },
+  { id: 'kitchen',         highlight: '#btn-kitchen',
+    msg: '🍕 Schau in die <strong>Küche</strong>! Eine einfache Pizza braucht kein Rezept. Für besondere Pizzen kannst du hier eigene Rezepte erstellen.' },
+  { id: 'open_restaurant', highlight: '#btn-open-restaurant',
+    msg: '🍽️ Weizen, Tomaten, Käse — die erste Pizza ist möglich! <strong>Öffne die Taverne.</strong>' },
   { id: 'serve_patron',
-    msg: '🧑 Ein Gast hat Platz genommen! <strong>Klick auf den Tisch</strong>, wenn du ihn bedienen möchtest.' },
+    msg: '🧑 Ein Gast hat Platz genommen! <strong>Klick auf den Tisch</strong>, um ihn zu bedienen.' },
   { id: 'cleaning',
-    msg: '🫧 Das schmutzige Geschirr muss gewaschen werden! <strong>Wisch nach rechts</strong> zur Reinigung und wische den Schmutz vom Teller. Ab und zu muss die Seife aufgefüllt werden.' },
-  { id: 'done',             btn: 'Spielen! 🍕',
-    msg: '🌿 <strong>Du hast die Grundlagen gelernt, Tavernenwirt!</strong><br>Sorge für Nachschub, kreiere neue Pizzarezepte und halte deine Gäste glücklich. Viel Erfolg!' },
+    msg: '🫧 Schmutziges Geschirr muss gewaschen werden! <strong>Wisch nach rechts</strong> zur Reinigung.' },
+  { id: 'done',            btn: 'Spielen! 🍕',
+    msg: '🌿 <strong>Gut gemacht, Tavernenwirt!</strong><br>Bestelle, pflanze, ernteund halte deine Gäste glücklich. Schlafe am Ende des Abends, um den Tag abzuschließen. Viel Erfolg!' },
 ];
 
 function isTutorialActive() {
@@ -2476,6 +2568,437 @@ function tutorialStepId() {
   if (!isTutorialActive()) return null;
   return TUTORIAL_STEPS[G.tutorial.step].id;
 }
+
+/* ══════════════════════════════════════════════════════════
+   MODE A — KNOWLEDGE CLICKER
+══════════════════════════════════════════════════════════ */
+const CLICKER_BUILDINGS = [
+  { id: 'researcher', name: 'Forscher',   emoji: '🔬', baseCost: 100,    rate: 1,    desc: '+1 KP/Sek'      },
+  { id: 'scholar',    name: 'Gelehrter',  emoji: '🎓', baseCost: 1000,   rate: 10,   desc: '+10 KP/Sek'     },
+  { id: 'library',    name: 'Bibliothek', emoji: '📚', baseCost: 10000,  rate: 100,  desc: '+100 KP/Sek'    },
+  { id: 'institute',  name: 'Institut',   emoji: '🏛️', baseCost: 100000, rate: 1000, desc: '+1.000 KP/Sek'  },
+];
+
+const CLICKER_DISCOVERIES = [
+  { id: 'disc1', name: 'Erste Erkenntnis', threshold: 500,     mult: 0.10, desc: '+10% alle KP'  },
+  { id: 'disc2', name: 'Durchbruch',       threshold: 5000,    mult: 0.25, desc: '+25% alle KP'  },
+  { id: 'disc3', name: 'Meisterwerk',      threshold: 50000,   mult: 0.50, desc: '+50% alle KP'  },
+  { id: 'disc4', name: 'Erleuchtung',      threshold: 500000,  mult: 1.00, desc: '+100% alle KP' },
+  { id: 'disc5', name: 'Allwissen',        threshold: 5000000, mult: 2.00, desc: '+200% alle KP' },
+];
+
+function formatKP(n) {
+  n = Math.floor(n);
+  if (n >= 1e9) return (n / 1e9).toFixed(1) + ' Mrd';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + ' Mio';
+  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'k';
+  return n.toString();
+}
+
+function getClickerMult() {
+  const disc = G.clicker.discoveries || [];
+  return 1 + CLICKER_DISCOVERIES.filter(d => disc.includes(d.id)).reduce((s, d) => s + d.mult, 0);
+}
+
+function getClickerPassiveRate() {
+  const bld = G.clicker.buildings || {};
+  return CLICKER_BUILDINGS.reduce((s, b) => s + (bld[b.id] || 0) * b.rate, 0) * getClickerMult();
+}
+
+function getClickerBuildingCost(id) {
+  const b = CLICKER_BUILDINGS.find(b => b.id === id);
+  return b ? Math.ceil(b.baseCost * Math.pow(1.15, G.clicker.buildings[id] || 0)) : Infinity;
+}
+
+function tickClicker() {
+  if (!G.clicker) return;
+  const now  = Date.now();
+  const last = G.clicker.lastTick || now;
+  const secs = Math.min((now - last) / 1000, 3600); // cap at 1 hour of offline gains
+  const gain = getClickerPassiveRate() * secs;
+  if (gain > 0) {
+    G.clicker.kp      = (G.clicker.kp      || 0) + gain;
+    G.clicker.kpTotal = (G.clicker.kpTotal  || 0) + gain;
+    checkClickerDiscoveries();
+  }
+  G.clicker.lastTick = now;
+}
+
+function checkClickerDiscoveries() {
+  const disc = G.clicker.discoveries;
+  CLICKER_DISCOVERIES.forEach(d => {
+    if (!disc.includes(d.id) && (G.clicker.kpTotal || 0) >= d.threshold) {
+      disc.push(d.id);
+      showToast(`✨ Entdeckung: ${d.name}! ${d.desc}`);
+    }
+  });
+}
+
+function clickerStudy() {
+  if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
+  const entry = pickNextQuestion();
+  if (!entry) { showToast("Keine Fragen verfügbar."); return; }
+  showQuestion("📈 Wissenspunkte", entry,
+    () => {
+      const gain = Math.round(100 * getClickerMult() * (1 + getStreakBonus() / 100));
+      G.clicker.kp      = (G.clicker.kp      || 0) + gain;
+      G.clicker.kpTotal = (G.clicker.kpTotal  || 0) + gain;
+      G.clicker.lastTick = Date.now();
+      checkClickerDiscoveries();
+      showToast(`+${formatKP(gain)} KP`);
+    },
+    () => {},
+    () => { saveState(); renderClicker(); }
+  );
+}
+window.clickerStudy = clickerStudy;
+
+function buyClickerBuilding(id) {
+  const cost = getClickerBuildingCost(id);
+  if ((G.clicker.kp || 0) < cost) { showToast("Nicht genug KP!"); return; }
+  G.clicker.kp -= cost;
+  G.clicker.buildings[id] = (G.clicker.buildings[id] || 0) + 1;
+  saveState();
+  renderClicker();
+}
+window.buyClickerBuilding = buyClickerBuilding;
+
+let clickerTickTimer = null;
+function startClickerTick() {
+  stopClickerTick();
+  clickerTickTimer = setInterval(() => { tickClicker(); renderClicker(); }, 1000);
+}
+function stopClickerTick() {
+  if (clickerTickTimer) { clearInterval(clickerTickTimer); clickerTickTimer = null; }
+}
+
+function renderClicker() {
+  tickClicker();
+  const kp     = G.clicker.kp      || 0;
+  const kpT    = G.clicker.kpTotal  || 0;
+  const rate   = getClickerPassiveRate();
+  const mult   = getClickerMult();
+  const bonus  = getStreakBonus();
+  const kpGain = Math.round(100 * mult * (1 + bonus / 100));
+  const bonusTip = bonus > 0 ? ` · ⚡+${bonus}%` : "";
+
+  const el = id => document.getElementById(id);
+  if (el("clicker-kp-number")) el("clicker-kp-number").textContent = formatKP(kp);
+  if (el("clicker-kp-rate"))   el("clicker-kp-rate").textContent   = rate > 0 ? `+${formatKP(rate)} KP/Sek` : "Keine passiven Einnahmen";
+  if (el("clicker-btn-sub"))   el("clicker-btn-sub").textContent   = `+${formatKP(kpGain)} KP${bonusTip}`;
+
+  const bldEl = el("clicker-buildings");
+  if (bldEl) {
+    bldEl.innerHTML = `<div class="clicker-section-title">🔬 Gebäude</div>` +
+      CLICKER_BUILDINGS.map(b => {
+        const count    = G.clicker.buildings[b.id] || 0;
+        const cost     = getClickerBuildingCost(b.id);
+        const canBuy   = kp >= cost;
+        const totalRate = count * b.rate * mult;
+        return `<div class="clicker-building">
+          <div class="clicker-bld-info">
+            <span class="clicker-bld-emoji">${b.emoji}</span>
+            <div>
+              <div class="clicker-bld-name">${b.name}${count ? ` <strong>×${count}</strong>` : ""}</div>
+              <div class="clicker-bld-desc">${b.desc}${count ? ` · ${formatKP(totalRate)}/Sek gesamt` : ""}</div>
+            </div>
+          </div>
+          <button class="clicker-buy-btn${canBuy ? "" : " clicker-buy-btn--off"}"
+            onclick="buyClickerBuilding('${b.id}')" ${canBuy ? "" : "disabled"}>
+            Kaufen<br><span>${formatKP(cost)} KP</span>
+          </button>
+        </div>`;
+      }).join("");
+  }
+
+  const discEl = el("clicker-discoveries");
+  if (discEl) {
+    const disc = G.clicker.discoveries || [];
+    discEl.innerHTML = `<div class="clicker-section-title">✨ Entdeckungen</div>` +
+      CLICKER_DISCOVERIES.map(d => {
+        const done = disc.includes(d.id);
+        const pct  = Math.min(100, (kpT / d.threshold) * 100);
+        return `<div class="clicker-discovery${done ? " clicker-discovery--done" : ""}">
+          <div class="clicker-disc-header">
+            <span>${done ? "✅" : "⬜"} ${d.name}</span>
+            <span class="clicker-disc-bonus">${d.desc}</span>
+          </div>
+          ${!done ? `<div class="clicker-disc-bar"><div style="width:${pct.toFixed(1)}%"></div></div>
+            <div class="clicker-disc-thresh">${formatKP(kpT)} / ${formatKP(d.threshold)} KP</div>` : ""}
+        </div>`;
+      }).join("");
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODE B — CLINIC  (+ Mode C: Knowledge Tower inside it)
+══════════════════════════════════════════════════════════ */
+const CLINIC_NAMES   = ["Anna","Max","Lea","Thomas","Maria","Felix","Sophie","Jonas","Emma","Lukas","Hannah","Julian","Mia","Niklas","Laura","Tim","Sara","Ben","Clara","David"];
+const CLINIC_EMOJI   = ["👴","👵","👨","👩","🧑","👦","👧","🧔","👩‍🦳","👨‍🦱"];
+const CLINIC_COMPLAINTS = [
+  "Kopfschmerzen","Rückenschmerzen","Müdigkeit","Bauchschmerzen",
+  "Husten","Schwindel","Schlafprobleme","Gelenksschmerzen","Stress","Erkältung",
+];
+
+const CLINIC_UPGRADES = [
+  { id: 'room',      name: 'Warteraum +1',      emoji: '🚪', baseCost: 150, desc: '+1 Patientenplatz',            max: 6  },
+  { id: 'nurse',     name: 'Krankenschwester',   emoji: '👩‍⚕️', baseCost: 400, desc: 'Behandelt Patienten automatisch', max: 3  },
+  { id: 'equipment', name: 'Ausrüstung +1',      emoji: '🔧', baseCost: 250, desc: 'Reputationsverlust −2/Fehler',  max: 5  },
+  { id: 'sign',      name: 'Praxisschild',       emoji: '📋', baseCost: 600, desc: '50% mehr Patienten',            max: 1  },
+];
+
+let clinicPatientTimer = null;
+let clinicNurseTimer   = null;
+let clinicUiTimer      = null;
+
+function clinicRooms()    { return 2 + (G.clinic.upgrades.room      || 0); }
+function clinicNurses()   { return      G.clinic.upgrades.nurse      || 0; }
+function clinicEquip()    { return      G.clinic.upgrades.equipment  || 0; }
+function clinicHasSign()  { return     (G.clinic.upgrades.sign       || 0) > 0; }
+
+function clinicSpawnInterval() {
+  const rep  = G.clinic.reputation || 0;
+  const base = Math.max(12000, 55000 - rep * 400);
+  return clinicHasSign() ? Math.round(base * 0.65) : base;
+}
+
+function spawnClinicPatient() {
+  if (!G.clinic) return;
+  const patients = G.clinic.waitingPatients || [];
+  if (patients.length >= clinicRooms()) return;
+  const name      = CLINIC_NAMES  [Math.floor(Math.random() * CLINIC_NAMES.length)];
+  const emoji     = CLINIC_EMOJI  [Math.floor(Math.random() * CLINIC_EMOJI.length)];
+  const complaint = CLINIC_COMPLAINTS[Math.floor(Math.random() * CLINIC_COMPLAINTS.length)];
+  G.clinic.waitingPatients = [...patients, {
+    id: `p${Date.now()}${Math.floor(Math.random()*1000)}`, name, emoji, complaint,
+  }];
+  renderClinic();
+  saveState();
+}
+
+function consultPatient(patientId) {
+  if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
+  const entry = pickNextQuestion();
+  if (!entry) { showToast("Keine Fragen verfügbar."); return; }
+  const pat = (G.clinic.waitingPatients || []).find(p => p.id === patientId);
+  if (!pat) return;
+
+  showQuestion(`🏥 ${pat.name} — ${pat.complaint}`, entry,
+    () => {
+      G.clinic.waitingPatients = (G.clinic.waitingPatients || []).filter(p => p.id !== patientId);
+      const gold = 20 + Math.floor(Math.random() * 31);
+      G.clinic.gold         = (G.clinic.gold         || 0) + gold;
+      G.clinic.reputation   = Math.min(100, (G.clinic.reputation   || 0) + 3);
+      G.clinic.villageHealth= Math.min(100, (G.clinic.villageHealth|| 50) + 2);
+      G.clinic.patientsHealed = (G.clinic.patientsHealed || 0) + 1;
+      showToast(`❤️ ${pat.name} geheilt! +${gold} 💰 +3 ⭐`);
+    },
+    () => {
+      G.clinic.waitingPatients = (G.clinic.waitingPatients || []).filter(p => p.id !== patientId);
+      const repLoss = Math.max(1, 8 - clinicEquip() * 2);
+      G.clinic.reputation    = Math.max(0, (G.clinic.reputation    || 0) - repLoss);
+      G.clinic.villageHealth = Math.max(0, (G.clinic.villageHealth || 50) - 1);
+      G.clinic.patientsAngry = (G.clinic.patientsAngry || 0) + 1;
+      showToast(`😠 ${pat.name} ist unzufrieden. −${repLoss} ⭐`);
+    },
+    () => { saveState(); renderClinic(); }
+  );
+}
+window.consultPatient = consultPatient;
+
+function buyClinicUpgrade(id) {
+  const upg = CLINIC_UPGRADES.find(u => u.id === id);
+  if (!upg) return;
+  const lvl  = G.clinic.upgrades[id] || 0;
+  if (lvl >= upg.max) { showToast("Maximum erreicht!"); return; }
+  const cost = Math.ceil(upg.baseCost * Math.pow(1.6, lvl));
+  if ((G.clinic.gold || 0) < cost) { showToast("Nicht genug Gold!"); return; }
+  G.clinic.gold -= cost;
+  G.clinic.upgrades[id] = lvl + 1;
+  if (id === 'sign') restartClinicSpawnTimer();
+  showToast(`✅ ${upg.emoji} ${upg.name} gekauft!`);
+  saveState();
+  renderClinic();
+}
+window.buyClinicUpgrade = buyClinicUpgrade;
+
+function tickClinicNurses() {
+  const n = clinicNurses();
+  if (!n) return;
+  const patients = G.clinic.waitingPatients || [];
+  const toHandle = Math.min(n, patients.length);
+  if (!toHandle) return;
+  G.clinic.waitingPatients = patients.slice(toHandle);
+  let healed = 0, angry = 0;
+  for (let i = 0; i < toHandle; i++) {
+    if (Math.random() < 0.72) {
+      G.clinic.gold          = (G.clinic.gold          || 0) + 12;
+      G.clinic.reputation    = Math.min(100, (G.clinic.reputation    || 0) + 2);
+      G.clinic.villageHealth = Math.min(100, (G.clinic.villageHealth || 50) + 1);
+      G.clinic.patientsHealed= (G.clinic.patientsHealed || 0) + 1;
+      healed++;
+    } else {
+      G.clinic.reputation    = Math.max(0, (G.clinic.reputation    || 0) - 2);
+      G.clinic.patientsAngry = (G.clinic.patientsAngry || 0) + 1;
+      angry++;
+    }
+  }
+  saveState();
+  renderClinic();
+  if (healed || angry) showToast(`👩‍⚕️ Schwester: ${healed ? `${healed} geheilt` : ""}${healed && angry ? " · " : ""}${angry ? `${angry} unzufrieden` : ""}`);
+}
+
+function restartClinicSpawnTimer() {
+  clearInterval(clinicPatientTimer);
+  clinicPatientTimer = setInterval(spawnClinicPatient, clinicSpawnInterval());
+}
+
+function startClinicTimers() {
+  stopClinicTimers();
+  spawnClinicPatient();
+  restartClinicSpawnTimer();
+  clinicNurseTimer = setInterval(tickClinicNurses, 30000);
+  clinicUiTimer    = setInterval(() => {
+    // gentle health decay
+    G.clinic.villageHealth = Math.max(0, (G.clinic.villageHealth || 50) - 0.05);
+    renderClinic();
+  }, 5000);
+}
+
+function stopClinicTimers() {
+  clearInterval(clinicPatientTimer);
+  clearInterval(clinicNurseTimer);
+  clearInterval(clinicUiTimer);
+  clinicPatientTimer = clinicNurseTimer = clinicUiTimer = null;
+}
+
+function renderClinic() {
+  const el = id => document.getElementById(id);
+
+  const health = G.clinic.villageHealth || 50;
+  if (el("clinic-health-bar"))  el("clinic-health-bar").style.width  = health.toFixed(1) + "%";
+  if (el("clinic-health-pct"))  el("clinic-health-pct").textContent  = Math.floor(health) + "%";
+  if (el("clinic-gold"))        el("clinic-gold").textContent        = `💰 ${Math.floor(G.clinic.gold || 0)}`;
+  if (el("clinic-rep"))         el("clinic-rep").textContent         = `⭐ ${Math.floor(G.clinic.reputation || 0)}`;
+  if (el("clinic-healed"))      el("clinic-healed").textContent      = `❤️ ${G.clinic.patientsHealed || 0}`;
+
+  const patients = G.clinic.waitingPatients || [];
+  const maxRooms = clinicRooms();
+  if (el("clinic-waiting-label")) el("clinic-waiting-label").textContent = `Wartezimmer: ${patients.length}/${maxRooms}`;
+  const listEl = el("clinic-waiting-list");
+  if (listEl) {
+    listEl.innerHTML = patients.length
+      ? patients.map(p => `
+          <button class="clinic-patient-btn" onclick="consultPatient('${p.id}')">
+            <span class="clinic-pt-emoji">${p.emoji}</span>
+            <div class="clinic-pt-info">
+              <div class="clinic-pt-name">${p.name}</div>
+              <div class="clinic-pt-complaint">${p.complaint}</div>
+            </div>
+            <span class="clinic-pt-action">Behandeln →</span>
+          </button>`).join("")
+      : `<div class="clinic-empty">Kein Patient wartet — kommen bald…</div>`;
+  }
+
+  const upgEl = el("clinic-upgrades-list");
+  if (upgEl) {
+    const gold = G.clinic.gold || 0;
+    upgEl.innerHTML = CLINIC_UPGRADES.map(u => {
+      const lvl    = G.clinic.upgrades[u.id] || 0;
+      const maxed  = lvl >= u.max;
+      const cost   = Math.ceil(u.baseCost * Math.pow(1.6, lvl));
+      const canBuy = gold >= cost && !maxed;
+      return `<div class="clinic-upgrade">
+        <div class="clinic-upg-info">
+          <span>${u.emoji} ${u.name}${lvl ? ` <span class="clinic-upg-lvl">Stufe ${lvl}/${u.max}</span>` : ""}</span>
+          <div class="clinic-upg-desc">${u.desc}</div>
+        </div>
+        <button class="clinic-buy-btn${canBuy ? "" : " clinic-buy-btn--off"}"
+          onclick="buyClinicUpgrade('${u.id}')" ${canBuy ? "" : "disabled"}>
+          ${maxed ? "✓ Max" : `${cost} 💰`}
+        </button>
+      </div>`;
+    }).join("");
+  }
+
+  // Tower panel (only if visible)
+  if (!el("clinic-panel-tower")?.hidden) renderKnowledgeTower();
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODE C — KNOWLEDGE TOWER (SVG, inside Clinic)
+══════════════════════════════════════════════════════════ */
+function renderKnowledgeTower() {
+  const wrap = document.getElementById("clinic-tower-svg-wrap");
+  if (!wrap) return;
+
+  const beds = PACK_CONTENT.beds;
+  const PAD = 10, BAR_H = 28, GAP = 5, W = 340;
+  const H   = beds.length * (BAR_H + GAP) + PAD * 2 + 24;
+
+  let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <text x="${PAD}" y="18" font-size="11" fill="#666" font-family="sans-serif">Kapitel — Fortschritt</text>`;
+
+  beds.forEach((bed, i) => {
+    const ch   = G.chapters[bed.id];
+    const allQ = bed.plants.flatMap(p => [...(p.harvestQuestions || []), ...(p.phase4Questions || [])]);
+    const tot  = allQ.length;
+    const mast = allQ.filter(q => isQuestionMastered(ch?.questions?.[q.id])).length;
+    const pct  = tot > 0 ? mast / tot : 0;
+    const isActive  = ch?.activated;
+    const isMastered= pct >= 1 && tot > 0;
+
+    const y    = PAD + 24 + i * (BAR_H + GAP);
+    const barW = W - PAD * 2 - 52;
+    const fillW= barW * pct;
+    const bg   = isActive ? "#2a2a2a" : "#1a1a1a";
+    const fill = isMastered ? "#f0c040"
+               : pct > 0.6  ? "#5cca6e"
+               : pct > 0.3  ? "#e8a020"
+               : pct > 0    ? "#c04040"
+               : "#333";
+    const label= bed.title.length > 22 ? bed.title.slice(0, 20) + "…" : bed.title;
+    const textCol = pct > 0.4 ? "#fff" : "#888";
+
+    svg += `
+      <rect x="${PAD}" y="${y}" width="${barW}" height="${BAR_H}" rx="4" fill="${bg}"/>
+      ${fillW > 0 ? `<rect x="${PAD}" y="${y}" width="${fillW.toFixed(1)}" height="${BAR_H}" rx="4" fill="${fill}"/>` : ""}
+      <text x="${PAD + 6}" y="${y + BAR_H / 2 + 4}" font-size="10" fill="${textCol}" font-family="sans-serif">${label}</text>
+      <text x="${PAD + barW + 4}" y="${y + BAR_H / 2 + 4}" font-size="10" fill="#aaa" font-family="sans-serif">${mast}/${tot}</text>`;
+  });
+
+  svg += `</svg>`;
+  wrap.innerHTML = svg;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MODE SWITCHING
+══════════════════════════════════════════════════════════ */
+function switchMode(mode) {
+  // Tavern uses the swipe screen-container; others use mode-screen divs
+  const tavernEl  = document.getElementById("screen-container");
+  const clickerEl = document.getElementById("screen-clicker");
+  const clinicEl  = document.getElementById("screen-clinic");
+
+  // Use style.display for tavernEl because its CSS `display:flex` overrides the `hidden` attribute
+  if (tavernEl)  tavernEl.style.display  = mode === "tavern"  ? "" : "none";
+  if (clickerEl) clickerEl.hidden = mode !== "clicker";
+  if (clinicEl)  clinicEl.hidden  = mode !== "clinic";
+
+  document.querySelectorAll(".mode-tab").forEach(btn => btn.classList.remove("mode-tab--active"));
+  document.getElementById(`mode-tab-${mode}`)?.classList.add("mode-tab--active");
+
+  // Start/stop timers per mode
+  if (mode === "clicker") { startClickerTick(); renderClicker(); }
+  else                      stopClickerTick();
+
+  if (mode === "clinic")  { startClinicTimers(); renderClinic(); }
+  else                      stopClinicTimers();
+
+  G.activeMode = mode;
+  saveState();
+}
+window.switchMode = switchMode;
 
 /* ══════════════════════════════════════════════════════════
    BOOT
@@ -2558,11 +3081,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
+  // Mode tabs
+  document.querySelectorAll(".mode-tab").forEach(btn => {
+    btn.addEventListener("click", () => switchMode(btn.id.replace("mode-tab-", "")));
+  });
+
+  // Clicker study button
+  document.getElementById("clicker-study-btn")?.addEventListener("click", clickerStudy);
+
+  // Clinic panel tabs
+  document.querySelectorAll("[data-clinic-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-clinic-tab]").forEach(b => b.classList.remove("tab-btn--active"));
+      btn.classList.add("tab-btn--active");
+      const tab = btn.dataset.clinicTab;
+      document.querySelectorAll(".clinic-panel").forEach(p => { p.hidden = true; });
+      const panel = document.getElementById(`clinic-panel-${tab}`);
+      if (panel) panel.hidden = false;
+      if (tab === "tower") renderKnowledgeTower();
+    });
+  });
+
   // Load game state and render — after listeners so a crash doesn't lose them
   try {
     G = loadState();
     renderAll();
     renderTutorial();
+    if (G.activeMode && G.activeMode !== "tavern") switchMode(G.activeMode);
   } catch (e) {
     const stack = (e.stack || "").split("\n").slice(0, 8).join("<br>");
     document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.8rem"><b>Ladefehler:</b> ${e.message}<br><br>${stack}<br><br><button onclick="localStorage.clear();location.reload()" style="padding:0.5rem 1rem;font-size:1rem">Zurücksetzen</button></div>`;
@@ -2592,7 +3137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
-        if (tutorialStepId() === "water_day3")  renderTutorial();
       }
     }, { threshold: 0.5 }).observe(_gardenScreen);
   }
