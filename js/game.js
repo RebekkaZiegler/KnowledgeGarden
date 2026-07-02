@@ -1688,149 +1688,94 @@ window.reOnPizzaCanvasClick = reOnPizzaCanvasClick;
 /* ══════════════════════════════════════════════════════════
    RAVEN ORDERS
 ══════════════════════════════════════════════════════════ */
-let ravenQtys = {};
-
 function renderRavenModal() {
   advanceTutorial("raven_intro");
   const listEl = document.getElementById("raven-order-list");
   const pendEl = document.getElementById("raven-pending");
   if (!listEl) return;
-  ravenQtys = {};
 
-  let html = `<div style="font-size:0.78rem;font-weight:700;color:var(--muted);margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.05em">🥩 Tierische Produkte (Pizza-Belag)</div>`;
+  const bonus = getStreakBonus();
+  const bonusTip = bonus > 0 ? ` <span style="color:#f0c040">⚡+${bonus}%</span>` : "";
+
+  let html = `<p class="raven-hint">Anklicken → Frage beantworten → sofort geliefert.${bonus > 0 ? ` <strong style="color:#f0c040">⚡+${bonus}% Streak!</strong>` : ""}</p>`;
+
+  html += `<div class="raven-section-label">🥩 Tierische Produkte</div>`;
   html += RAVEN_ITEMS_CFG.map(item => {
-    ravenQtys[item.id] = 0;
-    const iconHtml = item.orderHtml || `<span style="font-size:1rem">${item.emoji}</span>`;
-    const batchNote = item.batch > 1 ? ` <span style="color:var(--muted);font-size:0.72rem">×${item.batch} / Frage</span>` : "";
-    return `<div class="raven-order-item">
+    const iconHtml = item.orderHtml || `<span style="font-size:1.1rem">${item.emoji}</span>`;
+    const qty = G.inventory[item.id] || 0;
+    const stock = qty > 0 ? `<span class="raven-stock">${qty} vorrätig</span>` : "";
+    return `<button class="raven-item-btn" onclick="orderRavenItem('${item.id}')">
       ${iconHtml}
-      <span class="raven-order-item-name">${item.name}${batchNote}</span>
-      <button class="raven-order-qty-btn" data-key="${item.id}" data-d="-1">−</button>
-      <span class="raven-order-qty" id="rqty-${item.id}">0</span>
-      <button class="raven-order-qty-btn" data-key="${item.id}" data-d="1">+</button>
-    </div>`;
+      <span class="raven-item-name">${item.name}<span class="raven-batch"> ×${item.batch}</span>${stock}</span>
+      <span class="raven-item-cost">1 Frage${bonusTip}</span>
+    </button>`;
   }).join("");
 
-  html += `<div style="font-size:0.78rem;font-weight:700;color:var(--muted);margin:0.7rem 0 0.3rem;text-transform:uppercase;letter-spacing:0.05em">🌱 Samen (Garten)</div>`;
+  html += `<div class="raven-section-label">🌱 Samen</div>`;
   html += FOOD_CROPS.map(crop => {
     const key = `seed_${crop.id}`;
-    ravenQtys[key] = 0;
     const inStock = G.inventory[key] || 0;
-    return `<div class="raven-order-item">
-      <span style="font-size:1rem">${crop.emoji}</span>
-      <span class="raven-order-item-name">${crop.name} <span style="color:var(--muted);font-size:0.75rem">→${getCropYield(crop)}× ${getIngredientName(crop.ingredient)}</span>${inStock ? ` <span style="color:#7fc98a;font-size:0.72rem">(${inStock} im Lager)</span>` : ""}</span>
-      <button class="raven-order-qty-btn" data-key="${key}" data-d="-1">−</button>
-      <span class="raven-order-qty" id="rqty-${key}">0</span>
-      <button class="raven-order-qty-btn" data-key="${key}" data-d="1">+</button>
-    </div>`;
+    const stock = inStock > 0 ? `<span class="raven-stock">${inStock} vorrätig</span>` : "";
+    return `<button class="raven-item-btn" onclick="orderRavenItem('${key}')">
+      <span style="font-size:1.1rem">${crop.emoji}</span>
+      <span class="raven-item-name">${crop.name}<span class="raven-batch"> →${getCropYield(crop)}× ${getIngredientName(crop.ingredient)}</span>${stock}</span>
+      <span class="raven-item-cost">1 Frage${bonusTip}</span>
+    </button>`;
   }).join("");
 
-  html += `<div style="font-size:0.78rem;font-weight:700;color:var(--muted);margin:0.7rem 0 0.3rem;text-transform:uppercase;letter-spacing:0.05em">🍽️ Geschirr (je 5 Stück / Frage)</div>`;
+  html += `<div class="raven-section-label">🍽️ Geschirr</div>`;
   html += DISHWARE_CFG.map(dw => {
-    ravenQtys[dw.id] = 0;
     const clean = G.supplies[dw.id]?.clean || 0;
     const dirty = G.supplies[dw.id]?.dirty || 0;
-    const stockInfo = (clean || dirty) ? ` <span style="color:var(--muted);font-size:0.72rem">(${clean} sauber, ${dirty} schmutzig)</span>` : "";
-    return `<div class="raven-order-item">
-      <span style="font-size:1rem">${dw.emoji}</span>
-      <span class="raven-order-item-name">${dw.name}${stockInfo}</span>
-      <button class="raven-order-qty-btn" data-key="${dw.id}" data-d="-1">−</button>
-      <span class="raven-order-qty" id="rqty-${dw.id}">0</span>
-      <button class="raven-order-qty-btn" data-key="${dw.id}" data-d="1">+</button>
-    </div>`;
+    const stock = (clean || dirty) ? `<span class="raven-stock">${clean} sauber, ${dirty} schmutzig</span>` : "";
+    return `<button class="raven-item-btn" onclick="orderRavenItem('${dw.id}')">
+      <span style="font-size:1.1rem">${dw.emoji}</span>
+      <span class="raven-item-name">${dw.name}<span class="raven-batch"> ×${dw.batch}</span>${stock}</span>
+      <span class="raven-item-cost">1 Frage${bonusTip}</span>
+    </button>`;
   }).join("");
 
-  const bonusTip = getStreakBonus() > 0 ? ` · ⚡+${getStreakBonus()}% Bonus!` : "";
-  html += `<button id="raven-confirm-btn" class="raven-order-confirm-btn" disabled>⚡ Sofort bestellen (0 Fragen${bonusTip})</button>`;
   listEl.innerHTML = html;
-
-  listEl.querySelectorAll(".raven-order-qty-btn").forEach(btn => {
-    btn.onclick = () => {
-      const key = btn.dataset.key;
-      const d   = parseInt(btn.dataset.d);
-      ravenQtys[key] = Math.max(0, (ravenQtys[key] || 0) + d);
-      const qtyEl = document.getElementById(`rqty-${key}`);
-      if (qtyEl) qtyEl.textContent = ravenQtys[key];
-      updateRavenTotal();
-    };
-  });
-
-  document.getElementById("raven-confirm-btn").onclick = placeRavenOrder;
-
   pendEl.innerHTML = "";
 }
+window.orderRavenItem = orderRavenItem;
 
-function updateRavenTotal() {
-  const total     = Object.values(ravenQtys).reduce((s, v) => s + v, 0);
-  const btn       = document.getElementById("raven-confirm-btn");
-  const bonusTip  = getStreakBonus() > 0 ? ` · ⚡+${getStreakBonus()}%` : "";
-  if (btn) {
-    btn.textContent = `⚡ Sofort bestellen (${total} Fragen${bonusTip})`;
-    btn.disabled    = total === 0;
-  }
-}
-
-function placeRavenOrder() {
-  const total = Object.values(ravenQtys).reduce((s, v) => s + v, 0);
-  if (!total) return;
-
-  // Tutorial: block order if required items are missing
-  if (tutorialStepId() === "raven_order") {
-    const ok = (ravenQtys["seed_wheat"]  || 0) >= 1 &&
-               (ravenQtys["seed_tomato"] || 0) >= 1 &&
-               (ravenQtys["mozzarella"] || 0) >= 1 &&
-               (ravenQtys["plates"]     || 0) >= 1;
-    if (!ok) {
-      showToast("🧙 Du brauchst noch: Weizensamen, Tomatensamen, Mozzarella und Teller!");
-      return;
-    }
-  }
-
+function orderRavenItem(key) {
   if (!hasActiveQuestions()) {
     showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚.");
     return;
   }
-
   closeModal("modal-raven");
-  const snapshot = { ...ravenQtys };
-  askQuestions("🪶 Raben-Bestellung", total,
-    () => {
-      const streakMult = 1 + getStreakBonus() / 100;
-      const bonusLabel = streakMult > 1 ? ` ⚡+${getStreakBonus()}%` : "";
-      const delivered  = [];
-
-      for (const [key, qty] of Object.entries(snapshot)) {
-        if (!qty) continue;
-        if (key.startsWith("seed_")) {
-          const seedQty = Math.round(qty * streakMult);
-          G.inventory[key] = (G.inventory[key] || 0) + seedQty;
-          const crop = FOOD_CROPS.find(c => `seed_${c.id}` === key);
-          delivered.push(`${crop ? crop.emoji : "🌱"} ${seedQty}× Samen`);
-        } else {
-          const dw = DISHWARE_CFG.find(d => d.id === key);
-          if (dw) {
-            const supplyQty = Math.round(qty * dw.batch * streakMult);
-            G.supplies[key].clean += supplyQty;
-            delivered.push(`${dw.emoji || "📦"} +${supplyQty} ${dw.name}`);
-          } else {
-            const item = RAVEN_ITEMS_CFG.find(i => i.id === key);
-            const deliverQty = Math.round((item?.batch ? qty * item.batch : qty) * streakMult);
-            addInventory(key, deliverQty);
-            delivered.push(`${item?.emoji || "📦"} +${deliverQty} ${item?.name || key}`);
-          }
+  askQuestions("🪶 Raben-Bestellung", 1, () => {
+    const streakMult = 1 + getStreakBonus() / 100;
+    const bonusLabel = streakMult > 1 ? ` ⚡+${getStreakBonus()}%` : "";
+    let desc = "";
+    if (key.startsWith("seed_")) {
+      G.inventory[key] = (G.inventory[key] || 0) + 1;
+      const crop = FOOD_CROPS.find(c => `seed_${c.id}` === key);
+      desc = `1× ${crop?.name || key}`;
+    } else {
+      const item = RAVEN_ITEMS_CFG.find(i => i.id === key);
+      if (item) {
+        const qty = Math.round(item.batch * streakMult);
+        addInventory(key, qty);
+        desc = `${qty}× ${item.name}`;
+      } else {
+        const dw = DISHWARE_CFG.find(d => d.id === key);
+        if (dw) {
+          const qty = Math.round(dw.batch * streakMult);
+          G.supplies[dw.id].clean = (G.supplies[dw.id].clean || 0) + qty;
+          desc = `${qty}× ${dw.name}`;
         }
       }
-
-      ravenQtys = {};
-      saveState();
-      renderAll();
-      showToast(`🪶 Sofort geliefert!${bonusLabel} · ${delivered.slice(0, 3).join(" · ")}`);
-      advanceTutorial("raven_order");
-      if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
-    },
-    null
-  );
+    }
+    renderAll();
+    showToast(`🪶 Sofort geliefert!${bonusLabel} · ${desc}`);
+    advanceTutorial("raven_order");
+    if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
+  }, null);
 }
+
 
 /* ══════════════════════════════════════════════════════════
    CHAPTERS
@@ -2219,6 +2164,56 @@ function renderTrophies() {
       </div>`;
     }).join('')}</div>`;
 
+  // Mastery progress donut
+  let qTotal = 0, qMastered = 0, qSeen = 0;
+  for (const bed of PACK_CONTENT.beds) {
+    const ch = G.chapters[bed.id];
+    if (!ch || !ch.activated) continue;
+    for (const plant of bed.plants) {
+      for (const q of [...(plant.harvestQuestions||[]), ...(plant.phase4Questions||[])]) {
+        qTotal++;
+        const qs = ch.questions?.[q.id];
+        if (isQuestionMastered(qs)) qMastered++;
+        else if (qs && qs.correctDays?.length > 0) qSeen++;
+      }
+    }
+  }
+  const qUnseen = qTotal - qMastered - qSeen;
+  const progressHtml = qTotal > 0 ? (() => {
+    const R = 54, CX = 70, CY = 70, STROKE = 14;
+    const circ = 2 * Math.PI * R;
+    const pMastered = qMastered / qTotal;
+    const pSeen     = qSeen     / qTotal;
+    const pUnseen   = qUnseen   / qTotal;
+    const dashMast  = (pMastered * circ).toFixed(1);
+    const dashSeen  = (pSeen     * circ).toFixed(1);
+    const dashUns   = (pUnseen   * circ).toFixed(1);
+    const offMast   = "0";
+    const offSeen   = (-pMastered * circ).toFixed(1);
+    const offUns    = (-(pMastered + pSeen) * circ).toFixed(1);
+    const pct = Math.round(pMastered * 100);
+    return `<div class="trophy-section-label">Lernfortschritt (aktive Kapitel)</div>
+    <div class="trophy-progress-wrap">
+      <svg width="140" height="140" viewBox="0 0 140 140">
+        <circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#222" stroke-width="${STROKE}"/>
+        ${qUnseen > 0 ? `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#c04040" stroke-width="${STROKE}"
+          stroke-dasharray="${dashUns} ${circ}" stroke-dashoffset="${offUns}" stroke-linecap="butt" transform="rotate(-90 ${CX} ${CY})"/>` : ""}
+        ${qSeen > 0 ? `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#e8a020" stroke-width="${STROKE}"
+          stroke-dasharray="${dashSeen} ${circ}" stroke-dashoffset="${offSeen}" stroke-linecap="butt" transform="rotate(-90 ${CX} ${CY})"/>` : ""}
+        ${qMastered > 0 ? `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#5cca6e" stroke-width="${STROKE}"
+          stroke-dasharray="${dashMast} ${circ}" stroke-dashoffset="${offMast}" stroke-linecap="butt" transform="rotate(-90 ${CX} ${CY})"/>` : ""}
+        <text x="${CX}" y="${CY - 6}" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">${pct}%</text>
+        <text x="${CX}" y="${CY + 12}" text-anchor="middle" font-size="9" fill="#888">gemeistert</text>
+      </svg>
+      <div class="trophy-progress-legend">
+        <div class="tpl-row"><span class="tpl-dot" style="background:#5cca6e"></span>${qMastered} gemeistert</div>
+        <div class="tpl-row"><span class="tpl-dot" style="background:#e8a020"></span>${qSeen} in Arbeit</div>
+        <div class="tpl-row"><span class="tpl-dot" style="background:#c04040"></span>${qUnseen} noch offen</div>
+        <div class="tpl-row tpl-total">∑ ${qTotal} Fragen</div>
+      </div>
+    </div>`;
+  })() : "";
+
   // Chapter progress
   const { total, mastered } = getLearningProgress();
   const chapterHtml = `
@@ -2252,7 +2247,7 @@ function renderTrophies() {
       </div>`;
     }).join('')}`;
 
-  el.innerHTML = counterHtml + heatmapHtml + achHtml + chapterHtml;
+  el.innerHTML = counterHtml + progressHtml + heatmapHtml + achHtml + chapterHtml;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -2368,24 +2363,25 @@ function renderCleaningScreen() {
     return;
   }
 
-  grid.innerHTML = items.map((item, i) => {
-    const cfg = DISHWARE_CFG.find(d =>
-      item.type === "plate" ? d.id === "plates" :
-      item.type === "wine"  ? d.id === "wineGlasses" : d.id === "beerGlasses"
-    );
-    return `<div class="cleaning-item ${needSoap ? "cleaning-item--locked" : ""}" data-type="${item.type}" data-idx="${i}">
+  // Show one item at a time, fullscreen
+  const item = items[0];
+  const cfg = DISHWARE_CFG.find(d =>
+    item.type === "plate" ? d.id === "plates" :
+    item.type === "wine"  ? d.id === "wineGlasses" : d.id === "beerGlasses"
+  );
+  const remaining = items.length;
+  grid.innerHTML = `
+    <p class="cleaning-counter">${remaining} noch dreckig</p>
+    <div class="cleaning-item ${needSoap ? "cleaning-item--locked" : ""}" data-type="${item.type}" data-idx="0">
       <div class="cleaning-img-wrap">
         <img src="${cfg.cleanImg}" class="cleaning-clean-img" draggable="false">
-        <canvas class="cleaning-canvas" id="ccanvas-${i}" data-type="${item.type}" data-item-idx="${i}"></canvas>
+        <canvas class="cleaning-canvas" id="ccanvas-0" data-type="${item.type}" data-item-idx="0"></canvas>
       </div>
     </div>`;
-  }).join("");
 
   if (!needSoap) {
-    items.forEach((item, i) => {
-      const canvas = document.getElementById(`ccanvas-${i}`);
-      if (canvas) setupCleaningCanvas(canvas, item.type, i);
-    });
+    const canvas = document.getElementById("ccanvas-0");
+    if (canvas) setupCleaningCanvas(canvas, item.type, 0);
   }
 }
 
@@ -2502,7 +2498,7 @@ const TUTORIAL_STEPS = [
   { id: 'raven_intro',     highlight: '#btn-raven',
     msg: '🪶 Klick auf den <strong>Raben</strong>, um Waren zu bestellen. Beantworte die Fragen und die Lieferung kommt augenblicklich!' },
   { id: 'raven_order',
-    msg: '📦 Bestell mindestens:<br>• 1× <strong>Weizensamen</strong><br>• 1× <strong>Tomatensamen</strong><br>• 1× <strong>Mozzarella</strong><br>• 1× <strong>Teller</strong><br><br>Dann „Sofort bestellen" klicken und die Fragen beantworten!' },
+    msg: '📦 Klick auf ein Item — eine Frage beantworten, sofort geliefert! Bestell 🌾 Weizensamen, 🍅 Tomatensamen, 🧀 Mozzarella und 🍽️ Teller.' },
   { id: 'day2_garden',
     msg: '✅ Waren eingetroffen! <strong>Wisch nach links</strong> zum Garten.' },
   { id: 'plant_wheat',     highlight: '.garden-slot:not(.garden-slot--planted)',
@@ -3144,6 +3140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (_cleaningScreen) {
     new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
+        renderCleaningScreen();
         if (tutorialStepId() === "cleaning") advanceTutorial("cleaning");
       }
     }, { threshold: 0.5 }).observe(_cleaningScreen);
