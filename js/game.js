@@ -2569,18 +2569,27 @@ function tutorialStepId() {
    MODE A — KNOWLEDGE CLICKER
 ══════════════════════════════════════════════════════════ */
 const CLICKER_BUILDINGS = [
-  { id: 'researcher', name: 'Forscher',   emoji: '🔬', baseCost: 100,    rate: 1,    desc: '+1 KP/Sek'      },
-  { id: 'scholar',    name: 'Gelehrter',  emoji: '🎓', baseCost: 1000,   rate: 10,   desc: '+10 KP/Sek'     },
-  { id: 'library',    name: 'Bibliothek', emoji: '📚', baseCost: 10000,  rate: 100,  desc: '+100 KP/Sek'    },
-  { id: 'institute',  name: 'Institut',   emoji: '🏛️', baseCost: 100000, rate: 1000, desc: '+1.000 KP/Sek'  },
+  { id: 'researcher',  name: 'Forscher',    emoji: '🔬', baseCost: 100,         rate: 1,       desc: '+1 KP/Sek'          },
+  { id: 'scholar',     name: 'Gelehrter',   emoji: '🎓', baseCost: 1000,        rate: 10,      desc: '+10 KP/Sek'         },
+  { id: 'library',     name: 'Bibliothek',  emoji: '📚', baseCost: 10000,       rate: 100,     desc: '+100 KP/Sek'        },
+  { id: 'institute',   name: 'Institut',    emoji: '🏛️', baseCost: 100000,      rate: 1000,    desc: '+1.000 KP/Sek'      },
+  { id: 'university',  name: 'Universität', emoji: '🎪', baseCost: 2000000,     rate: 15000,   desc: '+15.000 KP/Sek'     },
+  { id: 'academy',     name: 'Akademie',    emoji: '🌐', baseCost: 50000000,    rate: 250000,  desc: '+250.000 KP/Sek'    },
+  { id: 'observatory', name: 'Observatium', emoji: '🔭', baseCost: 1000000000,  rate: 5000000, desc: '+5.000.000 KP/Sek'  },
 ];
 
 const CLICKER_DISCOVERIES = [
-  { id: 'disc1', name: 'Erste Erkenntnis', threshold: 500,     mult: 0.10, desc: '+10% alle KP'  },
-  { id: 'disc2', name: 'Durchbruch',       threshold: 5000,    mult: 0.25, desc: '+25% alle KP'  },
-  { id: 'disc3', name: 'Meisterwerk',      threshold: 50000,   mult: 0.50, desc: '+50% alle KP'  },
-  { id: 'disc4', name: 'Erleuchtung',      threshold: 500000,  mult: 1.00, desc: '+100% alle KP' },
-  { id: 'disc5', name: 'Allwissen',        threshold: 5000000, mult: 2.00, desc: '+200% alle KP' },
+  { id: 'disc1',  name: 'Erste Erkenntnis',     threshold: 500,              mult: 0.10,  desc: '+10% alle KP'    },
+  { id: 'disc2',  name: 'Durchbruch',            threshold: 5000,             mult: 0.25,  desc: '+25% alle KP'    },
+  { id: 'disc3',  name: 'Meisterwerk',           threshold: 50000,            mult: 0.50,  desc: '+50% alle KP'    },
+  { id: 'disc4',  name: 'Erleuchtung',           threshold: 500000,           mult: 1.00,  desc: '+100% alle KP'   },
+  { id: 'disc5',  name: 'Allwissen',             threshold: 5000000,          mult: 2.00,  desc: '+200% alle KP'   },
+  { id: 'disc6',  name: 'Genialität',            threshold: 100000000,        mult: 3.00,  desc: '+300% alle KP'   },
+  { id: 'disc7',  name: 'Transzendenz',          threshold: 2000000000,       mult: 5.00,  desc: '+500% alle KP'   },
+  { id: 'disc8',  name: 'Kosmisches Bewusstsein',threshold: 50000000000,      mult: 10.00, desc: '+1.000% alle KP' },
+  { id: 'disc9',  name: 'Zeitlose Weisheit',     threshold: 1000000000000,    mult: 20.00, desc: '+2.000% alle KP' },
+  { id: 'disc10', name: 'Göttliche Erkenntnis',  threshold: 25000000000000,   mult: 50.00, desc: '+5.000% alle KP' },
+  { id: 'disc11', name: 'Das Absolute Wissen',   threshold: 1000000000000000, mult: 100.0, desc: '+10.000% alle KP'},
 ];
 
 function formatKP(n) {
