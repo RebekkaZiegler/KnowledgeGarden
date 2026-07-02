@@ -3098,7 +3098,7 @@ body.plant-open #back-to-garden-btn { display: block; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 1;
   gap: 0.5rem;
   pointer-events: none;
 }
@@ -3127,6 +3127,8 @@ body.plant-open #back-to-garden-btn { display: block; }
   flex-wrap: wrap;
   align-items: center;
   touch-action: manipulation;
+  position: relative;
+  z-index: 2;
 }
 
 .re-control-btn {
@@ -3162,14 +3164,12 @@ body.plant-open #back-to-garden-btn { display: block; }
   padding: 0.25rem 0.6rem;
   font-size: 0.78rem;
   color: var(--muted);
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  flex-wrap: wrap;
   border-bottom: 1px solid var(--line);
   background: rgba(0,0,0,0.45);
+  position: relative;
+  z-index: 2;
 }
-#re-stats-row::-webkit-scrollbar { display: none; }
 .re-stat-mood { margin-right: 0.3rem; }
 .re-stat-item {
   background: rgba(255,255,255,0.06);
