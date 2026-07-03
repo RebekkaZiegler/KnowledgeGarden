@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="head4" cx="42%" cy="36%" r="58%">
+      <stop offset="0%" stop-color="#96dc50"/>
+      <stop offset="100%" stop-color="#5c942a"/>
+    </radialGradient>
+    <radialGradient id="body4" cx="40%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#76b434"/>
+      <stop offset="100%" stop-color="#4c7c22"/>
+    </radialGradient>
+  </defs>
+  <!-- Soil hint -->
+  <ellipse cx="60" cy="158" rx="48" ry="6" fill="#1e1008"/>
+  <!-- Root legs - more defined -->
+  <path d="M50,146 Q43,153 37,160" stroke="#604020" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M60,148 Q59,154 58,160" stroke="#604020" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M70,146 Q77,153 83,160" stroke="#604020" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Small secondary roots -->
+  <path d="M43,155 Q38,158 34,160" stroke="#4a3018" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M79,155 Q84,158 88,160" stroke="#4a3018" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Body - taller now -->
+  <ellipse cx="60" cy="118" rx="18" ry="26" fill="url(#body4)" stroke="#406018" stroke-width="1.5"/>
+  <!-- Arm leaves - more defined -->
+  <path d="M42,112 Q24,102 29,86 Q38,106 46,110Z" fill="#5c9428" stroke="#406018" stroke-width="1"/>
+  <path d="M78,112 Q96,102 91,86 Q82,106 74,110Z" fill="#5c9428" stroke="#406018" stroke-width="1"/>
+  <!-- Small detail leaves on body -->
+  <path d="M50,104 Q44,96 48,90 Q52,98 53,103Z" fill="#4c8020" stroke="#366015" stroke-width="0.8"/>
+  <path d="M70,104 Q76,96 72,90 Q68,98 67,103Z" fill="#4c8020" stroke="#366015" stroke-width="0.8"/>
+  <!-- Head - bigger -->
+  <ellipse cx="60" cy="80" rx="27" ry="25" fill="url(#head4)" stroke="#4c7c20" stroke-width="1.5"/>
+  <!-- More elaborate leaf hair - 4 leaves -->
+  <path d="M44,62 Q36,42 51,36 Q48,56 52,60Z" fill="#4c8220" stroke="#386015" stroke-width="1.2"/>
+  <path d="M56,57 Q52,36 65,31 Q61,52 62,57Z" fill="#5c9a28" stroke="#406818" stroke-width="1.2"/>
+  <path d="M67,58 Q72,37 60,32 Q62,53 64,58Z" fill="#5c9a28" stroke="#406818" stroke-width="1.2"/>
+  <path d="M76,63 Q84,42 69,36 Q72,57 68,61Z" fill="#4c8220" stroke="#386015" stroke-width="1.2"/>
+  <!-- Small flower bud starting (first hint) -->
+  <circle cx="60" cy="29" r="4" fill="#e8d040" stroke="#c0a020" stroke-width="1"/>
+  <circle cx="60" cy="29" r="2" fill="#f0e060"/>
+  <!-- Eyes - expressive -->
+  <ellipse cx="48" cy="80" rx="9" ry="10" fill="white" stroke="#3a6010" stroke-width="1"/>
+  <ellipse cx="72" cy="80" rx="9" ry="10" fill="white" stroke="#3a6010" stroke-width="1"/>
+  <circle cx="49" cy="81" r="6" fill="#152210"/>
+  <circle cx="73" cy="81" r="6" fill="#152210"/>
+  <circle cx="51.5" cy="78.5" r="2.5" fill="white"/>
+  <circle cx="75.5" cy="78.5" r="2.5" fill="white"/>
+  <!-- Smile with teeth hint -->
+  <path d="M51,94 Q60,102 69,94" stroke="#3a6010" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Cheeks -->
+  <ellipse cx="40" cy="89" r="4.5" fill="#80cc30" fill-opacity="0.3"/>
+  <ellipse cx="80" cy="89" r="4.5" fill="#80cc30" fill-opacity="0.3"/>
+</svg>

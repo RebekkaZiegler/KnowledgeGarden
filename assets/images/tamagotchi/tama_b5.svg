@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="head_b5" cx="40%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#508818"/>
+      <stop offset="100%" stop-color="#244208"/>
+    </radialGradient>
+    <radialGradient id="body_b5" cx="35%" cy="24%" r="65%">
+      <stop offset="0%" stop-color="#344e10"/>
+      <stop offset="100%" stop-color="#162408"/>
+    </radialGradient>
+    <radialGradient id="earth_glow" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#604820" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#604820" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Earthen glow from roots -->
+  <ellipse cx="60" cy="130" rx="58" ry="40" fill="url(#earth_glow)"/>
+  <!-- Massive ancient roots spreading wide -->
+  <path d="M44,153 Q34,164 24,172" stroke="#282008" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M52,155 Q49,165 46,174" stroke="#282008" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+  <path d="M68,155 Q71,165 74,174" stroke="#282008" stroke-width="7.5" fill="none" stroke-linecap="round"/>
+  <path d="M76,153 Q86,164 96,172" stroke="#282008" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <!-- Far-spreading root network -->
+  <path d="M24,172 Q12,178 6,174" stroke="#1c1806" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <path d="M24,172 Q16,182 20,188" stroke="#1c1806" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  <path d="M96,172 Q108,178 114,174" stroke="#1c1806" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <path d="M96,172 Q104,182 100,188" stroke="#1c1806" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  <!-- Body - tree trunk, very dark ancient bark -->
+  <ellipse cx="60" cy="104" rx="25" ry="38" fill="url(#body_b5)" stroke="#1a2c08" stroke-width="3"/>
+  <!-- Deep bark grooves -->
+  <path d="M43,72 Q48,88 44,104" stroke="#141e04" stroke-width="2" fill="none" stroke-opacity="0.7"/>
+  <path d="M76,74 Q72,90 75,106" stroke="#141e04" stroke-width="2" fill="none" stroke-opacity="0.7"/>
+  <path d="M50,116 Q57,132 53,146" stroke="#141e04" stroke-width="1.5" fill="none" stroke-opacity="0.6"/>
+  <path d="M68,118 Q63,134 66,148" stroke="#141e04" stroke-width="1.5" fill="none" stroke-opacity="0.6"/>
+  <!-- Dense moss colonies -->
+  <circle cx="42" cy="84" r="8.5" fill="#1a3804" fill-opacity="0.7"/>
+  <circle cx="78" cy="80" r="8" fill="#1a3804" fill-opacity="0.65"/>
+  <circle cx="43" cy="112" r="8" fill="#1a3804" fill-opacity="0.65"/>
+  <circle cx="77" cy="120" r="7" fill="#1a3804" fill-opacity="0.65"/>
+  <circle cx="60" cy="94" r="6" fill="#1a3804" fill-opacity="0.55"/>
+  <!-- Mushroom village on body -->
+  <g transform="translate(32,108)">
+    <path d="M0,0 Q0,-10 0,-14" stroke="#3c2808" stroke-width="3" fill="none"/>
+    <ellipse cx="0" cy="-14" rx="9" ry="4.5" fill="#7a4820" stroke="#4c2c10" stroke-width="1.2"/>
+    <ellipse cx="0" cy="-12.5" rx="5" ry="2.5" fill="#a8684e"/>
+    <circle cx="-4" cy="-15" r="2" fill="white" fill-opacity="0.45"/>
+    <circle cx="3" cy="-16" r="1.5" fill="white" fill-opacity="0.45"/>
+  </g>
+  <g transform="translate(88,102)">
+    <path d="M0,0 Q0,-9 0,-12" stroke="#3c2808" stroke-width="2.5" fill="none"/>
+    <ellipse cx="0" cy="-12" rx="8" ry="4" fill="#7a4820" stroke="#4c2c10" stroke-width="1"/>
+    <ellipse cx="0" cy="-11" rx="4.5" ry="2" fill="#a8684e"/>
+    <circle cx="-3" cy="-13" r="1.8" fill="white" fill-opacity="0.45"/>
+  </g>
+  <g transform="translate(36,130)">
+    <path d="M0,0 Q0,-7 0,-9" stroke="#3c2808" stroke-width="2" fill="none"/>
+    <ellipse cx="0" cy="-9" rx="6.5" ry="3" fill="#6a3e18" stroke="#4c2c10" stroke-width="0.8"/>
+  </g>
+  <g transform="translate(83,126)">
+    <path d="M0,0 Q0,-8 0,-10" stroke="#3c2808" stroke-width="2" fill="none"/>
+    <ellipse cx="0" cy="-10" rx="7" ry="3.2" fill="#6a3e18" stroke="#4c2c10" stroke-width="0.8"/>
+  </g>
+  <!-- TREE TRUNK ARM BRANCHES (not leaf arms anymore - true branches) -->
+  <path d="M35,100 Q10,82 18,52" stroke="#2a2008" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M85,100 Q110,82 102,52" stroke="#2a2008" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <!-- Branch smaller splits -->
+  <path d="M18,52 Q10,42 14,36" stroke="#2a2008" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M18,52 Q22,38 16,32" stroke="#2a2008" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M102,52 Q110,42 106,36" stroke="#2a2008" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M102,52 Q98,38 104,32" stroke="#2a2008" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Leaf tufts on branches -->
+  <circle cx="14" cy="36" r="8" fill="#2a5010" fill-opacity="0.8"/>
+  <circle cx="16" cy="32" r="7" fill="#2a5010" fill-opacity="0.8"/>
+  <circle cx="106" cy="36" r="8" fill="#2a5010" fill-opacity="0.8"/>
+  <circle cx="104" cy="32" r="7" fill="#2a5010" fill-opacity="0.8"/>
+  <!-- Head - very dark, ancient guardian -->
+  <ellipse cx="60" cy="62" rx="32" ry="30" fill="url(#head_b5)" stroke="#1e3806" stroke-width="2.5"/>
+  <!-- Deep bark all over head -->
+  <path d="M30,52 Q28,60 30,70" stroke="#142c04" stroke-width="2" fill="none" stroke-opacity="0.7"/>
+  <path d="M90,52 Q92,60 90,70" stroke="#142c04" stroke-width="2" fill="none" stroke-opacity="0.7"/>
+  <!-- Ancient leaf mane -->
+  <path d="M30,44 Q16,10 46,2 Q38,34 42,43Z" fill="#244208" stroke="#162e06" stroke-width="1.6"/>
+  <path d="M43,36 Q34,2 64,-8 Q55,28 57,36Z" fill="#305010" stroke="#203808" stroke-width="1.6"/>
+  <path d="M66,35 Q76,1 59,-8 Q65,28 63,35Z" fill="#305010" stroke="#203808" stroke-width="1.6"/>
+  <path d="M79,39 Q94,6 74,-2 Q78,34 76,40Z" fill="#244208" stroke="#162e06" stroke-width="1.6"/>
+  <path d="M87,52 Q104,16 86,4 Q82,42 80,54Z" fill="#1a3406" stroke="#102404" stroke-width="1.6"/>
+  <!-- THICK WHITE MOSSY EYEBROWS + beard hinting -->
+  <path d="M32,52 Q46,47 54,52" stroke="#c0cca8" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M66,52 Q74,47 88,52" stroke="#c0cca8" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Moss on lower face as a beard/mane -->
+  <path d="M36,85 Q60,96 84,85" stroke="#1a3406" stroke-width="8" fill="none" stroke-opacity="0.6" stroke-linecap="round"/>
+  <circle cx="44" cy="90" r="5" fill="#1a3406" fill-opacity="0.65"/>
+  <circle cx="60" cy="93" r="5.5" fill="#1a3406" fill-opacity="0.65"/>
+  <circle cx="76" cy="90" r="5" fill="#1a3406" fill-opacity="0.65"/>
+  <!-- Eyes - ancient, luminous green in darkness -->
+  <ellipse cx="44" cy="62" rx="10.5" ry="11.5" fill="#102008" stroke="#1c3406" stroke-width="1.5"/>
+  <ellipse cx="76" cy="62" rx="10.5" ry="11.5" fill="#102008" stroke="#1c3406" stroke-width="1.5"/>
+  <!-- Glowing green irises - the mark of the Earth Guardian -->
+  <circle cx="44" cy="62" r="7.5" fill="#286010" stroke="#40a020" stroke-width="1.5"/>
+  <circle cx="76" cy="62" r="7.5" fill="#286010" stroke="#40a020" stroke-width="1.5"/>
+  <circle cx="44" cy="62" r="4" fill="#60c830"/>
+  <circle cx="76" cy="62" r="4" fill="#60c830"/>
+  <circle cx="46" cy="59" r="2" fill="white" fill-opacity="0.9"/>
+  <circle cx="78" cy="59" r="2" fill="white" fill-opacity="0.9"/>
+  <!-- Serene guardian smile, partly hidden by moss beard -->
+  <path d="M49,80 Q60,86 71,80" stroke="#1e3806" stroke-width="3" fill="none" stroke-linecap="round"/>
+</svg>

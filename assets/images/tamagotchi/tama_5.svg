@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="head5" cx="42%" cy="35%" r="58%">
+      <stop offset="0%" stop-color="#98de54"/>
+      <stop offset="100%" stop-color="#5c962c"/>
+    </radialGradient>
+    <radialGradient id="body5" cx="38%" cy="30%" r="62%">
+      <stop offset="0%" stop-color="#78b636"/>
+      <stop offset="100%" stop-color="#4e7e24"/>
+    </radialGradient>
+  </defs>
+  <!-- Root feet - now more like legs -->
+  <path d="M48,148 Q44,155 38,162" stroke="#604020" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+  <path d="M56,150 Q54,156 52,163" stroke="#604020" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M64,150 Q66,156 68,163" stroke="#604020" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M72,148 Q76,155 82,162" stroke="#604020" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+  <!-- Body - taller, more humanoid -->
+  <ellipse cx="60" cy="114" rx="20" ry="30" fill="url(#body5)" stroke="#426018" stroke-width="1.5"/>
+  <!-- Arm leaves - bigger -->
+  <path d="M40,108 Q20,96 26,78 Q36,102 44,107Z" fill="#5e9628" stroke="#406018" stroke-width="1.2"/>
+  <path d="M80,108 Q100,96 94,78 Q84,102 76,107Z" fill="#5e9628" stroke="#406018" stroke-width="1.2"/>
+  <!-- Body detail - vein lines -->
+  <path d="M55,94 Q60,100 65,94" stroke="#4a7818" stroke-width="0.8" fill="none" stroke-opacity="0.6"/>
+  <path d="M53,106 Q60,114 67,106" stroke="#4a7818" stroke-width="0.8" fill="none" stroke-opacity="0.6"/>
+  <!-- Head -->
+  <ellipse cx="60" cy="73" rx="28" ry="26" fill="url(#head5)" stroke="#4e7e22" stroke-width="1.5"/>
+  <!-- Rich leaf hair - 5 leaves, fuller -->
+  <path d="M40,56 Q31,33 48,27 Q45,50 49,54Z" fill="#4e8422" stroke="#3a6418" stroke-width="1.2"/>
+  <path d="M52,50 Q47,26 62,20 Q58,44 58,50Z" fill="#5e9c2a" stroke="#426818" stroke-width="1.2"/>
+  <path d="M64,49 Q68,24 56,20 Q62,44 62,49Z" fill="#5e9c2a" stroke="#426818" stroke-width="1.2"/>
+  <path d="M72,52 Q82,30 66,25 Q70,48 68,53Z" fill="#4e8422" stroke="#3a6418" stroke-width="1.2"/>
+  <path d="M77,58 Q88,38 75,32 Q73,52 72,57Z" fill="#3e7418" stroke="#2e5412" stroke-width="1.2"/>
+  <!-- Hair leaf details -->
+  <path d="M48,27 Q52,32 50,37" stroke="#3a6415" stroke-width="0.7" fill="none" stroke-opacity="0.5"/>
+  <path d="M62,20 Q64,26 62,31" stroke="#3a6415" stroke-width="0.7" fill="none" stroke-opacity="0.5"/>
+  <!-- Flower bud on top - more defined now -->
+  <ellipse cx="60" cy="18" rx="6" ry="5" fill="#e0c838" stroke="#b8a020" stroke-width="1.2"/>
+  <ellipse cx="60" cy="16" rx="3.5" ry="3" fill="#f0e050"/>
+  <!-- Eyes - slightly uncertain expression (at crossroads) -->
+  <ellipse cx="47" cy="73" rx="9.5" ry="10.5" fill="white" stroke="#3c6012" stroke-width="1"/>
+  <ellipse cx="73" cy="73" rx="9.5" ry="10.5" fill="white" stroke="#3c6012" stroke-width="1"/>
+  <circle cx="48" cy="74" r="6.5" fill="#152210"/>
+  <circle cx="74" cy="74" r="6.5" fill="#152210"/>
+  <circle cx="51" cy="71" r="2.8" fill="white"/>
+  <circle cx="77" cy="71" r="2.8" fill="white"/>
+  <!-- Thoughtful/uncertain slight frown -->
+  <path d="M52,88 Q60,90 68,88" stroke="#3c6012" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Subtle cheeks -->
+  <ellipse cx="38" cy="82" rx="5" ry="3.5" fill="#80cc30" fill-opacity="0.25"/>
+  <ellipse cx="82" cy="82" rx="5" ry="3.5" fill="#80cc30" fill-opacity="0.25"/>
+</svg>

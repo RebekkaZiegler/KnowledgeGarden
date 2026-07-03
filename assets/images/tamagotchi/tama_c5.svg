@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="head_c5" cx="44%" cy="42%" r="54%">
+      <stop offset="0%" stop-color="#4a5230"/>
+      <stop offset="100%" stop-color="#1e2010"/>
+    </radialGradient>
+    <radialGradient id="body_c5" cx="42%" cy="40%" r="54%">
+      <stop offset="0%" stop-color="#343c1e"/>
+      <stop offset="100%" stop-color="#161808"/>
+    </radialGradient>
+    <radialGradient id="dark_aura" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1a0828" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a0828" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="eye_glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4010" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff4010" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="red_glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- DARK AURA - menacing -->
+  <ellipse cx="60" cy="90" rx="58" ry="75" fill="url(#dark_aura)"/>
+  <!-- Shadow wisps rising -->
+  <path d="M18,55 Q8,40 14,30" stroke="#280838" stroke-width="4" fill="none" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M102,55 Q112,40 106,30" stroke="#280838" stroke-width="4" fill="none" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M12,80 Q2,65 8,52" stroke="#280838" stroke-width="3" fill="none" stroke-opacity="0.6"/>
+  <path d="M108,80 Q118,65 112,52" stroke="#280838" stroke-width="3" fill="none" stroke-opacity="0.6"/>
+  <path d="M22,105 Q10,92 14,80" stroke="#280838" stroke-width="2.5" fill="none" stroke-opacity="0.55"/>
+  <path d="M98,105 Q110,92 106,80" stroke="#280838" stroke-width="2.5" fill="none" stroke-opacity="0.55"/>
+  <!-- Twisted thin roots -->
+  <path d="M55,151 Q53,157 51,163" stroke="#2e1e08" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M60,153 Q60,159 60,165" stroke="#2e1e08" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M65,151 Q67,157 69,163" stroke="#2e1e08" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Decomposed leaves on ground -->
+  <ellipse cx="20" cy="155" rx="8" ry="3" fill="#404428" fill-opacity="0.5" transform="rotate(25,20,155)"/>
+  <ellipse cx="40" cy="152" rx="6" ry="2.5" fill="#404428" fill-opacity="0.45" transform="rotate(10,40,152)"/>
+  <ellipse cx="82" cy="151" rx="7" ry="2.8" fill="#404428" fill-opacity="0.5" transform="rotate(-15,82,151)"/>
+  <ellipse cx="100" cy="154" rx="6" ry="2.5" fill="#404428" fill-opacity="0.45" transform="rotate(-25,100,154)"/>
+  <!-- Body - skeleton-thin, many thorns, shadowy -->
+  <ellipse cx="60" cy="121" rx="12" ry="26" fill="url(#body_c5)" stroke="#222810" stroke-width="1.5"/>
+  <!-- Thorns everywhere - sharp and angular -->
+  <path d="M49,98 L38,90 L48,94" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <path d="M49,108 L37,103 L49,106" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <path d="M49,118 L37,114 L49,116" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <path d="M49,128 L38,125 L49,127" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <path d="M71,100 L82,92 L72,96" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <path d="M71,110 L83,105 L71,108" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <path d="M71,120 L83,116 L71,118" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <path d="M71,132 L82,129 L71,131" fill="#1c1e08" stroke="#141508" stroke-width="0.5"/>
+  <!-- Shadow patches on body -->
+  <ellipse cx="55" cy="108" rx="8" ry="6" fill="#10100a" fill-opacity="0.75"/>
+  <ellipse cx="65" cy="122" rx="7" ry="5.5" fill="#10100a" fill-opacity="0.7"/>
+  <!-- Shadow ARMS - pure dark tendrils, not leaves anymore -->
+  <path d="M49,112 Q30,118 16,104" stroke="#1a1c08" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M71,112 Q90,118 104,104" stroke="#1a1c08" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <!-- Thorn tips on arm tendrils -->
+  <path d="M16,104 L6,100 L14,106" fill="#10100a" stroke="#0a0c04" stroke-width="0.5"/>
+  <path d="M104,104 L114,100 L106,106" fill="#10100a" stroke="#0a0c04" stroke-width="0.5"/>
+  <!-- Shadow tendrils rising from arm tips -->
+  <path d="M18,105 Q8,90 14,74" stroke="#380848" stroke-width="4" fill="none" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M102,105 Q112,90 106,74" stroke="#380848" stroke-width="4" fill="none" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M16,100 Q4,88 8,72" stroke="#380848" stroke-width="2.5" fill="none" stroke-opacity="0.55"/>
+  <path d="M104,100 Q116,88 112,72" stroke="#380848" stroke-width="2.5" fill="none" stroke-opacity="0.55"/>
+  <!-- Head - small, dark, haunted -->
+  <ellipse cx="60" cy="85" rx="20" ry="19" fill="url(#head_c5)" stroke="#222810" stroke-width="2"/>
+  <!-- NO leaves - only shadow tendrils for hair -->
+  <path d="M48,70 Q38,54 44,40" stroke="#380848" stroke-width="5" fill="none" stroke-opacity="0.75" stroke-linecap="round"/>
+  <path d="M55,67 Q50,50 56,36" stroke="#380848" stroke-width="4" fill="none" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M63,66 Q66,48 62,34" stroke="#380848" stroke-width="4" fill="none" stroke-opacity="0.7" stroke-linecap="round"/>
+  <path d="M70,68 Q80,52 76,38" stroke="#380848" stroke-width="5" fill="none" stroke-opacity="0.75" stroke-linecap="round"/>
+  <!-- Tendril tips - small dark wisp circles -->
+  <circle cx="44" cy="40" r="4.5" fill="#280638" fill-opacity="0.8"/>
+  <circle cx="56" cy="36" r="3.5" fill="#280638" fill-opacity="0.75"/>
+  <circle cx="62" cy="34" r="3.5" fill="#280638" fill-opacity="0.75"/>
+  <circle cx="76" cy="38" r="4.5" fill="#280638" fill-opacity="0.8"/>
+  <!-- Thorns on head too -->
+  <path d="M42,80 L33,76 L42,78" fill="#1a1c0a" stroke="#10110a" stroke-width="0.5"/>
+  <path d="M78,80 L87,76 L78,78" fill="#1a1c0a" stroke="#10110a" stroke-width="0.5"/>
+  <!-- BLAZING RED EYES - the Schattendorn -->
+  <ellipse cx="51" cy="85" rx="9" ry="9.5" fill="#050504" stroke="#801010" stroke-width="1.5"/>
+  <ellipse cx="69" cy="85" rx="9" ry="9.5" fill="#050504" stroke="#801010" stroke-width="1.5"/>
+  <!-- Eye glow aura -->
+  <circle cx="51" cy="85" r="10" fill="url(#eye_glow)" filter="url(#red_glow)"/>
+  <circle cx="69" cy="85" r="10" fill="url(#eye_glow)" filter="url(#red_glow)"/>
+  <!-- Iris -->
+  <circle cx="51" cy="85" r="6.5" fill="#800808"/>
+  <circle cx="69" cy="85" r="6.5" fill="#800808"/>
+  <!-- Bright red pupil fire -->
+  <circle cx="51" cy="85" r="3.5" fill="#f82010" filter="url(#red_glow)"/>
+  <circle cx="69" cy="85" r="3.5" fill="#f82010" filter="url(#red_glow)"/>
+  <!-- Slit pupils -->
+  <ellipse cx="51" cy="85" rx="1" ry="3.5" fill="#200808"/>
+  <ellipse cx="69" cy="85" rx="1" ry="3.5" fill="#200808"/>
+  <!-- Red eye glint -->
+  <circle cx="53" cy="83" r="1.5" fill="#ff8060" fill-opacity="0.9"/>
+  <circle cx="71" cy="83" r="1.5" fill="#ff8060" fill-opacity="0.9"/>
+  <!-- Grim, thin-lipped expression - resigned but haunted -->
+  <path d="M54,99 L66,99" stroke="#202210" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Deep stress lines on face -->
+  <path d="M39,78 Q37,82 39,86" stroke="#1e2010" stroke-width="1.5" fill="none" stroke-opacity="0.7"/>
+  <path d="M81,78 Q83,82 81,86" stroke="#1e2010" stroke-width="1.5" fill="none" stroke-opacity="0.7"/>
+  <path d="M43,92 Q41,96 43,98" stroke="#1e2010" stroke-width="1.2" fill="none" stroke-opacity="0.6"/>
+  <path d="M77,92 Q79,96 77,98" stroke="#1e2010" stroke-width="1.2" fill="none" stroke-opacity="0.6"/>
+  <!-- Crack on head - the weight of neglect -->
+  <path d="M58,67 Q56,72 58,78 Q59,74 61,78 Q60,72 62,67" stroke="#10120a" stroke-width="1.5" fill="none" stroke-opacity="0.8"/>
+</svg>

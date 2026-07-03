@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="headgrad2" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#8fd448"/>
+      <stop offset="100%" stop-color="#5a9428"/>
+    </radialGradient>
+  </defs>
+  <!-- Soil -->
+  <ellipse cx="60" cy="155" rx="58" ry="9" fill="#1e1008"/>
+  <ellipse cx="60" cy="148" rx="46" ry="9" fill="#2d1a0a"/>
+  <ellipse cx="60" cy="141" rx="32" ry="7" fill="#3d2412"/>
+  <!-- Stem -->
+  <rect x="56" y="118" width="8" height="28" rx="4" fill="#4e8a24" stroke="#3a6818" stroke-width="1"/>
+  <!-- Head - round and big -->
+  <ellipse cx="60" cy="103" rx="22" ry="20" fill="url(#headgrad2)" stroke="#4a7a20" stroke-width="1.5"/>
+  <!-- Cheek blush -->
+  <ellipse cx="47" cy="112" rx="6" ry="4" fill="#90d840" fill-opacity="0.35"/>
+  <ellipse cx="73" cy="112" rx="6" ry="4" fill="#90d840" fill-opacity="0.35"/>
+  <!-- Eyes - huge and innocent -->
+  <ellipse cx="50" cy="103" rx="8.5" ry="9.5" fill="white" stroke="#3a6010" stroke-width="0.8"/>
+  <ellipse cx="70" cy="103" rx="8.5" ry="9.5" fill="white" stroke="#3a6010" stroke-width="0.8"/>
+  <circle cx="51" cy="104" r="5.5" fill="#142210"/>
+  <circle cx="71" cy="104" r="5.5" fill="#142210"/>
+  <!-- Eye shine -->
+  <circle cx="53.5" cy="101.5" r="2" fill="white"/>
+  <circle cx="73.5" cy="101.5" r="2" fill="white"/>
+  <circle cx="50" cy="105.5" r="1" fill="white" fill-opacity="0.6"/>
+  <circle cx="70" cy="105.5" r="1" fill="white" fill-opacity="0.6"/>
+  <!-- Tiny uncertain mouth -->
+  <path d="M54,116 Q60,119 66,116" stroke="#3a6010" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Two baby leaves (arms) -->
+  <path d="M40,108 Q26,99 30,88 Q38,102 44,106Z" fill="#4e8a24" stroke="#366018" stroke-width="0.8"/>
+  <path d="M80,108 Q94,99 90,88 Q82,102 76,106Z" fill="#4e8a24" stroke="#366018" stroke-width="0.8"/>
+</svg>

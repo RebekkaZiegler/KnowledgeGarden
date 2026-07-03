@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="head3" cx="42%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#92d84c"/>
+      <stop offset="100%" stop-color="#5a9228"/>
+    </radialGradient>
+    <radialGradient id="body3" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#72b030"/>
+      <stop offset="100%" stop-color="#4a7820"/>
+    </radialGradient>
+  </defs>
+  <!-- Soil -->
+  <ellipse cx="60" cy="156" rx="52" ry="8" fill="#1e1008"/>
+  <ellipse cx="60" cy="150" rx="40" ry="7" fill="#2d1a0a"/>
+  <!-- Root legs -->
+  <path d="M53,142 Q47,150 42,157" stroke="#5a3a18" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <path d="M60,144 Q60,151 60,158" stroke="#5a3a18" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <path d="M67,142 Q73,150 78,157" stroke="#5a3a18" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+  <!-- Body -->
+  <ellipse cx="60" cy="122" rx="16" ry="21" fill="url(#body3)" stroke="#3e6a18" stroke-width="1.5"/>
+  <!-- Arm leaves -->
+  <path d="M44,116 Q29,107 33,94 Q41,110 47,114Z" fill="#5a9228" stroke="#3e6a18" stroke-width="1"/>
+  <path d="M76,116 Q91,107 87,94 Q79,110 73,114Z" fill="#5a9228" stroke="#3e6a18" stroke-width="1"/>
+  <!-- Head -->
+  <ellipse cx="60" cy="88" rx="25" ry="23" fill="url(#head3)" stroke="#4a7a20" stroke-width="1.5"/>
+  <!-- Leaf hair - 3 leaves -->
+  <path d="M47,68 Q40,50 53,44 Q50,62 54,66Z" fill="#4a8020" stroke="#366018" stroke-width="1"/>
+  <path d="M60,64 Q57,44 68,40 Q65,58 65,64Z" fill="#5a9828" stroke="#3e6818" stroke-width="1"/>
+  <path d="M73,68 Q80,50 67,44 Q70,62 66,66Z" fill="#4a8020" stroke="#366018" stroke-width="1"/>
+  <!-- Eyes -->
+  <ellipse cx="49" cy="88" rx="8" ry="9" fill="white" stroke="#3a6010" stroke-width="0.8"/>
+  <ellipse cx="71" cy="88" rx="8" ry="9" fill="white" stroke="#3a6010" stroke-width="0.8"/>
+  <circle cx="50" cy="89" r="5.5" fill="#152210"/>
+  <circle cx="72" cy="89" r="5.5" fill="#152210"/>
+  <circle cx="52.5" cy="87" r="2.2" fill="white"/>
+  <circle cx="74.5" cy="87" r="2.2" fill="white"/>
+  <!-- Happy smile -->
+  <path d="M52,101 Q60,108 68,101" stroke="#3a6010" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Tiny dots for cheeks -->
+  <circle cx="43" cy="96" r="3.5" fill="#70c030" fill-opacity="0.3"/>
+  <circle cx="77" cy="96" r="3.5" fill="#70c030" fill-opacity="0.3"/>
+</svg>

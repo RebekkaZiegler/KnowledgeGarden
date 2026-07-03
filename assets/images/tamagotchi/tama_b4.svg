@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="head_b4" cx="40%" cy="33%" r="60%">
+      <stop offset="0%" stop-color="#5c9828"/>
+      <stop offset="100%" stop-color="#2e5008"/>
+    </radialGradient>
+    <radialGradient id="body_b4" cx="36%" cy="26%" r="64%">
+      <stop offset="0%" stop-color="#406818"/>
+      <stop offset="100%" stop-color="#203808"/>
+    </radialGradient>
+  </defs>
+  <!-- Ancient thick roots -->
+  <path d="M45,152 Q36,162 28,170" stroke="#302008" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <path d="M53,154 Q51,163 48,171" stroke="#302008" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M67,154 Q69,163 72,171" stroke="#302008" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M75,152 Q84,162 92,170" stroke="#302008" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <!-- Many branch roots -->
+  <path d="M28,170 Q20,175 15,172" stroke="#222008" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  <path d="M28,170 Q22,178 26,182" stroke="#222008" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M92,170 Q100,175 105,172" stroke="#222008" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+  <path d="M92,170 Q98,178 94,182" stroke="#222008" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <!-- Body - ancient bark, very dark -->
+  <ellipse cx="60" cy="106" rx="23" ry="36" fill="url(#body_b4)" stroke="#203008" stroke-width="2.5"/>
+  <!-- Bark texture lines -->
+  <path d="M46,78 Q50,92 47,106" stroke="#182806" stroke-width="1.5" fill="none" stroke-opacity="0.6"/>
+  <path d="M72,80 Q69,94 71,108" stroke="#182806" stroke-width="1.5" fill="none" stroke-opacity="0.6"/>
+  <path d="M52,118 Q58,130 55,142" stroke="#182806" stroke-width="1.2" fill="none" stroke-opacity="0.5"/>
+  <path d="M68,120 Q64,132 66,144" stroke="#182806" stroke-width="1.2" fill="none" stroke-opacity="0.5"/>
+  <!-- Heavy moss everywhere -->
+  <circle cx="44" cy="88" r="7" fill="#1e3c06" fill-opacity="0.65"/>
+  <circle cx="75" cy="84" r="6.5" fill="#1e3c06" fill-opacity="0.6"/>
+  <circle cx="46" cy="114" r="7" fill="#1e3c06" fill-opacity="0.6"/>
+  <circle cx="73" cy="122" r="6" fill="#1e3c06" fill-opacity="0.6"/>
+  <circle cx="60" cy="98" r="5" fill="#1e3c06" fill-opacity="0.5"/>
+  <!-- Mushroom colony on body -->
+  <g transform="translate(34,108)">
+    <path d="M0,0 Q0,-8 0,-10" stroke="#4a3010" stroke-width="2.5" fill="none"/>
+    <ellipse cx="0" cy="-10" rx="7.5" ry="3.5" fill="#8a5828" stroke="#5c3810" stroke-width="1"/>
+    <ellipse cx="0" cy="-9" rx="4" ry="2" fill="#b87848"/>
+    <circle cx="-3" cy="-11" r="1.5" fill="#ffffff" fill-opacity="0.4"/>
+    <circle cx="2" cy="-12" r="1" fill="#ffffff" fill-opacity="0.4"/>
+  </g>
+  <g transform="translate(86,104)">
+    <path d="M0,0 Q0,-7 0,-9" stroke="#4a3010" stroke-width="2" fill="none"/>
+    <ellipse cx="0" cy="-9" rx="6.5" ry="3" fill="#8a5828" stroke="#5c3810" stroke-width="1"/>
+    <ellipse cx="0" cy="-8" rx="3.5" ry="1.5" fill="#b87848"/>
+  </g>
+  <g transform="translate(40,128)">
+    <path d="M0,0 Q0,-5 0,-6" stroke="#4a3010" stroke-width="1.5" fill="none"/>
+    <ellipse cx="0" cy="-6" rx="5" ry="2" fill="#7a4e22" stroke="#5c3810" stroke-width="0.8"/>
+  </g>
+  <!-- Arm leaves - very wide, tree-like -->
+  <path d="M37,102 Q12,86 21,57 Q33,90 41,100Z" fill="#346010" stroke="#244008" stroke-width="1.4"/>
+  <path d="M83,102 Q108,86 99,57 Q87,90 79,100Z" fill="#346010" stroke="#244008" stroke-width="1.4"/>
+  <!-- Moss coating arms -->
+  <circle cx="22" cy="62" r="5.5" fill="#183806" fill-opacity="0.7"/>
+  <circle cx="98" cy="62" r="5.5" fill="#183806" fill-opacity="0.7"/>
+  <!-- Head - ancient, tree-bark skin, white moss eyebrows! -->
+  <ellipse cx="60" cy="64" rx="31" ry="29" fill="url(#head_b4)" stroke="#264808" stroke-width="2"/>
+  <!-- Bark cracks on head -->
+  <path d="M31,56 Q29,63 31,72" stroke="#1e3806" stroke-width="1.5" fill="none" stroke-opacity="0.6"/>
+  <path d="M89,56 Q91,63 89,72" stroke="#1e3806" stroke-width="1.5" fill="none" stroke-opacity="0.6"/>
+  <!-- Ancient leaf hair - massive, bark-like -->
+  <path d="M32,46 Q18,16 45,8 Q38,36 42,45Z" fill="#2c5010" stroke="#1c3c08" stroke-width="1.5"/>
+  <path d="M45,39 Q37,8 63,0 Q55,32 57,39Z" fill="#386018" stroke="#284810" stroke-width="1.5"/>
+  <path d="M66,38 Q74,7 59,0 Q65,32 63,38Z" fill="#386018" stroke="#284810" stroke-width="1.5"/>
+  <path d="M77,42 Q91,12 72,4 Q76,36 74,43Z" fill="#2c5010" stroke="#1c3c08" stroke-width="1.5"/>
+  <path d="M85,54 Q100,22 82,12 Q79,44 77,55Z" fill="#204008" stroke="#142e06" stroke-width="1.5"/>
+  <!-- Heavy moss on hair -->
+  <circle cx="44" cy="10" r="5" fill="#142e06" fill-opacity="0.7"/>
+  <circle cx="60" cy="0" r="5.5" fill="#142e06" fill-opacity="0.65"/>
+  <circle cx="80" cy="12" r="5" fill="#142e06" fill-opacity="0.7"/>
+  <!-- WHITE MOSSY EYEBROWS - the ancient marker! -->
+  <path d="M36,55 Q47,51 53,55" stroke="#c8d4b8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <path d="M67,55 Q73,51 84,55" stroke="#c8d4b8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <!-- Eyes - old and deep, slightly hooded -->
+  <ellipse cx="45" cy="65" rx="10" ry="11" fill="#d8e8c8" stroke="#224006" stroke-width="1.3"/>
+  <ellipse cx="75" cy="65" rx="10" ry="11" fill="#d8e8c8" stroke="#224006" stroke-width="1.3"/>
+  <!-- Hooded upper eyelid -->
+  <path d="M35,61 Q45,56 55,61" stroke="#224006" stroke-width="3.5" fill="#346010"/>
+  <path d="M65,61 Q75,56 85,61" stroke="#224006" stroke-width="3.5" fill="#346010"/>
+  <circle cx="46" cy="67" r="7" fill="#0a1404"/>
+  <circle cx="76" cy="67" r="7" fill="#0a1404"/>
+  <circle cx="49" cy="64" r="3" fill="white"/>
+  <circle cx="79" cy="64" r="3" fill="white"/>
+  <!-- Deep wise expression -->
+  <path d="M50,82 Q60,87 70,82" stroke="#224006" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Lichen on face -->
+  <circle cx="34" cy="75" r="2" fill="#c0c8a8" fill-opacity="0.6"/>
+  <circle cx="86" cy="75" r="2" fill="#c0c8a8" fill-opacity="0.6"/>
+</svg>

@@ -210,6 +210,19 @@ function defaultState() {
       learnedLog:            {},
       activityLog:           {},
     },
+
+    tamagotchi: {
+      alive:          true,
+      stage:          1,
+      path:           null,   // 'a' thriving, 'b' content, 'c' struggling
+      bornDate:       null,   // YYYY-MM-DD
+      lastFedDate:    null,
+      feedsToday:     0,
+      requiredToday:  5,
+      missedDays:     0,
+      rollingFeeds:   [],     // last 14 day counts for adaptive requirement
+      weekScores:     [],     // per-week happiness score for path determination
+    },
   };
 }
 
@@ -238,6 +251,9 @@ function normalizeState(s) {
   s.stats      = Object.assign({}, d.stats,        s.stats     || {});
   s.stats.activityLog = s.stats.activityLog || {};
   s.stats.learnedLog  = s.stats.learnedLog  || {};
+  s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
+  s.tamagotchi.rollingFeeds = s.tamagotchi.rollingFeeds || [];
+  s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
   s.restaurant = Object.assign({}, d.restaurant,   s.restaurant || {});
   s.restaurant.patrons         = [];
   s.restaurant.sessionStats    = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
@@ -608,7 +624,7 @@ function askQuestions(contextText, count, onAllDone, onEachCorrect) {
     const entry = pickNextQuestion();
     if (!entry) { onAllDone && onAllDone(); return; }
     showQuestion(contextText, entry,
-      () => { correct++; onEachCorrect && onEachCorrect(); },
+      () => { correct++; feedTamagotchi(); onEachCorrect && onEachCorrect(); },
       () => {},
       next
     );
@@ -835,6 +851,184 @@ function getAvailableSeeds() {
   return FOOD_CROPS.filter(c => (G.inventory[`seed_${c.id}`] || 0) > 0)
     .map(c => ({ cropId: c.id, plantTitle: c.name, qty: G.inventory[`seed_${c.id}`] }));
 }
+
+/* ══════════════════════════════════════════════════════════
+   TAMAGOTCHI — Alräunchen
+══════════════════════════════════════════════════════════ */
+function getTodayDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+function daysBetween(a, b) {
+  return Math.round((new Date(b) - new Date(a)) / 86400000);
+}
+function getTamaImage(stage, path, alive) {
+  if (!alive) return 'assets/images/tamagotchi/tama_1.svg';
+  if (stage <= 5) return `assets/images/tamagotchi/tama_${stage}.svg`;
+  const p = path || 'b';
+  return `assets/images/tamagotchi/tama_${p}${stage - 5}.svg`;
+}
+function getTamaName(stage, path) {
+  const shared = ['Die Wurzel','Erster Blick','Das Kräutlein','Das Pflanzenkind','Der Junggeist'];
+  if (stage <= 5) return shared[stage - 1];
+  const names = {
+    a: ['Erste Blüte','Blütengeist','Die Goldkrone','Der Sonnengeist','Strahlender Weise'],
+    b: ['Der Beständige','Das Mooswesen','Der Waldgeist','Der Uralte','Der Erdenwächter'],
+    c: ['Der Fahle','Der Dunkle','Der Grollende','Der Schattenwandler','Der Schattendorn'],
+  };
+  return (names[path] || names.b)[stage - 6];
+}
+
+function feedTamagotchi() {
+  const t = G.tamagotchi;
+  if (!t || !t.alive) return;
+  if (!t.bornDate)    t.bornDate    = getTodayDate();
+  if (!t.lastFedDate) t.lastFedDate = getTodayDate();
+  t.feedsToday = (t.feedsToday || 0) + 1;
+}
+
+function determineTamaPath(t) {
+  const scores = t.weekScores || [];
+  if (!scores.length) { t.path = 'b'; return; }
+  const avg = scores.reduce((s, v) => s + v, 0) / scores.length;
+  t.path = avg >= 1.5 ? 'a' : avg >= 0.6 ? 'b' : 'c';
+}
+
+function checkTamagotchiDay() {
+  const t = G.tamagotchi;
+  if (!t) return;
+  const today = getTodayDate();
+  if (!t.bornDate)    { t.bornDate = today; t.lastFedDate = today; saveState(); return; }
+  if (!t.lastFedDate) { t.lastFedDate = today; saveState(); return; }
+  if (t.lastFedDate === today) return;
+
+  const daysSince = daysBetween(t.lastFedDate, today);
+  if (daysSince < 1) return;
+
+  const prevFeeds = t.feedsToday || 0;
+  const required  = t.requiredToday || 5;
+
+  // Update rolling average
+  const rolling = t.rollingFeeds || [];
+  for (let i = 0; i < daysSince; i++) rolling.push(i === 0 ? prevFeeds : 0);
+  while (rolling.length > 14) rolling.shift();
+  t.rollingFeeds = rolling;
+  const avg = rolling.reduce((s, v) => s + v, 0) / rolling.length;
+  t.requiredToday = Math.max(3, Math.round(avg * 0.8));
+
+  // Missed day tracking
+  if (prevFeeds === 0 || daysSince > 1) {
+    t.missedDays = (t.missedDays || 0) + (daysSince > 1 ? daysSince - 1 : 1);
+    if (prevFeeds === 0) t.missedDays++;
+  } else {
+    t.missedDays = 0;
+  }
+
+  // Death — 2 consecutive missed days
+  if (t.alive && t.missedDays >= 2) {
+    t.alive = false;
+    showToast("💀 Dein Alräunchen ist gestorben. Tippe auf 🌱 um neu zu starten.", 5000);
+    t.feedsToday  = 0;
+    t.lastFedDate = today;
+    saveState();
+    renderTamagotchiBtn();
+    return;
+  }
+
+  // Weekly happiness score (each fed day = 0/1/2)
+  const dayScore = prevFeeds === 0 ? 0 : prevFeeds >= required * 1.5 ? 2 : 1;
+  t.weekScores = [...(t.weekScores || []), dayScore];
+
+  // Stage advancement — 1 stage per 7 days since birth
+  if (t.alive) {
+    const daysSinceBorn = daysBetween(t.bornDate, today);
+    const newStage = Math.min(10, Math.floor(daysSinceBorn / 7) + 1);
+    if (newStage > t.stage) {
+      if (t.stage === 5 && newStage >= 6) determineTamaPath(t);
+      t.stage = newStage;
+      showToast(`🌱 Dein Alräunchen hat sich entwickelt! ${getTamaName(t.stage, t.path)}`);
+    }
+  }
+
+  t.feedsToday  = 0;
+  t.lastFedDate = today;
+  saveState();
+  renderTamagotchiBtn();
+}
+
+function reviveTamagotchi() {
+  const today = getTodayDate();
+  G.tamagotchi = {
+    alive: true, stage: 1, path: null,
+    bornDate: today, lastFedDate: today,
+    feedsToday: 0, requiredToday: 5,
+    missedDays: 0, rollingFeeds: [], weekScores: [],
+  };
+  saveState();
+  renderTamagotchi();
+  renderTamagotchiBtn();
+  showToast("🥚 Ein neues Alräunchen ist bereit!");
+}
+window.reviveTamagotchi = reviveTamagotchi;
+
+function renderTamagotchiBtn() {
+  const btn = document.getElementById("btn-tama");
+  if (!btn) return;
+  const t = G.tamagotchi;
+  const pct = Math.min(100, Math.round(((t.feedsToday || 0) / (t.requiredToday || 5)) * 100));
+  const hungry = t.alive && pct < 100;
+  btn.classList.toggle("tama-btn--hungry", hungry);
+  btn.title = t.alive
+    ? `${getTamaName(t.stage, t.path)} — ${t.feedsToday || 0}/${t.requiredToday || 5} heute`
+    : "Gestorben";
+}
+
+function renderTamagotchi() {
+  const el = document.getElementById("tama-modal-body");
+  if (!el) return;
+  const t = G.tamagotchi;
+  checkTamagotchiDay();
+  const today = getTodayDate();
+  const feeds    = t.feedsToday || 0;
+  const required = t.requiredToday || 5;
+  const pct = Math.min(100, Math.round((feeds / required) * 100));
+  const overfed  = feeds >= required * 1.5;
+  const fed      = feeds >= required;
+  const img      = getTamaImage(t.stage, t.path, t.alive);
+  const name     = t.alive ? getTamaName(t.stage, t.path) : "☠️ Gestorben";
+  const stageLabel = t.alive ? `Stufe ${t.stage}/10` : "";
+  const pathLabel  = t.path
+    ? ({ a: '🌟 Blühend', b: '🌿 Gesund', c: '🖤 Welkend' }[t.path] || '')
+    : (t.stage >= 5 ? '⏳ Entwicklung läuft…' : '');
+  const missedWarning = t.alive && (t.missedDays || 0) >= 1
+    ? `<p class="tama-warning">⚠️ ${t.missedDays} Tag${t.missedDays > 1 ? 'e' : ''} nicht gefüttert! Bei 2 stirbt es.</p>`
+    : '';
+  const moodEmoji = !t.alive ? '💀' : overfed ? '🤩' : fed ? '😊' : pct > 50 ? '😐' : '😢';
+  const daysOld   = t.bornDate ? daysBetween(t.bornDate, today) : 0;
+  const nextStage = t.alive && t.stage < 10
+    ? (() => { const d = 7 - (daysOld % 7); return `Nächste Stufe in ${d} Tag${d !== 1 ? 'en' : ''}`; })()
+    : t.stage >= 10 ? 'Maximal entwickelt 🏆' : '';
+
+  el.innerHTML = `
+    <div class="tama-creature">
+      <img src="${img}" class="tama-img" alt="${name}">
+      <div class="tama-mood">${moodEmoji}</div>
+    </div>
+    <div class="tama-info">
+      <div class="tama-name">${name}</div>
+      ${stageLabel ? `<div class="tama-stage">${stageLabel}${pathLabel ? ` · ${pathLabel}` : ''}</div>` : ''}
+      ${t.alive ? `
+        <div class="tama-feed-label">Heute: ${feeds}/${required} Fragen ${fed ? '✓' : ''}</div>
+        <div class="tama-bar-wrap"><div class="tama-bar" style="width:${pct}%;background:${overfed?'#f0c040':fed?'#5cca6e':'#c04040'}"></div></div>
+        ${missedWarning}
+        ${nextStage ? `<div class="tama-next">${nextStage}</div>` : ''}
+        ${daysOld > 0 ? `<div class="tama-age">Alter: ${daysOld} Tag${daysOld !== 1 ? 'e' : ''}</div>` : ''}
+      ` : `
+        <p class="tama-dead-msg">Dein Alräunchen ist gestorben weil es 2 Tage nicht gefüttert wurde.</p>
+        <button class="tama-revive-btn" onclick="reviveTamagotchi()">🥚 Neu starten</button>
+      `}
+    </div>`;
+}
+window.renderTamagotchi = renderTamagotchi;
 
 function plantSeed(patchIdx, cropId, cropName) {
   G.garden.patches[patchIdx] = { plantId: cropId, plantTitle: cropName, growthPoints: 0 };
@@ -2487,6 +2681,7 @@ function renderAll() {
   renderCleaningBadge();
   renderCleaningScreen();
   renderTutorial();
+  renderTamagotchiBtn();
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3016,6 +3211,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-trophies")?.addEventListener("click", () => { renderTrophies(); openModal("modal-trophies"); });
   document.getElementById("btn-memory")?.addEventListener("click",   () => { initMemory(); renderLabelPicker(); openModal("modal-memory"); });
   document.getElementById("btn-settings")?.addEventListener("click", () => { renderSettings(); openModal("modal-settings"); });
+  document.getElementById("btn-tama")?.addEventListener("click",     () => { renderTamagotchi(); openModal("modal-tama"); });
 
   // Restaurant controls
   document.getElementById("btn-open-restaurant")?.addEventListener("click", openRestaurant);
@@ -3110,6 +3306,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load game state and render — after listeners so a crash doesn't lose them
   try {
     G = loadState();
+    checkTamagotchiDay();
     renderAll();
     renderTutorial();
     if (G.activeMode && G.activeMode !== "tavern") switchMode(G.activeMode);

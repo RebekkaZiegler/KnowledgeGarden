@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="glow1" cx="50%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#d4a030" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#d4a030" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Soil layers -->
+  <ellipse cx="60" cy="153" rx="58" ry="11" fill="#1e1008"/>
+  <ellipse cx="60" cy="146" rx="48" ry="10" fill="#2d1a0a"/>
+  <ellipse cx="60" cy="139" rx="35" ry="8" fill="#3d2412"/>
+  <!-- Glow from buried seed -->
+  <ellipse cx="60" cy="126" rx="32" ry="30" fill="url(#glow1)"/>
+  <!-- Seed body -->
+  <ellipse cx="60" cy="128" rx="13" ry="17" fill="#10080a" stroke="#906820" stroke-width="1.5"/>
+  <!-- Rune cross -->
+  <line x1="60" y1="113" x2="60" y2="143" stroke="#c89020" stroke-width="0.8" stroke-opacity="0.85"/>
+  <line x1="47" y1="120" x2="73" y2="136" stroke="#c89020" stroke-width="0.8" stroke-opacity="0.85"/>
+  <line x1="73" y1="120" x2="47" y2="136" stroke="#c89020" stroke-width="0.8" stroke-opacity="0.85"/>
+  <circle cx="60" cy="128" r="5" fill="none" stroke="#c89020" stroke-width="0.7" stroke-opacity="0.65"/>
+  <!-- First crack of life -->
+  <path d="M57,114 L60,110 L63,114 L61,117 L63,113" stroke="#f5d840" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Tiny glow at crack -->
+  <circle cx="60" cy="111" r="3" fill="#f5e060" fill-opacity="0.5"/>
+</svg>
