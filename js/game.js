@@ -171,7 +171,8 @@ function defaultState() {
       sessionAnswered: 0,
     },
 
-    activeMode: "tavern",
+    activeMode:     "tama",
+    activeGameMode: "tavern",
 
     clicker: {
       kp:          0,
@@ -240,7 +241,14 @@ function normalizeState(s) {
   const d      = defaultState();
   s.currentDay  = s.currentDay  ?? d.currentDay;
   s.phase       = s.phase       ?? d.phase;
-  s.activeMode  = s.activeMode  ?? d.activeMode;
+  s.activeMode      = s.activeMode      ?? d.activeMode;
+  s.activeGameMode  = s.activeGameMode  ?? d.activeGameMode;
+  // Migrate saves from before the Alräunchen tab existed, where activeMode
+  // held a game sub-mode directly (tavern/clicker/clinic).
+  if (["tavern", "clicker", "clinic"].includes(s.activeMode)) {
+    s.activeGameMode = s.activeMode;
+    s.activeMode     = "tama";
+  }
   s.clicker     = Object.assign({}, d.clicker,  s.clicker  || {});
   s.clicker.buildings   = Object.assign({}, s.clicker.buildings   || {});
   s.clicker.discoveries = s.clicker.discoveries || [];
@@ -886,6 +894,19 @@ function feedTamagotchi() {
   t.feedsToday = (t.feedsToday || 0) + 1;
 }
 
+function feedTamagotchiStudy() {
+  if (!G.tamagotchi.alive) return;
+  if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
+  const entry = pickNextQuestion();
+  if (!entry) { showToast("Keine Fragen verfügbar."); return; }
+  showQuestion("🌱 Alräunchen füttern", entry,
+    () => { feedTamagotchi(); },
+    () => {},
+    () => { saveState(); renderTamagotchi(); }
+  );
+}
+window.feedTamagotchiStudy = feedTamagotchiStudy;
+
 function determineTamaPath(t) {
   const scores = t.weekScores || [];
   if (!scores.length) { t.path = 'b'; return; }
@@ -971,19 +992,20 @@ function reviveTamagotchi() {
 window.reviveTamagotchi = reviveTamagotchi;
 
 function renderTamagotchiBtn() {
-  const btn = document.getElementById("btn-tama");
+  const btn = document.getElementById("top-tab-tama");
   if (!btn) return;
   const t = G.tamagotchi;
   const pct = Math.min(100, Math.round(((t.feedsToday || 0) / (t.requiredToday || 5)) * 100));
   const hungry = t.alive && pct < 100;
-  btn.classList.toggle("tama-btn--hungry", hungry);
+  btn.classList.toggle("top-tab--hungry", hungry);
   btn.title = t.alive
     ? `${getTamaName(t.stage, t.path)} — ${t.feedsToday || 0}/${t.requiredToday || 5} heute`
     : "Gestorben";
 }
 
 function renderTamagotchi() {
-  const el = document.getElementById("tama-modal-body");
+  const el = document.getElementById("tama-screen-body");
+  const feedBtn = document.getElementById("tama-feed-btn");
   if (!el) return;
   const t = G.tamagotchi;
   checkTamagotchiDay();
@@ -1027,6 +1049,9 @@ function renderTamagotchi() {
         <button class="tama-revive-btn" onclick="reviveTamagotchi()">🥚 Neu starten</button>
       `}
     </div>`;
+
+  if (feedBtn) feedBtn.hidden = !t.alive;
+  renderTamagotchiBtn();
 }
 window.renderTamagotchi = renderTamagotchi;
 
@@ -3172,9 +3197,34 @@ function renderKnowledgeTower() {
 }
 
 /* ══════════════════════════════════════════════════════════
-   MODE SWITCHING
+   MODE SWITCHING — top tabs (Alräunchen / Spiele) + game sub-tabs
 ══════════════════════════════════════════════════════════ */
-function switchMode(mode) {
+function switchTopTab(tab) {
+  const tamaEl  = document.getElementById("screen-tama");
+  const gamesEl = document.getElementById("screen-games");
+
+  if (tamaEl)  tamaEl.hidden = tab !== "tama";
+  // Use style.display for gamesEl because its CSS `display:flex` overrides the `hidden` attribute
+  if (gamesEl) gamesEl.style.display = tab === "games" ? "" : "none";
+
+  document.querySelectorAll(".top-tab").forEach(btn => btn.classList.remove("top-tab--active"));
+  document.getElementById(`top-tab-${tab}`)?.classList.add("top-tab--active");
+
+  if (tab === "tama") {
+    // Games are only "active" while their tab is open — pause everything else
+    stopClickerTick();
+    stopClinicTimers();
+    renderTamagotchi();
+  } else {
+    switchGameMode(G.activeGameMode || "tavern");
+  }
+
+  G.activeMode = tab;
+  saveState();
+}
+window.switchTopTab = switchTopTab;
+
+function switchGameMode(mode) {
   // Tavern uses the swipe screen-container; others use mode-screen divs
   const tavernEl  = document.getElementById("screen-container");
   const clickerEl = document.getElementById("screen-clicker");
@@ -3185,7 +3235,7 @@ function switchMode(mode) {
   if (clickerEl) clickerEl.hidden = mode !== "clicker";
   if (clinicEl)  clinicEl.hidden  = mode !== "clinic";
 
-  document.querySelectorAll(".mode-tab").forEach(btn => btn.classList.remove("mode-tab--active"));
+  document.querySelectorAll("#mode-tabs .mode-tab").forEach(btn => btn.classList.remove("mode-tab--active"));
   document.getElementById(`mode-tab-${mode}`)?.classList.add("mode-tab--active");
 
   // Start/stop timers per mode
@@ -3195,10 +3245,10 @@ function switchMode(mode) {
   if (mode === "clinic")  { startClinicTimers(); renderClinic(); }
   else                      stopClinicTimers();
 
-  G.activeMode = mode;
+  G.activeGameMode = mode;
   saveState();
 }
-window.switchMode = switchMode;
+window.switchGameMode = switchGameMode;
 
 /* ══════════════════════════════════════════════════════════
    BOOT
@@ -3211,7 +3261,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-trophies")?.addEventListener("click", () => { renderTrophies(); openModal("modal-trophies"); });
   document.getElementById("btn-memory")?.addEventListener("click",   () => { initMemory(); renderLabelPicker(); openModal("modal-memory"); });
   document.getElementById("btn-settings")?.addEventListener("click", () => { renderSettings(); openModal("modal-settings"); });
-  document.getElementById("btn-tama")?.addEventListener("click",     () => { renderTamagotchi(); openModal("modal-tama"); });
 
   // Restaurant controls
   document.getElementById("btn-open-restaurant")?.addEventListener("click", openRestaurant);
@@ -3282,13 +3331,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
-  // Mode tabs
-  document.querySelectorAll(".mode-tab").forEach(btn => {
-    btn.addEventListener("click", () => switchMode(btn.id.replace("mode-tab-", "")));
+  // Top tabs (Alräunchen / Spiele)
+  document.getElementById("top-tab-tama")?.addEventListener("click",  () => switchTopTab("tama"));
+  document.getElementById("top-tab-games")?.addEventListener("click", () => switchTopTab("games"));
+
+  // Game sub-tabs (Taverne / Wissen / Klinik)
+  document.querySelectorAll("#mode-tabs .mode-tab").forEach(btn => {
+    btn.addEventListener("click", () => switchGameMode(btn.id.replace("mode-tab-", "")));
   });
 
   // Clicker study button
   document.getElementById("clicker-study-btn")?.addEventListener("click", clickerStudy);
+
+  // Alräunchen feed button
+  document.getElementById("tama-feed-btn")?.addEventListener("click", feedTamagotchiStudy);
 
   // Clinic panel tabs
   document.querySelectorAll("[data-clinic-tab]").forEach(btn => {
@@ -3309,7 +3365,7 @@ document.addEventListener("DOMContentLoaded", () => {
     checkTamagotchiDay();
     renderAll();
     renderTutorial();
-    if (G.activeMode && G.activeMode !== "tavern") switchMode(G.activeMode);
+    switchTopTab(G.activeMode || "tama");
   } catch (e) {
     const stack = (e.stack || "").split("\n").slice(0, 8).join("<br>");
     document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.8rem"><b>Ladefehler:</b> ${e.message}<br><br>${stack}<br><br><button onclick="localStorage.clear();location.reload()" style="padding:0.5rem 1rem;font-size:1rem">Zurücksetzen</button></div>`;

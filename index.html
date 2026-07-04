@@ -25,116 +25,131 @@
   </header>
 
   <!-- ═══════════════════════════════════════════════════
-       MODE TABS
+       TOP TABS
   ════════════════════════════════════════════════════ -->
-  <div id="mode-tabs">
-    <button id="mode-tab-tavern"  class="mode-tab mode-tab--active">🍕 Taverne</button>
-    <button id="mode-tab-clicker" class="mode-tab">📈 Wissen</button>
-    <button id="mode-tab-clinic"  class="mode-tab">🏥 Klinik</button>
-    <button id="btn-tama" class="mode-tab tama-tab" title="Alräunchen">🌱</button>
+  <div id="top-tabs">
+    <button id="top-tab-tama"  class="top-tab top-tab--active">🌱 Alräunchen</button>
+    <button id="top-tab-games" class="top-tab">🎮 Spiele</button>
   </div>
 
   <!-- ═══════════════════════════════════════════════════
-       SWIPE SCREENS
+       SCREEN: Alräunchen (main focus)
   ════════════════════════════════════════════════════ -->
-  <div id="screen-container">
+  <div id="screen-tama" class="mode-screen">
+    <div id="tama-screen-body" class="tama-screen-body"></div>
+    <button id="tama-feed-btn" class="clicker-study-btn">
+      📖 Frage beantworten
+      <span>Füttert dein Alräunchen</span>
+    </button>
+  </div>
 
-    <!-- LEFT: Garden -->
-    <section id="screen-garden" class="screen">
-      <div id="garden-grid"></div>
-    </section>
+  <!-- ═══════════════════════════════════════════════════
+       SCREEN: Spiele (Taverne / Wissen / Klinik)
+  ════════════════════════════════════════════════════ -->
+  <div id="screen-games" class="screen-games-wrap">
 
-    <!-- CENTER: Restaurant -->
-    <section id="screen-restaurant" class="screen screen--center">
-      <!-- Sleep / end-of-day summary overlay -->
-      <div id="sleep-overlay" hidden>
-        <div id="sleep-stats">
-          <div id="sleep-day-label"></div>
-          <div id="sleep-stats-grid"></div>
-          <button id="btn-new-day">🌅 Neuer Tag</button>
+    <div id="mode-tabs">
+      <button id="mode-tab-tavern"  class="mode-tab mode-tab--active">🍕 Taverne</button>
+      <button id="mode-tab-clicker" class="mode-tab">📈 Wissen</button>
+      <button id="mode-tab-clinic"  class="mode-tab">🏥 Klinik</button>
+    </div>
+
+    <!-- SWIPE SCREENS -->
+    <div id="screen-container">
+
+      <!-- LEFT: Garden -->
+      <section id="screen-garden" class="screen">
+        <div id="garden-grid"></div>
+      </section>
+
+      <!-- CENTER: Restaurant -->
+      <section id="screen-restaurant" class="screen screen--center">
+        <!-- Sleep / end-of-day summary overlay -->
+        <div id="sleep-overlay" hidden>
+          <div id="sleep-stats">
+            <div id="sleep-day-label"></div>
+            <div id="sleep-stats-grid"></div>
+            <button id="btn-new-day">🌅 Neuer Tag</button>
+          </div>
+        </div>
+
+        <div id="restaurant-closed-overlay">
+          <span>🌙</span>
+          <p>Geschlossen</p>
+        </div>
+        <div id="re-stats-row"></div>
+        <div id="re-scene">
+          <div id="re-sprites"></div>
+          <div id="re-tables"></div>
+        </div>
+        <div id="re-controls">
+          <button id="btn-open-restaurant" class="re-control-btn">🍽️&nbsp;Öffnen</button>
+          <button id="btn-last-call" class="re-control-btn" hidden>🔔&nbsp;Last Call</button>
+          <button id="btn-sleep" class="re-control-btn re-control-btn--sleep" hidden>🌙&nbsp;Schließen</button>
+          <button id="btn-raven" class="re-control-btn re-control-btn--raven" title="Raben-Lieferung"><img src="assets/images/raven_btn.png" class="raven-btn-img" alt="Rabe"></button>
+          <button id="btn-kitchen" class="re-control-btn" title="Küche">🍕</button>
+        </div>
+        <div id="re-question-area" hidden></div>
+      </section>
+
+      <!-- RIGHT: Cleaning -->
+      <section id="screen-cleaning" class="screen">
+        <div class="cleaning-header">
+          <span id="cleaning-soap">🧼 Seife: 10/10</span>
+          <button id="cleaning-buy-soap" class="cleaning-buy-btn" onclick="buySoap()" hidden>Seife kaufen (1 Frage)</button>
+        </div>
+        <div id="cleaning-grid" class="cleaning-grid"></div>
+      </section>
+
+    </div>
+
+    <!-- Knowledge Clicker -->
+    <div id="screen-clicker" class="mode-screen" hidden>
+      <div id="clicker-kp-display">
+        <div id="clicker-kp-number">0</div>
+        <div id="clicker-kp-label">Wissenspunkte</div>
+        <div id="clicker-kp-rate">0 KP/Sek</div>
+      </div>
+      <button id="clicker-study-btn" class="clicker-study-btn">
+        📖 Frage beantworten
+        <span id="clicker-btn-sub">+100 KP</span>
+      </button>
+      <div id="clicker-buildings"></div>
+      <div id="clicker-discoveries"></div>
+    </div>
+
+    <!-- Clinic -->
+    <div id="screen-clinic" class="mode-screen" hidden>
+      <div id="clinic-header">
+        <div id="clinic-village-health">
+          <span class="clinic-health-label">💚 Dorfgesundheit</span>
+          <div id="clinic-health-bar-wrap"><div id="clinic-health-bar"></div></div>
+          <span id="clinic-health-pct">50%</span>
+        </div>
+        <div id="clinic-resources">
+          <span id="clinic-gold">💰 0</span>
+          <span id="clinic-rep">⭐ 0</span>
+          <span id="clinic-healed">❤️ 0</span>
         </div>
       </div>
-
-      <div id="restaurant-closed-overlay">
-        <span>🌙</span>
-        <p>Geschlossen</p>
+      <div class="clinic-tabs">
+        <button class="tab-btn tab-btn--active" data-clinic-tab="patients">🏥 Patienten</button>
+        <button class="tab-btn"                 data-clinic-tab="tower">📊 Wissensturm</button>
+        <button class="tab-btn"                 data-clinic-tab="upgrades">🔧 Upgrades</button>
       </div>
-      <div id="re-stats-row"></div>
-      <div id="re-scene">
-        <div id="re-sprites"></div>
-        <div id="re-tables"></div>
+      <div id="clinic-panel-patients" class="clinic-panel">
+        <div id="clinic-waiting-label" class="muted" style="font-size:0.82rem;margin-bottom:0.5rem"></div>
+        <div id="clinic-waiting-list"></div>
       </div>
-      <div id="re-controls">
-        <button id="btn-open-restaurant" class="re-control-btn">🍽️&nbsp;Öffnen</button>
-        <button id="btn-last-call" class="re-control-btn" hidden>🔔&nbsp;Last Call</button>
-        <button id="btn-sleep" class="re-control-btn re-control-btn--sleep" hidden>🌙&nbsp;Schließen</button>
-        <button id="btn-raven" class="re-control-btn re-control-btn--raven" title="Raben-Lieferung"><img src="assets/images/raven_btn.png" class="raven-btn-img" alt="Rabe"></button>
-        <button id="btn-kitchen" class="re-control-btn" title="Küche">🍕</button>
+      <div id="clinic-panel-tower" class="clinic-panel" hidden>
+        <p class="muted" style="font-size:0.8rem;margin-bottom:0.6rem">Fortschritt pro Kapitel — rot/orange = begonnen, grün = fast fertig, gold = alle Fragen gemeistert.</p>
+        <div id="clinic-tower-svg-wrap"></div>
       </div>
-      <div id="re-question-area" hidden></div>
-    </section>
-
-    <!-- RIGHT: Cleaning -->
-    <section id="screen-cleaning" class="screen">
-      <div class="cleaning-header">
-        <span id="cleaning-soap">🧼 Seife: 10/10</span>
-        <button id="cleaning-buy-soap" class="cleaning-buy-btn" onclick="buySoap()" hidden>Seife kaufen (1 Frage)</button>
-      </div>
-      <div id="cleaning-grid" class="cleaning-grid"></div>
-    </section>
-
-  </div>
-
-
-  <!-- ═══════════════════════════════════════════════════
-       MODE: Knowledge Clicker
-  ════════════════════════════════════════════════════ -->
-  <div id="screen-clicker" class="mode-screen" hidden>
-    <div id="clicker-kp-display">
-      <div id="clicker-kp-number">0</div>
-      <div id="clicker-kp-label">Wissenspunkte</div>
-      <div id="clicker-kp-rate">0 KP/Sek</div>
-    </div>
-    <button id="clicker-study-btn" class="clicker-study-btn">
-      📖 Frage beantworten
-      <span id="clicker-btn-sub">+100 KP</span>
-    </button>
-    <div id="clicker-buildings"></div>
-    <div id="clicker-discoveries"></div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════
-       MODE: Clinic
-  ════════════════════════════════════════════════════ -->
-  <div id="screen-clinic" class="mode-screen" hidden>
-    <div id="clinic-header">
-      <div id="clinic-village-health">
-        <span class="clinic-health-label">💚 Dorfgesundheit</span>
-        <div id="clinic-health-bar-wrap"><div id="clinic-health-bar"></div></div>
-        <span id="clinic-health-pct">50%</span>
-      </div>
-      <div id="clinic-resources">
-        <span id="clinic-gold">💰 0</span>
-        <span id="clinic-rep">⭐ 0</span>
-        <span id="clinic-healed">❤️ 0</span>
+      <div id="clinic-panel-upgrades" class="clinic-panel" hidden>
+        <div id="clinic-upgrades-list"></div>
       </div>
     </div>
-    <div class="clinic-tabs">
-      <button class="tab-btn tab-btn--active" data-clinic-tab="patients">🏥 Patienten</button>
-      <button class="tab-btn"                 data-clinic-tab="tower">📊 Wissensturm</button>
-      <button class="tab-btn"                 data-clinic-tab="upgrades">🔧 Upgrades</button>
-    </div>
-    <div id="clinic-panel-patients" class="clinic-panel">
-      <div id="clinic-waiting-label" class="muted" style="font-size:0.82rem;margin-bottom:0.5rem"></div>
-      <div id="clinic-waiting-list"></div>
-    </div>
-    <div id="clinic-panel-tower" class="clinic-panel" hidden>
-      <p class="muted" style="font-size:0.8rem;margin-bottom:0.6rem">Fortschritt pro Kapitel — rot/orange = begonnen, grün = fast fertig, gold = alle Fragen gemeistert.</p>
-      <div id="clinic-tower-svg-wrap"></div>
-    </div>
-    <div id="clinic-panel-upgrades" class="clinic-panel" hidden>
-      <div id="clinic-upgrades-list"></div>
-    </div>
+
   </div>
 
   <!-- ═══════════════════════════════════════════════════
@@ -220,17 +235,6 @@
       <h2>🏆 Trophäenraum</h2>
       <div id="trophy-list" class="list"></div>
       <button id="close-trophies-btn" class="modal-close-btn">Schließen</button>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════════════
-       MODAL: Tamagotchi — Alräunchen
-  ════════════════════════════════════════════════════ -->
-  <div id="modal-tama" class="modal-overlay" hidden>
-    <div class="modal-box tama-modal-box">
-      <h2>🌱 Alräunchen</h2>
-      <div id="tama-modal-body"></div>
-      <button class="modal-close-btn" onclick="closeModal('modal-tama')">Schließen</button>
     </div>
   </div>
 

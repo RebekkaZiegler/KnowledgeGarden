@@ -3579,14 +3579,14 @@ body.plant-open #back-to-garden-btn { display: block; }
 /* ═══════════════════════════════════════
    MODE TABS
 ═══════════════════════════════════════ */
-#mode-tabs {
+#top-tabs, #mode-tabs {
   display: flex;
   background: var(--panel);
   border-bottom: 1px solid var(--line);
   flex-shrink: 0;
   z-index: 10;
 }
-.mode-tab {
+.top-tab, .mode-tab {
   flex: 1;
   padding: 0.55rem 0.25rem;
   font-size: 0.82rem;
@@ -3597,33 +3597,34 @@ body.plant-open #back-to-garden-btn { display: block; }
   color: var(--muted);
   cursor: pointer;
   transition: color 0.2s, border-color 0.2s;
+  position: relative;
 }
-.mode-tab--active {
+.top-tab--active, .mode-tab--active {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
-.tama-tab {
-  flex: 0 0 auto;
-  padding: 0.55rem 0.6rem;
-  font-size: 1rem;
-  border-bottom: 2px solid transparent;
-  position: relative;
-}
-.tama-tab.tama-btn--hungry::after {
+.top-tab--hungry::after {
   content: '';
   position: absolute;
-  top: 6px; right: 6px;
+  top: 6px; right: 10px;
   width: 7px; height: 7px;
   border-radius: 50%;
   background: #e04040;
   box-shadow: 0 0 4px #e04040;
 }
+.screen-games-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
 
 /* ═══════════════════════════════════════
-   TAMAGOTCHI MODAL
+   TAMAGOTCHI SCREEN
 ═══════════════════════════════════════ */
-.tama-modal-box {
+.tama-screen-body {
   max-width: 340px;
+  margin: 1.5rem auto 0;
   text-align: center;
 }
 .tama-creature {
