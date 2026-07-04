@@ -507,6 +507,7 @@ function isMultiCorrect(q) {
 function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
   const modal   = document.getElementById("modal-question");
   const ctxEl   = document.getElementById("question-context");
+  const imgEl   = document.getElementById("question-image");
   const textEl  = document.getElementById("question-text");
   const optsEl  = document.getElementById("question-options");
   const fbEl    = document.getElementById("question-feedback");
@@ -514,6 +515,8 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
 
   const q = entry.question;
   ctxEl.textContent  = contextText + (entry.isRetry ? " · Wiederholung" : "");
+  if (q.image) { imgEl.src = q.image; imgEl.hidden = false; }
+  else         { imgEl.hidden = true; imgEl.src = ""; }
   textEl.textContent = q.type === "true_false" ? q.statement : q.question;
   optsEl.innerHTML   = "";
   fbEl.textContent   = q.explanation || "";

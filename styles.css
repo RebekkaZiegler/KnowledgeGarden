@@ -3225,6 +3225,15 @@ body.plant-open #back-to-garden-btn { display: block; }
   letter-spacing: 0.05em;
 }
 
+.question-image {
+  display: block;
+  max-width: 100%;
+  max-height: 200px;
+  margin: 0 auto 0.8rem;
+  border-radius: 8px;
+  background: #fff;
+}
+
 .question-text {
   font-size: 1rem;
   line-height: 1.5;

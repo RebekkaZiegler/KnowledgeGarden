@@ -273,7 +273,7 @@ const ZYTOLOGIE_1031_PLANTS = [
     id: "organellen_ribosomen_er_golgi",
     title: "Organellen: Ribosomen, ER und Golgi-Apparat",
     harvestQuestions: [
-      { id: "zo_h1", type: "mc", question: "Welche Organelle ist hauptverantwortlich für die ATP-Synthese durch oxidative Phosphorylierung?", options: [
+      { id: "zo_h1", type: "mc", image: "assets/diagrams/mitochondrium.png", question: "Welche Organelle ist hauptverantwortlich für die ATP-Synthese durch oxidative Phosphorylierung?", options: [
         { text: "Mitochondrium", correct: true },
         { text: "Golgi-Apparat", correct: false },
         { text: "Ribosom", correct: false },
@@ -4607,6 +4607,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       {
         id: "herzklappen_h1",
         type: "mc",
+        image: "assets/diagrams/herzklappen_numeriert.png",
         question: "Welche Klappe liegt zwischen rechtem Vorhof und rechter Kammer?",
         options: [
           { text: "Trikuspidalklappe", correct: true },
