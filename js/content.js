@@ -831,8 +831,8 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Mehrreihiges Flimmerepithel", correct: false },
         { text: "Übergangsepithel (Urothel)", correct: false }
       ], explanation: "Einschichtiges Plattenepithel hat besondere Namen je nach Lokalisation: Endothel (Blut- und Lymphgefässinnenwand), Mesothel (Pleura, Peritoneum, Perikard). Diese dünne Schicht ermöglicht Diffusion und Filtration." },
-      { id: "hi_od_h5", type: "true_false", statement: "Die Hautepidermis besteht aus mehrschichtigem verhorntem Plattenepithel.", answer: true, explanation: "Hautepidermis: mehrschichtiges verhorntes Plattenepithel (5 Schichten: Stratum basale → spinosum → granulosum → lucidum → corneum). Verhornung (Keratinisierung) macht die Oberfläche wasserdicht. Nicht verhornt: Mundhöhlen- und Vaginalschleimhaut (mechanischer Schutz ohne Wasserdichte)." },
-      { id: "hi_od_h6", type: "mc", question: "Was sind Mikrovilli und wo kommen sie vor?", options: [
+      { id: "hi_od_h5", type: "true_false", image: "assets/diagrams/epidermis_schichten.png", statement: "Die Hautepidermis besteht aus mehrschichtigem verhorntem Plattenepithel.", answer: true, explanation: "Hautepidermis: mehrschichtiges verhorntes Plattenepithel (5 Schichten: Stratum basale → spinosum → granulosum → lucidum → corneum). Verhornung (Keratinisierung) macht die Oberfläche wasserdicht. Nicht verhornt: Mundhöhlen- und Vaginalschleimhaut (mechanischer Schutz ohne Wasserdichte)." },
+      { id: "hi_od_h6", type: "mc", image: "assets/diagrams/histologie_figure_5.png", question: "Was sind Mikrovilli und wo kommen sie vor?", options: [
         { text: "Zytoplasmaausstülpungen des apikalen Zellapex zur Oberflächenvergrösserung; typisch an Darmepithel und Nierentubuli", correct: true },
         { text: "Zellfortsätze für Fortbewegung (Flimmerepithel)", correct: false },
         { text: "Verbindungsstrukturen zwischen Nachbarzellen (Tight Junctions)", correct: false },
@@ -1584,7 +1584,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
     id: "knochenformen",
     title: "Knochenformen",
     harvestQuestions: [
-      { id: "ko_fo_h1", type: "mc", question: "Was ist das Kennzeichen langer Röhrenknochen (z.B. Femur) im Vergleich zu kurzen Knochen?", options: [
+      { id: "ko_fo_h1", type: "mc", image: "assets/diagrams/histologie_figure_20.png", question: "Was ist das Kennzeichen langer Röhrenknochen (z.B. Femur) im Vergleich zu kurzen Knochen?", options: [
         { text: "Deutlich längere als breite Form mit Diaphyse und zwei Epiphysen", correct: true },
         { text: "Annähernd gleiche Ausdehnung in alle Raumrichtungen", correct: false },
         { text: "Sehr dünne Plattenform mit überwiegend Spongiosa", correct: false },
@@ -1755,7 +1755,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
     id: "extremitätenskelett",
     title: "Extremitätenskelett",
     harvestQuestions: [
-      { id: "ko_ex_h1", type: "mc", question: "Welche zwei Knochen bilden den Schultergürtel?", options: [
+      { id: "ko_ex_h1", type: "mc", image: "assets/diagrams/knochenlehre_figure_11.png", question: "Welche zwei Knochen bilden den Schultergürtel?", options: [
         { text: "Klavikula (Schlüsselbein) und Skapula (Schulterblatt)", correct: true },
         { text: "Humerus und Skapula", correct: false },
         { text: "Sternum und Klavikula", correct: false },
@@ -1875,7 +1875,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Eine Achse; Beispiel: Kniegelenk", correct: false },
         { text: "Keine Achsen; dient nur der Stossdämpfung", correct: false }
       ], explanation: "Das Sattelgelenk (Articulatio sellaris) hat zwei konvex-konkave Gelenkflächen (sattelförmig), die zwei Bewegungsachsen erlauben: Flexion/Extension + Abduktion/Adduktion. Das klassische Beispiel ist das Daumensattelgelenk, das die Opposition des Daumens (Greifen) ermöglicht. Kein axiales Gleiten/Rotation möglich." },
-      { id: "ko_ga_h2", type: "mc", question: "Was unterscheidet das Kugelgelenk der Schulter vom Kugelgelenk der Hüft in Bezug auf Stabilität und Mobilität?", options: [
+      { id: "ko_ga_h2", type: "mc", image: "assets/diagrams/knochenlehre_figure_12.png", question: "Was unterscheidet das Kugelgelenk der Schulter vom Kugelgelenk der Hüft in Bezug auf Stabilität und Mobilität?", options: [
         { text: "Schulter: flache Pfanne = grössere Mobilität, aber weniger Stabilität; Hüft: tiefe Pfanne = stabiler, aber weniger mobil", correct: true },
         { text: "Schulter und Hüft sind vollständig identisch in Form und Stabilität", correct: false },
         { text: "Hüft: grössere Mobilität als Schulter; Schulter: stabiler durch Acetabulum", correct: false },
@@ -1930,6 +1930,7 @@ makeDetailedPlant({
       {
         type: "mc",
         id: "hk_h1",
+        image: "assets/diagrams/knochenlehre_figure_14.png",
         question: "Wie viele Handwurzelknochen gibt es und wie lautet der zugehörige Merkspruch?",
         options: [
           { text: "8 Knochen; Merkspruch: \u201eEin Kahn, der fährt im Mondenschein im Dreieck um das Erbsenbein, Vieleck groß, Vieleck klein, am Kopf, da muss ein Haken sein\u201c", correct: true },
@@ -2130,6 +2131,7 @@ makeDetailedPlant({
       {
         type: "mc",
         id: "kf_h3",
+        image: "assets/diagrams/knochenlehre_figure_17.png",
         question: "Welche Sonderstrukturen des Kniegelenks sichern die Stabilität in Beugestellung?",
         options: [
           { text: "Vorderes und hinteres Kreuzband (Ligamenta cruciata)", correct: true },
@@ -2218,6 +2220,7 @@ makeDetailedPlant({
       {
         type: "mc",
         id: "sa_h3",
+        image: "assets/diagrams/knochenlehre_figure_10.png",
         question: "Welche Bewegung ermöglicht das untere Kopfgelenk (Articulatio atlantoaxialis) und welche Struktur sichert es?",
         options: [
           { text: "Drehbewegung des Kopfes (ca. 30° nach jeder Seite); Lig. transversum atlantis hält den Dens axis", correct: true },
@@ -2666,7 +2669,7 @@ const MUSKELLEHRE_1034_PLANTS = [
     id: "kopfmuskulatur",
     title: "Muskulatur des Kopfes",
     harvestQuestions: [
-      { id: "mu_kopf_h1", type: "mc", question: "Was unterscheidet die mimische Muskulatur strukturell von anderen Skelettmuskeln?", options: [
+      { id: "mu_kopf_h1", type: "mc", image: "assets/diagrams/muskellehre_figure_10.png", question: "Was unterscheidet die mimische Muskulatur strukturell von anderen Skelettmuskeln?", options: [
         { text: "Sie inseriert in Haut/Unterhautgewebe statt Knochen-zu-Knochen – ermöglicht direkte Gesichtshautbewegung", correct: true },
         { text: "Sie ist aus glattem Muskelgewebe aufgebaut, nicht aus quergestreiftem", correct: false },
         { text: "Sie wird vom N. trigeminus innerviert, nicht vom N. facialis", correct: false },
@@ -2724,7 +2727,7 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Alle Muskeln des Thorax einschliesslich der Interkostalmuskeln", correct: false },
         { text: "Nur die Bauchmuskeln als Antagonisten der Rückenstrecker", correct: false }
       ], explanation: "Autochthone Rückenmuskulatur (= 'eigenständige' Rückenmuskeln): stammen aus den Myotomen der Wirbelsegmente und werden durch dorsale Rami der Spinalnerven innerviert. Tiefer Anteil (M. multifidus, Mm. rotatores): segmentale Stabilisierung einzelner Wirbelgelenke. Oberfläche (M. erector spinä, M. longissimus): Aufrichtung der Wirbelsäule. Klinisch: Chronischer Rückenschmerz oft durch Schwäche dieser Muskeln." },
-      { id: "mu_rumpf_h2", type: "mc", question: "Welche Funktion hat der M. transversus abdominis, der tiefste Bauchmuskel?", options: [
+      { id: "mu_rumpf_h2", type: "mc", image: "assets/diagrams/muskellehre_figure_14.png", question: "Welche Funktion hat der M. transversus abdominis, der tiefste Bauchmuskel?", options: [
         { text: "Stabilisierung der Lendenwirbelsäule durch Druckerhöhung im Bauchraum (Bauchpresse) – kein Beugeeffekt auf den Rumpf", correct: true },
         { text: "Rumpfbeugung (Flexion) als stärkster Bauchmuskel", correct: false },
         { text: "Rumpfrotation ipsilateral wie M. obliquus externus", correct: false },
@@ -2751,7 +2754,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Bauchmuskeln (rectus, obliquus ext./int., transversus): Hauptfunktionen sind Rumpfbeugung (rectus), Rotation (obliqui), Seitneigung und intraabdominaler Druck (transversus = Bauchpresse). Bauchpresse wichtig bei Miktion, Defäkation, Geburt, Husten, Niesen." }
     ],
     phase4Questions: [
-      { id: "mu_rumpf_mc1", type: "mc", question: "Welche Muskeln gehören zur primären inspiratorischen Atemhilfsmuskulatur?", options: [
+      { id: "mu_rumpf_mc1", type: "mc", image: "assets/diagrams/muskellehre_figure_12.png", question: "Welche Muskeln gehören zur primären inspiratorischen Atemhilfsmuskulatur?", options: [
         { text: "M. sternocleidomastoideus und Mm. scaleni", correct: true },
         { text: "M. rectus abdominis und M. obliquus externus", correct: false },
         { text: "Mm. intercostales interni", correct: false },
@@ -2993,6 +2996,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       {
         type: "mc",
         id: "dp_p4_2",
+        image: "assets/diagrams/muskellehre_figure_13.png",
         question: "Was unterscheidet die Funktion des M. serratus anterior von der des M. pectoralis major?",
         options: [
           { text: "Serratus anterior: fixiert Scapula am Thorax, ermöglicht Armhebung über die Horizontale; Pectoralis major: adduziert und innenrotiert den Arm", correct: true },
@@ -3125,7 +3129,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Lunge durch Luftdruckschwankungen beim Ausatmen", correct: false },
         { text: "Mundhöhle allein durch Zungen- und Lippenbewegung", correct: false }
       ], explanation: "Phonation findet im Kehlkopf statt: Die Aryknorpel (Stellknorpel) nähern die echten Stimmbänder aneinander, Ausatemluft bringt sie zum Schwingen. Die erzeugte Grundschwingung wird in Rachen, Mund und Nasenhöhle als Resonanzraum geformt und zu Sprache moduliert." },
-      { id: "at_ü_h6", type: "mc", question: "Was ist der Unterschied zwischen oberen und unteren Atemwegen?", options: [
+      { id: "at_ü_h6", type: "mc", image: "assets/diagrams/atmungssystem_figure_5.png", question: "Was ist der Unterschied zwischen oberen und unteren Atemwegen?", options: [
         { text: "Obere: Nase, NNH, Rachen; untere: Kehlkopf, Trachea, Bronchien, Lunge", correct: true },
         { text: "Obere: Trachea und Kehlkopf; untere: Nase und Rachen", correct: false },
         { text: "Obere: Alveolen und Bronchiolen; untere: Rachen und Nase", correct: false },
@@ -3139,7 +3143,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Lunge und Bronchiolen", correct: false },
         { text: "Kehlkopf und Trachea", correct: false }
       ], explanation: "Die oberen Atemwege umfassen Nase, Nasennebenhöhlen und Rachenraum; Kehlkopf, Trachea und Bronchien gehören zu den unteren Atemwegen." },
-      { id: "at_ü_mc2", type: "mc", question: "Wo findet der eigentliche Gasaustausch statt?", options: [
+      { id: "at_ü_mc2", type: "mc", image: "assets/diagrams/atmungssystem_figure_11.png", question: "Wo findet der eigentliche Gasaustausch statt?", options: [
         { text: "In den Alveolen der Lunge", correct: true },
         { text: "In der Trachea", correct: false },
         { text: "In den Hauptbronchien", correct: false },
@@ -3229,7 +3233,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Nasenmuscheln und Nasenscheidewand", correct: false },
         { text: "Choanä, Fauces und Epiglottis", correct: false }
       ], explanation: "Der Waldeyer-Rachenring besteht aus Pharyngealtonsille, Gaumenmandeln und Zungenmandel und bildet eine immunologische Abwehrzone am Atemwegseingang." },
-      { id: "at_ra_mc3", type: "mc", question: "Welche Aussagen zum Rachenraum (Pharynx) sind korrekt?", options: [
+      { id: "at_ra_mc3", type: "mc", image: "assets/diagrams/atmungssystem_figure_7.png", question: "Welche Aussagen zum Rachenraum (Pharynx) sind korrekt?", options: [
         { text: "Epipharynx: Verbindung zur Nase (Choanae) und Mittelohr (Tuba auditiva)", correct: true },
         { text: "Hypopharynx: Kreuzung Atemweg–Speiseweg; Epiglottis schützt vor Aspiration", correct: true },
         { text: "Der Mesopharynx führt ausschliesslich Atemluft, kein Speiseweg", correct: false },
@@ -3285,7 +3289,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
     harvestQuestions: [
       { id: "at_tr_h1", type: "true_false", statement: "Die Luftröhre besteht aus 16 bis 20 hufeisenförmigen Knorpelspangen aus hyalinem Knorpel.", answer: true, explanation: "Die C-förmigen Knorpelspangen verhindern das Kollabieren der Trachea bei Unterdruck während der Inspiration. Die hintere Öffnung wird durch den Paries membranaceus (Bandstruktur mit glattem Muskel) geschlossen, der beim Schlucken der direkt anliegenden Speiseröhre Platz lässt." },
       { id: "at_tr_h2", type: "true_false", statement: "Die Bifurcatio tracheä bezeichnet die Teilung der Trachea in linken und rechten Hauptbronchus.", answer: true, explanation: "Die Bifurcatio tracheä liegt auf Höhe des 5. Brustwirbels und teilt die Trachea in rechten und linken Hauptbronchus. Der rechte ist steiler angewinkelt (ca. 25°) als der linke (ca. 45°) – deshalb gelangen aspirierte Fremdkörper häufiger in die rechte Lunge." },
-      { id: "at_tr_h3", type: "true_false", statement: "Aspirierte Fremdkörper gelangen häufiger in den rechten Hauptbronchus als in den linken.", answer: true, explanation: "Der rechte Hauptbronchus ist steiler (ca. 25° zur Trachea) und breiter als der linke (ca. 45°). Diese anatomische Asymmetrie erklärt, warum Fremdkörper und Magensekret bei Aspiration typischerweise in die rechte Lunge gelangen – wichtig für klinische Diagnose und Bronchoskopie." },
+      { id: "at_tr_h3", type: "true_false", image: "assets/diagrams/atmungssystem_figure_9.png", statement: "Aspirierte Fremdkörper gelangen häufiger in den rechten Hauptbronchus als in den linken.", answer: true, explanation: "Der rechte Hauptbronchus ist steiler (ca. 25° zur Trachea) und breiter als der linke (ca. 45°). Diese anatomische Asymmetrie erklärt, warum Fremdkörper und Magensekret bei Aspiration typischerweise in die rechte Lunge gelangen – wichtig für klinische Diagnose und Bronchoskopie." },
       { id: "at_tr_h4", type: "mc", question: "Auf welcher anatomischen Höhe liegt die Bifurcatio tracheae?", options: [
         { text: "Höhe des 4.–5. Brustwirbels (BWK 4–5)", correct: true },
         { text: "Höhe des Kehlkopfes (HWK 4–6)", correct: false },
@@ -4945,6 +4949,7 @@ const HERZKREISLAUF_1036_PLANTS = [
       {
         id: "venen_h3",
         type: "mc",
+        image: "assets/diagrams/herz_querschnitt_klappen.png",
         question: "Wohin münden die Vv. cavae superior und inferior?",
         options: [
           { text: "In den rechten Vorhof", correct: true },
@@ -5736,6 +5741,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       {
         id: "erythrozyten_mc1",
         type: "mc",
+        image: "assets/diagrams/erythrozyten_foto.png",
         question: "Welche Aussagen zu Erythrozyten und Hämoglobin sind korrekt?",
         options: [
           { text: "Erythrozyten sind kernlos und leben 100–120 Tage", correct: true },
@@ -5798,6 +5804,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       {
         id: "leukozyten_h4",
         type: "mc",
+        image: "assets/diagrams/leukozyten_foto.png",
         question: "Welcher Normalwert gilt für Leukozyten im Blut?",
         options: [
           { text: "4.000–10.000 /µl", correct: true },
@@ -6450,6 +6457,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       {
         id: "blutfkt_h3",
         type: "mc",
+        image: "assets/diagrams/blutgefaess_zelltypen.png",
         question: "Wie hoch ist der Normalwert für Thrombozyten im Blut?",
         options: [
           { text: "150.000–300.000/µl", correct: true },
@@ -6572,6 +6580,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "mundhoehl_zaehne_mc1",
         type: "mc",
+        image: "assets/diagrams/zahn_aufbau.png",
         question: "Welche der folgenden Aussagen zur Mundhöhle und den Zähnen sind korrekt?",
         options: [
           { text: "Das Mundhöhlenepithel ist mehrschichtig, unverhornt und plattenförmig", correct: true },
@@ -6800,6 +6809,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "rachen_schluckakt_h4",
         type: "mc",
+        image: "assets/diagrams/mundrachenraum_sagittal.png",
         question: "Was schützt in der pharyngealen Phase des Schluckakts die unteren Atemwege vor Aspiration?",
         options: [
           { text: "Stimmlippen-Schluss und die Epiglottis", correct: true },
@@ -6966,6 +6976,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "magen_aufbau_h4",
         type: "mc",
+        image: "assets/diagrams/magen_aufbau_komplett.png",
         question: "Welche Funktion hat die innerste (schräge) Muskelschicht der Magenwand?",
         options: [
           { text: "Durchmischung des Chymus und Trennung von Magenstraße und Magensack", correct: true },
@@ -6987,6 +6998,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "magen_aufbau_mc1",
         type: "mc",
+        image: "assets/diagrams/magen_abschnitte_numeriert.png",
         question: "Welche Aussagen zu den Magenabschnitten und ihrer klinischen Bedeutung sind korrekt?",
         options: [
           { text: "An der Kardia findet ein Gewebewechsel statt, der Geschwüre und Tumoren begünstigt", correct: true },
@@ -7451,6 +7463,7 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       {
         id: "pankreas_anatomie_h2",
         type: "true_false",
+        image: "assets/diagrams/pankreas_abschnitte.png",
         statement: "Die Langerhans-Inseln machen etwa 2% des Pankreasgewebes aus und sind stärker im Pankreasschwanz als im Kopfbereich konzentriert.",
         answer: true,
         explanation: "Die endokrinen Langerhans-Inseln liegen inselartig im exokrinen Parenchym und machen nur ca. 2% des Gewebes aus. Sie sind im Pankreasschwanz (Cauda) dichter konzentriert als im Kopfbereich."
@@ -8138,6 +8151,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       {
         id: "leber_anatomie_makroskopie_h3",
         type: "mc",
+        image: "assets/diagrams/leber_anatomie_numeriert.png",
         question: "Welche Struktur verlässt die Leber an der Porta hepatis?",
         options: [
           { text: "Der Ductus hepaticus (gemeinsamer Gallengang)", correct: true },
@@ -8171,6 +8185,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       {
         id: "leber_anatomie_makroskopie_mc1",
         type: "mc",
+        image: "assets/diagrams/leber_illustration.png",
         question: "Welche Aussagen zur Anatomie und Lage der Leber sind korrekt?",
         options: [
           { text: "Die Leber wiegt ca. 1,5 kg und hat Maße von ca. 23×18×9 cm", correct: true },
@@ -8681,6 +8696,7 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       {
         id: "gallenblase_gallenwege_mc2",
         type: "mc",
+        image: "assets/diagrams/gallenblase_gallengangsystem.png",
         question: "Welche Aussagen zu den extrahepatischen Gallenwegen sind korrekt?",
         options: [
           { text: "Ductus hepaticus dexter + sinister → Ductus hepaticus communis", correct: true },
@@ -9058,6 +9074,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "nephron_feinbau_h3",
         type: "mc",
+        image: "assets/diagrams/nephron_aufbau.png",
         question: "Welche vier Abschnitte bilden das Tubulussystem des Nephrons in der richtigen Reihenfolge?",
         options: [
           { text: "Proximaler Tubulus → Henlesche Schleife → distaler Tubulus → Sammelrohr", correct: true },
@@ -9103,6 +9120,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "nephron_feinbau_mc2",
         type: "mc",
+        image: "assets/diagrams/niere_laengsschnitt.png",
         question: "Welche Aussagen zur Blutversorgung der Niere und zum juxtaglomerulären Apparat sind korrekt?",
         options: [
           { text: "Die Niere wird täglich von ca. 1.500–1.800 Litern Blut durchflossen", correct: true },
@@ -9340,6 +9358,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "harnleiter_blase_roehre_mc1",
         type: "mc",
+        image: "assets/diagrams/harnblase_aufbau.png",
         question: "Welche Aussagen zu Harnleiter und Harnblase sind korrekt?",
         options: [
           { text: "Harnleiter: ca. 25–30 cm, retroperitoneal, 1–4 peristaltische Bewegungen/min", correct: true },
@@ -9383,6 +9402,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "fortpflanzung_mann_h2",
         type: "true_false",
+        image: "assets/diagrams/maennliches_becken_sagittal.png",
         statement: "Der Ductus ejaculatorius entsteht durch Vereinigung des Ductus deferens mit dem Ausführungsgang der Bläschendrüse und durchläuft dann die Prostata, bevor er in die Urethra mündet.",
         answer: true,
         explanation: "Der Weg des Samens: Hoden → Ductuli efferentes → Nebenhoden (Ductus epididymis) → Ductus deferens (durch Leistenkanal) → vereinigt sich mit Bläschendrüsenausgang → Ductus ejaculatorius → durchläuft Prostata → mündet in Urethra (Pars prostatica). Damit ist die Urethra beim Mann der gemeinsame Harn- und Samenweg."
@@ -9497,6 +9517,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "fortpflanzung_frau_zyklus_h5",
         type: "true_false",
+        image: "assets/diagrams/weibliches_becken_sagittal.png",
         statement: "Die Befruchtung der Eizelle findet in der Gebärmutter statt; die Eizelle wird nach dem Eisprung direkt vom Uterus aufgenommen.",
         answer: false,
         explanation: "Die Befruchtung findet im Eileiter (Tuba uterina) statt, nicht in der Gebärmutter. Nach dem Eisprung gelangt die Eizelle in die Bauchhöhle, wird von den Flimmerhärchen/Trichterfasern des Eileiterendes aufgefangen und durch Muskelkontraktionen durch den Eileiter transportiert. Im Eileiter trifft sie auf Spermien → Befruchtung. Danach gelangt die befruchtete Eizelle (Zygote) in den Uterus zur Einnistung."
@@ -9506,6 +9527,7 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "fortpflanzung_frau_zyklus_mc1",
         type: "mc",
+        image: "assets/diagrams/innere_weibliche_geschlechtsorgane.png",
         question: "Welche Aussagen zu Ovarien, Eileiter und Uterus sind korrekt?",
         options: [
           { text: "Ovarien: Primärfollikel seit der Geburt vorhanden; Östrogen (Follikel) + Progesteron (Gelbkörper)", correct: true },
@@ -10167,6 +10189,7 @@ const HORMONSYSTEM_1042_PLANTS = [
       {
         id: "diagnostik_endokrinium_h2",
         type: "true_false",
+        image: "assets/diagrams/schilddruese_numeriert.png",
         statement: "Bei der Schilddrüsenpalpation deutet eine schlechte Schluckverschieblichkeit auf ein mögliches Karzinom hin.",
         answer: true,
         explanation: "Eine gesunde Schilddrüse ist schluckverschieblich (bewegt sich beim Schlucken mit der Luftröhre), glatt und nicht höckrig. Ist sie schlecht verschieblich, deutet das auf eine Infiltration des umgebenden Gewebes hin — wichtigstes Warnsignal für ein Schilddrüsenkarzinom (CA). Knoten und Schwirren (Überfunktion) sind weitere Palpationsbefunde."
@@ -10503,6 +10526,7 @@ const NERVENSYSTEM_1043_PLANTS = [
       {
         type: "mc",
         id: "1043_02_h1",
+        image: "assets/diagrams/neuron_synapse_aufbau.png",
         question: "Welches Ion löst die Freisetzung von Neurotransmittern in der Synapse aus?",
         options: [
           { text: "Ca²⁺", correct: true },
@@ -10607,6 +10631,7 @@ const NERVENSYSTEM_1043_PLANTS = [
       {
         type: "mc",
         id: "1043_03_h3",
+        image: "assets/diagrams/knochenlehre_figure_8.png",
         question: "Wo liegt die graue Substanz (Substantia grisea) im Rückenmark?",
         options: [
           { text: "Innen (zentraler Kern in Schmetterlingsform)", correct: true },
@@ -10640,6 +10665,7 @@ const NERVENSYSTEM_1043_PLANTS = [
       {
         type: "mc",
         id: "1043_03_p4_1",
+        image: "assets/diagrams/gehirn_sagittalschnitt.png",
         question: "Welche Teile gehören zum Stammhirn? (Mehrere Antworten möglich)",
         options: [
           { text: "Medulla oblongata", correct: true },
@@ -11986,6 +12012,7 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
       {
         type: "true_false",
         id: "1044_01_h4",
+        image: "assets/diagrams/ohr_numeriert_legende.png",
         statement: "Die Tuba auditiva (Eustachische Röhre) verbindet das Mittelohr mit dem Nasen-Rachenraum und ermöglicht Druckausgleich.",
         answer: true,
         explanation: "Die Tuba auditiva öffnet sich beim Schlucken und gleicht den Luftdruck zwischen Mittelohr und Rachenraum aus."
@@ -12020,6 +12047,7 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
       {
         type: "mc",
         id: "1044_01_p4_2",
+        image: "assets/diagrams/ohr_anatomie_komplett.png",
         question: "Welche Aussagen zur Schallweiterleitung sind korrekt? (Mehrere Antworten möglich)",
         options: [
           { text: "Schallwellen treffen zuerst auf das Trommelfell", correct: true },
@@ -12177,6 +12205,7 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
       {
         type: "mc",
         id: "1044_03_p4_1",
+        image: "assets/diagrams/auge_querschnitt.png",
         question: "Welche Aussagen zur Uvea (mittlere Augenhaut) sind korrekt? (Mehrere Antworten möglich)",
         options: [
           { text: "Sie wird auch Gefäßhaut genannt", correct: true },
