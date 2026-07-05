@@ -366,7 +366,7 @@ function ensureChapterState(chapterId) {
 
 function ensureQuestionState(chapterId, questionId) {
   const ch = ensureChapterState(chapterId);
-  if (!ch.questions[questionId]) ch.questions[questionId] = { correctDays: [], wrongThisSession: false, nextAvailableDay: 0 };
+  if (!ch.questions[questionId]) ch.questions[questionId] = { correctDays: [], wrongThisSession: false, nextAvailableDay: 0, timesCorrect: 0, timesWrong: 0 };
   return ch.questions[questionId];
 }
 
@@ -385,6 +385,7 @@ function isChapterComplete(chapterId) {
 }
 
 function buildQuestionPool() {
+  const today = new Date().toISOString().slice(0, 10);
   const pool = [];
   for (const [chId, chState] of Object.entries(G.chapters)) {
     if (!chState.activated) continue;
@@ -395,7 +396,8 @@ function buildQuestionPool() {
       for (const q of allQ) {
         const qs = chState.questions[q.id];
         if (qs && isQuestionMastered(qs)) continue;
-        if (qs && qs.nextAvailableDay > G.currentDay) continue;
+        if (qs && qs.correctDays.includes(today)) continue;
+        if (qs && qs.nextAvailableDay > today) continue;
         pool.push({ chapterId: chId, question: q, state: qs });
       }
     }
@@ -450,11 +452,12 @@ function recordAnswer(chapterId, questionId, correct) {
 
   if (correct) {
     G.stats.totalCorrect++;
+    qs.timesCorrect = (qs.timesCorrect || 0) + 1;
     G.restaurant.sessionCorrect = (G.restaurant.sessionCorrect || 0) + 1;
-    const firstTimeToday = !qs.correctDays.includes(G.currentDay);
+    const firstTimeToday = !qs.correctDays.includes(today);
     if (firstTimeToday) {
       G.stats.dailyCorrect++;
-      qs.correctDays.push(G.currentDay);
+      qs.correctDays.push(today);
       G.stats.learnedLog = G.stats.learnedLog || {};
       G.stats.learnedLog[today] = (G.stats.learnedLog[today] || 0) + 1;
       // Update streak when daily goal is first reached today
@@ -469,8 +472,9 @@ function recordAnswer(chapterId, questionId, correct) {
     sessionWrongQueue = sessionWrongQueue.filter(e => !(e.chapterId === chapterId && e.questionId === questionId));
     checkChapterCompletion(chapterId);
   } else {
+    qs.timesWrong = (qs.timesWrong || 0) + 1;
     qs.wrongThisSession    = true;
-    qs.nextAvailableDay    = G.currentDay + 1;
+    qs.nextAvailableDay    = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
     if (!sessionWrongQueue.find(e => e.chapterId === chapterId && e.questionId === questionId))
       sessionWrongQueue.push({ chapterId, questionId });
   }
@@ -505,16 +509,24 @@ function isMultiCorrect(q) {
 }
 
 function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
-  const modal   = document.getElementById("modal-question");
-  const ctxEl   = document.getElementById("question-context");
-  const imgEl   = document.getElementById("question-image");
-  const textEl  = document.getElementById("question-text");
-  const optsEl  = document.getElementById("question-options");
-  const fbEl    = document.getElementById("question-feedback");
-  const contBtn = document.getElementById("question-continue-btn");
+  const modal    = document.getElementById("modal-question");
+  const ctxEl    = document.getElementById("question-context");
+  const statsEl  = document.getElementById("question-stats");
+  const imgEl    = document.getElementById("question-image");
+  const textEl   = document.getElementById("question-text");
+  const optsEl   = document.getElementById("question-options");
+  const fbEl     = document.getElementById("question-feedback");
+  const contBtn  = document.getElementById("question-continue-btn");
 
   const q = entry.question;
   ctxEl.textContent  = contextText + (entry.isRetry ? " · Wiederholung" : "");
+  const qs = entry.chapterId ? ensureQuestionState(entry.chapterId, q.id) : null;
+  if (qs && (qs.timesCorrect || qs.timesWrong)) {
+    statsEl.innerHTML = `<span class="question-stat-correct">✓ ${qs.timesCorrect || 0}</span> · <span class="question-stat-wrong">✗ ${qs.timesWrong || 0}</span>`;
+    statsEl.hidden = false;
+  } else {
+    statsEl.hidden = true;
+  }
   if (q.image) { imgEl.src = q.image; imgEl.hidden = false; }
   else         { imgEl.hidden = true; imgEl.src = ""; }
   textEl.textContent = q.type === "true_false" ? q.statement : q.question;
@@ -671,6 +683,10 @@ function getLearningProgress() {
   return { total, mastered, remaining: total - mastered, activeTotal, activeMastered };
 }
 
+function getDueTodayCount() {
+  return buildQuestionPool().length;
+}
+
 function getRecentLearnPace(windowDays) {
   const log  = G.stats.learnedLog || {};
   const now  = Date.now();
@@ -691,6 +707,7 @@ function renderStats() {
   if (!el) return;
 
   const { total, mastered, remaining, activeTotal, activeMastered } = getLearningProgress();
+  const dueToday = getDueTodayCount();
   const active   = Object.values(G.chapters).filter(c => c.activated).length;
   const today    = new Date().toISOString().slice(0, 10);
   const streak   = G.stats.streak || 0;
@@ -741,7 +758,7 @@ function renderStats() {
     </div>
     <div class="stat-row">
       ${paceHtml}
-      <div style="font-size:0.92rem;color:var(--muted)">heute <strong style="color:var(--text)">${dailyDone}</strong> ${dailyDone === 1 ? "Frage" : "Fragen"}</div>
+      <div style="font-size:0.92rem;color:var(--muted)">heute <strong style="color:var(--text)">${dailyDone}</strong> ${dailyDone === 1 ? "Frage" : "Fragen"} · <strong style="color:var(--text)">${dueToday}</strong> offen</div>
     </div>
   `;
 }

@@ -3234,6 +3234,13 @@ body.plant-open #back-to-garden-btn { display: block; }
   background: #fff;
 }
 
+.question-stats {
+  font-size: 0.78rem;
+  margin-bottom: 0.6rem;
+}
+.question-stat-correct { color: #5cca6e; }
+.question-stat-wrong   { color: #c04040; }
+
 .question-text {
   font-size: 1rem;
   line-height: 1.5;
