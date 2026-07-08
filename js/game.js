@@ -151,8 +151,6 @@ function defaultState() {
     ravenOrders: [],
     ravenSeeds:  [],
 
-    tutorial: { step: 0, completed: false },
-
     supplies: {
       plates:      { clean: 0, dirty: 0 },
       wineGlasses: { clean: 0, dirty: 0 },
@@ -268,9 +266,6 @@ function normalizeState(s) {
   s.restaurant.totalStats      = Object.assign({ veryHappy: 0, happy: 0, neutral: 0, sad: 0 }, s.restaurant.totalStats || {});
   s.restaurant.sessionCorrect  = 0;
   s.restaurant.sessionAnswered = 0;
-  // Skip tutorial for existing saves that never had tutorial data
-  const isExistingPlayer = !s.tutorial && (s.currentDay > 1 || (s.stats && s.stats.totalQuestionsAnswered > 0));
-  s.tutorial    = Object.assign({ step: 0, completed: isExistingPlayer }, s.tutorial || {});
   s.chapters    = s.chapters    || {};
   s.inventory   = s.inventory   || {};
   s.ravenOrders = s.ravenOrders || [];
@@ -795,7 +790,6 @@ function renderGarden() {
   const grid = document.getElementById("garden-grid");
   if (!grid) return;
   grid.innerHTML = "";
-  if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
 
   const patchesEl = document.createElement("div");
   patchesEl.className = "garden-patches";
@@ -1079,8 +1073,6 @@ function plantSeed(patchIdx, cropId, cropName) {
   G.garden.patches[patchIdx] = { plantId: cropId, plantTitle: cropName, growthPoints: 0 };
   const key = `seed_${cropId}`;
   if ((G.inventory[key] || 0) > 0) G.inventory[key]--;
-  if (tutorialStepId() === "plant_wheat" && cropId === "wheat") advanceTutorial("plant_wheat");
-  else if (tutorialStepId() === "plant_tomato" && cropId === "tomato") advanceTutorial("plant_tomato");
   saveState();
   renderGarden();
 }
@@ -1125,11 +1117,6 @@ function waterPlant(patchIdx) {
     () => {},
     () => {
       saveState(); renderGarden();
-      if (tutorialStepId() === "water_plants") {
-        const planted = G.garden.patches.filter(Boolean);
-        const allReady = planted.length >= 2 && planted.every(s => (s.growthPoints || 0) >= PLANT_GROW_DAYS);
-        if (allReady) advanceTutorial("water_plants");
-      }
     }
   );
 }
@@ -1155,11 +1142,6 @@ function harvestOnePlant(patchIdx) {
   saveState();
   renderGarden();
   renderRestaurantStats();
-  if (tutorialStepId() === "harvest") {
-    const hasWheat  = (G.inventory["wheat"]  || 0) > 0;
-    const hasTomato = (G.inventory["tomato"] || 0) > 0;
-    if (hasWheat && hasTomato) advanceTutorial("harvest");
-  }
 }
 
 function harvestPlant(patchIdx) { harvestOnePlant(patchIdx); }
@@ -1181,7 +1163,6 @@ function getIngredientEmoji(id) {
    DAY SYSTEM
 ══════════════════════════════════════════════════════════ */
 function openRestaurant() {
-  advanceTutorial("open_restaurant");
   G.phase                   = "service";
   G.restaurant.isOpen       = true;
   G.restaurant.lastCallFired = false;
@@ -1236,8 +1217,6 @@ function doSleep() {
       <div class="sleep-stat-value ${s.cls}">${s.value}</div>
     </div>`).join("");
   if (overlay) overlay.hidden = false;
-
-  // (no tutorial steps advance on sleep anymore — all steps are action-driven)
 
   saveState();
   updateRestaurantUI();
@@ -1426,7 +1405,6 @@ function deductGlass(drinkId) {
 }
 
 function serveTable(tableId) {
-  advanceTutorial("serve_patron");
   if (G.phase !== "service") return;
 
   // Serve lingering patrons their post-meal drink first
@@ -1705,7 +1683,6 @@ function buildMiniPizzaHtml(toppings) {
 }
 
 function renderKitchen() {
-  advanceTutorial("kitchen");
   const el = document.getElementById("kitchen-content");
   if (!el) return;
   rePizzaCreatorState = null;
@@ -1928,7 +1905,6 @@ window.reOnPizzaCanvasClick = reOnPizzaCanvasClick;
    RAVEN ORDERS
 ══════════════════════════════════════════════════════════ */
 function renderRavenModal() {
-  advanceTutorial("raven_intro");
   const listEl = document.getElementById("raven-order-list");
   const pendEl = document.getElementById("raven-pending");
   if (!listEl) return;
@@ -2010,8 +1986,6 @@ function orderRavenItem(key) {
     }
     renderAll();
     showToast(`🪶 Sofort geliefert!${bonusLabel} · ${desc}`);
-    advanceTutorial("raven_order");
-    if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
   }, null);
 }
 
@@ -2725,84 +2699,7 @@ function renderAll() {
   updateRestaurantUI();
   renderCleaningBadge();
   renderCleaningScreen();
-  renderTutorial();
   renderTamagotchiBtn();
-}
-
-/* ══════════════════════════════════════════════════════════
-   TUTORIAL
-══════════════════════════════════════════════════════════ */
-const TUTORIAL_STEPS = [
-  { id: 'welcome',         btn: 'Los geht\'s! →',
-    msg: '🧙 <strong>Willkommen, Tavernenwirt!</strong><br>Wissen ist Währung hier — beantworte Fragen richtig und du bekommst <em>sofort</em>, was du brauchst.' },
-  { id: 'raven_intro',     highlight: '#btn-raven',
-    msg: '🪶 Klick auf den <strong>Raben</strong>, um Waren zu bestellen. Beantworte die Fragen und die Lieferung kommt augenblicklich!' },
-  { id: 'raven_order',
-    msg: '📦 Klick auf ein Item — eine Frage beantworten, sofort geliefert! Bestell 🌾 Weizensamen, 🍅 Tomatensamen, 🧀 Mozzarella und 🍽️ Teller.' },
-  { id: 'day2_garden',
-    msg: '✅ Waren eingetroffen! <strong>Wisch nach links</strong> zum Garten.' },
-  { id: 'plant_wheat',     highlight: '.garden-slot:not(.garden-slot--planted)',
-    msg: '🌾 Klick auf ein <strong>leeres Feld</strong> und pflanze den <strong>Weizen</strong>!' },
-  { id: 'plant_tomato',    highlight: '.garden-slot:not(.garden-slot--planted)',
-    msg: '🍅 Super! Jetzt noch die <strong>Tomate</strong> ins nächste Feld.' },
-  { id: 'water_plants',
-    msg: '💧 Pflanzen wachsen durch Wasser — jede Pflanze braucht <strong>2× Wässern</strong>. Klick auf eine Pflanze → „Wässern" → Frage beantworten → sie wächst sofort!' },
-  { id: 'harvest',         highlight: '.garden-slot--ready',
-    msg: '🌾✨ Beide Pflanzen sind reif! <strong>Klick auf sie</strong>, um Weizen und Tomaten zu ernten.' },
-  { id: 'kitchen',         highlight: '#btn-kitchen',
-    msg: '🍕 Schau in die <strong>Küche</strong>! Eine einfache Pizza braucht kein Rezept. Für besondere Pizzen kannst du hier eigene Rezepte erstellen.' },
-  { id: 'open_restaurant', highlight: '#btn-open-restaurant',
-    msg: '🍽️ Weizen, Tomaten, Käse — die erste Pizza ist möglich! <strong>Öffne die Taverne.</strong>' },
-  { id: 'serve_patron',
-    msg: '🧑 Ein Gast hat Platz genommen! <strong>Klick auf den Tisch</strong>, um ihn zu bedienen.' },
-  { id: 'cleaning',
-    msg: '🫧 Schmutziges Geschirr muss gewaschen werden! <strong>Wisch nach rechts</strong> zur Reinigung.' },
-  { id: 'done',            btn: 'Spielen! 🍕',
-    msg: '🌿 <strong>Gut gemacht, Tavernenwirt!</strong><br>Bestelle, pflanze, ernteund halte deine Gäste glücklich. Schlafe am Ende des Abends, um den Tag abzuschließen. Viel Erfolg!' },
-];
-
-function isTutorialActive() {
-  return G.tutorial && !G.tutorial.completed && G.tutorial.step < TUTORIAL_STEPS.length;
-}
-
-function renderTutorial() {
-  if (!isTutorialActive()) {
-    document.getElementById("tut-bubble")?.remove();
-    document.querySelectorAll(".tut-highlight").forEach(el => el.classList.remove("tut-highlight"));
-    return;
-  }
-  const step = TUTORIAL_STEPS[G.tutorial.step];
-  let bubble = document.getElementById("tut-bubble");
-  if (!bubble) {
-    bubble = document.createElement("div");
-    bubble.id = "tut-bubble";
-    document.body.appendChild(bubble);
-  }
-  bubble.className = "tut-bubble";
-  bubble.innerHTML = `<div class="tut-msg">${step.msg}</div>
-    ${step.btn ? `<button class="tut-btn" id="tut-next-btn">${step.btn}</button>` : ""}`;
-  if (step.btn) {
-    document.getElementById("tut-next-btn")?.addEventListener("click", () => advanceTutorial(step.id));
-  }
-  document.querySelectorAll(".tut-highlight").forEach(el => el.classList.remove("tut-highlight"));
-  if (step.highlight) {
-    document.querySelectorAll(step.highlight).forEach(el => el.classList.add("tut-highlight"));
-  }
-}
-
-function advanceTutorial(expectedStepId) {
-  if (!isTutorialActive()) return;
-  const cur = TUTORIAL_STEPS[G.tutorial.step];
-  if (expectedStepId && cur.id !== expectedStepId) return;
-  G.tutorial.step++;
-  if (G.tutorial.step >= TUTORIAL_STEPS.length) G.tutorial.completed = true;
-  saveState();
-  renderTutorial();
-}
-
-function tutorialStepId() {
-  if (!isTutorialActive()) return null;
-  return TUTORIAL_STEPS[G.tutorial.step].id;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -3319,13 +3216,6 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.removeItem(SAVE_KEY); G = defaultState(); saveState(); renderAll(); closeModal("modal-settings"); showToast("Zurückgesetzt.");
     }
   });
-  document.getElementById("tutorial-reset-btn")?.addEventListener("click", () => {
-    G.tutorial = { step: 0, completed: false };
-    saveState();
-    closeModal("modal-settings");
-    renderTutorial();
-    showToast("Tutorial gestartet!");
-  });
   document.getElementById("changelog-btn")?.addEventListener("click", () => {
     alert(`Knowledge Garden v${APP_VERSION}\n\nNeues Design: Fantasy-Management-Spiel\n• Garten: Pflanzen anbauen & ernten\n• Wildnis: Zutaten sammeln\n• Restaurant: Gäste bewirten\n• Raben-Lieferungen bestellen\n• Kapitel aktivieren & meistern`);
   });
@@ -3384,11 +3274,13 @@ document.addEventListener("DOMContentLoaded", () => {
     G = loadState();
     checkTamagotchiDay();
     renderAll();
-    renderTutorial();
     switchTopTab(G.activeMode || "tama");
   } catch (e) {
     const stack = (e.stack || "").split("\n").slice(0, 8).join("<br>");
-    document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.8rem"><b>Ladefehler:</b> ${e.message}<br><br>${stack}<br><br><button onclick="localStorage.clear();location.reload()" style="padding:0.5rem 1rem;font-size:1rem">Zurücksetzen</button></div>`;
+    document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.8rem"><b>Ladefehler:</b> ${e.message}<br><br>${stack}<br><br>
+      <button onclick="location.reload()" style="padding:0.5rem 1rem;font-size:1rem">Neu laden (Spielstand bleibt)</button>
+      <br><br>
+      <button onclick="if(confirm('Spielstand wirklich löschen?')){localStorage.clear();location.reload()}" style="padding:0.5rem 1rem;font-size:0.8rem;opacity:0.7">Spielstand löschen &amp; zurücksetzen</button></div>`;
     return;
   }
 
@@ -3409,21 +3301,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.5 }).observe(_reScreen);
   }
 
-  // Tutorial: advance to plant_wheat when garden screen becomes visible
-  const _gardenScreen = document.getElementById("screen-garden");
-  if (_gardenScreen) {
-    new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        if (tutorialStepId() === "day2_garden") advanceTutorial("day2_garden");
-      }
-    }, { threshold: 0.5 }).observe(_gardenScreen);
-  }
   const _cleaningScreen = document.getElementById("screen-cleaning");
   if (_cleaningScreen) {
     new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         renderCleaningScreen();
-        if (tutorialStepId() === "cleaning") advanceTutorial("cleaning");
       }
     }, { threshold: 0.5 }).observe(_cleaningScreen);
   }
