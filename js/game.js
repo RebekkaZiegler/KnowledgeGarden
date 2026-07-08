@@ -3171,6 +3171,15 @@ window.switchGameMode = switchGameMode;
    BOOT
 ══════════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof PACK_CONTENT === "undefined") {
+    document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.9rem;text-align:center">
+      <p>📡 Verbindung unterbrochen — die Spieldaten konnten nicht vollständig geladen werden.</p>
+      <p style="opacity:0.7;font-size:0.8rem">Dein Spielstand ist nicht betroffen.</p>
+      <button onclick="location.reload()" style="padding:0.6rem 1.2rem;font-size:1rem;margin-top:1rem">Neu laden</button>
+    </div>`;
+    return;
+  }
+
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
   // Bottom nav
