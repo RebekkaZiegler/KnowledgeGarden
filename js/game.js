@@ -219,7 +219,6 @@ function defaultState() {
       feedsToday:     0,
       requiredToday:  5,
       missedDays:     0,
-      rollingFeeds:   [],     // last 14 day counts for adaptive requirement
       weekScores:     [],     // per-week happiness score for path determination
     },
   };
@@ -258,7 +257,6 @@ function normalizeState(s) {
   s.stats.activityLog = s.stats.activityLog || {};
   s.stats.learnedLog  = s.stats.learnedLog  || {};
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
-  s.tamagotchi.rollingFeeds = s.tamagotchi.rollingFeeds || [];
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
   s.restaurant = Object.assign({}, d.restaurant,   s.restaurant || {});
   s.restaurant.patrons         = [];
@@ -942,13 +940,13 @@ function checkTamagotchiDay() {
   const prevFeeds = t.feedsToday || 0;
   const required  = t.requiredToday || 5;
 
-  // Update rolling average
-  const rolling = t.rollingFeeds || [];
-  for (let i = 0; i < daysSince; i++) rolling.push(i === 0 ? prevFeeds : 0);
-  while (rolling.length > 14) rolling.shift();
-  t.rollingFeeds = rolling;
-  const avg = rolling.reduce((s, v) => s + v, 0) / rolling.length;
-  t.requiredToday = Math.max(3, Math.round(avg * 0.8));
+  // Required-today pace: how many questions/day are needed on average to
+  // stay on track for the exam deadline, given current remaining content.
+  // Rises only when behind schedule, falls as you make progress — a big
+  // study day lowers tomorrow's requirement instead of raising it.
+  const { remaining } = getLearningProgress();
+  const daysLeft = Math.max(1, (EXAM_DEADLINE - Date.now()) / 86400000);
+  t.requiredToday = Math.max(3, Math.ceil(remaining / daysLeft));
 
   // Missed day tracking
   if (prevFeeds === 0 || daysSince > 1) {
@@ -996,7 +994,7 @@ function reviveTamagotchi() {
     alive: true, stage: 1, path: null,
     bornDate: today, lastFedDate: today,
     feedsToday: 0, requiredToday: 5,
-    missedDays: 0, rollingFeeds: [], weekScores: [],
+    missedDays: 0, weekScores: [],
   };
   saveState();
   renderTamagotchi();
