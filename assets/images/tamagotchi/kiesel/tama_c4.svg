@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="br_kiesel_c4" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#a09888"/>
+      <stop offset="100%" stop-color="#5c5448"/>
+    </radialGradient>
+    <radialGradient id="br_kiesel_c4_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#8a8070"/>
+      <stop offset="100%" stop-color="#443c30"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="154" rx="34" ry="9" fill="#221e18"/>
+  <ellipse cx="60" cy="150" rx="22.1" ry="5" fill="#38322a"/>
+  <path d="M46.4,152 L60,146 L73.6,152" stroke="#4a4238" stroke-width="1.2" fill="none"/>
+  <ellipse cx="60" cy="102.8" rx="25.2" ry="41.2" fill="url(#br_kiesel_c4_b)" stroke="#241f18" stroke-width="1.8"/>
+  <polygon points="42,88.38 13,86.38 15,98.58" fill="#443c30"/>
+  <polygon points="78,88.38 107,86.38 105,98.58" fill="#443c30"/>
+  <ellipse cx="60" cy="54" rx="35.8" ry="33.65" fill="url(#br_kiesel_c4)" stroke="#241f18" stroke-width="1.8"/>
+  <polygon points="33.4,36 38,16.5 42.6,36" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="36.39,33.08 38,19.43 39.61,33.08" fill="#a09888" fill-opacity="0.8"/>
+  <polygon points="42.2,36 46.8,13.5 51.4,36" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="45.19,32.63 46.8,16.88 48.41,32.63" fill="#a09888" fill-opacity="0.8"/>
+  <polygon points="51,36 55.6,10.5 60.2,36" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="53.99,32.17 55.6,14.33 57.21,32.17" fill="#a09888" fill-opacity="0.8"/>
+  <polygon points="59.8,36 64.4,10.5 69,36" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="62.79,32.17 64.4,14.33 66.01,32.17" fill="#a09888" fill-opacity="0.8"/>
+  <polygon points="68.6,36 73.2,13.5 77.8,36" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="71.59,32.63 73.2,16.88 74.81,32.63" fill="#a09888" fill-opacity="0.8"/>
+  <polygon points="77.4,36 82,16.5 86.6,36" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="80.39,33.08 82,19.43 83.61,33.08" fill="#a09888" fill-opacity="0.8"/>
+  <path d="M42,110.62 l3,5 l-2,3 l3,4" stroke="#241f18" stroke-width="1" fill="none" stroke-opacity="0.5" stroke-linecap="round"/>
+  <path d="M54,120.62 l3,5 l-2,3 l3,4" stroke="#241f18" stroke-width="1" fill="none" stroke-opacity="0.5" stroke-linecap="round"/>
+  <path d="M66,110.62 l3,5 l-2,3 l3,4" stroke="#241f18" stroke-width="1" fill="none" stroke-opacity="0.5" stroke-linecap="round"/>
+  <path d="M78,120.62 l3,5 l-2,3 l3,4" stroke="#241f18" stroke-width="1" fill="none" stroke-opacity="0.5" stroke-linecap="round"/>
+  <ellipse cx="49.2" cy="54" rx="7.4" ry="8.14" fill="#d8d8c8" stroke="#241f18" stroke-width="1.2"/>
+  <circle cx="49.2" cy="55" r="4.44" fill="#241f18"/>
+  <path d="M41.8,50.3 Q49.2,44.38 56.6,50.3" fill="#241f18" fill-opacity="0.55"/>
+  <circle cx="47.87" cy="52.67" r="0.98" fill="white" fill-opacity="0.7"/>
+  <ellipse cx="70.8" cy="54" rx="7.4" ry="8.14" fill="#d8d8c8" stroke="#241f18" stroke-width="1.2"/>
+  <circle cx="70.8" cy="55" r="4.44" fill="#241f18"/>
+  <path d="M63.4,50.3 Q70.8,44.38 78.2,50.3" fill="#241f18" fill-opacity="0.55"/>
+  <circle cx="72.13" cy="52.67" r="0.98" fill="white" fill-opacity="0.7"/>
+  <path d="M54,76.69 Q60,71.89 66,76.69" stroke="#241f18" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+</svg>

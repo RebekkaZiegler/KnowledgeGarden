@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="br_flamm_c1" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#9a9488"/>
+      <stop offset="100%" stop-color="#4a4038"/>
+    </radialGradient>
+    <radialGradient id="br_flamm_c1_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#807868"/>
+      <stop offset="100%" stop-color="#383028"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="153" rx="23" ry="9" fill="#241a14"/>
+  <ellipse cx="60" cy="149" rx="16.1" ry="6" fill="#3a2418"/>
+  <circle cx="60" cy="146" r="7" fill="#ff9020" fill-opacity="0.35"/>
+  <ellipse cx="60" cy="108.2" rx="21.3" ry="32.8" fill="url(#br_flamm_c1_b)" stroke="#201a14" stroke-width="1.8"/>
+  <path d="M40,96.72 Q26.5,92.72 24.5,83.22" stroke="#383028" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M80,96.72 Q93.5,92.72 95.5,83.22" stroke="#383028" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="60" cy="60" rx="29.2" ry="27.45" fill="url(#br_flamm_c1)" stroke="#201a14" stroke-width="1.8"/>
+  <path d="M40.06,62.23 Q44.06,41.23 48.06,62.23 Q44.06,56.98 40.06,62.23Z" fill="#c0b8a8" stroke="#9a9488" stroke-width="0.6"/>
+  <path d="M42.46,58.56 Q44.06,45.96 45.66,58.56Z" fill="#9a9488" fill-opacity="0.85"/>
+  <path d="M56,56 Q60,28 64,56 Q60,49 56,56Z" fill="#c0b8a8" stroke="#9a9488" stroke-width="0.6"/>
+  <path d="M58.4,51.1 Q60,34.3 61.6,51.1Z" fill="#9a9488" fill-opacity="0.85"/>
+  <path d="M71.94,62.23 Q75.94,41.23 79.94,62.23 Q75.94,56.98 71.94,62.23Z" fill="#c0b8a8" stroke="#9a9488" stroke-width="0.6"/>
+  <path d="M74.34,58.56 Q75.94,45.96 77.54,58.56Z" fill="#9a9488" fill-opacity="0.85"/>
+  <ellipse cx="48.3" cy="60" rx="8.6" ry="9.46" fill="#d8d8c8" stroke="#201a14" stroke-width="1.2"/>
+  <circle cx="48.3" cy="61" r="5.16" fill="#201a14"/>
+  <path d="M39.7,55.7 Q48.3,48.82 56.9,55.7" fill="#201a14" fill-opacity="0.55"/>
+  <circle cx="46.75" cy="58.45" r="1.14" fill="white" fill-opacity="0.7"/>
+  <ellipse cx="71.7" cy="60" rx="8.6" ry="9.46" fill="#d8d8c8" stroke="#201a14" stroke-width="1.2"/>
+  <circle cx="71.7" cy="61" r="5.16" fill="#201a14"/>
+  <path d="M63.1,55.7 Q71.7,48.82 80.3,55.7" fill="#201a14" fill-opacity="0.55"/>
+  <circle cx="73.25" cy="58.45" r="1.14" fill="white" fill-opacity="0.7"/>
+  <path d="M54,79.06 Q60,74.26 66,79.06" stroke="#201a14" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+</svg>

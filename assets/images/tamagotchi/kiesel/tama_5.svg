@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="young_kiesel_5" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#d8d0c0"/>
+      <stop offset="100%" stop-color="#8a8070"/>
+    </radialGradient>
+    <radialGradient id="young_kiesel_5_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#c0b8a8"/>
+      <stop offset="100%" stop-color="#706858"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="154" rx="37" ry="9" fill="#221e18"/>
+  <ellipse cx="60" cy="150" rx="24.05" ry="5" fill="#38322a"/>
+  <path d="M45.2,152 L60,146 L74.8,152" stroke="#4a4238" stroke-width="1.2" fill="none"/>
+  <ellipse cx="60" cy="118" rx="21" ry="32" fill="url(#young_kiesel_5_b)" stroke="#3c362c" stroke-width="1.5"/>
+  <polygon points="42,108.4 15,106.4 17,117.4" fill="#706858"/>
+  <polygon points="78,108.4 105,106.4 103,117.4" fill="#706858"/>
+  <ellipse cx="60" cy="75" rx="31" ry="29.45" fill="url(#young_kiesel_5)" stroke="#3c362c" stroke-width="1.5"/>
+  <polygon points="34.2,57 38,43.5 41.8,57" fill="#e8e0d0" stroke="#d8d0c0" stroke-width="0.6"/>
+  <polygon points="36.67,54.98 38,45.53 39.33,54.98" fill="#d8d0c0" fill-opacity="0.8"/>
+  <polygon points="48.87,57 52.67,40.5 56.47,57" fill="#e8e0d0" stroke="#d8d0c0" stroke-width="0.6"/>
+  <polygon points="51.34,54.53 52.67,42.98 54,54.53" fill="#d8d0c0" fill-opacity="0.8"/>
+  <polygon points="63.53,57 67.33,40.5 71.13,57" fill="#e8e0d0" stroke="#d8d0c0" stroke-width="0.6"/>
+  <polygon points="66,54.53 67.33,42.98 68.66,54.53" fill="#d8d0c0" fill-opacity="0.8"/>
+  <polygon points="78.2,57 82,43.5 85.8,57" fill="#e8e0d0" stroke="#d8d0c0" stroke-width="0.6"/>
+  <polygon points="80.67,54.98 82,45.53 83.33,54.98" fill="#d8d0c0" fill-opacity="0.8"/>
+  <ellipse cx="48.4" cy="75" rx="11" ry="11.88" fill="white" stroke="#3c362c" stroke-width="1.2"/>
+  <circle cx="48.4" cy="76" r="6.82" fill="#3c362c"/>
+  <circle cx="50.79" cy="72.27" r="3.07" fill="white"/>
+  <ellipse cx="71.6" cy="75" rx="11" ry="11.88" fill="white" stroke="#3c362c" stroke-width="1.2"/>
+  <circle cx="71.6" cy="76" r="6.82" fill="#3c362c"/>
+  <circle cx="73.99" cy="72.27" r="3.07" fill="white"/>
+  <path d="M55,92.05 Q60,94.05 65,92.05" stroke="#3c362c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="30" cy="85.85" rx="7" ry="4.5" fill="#e8e0d0" fill-opacity="0.3"/>
+  <ellipse cx="90" cy="85.85" rx="7" ry="4.5" fill="#e8e0d0" fill-opacity="0.3"/>
+
+</svg>

@@ -120,6 +120,7 @@ const RE_LOOP_INTERVAL = 5000;
 let   reLoopTimer      = null;
 let   rePatronIdCtr    = 0;
 let   sessionStreak    = 0;   // correct-answer combo; resets on wrong answer
+let   sessionWrongStreak = 0; // consecutive wrong answers; resets on correct
 
 function getStreakBonus() {
   if (sessionStreak >= 15) return 100;
@@ -214,12 +215,16 @@ function defaultState() {
       alive:          true,
       stage:          1,
       path:           null,   // 'a' thriving, 'b' content, 'c' struggling
+      species:        null,   // 'root' | 'flamm' | 'well' | 'kiesel' — null until chosen
       bornDate:       null,   // YYYY-MM-DD
       lastFedDate:    null,
       feedsToday:     0,
       requiredToday:  5,
       missedDays:     0,
       weekScores:     [],     // per-week happiness score for path determination
+      answersToday:   0,      // total questions answered today (right+wrong), for the grace shield
+      shieldActive:   false,  // true = next missed-day check is fully forgiven once
+      lastDialogue:   {},     // { [moment]: lastLineIndex } — avoids repeating the same line twice in a row
     },
   };
 }
@@ -258,6 +263,11 @@ function normalizeState(s) {
   s.stats.learnedLog  = s.stats.learnedLog  || {};
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
+  s.tamagotchi.lastDialogue = s.tamagotchi.lastDialogue || {};
+  // Existing players who already have a pet keep their current creature (the
+  // only species that existed before this feature); brand-new saves stay
+  // species:null so the starter-selection screen triggers on boot.
+  if (!s.tamagotchi.species) s.tamagotchi.species = s.tamagotchi.bornDate ? 'root' : null;
   s.restaurant = Object.assign({}, d.restaurant,   s.restaurant || {});
   s.restaurant.patrons         = [];
   s.restaurant.sessionStats    = { veryHappy: 0, happy: 0, neutral: 0, sad: 0 };
@@ -431,6 +441,7 @@ function recordAnswer(chapterId, questionId, correct) {
 
   G.stats.totalQuestionsAnswered++;
   if (!G.stats.firstPlayDate) G.stats.firstPlayDate = Date.now();
+  if (G.tamagotchi) G.tamagotchi.answersToday = (G.tamagotchi.answersToday || 0) + 1;
 
   // Daily tracking
   if (G.stats.dailyDate !== today) {
@@ -610,14 +621,17 @@ function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDo
   // Combo streak — update before recordAnswer so renderStats sees new value
   if (isCorrect) {
     sessionStreak++;
+    sessionWrongStreak = 0;
     const milestones = [3, 7, 10, 15, 20];
     if (milestones.includes(sessionStreak)) {
       const b = getStreakBonus();
-      showToast(`⚡ ${sessionStreak}× KOMBO! +${b}% Bonus auf Ernte & Lieferung!`);
+      showToast(`⚡ ${sessionStreak}× KOMBO! +${b}% Bonus auf Ernte & Lieferung! ${pickTamaLine(G.tamagotchi.species, "streak")}`);
     }
   } else {
     if (sessionStreak >= 3) showToast(`💔 Kombo gebrochen (war ${sessionStreak}×)`);
     sessionStreak = 0;
+    sessionWrongStreak++;
+    if (sessionWrongStreak === 2) showToast(pickTamaLine(G.tamagotchi.species, "stumble"));
   }
 
   recordAnswer(entry.chapterId, entry.question.id, isCorrect);
@@ -881,21 +895,106 @@ function getTodayDate() {
 function daysBetween(a, b) {
   return Math.round((new Date(b) - new Date(a)) / 86400000);
 }
-function getTamaImage(stage, path, alive) {
-  if (!alive) return 'assets/images/tamagotchi/tama_1.svg';
-  if (stage <= 5) return `assets/images/tamagotchi/tama_${stage}.svg`;
-  const p = path || 'b';
-  return `assets/images/tamagotchi/tama_${p}${stage - 5}.svg`;
+const TAMA_SPECIES_DATA = {
+  root: {
+    name:    'Wurzel',
+    tagline: 'Ein stilles Wurzelwesen, verbunden mit Erde und Wachstum.',
+    sharedNames: ['Die Wurzel','Erster Blick','Das Kräutlein','Das Pflanzenkind','Der Junggeist'],
+    pathNames: {
+      a: ['Erste Blüte','Blütengeist','Die Goldkrone','Der Sonnengeist','Strahlender Weise'],
+      b: ['Der Beständige','Das Mooswesen','Der Waldgeist','Der Uralte','Der Erdenwächter'],
+      c: ['Der Fahle','Der Dunkle','Der Grollende','Der Schattenwandler','Der Schattendorn'],
+    },
+  },
+  flamm: {
+    name:    'Flämmchen',
+    tagline: 'Ein kleiner Funke voller Energie, der nach Wärme sucht.',
+    sharedNames: ['Der Funke','Erstes Glühen','Das Flämmchen','Die Feuerseele','Der Lohgeist'],
+    pathNames: {
+      a: ['Helle Flamme','Der Flammentänzer','Die Feuerkrone','Der Phönixgeist','Strahlender Phönix'],
+      b: ['Das Herdlicht','Der Kaminwächter','Die Glutseele','Die Uralte Kohle','Der Herdälteste'],
+      c: ['Der Erlöschende','Der Rauchige','Der Aschgraue','Der Rauchwandler','Der Aschendorn'],
+    },
+  },
+  well: {
+    name:    'Well-Tröpfchen',
+    tagline: 'Ein ruhiges Wassertropfenwesen mit weiser, gelassener Art.',
+    sharedNames: ['Der Tropfen','Erstes Kräuseln','Das Tröpfchen','Das Wellenkind','Der Strömungsgeist'],
+    pathNames: {
+      a: ['Erste Welle','Der Wellentänzer','Die Silberkrone','Der Wogengeist','Strahlender Wellenweise'],
+      b: ['Der Teichwächter','Der Tiefe','Der Quellhüter','Der Uralte Strom','Der Quellwächter'],
+      c: ['Der Trübe','Der Stille Sumpf','Der Algige','Der Schlammwandler','Der Moordorn'],
+    },
+  },
+  kiesel: {
+    name:    'Kiesel',
+    tagline: 'Ein kleiner, wortkarger Steingeselle mit trockenem Humor.',
+    sharedNames: ['Der Kiesel','Erster Riss','Das Steinchen','Das Felsenkind','Der Gesteinsgeist'],
+    pathNames: {
+      a: ['Erster Glanz','Der Kristalltänzer','Die Prismakrone','Der Funkelgeist','Strahlender Kristalltitan'],
+      b: ['Der Moosstein','Der Wächterfels','Der Standhafte','Der Uralte Fels','Der Bergwächter'],
+      c: ['Der Rissige','Der Bröckelnde','Der Geröllige','Der Schuttwandler','Der Trümmerdorn'],
+    },
+  },
+};
+
+// Personality dialogue — short in-character lines shown only at "notable
+// moments" (not on every answer), one distinct voice per species.
+const TAMA_DIALOGUE = {
+  root: {
+    feed:      ["Mmh, das tut gut, danke.", "Ich spüre, wie ich wachse.", "Erde und Wissen — beides nährt mich."],
+    streak:    ["Wow, du bist heute richtig im Fluss!", "So viele Antworten in Folge — ich bin stolz.", "Weiter so, ich wurzle tiefer mit jeder Antwort."],
+    stumble:   ["Nicht schlimm, auch Wurzeln verzweigen sich mal falsch.", "Schau nochmal genau hin — ich glaub an dich.", "Kein Grund zur Sorge, wir versuchen es einfach nochmal."],
+    evolve:    ["Ich spüre eine Veränderung in mir...", "Etwas Neues wächst aus mir heraus!", "Danke, dass du mich so weit gebracht hast."],
+    nearDeath: ["Mir wird kalt... hast du mich vergessen?", "Bitte komm zurück, ich brauche dich.", "Ich halte noch durch, aber nicht mehr lange."],
+  },
+  flamm: {
+    feed:      ["Jaaa, mehr Brennstoff!", "Ich werd immer heller, spürst du's?", "Danke! Jetzt loder ich richtig!"],
+    streak:    ["Wooohoo, wir sind ON FIRE!", "So schnell hintereinander?! Krass!", "Ich glüh vor Stolz auf dich!"],
+    stumble:   ["Autsch, das hat gefunkt — aber okay!", "Kurz durchpusten und nochmal!", "Auch Flammen flackern mal, weiter geht's!"],
+    evolve:    ["Ich lodere jetzt noch heller!", "Spürst du die neue Hitze in mir?!", "Ich bin gewachsen — und wie!"],
+    nearDeath: ["Ich... werd schwächer... so kalt...", "Bitte, ein bisschen Glut noch, schnell!", "Ich flacker nur noch ganz leise."],
+  },
+  well: {
+    feed:      ["Danke, das fließt gut durch mich.", "Ich werde ruhig und klar davon.", "Ein Tropfen Wissen mehr — willkommen."],
+    streak:    ["Wie eine Welle, die immer weiterrollt.", "Beeindruckend gleichmäßig, du fließt gut heute.", "So eine schöne Serie, ganz im Einklang."],
+    stumble:   ["Kein Problem, auch Wasser findet Umwege.", "Lass uns kurz zur Ruhe kommen und neu ansetzen.", "Nicht jede Welle trifft — nächstes Mal wieder."],
+    evolve:    ["Ich fühle mich tiefer, weiter, klarer.", "Etwas in mir hat sich gesetzt und geklärt.", "Danke, ich bin gereift."],
+    nearDeath: ["Ich versiege langsam...", "Bitte, ich brauche wieder etwas Zufluss.", "Es wird still und trocken um mich."],
+  },
+  kiesel: {
+    feed:      ["Hm. Nicht schlecht.", "Passt. Mehr davon.", "Solide Antwort. Ich nehm's."],
+    streak:    ["Du bist heute hart im Nehmen. Respekt.", "So eine Serie bricht man nicht leicht.", "Fest wie Fels, diese Konzentration."],
+    stumble:   ["Passiert. Selbst Felsen bröckeln mal.", "Kurz Staub abklopfen, weiter geht's.", "Nicht der Rede wert. Nochmal."],
+    evolve:    ["Ich bin... dichter geworden. Gut.", "Spürst du das? Neue Härte.", "Ich hab mich gefestigt."],
+    nearDeath: ["Ich bröckle... langsam...", "Wird Zeit, dass du auftauchst.", "Noch halt ich. Aber nicht ewig."],
+  },
+};
+
+// Picks a random line from a species/moment pool, avoiding an immediate
+// repeat of the last line shown for that moment (persisted in save state).
+function pickTamaLine(species, moment) {
+  const pool = (TAMA_DIALOGUE[species] || TAMA_DIALOGUE.root)[moment];
+  if (!pool || !pool.length) return "";
+  const t = G.tamagotchi;
+  const last = t.lastDialogue ? t.lastDialogue[moment] : undefined;
+  let idx = Math.floor(Math.random() * pool.length);
+  if (pool.length > 1 && idx === last) idx = (idx + 1) % pool.length;
+  if (t.lastDialogue) t.lastDialogue[moment] = idx;
+  return pool[idx];
 }
-function getTamaName(stage, path) {
-  const shared = ['Die Wurzel','Erster Blick','Das Kräutlein','Das Pflanzenkind','Der Junggeist'];
-  if (stage <= 5) return shared[stage - 1];
-  const names = {
-    a: ['Erste Blüte','Blütengeist','Die Goldkrone','Der Sonnengeist','Strahlender Weise'],
-    b: ['Der Beständige','Das Mooswesen','Der Waldgeist','Der Uralte','Der Erdenwächter'],
-    c: ['Der Fahle','Der Dunkle','Der Grollende','Der Schattenwandler','Der Schattendorn'],
-  };
-  return (names[path] || names.b)[stage - 6];
+
+function getTamaImage(stage, path, alive, species) {
+  const sp = species || 'root';
+  if (!alive) return `assets/images/tamagotchi/${sp}/tama_1.svg`;
+  if (stage <= 5) return `assets/images/tamagotchi/${sp}/tama_${stage}.svg`;
+  const p = path || 'b';
+  return `assets/images/tamagotchi/${sp}/tama_${p}${stage - 5}.svg`;
+}
+function getTamaName(stage, path, species) {
+  const data = TAMA_SPECIES_DATA[species] || TAMA_SPECIES_DATA.root;
+  if (stage <= 5) return data.sharedNames[stage - 1];
+  return (data.pathNames[path] || data.pathNames.b)[stage - 6];
 }
 
 function feedTamagotchi() {
@@ -903,7 +1002,10 @@ function feedTamagotchi() {
   if (!t || !t.alive) return;
   if (!t.bornDate)    t.bornDate    = getTodayDate();
   if (!t.lastFedDate) t.lastFedDate = getTodayDate();
+  const wasZero = (t.feedsToday || 0) === 0;
   t.feedsToday = (t.feedsToday || 0) + 1;
+  if (wasZero) showToast(pickTamaLine(t.species, "feed"));
+  else if (t.feedsToday === (t.requiredToday || 5)) showToast(`✓ Tagesziel erreicht! ${pickTamaLine(t.species, "feed")}`);
 }
 
 function feedTamagotchiStudy() {
@@ -948,12 +1050,29 @@ function checkTamagotchiDay() {
   const daysLeft = Math.max(1, (EXAM_DEADLINE - Date.now()) / 86400000);
   t.requiredToday = Math.max(3, Math.ceil(remaining / daysLeft));
 
-  // Missed day tracking
+  // Missed day tracking — a shield earned from a big study day (50+
+  // answers) fully absorbs one missed-day penalty instead of delaying it.
+  const prevMissedDays = t.missedDays || 0;
+  let shieldUsed = false;
   if (prevFeeds === 0 || daysSince > 1) {
-    t.missedDays = (t.missedDays || 0) + (daysSince > 1 ? daysSince - 1 : 1);
-    if (prevFeeds === 0) t.missedDays++;
+    if (t.shieldActive) {
+      shieldUsed = true;
+      t.shieldActive = false;
+    } else {
+      // daysSince-1 counts fully-skipped days where the app wasn't opened at
+      // all (unknowable whether fed); +1 more if the last tracked day itself
+      // was unfed. Previously both terms fired even for a normal daysSince=1
+      // miss, double-counting a single missed day as 2 and killing the pet
+      // a day early.
+      t.missedDays = (t.missedDays || 0) + (daysSince > 1 ? daysSince - 1 : 0);
+      if (prevFeeds === 0) t.missedDays++;
+    }
   } else {
     t.missedDays = 0;
+  }
+
+  if (t.alive && prevMissedDays === 0 && t.missedDays >= 1) {
+    showToast(`⚠️ Dein Alräunchen wurde nicht gefüttert. „${pickTamaLine(t.species, "nearDeath")}"`);
   }
 
   // Death — 2 consecutive missed days
@@ -967,8 +1086,9 @@ function checkTamagotchiDay() {
     return;
   }
 
-  // Weekly happiness score (each fed day = 0/1/2)
-  const dayScore = prevFeeds === 0 ? 0 : prevFeeds >= required * 1.5 ? 2 : 1;
+  // Weekly happiness score (each fed day = 0/1/2); a shielded day counts as
+  // neutral so it doesn't drag the mood-path average down like a real miss.
+  const dayScore = shieldUsed ? 1 : prevFeeds === 0 ? 0 : prevFeeds >= required * 1.5 ? 2 : 1;
   t.weekScores = [...(t.weekScores || []), dayScore];
 
   // Stage advancement — 1 stage per 7 days since birth
@@ -978,9 +1098,17 @@ function checkTamagotchiDay() {
     if (newStage > t.stage) {
       if (t.stage === 5 && newStage >= 6) determineTamaPath(t);
       t.stage = newStage;
-      showToast(`🌱 Dein Alräunchen hat sich entwickelt! ${getTamaName(t.stage, t.path)}`);
+      showToast(`🌱 Dein Alräunchen hat sich entwickelt! ${getTamaName(t.stage, t.path, t.species)} — „${pickTamaLine(t.species, "evolve")}"`);
     }
   }
+
+  // Grace shield — a big study day (50+ answers) protects the pet from
+  // dying on the very next day, even if it doesn't get fed.
+  if ((t.answersToday || 0) >= 50 && !t.shieldActive) {
+    t.shieldActive = true;
+    showToast("🛡️ Starker Tag! Dein Alräunchen ist morgen geschützt, auch ohne Füttern.");
+  }
+  t.answersToday = 0;
 
   t.feedsToday  = 0;
   t.lastFedDate = today;
@@ -991,10 +1119,11 @@ function checkTamagotchiDay() {
 function reviveTamagotchi() {
   const today = getTodayDate();
   G.tamagotchi = {
-    alive: true, stage: 1, path: null,
+    alive: true, stage: 1, path: null, species: G.tamagotchi.species,
     bornDate: today, lastFedDate: today,
     feedsToday: 0, requiredToday: 5,
     missedDays: 0, weekScores: [],
+    answersToday: 0, shieldActive: false, lastDialogue: {},
   };
   saveState();
   renderTamagotchi();
@@ -1011,7 +1140,7 @@ function renderTamagotchiBtn() {
   const hungry = t.alive && pct < 100;
   btn.classList.toggle("top-tab--hungry", hungry);
   btn.title = t.alive
-    ? `${getTamaName(t.stage, t.path)} — ${t.feedsToday || 0}/${t.requiredToday || 5} heute`
+    ? `${getTamaName(t.stage, t.path, t.species)} — ${t.feedsToday || 0}/${t.requiredToday || 5} heute`
     : "Gestorben";
 }
 
@@ -1027,8 +1156,8 @@ function renderTamagotchi() {
   const pct = Math.min(100, Math.round((feeds / required) * 100));
   const overfed  = feeds >= required * 1.5;
   const fed      = feeds >= required;
-  const img      = getTamaImage(t.stage, t.path, t.alive);
-  const name     = t.alive ? getTamaName(t.stage, t.path) : "☠️ Gestorben";
+  const img      = getTamaImage(t.stage, t.path, t.alive, t.species);
+  const name     = t.alive ? getTamaName(t.stage, t.path, t.species) : "☠️ Gestorben";
   const stageLabel = t.alive ? `Stufe ${t.stage}/10` : "";
   const pathLabel  = t.path
     ? ({ a: '🌟 Blühend', b: '🌿 Gesund', c: '🖤 Welkend' }[t.path] || '')
@@ -1066,6 +1195,55 @@ function renderTamagotchi() {
   renderTamagotchiBtn();
 }
 window.renderTamagotchi = renderTamagotchi;
+
+const TAMA_SPECIES_ORDER = ['root', 'flamm', 'well', 'kiesel'];
+
+// Mandatory starter picker — shown on first launch and after a full game
+// reset (species:null gates this). No cancel button; a choice is required.
+function showStarterSelect() {
+  let modal = document.getElementById("modal-starter-select");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id        = "modal-starter-select";
+    modal.className = "modal-overlay";
+    modal.innerHTML = `<div class="modal-box">
+      <h2>🥚 Wähle dein Alräunchen</h2>
+      <p class="starter-select-intro">Welches Wesen möchtest du aufziehen?</p>
+      <div id="starter-select-grid" class="starter-select-grid"></div>
+    </div>`;
+    document.body.appendChild(modal);
+  }
+  const grid = document.getElementById("starter-select-grid");
+  grid.innerHTML = TAMA_SPECIES_ORDER.map(sp => {
+    const data = TAMA_SPECIES_DATA[sp];
+    return `<button class="starter-card" data-species="${sp}">
+      <img src="${getTamaImage(1, null, true, sp)}" alt="${data.name}">
+      <div class="starter-card-name">${data.name}</div>
+      <div class="starter-card-tagline">${data.tagline}</div>
+    </button>`;
+  }).join("");
+  grid.querySelectorAll(".starter-card").forEach(btn => {
+    btn.onclick = () => chooseStarter(btn.dataset.species);
+  });
+  modal.hidden = false;
+}
+window.showStarterSelect = showStarterSelect;
+
+function chooseStarter(species) {
+  const today = getTodayDate();
+  G.tamagotchi = {
+    alive: true, stage: 1, path: null, species,
+    bornDate: today, lastFedDate: today,
+    feedsToday: 0, requiredToday: 5,
+    missedDays: 0, weekScores: [],
+    answersToday: 0, shieldActive: false, lastDialogue: {},
+  };
+  saveState();
+  closeModal("modal-starter-select");
+  renderAll();
+  switchTopTab("tama");
+  showToast(`🥚 ${TAMA_SPECIES_DATA[species].name} ist bereit!`);
+}
 
 function plantSeed(patchIdx, cropId, cropName) {
   G.garden.patches[patchIdx] = { plantId: cropId, plantTitle: cropName, growthPoints: 0 };
@@ -3221,6 +3399,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("reset-btn")?.addEventListener("click", () => {
     if (confirm("Spielstand wirklich löschen?")) {
       localStorage.removeItem(SAVE_KEY); G = defaultState(); saveState(); renderAll(); closeModal("modal-settings"); showToast("Zurückgesetzt.");
+      showStarterSelect();
     }
   });
   document.getElementById("changelog-btn")?.addEventListener("click", () => {
@@ -3279,9 +3458,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load game state and render — after listeners so a crash doesn't lose them
   try {
     G = loadState();
-    checkTamagotchiDay();
-    renderAll();
-    switchTopTab(G.activeMode || "tama");
+    if (!G.tamagotchi.species) {
+      renderAll();
+      switchTopTab("tama");
+      showStarterSelect();
+    } else {
+      checkTamagotchiDay();
+      renderAll();
+      switchTopTab(G.activeMode || "tama");
+    }
   } catch (e) {
     const stack = (e.stack || "").split("\n").slice(0, 8).join("<br>");
     document.body.innerHTML = `<div style="color:#fff;padding:2rem;font-family:sans-serif;font-size:0.8rem"><b>Ladefehler:</b> ${e.message}<br><br>${stack}<br><br>

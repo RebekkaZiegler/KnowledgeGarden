@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="young_well_4" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#dff6ff"/>
+      <stop offset="100%" stop-color="#4098c0"/>
+    </radialGradient>
+    <radialGradient id="young_well_4_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#b8ecff"/>
+      <stop offset="100%" stop-color="#2878a8"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="154" rx="34" ry="8" fill="#123648" fill-opacity="0.6"/>
+  <ellipse cx="60" cy="150" rx="25.5" ry="5.5" fill="#1c5878" fill-opacity="0.5"/>
+  <ellipse cx="60" cy="147" rx="15.3" ry="3.5" fill="#60c8e8" fill-opacity="0.4"/>
+  <ellipse cx="60" cy="120" rx="20" ry="30" fill="url(#young_well_4_b)" stroke="#144860" stroke-width="1.5"/>
+  <path d="M40,111 Q23.56,113 19.56,125.8" fill="#2878a8" fill-opacity="0.85"/>
+  <path d="M80,111 Q96.44,113 100.44,125.8" fill="#2878a8" fill-opacity="0.85"/>
+  <ellipse cx="60" cy="78" rx="28.8" ry="27.36" fill="url(#young_well_4)" stroke="#144860" stroke-width="1.5"/>
+  <path d="M51,58 Q60,53.05 69,58" stroke="#eafcff" stroke-width="2.3" fill="none" stroke-opacity="0.95" stroke-linecap="round"/>
+  <path d="M46.4,54.2 Q60,46.72 73.6,54.2" stroke="#eafcff" stroke-width="2.3" fill="none" stroke-opacity="0.82" stroke-linecap="round"/>
+  <path d="M60,44 Q55,52 60,58 Q65,52 60,44Z" fill="#dff6ff" stroke="#eafcff" stroke-width="0.6"/>
+  <ellipse cx="48.4" cy="78" rx="11" ry="11.88" fill="white" stroke="#144860" stroke-width="1.2"/>
+  <circle cx="48.4" cy="79" r="6.82" fill="#144860"/>
+  <circle cx="50.79" cy="75.27" r="3.07" fill="white"/>
+  <ellipse cx="71.6" cy="78" rx="11" ry="11.88" fill="white" stroke="#144860" stroke-width="1.2"/>
+  <circle cx="71.6" cy="79" r="6.82" fill="#144860"/>
+  <circle cx="73.99" cy="75.27" r="3.07" fill="white"/>
+  <path d="M55,93.84 Q60,95.84 65,93.84" stroke="#144860" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="30" cy="88.08" rx="7" ry="4.5" fill="#eafcff" fill-opacity="0.3"/>
+  <ellipse cx="90" cy="88.08" rx="7" ry="4.5" fill="#eafcff" fill-opacity="0.3"/>
+
+</svg>

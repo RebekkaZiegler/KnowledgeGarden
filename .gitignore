@@ -7,3 +7,5 @@ assets/music/*.mp3
 assets/deprecated/music/*.mp3
 # Source PDFs — too large for git, stored locally
 Input/*.pdf
+# QA screenshots from scripts/screenshot-tama-previews.js
+scripts/_preview_*.png

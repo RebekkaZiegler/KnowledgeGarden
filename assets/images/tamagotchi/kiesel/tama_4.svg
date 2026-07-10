@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="young_kiesel_4" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#d8d0c0"/>
+      <stop offset="100%" stop-color="#8a8070"/>
+    </radialGradient>
+    <radialGradient id="young_kiesel_4_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#c0b8a8"/>
+      <stop offset="100%" stop-color="#706858"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="154" rx="34" ry="9" fill="#221e18"/>
+  <ellipse cx="60" cy="150" rx="22.1" ry="5" fill="#38322a"/>
+  <path d="M46.4,152 L60,146 L73.6,152" stroke="#4a4238" stroke-width="1.2" fill="none"/>
+  <ellipse cx="60" cy="120" rx="20" ry="30" fill="url(#young_kiesel_4_b)" stroke="#3c362c" stroke-width="1.5"/>
+  <polygon points="42,111 17,109 19,118.8" fill="#706858"/>
+  <polygon points="78,111 103,109 101,118.8" fill="#706858"/>
+  <ellipse cx="60" cy="78" rx="28.8" ry="27.36" fill="url(#young_kiesel_4)" stroke="#3c362c" stroke-width="1.5"/>
+  <polygon points="34.6,60 38,49.5 41.4,60" fill="#e8e0d0" stroke="#d8d0c0" stroke-width="0.6"/>
+  <polygon points="36.81,58.43 38,51.08 39.19,58.43" fill="#d8d0c0" fill-opacity="0.8"/>
+  <polygon points="56.6,60 60,46.5 63.4,60" fill="#e8e0d0" stroke="#d8d0c0" stroke-width="0.6"/>
+  <polygon points="58.81,57.98 60,48.53 61.19,57.98" fill="#d8d0c0" fill-opacity="0.8"/>
+  <polygon points="78.6,60 82,49.5 85.4,60" fill="#e8e0d0" stroke="#d8d0c0" stroke-width="0.6"/>
+  <polygon points="80.81,58.43 82,51.08 83.19,58.43" fill="#d8d0c0" fill-opacity="0.8"/>
+  <ellipse cx="48.4" cy="78" rx="11" ry="11.88" fill="white" stroke="#3c362c" stroke-width="1.2"/>
+  <circle cx="48.4" cy="79" r="6.82" fill="#3c362c"/>
+  <circle cx="50.79" cy="75.27" r="3.07" fill="white"/>
+  <ellipse cx="71.6" cy="78" rx="11" ry="11.88" fill="white" stroke="#3c362c" stroke-width="1.2"/>
+  <circle cx="71.6" cy="79" r="6.82" fill="#3c362c"/>
+  <circle cx="73.99" cy="75.27" r="3.07" fill="white"/>
+  <path d="M55,93.84 Q60,95.84 65,93.84" stroke="#3c362c" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="30" cy="88.08" rx="7" ry="4.5" fill="#e8e0d0" fill-opacity="0.3"/>
+  <ellipse cx="90" cy="88.08" rx="7" ry="4.5" fill="#e8e0d0" fill-opacity="0.3"/>
+
+</svg>

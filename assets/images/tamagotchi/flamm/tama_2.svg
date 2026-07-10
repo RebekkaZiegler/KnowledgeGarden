@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="young_flamm_2" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffe8a0"/>
+      <stop offset="100%" stop-color="#ff9a30"/>
+    </radialGradient>
+    <radialGradient id="young_flamm_2_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#ffcf70"/>
+      <stop offset="100%" stop-color="#f97a20"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="153" rx="26" ry="9" fill="#241a14"/>
+  <ellipse cx="60" cy="149" rx="18.2" ry="6" fill="#3a2418"/>
+  <circle cx="60" cy="146" r="8" fill="#ff9020" fill-opacity="0.35"/>
+  <ellipse cx="60" cy="124" rx="18" ry="26" fill="url(#young_flamm_2_b)" stroke="#b03a10" stroke-width="1.5"/>
+  <path d="M40,116.2 Q29,112.2 27,105.2" stroke="#f97a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M80,116.2 Q91,112.2 93,105.2" stroke="#f97a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="60" cy="84" rx="24.4" ry="23.18" fill="url(#young_flamm_2)" stroke="#b03a10" stroke-width="1.5"/>
+  <circle cx="52" cy="84" r="2" fill="#b03a10" fill-opacity="0.5"/>
+  <circle cx="68" cy="84" r="2" fill="#b03a10" fill-opacity="0.5"/>
+  <ellipse cx="60" cy="92" rx="1.6" ry="1.2" fill="#b03a10"/>
+
+</svg>

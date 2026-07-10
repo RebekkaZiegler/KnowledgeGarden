@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="br_kiesel_c1" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#a09888"/>
+      <stop offset="100%" stop-color="#5c5448"/>
+    </radialGradient>
+    <radialGradient id="br_kiesel_c1_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#8a8070"/>
+      <stop offset="100%" stop-color="#443c30"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="154" rx="25" ry="9" fill="#221e18"/>
+  <ellipse cx="60" cy="150" rx="16.25" ry="5" fill="#38322a"/>
+  <path d="M50,152 L60,146 L70,152" stroke="#4a4238" stroke-width="1.2" fill="none"/>
+  <ellipse cx="60" cy="108.2" rx="21.3" ry="32.8" fill="url(#br_kiesel_c1_b)" stroke="#241f18" stroke-width="1.8"/>
+  <polygon points="42,96.72 19,94.72 21,103.32" fill="#443c30"/>
+  <polygon points="78,96.72 101,94.72 99,103.32" fill="#443c30"/>
+  <ellipse cx="60" cy="60" rx="29.2" ry="27.45" fill="url(#br_kiesel_c1)" stroke="#241f18" stroke-width="1.8"/>
+  <polygon points="34.6,42 38,31.5 41.4,42" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="36.81,40.42 38,33.08 39.19,40.42" fill="#a09888" fill-opacity="0.8"/>
+  <polygon points="56.6,42 60,28.5 63.4,42" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="58.81,39.98 60,30.53 61.19,39.98" fill="#a09888" fill-opacity="0.8"/>
+  <polygon points="78.6,42 82,31.5 85.4,42" fill="#b8ac98" stroke="#a09888" stroke-width="0.6"/>
+  <polygon points="80.81,40.42 82,33.08 83.19,40.42" fill="#a09888" fill-opacity="0.8"/>
+  <ellipse cx="48.3" cy="60" rx="8.6" ry="9.46" fill="#d8d8c8" stroke="#241f18" stroke-width="1.2"/>
+  <circle cx="48.3" cy="61" r="5.16" fill="#241f18"/>
+  <path d="M39.7,55.7 Q48.3,48.82 56.9,55.7" fill="#241f18" fill-opacity="0.55"/>
+  <circle cx="46.75" cy="58.45" r="1.14" fill="white" fill-opacity="0.7"/>
+  <ellipse cx="71.7" cy="60" rx="8.6" ry="9.46" fill="#d8d8c8" stroke="#241f18" stroke-width="1.2"/>
+  <circle cx="71.7" cy="61" r="5.16" fill="#241f18"/>
+  <path d="M63.1,55.7 Q71.7,48.82 80.3,55.7" fill="#241f18" fill-opacity="0.55"/>
+  <circle cx="73.25" cy="58.45" r="1.14" fill="white" fill-opacity="0.7"/>
+  <path d="M54,79.06 Q60,74.26 66,79.06" stroke="#241f18" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+</svg>

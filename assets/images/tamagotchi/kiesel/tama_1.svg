@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="young_kiesel_1" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#d8d0c0"/>
+      <stop offset="100%" stop-color="#8a8070"/>
+    </radialGradient>
+    <radialGradient id="young_kiesel_1_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#c0b8a8"/>
+      <stop offset="100%" stop-color="#706858"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="154" rx="25" ry="9" fill="#221e18"/>
+  <ellipse cx="60" cy="150" rx="16.25" ry="5" fill="#38322a"/>
+  <path d="M50,152 L60,146 L70,152" stroke="#4a4238" stroke-width="1.2" fill="none"/>
+  <ellipse cx="60" cy="132" rx="13" ry="16" fill="url(#young_kiesel_1_b)" stroke="#3c362c" stroke-width="1.4"/>
+  <path d="M56,120 L60,115 L64,120 L62,124 L64,119" stroke="#e8e0d0" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="60" cy="118" r="3" fill="#e8e0d0" fill-opacity="0.6"/>
+
+</svg>

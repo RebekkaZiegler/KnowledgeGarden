@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="young_flamm_4" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffe8a0"/>
+      <stop offset="100%" stop-color="#ff9a30"/>
+    </radialGradient>
+    <radialGradient id="young_flamm_4_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#ffcf70"/>
+      <stop offset="100%" stop-color="#f97a20"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="153" rx="32" ry="9" fill="#241a14"/>
+  <ellipse cx="60" cy="149" rx="22.4" ry="6" fill="#3a2418"/>
+  <circle cx="60" cy="146" r="10" fill="#ff9020" fill-opacity="0.35"/>
+  <ellipse cx="60" cy="120" rx="20" ry="30" fill="url(#young_flamm_4_b)" stroke="#b03a10" stroke-width="1.5"/>
+  <path d="M40,111 Q24,107 22,95" stroke="#f97a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M80,111 Q96,107 98,95" stroke="#f97a20" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="60" cy="78" rx="28.8" ry="27.36" fill="url(#young_flamm_4)" stroke="#b03a10" stroke-width="1.5"/>
+  <path d="M40.06,80.23 Q44.06,59.23 48.06,80.23 Q44.06,74.98 40.06,80.23Z" fill="#fff0b0" stroke="#ffe8a0" stroke-width="0.6"/>
+  <path d="M42.46,76.56 Q44.06,63.96 45.66,76.56Z" fill="#ffe8a0" fill-opacity="0.85"/>
+  <path d="M56,74 Q60,46 64,74 Q60,67 56,74Z" fill="#fff0b0" stroke="#ffe8a0" stroke-width="0.6"/>
+  <path d="M58.4,69.1 Q60,52.3 61.6,69.1Z" fill="#ffe8a0" fill-opacity="0.85"/>
+  <path d="M71.94,80.23 Q75.94,59.23 79.94,80.23 Q75.94,74.98 71.94,80.23Z" fill="#fff0b0" stroke="#ffe8a0" stroke-width="0.6"/>
+  <path d="M74.34,76.56 Q75.94,63.96 77.54,76.56Z" fill="#ffe8a0" fill-opacity="0.85"/>
+  <ellipse cx="48.4" cy="78" rx="11" ry="11.88" fill="white" stroke="#b03a10" stroke-width="1.2"/>
+  <circle cx="48.4" cy="79" r="6.82" fill="#b03a10"/>
+  <circle cx="50.79" cy="75.27" r="3.07" fill="white"/>
+  <ellipse cx="71.6" cy="78" rx="11" ry="11.88" fill="white" stroke="#b03a10" stroke-width="1.2"/>
+  <circle cx="71.6" cy="79" r="6.82" fill="#b03a10"/>
+  <circle cx="73.99" cy="75.27" r="3.07" fill="white"/>
+  <path d="M55,93.84 Q60,95.84 65,93.84" stroke="#b03a10" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="30" cy="88.08" rx="7" ry="4.5" fill="#fff0b0" fill-opacity="0.3"/>
+  <ellipse cx="90" cy="88.08" rx="7" ry="4.5" fill="#fff0b0" fill-opacity="0.3"/>
+
+</svg>

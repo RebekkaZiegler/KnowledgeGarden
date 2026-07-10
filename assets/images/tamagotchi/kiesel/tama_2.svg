@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160">
+  <defs>
+    <radialGradient id="young_kiesel_2" cx="40%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#d8d0c0"/>
+      <stop offset="100%" stop-color="#8a8070"/>
+    </radialGradient>
+    <radialGradient id="young_kiesel_2_b" cx="38%" cy="26%" r="68%">
+      <stop offset="0%" stop-color="#c0b8a8"/>
+      <stop offset="100%" stop-color="#706858"/>
+    </radialGradient>
+  </defs>
+  <ellipse cx="60" cy="154" rx="28" ry="9" fill="#221e18"/>
+  <ellipse cx="60" cy="150" rx="18.2" ry="5" fill="#38322a"/>
+  <path d="M48.8,152 L60,146 L71.2,152" stroke="#4a4238" stroke-width="1.2" fill="none"/>
+  <ellipse cx="60" cy="124" rx="18" ry="26" fill="url(#young_kiesel_2_b)" stroke="#3c362c" stroke-width="1.5"/>
+  <polygon points="42,116.2 21,114.2 23,121.6" fill="#706858"/>
+  <polygon points="78,116.2 99,114.2 97,121.6" fill="#706858"/>
+  <ellipse cx="60" cy="84" rx="24.4" ry="23.18" fill="url(#young_kiesel_2)" stroke="#3c362c" stroke-width="1.5"/>
+  <circle cx="52" cy="84" r="2" fill="#3c362c" fill-opacity="0.5"/>
+  <circle cx="68" cy="84" r="2" fill="#3c362c" fill-opacity="0.5"/>
+  <ellipse cx="60" cy="92" rx="1.6" ry="1.2" fill="#3c362c"/>
+
+</svg>
