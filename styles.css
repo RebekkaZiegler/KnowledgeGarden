@@ -3717,6 +3717,104 @@ body.plant-open #back-to-garden-btn { display: block; }
   line-height: 1.3;
 }
 
+/* ── Stage-10 keep/release choice ── */
+.tama-release-choice {
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--line);
+}
+.tama-release-prompt {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+  line-height: 1.35;
+}
+.tama-release-btns {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.tama-keep-btn, .tama-free-btn {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: var(--panel);
+  color: inherit;
+}
+.tama-keep-btn:hover { border-color: var(--accent); }
+.tama-free-btn { color: #e0c060; }
+.tama-free-btn:hover { border-color: #e0c060; }
+
+/* ── Release summary modal ── */
+.release-summary-box { text-align: center; }
+.release-summary-img {
+  width: 100px;
+  height: 133px;
+  margin: 0.3rem auto 0.5rem;
+  display: block;
+}
+.release-summary-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.release-summary-stats {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+.release-summary-flavor {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0.9rem 0 1.1rem;
+  font-style: italic;
+}
+.release-summary-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 1.3rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* ── Trophy room: released pets ── */
+.released-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.released-card {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+.released-img {
+  width: 44px;
+  height: 58px;
+  flex-shrink: 0;
+}
+.released-info { flex: 1; min-width: 0; }
+.released-name { font-weight: 600; }
+.released-meta {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0.1rem 0 0.25rem;
+}
+.released-flavor {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  font-style: italic;
+  margin: 0;
+}
+
 /* ═══════════════════════════════════════
    MODE SCREENS (shared)
 ═══════════════════════════════════════ */

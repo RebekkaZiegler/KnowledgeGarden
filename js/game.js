@@ -226,6 +226,10 @@ function defaultState() {
       shieldActive:   false,  // true = next missed-day check is fully forgiven once
       lastDialogue:   {},     // { [moment]: lastLineIndex } — avoids repeating the same line twice in a row
     },
+
+    // History of fully-grown Alräunchen released into the wild — see
+    // releaseTamagotchi(). Each entry is a frozen snapshot, never mutated.
+    releasedPets: [],
   };
 }
 
@@ -274,8 +278,9 @@ function normalizeState(s) {
   s.restaurant.totalStats      = Object.assign({ veryHappy: 0, happy: 0, neutral: 0, sad: 0 }, s.restaurant.totalStats || {});
   s.restaurant.sessionCorrect  = 0;
   s.restaurant.sessionAnswered = 0;
-  s.chapters    = s.chapters    || {};
-  s.inventory   = s.inventory   || {};
+  s.chapters      = s.chapters      || {};
+  s.inventory     = s.inventory     || {};
+  s.releasedPets  = s.releasedPets  || [];
   s.ravenOrders = s.ravenOrders || [];
   s.ravenSeeds  = s.ravenSeeds  || [];
   const ds = (defaultState()).supplies;
@@ -984,6 +989,36 @@ function pickTamaLine(species, moment) {
   return pool[idx];
 }
 
+// Flavor text shown once, when a fully-grown (stage 10) Alräunchen is
+// released into the wild — one line per species × final mood path,
+// reflecting how well it was cared for.
+const TAMA_RELEASE_LINES = {
+  root: {
+    a: ["Es wurzelt tief im Herzen des alten Waldes und lässt goldene Blüten für jeden Wanderer erblühen.", "Man erzählt sich, dass sein Lachen noch immer zwischen den Bäumen zu hören ist."],
+    b: ["Es hat sich einen ruhigen Platz am Waldrand gesucht und wächst dort in aller Stille weiter.", "Ab und zu sieht man es zwischen den Farnen hervorlugen, zufrieden und gesund."],
+    c: ["Es hat sich tief in den Schatten zurückgezogen, aber die Wurzeln halten — es kämpft sich durch.", "Der Weg war hart, doch in der Freiheit findet es endlich seine eigene Kraft."],
+  },
+  flamm: {
+    a: ["Es tanzt nun als helles Irrlicht über die Wiesen und wärmt jeden, der sich verirrt hat.", "Reisende berichten von einem golden lodernden Licht, das ihnen sicher den Weg wies."],
+    b: ["Es hat sich in einer alten Feuerstelle niedergelassen und brennt dort ruhig und beständig weiter.", "Manchmal sieht man einen kleinen warmen Schein zwischen den Steinen — es geht ihm gut."],
+    c: ["Es flackert nur noch schwach zwischen nassem Holz, aber es gibt nicht auf.", "In der Freiheit sucht es sich mühsam neue Glut — der Weg ist steinig, aber es lebt."],
+  },
+  well: {
+    a: ["Es fließt nun als glitzernder Bach durch das Tal und bringt frisches Wasser zu jedem Dorf.", "Fischer erzählen von einem Bach, der nie versiegt, egal wie trocken der Sommer wird."],
+    b: ["Es hat einen ruhigen Teich gefunden und plätschert dort zufrieden vor sich hin.", "Wer genau hinhört, kann sein leises, beständiges Murmeln zwischen den Steinen hören."],
+    c: ["Es sickert nur noch als dünnes Rinnsal durch trockene Erde, aber es sucht weiter seinen Weg.", "Die Freiheit ist hart, doch irgendwo da draußen fließt es noch, wenn auch leise."],
+  },
+  kiesel: {
+    a: ["Es thront nun als funkelnder Kristallfelsen auf dem höchsten Gipfel, weithin sichtbar.", "Wanderer erzählen von einem Fels, der bei Sonnenuntergang in allen Farben schimmert."],
+    b: ["Es hat sich zwischen alten Steinen niedergelassen und wächst dort langsam, aber sicher weiter.", "Moosbewachsen und geduldig — es hat seinen festen Platz in der Welt gefunden."],
+    c: ["Es liegt zersplittert am Wegesrand, aber jedes Stück hält noch fest zusammen.", "Der Weg war rau, doch auch als Geröll gibt es nicht auf — es hält durch."],
+  },
+};
+function pickReleaseLine(species, path) {
+  const pool = (TAMA_RELEASE_LINES[species] || TAMA_RELEASE_LINES.root)[path || 'b'];
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 function getTamaImage(stage, path, alive, species) {
   const sp = species || 'root';
   if (!alive) return `assets/images/tamagotchi/${sp}/tama_1.svg`;
@@ -1170,6 +1205,14 @@ function renderTamagotchi() {
   const nextStage = t.alive && t.stage < 10
     ? (() => { const d = 7 - (daysOld % 7); return `Nächste Stufe in ${d} Tag${d !== 1 ? 'en' : ''}`; })()
     : t.stage >= 10 ? 'Maximal entwickelt 🏆' : '';
+  const releaseChoice = t.alive && t.stage >= 10 ? `
+    <div class="tama-release-choice">
+      <p class="tama-release-prompt">Dein Alräunchen ist voll ausgewachsen. Behältst du es — oder lässt du es in die Freiheit ziehen?</p>
+      <div class="tama-release-btns">
+        <button class="tama-keep-btn" onclick="keepTamagotchi()">🏡 Behalten</button>
+        <button class="tama-free-btn" onclick="confirmReleaseTamagotchi()">🕊️ Freilassen</button>
+      </div>
+    </div>` : '';
 
   el.innerHTML = `
     <div class="tama-creature">
@@ -1185,6 +1228,7 @@ function renderTamagotchi() {
         ${missedWarning}
         ${nextStage ? `<div class="tama-next">${nextStage}</div>` : ''}
         ${daysOld > 0 ? `<div class="tama-age">Alter: ${daysOld} Tag${daysOld !== 1 ? 'e' : ''}</div>` : ''}
+        ${releaseChoice}
       ` : `
         <p class="tama-dead-msg">Dein Alräunchen ist gestorben weil es 2 Tage nicht gefüttert wurde.</p>
         <button class="tama-revive-btn" onclick="reviveTamagotchi()">🥚 Neu starten</button>
@@ -1243,6 +1287,76 @@ function chooseStarter(species) {
   renderAll();
   switchTopTab("tama");
   showToast(`🥚 ${TAMA_SPECIES_DATA[species].name} ist bereit!`);
+}
+
+// Stage-10 "keep" choice — purely reassurance, no state change; the pet
+// simply keeps being fed and cared for as before.
+function keepTamagotchi() {
+  showToast(`💚 Du ziehst ${getTamaName(10, G.tamagotchi.path, G.tamagotchi.species)} weiter groß.`);
+}
+window.keepTamagotchi = keepTamagotchi;
+
+function confirmReleaseTamagotchi() {
+  const t = G.tamagotchi;
+  const name = getTamaName(t.stage, t.path, t.species);
+  if (confirm(`${name} in die Freiheit ziehen lassen? Das kannst du nicht rückgängig machen — danach wählst du ein neues Alräunchen.`)) {
+    releaseTamagotchi();
+  }
+}
+window.confirmReleaseTamagotchi = confirmReleaseTamagotchi;
+
+function releaseTamagotchi() {
+  const t = G.tamagotchi;
+  const today = getTodayDate();
+  const record = {
+    species:     t.species,
+    path:        t.path || 'b',
+    stage:       t.stage,
+    name:        getTamaName(t.stage, t.path, t.species),
+    img:         getTamaImage(t.stage, t.path, true, t.species),
+    bornDate:    t.bornDate,
+    releasedDate: today,
+    daysRaised:  t.bornDate ? daysBetween(t.bornDate, today) : 0,
+    flavor:      pickReleaseLine(t.species, t.path || 'b'),
+  };
+  G.releasedPets = G.releasedPets || [];
+  G.releasedPets.unshift(record);
+
+  G.tamagotchi = {
+    alive: true, stage: 1, path: null, species: null,
+    bornDate: null, lastFedDate: null,
+    feedsToday: 0, requiredToday: 5,
+    missedDays: 0, weekScores: [],
+    answersToday: 0, shieldActive: false, lastDialogue: {},
+  };
+  saveState();
+  // Not renderTamagotchi() here — it calls checkTamagotchiDay(), which would
+  // stamp bornDate on the fresh species:null tamagotchi and could fool the
+  // migration heuristic into treating it as an existing 'root' pet if the
+  // app is reloaded before a new starter is picked. renderAll() only touches
+  // renderTamagotchiBtn(), which is safe on a species:null pet.
+  renderAll();
+  showReleaseSummary(record);
+}
+
+function showReleaseSummary(record) {
+  let modal = document.getElementById("modal-release-summary");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id        = "modal-release-summary";
+    modal.className = "modal-overlay";
+    document.body.appendChild(modal);
+  }
+  const pathLabel = { a: '🌟 Blühend', b: '🌿 Gesund', c: '🖤 Welkend' }[record.path] || '';
+  modal.innerHTML = `<div class="modal-box release-summary-box">
+    <h2>🕊️ Ziehst in die Freiheit</h2>
+    <img src="${record.img}" class="release-summary-img" alt="${record.name}">
+    <div class="release-summary-name">${record.name}</div>
+    <div class="release-summary-stats">${pathLabel} · ${record.daysRaised} Tag${record.daysRaised !== 1 ? 'e' : ''} aufgezogen</div>
+    <p class="release-summary-flavor">${record.flavor}</p>
+    <button class="release-summary-btn" onclick="closeModal('modal-release-summary'); showStarterSelect();">🥚 Neuen Gefährten wählen</button>
+  </div>`;
+  modal.hidden = false;
 }
 
 function plantSeed(patchIdx, cropId, cropName) {
@@ -2537,6 +2651,24 @@ function renderTrophies() {
     <div class="heatmap">${heatCells.join('')}</div>
     <div class="hm-legend"><span class="hm-cell hm-0"></span> keine <span class="hm-cell hm-1"></span> wenig <span class="hm-cell hm-2"></span> Tagesziel</div>`;
 
+  // Released pets — Alräunchen that reached stage 10 and were set free
+  const released = G.releasedPets || [];
+  const releasedHtml = `
+    <div class="trophy-section-label">🕊️ Freigelassene Gefährten</div>
+    ${released.length === 0 ? `<div class="muted" style="font-size:0.85rem">Noch kein Alräunchen wurde in die Freiheit entlassen.</div>` : `
+    <div class="released-grid">${released.map(r => {
+      const pathLabel = { a: '🌟 Blühend', b: '🌿 Gesund', c: '🖤 Welkend' }[r.path] || '';
+      const dateStr = r.releasedDate ? new Date(r.releasedDate).toLocaleDateString('de-DE') : '';
+      return `<div class="released-card">
+        <img src="${r.img}" class="released-img" alt="${r.name}">
+        <div class="released-info">
+          <div class="released-name">${r.name}</div>
+          <div class="released-meta">${pathLabel} · ${r.daysRaised} Tag${r.daysRaised !== 1 ? 'e' : ''} · ${dateStr}</div>
+          <p class="released-flavor">${r.flavor}</p>
+        </div>
+      </div>`;
+    }).join('')}</div>`}`;
+
   // Achievements grid
   const unlocked = G.stats.unlockedAchievements || [];
   const achHtml = `
@@ -2636,7 +2768,7 @@ function renderTrophies() {
       </div>`;
     }).join('')}`;
 
-  el.innerHTML = counterHtml + progressHtml + heatmapHtml + achHtml + chapterHtml;
+  el.innerHTML = counterHtml + progressHtml + heatmapHtml + achHtml + chapterHtml + releasedHtml;
 }
 
 /* ══════════════════════════════════════════════════════════
