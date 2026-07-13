@@ -225,6 +225,7 @@ function defaultState() {
       answersToday:   0,      // total questions answered today (right+wrong), for the grace shield
       shieldActive:   false,  // true = next missed-day check is fully forgiven once
       lastDialogue:   {},     // { [moment]: lastLineIndex } — avoids repeating the same line twice in a row
+      bonusDays:      0,      // cumulative extra-study days banked toward the next evolution stage
     },
 
     // History of fully-grown Alräunchen released into the wild — see
@@ -1075,6 +1076,7 @@ function checkTamagotchiDay() {
   if (daysSince < 1) return;
 
   const prevFeeds = t.feedsToday || 0;
+  const prevAnswersToday = t.answersToday || 0;
   const required  = t.requiredToday || 5;
 
   // Required-today pace: how many questions/day are needed on average to
@@ -1126,10 +1128,19 @@ function checkTamagotchiDay() {
   const dayScore = shieldUsed ? 1 : prevFeeds === 0 ? 0 : prevFeeds >= required * 1.5 ? 2 : 1;
   t.weekScores = [...(t.weekScores || []), dayScore];
 
-  // Stage advancement — 1 stage per 7 days since birth
+  // Bonus growth — a full extra requiredToday's worth of questions answered
+  // beyond today's goal banks a bonus day toward the next evolution stage.
+  // Self-scales with the exam-pace requirement instead of a flat number, so
+  // it can't run away as that requirement rises or falls.
+  const extraAnswers = Math.max(0, prevAnswersToday - required);
+  const bonusEarned  = Math.floor(extraAnswers / required);
+  if (bonusEarned > 0) t.bonusDays = (t.bonusDays || 0) + bonusEarned;
+
+  // Stage advancement — 1 stage per 7 days since birth, sped up by bonusDays
   if (t.alive) {
     const daysSinceBorn = daysBetween(t.bornDate, today);
-    const newStage = Math.min(10, Math.floor(daysSinceBorn / 7) + 1);
+    const effectiveDays = daysSinceBorn + (t.bonusDays || 0);
+    const newStage = Math.min(10, Math.floor(effectiveDays / 7) + 1);
     if (newStage > t.stage) {
       if (t.stage === 5 && newStage >= 6) determineTamaPath(t);
       t.stage = newStage;
@@ -1158,7 +1169,7 @@ function reviveTamagotchi() {
     bornDate: today, lastFedDate: today,
     feedsToday: 0, requiredToday: 5,
     missedDays: 0, weekScores: [],
-    answersToday: 0, shieldActive: false, lastDialogue: {},
+    answersToday: 0, shieldActive: false, lastDialogue: {}, bonusDays: 0,
   };
   saveState();
   renderTamagotchi();
@@ -1202,8 +1213,9 @@ function renderTamagotchi() {
     : '';
   const moodEmoji = !t.alive ? '💀' : overfed ? '🤩' : fed ? '😊' : pct > 50 ? '😐' : '😢';
   const daysOld   = t.bornDate ? daysBetween(t.bornDate, today) : 0;
+  const effectiveDaysOld = daysOld + (t.bonusDays || 0);
   const nextStage = t.alive && t.stage < 10
-    ? (() => { const d = 7 - (daysOld % 7); return `Nächste Stufe in ${d} Tag${d !== 1 ? 'en' : ''}`; })()
+    ? (() => { const d = 7 - (effectiveDaysOld % 7); return `Nächste Stufe in ${d} Tag${d !== 1 ? 'en' : ''}`; })()
     : t.stage >= 10 ? 'Maximal entwickelt 🏆' : '';
   const releaseChoice = t.alive && t.stage >= 10 ? `
     <div class="tama-release-choice">
@@ -1280,7 +1292,7 @@ function chooseStarter(species) {
     bornDate: today, lastFedDate: today,
     feedsToday: 0, requiredToday: 5,
     missedDays: 0, weekScores: [],
-    answersToday: 0, shieldActive: false, lastDialogue: {},
+    answersToday: 0, shieldActive: false, lastDialogue: {}, bonusDays: 0,
   };
   saveState();
   closeModal("modal-starter-select");
@@ -1327,7 +1339,7 @@ function releaseTamagotchi() {
     bornDate: null, lastFedDate: null,
     feedsToday: 0, requiredToday: 5,
     missedDays: 0, weekScores: [],
-    answersToday: 0, shieldActive: false, lastDialogue: {},
+    answersToday: 0, shieldActive: false, lastDialogue: {}, bonusDays: 0,
   };
   saveState();
   // Not renderTamagotchi() here — it calls checkTamagotchiDay(), which would
@@ -2809,7 +2821,7 @@ function importSave(file) {
    TOAST
 ══════════════════════════════════════════════════════════ */
 let toastTimer = null;
-function showToast(msg) {
+function showToast(msg, duration) {
   let toast = document.getElementById("kg-toast");
   if (!toast) {
     toast = document.createElement("div");
@@ -2820,7 +2832,11 @@ function showToast(msg) {
   toast.textContent = msg;
   toast.style.opacity = "1";
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { toast.style.opacity = "0"; }, 2500);
+  // Scale reading time to message length (~45ms/char on top of a 1.8s base)
+  // so longer lines — like the Alräunchen's dialogue — stay up long enough
+  // to actually read, capped so it's never obnoxiously long.
+  const dur = duration || Math.min(7000, 1800 + msg.length * 45);
+  toastTimer = setTimeout(() => { toast.style.opacity = "0"; }, dur);
 }
 
 /* ══════════════════════════════════════════════════════════
