@@ -1,7 +1,7 @@
 # KnowledgeGarden
 
 A browser-based learning RPG for Heilpraktiker exam prep.  
-Three game modes share one question engine; every correct answer counts toward mastery across all modes.
+The Alräunchen (tamagotchi) and Taverne (restaurant management) modes share one question engine; every correct answer counts toward mastery across both.
 
 **Exam goal:** Heilpraktiker
 
@@ -41,7 +41,15 @@ npm run serve   # → open http://localhost:5173
 
 ## Game modes
 
-Three tabs at the top switch between modes. Question mastery is shared; a question answered correctly in any mode counts toward its spaced-repetition progress.
+Two tabs at the top switch between modes. Question mastery is shared; a question answered correctly in either mode counts toward its spaced-repetition progress.
+
+### 🌱 Alräunchen (tamagotchi)
+
+Raise a magical plant-creature by studying:
+
+- Tap **Frage beantworten** to answer a question and feed your Alräunchen
+- Meeting the daily question quota keeps it fed and growing
+- After 10 stages, choose to keep it or release it into the wild
 
 ### 🍕 Taverne (fantasy tavern management)
 
@@ -53,30 +61,11 @@ Run a medieval tavern:
 
 **Raven orders (🪶):** Order seeds, supplies, and items by answering questions. Delivery is instant; answer the question and the items arrive immediately.
 
-### 📈 Wissen (knowledge clicker)
-
-Cookie-Clicker-style study mode:
-
-- Tap **Frage beantworten** to answer a question and earn Wissenspunkte (KP)
-- Buy buildings (Forscher, Gelehrter, Bibliothek, Institut) for passive KP/sec income
-- Unlock Entdeckungen (multiplier milestones) as total KP accumulates
-- Combo streak bonus: 3 correct in a row = +25%, 7 = +50%, 15 = +100%
-
-### 🏥 Klinik (clinic management)
-
-Manage a village clinic while studying:
-
-- **Patienten:** patients arrive in the waiting room; tap *Behandeln* to consult them (triggers a question); correct = gold + reputation + village health; wrong = reputation loss
-- **Wissensturm:** bar chart showing mastery progress per chapter (gray = inactive, colors = partial progress, gold = 100% mastered)
-- **Upgrades:** buy waiting room expansions, nurses (auto-heal), equipment, and signs to grow the clinic
-
-Village health decays slowly over time; stay active to keep it up.
-
 ---
 
 ## Shared question mechanics
 
-All modes draw from the same question pool and track the same mastery state.
+Both modes draw from the same question pool and track the same mastery state.
 
 - **Mastery:** a question is mastered once answered correctly on 3 different calendar days
 - **Spaced repetition:** unseen questions first, then wrong ones, then unmastered ones

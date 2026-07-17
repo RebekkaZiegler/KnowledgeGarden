@@ -7,14 +7,14 @@ Alles spielt sich ausschliesslich in `js/content.js` ab — kein anderer Code mu
 
 ## Spielmechanik: Fragenpool und Modi
 
-Das Spiel hat drei Modi, die alle denselben Fragenpool und denselben Masteryfortschritt teilen. Kapitel (= Betten) werden vom Spieler aktiviert — erst dann fließen ihre Fragen in den Pool.
+Das Spiel hat zwei Modi (Alräunchen + Taverne), die denselben Fragenpool und denselben Masteryfortschritt teilen. Kapitel (= Betten) werden vom Spieler aktiviert — erst dann fließen ihre Fragen in den Pool.
 
 ### Fragen im Spiel
-- **`harvestQuestions`** erscheinen überall: beim Bewässern von Pflanzen (Taverne), beim Drücken von „Frage beantworten" (Klicker), beim Behandeln von Patienten (Klinik), beim Raben-Bestellen und beim Reinigen.
-- **`phase4Questions`** erscheinen im Restaurant und in der Klinik — sie setzen voraus, dass der Spieler das Thema bereits durch die Ernte kennt.
+- **`harvestQuestions`** erscheinen überall: beim Füttern des Alräunchens, beim Bewässern von Pflanzen (Taverne), beim Raben-Bestellen und beim Reinigen.
+- **`phase4Questions`** erscheinen im Restaurant — sie setzen voraus, dass der Spieler das Thema bereits durch die Ernte kennt.
 
 ### Mastery
-Eine Frage gilt als gemeistert, wenn sie an **3 verschiedenen Kalendertagen** korrekt beantwortet wurde. Der Wissensturm in der Klinik zeigt den Fortschritt pro Kapitel als Balkendiagramm.
+Eine Frage gilt als gemeistert, wenn sie an **3 verschiedenen Kalendertagen** korrekt beantwortet wurde.
 
 ### Pflanzenwachstum (Taverne)
 Pflanzen wachsen nicht über Tage, sondern über richtige Antworten: Jede korrekte Antwort beim Bewässern gibt `+1 growthPoint`. Nach 2 Punkten ist die Pflanze erntereif. Es gibt keinen Tageszyklus mehr — Wachstum ist sofort nach der Antwort sichtbar.

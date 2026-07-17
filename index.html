@@ -28,8 +28,9 @@
        TOP TABS
   ════════════════════════════════════════════════════ -->
   <div id="top-tabs">
-    <button id="top-tab-tama"  class="top-tab top-tab--active">🌱 Alräunchen</button>
-    <button id="top-tab-games" class="top-tab">🎮 Spiele</button>
+    <button id="top-tab-tama"      class="top-tab top-tab--active">🌱 Alräunchen</button>
+    <button id="top-tab-games"     class="top-tab">🍕 Taverne</button>
+    <button id="top-tab-watersort" class="top-tab">🧪 Tränke</button>
   </div>
 
   <!-- ═══════════════════════════════════════════════════
@@ -44,15 +45,9 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════
-       SCREEN: Spiele (Taverne / Wissen / Klinik)
+       SCREEN: Taverne (Garden / Restaurant / Cleaning)
   ════════════════════════════════════════════════════ -->
   <div id="screen-games" class="screen-games-wrap">
-
-    <div id="mode-tabs">
-      <button id="mode-tab-tavern"  class="mode-tab mode-tab--active">🍕 Taverne</button>
-      <button id="mode-tab-clicker" class="mode-tab">📈 Wissen</button>
-      <button id="mode-tab-clinic"  class="mode-tab">🏥 Klinik</button>
-    </div>
 
     <!-- SWIPE SCREENS -->
     <div id="screen-container">
@@ -103,53 +98,18 @@
 
     </div>
 
-    <!-- Knowledge Clicker -->
-    <div id="screen-clicker" class="mode-screen" hidden>
-      <div id="clicker-kp-display">
-        <div id="clicker-kp-number">0</div>
-        <div id="clicker-kp-label">Wissenspunkte</div>
-        <div id="clicker-kp-rate">0 KP/Sek</div>
-      </div>
-      <button id="clicker-study-btn" class="clicker-study-btn">
-        📖 Frage beantworten
-        <span id="clicker-btn-sub">+100 KP</span>
-      </button>
-      <div id="clicker-buildings"></div>
-      <div id="clicker-discoveries"></div>
-    </div>
+  </div>
 
-    <!-- Clinic -->
-    <div id="screen-clinic" class="mode-screen" hidden>
-      <div id="clinic-header">
-        <div id="clinic-village-health">
-          <span class="clinic-health-label">💚 Dorfgesundheit</span>
-          <div id="clinic-health-bar-wrap"><div id="clinic-health-bar"></div></div>
-          <span id="clinic-health-pct">50%</span>
-        </div>
-        <div id="clinic-resources">
-          <span id="clinic-gold">💰 0</span>
-          <span id="clinic-rep">⭐ 0</span>
-          <span id="clinic-healed">❤️ 0</span>
-        </div>
-      </div>
-      <div class="clinic-tabs">
-        <button class="tab-btn tab-btn--active" data-clinic-tab="patients">🏥 Patienten</button>
-        <button class="tab-btn"                 data-clinic-tab="tower">📊 Wissensturm</button>
-        <button class="tab-btn"                 data-clinic-tab="upgrades">🔧 Upgrades</button>
-      </div>
-      <div id="clinic-panel-patients" class="clinic-panel">
-        <div id="clinic-waiting-label" class="muted" style="font-size:0.82rem;margin-bottom:0.5rem"></div>
-        <div id="clinic-waiting-list"></div>
-      </div>
-      <div id="clinic-panel-tower" class="clinic-panel" hidden>
-        <p class="muted" style="font-size:0.8rem;margin-bottom:0.6rem">Fortschritt pro Kapitel — rot/orange = begonnen, grün = fast fertig, gold = alle Fragen gemeistert.</p>
-        <div id="clinic-tower-svg-wrap"></div>
-      </div>
-      <div id="clinic-panel-upgrades" class="clinic-panel" hidden>
-        <div id="clinic-upgrades-list"></div>
-      </div>
+  <!-- ═══════════════════════════════════════════════════
+       SCREEN: Tränke (Water Sort puzzle)
+  ════════════════════════════════════════════════════ -->
+  <div id="screen-watersort" class="mode-screen" hidden>
+    <div id="ws-level-info" class="ws-level-info"></div>
+    <div id="ws-bottle-grid" class="ws-bottle-grid"></div>
+    <div class="ws-controls-row">
+      <button id="ws-buy-bottle-btn" class="ws-buy-bottle-btn">➕ Extra-Fläschchen (1 Frage)</button>
+      <button id="ws-restart-btn" class="ws-restart-btn">🔄 Neu starten</button>
     </div>
-
   </div>
 
   <!-- ═══════════════════════════════════════════════════
@@ -331,6 +291,7 @@
     })();
   </script>
   <script src="./js/game.js"></script>
+  <script src="./js/watersort.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(reg => { reg.update(); }).catch(() => {});

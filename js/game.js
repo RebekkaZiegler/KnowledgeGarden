@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.1.1";   // ← bump this with every push
+const APP_VERSION    = "2.3.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -171,25 +171,6 @@ function defaultState() {
     },
 
     activeMode:     "tama",
-    activeGameMode: "tavern",
-
-    clicker: {
-      kp:          0,
-      kpTotal:     0,
-      buildings:   {},
-      discoveries: [],
-      lastTick:    null,
-    },
-
-    clinic: {
-      gold:            50,
-      reputation:      10,
-      villageHealth:   50,
-      patientsHealed:  0,
-      patientsAngry:   0,
-      waitingPatients: [],
-      upgrades:        { room: 0, nurse: 0, equipment: 0, sign: 0 },
-    },
 
     stats: {
       totalQuestionsAnswered: 0,
@@ -203,6 +184,8 @@ function defaultState() {
       achievementDates:      {},
       memoryRoundsPlayed:    0,
       memoryPairsMatched:    0,
+      waterSortLevelsCompleted:    0,
+      waterSortExtraBottlesBought: 0,
       firstPlayDate:         null,
       dailyDate:             null,
       dailyCorrect:          0,
@@ -231,6 +214,15 @@ function defaultState() {
     // History of fully-grown Alräunchen released into the wild — see
     // releaseTamagotchi(). Each entry is a frozen snapshot, never mutated.
     releasedPets: [],
+
+    waterSort: {
+      playOrder:          [],    // shuffled permutation of [0..WS_LEVEL_COUNT-1]
+      playOrderPos:        0,
+      currentLevelIndex:   null,
+      bottles:             [],   // LIVE state: array of arrays of color strings, bottom→top
+      extraBottlesUsed:     0,   // resets each new level; capped at WS_MAX_EXTRA_BOTTLES
+      selectedBottle:      null, // tap-selected source bottle index, or null
+    },
   };
 }
 
@@ -249,23 +241,21 @@ function normalizeState(s) {
   s.currentDay  = s.currentDay  ?? d.currentDay;
   s.phase       = s.phase       ?? d.phase;
   s.activeMode      = s.activeMode      ?? d.activeMode;
-  s.activeGameMode  = s.activeGameMode  ?? d.activeGameMode;
   // Migrate saves from before the Alräunchen tab existed, where activeMode
-  // held a game sub-mode directly (tavern/clicker/clinic).
+  // held a game sub-mode directly (tavern/clicker/clinic); clicker and
+  // clinic no longer exist, so all of them collapse onto the games tab.
   if (["tavern", "clicker", "clinic"].includes(s.activeMode)) {
-    s.activeGameMode = s.activeMode;
-    s.activeMode     = "tama";
+    s.activeMode = "games";
   }
-  s.clicker     = Object.assign({}, d.clicker,  s.clicker  || {});
-  s.clicker.buildings   = Object.assign({}, s.clicker.buildings   || {});
-  s.clicker.discoveries = s.clicker.discoveries || [];
-  s.clinic      = Object.assign({}, d.clinic,   s.clinic   || {});
-  s.clinic.upgrades         = Object.assign({}, d.clinic.upgrades, s.clinic.upgrades || {});
-  s.clinic.waitingPatients  = []; // never restore mid-session patients
   s.settings   = Object.assign({}, d.settings,    s.settings  || {});
   s.stats      = Object.assign({}, d.stats,        s.stats     || {});
   s.stats.activityLog = s.stats.activityLog || {};
   s.stats.learnedLog  = s.stats.learnedLog  || {};
+  s.stats.waterSortLevelsCompleted    = s.stats.waterSortLevelsCompleted    || 0;
+  s.stats.waterSortExtraBottlesBought = s.stats.waterSortExtraBottlesBought || 0;
+  s.waterSort = Object.assign({}, d.waterSort, s.waterSort || {});
+  s.waterSort.playOrder = Array.isArray(s.waterSort.playOrder) ? s.waterSort.playOrder : [];
+  s.waterSort.bottles   = Array.isArray(s.waterSort.bottles)   ? s.waterSort.bottles   : [];
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
   s.tamagotchi.lastDialogue = s.tamagotchi.lastDialogue || {};
@@ -2616,6 +2606,9 @@ const ACHIEVEMENTS = [
   { id: 'r_master1', icon: '⭐', name: 'Küchenchef',        desc: 'Ein Kapitel vollständig gemeistert', check: () => PACK_CONTENT.beds.some(b => isChapterComplete(b.id)) },
   { id: 'mem_1',     icon: '🧘', name: 'Entspannung',       desc: 'Erste Memory-Runde gespielt',        check: s => (s.memoryRoundsPlayed || 0) >= 1 },
   { id: 'mem_25',    icon: '🍃', name: 'Gut gemerkt',       desc: '25 Paare im Memory gefunden',        check: s => (s.memoryPairsMatched || 0) >= 25 },
+  { id: 'ws_1',      icon: '🧪', name: 'Erster Trank sortiert', desc: '1 Tränke-Level gelöst',          check: s => (s.waterSortLevelsCompleted || 0) >= 1 },
+  { id: 'ws_10',     icon: '⚗️', name: 'Alchemist',          desc: '10 Tränke-Level gelöst',            check: s => (s.waterSortLevelsCompleted || 0) >= 10 },
+  { id: 'ws_50',     icon: '🔮', name: 'Meister-Alchemist',  desc: '50 Tränke-Level gelöst',             check: s => (s.waterSortLevelsCompleted || 0) >= 50 },
   { id: 'day_5',     icon: '📅', name: '5 Tage',            desc: '5 Tage gespielt',                    check: s => (s.daysPlayed || 0) >= 5 },
   { id: 'day_30',    icon: '🗓️', name: 'Ein Monat',         desc: '30 Tage gespielt',                   check: s => (s.daysPlayed || 0) >= 30 },
 ];
@@ -3027,469 +3020,29 @@ function renderAll() {
 }
 
 /* ══════════════════════════════════════════════════════════
-   MODE A — KNOWLEDGE CLICKER
+   MODE SWITCHING — top tabs (Alräunchen / Taverne)
 ══════════════════════════════════════════════════════════ */
-const CLICKER_BUILDINGS = [
-  { id: 'researcher',  name: 'Forscher',    emoji: '🔬', baseCost: 100,         rate: 1,       desc: '+1 KP/Sek'          },
-  { id: 'scholar',     name: 'Gelehrter',   emoji: '🎓', baseCost: 1000,        rate: 10,      desc: '+10 KP/Sek'         },
-  { id: 'library',     name: 'Bibliothek',  emoji: '📚', baseCost: 10000,       rate: 100,     desc: '+100 KP/Sek'        },
-  { id: 'institute',   name: 'Institut',    emoji: '🏛️', baseCost: 100000,      rate: 1000,    desc: '+1.000 KP/Sek'      },
-  { id: 'university',  name: 'Universität', emoji: '🎪', baseCost: 2000000,     rate: 15000,   desc: '+15.000 KP/Sek'     },
-  { id: 'academy',     name: 'Akademie',    emoji: '🌐', baseCost: 50000000,    rate: 250000,  desc: '+250.000 KP/Sek'    },
-  { id: 'observatory', name: 'Observatium', emoji: '🔭', baseCost: 1000000000,  rate: 5000000, desc: '+5.000.000 KP/Sek'  },
-];
+const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort" };
 
-const CLICKER_DISCOVERIES = [
-  { id: 'disc1',  name: 'Erste Erkenntnis',     threshold: 500,              mult: 0.10,  desc: '+10% alle KP'    },
-  { id: 'disc2',  name: 'Durchbruch',            threshold: 5000,             mult: 0.25,  desc: '+25% alle KP'    },
-  { id: 'disc3',  name: 'Meisterwerk',           threshold: 50000,            mult: 0.50,  desc: '+50% alle KP'    },
-  { id: 'disc4',  name: 'Erleuchtung',           threshold: 500000,           mult: 1.00,  desc: '+100% alle KP'   },
-  { id: 'disc5',  name: 'Allwissen',             threshold: 5000000,          mult: 2.00,  desc: '+200% alle KP'   },
-  { id: 'disc6',  name: 'Genialität',            threshold: 100000000,        mult: 3.00,  desc: '+300% alle KP'   },
-  { id: 'disc7',  name: 'Transzendenz',          threshold: 2000000000,       mult: 5.00,  desc: '+500% alle KP'   },
-  { id: 'disc8',  name: 'Kosmisches Bewusstsein',threshold: 50000000000,      mult: 10.00, desc: '+1.000% alle KP' },
-  { id: 'disc9',  name: 'Zeitlose Weisheit',     threshold: 1000000000000,    mult: 20.00, desc: '+2.000% alle KP' },
-  { id: 'disc10', name: 'Göttliche Erkenntnis',  threshold: 25000000000000,   mult: 50.00, desc: '+5.000% alle KP' },
-  { id: 'disc11', name: 'Das Absolute Wissen',   threshold: 1000000000000000, mult: 100.0, desc: '+10.000% alle KP'},
-];
-
-function formatKP(n) {
-  n = Math.floor(n);
-  if (n >= 1e9) return (n / 1e9).toFixed(1) + ' Mrd';
-  if (n >= 1e6) return (n / 1e6).toFixed(1) + ' Mio';
-  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'k';
-  return n.toString();
-}
-
-function getClickerMult() {
-  const disc = G.clicker.discoveries || [];
-  return 1 + CLICKER_DISCOVERIES.filter(d => disc.includes(d.id)).reduce((s, d) => s + d.mult, 0);
-}
-
-function getClickerPassiveRate() {
-  const bld = G.clicker.buildings || {};
-  return CLICKER_BUILDINGS.reduce((s, b) => s + (bld[b.id] || 0) * b.rate, 0) * getClickerMult();
-}
-
-function getClickerBuildingCost(id) {
-  const b = CLICKER_BUILDINGS.find(b => b.id === id);
-  return b ? Math.ceil(b.baseCost * Math.pow(1.15, G.clicker.buildings[id] || 0)) : Infinity;
-}
-
-function tickClicker() {
-  if (!G.clicker) return;
-  const now  = Date.now();
-  const last = G.clicker.lastTick || now;
-  const secs = Math.min((now - last) / 1000, 3600); // cap at 1 hour of offline gains
-  const gain = getClickerPassiveRate() * secs;
-  if (gain > 0) {
-    G.clicker.kp      = (G.clicker.kp      || 0) + gain;
-    G.clicker.kpTotal = (G.clicker.kpTotal  || 0) + gain;
-    checkClickerDiscoveries();
-  }
-  G.clicker.lastTick = now;
-}
-
-function checkClickerDiscoveries() {
-  const disc = G.clicker.discoveries;
-  CLICKER_DISCOVERIES.forEach(d => {
-    if (!disc.includes(d.id) && (G.clicker.kpTotal || 0) >= d.threshold) {
-      disc.push(d.id);
-      showToast(`✨ Entdeckung: ${d.name}! ${d.desc}`);
-    }
-  });
-}
-
-function clickerStudy() {
-  if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
-  const entry = pickNextQuestion();
-  if (!entry) { showToast("Keine Fragen verfügbar."); return; }
-  showQuestion("📈 Wissenspunkte", entry,
-    () => {
-      const gain = Math.round(100 * getClickerMult() * (1 + getStreakBonus() / 100));
-      G.clicker.kp      = (G.clicker.kp      || 0) + gain;
-      G.clicker.kpTotal = (G.clicker.kpTotal  || 0) + gain;
-      G.clicker.lastTick = Date.now();
-      checkClickerDiscoveries();
-      showToast(`+${formatKP(gain)} KP`);
-    },
-    () => {},
-    () => { saveState(); renderClicker(); }
-  );
-}
-window.clickerStudy = clickerStudy;
-
-function buyClickerBuilding(id) {
-  const cost = getClickerBuildingCost(id);
-  if ((G.clicker.kp || 0) < cost) { showToast("Nicht genug KP!"); return; }
-  G.clicker.kp -= cost;
-  G.clicker.buildings[id] = (G.clicker.buildings[id] || 0) + 1;
-  saveState();
-  renderClicker();
-}
-window.buyClickerBuilding = buyClickerBuilding;
-
-let clickerTickTimer = null;
-function startClickerTick() {
-  stopClickerTick();
-  clickerTickTimer = setInterval(() => { tickClicker(); renderClicker(); }, 1000);
-}
-function stopClickerTick() {
-  if (clickerTickTimer) { clearInterval(clickerTickTimer); clickerTickTimer = null; }
-}
-
-function renderClicker() {
-  tickClicker();
-  const kp     = G.clicker.kp      || 0;
-  const kpT    = G.clicker.kpTotal  || 0;
-  const rate   = getClickerPassiveRate();
-  const mult   = getClickerMult();
-  const bonus  = getStreakBonus();
-  const kpGain = Math.round(100 * mult * (1 + bonus / 100));
-  const bonusTip = bonus > 0 ? ` · ⚡+${bonus}%` : "";
-
-  const el = id => document.getElementById(id);
-  if (el("clicker-kp-number")) el("clicker-kp-number").textContent = formatKP(kp);
-  if (el("clicker-kp-rate"))   el("clicker-kp-rate").textContent   = rate > 0 ? `+${formatKP(rate)} KP/Sek` : "Keine passiven Einnahmen";
-  if (el("clicker-btn-sub"))   el("clicker-btn-sub").textContent   = `+${formatKP(kpGain)} KP${bonusTip}`;
-
-  const bldEl = el("clicker-buildings");
-  if (bldEl) {
-    bldEl.innerHTML = `<div class="clicker-section-title">🔬 Gebäude</div>` +
-      CLICKER_BUILDINGS.map(b => {
-        const count    = G.clicker.buildings[b.id] || 0;
-        const cost     = getClickerBuildingCost(b.id);
-        const canBuy   = kp >= cost;
-        const totalRate = count * b.rate * mult;
-        return `<div class="clicker-building">
-          <div class="clicker-bld-info">
-            <span class="clicker-bld-emoji">${b.emoji}</span>
-            <div>
-              <div class="clicker-bld-name">${b.name}${count ? ` <strong>×${count}</strong>` : ""}</div>
-              <div class="clicker-bld-desc">${b.desc}${count ? ` · ${formatKP(totalRate)}/Sek gesamt` : ""}</div>
-            </div>
-          </div>
-          <button class="clicker-buy-btn${canBuy ? "" : " clicker-buy-btn--off"}"
-            onclick="buyClickerBuilding('${b.id}')" ${canBuy ? "" : "disabled"}>
-            Kaufen<br><span>${formatKP(cost)} KP</span>
-          </button>
-        </div>`;
-      }).join("");
-  }
-
-  const discEl = el("clicker-discoveries");
-  if (discEl) {
-    const disc = G.clicker.discoveries || [];
-    discEl.innerHTML = `<div class="clicker-section-title">✨ Entdeckungen</div>` +
-      CLICKER_DISCOVERIES.map(d => {
-        const done = disc.includes(d.id);
-        const pct  = Math.min(100, (kpT / d.threshold) * 100);
-        return `<div class="clicker-discovery${done ? " clicker-discovery--done" : ""}">
-          <div class="clicker-disc-header">
-            <span>${done ? "✅" : "⬜"} ${d.name}</span>
-            <span class="clicker-disc-bonus">${d.desc}</span>
-          </div>
-          ${!done ? `<div class="clicker-disc-bar"><div style="width:${pct.toFixed(1)}%"></div></div>
-            <div class="clicker-disc-thresh">${formatKP(kpT)} / ${formatKP(d.threshold)} KP</div>` : ""}
-        </div>`;
-      }).join("");
-  }
-}
-
-/* ══════════════════════════════════════════════════════════
-   MODE B — CLINIC  (+ Mode C: Knowledge Tower inside it)
-══════════════════════════════════════════════════════════ */
-const CLINIC_NAMES   = ["Anna","Max","Lea","Thomas","Maria","Felix","Sophie","Jonas","Emma","Lukas","Hannah","Julian","Mia","Niklas","Laura","Tim","Sara","Ben","Clara","David"];
-const CLINIC_EMOJI   = ["👴","👵","👨","👩","🧑","👦","👧","🧔","👩‍🦳","👨‍🦱"];
-const CLINIC_COMPLAINTS = [
-  "Kopfschmerzen","Rückenschmerzen","Müdigkeit","Bauchschmerzen",
-  "Husten","Schwindel","Schlafprobleme","Gelenksschmerzen","Stress","Erkältung",
-];
-
-const CLINIC_UPGRADES = [
-  { id: 'room',      name: 'Warteraum +1',      emoji: '🚪', baseCost: 150, desc: '+1 Patientenplatz',            max: 6  },
-  { id: 'nurse',     name: 'Krankenschwester',   emoji: '👩‍⚕️', baseCost: 400, desc: 'Behandelt Patienten automatisch', max: 3  },
-  { id: 'equipment', name: 'Ausrüstung +1',      emoji: '🔧', baseCost: 250, desc: 'Reputationsverlust −2/Fehler',  max: 5  },
-  { id: 'sign',      name: 'Praxisschild',       emoji: '📋', baseCost: 600, desc: '50% mehr Patienten',            max: 1  },
-];
-
-let clinicPatientTimer = null;
-let clinicNurseTimer   = null;
-let clinicUiTimer      = null;
-
-function clinicRooms()    { return 2 + (G.clinic.upgrades.room      || 0); }
-function clinicNurses()   { return      G.clinic.upgrades.nurse      || 0; }
-function clinicEquip()    { return      G.clinic.upgrades.equipment  || 0; }
-function clinicHasSign()  { return     (G.clinic.upgrades.sign       || 0) > 0; }
-
-function clinicSpawnInterval() {
-  const rep  = G.clinic.reputation || 0;
-  const base = Math.max(12000, 55000 - rep * 400);
-  return clinicHasSign() ? Math.round(base * 0.65) : base;
-}
-
-function spawnClinicPatient() {
-  if (!G.clinic) return;
-  const patients = G.clinic.waitingPatients || [];
-  if (patients.length >= clinicRooms()) return;
-  const name      = CLINIC_NAMES  [Math.floor(Math.random() * CLINIC_NAMES.length)];
-  const emoji     = CLINIC_EMOJI  [Math.floor(Math.random() * CLINIC_EMOJI.length)];
-  const complaint = CLINIC_COMPLAINTS[Math.floor(Math.random() * CLINIC_COMPLAINTS.length)];
-  G.clinic.waitingPatients = [...patients, {
-    id: `p${Date.now()}${Math.floor(Math.random()*1000)}`, name, emoji, complaint,
-  }];
-  renderClinic();
-  saveState();
-}
-
-function consultPatient(patientId) {
-  if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
-  const entry = pickNextQuestion();
-  if (!entry) { showToast("Keine Fragen verfügbar."); return; }
-  const pat = (G.clinic.waitingPatients || []).find(p => p.id === patientId);
-  if (!pat) return;
-
-  showQuestion(`🏥 ${pat.name} — ${pat.complaint}`, entry,
-    () => {
-      G.clinic.waitingPatients = (G.clinic.waitingPatients || []).filter(p => p.id !== patientId);
-      const gold = 20 + Math.floor(Math.random() * 31);
-      G.clinic.gold         = (G.clinic.gold         || 0) + gold;
-      G.clinic.reputation   = Math.min(100, (G.clinic.reputation   || 0) + 3);
-      G.clinic.villageHealth= Math.min(100, (G.clinic.villageHealth|| 50) + 2);
-      G.clinic.patientsHealed = (G.clinic.patientsHealed || 0) + 1;
-      showToast(`❤️ ${pat.name} geheilt! +${gold} 💰 +3 ⭐`);
-    },
-    () => {
-      G.clinic.waitingPatients = (G.clinic.waitingPatients || []).filter(p => p.id !== patientId);
-      const repLoss = Math.max(1, 8 - clinicEquip() * 2);
-      G.clinic.reputation    = Math.max(0, (G.clinic.reputation    || 0) - repLoss);
-      G.clinic.villageHealth = Math.max(0, (G.clinic.villageHealth || 50) - 1);
-      G.clinic.patientsAngry = (G.clinic.patientsAngry || 0) + 1;
-      showToast(`😠 ${pat.name} ist unzufrieden. −${repLoss} ⭐`);
-    },
-    () => { saveState(); renderClinic(); }
-  );
-}
-window.consultPatient = consultPatient;
-
-function buyClinicUpgrade(id) {
-  const upg = CLINIC_UPGRADES.find(u => u.id === id);
-  if (!upg) return;
-  const lvl  = G.clinic.upgrades[id] || 0;
-  if (lvl >= upg.max) { showToast("Maximum erreicht!"); return; }
-  const cost = Math.ceil(upg.baseCost * Math.pow(1.6, lvl));
-  if ((G.clinic.gold || 0) < cost) { showToast("Nicht genug Gold!"); return; }
-  G.clinic.gold -= cost;
-  G.clinic.upgrades[id] = lvl + 1;
-  if (id === 'sign') restartClinicSpawnTimer();
-  showToast(`✅ ${upg.emoji} ${upg.name} gekauft!`);
-  saveState();
-  renderClinic();
-}
-window.buyClinicUpgrade = buyClinicUpgrade;
-
-function tickClinicNurses() {
-  const n = clinicNurses();
-  if (!n) return;
-  const patients = G.clinic.waitingPatients || [];
-  const toHandle = Math.min(n, patients.length);
-  if (!toHandle) return;
-  G.clinic.waitingPatients = patients.slice(toHandle);
-  let healed = 0, angry = 0;
-  for (let i = 0; i < toHandle; i++) {
-    if (Math.random() < 0.72) {
-      G.clinic.gold          = (G.clinic.gold          || 0) + 12;
-      G.clinic.reputation    = Math.min(100, (G.clinic.reputation    || 0) + 2);
-      G.clinic.villageHealth = Math.min(100, (G.clinic.villageHealth || 50) + 1);
-      G.clinic.patientsHealed= (G.clinic.patientsHealed || 0) + 1;
-      healed++;
-    } else {
-      G.clinic.reputation    = Math.max(0, (G.clinic.reputation    || 0) - 2);
-      G.clinic.patientsAngry = (G.clinic.patientsAngry || 0) + 1;
-      angry++;
-    }
-  }
-  saveState();
-  renderClinic();
-  if (healed || angry) showToast(`👩‍⚕️ Schwester: ${healed ? `${healed} geheilt` : ""}${healed && angry ? " · " : ""}${angry ? `${angry} unzufrieden` : ""}`);
-}
-
-function restartClinicSpawnTimer() {
-  clearInterval(clinicPatientTimer);
-  clinicPatientTimer = setInterval(spawnClinicPatient, clinicSpawnInterval());
-}
-
-function startClinicTimers() {
-  stopClinicTimers();
-  spawnClinicPatient();
-  restartClinicSpawnTimer();
-  clinicNurseTimer = setInterval(tickClinicNurses, 30000);
-  clinicUiTimer    = setInterval(() => {
-    // gentle health decay
-    G.clinic.villageHealth = Math.max(0, (G.clinic.villageHealth || 50) - 0.05);
-    renderClinic();
-  }, 5000);
-}
-
-function stopClinicTimers() {
-  clearInterval(clinicPatientTimer);
-  clearInterval(clinicNurseTimer);
-  clearInterval(clinicUiTimer);
-  clinicPatientTimer = clinicNurseTimer = clinicUiTimer = null;
-}
-
-function renderClinic() {
-  const el = id => document.getElementById(id);
-
-  const health = G.clinic.villageHealth || 50;
-  if (el("clinic-health-bar"))  el("clinic-health-bar").style.width  = health.toFixed(1) + "%";
-  if (el("clinic-health-pct"))  el("clinic-health-pct").textContent  = Math.floor(health) + "%";
-  if (el("clinic-gold"))        el("clinic-gold").textContent        = `💰 ${Math.floor(G.clinic.gold || 0)}`;
-  if (el("clinic-rep"))         el("clinic-rep").textContent         = `⭐ ${Math.floor(G.clinic.reputation || 0)}`;
-  if (el("clinic-healed"))      el("clinic-healed").textContent      = `❤️ ${G.clinic.patientsHealed || 0}`;
-
-  const patients = G.clinic.waitingPatients || [];
-  const maxRooms = clinicRooms();
-  if (el("clinic-waiting-label")) el("clinic-waiting-label").textContent = `Wartezimmer: ${patients.length}/${maxRooms}`;
-  const listEl = el("clinic-waiting-list");
-  if (listEl) {
-    listEl.innerHTML = patients.length
-      ? patients.map(p => `
-          <button class="clinic-patient-btn" onclick="consultPatient('${p.id}')">
-            <span class="clinic-pt-emoji">${p.emoji}</span>
-            <div class="clinic-pt-info">
-              <div class="clinic-pt-name">${p.name}</div>
-              <div class="clinic-pt-complaint">${p.complaint}</div>
-            </div>
-            <span class="clinic-pt-action">Behandeln →</span>
-          </button>`).join("")
-      : `<div class="clinic-empty">Kein Patient wartet — kommen bald…</div>`;
-  }
-
-  const upgEl = el("clinic-upgrades-list");
-  if (upgEl) {
-    const gold = G.clinic.gold || 0;
-    upgEl.innerHTML = CLINIC_UPGRADES.map(u => {
-      const lvl    = G.clinic.upgrades[u.id] || 0;
-      const maxed  = lvl >= u.max;
-      const cost   = Math.ceil(u.baseCost * Math.pow(1.6, lvl));
-      const canBuy = gold >= cost && !maxed;
-      return `<div class="clinic-upgrade">
-        <div class="clinic-upg-info">
-          <span>${u.emoji} ${u.name}${lvl ? ` <span class="clinic-upg-lvl">Stufe ${lvl}/${u.max}</span>` : ""}</span>
-          <div class="clinic-upg-desc">${u.desc}</div>
-        </div>
-        <button class="clinic-buy-btn${canBuy ? "" : " clinic-buy-btn--off"}"
-          onclick="buyClinicUpgrade('${u.id}')" ${canBuy ? "" : "disabled"}>
-          ${maxed ? "✓ Max" : `${cost} 💰`}
-        </button>
-      </div>`;
-    }).join("");
-  }
-
-  // Tower panel (only if visible)
-  if (!el("clinic-panel-tower")?.hidden) renderKnowledgeTower();
-}
-
-/* ══════════════════════════════════════════════════════════
-   MODE C — KNOWLEDGE TOWER (SVG, inside Clinic)
-══════════════════════════════════════════════════════════ */
-function renderKnowledgeTower() {
-  const wrap = document.getElementById("clinic-tower-svg-wrap");
-  if (!wrap) return;
-
-  const beds = PACK_CONTENT.beds;
-  const PAD = 10, BAR_H = 28, GAP = 5, W = 340;
-  const H   = beds.length * (BAR_H + GAP) + PAD * 2 + 24;
-
-  let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
-    <text x="${PAD}" y="18" font-size="11" fill="#666" font-family="sans-serif">Kapitel — Fortschritt</text>`;
-
-  beds.forEach((bed, i) => {
-    const ch   = G.chapters[bed.id];
-    const allQ = bed.plants.flatMap(p => [...(p.harvestQuestions || []), ...(p.phase4Questions || [])]);
-    const tot  = allQ.length;
-    const mast = allQ.filter(q => isQuestionMastered(ch?.questions?.[q.id])).length;
-    const pct  = tot > 0 ? mast / tot : 0;
-    const isActive  = ch?.activated;
-    const isMastered= pct >= 1 && tot > 0;
-
-    const y    = PAD + 24 + i * (BAR_H + GAP);
-    const barW = W - PAD * 2 - 52;
-    const fillW= barW * pct;
-    const bg   = isActive ? "#2a2a2a" : "#1a1a1a";
-    const fill = isMastered ? "#f0c040"
-               : pct > 0.6  ? "#5cca6e"
-               : pct > 0.3  ? "#e8a020"
-               : pct > 0    ? "#c04040"
-               : "#333";
-    const label= bed.title.length > 22 ? bed.title.slice(0, 20) + "…" : bed.title;
-    const textCol = pct > 0.4 ? "#fff" : "#888";
-
-    svg += `
-      <rect x="${PAD}" y="${y}" width="${barW}" height="${BAR_H}" rx="4" fill="${bg}"/>
-      ${fillW > 0 ? `<rect x="${PAD}" y="${y}" width="${fillW.toFixed(1)}" height="${BAR_H}" rx="4" fill="${fill}"/>` : ""}
-      <text x="${PAD + 6}" y="${y + BAR_H / 2 + 4}" font-size="10" fill="${textCol}" font-family="sans-serif">${label}</text>
-      <text x="${PAD + barW + 4}" y="${y + BAR_H / 2 + 4}" font-size="10" fill="#aaa" font-family="sans-serif">${mast}/${tot}</text>`;
-  });
-
-  svg += `</svg>`;
-  wrap.innerHTML = svg;
-}
-
-/* ══════════════════════════════════════════════════════════
-   MODE SWITCHING — top tabs (Alräunchen / Spiele) + game sub-tabs
-══════════════════════════════════════════════════════════ */
 function switchTopTab(tab) {
-  const tamaEl  = document.getElementById("screen-tama");
-  const gamesEl = document.getElementById("screen-games");
-
-  if (tamaEl)  tamaEl.hidden = tab !== "tama";
-  // Use style.display for gamesEl because its CSS `display:flex` overrides the `hidden` attribute
-  if (gamesEl) gamesEl.style.display = tab === "games" ? "" : "none";
+  Object.entries(TOP_TAB_SCREENS).forEach(([t, id]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    // "games" uses style.display because its CSS `display:flex` overrides the `hidden` attribute
+    if (t === "games") el.style.display = tab === "games" ? "" : "none";
+    else el.hidden = tab !== t;
+  });
 
   document.querySelectorAll(".top-tab").forEach(btn => btn.classList.remove("top-tab--active"));
   document.getElementById(`top-tab-${tab}`)?.classList.add("top-tab--active");
 
-  if (tab === "tama") {
-    // Games are only "active" while their tab is open — pause everything else
-    stopClickerTick();
-    stopClinicTimers();
-    renderTamagotchi();
-  } else {
-    switchGameMode(G.activeGameMode || "tavern");
-  }
+  if (tab === "tama") renderTamagotchi();
+  if (tab === "watersort") window.wsEnsureQueueAndLevel && window.wsEnsureQueueAndLevel();
 
   G.activeMode = tab;
   saveState();
 }
 window.switchTopTab = switchTopTab;
-
-function switchGameMode(mode) {
-  // Tavern uses the swipe screen-container; others use mode-screen divs
-  const tavernEl  = document.getElementById("screen-container");
-  const clickerEl = document.getElementById("screen-clicker");
-  const clinicEl  = document.getElementById("screen-clinic");
-
-  // Use style.display for tavernEl because its CSS `display:flex` overrides the `hidden` attribute
-  if (tavernEl)  tavernEl.style.display  = mode === "tavern"  ? "" : "none";
-  if (clickerEl) clickerEl.hidden = mode !== "clicker";
-  if (clinicEl)  clinicEl.hidden  = mode !== "clinic";
-
-  document.querySelectorAll("#mode-tabs .mode-tab").forEach(btn => btn.classList.remove("mode-tab--active"));
-  document.getElementById(`mode-tab-${mode}`)?.classList.add("mode-tab--active");
-
-  // Start/stop timers per mode
-  if (mode === "clicker") { startClickerTick(); renderClicker(); }
-  else                      stopClickerTick();
-
-  if (mode === "clinic")  { startClinicTimers(); renderClinic(); }
-  else                      stopClinicTimers();
-
-  G.activeGameMode = mode;
-  saveState();
-}
-window.switchGameMode = switchGameMode;
 
 /* ══════════════════════════════════════════════════════════
    BOOT
@@ -3575,33 +3128,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
-  // Top tabs (Alräunchen / Spiele)
-  document.getElementById("top-tab-tama")?.addEventListener("click",  () => switchTopTab("tama"));
-  document.getElementById("top-tab-games")?.addEventListener("click", () => switchTopTab("games"));
-
-  // Game sub-tabs (Taverne / Wissen / Klinik)
-  document.querySelectorAll("#mode-tabs .mode-tab").forEach(btn => {
-    btn.addEventListener("click", () => switchGameMode(btn.id.replace("mode-tab-", "")));
-  });
-
-  // Clicker study button
-  document.getElementById("clicker-study-btn")?.addEventListener("click", clickerStudy);
+  // Top tabs (Alräunchen / Taverne / Tränke)
+  document.getElementById("top-tab-tama")?.addEventListener("click",      () => switchTopTab("tama"));
+  document.getElementById("top-tab-games")?.addEventListener("click",     () => switchTopTab("games"));
+  document.getElementById("top-tab-watersort")?.addEventListener("click", () => switchTopTab("watersort"));
 
   // Alräunchen feed button
   document.getElementById("tama-feed-btn")?.addEventListener("click", feedTamagotchiStudy);
 
-  // Clinic panel tabs
-  document.querySelectorAll("[data-clinic-tab]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll("[data-clinic-tab]").forEach(b => b.classList.remove("tab-btn--active"));
-      btn.classList.add("tab-btn--active");
-      const tab = btn.dataset.clinicTab;
-      document.querySelectorAll(".clinic-panel").forEach(p => { p.hidden = true; });
-      const panel = document.getElementById(`clinic-panel-${tab}`);
-      if (panel) panel.hidden = false;
-      if (tab === "tower") renderKnowledgeTower();
-    });
-  });
+  // Water Sort controls
+  document.getElementById("ws-buy-bottle-btn")?.addEventListener("click", () => window.wsBuyExtraBottle && window.wsBuyExtraBottle());
+  document.getElementById("ws-restart-btn")?.addEventListener("click",    () => window.wsRestartLevel   && window.wsRestartLevel());
 
   // Load game state and render — after listeners so a crash doesn't lose them
   try {
