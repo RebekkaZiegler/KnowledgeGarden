@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.3.1";   // ← bump this with every push
+const APP_VERSION    = "2.4.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -256,6 +256,16 @@ function normalizeState(s) {
   s.waterSort = Object.assign({}, d.waterSort, s.waterSort || {});
   s.waterSort.playOrder = Array.isArray(s.waterSort.playOrder) ? s.waterSort.playOrder : [];
   s.waterSort.bottles   = Array.isArray(s.waterSort.bottles)   ? s.waterSort.bottles   : [];
+  // Old save format: a bottle was a plain array (color strings). New
+  // format: a bottle is an object with a `.units` array. WS_LEVELS content
+  // was fully regenerated alongside this change too, so an old
+  // currentLevelIndex/playOrder would reference different levels under the
+  // new table anyway — discard in-progress Water Sort state rather than
+  // attempt a real migration. Lifetime stats (waterSortLevelsCompleted etc.)
+  // are untouched.
+  if (s.waterSort.bottles.length > 0 && Array.isArray(s.waterSort.bottles[0])) {
+    s.waterSort = Object.assign({}, d.waterSort);
+  }
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
   s.tamagotchi.lastDialogue = s.tamagotchi.lastDialogue || {};
