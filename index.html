@@ -31,6 +31,7 @@
     <button id="top-tab-tama"      class="top-tab top-tab--active">🌱 Alräunchen</button>
     <button id="top-tab-games"     class="top-tab">🍕 Taverne</button>
     <button id="top-tab-watersort" class="top-tab">🧪 Tränke</button>
+    <button id="top-tab-parking"   class="top-tab">🚗 Parkplatz</button>
   </div>
 
   <!-- ═══════════════════════════════════════════════════
@@ -109,6 +110,21 @@
     <div class="ws-controls-row">
       <button id="ws-buy-bottle-btn" class="ws-buy-bottle-btn">➕ Extra-Fläschchen (1 Frage)</button>
       <button id="ws-restart-btn" class="ws-restart-btn">🔄 Neu starten</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SCREEN: Parkplatz (Rush Hour puzzle)
+  ════════════════════════════════════════════════════ -->
+  <div id="screen-parking" class="mode-screen" hidden>
+    <div id="pl-level-info" class="ws-level-info"></div>
+    <div id="pl-grid">
+      <div id="pk-cell-layer" class="pk-grid-layer"></div>
+      <div id="pk-vehicle-layer" class="pk-grid-layer pk-vehicle-layer"></div>
+    </div>
+    <div class="ws-controls-row">
+      <button id="pl-buy-bay-btn" class="ws-buy-bottle-btn">➕ Parkplatz (1 Frage)</button>
+      <button id="pl-restart-btn" class="ws-restart-btn">🔄 Neu starten</button>
     </div>
   </div>
 
@@ -292,6 +308,7 @@
   </script>
   <script src="./js/game.js"></script>
   <script src="./js/watersort.js"></script>
+  <script src="./js/parking.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(reg => { reg.update(); }).catch(() => {});

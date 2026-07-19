@@ -1,5 +1,5 @@
-const CACHE = 'kg-v69';
-const PRECACHE = ['/', '/styles.css', '/js/content.js', '/js/game.js', '/js/watersort.js',
+const CACHE = 'kg-v70';
+const PRECACHE = ['/', '/styles.css', '/js/content.js', '/js/game.js', '/js/watersort.js', '/js/parking.js',
   '/assets/images/icon-192-raven.png', '/assets/images/icon-512-raven.png',
   '/assets/images/icon-192-raven-maskable.png', '/assets/images/icon-512-raven-maskable.png'];
 

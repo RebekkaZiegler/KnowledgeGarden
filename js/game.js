@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.4.0";   // ← bump this with every push
+const APP_VERSION    = "2.5.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -186,6 +186,8 @@ function defaultState() {
       memoryPairsMatched:    0,
       waterSortLevelsCompleted:    0,
       waterSortExtraBottlesBought: 0,
+      parkingLevelsCompleted:     0,
+      parkingBaysUnlockedTotal:   0,
       firstPlayDate:         null,
       dailyDate:             null,
       dailyCorrect:          0,
@@ -222,6 +224,15 @@ function defaultState() {
       bottles:             [],   // LIVE state: array of arrays of color strings, bottom→top
       extraBottlesUsed:     0,   // resets each new level; capped at WS_MAX_EXTRA_BOTTLES
       selectedBottle:      null, // tap-selected source bottle index, or null
+    },
+
+    parkingLot: {
+      playOrder:          [],    // shuffled permutation of [0..PL_LEVEL_COUNT-1]
+      playOrderPos:        0,
+      currentLevelIndex:   null,
+      vehicles:            [],   // LIVE: [{r,c,len,orient,color}, ...] mutable positions
+      bayUnlocked:          4,   // resets each new level; count of level.bay[] currently usable
+      selectedVehicle:     null, // tap-selected vehicle index, or null
     },
   };
 }
@@ -265,6 +276,17 @@ function normalizeState(s) {
   // are untouched.
   if (s.waterSort.bottles.length > 0 && Array.isArray(s.waterSort.bottles[0])) {
     s.waterSort = Object.assign({}, d.waterSort);
+  }
+  s.stats.parkingLevelsCompleted   = s.stats.parkingLevelsCompleted   || 0;
+  s.stats.parkingBaysUnlockedTotal = s.stats.parkingBaysUnlockedTotal || 0;
+  s.parkingLot = Object.assign({}, d.parkingLot, s.parkingLot || {});
+  s.parkingLot.playOrder = Array.isArray(s.parkingLot.playOrder) ? s.parkingLot.playOrder : [];
+  s.parkingLot.vehicles  = Array.isArray(s.parkingLot.vehicles)  ? s.parkingLot.vehicles  : [];
+  // No prior shape existed for this mini-game at launch, but build the same
+  // hard-reset guard in from day one (cheap insurance for the next
+  // inevitable data-shape iteration, per Water Sort's experience above).
+  if (s.parkingLot.vehicles.length > 0 && !('orient' in s.parkingLot.vehicles[0])) {
+    s.parkingLot = Object.assign({}, d.parkingLot);
   }
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
@@ -2619,6 +2641,9 @@ const ACHIEVEMENTS = [
   { id: 'ws_1',      icon: '🧪', name: 'Erster Trank sortiert', desc: '1 Tränke-Level gelöst',          check: s => (s.waterSortLevelsCompleted || 0) >= 1 },
   { id: 'ws_10',     icon: '⚗️', name: 'Alchemist',          desc: '10 Tränke-Level gelöst',            check: s => (s.waterSortLevelsCompleted || 0) >= 10 },
   { id: 'ws_50',     icon: '🔮', name: 'Meister-Alchemist',  desc: '50 Tränke-Level gelöst',             check: s => (s.waterSortLevelsCompleted || 0) >= 50 },
+  { id: 'pk_1',      icon: '🚗', name: 'Erster Ausparker',  desc: '1 Parkplatz-Level gelöst',           check: s => (s.parkingLevelsCompleted || 0) >= 1 },
+  { id: 'pk_10',     icon: '🅿️', name: 'Verkehrslotse',     desc: '10 Parkplatz-Level gelöst',          check: s => (s.parkingLevelsCompleted || 0) >= 10 },
+  { id: 'pk_50',     icon: '🏁', name: 'Meister-Rangierer',  desc: '50 Parkplatz-Level gelöst',          check: s => (s.parkingLevelsCompleted || 0) >= 50 },
   { id: 'day_5',     icon: '📅', name: '5 Tage',            desc: '5 Tage gespielt',                    check: s => (s.daysPlayed || 0) >= 5 },
   { id: 'day_30',    icon: '🗓️', name: 'Ein Monat',         desc: '30 Tage gespielt',                   check: s => (s.daysPlayed || 0) >= 30 },
 ];
@@ -3032,7 +3057,7 @@ function renderAll() {
 /* ══════════════════════════════════════════════════════════
    MODE SWITCHING — top tabs (Alräunchen / Taverne)
 ══════════════════════════════════════════════════════════ */
-const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort" };
+const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", parking: "screen-parking" };
 
 function switchTopTab(tab) {
   Object.entries(TOP_TAB_SCREENS).forEach(([t, id]) => {
@@ -3048,6 +3073,7 @@ function switchTopTab(tab) {
 
   if (tab === "tama") renderTamagotchi();
   if (tab === "watersort") window.wsEnsureQueueAndLevel && window.wsEnsureQueueAndLevel();
+  if (tab === "parking") window.plEnsureQueueAndLevel && window.plEnsureQueueAndLevel();
 
   G.activeMode = tab;
   saveState();
@@ -3138,10 +3164,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
-  // Top tabs (Alräunchen / Taverne / Tränke)
+  // Top tabs (Alräunchen / Taverne / Tränke / Parkplatz)
   document.getElementById("top-tab-tama")?.addEventListener("click",      () => switchTopTab("tama"));
   document.getElementById("top-tab-games")?.addEventListener("click",     () => switchTopTab("games"));
   document.getElementById("top-tab-watersort")?.addEventListener("click", () => switchTopTab("watersort"));
+  document.getElementById("top-tab-parking")?.addEventListener("click",   () => switchTopTab("parking"));
 
   // Alräunchen feed button
   document.getElementById("tama-feed-btn")?.addEventListener("click", feedTamagotchiStudy);
@@ -3149,6 +3176,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Water Sort controls
   document.getElementById("ws-buy-bottle-btn")?.addEventListener("click", () => window.wsBuyExtraBottle && window.wsBuyExtraBottle());
   document.getElementById("ws-restart-btn")?.addEventListener("click",    () => window.wsRestartLevel   && window.wsRestartLevel());
+
+  // Parkplatz controls
+  document.getElementById("pl-buy-bay-btn")?.addEventListener("click", () => window.plBuyExtraBay && window.plBuyExtraBay());
+  document.getElementById("pl-restart-btn")?.addEventListener("click", () => window.plRestartLevel && window.plRestartLevel());
 
   // Load game state and render — after listeners so a crash doesn't lose them
   try {
