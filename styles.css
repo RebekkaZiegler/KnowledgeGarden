@@ -3886,6 +3886,19 @@ body.plant-open #back-to-garden-btn { display: block; }
   border-color: var(--accent);
   box-shadow: inset 0 0 0 2px var(--accent), 0 0 8px rgba(61,140,82,0.5);
 }
+@keyframes ws-tilt {
+  0%   { transform: rotate(0deg); }
+  35%  { transform: rotate(-12deg); }
+  100% { transform: rotate(0deg); }
+}
+.ws-bottle--pouring { transform-origin: bottom center; animation: ws-tilt 0.3s ease-in-out; }
+@keyframes ws-done-pulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.ws-bottle--complete { box-shadow: inset 0 0 0 2px #e8c95a, 0 0 8px rgba(232,201,90,0.5); }
+.ws-bottle--complete-pulse { animation: ws-done-pulse 0.45s ease-out; }
 .ws-bottle-stack {
   display: flex;
   flex-direction: column-reverse;
@@ -3896,6 +3909,11 @@ body.plant-open #back-to-garden-btn { display: block; }
   height: 20px;
   border-radius: 2px;
 }
+@keyframes ws-pour-in {
+  0%   { transform: translateY(-14px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.ws-segment--incoming { animation: ws-pour-in 0.25s ease-out backwards; }
 .ws-segment--empty {
   background: var(--bg3);
   opacity: 0.4;
@@ -3970,7 +3988,7 @@ body.plant-open #back-to-garden-btn { display: block; }
 ═══════════════════════════════════════ */
 .pl-queue-strip {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse; /* front-of-queue (index 0, rendered first) lands in the BOTTOM row — closest to the bay row/cars right below */
   gap: 6px;
   width: min(94vw, 420px);
   margin: 0 auto 0.6rem;
@@ -4019,9 +4037,15 @@ body.plant-open #back-to-garden-btn { display: block; }
   background: rgba(255,255,255,0.35);
 }
 .pl-bay-seat--filled { background: #fff; }
+@keyframes pl-seat-pop {
+  0%   { transform: scale(0.3); opacity: 0.3; }
+  60%  { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pl-bay-seat--incoming { animation: pl-seat-pop 0.3s ease-out backwards; }
 .pl-lot-grid {
   display: grid;
-  gap: 3px;
+  gap: 2px;
   width: min(94vw, 420px);
   margin: 0 auto;
 }
@@ -4034,11 +4058,40 @@ body.plant-open #back-to-garden-btn { display: block; }
   font-size: 0.9rem;
   color: rgba(0,0,0,0.55);
 }
-.pl-lot-cell--floor { background: var(--bg2); }
+.pl-lot-cell--floor { background: var(--bg2); opacity: 0.35; }
 .pl-lot-cell--car {
   cursor: pointer;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
   transition: opacity 0.15s;
 }
 .pl-lot-cell--blocked { opacity: 0.4; cursor: not-allowed; }
+
+/* ═══════════════════════════════════════
+   MOSAIK (pixel-art dissolve puzzle)
+═══════════════════════════════════════ */
+.ms-grid {
+  display: grid;
+  gap: 3px;
+  width: min(94vw, 420px);
+  margin: 0 auto;
+}
+.ms-cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+  transition: transform 0.1s;
+}
+.ms-cell:active { transform: scale(0.92); }
+.ms-cell--floor { background: transparent; cursor: default; box-shadow: none; }
+@keyframes ms-dissolve {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.2) translateY(-8px); opacity: 0; }
+}
+.ms-cell--dissolving { animation: ms-dissolve 0.25s ease-in forwards; pointer-events: none; }
+@keyframes ms-fall-in {
+  0%   { transform: translateY(-16px); opacity: 0.4; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.ms-cell--falling { animation: ms-fall-in 0.28s ease-out backwards; }
 

@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.6.0";   // ← bump this with every push
+const APP_VERSION    = "2.7.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -188,6 +188,8 @@ function defaultState() {
       waterSortExtraBottlesBought: 0,
       parkingLevelsCompleted:     0,
       parkingBaysUnlockedTotal:   0,
+      mosaikLevelsCompleted:      0,
+      mosaikExtraMovesBought:     0,
       firstPlayDate:         null,
       dailyDate:             null,
       dailyCorrect:          0,
@@ -235,6 +237,15 @@ function defaultState() {
       bayFilled:           [],   // LIVE: parallel array, seats filled so far per bay slot
       queuePos:             0,   // LIVE: index into level's passenger queue (front pointer)
       bayUnlocked:           0,  // LIVE: resets to level.db each level start; grows via plBuyExtraBay up to maxBays
+    },
+
+    mosaik: {
+      playOrder:          [],   // shuffled permutation of [0..MS_LEVEL_COUNT-1]
+      playOrderPos:        0,
+      currentLevelIndex:   null,
+      columns:             [],  // LIVE: bottom-up colorIdx stacks, left→right; [] = "no level loaded" sentinel
+      movesUsed:            0,  // LIVE: taps used so far this level attempt
+      extraMovesBought:     0,  // LIVE: resets each level start; capped at MS_MAX_EXTRA_MOVES
     },
   };
 }
@@ -291,6 +302,19 @@ function normalizeState(s) {
   s.parkingLot.playOrder = Array.isArray(s.parkingLot.playOrder) ? s.parkingLot.playOrder : [];
   s.parkingLot.bayCar    = Array.isArray(s.parkingLot.bayCar)    ? s.parkingLot.bayCar    : [];
   s.parkingLot.bayFilled = Array.isArray(s.parkingLot.bayFilled) ? s.parkingLot.bayFilled : [];
+
+  s.stats.mosaikLevelsCompleted  = s.stats.mosaikLevelsCompleted  || 0;
+  s.stats.mosaikExtraMovesBought = s.stats.mosaikExtraMovesBought || 0;
+  s.mosaik = Object.assign({}, d.mosaik, s.mosaik || {});
+  // Defensive shape guard, built in from day one even though no legacy
+  // shape exists yet (per waterSort/parkingLot precedent): columns must be
+  // an array of arrays of finite numbers, never anything else.
+  const mosaikColumnsShapeOk = Array.isArray(s.mosaik.columns) &&
+    s.mosaik.columns.every(col => Array.isArray(col) && col.every(v => Number.isFinite(v)));
+  if (!mosaikColumnsShapeOk) s.mosaik = Object.assign({}, d.mosaik);
+  s.mosaik.playOrder = Array.isArray(s.mosaik.playOrder) ? s.mosaik.playOrder : [];
+  s.mosaik.columns   = Array.isArray(s.mosaik.columns)   ? s.mosaik.columns   : [];
+
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
   s.tamagotchi.lastDialogue = s.tamagotchi.lastDialogue || {};
@@ -2647,6 +2671,9 @@ const ACHIEVEMENTS = [
   { id: 'pk_1',      icon: '🚗', name: 'Erster Ausparker',  desc: '1 Parkplatz-Level gelöst',           check: s => (s.parkingLevelsCompleted || 0) >= 1 },
   { id: 'pk_10',     icon: '🅿️', name: 'Verkehrslotse',     desc: '10 Parkplatz-Level gelöst',          check: s => (s.parkingLevelsCompleted || 0) >= 10 },
   { id: 'pk_50',     icon: '🏁', name: 'Meister-Rangierer',  desc: '50 Parkplatz-Level gelöst',          check: s => (s.parkingLevelsCompleted || 0) >= 50 },
+  { id: 'ms_1',      icon: '🧩', name: 'Erstes Mosaik',      desc: '1 Mosaik-Level gelöst',              check: s => (s.mosaikLevelsCompleted || 0) >= 1 },
+  { id: 'ms_10',     icon: '🎨', name: 'Farbenspiel',        desc: '10 Mosaik-Level gelöst',             check: s => (s.mosaikLevelsCompleted || 0) >= 10 },
+  { id: 'ms_50',     icon: '🖼️', name: 'Mosaik-Meister',     desc: '50 Mosaik-Level gelöst',              check: s => (s.mosaikLevelsCompleted || 0) >= 50 },
   { id: 'day_5',     icon: '📅', name: '5 Tage',            desc: '5 Tage gespielt',                    check: s => (s.daysPlayed || 0) >= 5 },
   { id: 'day_30',    icon: '🗓️', name: 'Ein Monat',         desc: '30 Tage gespielt',                   check: s => (s.daysPlayed || 0) >= 30 },
 ];
@@ -3060,7 +3087,7 @@ function renderAll() {
 /* ══════════════════════════════════════════════════════════
    MODE SWITCHING — top tabs (Alräunchen / Taverne)
 ══════════════════════════════════════════════════════════ */
-const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", parking: "screen-parking" };
+const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", parking: "screen-parking", mosaik: "screen-mosaik" };
 
 function switchTopTab(tab) {
   Object.entries(TOP_TAB_SCREENS).forEach(([t, id]) => {
@@ -3077,6 +3104,7 @@ function switchTopTab(tab) {
   if (tab === "tama") renderTamagotchi();
   if (tab === "watersort") window.wsEnsureQueueAndLevel && window.wsEnsureQueueAndLevel();
   if (tab === "parking") window.plEnsureQueueAndLevel && window.plEnsureQueueAndLevel();
+  if (tab === "mosaik") window.msEnsureQueueAndLevel && window.msEnsureQueueAndLevel();
 
   G.activeMode = tab;
   saveState();
@@ -3167,11 +3195,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
-  // Top tabs (Alräunchen / Taverne / Tränke / Parkplatz)
+  // Top tabs (Alräunchen / Taverne / Tränke / Parkplatz / Mosaik)
   document.getElementById("top-tab-tama")?.addEventListener("click",      () => switchTopTab("tama"));
   document.getElementById("top-tab-games")?.addEventListener("click",     () => switchTopTab("games"));
   document.getElementById("top-tab-watersort")?.addEventListener("click", () => switchTopTab("watersort"));
   document.getElementById("top-tab-parking")?.addEventListener("click",   () => switchTopTab("parking"));
+  document.getElementById("top-tab-mosaik")?.addEventListener("click",    () => switchTopTab("mosaik"));
 
   // Alräunchen feed button
   document.getElementById("tama-feed-btn")?.addEventListener("click", feedTamagotchiStudy);
@@ -3183,6 +3212,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Parkplatz controls
   document.getElementById("pl-buy-bay-btn")?.addEventListener("click", () => window.plBuyExtraBay && window.plBuyExtraBay());
   document.getElementById("pl-restart-btn")?.addEventListener("click", () => window.plRestartLevel && window.plRestartLevel());
+
+  // Mosaik controls
+  document.getElementById("ms-buy-move-btn")?.addEventListener("click", () => window.msBuyExtraMove && window.msBuyExtraMove());
+  document.getElementById("ms-restart-btn")?.addEventListener("click",  () => window.msRestartLevel  && window.msRestartLevel());
 
   // Load game state and render — after listeners so a crash doesn't lose them
   try {

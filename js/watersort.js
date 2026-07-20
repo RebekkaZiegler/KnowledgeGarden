@@ -133,9 +133,22 @@ function wsCheckUnlocks(bottles) {
   return changed;
 }
 
+// "Bottle done" = would count as solved on its own (empty, or full +
+// monochrome) — mirrors the per-bottle check already inline in wsIsSolved.
+function wsBottleIsDone(bottle) {
+  if (bottle.locked) return false;
+  return bottle.units.length === 0 ||
+    (bottle.units.length === WS_CAPACITY && bottle.units.every(u => u.c === bottle.units[0].c));
+}
+
 /* ══════════════════════════════════════════════════════════
    GAME FLOW — reads/writes G.waterSort
 ══════════════════════════════════════════════════════════ */
+// Transient, purely-visual hints for wsRender() — never persisted in G,
+// since they're meaningless (and would just be stale) after a reload.
+let wsLastPourAnim = null;       // { from, to, amt } | null
+let wsCelebratedBottles = new Set(); // bottle indices that already played their one-shot done-pulse this level
+
 function wsOnBottleTap(idx) {
   const ws = G.waterSort;
   const bottle = ws.bottles[idx];
@@ -145,9 +158,11 @@ function wsOnBottleTap(idx) {
     return;
   }
   if (ws.selectedBottle === idx) { ws.selectedBottle = null; wsRender(); return; }
-  const amt = wsPour(ws.bottles, ws.selectedBottle, idx);
+  const fromIdx = ws.selectedBottle;
+  const amt = wsPour(ws.bottles, fromIdx, idx);
   ws.selectedBottle = null;
   if (amt > 0) {
+    wsLastPourAnim = { from: fromIdx, to: idx, amt };
     wsRevealTops(ws.bottles);
     wsCheckUnlocks(ws.bottles);
     saveState(); // explicit — mid-level progress must survive a reload
@@ -186,6 +201,8 @@ function wsStartLevel(levelIndex) {
   wsRevealTops(ws.bottles);
   ws.extraBottlesUsed = 0;
   ws.selectedBottle = null;
+  wsLastPourAnim = null;
+  wsCelebratedBottles = new Set();
   saveState();
   wsRender();
 }
@@ -251,6 +268,9 @@ function wsRender() {
       : `Level ${ws.currentLevelIndex + 1} / ${WS_LEVEL_COUNT}`;
   }
 
+  const pourAnim = wsLastPourAnim;
+  wsLastPourAnim = null; // consume — a later, unrelated render must not replay it
+
   gridEl.innerHTML = (ws.bottles || []).map((bottle, idx) => {
     if (bottle.locked) {
       return `<div class="ws-bottle ws-bottle--locked" data-idx="${idx}">
@@ -259,15 +279,29 @@ function wsRender() {
         </div>
       </div>`;
     }
+    const incomingFrom = pourAnim && pourAnim.to === idx ? bottle.units.length - pourAnim.amt : Infinity;
     const slots = [];
     for (let i = 0; i < WS_CAPACITY; i++) {
       const unit = bottle.units[i];
-      if (!unit) slots.push(`<div class="ws-segment ws-segment--empty"></div>`);
-      else if (unit.h) slots.push(`<div class="ws-segment ws-segment--fog"></div>`);
-      else slots.push(`<div class="ws-segment" style="background:${unit.c}"></div>`);
+      if (!unit) { slots.push(`<div class="ws-segment ws-segment--empty"></div>`); continue; }
+      const incoming = i >= incomingFrom;
+      const incomingCls = incoming ? ' ws-segment--incoming' : '';
+      const delayStyle = incoming ? `animation-delay:${(i - incomingFrom) * 60}ms;` : '';
+      if (unit.h) slots.push(`<div class="ws-segment ws-segment--fog${incomingCls}" style="${delayStyle}"></div>`);
+      else slots.push(`<div class="ws-segment${incomingCls}" style="background:${unit.c};${delayStyle}"></div>`);
     }
-    const selected = ws.selectedBottle === idx ? " ws-bottle--selected" : "";
-    return `<div class="ws-bottle${selected}" data-idx="${idx}">
+    let cls = "ws-bottle";
+    if (ws.selectedBottle === idx) cls += " ws-bottle--selected";
+    if (pourAnim && pourAnim.from === idx) cls += " ws-bottle--pouring";
+    const done = wsBottleIsDone(bottle);
+    if (done) {
+      cls += " ws-bottle--complete";
+      if (!wsCelebratedBottles.has(idx)) {
+        cls += " ws-bottle--complete-pulse";
+        wsCelebratedBottles.add(idx);
+      }
+    }
+    return `<div class="${cls}" data-idx="${idx}">
       <div class="ws-bottle-stack">${slots.join("")}</div>
     </div>`;
   }).join("");

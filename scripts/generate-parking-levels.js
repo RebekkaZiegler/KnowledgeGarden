@@ -45,14 +45,20 @@ function seedForLevel(levelIndex, salt) {
 // Difficulty ramp: 80 levels, 6 tiers. PROVISIONAL — validated empirically
 // below (construction success rate + solver timing printed per level);
 // loosened from the plan's first draft where a tier didn't hold up.
+//
+// Grid dimensions were tightened relative to car count (was ~25-33%
+// occupied-cell density, now ~33-40%) so the lot reads as cars parked
+// close together rather than scattered across a mostly-empty grid — a
+// visual density fix, not a difficulty change. Car counts/colors/seats/db
+// are unchanged from the original table.
 function levelParams(levelIndex) {
   const table = [
-    { max: 15, rows: 4, cols: 4, carCount: 4,  numColors: 2, seatsMin: 2, seatsMax: 2, db: 1 },
-    { max: 30, rows: 5, cols: 5, carCount: 6,  numColors: 3, seatsMin: 2, seatsMax: 3, db: 2 },
-    { max: 45, rows: 5, cols: 5, carCount: 8,  numColors: 4, seatsMin: 2, seatsMax: 3, db: 2 },
-    { max: 60, rows: 6, cols: 6, carCount: 10, numColors: 5, seatsMin: 2, seatsMax: 3, db: 3 },
-    { max: 75, rows: 6, cols: 6, carCount: 12, numColors: 6, seatsMin: 2, seatsMax: 4, db: 3 },
-    { max: 80, rows: 7, cols: 7, carCount: 14, numColors: 7, seatsMin: 2, seatsMax: 4, db: 4 },
+    { max: 15, rows: 3, cols: 4, carCount: 4,  numColors: 2, seatsMin: 2, seatsMax: 2, db: 1 }, // 4/12=33%
+    { max: 30, rows: 4, cols: 4, carCount: 6,  numColors: 3, seatsMin: 2, seatsMax: 3, db: 2 }, // 6/16=37%
+    { max: 45, rows: 4, cols: 5, carCount: 8,  numColors: 4, seatsMin: 2, seatsMax: 3, db: 2 }, // 8/20=40%
+    { max: 60, rows: 5, cols: 5, carCount: 10, numColors: 5, seatsMin: 2, seatsMax: 3, db: 3 }, // 10/25=40%
+    { max: 75, rows: 5, cols: 6, carCount: 12, numColors: 6, seatsMin: 2, seatsMax: 4, db: 3 }, // 12/30=40%
+    { max: 80, rows: 6, cols: 6, carCount: 14, numColors: 7, seatsMin: 2, seatsMax: 4, db: 4 }, // 14/36=39%
   ];
   return table.find(t => levelIndex < t.max) || table[table.length - 1];
 }
