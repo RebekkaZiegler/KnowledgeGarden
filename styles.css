@@ -3966,58 +3966,79 @@ body.plant-open #back-to-garden-btn { display: block; }
 .ws-restart-btn:active { transform: scale(0.97); }
 
 /* ═══════════════════════════════════════
-   PARKPLATZ (Rush Hour puzzle)
+   PARKPLATZ (passenger-matching parking-jam puzzle)
 ═══════════════════════════════════════ */
-#pl-grid {
-  position: relative;
+.pl-queue-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   width: min(94vw, 420px);
-  margin: 0 auto;
+  margin: 0 auto 0.6rem;
+  padding: 0.5rem;
+  background: var(--bg2);
+  border-radius: 8px;
+  min-height: 28px;
 }
-.pk-grid-layer {
-  display: grid;
+.pl-queue-item {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+}
+.pl-queue-item--front {
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 0 0 2px var(--accent);
+}
+.pl-bay-row {
+  display: flex;
+  gap: 6px;
+  width: min(94vw, 420px);
+  margin: 0 auto 0.6rem;
+}
+.pl-bay-slot {
+  flex: 1;
+  aspect-ratio: 1.4;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 3px;
-  width: 100%;
 }
-#pk-vehicle-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none; /* let clicks fall through except on vehicle blocks themselves */
-}
-.pk-cell {
-  aspect-ratio: 1;
-  border-radius: 3px;
-  cursor: pointer;
-}
-.pk-cell--plain { background: var(--bg2); }
-.pk-cell--bay-open { background: rgba(61, 140, 82, 0.18); border: 1px dashed rgba(61, 140, 82, 0.5); }
-.pk-cell--bay-locked {
+.pl-bay-slot--empty { background: rgba(61, 140, 82, 0.18); border: 1px dashed rgba(61, 140, 82, 0.5); }
+.pl-bay-slot--locked {
   background: repeating-linear-gradient(
     135deg,
     var(--bg2) 0px, var(--bg2) 5px,
     var(--bg3) 5px, var(--bg3) 10px
   );
-  cursor: not-allowed;
 }
-.pk-cell--exit {
-  border-right: 3px solid var(--accent);
-  position: relative;
+.pl-bay-slot--filled { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25); }
+.pl-bay-seat {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
 }
-.pk-cell--exit::after {
-  content: "▶";
-  position: absolute;
-  right: -1px;
-  top: 50%;
-  transform: translate(100%, -50%);
-  color: var(--accent);
-  font-size: 0.7rem;
+.pl-bay-seat--filled { background: #fff; }
+.pl-lot-grid {
+  display: grid;
+  gap: 3px;
+  width: min(94vw, 420px);
+  margin: 0 auto;
 }
-.pk-vehicle {
-  border-radius: 6px;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+.pl-lot-cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.55);
+}
+.pl-lot-cell--floor { background: var(--bg2); }
+.pl-lot-cell--car {
   cursor: pointer;
-  pointer-events: auto;
-  transition: box-shadow 0.15s;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+  transition: opacity 0.15s;
 }
-.pk-vehicle--target { box-shadow: inset 0 0 0 2px #fff8, 0 0 6px rgba(224,65,58,0.6); }
-.pk-vehicle--selected { box-shadow: inset 0 0 0 2px var(--accent), 0 0 8px rgba(61,140,82,0.6); }
+.pl-lot-cell--blocked { opacity: 0.4; cursor: not-allowed; }
 

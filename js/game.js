@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.5.0";   // ← bump this with every push
+const APP_VERSION    = "2.6.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -230,9 +230,11 @@ function defaultState() {
       playOrder:          [],    // shuffled permutation of [0..PL_LEVEL_COUNT-1]
       playOrderPos:        0,
       currentLevelIndex:   null,
-      vehicles:            [],   // LIVE: [{r,c,len,orient,color}, ...] mutable positions
-      bayUnlocked:          4,   // resets each new level; count of level.bay[] currently usable
-      selectedVehicle:     null, // tap-selected vehicle index, or null
+      parkedMask:           0,   // LIVE: bit i set = car i still parked
+      bayCar:              [],   // LIVE: len=level's maxBays; carIdx or null — [] = "no level loaded" sentinel
+      bayFilled:           [],   // LIVE: parallel array, seats filled so far per bay slot
+      queuePos:             0,   // LIVE: index into level's passenger queue (front pointer)
+      bayUnlocked:           0,  // LIVE: resets to level.db each level start; grows via plBuyExtraBay up to maxBays
     },
   };
 }
@@ -280,14 +282,15 @@ function normalizeState(s) {
   s.stats.parkingLevelsCompleted   = s.stats.parkingLevelsCompleted   || 0;
   s.stats.parkingBaysUnlockedTotal = s.stats.parkingBaysUnlockedTotal || 0;
   s.parkingLot = Object.assign({}, d.parkingLot, s.parkingLot || {});
-  s.parkingLot.playOrder = Array.isArray(s.parkingLot.playOrder) ? s.parkingLot.playOrder : [];
-  s.parkingLot.vehicles  = Array.isArray(s.parkingLot.vehicles)  ? s.parkingLot.vehicles  : [];
-  // No prior shape existed for this mini-game at launch, but build the same
-  // hard-reset guard in from day one (cheap insurance for the next
-  // inevitable data-shape iteration, per Water Sort's experience above).
-  if (s.parkingLot.vehicles.length > 0 && !('orient' in s.parkingLot.vehicles[0])) {
+  // Old shape (Rush Hour sliding cars) had a non-empty `vehicles` array,
+  // which the new passenger-matching shape never has — presence of one is
+  // exactly the old-shape signal, so discard rather than migrate.
+  if (Array.isArray(s.parkingLot.vehicles) && s.parkingLot.vehicles.length > 0) {
     s.parkingLot = Object.assign({}, d.parkingLot);
   }
+  s.parkingLot.playOrder = Array.isArray(s.parkingLot.playOrder) ? s.parkingLot.playOrder : [];
+  s.parkingLot.bayCar    = Array.isArray(s.parkingLot.bayCar)    ? s.parkingLot.bayCar    : [];
+  s.parkingLot.bayFilled = Array.isArray(s.parkingLot.bayFilled) ? s.parkingLot.bayFilled : [];
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
   s.tamagotchi.lastDialogue = s.tamagotchi.lastDialogue || {};
