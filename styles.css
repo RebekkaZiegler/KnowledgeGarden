@@ -4099,18 +4099,65 @@ body.plant-open #back-to-garden-btn { display: block; }
 .pl-lot-cell--loading { animation: pl-loading-pulse 0.6s ease-in-out infinite; }
 
 /* ═══════════════════════════════════════
-   MOSAIK (pixel-art picture excavation puzzle)
+   MOSAIK (picture excavation with color buckets)
 ═══════════════════════════════════════ */
+.ms-reference-img {
+  display: block;
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto 0.6rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(0,0,0,0.15);
+}
+.ms-bucket-row {
+  display: flex;
+  gap: 6px;
+  width: min(94vw, 420px);
+  margin: 0 auto 0.6rem;
+}
+.ms-bucket-slot {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 1.2;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.ms-bucket-slot--empty { background: rgba(61, 140, 82, 0.18); border: 1px dashed rgba(61, 140, 82, 0.5); }
+.ms-bucket-slot--locked {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--bg2) 0px, var(--bg2) 5px,
+    var(--bg3) 5px, var(--bg3) 10px
+  );
+}
+.ms-bucket-slot--filled { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25); background: var(--bg3); }
+.ms-bucket-fill {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.35);
+  transition: height 0.3s ease-out;
+}
+.ms-bucket-label {
+  position: relative;
+  padding: 2px 0 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
 .ms-color-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
   width: min(94vw, 420px);
-  margin: 0 auto 0.6rem;
+  margin: 0.6rem auto 0;
 }
 .ms-color-swatch {
-  position: relative;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -4120,20 +4167,6 @@ body.plant-open #back-to-garden-btn { display: block; }
   transition: transform 0.1s;
 }
 .ms-color-swatch:active { transform: scale(0.9); }
-.ms-color-swatch--done { opacity: 0.4; cursor: not-allowed; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25); }
-.ms-color-count {
-  position: absolute;
-  right: -4px;
-  bottom: -4px;
-  min-width: 16px;
-  padding: 0 3px;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  line-height: 1.4;
-}
 .ms-grid {
   display: grid;
   gap: 3px;

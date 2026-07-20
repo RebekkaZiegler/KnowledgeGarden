@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.7.0";   // ← bump this with every push
+const APP_VERSION    = "2.8.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -189,7 +189,7 @@ function defaultState() {
       parkingLevelsCompleted:     0,
       parkingBaysUnlockedTotal:   0,
       mosaikLevelsCompleted:      0,
-      mosaikExtraMovesBought:     0,
+      mosaikExtraSlotsBought:     0,
       firstPlayDate:         null,
       dailyDate:             null,
       dailyCorrect:          0,
@@ -244,8 +244,8 @@ function defaultState() {
       playOrderPos:        0,
       currentLevelIndex:   null,
       columns:             [],  // LIVE: bottom-up colorIdx stacks, left→right; [] = "no level loaded" sentinel
-      movesUsed:            0,  // LIVE: taps used so far this level attempt
-      extraMovesBought:     0,  // LIVE: resets each level start; capped at MS_MAX_EXTRA_MOVES
+      slotColor:           [],  // LIVE: len=level.maxSlots; color index or null per bucket slot
+      slotsUnlocked:        0,  // LIVE: resets to level.db each level start; grows via msBuyExtraSlot up to maxSlots
     },
   };
 }
@@ -304,16 +304,19 @@ function normalizeState(s) {
   s.parkingLot.bayFilled = Array.isArray(s.parkingLot.bayFilled) ? s.parkingLot.bayFilled : [];
 
   s.stats.mosaikLevelsCompleted  = s.stats.mosaikLevelsCompleted  || 0;
-  s.stats.mosaikExtraMovesBought = s.stats.mosaikExtraMovesBought || 0;
+  s.stats.mosaikExtraSlotsBought = s.stats.mosaikExtraSlotsBought || 0;
   s.mosaik = Object.assign({}, d.mosaik, s.mosaik || {});
-  // Defensive shape guard, built in from day one even though no legacy
-  // shape exists yet (per waterSort/parkingLot precedent): columns must be
-  // an array of arrays of finite numbers, never anything else.
+  // Defensive shape guard: columns must be an array of arrays of finite
+  // numbers; a leftover `movesUsed` key is the old move-budget-based
+  // shape's signature (this version has no move budget, only bucket
+  // slots) — either condition means discard rather than partial-merge.
   const mosaikColumnsShapeOk = Array.isArray(s.mosaik.columns) &&
     s.mosaik.columns.every(col => Array.isArray(col) && col.every(v => Number.isFinite(v)));
-  if (!mosaikColumnsShapeOk) s.mosaik = Object.assign({}, d.mosaik);
-  s.mosaik.playOrder = Array.isArray(s.mosaik.playOrder) ? s.mosaik.playOrder : [];
-  s.mosaik.columns   = Array.isArray(s.mosaik.columns)   ? s.mosaik.columns   : [];
+  const mosaikIsLegacyShape = typeof s.mosaik.movesUsed === 'number';
+  if (!mosaikColumnsShapeOk || mosaikIsLegacyShape) s.mosaik = Object.assign({}, d.mosaik);
+  s.mosaik.playOrder  = Array.isArray(s.mosaik.playOrder)  ? s.mosaik.playOrder  : [];
+  s.mosaik.columns    = Array.isArray(s.mosaik.columns)    ? s.mosaik.columns    : [];
+  s.mosaik.slotColor  = Array.isArray(s.mosaik.slotColor)  ? s.mosaik.slotColor  : [];
 
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
@@ -3214,7 +3217,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pl-restart-btn")?.addEventListener("click", () => window.plRestartLevel && window.plRestartLevel());
 
   // Mosaik controls
-  document.getElementById("ms-buy-move-btn")?.addEventListener("click", () => window.msBuyExtraMove && window.msBuyExtraMove());
+  document.getElementById("ms-buy-slot-btn")?.addEventListener("click", () => window.msBuyExtraSlot && window.msBuyExtraSlot());
   document.getElementById("ms-restart-btn")?.addEventListener("click",  () => window.msRestartLevel  && window.msRestartLevel());
 
   // Load game state and render — after listeners so a crash doesn't lose them
