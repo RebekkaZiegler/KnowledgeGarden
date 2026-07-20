@@ -1,29 +1,23 @@
 // Independently re-verifies every shipped Mosaik level using the REAL
-// runtime functions from js/mosaik.js (not the generator's own copies —
-// deal-and-verify generation trusts msSolve at generation time, but this
-// script is the defensive second opinion: a fresh seeded rng, and a full
-// replay of the found move sequence through the real msApplyTap to confirm
-// it actually reaches msIsCleared, matching scripts/verify-parking-levels.js's
-// pattern).
+// runtime functions from js/mosaik.js. For every level: rebuild columns
+// from the shipped grid, run the same greedy-most-reachable-color-first
+// simulation the generator uses (via the real shipped msSimulateGreedyClear/
+// msExtractColor — not a copy), and confirm it reaches a cleared board
+// within the shipped move budget `mv`. This is a complete proof, not a
+// weaker check than an adversarial solver would give: a color tap in this
+// game can never make the picture harder to finish (it only removes
+// material, and gravity guarantees every remaining color eventually sinks
+// into the reachable band regardless of tap order), so there's no
+// adversarial case to miss — see js/mosaik.js's header comment.
 
 const {
-  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msApplyTap, msIsCleared, msSolve,
+  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msExtractColor, msIsCleared, msSimulateGreedyClear,
 } = require('../js/mosaik.js');
 
-function mulberry32(seed) {
-  return function () {
-    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
 let failures = 0;
-let totalMs = 0;
 for (let i = 0; i < MS_LEVELS.length; i++) {
   const level = msGenerateLevel(i);
-  const columns = msColumnsFromGrid(level.grid, level.rows, level.cols);
+  const raw = MS_LEVELS[i];
 
   if (level.grid.length !== level.rows * level.cols) {
     console.error(`Level ${i}: FAIL — grid.length (${level.grid.length}) !== rows*cols (${level.rows * level.cols})`);
@@ -31,49 +25,39 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     continue;
   }
 
-  const t0 = Date.now();
-  // fresh rng, independent seed trail from whatever the generator used
-  const rng = mulberry32(0xC0FFEE ^ (i * 2654435761));
-  const result = msSolve(columns, level.moveBudget, { rng, greedyAttempts: 60, nodeBudget: 600000 });
-  const ms = Date.now() - t0;
-  totalMs += ms;
-
-  if (result.aborted) {
-    console.error(`Level ${i}: FAIL — solver budget exceeded (state space too large to independently verify)`);
+  const columns = msColumnsFromGrid(level.grid, level.rows, level.cols);
+  const sim = msSimulateGreedyClear(columns, level.bandHeight, level.moveBudget);
+  if (!sim.cleared) {
+    console.error(`Level ${i}: FAIL — greedy simulation could not clear within mv=${level.moveBudget} (bandHeight=${level.bandHeight})`);
     failures++;
     continue;
   }
-  if (!result.solvable) {
-    console.error(`Level ${i}: FAIL — msSolve reports unsolvable within mv=${level.moveBudget} moves`);
-    failures++;
-    continue;
-  }
-  if (result.moves.length > level.moveBudget) {
-    console.error(`Level ${i}: FAIL — found solution uses ${result.moves.length} moves, exceeds mv=${level.moveBudget}`);
+  if (sim.moves.length > level.moveBudget) {
+    console.error(`Level ${i}: FAIL — simulation needed ${sim.moves.length} taps, exceeds mv=${level.moveBudget}`);
     failures++;
     continue;
   }
 
-  // replay the found move sequence from a FRESH columns build, independent
-  // of whatever internal state msSolve mutated, and confirm it really
-  // reaches an empty board through the real msApplyTap
+  // replay the found color sequence from a FRESH columns build through the
+  // real msExtractColor, independent of whatever state the simulator
+  // mutated, and confirm it really reaches an empty board
   let replay = msColumnsFromGrid(level.grid, level.rows, level.cols);
   let replayOk = true;
-  for (const [col, idx] of result.moves) {
-    const next = msApplyTap(replay, col, idx);
+  for (const color of sim.moves) {
+    const next = msExtractColor(replay, color, level.bandHeight);
     if (!next) { replayOk = false; break; }
     replay = next.columns;
   }
   if (!replayOk || !msIsCleared(replay)) {
-    console.error(`Level ${i}: FAIL — replaying the found move sequence did not reach an empty board`);
+    console.error(`Level ${i}: FAIL — replaying the simulated color sequence did not reach an empty board`);
     failures++;
     continue;
   }
 
-  console.log(`Level ${i}: OK (grid=${level.rows}x${level.cols}, mv=${level.moveBudget}, method=${result.method}, moves=${result.moves.length}, ${ms}ms)`);
+  console.log(`Level ${i}: OK (grid=${raw.g.join('x')}, bh=${level.bandHeight}, mv=${level.moveBudget}, taps=${sim.moves.length})`);
 }
 
-console.log(`\n${MS_LEVELS.length - failures}/${MS_LEVELS.length} levels verified solvable via real shipped functions. (${totalMs}ms total)`);
+console.log(`\n${MS_LEVELS.length - failures}/${MS_LEVELS.length} levels verified clearable via real shipped functions.`);
 if (failures > 0) {
   console.error(`${failures} level(s) FAILED verification.`);
   process.exit(1);

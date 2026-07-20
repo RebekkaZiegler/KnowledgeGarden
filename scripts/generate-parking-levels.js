@@ -43,22 +43,22 @@ function seedForLevel(levelIndex, salt) {
 }
 
 // Difficulty ramp: 80 levels, 6 tiers. PROVISIONAL — validated empirically
-// below (construction success rate + solver timing printed per level);
-// loosened from the plan's first draft where a tier didn't hold up.
+// below (construction success rate + solver timing printed per level).
 //
-// Grid dimensions were tightened relative to car count (was ~25-33%
-// occupied-cell density, now ~33-40%) so the lot reads as cars parked
-// close together rather than scattered across a mostly-empty grid — a
-// visual density fix, not a difficulty change. Car counts/colors/seats/db
-// are unchanged from the original table.
+// Bumped up substantially from the previous table: more cars per level and
+// bigger buses (4-10 seats instead of 2-4) so the game reads as genuinely
+// busy rather than trivially easy. Grid dimensions grew alongside car count
+// to hold roughly the same ~35-45% occupied-cell density established
+// previously (cars parked close together, not scattered). numColors stays
+// well under PL_COLORS' 10-color palette even at the hardest tier.
 function levelParams(levelIndex) {
   const table = [
-    { max: 15, rows: 3, cols: 4, carCount: 4,  numColors: 2, seatsMin: 2, seatsMax: 2, db: 1 }, // 4/12=33%
-    { max: 30, rows: 4, cols: 4, carCount: 6,  numColors: 3, seatsMin: 2, seatsMax: 3, db: 2 }, // 6/16=37%
-    { max: 45, rows: 4, cols: 5, carCount: 8,  numColors: 4, seatsMin: 2, seatsMax: 3, db: 2 }, // 8/20=40%
-    { max: 60, rows: 5, cols: 5, carCount: 10, numColors: 5, seatsMin: 2, seatsMax: 3, db: 3 }, // 10/25=40%
-    { max: 75, rows: 5, cols: 6, carCount: 12, numColors: 6, seatsMin: 2, seatsMax: 4, db: 3 }, // 12/30=40%
-    { max: 80, rows: 6, cols: 6, carCount: 14, numColors: 7, seatsMin: 2, seatsMax: 4, db: 4 }, // 14/36=39%
+    { max: 15, rows: 4, cols: 5, carCount: 7,  numColors: 3, seatsMin: 4, seatsMax: 5,  db: 1 }, // 7/20=35%
+    { max: 30, rows: 5, cols: 5, carCount: 10, numColors: 4, seatsMin: 4, seatsMax: 6,  db: 2 }, // 10/25=40%
+    { max: 45, rows: 5, cols: 6, carCount: 13, numColors: 5, seatsMin: 4, seatsMax: 7,  db: 2 }, // 13/30=43%
+    { max: 60, rows: 6, cols: 6, carCount: 16, numColors: 6, seatsMin: 5, seatsMax: 8,  db: 3 }, // 16/36=44%
+    { max: 75, rows: 6, cols: 7, carCount: 19, numColors: 7, seatsMin: 5, seatsMax: 9,  db: 3 }, // 19/42=45%
+    { max: 80, rows: 7, cols: 7, carCount: 22, numColors: 8, seatsMin: 6, seatsMax: 10, db: 4 }, // 22/49=45%
   ];
   return table.find(t => levelIndex < t.max) || table[table.length - 1];
 }

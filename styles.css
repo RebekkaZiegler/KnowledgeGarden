@@ -4006,6 +4006,18 @@ body.plant-open #back-to-garden-btn { display: block; }
 .pl-queue-item--front {
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 0 0 2px var(--accent);
 }
+.pl-queue-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 11px;
+  background: var(--bg3);
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
 .pl-bay-row {
   display: flex;
   gap: 6px;
@@ -4050,6 +4062,7 @@ body.plant-open #back-to-garden-btn { display: block; }
   margin: 0 auto;
 }
 .pl-lot-cell {
+  position: relative;
   aspect-ratio: 1;
   border-radius: 4px;
   display: flex;
@@ -4065,10 +4078,62 @@ body.plant-open #back-to-garden-btn { display: block; }
   transition: opacity 0.15s;
 }
 .pl-lot-cell--blocked { opacity: 0.4; cursor: not-allowed; }
+.pl-lot-cell-seats {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  min-width: 12px;
+  padding: 0 2px;
+  border-radius: 5px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+@keyframes pl-loading-pulse {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25); }
+  50%      { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 0 8px 2px rgba(255,255,255,0.6); }
+}
+.pl-lot-cell--loading { animation: pl-loading-pulse 0.6s ease-in-out infinite; }
 
 /* ═══════════════════════════════════════
-   MOSAIK (pixel-art dissolve puzzle)
+   MOSAIK (pixel-art picture excavation puzzle)
 ═══════════════════════════════════════ */
+.ms-color-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: min(94vw, 420px);
+  margin: 0 auto 0.6rem;
+}
+.ms-color-swatch {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.25);
+  transition: transform 0.1s;
+}
+.ms-color-swatch:active { transform: scale(0.9); }
+.ms-color-swatch--done { opacity: 0.4; cursor: not-allowed; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25); }
+.ms-color-count {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  min-width: 16px;
+  padding: 0 3px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
 .ms-grid {
   display: grid;
   gap: 3px;
@@ -4078,12 +4143,10 @@ body.plant-open #back-to-garden-btn { display: block; }
 .ms-cell {
   aspect-ratio: 1;
   border-radius: 4px;
-  cursor: pointer;
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
-  transition: transform 0.1s;
 }
-.ms-cell:active { transform: scale(0.92); }
-.ms-cell--floor { background: transparent; cursor: default; box-shadow: none; }
+.ms-cell--floor { background: transparent; box-shadow: none; }
+.ms-cell--reachable { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.45); }
 @keyframes ms-dissolve {
   0%   { transform: scale(1); opacity: 1; }
   100% { transform: scale(0.2) translateY(-8px); opacity: 0; }
