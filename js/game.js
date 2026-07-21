@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.8.0";   // ← bump this with every push
+const APP_VERSION    = "2.9.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -245,6 +245,7 @@ function defaultState() {
       currentLevelIndex:   null,
       columns:             [],  // LIVE: bottom-up colorIdx stacks, left→right; [] = "no level loaded" sentinel
       slotColor:           [],  // LIVE: len=level.maxSlots; color index or null per bucket slot
+      slotFilled:          [],  // LIVE: len=level.maxSlots; units collected so far in the active bucket at that slot
       slotsUnlocked:        0,  // LIVE: resets to level.db each level start; grows via msBuyExtraSlot up to maxSlots
     },
   };
@@ -307,16 +308,21 @@ function normalizeState(s) {
   s.stats.mosaikExtraSlotsBought = s.stats.mosaikExtraSlotsBought || 0;
   s.mosaik = Object.assign({}, d.mosaik, s.mosaik || {});
   // Defensive shape guard: columns must be an array of arrays of finite
-  // numbers; a leftover `movesUsed` key is the old move-budget-based
-  // shape's signature (this version has no move budget, only bucket
-  // slots) — either condition means discard rather than partial-merge.
+  // numbers; a leftover `movesUsed` key is the oldest (move-budget-based)
+  // shape's signature, and a non-empty `slotColor` with no `slotFilled`
+  // array is the very-previous (unlimited-capacity-bucket) shape's
+  // signature — this version caps buckets at a fraction of a color's
+  // total, so it needs slotFilled to track partial progress. Any of these
+  // means discard rather than partial-merge.
   const mosaikColumnsShapeOk = Array.isArray(s.mosaik.columns) &&
     s.mosaik.columns.every(col => Array.isArray(col) && col.every(v => Number.isFinite(v)));
-  const mosaikIsLegacyShape = typeof s.mosaik.movesUsed === 'number';
+  const mosaikIsLegacyShape = typeof s.mosaik.movesUsed === 'number' ||
+    (Array.isArray(s.mosaik.slotColor) && s.mosaik.slotColor.length > 0 && !Array.isArray(s.mosaik.slotFilled));
   if (!mosaikColumnsShapeOk || mosaikIsLegacyShape) s.mosaik = Object.assign({}, d.mosaik);
   s.mosaik.playOrder  = Array.isArray(s.mosaik.playOrder)  ? s.mosaik.playOrder  : [];
   s.mosaik.columns    = Array.isArray(s.mosaik.columns)    ? s.mosaik.columns    : [];
   s.mosaik.slotColor  = Array.isArray(s.mosaik.slotColor)  ? s.mosaik.slotColor  : [];
+  s.mosaik.slotFilled = Array.isArray(s.mosaik.slotFilled) ? s.mosaik.slotFilled : [];
 
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];

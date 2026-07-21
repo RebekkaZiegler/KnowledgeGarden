@@ -36,7 +36,10 @@
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
-const { MS_COLORS, msColumnsFromGrid, msReachableCells, msExtractColor, msIsCleared, msColorTotalCount, msColorsInLevel } = require('../js/mosaik.js');
+const {
+  MS_COLORS, msColumnsFromGrid, msReachableCells, msIsCleared, msColorsInLevel,
+  msOriginalColorTotals, msAssignAndResolve,
+} = require('../js/mosaik.js');
 
 function mulberry32(seed) {
   return function () {
@@ -50,27 +53,28 @@ function seedForLevel(levelIndex, salt) {
   return (Math.imul(levelIndex + 1, 2654435761) >>> 0) ^ Math.imul(salt + 1, 0x9e3779b9);
 }
 
-// Difficulty ramp: 80 levels, 6 tiers. PROVISIONAL — grid resolution grows
-// modestly per tier (this drives puzzle size, not picture detail — the
-// reference PNG is always drawn at full DISPLAY_SIZE regardless of tier).
+// Difficulty ramp: 80 levels, 6 tiers. PROVISIONAL — gameplay grid
+// resolution grows modestly per tier (this drives puzzle size). The
+// reference PNG's resolution grows independently and more aggressively
+// per tier (displaySize, always >=300 — the floor, not a fixed target;
+// later levels hold genuinely more picture detail than earlier ones).
 // maxSlots is derived per level from how many distinct colors the chosen
 // template actually painted (3-4, template-dependent); db = maxSlots-1
 // (floor 1) so at least one color always has to wait its turn.
 function levelParams(levelIndex) {
   const table = [
-    { max: 15, rows: 10, cols: 10 },
-    { max: 30, rows: 12, cols: 12 },
-    { max: 45, rows: 14, cols: 14 },
-    { max: 60, rows: 16, cols: 16 },
-    { max: 75, rows: 18, cols: 18 },
-    { max: 80, rows: 20, cols: 20 },
+    { max: 15, rows: 10, cols: 10, displaySize: 300 },
+    { max: 30, rows: 12, cols: 12, displaySize: 340 },
+    { max: 45, rows: 14, cols: 14, displaySize: 380 },
+    { max: 60, rows: 16, cols: 16, displaySize: 420 },
+    { max: 75, rows: 18, cols: 18, displaySize: 460 },
+    { max: 80, rows: 20, cols: 20, displaySize: 520 },
   ];
   return table.find(t => levelIndex < t.max) || table[table.length - 1];
 }
 function bandHeightFor(rows) {
   return Math.min(8, Math.max(4, Math.round(rows * 0.3)));
 }
-const DISPLAY_SIZE = 320; // reference PNG resolution — real image pixels, well over the 300x300 floor
 
 /* ── raster helpers (identical technique validated in the previous build:
    pure distance/bounds math, no image library needed) ── */
@@ -226,46 +230,45 @@ async function writeReferencePng(grid, size, outPath) {
   await sharp(buf, { raw: { width: size, height: size, channels: 3 } }).png().toFile(outPath);
 }
 
-/* ── slot-based greedy simulation: proves `slotCount` buckets suffice to
-   fully clear the picture via at least one achievable strategy. Mirrors
-   Parkplatz's constructive-witness approach — no adversarial search
-   needed, since using ALL distinct colors' worth of slots simultaneously
-   is always solvable by construction (every color has an active,
-   automatically-draining bucket, so nothing can ever be permanently
-   stuck) — the only real question is whether a TIGHTER `slotCount` is
-   also sufficient, which this simulation answers directly. ── */
-function simulateBucketClear(columns, bandHeight, slotCount) {
+/* ── slot-based greedy simulation, built entirely on the REAL shipped
+   msAssignAndResolve (not a hand-rolled copy) — proves `slotCount` buckets
+   suffice to fully clear the picture via at least one achievable
+   strategy. At each free slot, greedily assigns whichever CURRENTLY-
+   REACHABLE, not-already-assigned color has the most reachable pixels
+   right now (colors are freely re-selectable once their bucket frees up,
+   so this naturally places several buckets for the same color over time
+   as its capacity — a fraction of its total, never the whole thing —
+   keeps buckets short). Mirrors Parkplatz's constructive-witness approach
+   — no adversarial search needed, since using ALL distinct colors' worth
+   of slots at once, with free re-selection, is solvable by construction
+   (nothing is ever permanently blocked) — the only real question is
+   whether a TIGHTER `slotCount` is also sufficient, which this simulation
+   answers directly. ── */
+function simulateBucketClear(columns, bandHeight, slotCount, totalByColor) {
   let state = columns.map(col => col.slice());
-  const activeColor = Array(slotCount).fill(null);
-  const placements = [];
+  let slotColor = Array(slotCount).fill(null);
+  let slotFilled = Array(slotCount).fill(0);
+  let placements = 0;
   for (let guard = 0; guard < 20000; guard++) {
-    let anyExtract = false;
-    for (let i = 0; i < slotCount; i++) {
-      const color = activeColor[i];
-      if (color == null) continue;
-      const reach = msReachableCells(state, color, bandHeight);
-      if (!reach.length) continue;
-      const res = msExtractColor(state, color, bandHeight);
-      state = res.columns;
-      anyExtract = true;
-      if (msColorTotalCount(state, color) === 0) activeColor[i] = null;
-    }
-    if (msIsCleared(state)) return { cleared: true, placements: placements.length };
-    if (anyExtract) continue;
+    if (msIsCleared(state)) return { cleared: true, placements };
+    const free = slotColor.indexOf(null);
+    if (free === -1) return { cleared: false, reason: 'no free slot (shouldn\'t happen — a full board always frees or clears)' };
 
-    const free = activeColor.indexOf(null);
-    if (free === -1) return { cleared: false, reason: 'stuck' };
-    const assigned = new Set(activeColor.filter(c => c != null));
-    const remaining = [...new Set(state.flat())];
+    const assigned = new Set(slotColor.filter(c => c != null));
+    const remaining = [...new Set(state.flat())].filter(c => !assigned.has(c));
     let bestColor = null, bestCount = -1;
     for (const color of remaining) {
-      if (assigned.has(color)) continue;
       const count = msReachableCells(state, color, bandHeight).length;
       if (count > bestCount) { bestCount = count; bestColor = color; }
     }
-    if (bestColor == null) return { cleared: false, reason: 'no assignable color' };
-    activeColor[free] = bestColor;
-    placements.push(bestColor);
+    if (bestColor == null || bestCount === 0) return { cleared: false, reason: 'stuck: no assignable color has anything reachable' };
+
+    const result = msAssignAndResolve(state, slotColor, slotFilled, free, bestColor, bandHeight, totalByColor);
+    if (!result) return { cleared: false, reason: 'msAssignAndResolve rejected a legal placement' };
+    state = result.columns;
+    slotColor = result.slotColor;
+    slotFilled = result.slotFilled;
+    placements++;
   }
   return { cleared: false, reason: 'guard limit' };
 }
@@ -283,19 +286,21 @@ async function generateLevel(i) {
     const maxSlots = msColorsInLevel(gameplayGrid).length;
     if (maxSlots < 2) continue; // degenerate — needs at least 2 colors for a real puzzle
     const db = Math.max(1, maxSlots - 1);
+    const totalByColor = msOriginalColorTotals(gameplayGrid);
 
     const columns = msColumnsFromGrid(gameplayGrid, params.rows, params.cols);
-    const sim = simulateBucketClear(columns, bandHeight, db);
+    const sim = simulateBucketClear(columns, bandHeight, db, totalByColor);
     if (!sim.cleared) continue; // db insufficient for this particular picture — reroll
 
-    const displayGrid = template(DISPLAY_SIZE, DISPLAY_SIZE, mulberry32(seed)); // SAME seed → same scene, finer resolution
+    const displaySize = params.displaySize;
+    const displayGrid = template(displaySize, displaySize, mulberry32(seed)); // SAME seed → same scene, finer resolution
     const imgRelPath = `assets/images/mosaik/level-${String(i).padStart(2, '0')}.png`;
     const outPath = path.join(__dirname, '..', imgRelPath);
-    await writeReferencePng(displayGrid, DISPLAY_SIZE, outPath);
+    await writeReferencePng(displayGrid, displaySize, outPath);
 
     return {
       level: { g: [params.rows, params.cols], bh: bandHeight, db, grid: gameplayGrid, img: imgRelPath },
-      attempt, maxSlots, placements: sim.placements, template: template.name,
+      attempt, maxSlots, placements: sim.placements, template: template.name, displaySize,
     };
   }
   return null;
@@ -314,7 +319,7 @@ const MS_LEVEL_COUNT_TARGET = 80;
       console.error(`Level ${i}: FAILED after max attempts.`);
       process.exit(1);
     }
-    console.log(`Level ${i}: OK (template=${result.template}, grid=${result.level.g.join('x')}, bh=${result.level.bh}, maxSlots=${result.maxSlots}, db=${result.level.db}, placements=${result.placements}, attempt=${result.attempt}, ${ms}ms)`);
+    console.log(`Level ${i}: OK (template=${result.template}, grid=${result.level.g.join('x')}, displaySize=${result.displaySize}, bh=${result.level.bh}, maxSlots=${result.maxSlots}, db=${result.level.db}, placements=${result.placements}, attempt=${result.attempt}, ${ms}ms)`);
     levels.push(result.level);
   }
 
