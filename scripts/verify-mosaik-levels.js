@@ -1,88 +1,110 @@
 // Independently re-verifies every shipped Mosaik level using the REAL
-// runtime functions from js/mosaik.js. For every level: rebuild columns
-// from the shipped grid, run the same greedy slot-assignment simulation
-// the generator uses (at each free slot, assign whichever currently-
-// reachable, not-already-assigned color has the most reachable pixels;
-// buckets cap out at MS_BUCKET_CAPACITY_FRACTION of that color's total, so
-// a color gets re-selected multiple times as its bucket frees up) against
-// the level's own `db` (default unlocked slots), via the real shipped
-// msAssignAndResolve — not a copy — and confirm it reaches a fully
-// cleared board. This is a complete proof, not a weaker check than an
-// adversarial solver would give: using ALL of a level's distinct colors'
-// worth of slots, with free re-selection, is solvable by construction
-// (nothing is ever permanently blocked) — the only real question is
-// whether the tighter `db` also suffices, which one concrete achievable
-// playthrough settles completely. See js/mosaik.js's header comment.
+// runtime functions from js/mosaik.js — msGenerateLevel (which re-runs the
+// actual template/seed to reconstruct the grid, exactly like the browser
+// does at load time), msColumnsFromGrid, msExposedCount, msBucketCapacity,
+// msIsCleared, and msTick (the exact function driving both the live RAF
+// loop and this fast-forwarded replay). This script does NOT import the
+// generator's own simulateBeltClear — it reimplements the replay loop
+// itself, so a bug in the generator's own strategy can't silently pass its
+// own verification.
+//
+// The replay strategy mirrors what a real player does with this mechanic
+// (see js/mosaik.js's header and MS_MAX_DISCARDS_PER_LEVEL comment, and
+// scripts/generate-mosaik-levels.js): greedily fill free slots with
+// whichever unassigned color is currently most exposed, and — only when
+// every slot is occupied by containers that have themselves stopped
+// making progress (exposure dropped to 0) while some OTHER color sits
+// there exposed with nowhere to go — discard one stuck container, up to
+// MS_MAX_DISCARDS_PER_LEVEL per level. Confirms every level clears within
+// its own `db` slots plus that discard budget, within a generous simulated
+// time cap.
 
-const fs = require('fs');
-const path = require('path');
 const {
-  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msReachableCells,
-  msAssignAndResolve, msIsCleared,
+  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msExposedCount,
+  msBucketCapacity, msIsCleared, msTick, MS_MAX_DISCARDS_PER_LEVEL,
+  MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS,
 } = require('../js/mosaik.js');
 
-function simulateWithRealFunctions(columns, bandHeight, slotCount, totalByColor) {
-  let state = columns.map(col => col.slice());
-  let slotColor = Array(slotCount).fill(null);
-  let slotFilled = Array(slotCount).fill(0);
-  let placements = 0;
-  for (let guard = 0; guard < 20000; guard++) {
-    if (msIsCleared(state)) return { cleared: true, placements };
-    const free = slotColor.indexOf(null);
-    if (free === -1) return { cleared: false, reason: 'no free slot (unexpected — a full board should always free or clear)' };
+function replay(columns, cols, db, totalByColor, maxSimMs) {
+  const state = { columns, containers: [], cols, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+  const dtMs = 10; // must stay under 1 column/tick at this belt speed — see js/mosaik.js's msTick doc
+  const checkEveryMs = 1000;
+  let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
 
-    const assigned = new Set(slotColor.filter(c => c != null));
-    const remaining = [...new Set(state.flat())].filter(c => !assigned.has(c));
-    let bestColor = null, bestCount = -1;
-    for (const color of remaining) {
-      const count = msReachableCells(state, color, bandHeight).length;
-      if (count > bestCount) { bestCount = count; bestColor = color; }
+  while (elapsedMs < maxSimMs) {
+    if (sinceCheck >= checkEveryMs) {
+      sinceCheck = 0;
+      let freedSomething = true;
+      while (freedSomething) {
+        freedSomething = false;
+        if (state.containers.length < db || discards >= MS_MAX_DISCARDS_PER_LEVEL) break;
+        const activeColors = new Set(state.containers.map(c => c.color));
+        const waitingColor = [...new Set(state.columns.flat())]
+          .find(c => !activeColors.has(c) && msExposedCount(state.columns, c) > 0);
+        if (waitingColor == null) break;
+        const stuckIdx = state.containers.findIndex(c => msExposedCount(state.columns, c.color) === 0);
+        if (stuckIdx === -1) break;
+        state.containers.splice(stuckIdx, 1);
+        discards++;
+        freedSomething = true;
+      }
+      while (state.containers.length < db) {
+        const activeColors = new Set(state.containers.map(c => c.color));
+        let bestColor = null, bestExposed = -1;
+        for (const color of new Set(state.columns.flat())) {
+          if (activeColors.has(color)) continue;
+          const exposed = msExposedCount(state.columns, color);
+          if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
+        }
+        if (bestColor == null || bestExposed === 0) break;
+        state.containers.push({ color: bestColor, capacity: msBucketCapacity(totalByColor.get(bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        placements++;
+      }
     }
-    if (bestColor == null || bestCount === 0) return { cleared: false, reason: 'stuck: no assignable color has anything reachable' };
-
-    const result = msAssignAndResolve(state, slotColor, slotFilled, free, bestColor, bandHeight, totalByColor);
-    if (!result) return { cleared: false, reason: 'msAssignAndResolve rejected a legal placement' };
-    state = result.columns;
-    slotColor = result.slotColor;
-    slotFilled = result.slotFilled;
-    placements++;
+    msTick(state, dtMs);
+    elapsedMs += dtMs;
+    sinceCheck += dtMs;
+    if (msIsCleared(state.columns)) return { cleared: true, elapsedMs, placements, discards };
   }
-  return { cleared: false, reason: 'guard limit exceeded' };
+  return { cleared: false, elapsedMs, placements, discards };
 }
 
+const MIN_GRID_SIDE = 200; // sanity floor — nowhere near the old "10x10" complaint
+const maxSimMs = 8 * 60 * 60 * 1000;
 let failures = 0;
+
 for (let i = 0; i < MS_LEVELS.length; i++) {
-  const level = msGenerateLevel(i);
   const raw = MS_LEVELS[i];
+  const level = msGenerateLevel(i);
 
   if (level.grid.length !== level.rows * level.cols) {
     console.error(`Level ${i}: FAIL — grid.length (${level.grid.length}) !== rows*cols (${level.rows * level.cols})`);
     failures++;
     continue;
   }
-  if (!fs.existsSync(path.join(__dirname, '..', level.img))) {
-    console.error(`Level ${i}: FAIL — reference image missing at ${level.img}`);
+  if (level.rows < MIN_GRID_SIDE || level.cols < MIN_GRID_SIDE) {
+    console.error(`Level ${i}: FAIL — grid ${level.rows}x${level.cols} below the ${MIN_GRID_SIDE}px sanity floor`);
     failures++;
     continue;
   }
-  if (level.db < 1 || level.db > level.maxSlots) {
-    console.error(`Level ${i}: FAIL — db=${level.db} out of range for maxSlots=${level.maxSlots}`);
+  if (level.db < 1 || level.db > level.maxColors) {
+    console.error(`Level ${i}: FAIL — db=${level.db} out of range for maxColors=${level.maxColors}`);
     failures++;
     continue;
   }
 
   const columns = msColumnsFromGrid(level.grid, level.rows, level.cols);
-  const sim = simulateWithRealFunctions(columns, level.bandHeight, level.db, level.totalByColor);
+  const sim = replay(columns, level.cols, level.db, level.totalByColor, maxSimMs);
   if (!sim.cleared) {
-    console.error(`Level ${i}: FAIL — could not clear using only db=${level.db} slots (${sim.reason})`);
+    console.error(`Level ${i}: FAIL — could not clear using db=${level.db} within ${MS_MAX_DISCARDS_PER_LEVEL} discards (${raw.template}, ${raw.g.join('x')})`);
     failures++;
     continue;
   }
 
-  console.log(`Level ${i}: OK (grid=${raw.g.join('x')}, bh=${level.bandHeight}, maxSlots=${level.maxSlots}, db=${level.db}, placements=${sim.placements})`);
+  console.log(`Level ${i}: OK (template=${raw.template}, grid=${raw.g.join('x')}, maxColors=${level.maxColors}, db=${level.db}, placements=${sim.placements}, discards=${sim.discards})`);
 }
 
-console.log(`\n${MS_LEVELS.length - failures}/${MS_LEVELS.length} levels verified clearable (using only default slots) via real shipped functions.`);
+console.log(`\n${MS_LEVELS.length - failures}/${MS_LEVELS.length} levels verified clearable (db slots + discard budget) via real shipped functions.`);
 if (failures > 0) {
   console.error(`${failures} level(s) FAILED verification.`);
   process.exit(1);

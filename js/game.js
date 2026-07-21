@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.9.0";   // ← bump this with every push
+const APP_VERSION    = "2.10.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -189,7 +189,7 @@ function defaultState() {
       parkingLevelsCompleted:     0,
       parkingBaysUnlockedTotal:   0,
       mosaikLevelsCompleted:      0,
-      mosaikExtraSlotsBought:     0,
+      mosaikContainersDiscarded:  0,
       firstPlayDate:         null,
       dailyDate:             null,
       dailyCorrect:          0,
@@ -244,9 +244,8 @@ function defaultState() {
       playOrderPos:        0,
       currentLevelIndex:   null,
       columns:             [],  // LIVE: bottom-up colorIdx stacks, left→right; [] = "no level loaded" sentinel
-      slotColor:           [],  // LIVE: len=level.maxSlots; color index or null per bucket slot
-      slotFilled:          [],  // LIVE: len=level.maxSlots; units collected so far in the active bucket at that slot
-      slotsUnlocked:        0,  // LIVE: resets to level.db each level start; grows via msBuyExtraSlot up to maxSlots
+      containers:          [],  // LIVE: [{color, capacity, filled, beltPos, msSinceCollect}, ...] — active belt containers, length <= level.db
+      discardsUsed:        0,   // LIVE: resets to 0 each level start; capped at MS_MAX_DISCARDS_PER_LEVEL
     },
   };
 }
@@ -304,25 +303,28 @@ function normalizeState(s) {
   s.parkingLot.bayCar    = Array.isArray(s.parkingLot.bayCar)    ? s.parkingLot.bayCar    : [];
   s.parkingLot.bayFilled = Array.isArray(s.parkingLot.bayFilled) ? s.parkingLot.bayFilled : [];
 
-  s.stats.mosaikLevelsCompleted  = s.stats.mosaikLevelsCompleted  || 0;
-  s.stats.mosaikExtraSlotsBought = s.stats.mosaikExtraSlotsBought || 0;
+  s.stats.mosaikLevelsCompleted     = s.stats.mosaikLevelsCompleted     || 0;
+  s.stats.mosaikContainersDiscarded = s.stats.mosaikContainersDiscarded || 0;
   s.mosaik = Object.assign({}, d.mosaik, s.mosaik || {});
   // Defensive shape guard: columns must be an array of arrays of finite
-  // numbers; a leftover `movesUsed` key is the oldest (move-budget-based)
-  // shape's signature, and a non-empty `slotColor` with no `slotFilled`
-  // array is the very-previous (unlimited-capacity-bucket) shape's
-  // signature — this version caps buckets at a fraction of a color's
-  // total, so it needs slotFilled to track partial progress. Any of these
-  // means discard rather than partial-merge.
+  // numbers. A leftover `movesUsed` key is the oldest (move-budget-based)
+  // shape's signature; a leftover `slotColor` array is either of the two
+  // fixed-slot-array shapes that came after it; a leftover `slotsUnlocked`
+  // number is the most recent pre-belt shape (capacity buckets with a
+  // buyable slot count). This version replaces all of those with a real-
+  // time conveyor belt (`containers`, a variable-length list of active
+  // buckets, plus `discardsUsed` for the discard-a-stuck-bucket relief
+  // valve) — any of the old signatures means discard rather than
+  // partial-merge.
   const mosaikColumnsShapeOk = Array.isArray(s.mosaik.columns) &&
     s.mosaik.columns.every(col => Array.isArray(col) && col.every(v => Number.isFinite(v)));
   const mosaikIsLegacyShape = typeof s.mosaik.movesUsed === 'number' ||
-    (Array.isArray(s.mosaik.slotColor) && s.mosaik.slotColor.length > 0 && !Array.isArray(s.mosaik.slotFilled));
+    Array.isArray(s.mosaik.slotColor) || typeof s.mosaik.slotsUnlocked === 'number';
   if (!mosaikColumnsShapeOk || mosaikIsLegacyShape) s.mosaik = Object.assign({}, d.mosaik);
-  s.mosaik.playOrder  = Array.isArray(s.mosaik.playOrder)  ? s.mosaik.playOrder  : [];
-  s.mosaik.columns    = Array.isArray(s.mosaik.columns)    ? s.mosaik.columns    : [];
-  s.mosaik.slotColor  = Array.isArray(s.mosaik.slotColor)  ? s.mosaik.slotColor  : [];
-  s.mosaik.slotFilled = Array.isArray(s.mosaik.slotFilled) ? s.mosaik.slotFilled : [];
+  s.mosaik.playOrder    = Array.isArray(s.mosaik.playOrder)      ? s.mosaik.playOrder    : [];
+  s.mosaik.columns      = Array.isArray(s.mosaik.columns)        ? s.mosaik.columns      : [];
+  s.mosaik.containers   = Array.isArray(s.mosaik.containers)     ? s.mosaik.containers   : [];
+  s.mosaik.discardsUsed = Number.isFinite(s.mosaik.discardsUsed) ? s.mosaik.discardsUsed : 0;
 
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
@@ -3222,8 +3224,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pl-buy-bay-btn")?.addEventListener("click", () => window.plBuyExtraBay && window.plBuyExtraBay());
   document.getElementById("pl-restart-btn")?.addEventListener("click", () => window.plRestartLevel && window.plRestartLevel());
 
-  // Mosaik controls
-  document.getElementById("ms-buy-slot-btn")?.addEventListener("click", () => window.msBuyExtraSlot && window.msBuyExtraSlot());
+  // Mosaik controls — discard is wired per-bucket in msRenderColorRow, not a single static button
   document.getElementById("ms-restart-btn")?.addEventListener("click",  () => window.msRestartLevel  && window.msRestartLevel());
 
   // Load game state and render — after listeners so a crash doesn't lose them

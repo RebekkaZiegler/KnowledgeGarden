@@ -133,12 +133,14 @@
   ════════════════════════════════════════════════════ -->
   <div id="screen-mosaik" class="mode-screen" hidden>
     <div id="ms-level-info" class="ws-level-info"></div>
-    <img id="ms-reference-img" class="ms-reference-img" alt="Zielbild">
     <div id="ms-bucket-row" class="ms-bucket-row"></div>
-    <div id="ms-grid" class="ms-grid"></div>
+    <div class="ms-canvas-wrap">
+      <canvas id="ms-grid" class="ms-grid"></canvas>
+      <canvas id="ms-overlay" class="ms-overlay"></canvas>
+    </div>
     <div id="ms-color-row" class="ms-color-row"></div>
     <div class="ws-controls-row">
-      <button id="ms-buy-slot-btn" class="ws-buy-bottle-btn">➕ Behälter (1 Frage)</button>
+      <div id="ms-discard-status" class="ms-discard-status"></div>
       <button id="ms-restart-btn" class="ws-restart-btn">🔄 Neu starten</button>
     </div>
   </div>

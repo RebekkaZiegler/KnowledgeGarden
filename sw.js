@@ -1,4 +1,4 @@
-const CACHE = 'kg-v72';
+const CACHE = 'kg-v73';
 const PRECACHE = ['/', '/styles.css', '/js/content.js', '/js/game.js', '/js/watersort.js', '/js/parking.js', '/js/mosaik.js',
   '/assets/images/icon-192-raven.png', '/assets/images/icon-512-raven.png',
   '/assets/images/icon-192-raven-maskable.png', '/assets/images/icon-512-raven-maskable.png'];
