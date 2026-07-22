@@ -3662,6 +3662,11 @@ body.plant-open #back-to-garden-btn { display: block; }
   margin-bottom: 0.5rem;
   line-height: 1.4;
 }
+.tama-revive-hint {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}
 .tama-revive-btn {
   background: var(--accent);
   color: #fff;
@@ -3671,7 +3676,24 @@ body.plant-open #back-to-garden-btn { display: block; }
   font-size: 0.9rem;
   cursor: pointer;
   margin-top: 0.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
+.tama-restart-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tama-restart-btn:hover { border-color: var(--accent); }
 
 /* ── Starter pet selection ── */
 .starter-select-intro {

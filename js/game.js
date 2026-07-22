@@ -213,6 +213,8 @@ function defaultState() {
       shieldActive:   false,  // true = next missed-day check is fully forgiven once
       lastDialogue:   {},     // { [moment]: lastLineIndex } — avoids repeating the same line twice in a row
       bonusDays:      0,      // cumulative extra-study days banked toward the next evolution stage
+      deathDate:      null,   // YYYY-MM-DD — set when the pet dies, used to freeze aging while dead
+      reviveProgress: 0,      // questions answered correctly toward REVIVE_QUESTIONS_REQUIRED
     },
 
     // History of fully-grown Alräunchen released into the wild — see
@@ -1175,7 +1177,9 @@ function checkTamagotchiDay() {
   // Death — 2 consecutive missed days
   if (t.alive && t.missedDays >= 2) {
     t.alive = false;
-    showToast("💀 Dein Alräunchen ist gestorben. Tippe auf 🌱 um neu zu starten.", 5000);
+    t.deathDate = today;
+    t.reviveProgress = 0;
+    showToast(`💀 Dein Alräunchen ist gestorben. Beantworte ${REVIVE_QUESTIONS_REQUIRED} Fragen, um es wiederzubeleben.`, 5000);
     t.feedsToday  = 0;
     t.lastFedDate = today;
     saveState();
@@ -1230,6 +1234,7 @@ function reviveTamagotchi() {
     feedsToday: 0, requiredToday: 5,
     missedDays: 0, weekScores: [],
     answersToday: 0, shieldActive: false, lastDialogue: {}, bonusDays: 0,
+    deathDate: null, reviveProgress: 0,
   };
   saveState();
   renderTamagotchi();
@@ -1237,6 +1242,61 @@ function reviveTamagotchi() {
   showToast("🥚 Ein neues Alräunchen ist bereit!");
 }
 window.reviveTamagotchi = reviveTamagotchi;
+
+// Revive-by-effort — answer REVIVE_QUESTIONS_REQUIRED questions correctly to
+// bring the dead pet itself back (keeps stage/path), as an alternative to
+// reviveTamagotchi()'s instant-but-total reset to a fresh egg.
+const REVIVE_QUESTIONS_REQUIRED = 50;
+
+function reviveTamagotchiStudy() {
+  const t = G.tamagotchi;
+  if (!t || t.alive) return;
+  if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
+  const entry = pickNextQuestion();
+  if (!entry) { showToast("Keine Fragen verfügbar."); return; }
+  showQuestion("🌿 Alräunchen wiederbeleben", entry,
+    () => { advanceRevive(); },
+    () => {},
+    () => { saveState(); renderTamagotchi(); }
+  );
+}
+window.reviveTamagotchiStudy = reviveTamagotchiStudy;
+
+function advanceRevive() {
+  const t = G.tamagotchi;
+  if (!t || t.alive) return;
+  t.reviveProgress = (t.reviveProgress || 0) + 1;
+  if (t.reviveProgress >= REVIVE_QUESTIONS_REQUIRED) {
+    completeRevive();
+  } else if (t.reviveProgress % 10 === 0) {
+    showToast(`🌿 ${t.reviveProgress}/${REVIVE_QUESTIONS_REQUIRED} — dein Alräunchen kämpft sich zurück.`);
+  }
+}
+
+function completeRevive() {
+  const t = G.tamagotchi;
+  const today = getTodayDate();
+  // Freeze aging over the dead period: shift bornDate forward by the days
+  // spent dead so stage-advancement math doesn't count time it wasn't alive.
+  const daysDead = t.deathDate ? Math.max(0, daysBetween(t.deathDate, today)) : 0;
+  if (t.bornDate && daysDead > 0) {
+    const shifted = new Date(t.bornDate);
+    shifted.setDate(shifted.getDate() + daysDead);
+    t.bornDate = shifted.toISOString().slice(0, 10);
+  }
+  t.alive          = true;
+  t.reviveProgress = 0;
+  t.deathDate      = null;
+  t.lastFedDate    = today;
+  t.feedsToday     = 0;
+  t.answersToday   = 0;
+  t.missedDays     = 0;
+  t.shieldActive   = false;
+  saveState();
+  renderTamagotchi();
+  renderTamagotchiBtn();
+  showToast(`🌿 ${getTamaName(t.stage, t.path, t.species)} ist wiederbelebt!`);
+}
 
 function renderTamagotchiBtn() {
   const btn = document.getElementById("top-tab-tama");
@@ -1301,10 +1361,18 @@ function renderTamagotchi() {
         ${nextStage ? `<div class="tama-next">${nextStage}</div>` : ''}
         ${daysOld > 0 ? `<div class="tama-age">Alter: ${daysOld} Tag${daysOld !== 1 ? 'e' : ''}</div>` : ''}
         ${releaseChoice}
-      ` : `
+      ` : (() => {
+        const rp = t.reviveProgress || 0;
+        const revivePct = Math.min(100, Math.round((rp / REVIVE_QUESTIONS_REQUIRED) * 100));
+        return `
         <p class="tama-dead-msg">Dein Alräunchen ist gestorben weil es 2 Tage nicht gefüttert wurde.</p>
-        <button class="tama-revive-btn" onclick="reviveTamagotchi()">🥚 Neu starten</button>
-      `}
+        <p class="tama-revive-hint">Beantworte ${REVIVE_QUESTIONS_REQUIRED} Fragen, um es wiederzubeleben.</p>
+        <div class="tama-feed-label">Wiederbelebung: ${rp}/${REVIVE_QUESTIONS_REQUIRED} Fragen</div>
+        <div class="tama-bar-wrap"><div class="tama-bar" style="width:${revivePct}%;background:#5cca6e"></div></div>
+        <button class="tama-revive-btn" onclick="reviveTamagotchiStudy()">🌿 Frage beantworten</button>
+        <button class="tama-restart-btn" onclick="reviveTamagotchi()">🥚 Stattdessen neu starten</button>
+      `;
+      })()}
     </div>`;
 
   if (feedBtn) feedBtn.hidden = !t.alive;
@@ -1353,6 +1421,7 @@ function chooseStarter(species) {
     feedsToday: 0, requiredToday: 5,
     missedDays: 0, weekScores: [],
     answersToday: 0, shieldActive: false, lastDialogue: {}, bonusDays: 0,
+    deathDate: null, reviveProgress: 0,
   };
   saveState();
   closeModal("modal-starter-select");
@@ -1400,6 +1469,7 @@ function releaseTamagotchi() {
     feedsToday: 0, requiredToday: 5,
     missedDays: 0, weekScores: [],
     answersToday: 0, shieldActive: false, lastDialogue: {}, bonusDays: 0,
+    deathDate: null, reviveProgress: 0,
   };
   saveState();
   // Not renderTamagotchi() here — it calls checkTamagotchiDay(), which would
