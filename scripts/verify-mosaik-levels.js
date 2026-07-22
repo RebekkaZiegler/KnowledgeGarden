@@ -25,8 +25,8 @@ const {
   MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS,
 } = require('../js/mosaik.js');
 
-function replay(columns, cols, db, totalByColor, maxSimMs) {
-  const state = { columns, containers: [], cols, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+function replay(columns, rows, cols, db, totalByColor, maxSimMs) {
+  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const dtMs = 10; // must stay under 1 column/tick at this belt speed — see js/mosaik.js's msTick doc
   const checkEveryMs = 1000;
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
@@ -94,7 +94,7 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
   }
 
   const columns = msColumnsFromGrid(level.grid, level.rows, level.cols);
-  const sim = replay(columns, level.cols, level.db, level.totalByColor, maxSimMs);
+  const sim = replay(columns, level.rows, level.cols, level.db, level.totalByColor, maxSimMs);
   if (!sim.cleared) {
     console.error(`Level ${i}: FAIL — could not clear using db=${level.db} within ${MS_MAX_DISCARDS_PER_LEVEL} discards (${raw.template}, ${raw.g.join('x')})`);
     failures++;

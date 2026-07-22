@@ -13,15 +13,17 @@
    You place colored containers (tap a color swatch) onto a continuously-
    moving conveyor belt that sweeps left→right beneath the picture,
    wrapping back to the left edge indefinitely. A container is LOCKED to
-   the one color it was placed with: as it rides the belt, it only
-   collects — automatically, no further input — while a column whose
-   current bottom output matches its color is somewhere within its reach (a
-   physical scoop spanning MS_COLLECT_REACH_FRACTION of the picture's width
-   around it, not just the single column it's exactly centered on);
-   otherwise it just rides past, idle. It stays on the belt (never
-   manually repositioned) until full, at which point it's removed,
-   freeing a slot for a new placement. A container's capacity is a modest
-   FRACTION of that color's total supply in the picture
+   the one color it was placed with: as it rides the belt, it doesn't only
+   collect from the single column it's exactly centered on, or only the
+   single frontmost cell of that column — it reaches into a small 2D
+   neighborhood around itself (nearby columns × shallow depth into each
+   one's remaining stack, both MS_COLLECT_REACH_FRACTION of the picture's
+   width/height) with a bell-curve chance of collecting each matching cell
+   in range — certain right at its own position, fading smoothly with
+   distance, never a hard in-or-out cutoff (msGaussianWeight). It stays on
+   the belt (never manually repositioned) until full, at which point it's
+   removed, freeing a slot for a new placement. A container's capacity is a
+   modest FRACTION of that color's total supply in the picture
    (MS_BUCKET_CAPACITY_FRACTION), never the whole thing — most colors
    need several separate container placements over a level.
 
@@ -86,31 +88,43 @@ const MS_COLORS = [
   "#e0413a", // 14 accent red
   "#b06fe8", // 15 accent purple
 ];
-// Active slots (level.db) are FIXED for the whole level — no buying more.
-// The real relief valve is discarding a stuck container (forfeiting its
-// partial fill) to free its slot for a color that's actually progressing;
-// this mirrors real conveyor-belt sand-sort games (Sandy Jam and kin),
-// where a small, fixed slot count relative to the picture's color count is
-// the whole point, and recognizing + discarding a dead pick is the actual
-// skill. Discarding costs answering a question, same "relief costs a
-// question" pattern as every other mini-game (Water Sort's
-// WS_MAX_EXTRA_BOTTLES), just spent on un-sticking instead of adding
-// capacity. Capped generously above what the generator's own discard-aware
+// level.db (baked, generator-proven-sufficient) is the CEILING on active
+// slots for a level, not the starting amount — a level always starts with
+// fewer (see MS_STARTING_SLOTS_HANDICAP), unlocked back up to db one at a
+// time by answering a question each (msBuyExtraSlot), same "capacity costs
+// a question" pattern as Water Sort's extra bottle / Parkplatz's extra bay.
+// Never exceeds db, so the generator/verify script's solvability proof
+// (which only ever used db slots) stays valid regardless of how a player
+// paces their unlocks. On top of that ceiling, the real in-the-moment
+// relief valve is discarding a stuck container (forfeiting its partial
+// fill) to free its slot for a color that's actually progressing; this
+// mirrors real conveyor-belt sand-sort games (Sandy Jam and kin), where a
+// small slot count relative to the picture's color count is the whole
+// point, and recognizing + discarding a dead pick is the actual skill.
+// Discarding also costs a question. Capped generously above what the
+// generator's own discard-aware
 // simulation needed worst-case (12, for the busiest template) — provisional.
 const MS_MAX_DISCARDS_PER_LEVEL = 15;
+// A level doesn't hand you all db slots up front — you start this many
+// fewer (floor 1), so a level with a tight db (e.g. 4) starts genuinely
+// cramped and reaching the full, already-proven-sufficient db count
+// requires answering questions (msBuyExtraSlot) at some point, not just
+// discarding your way through a permanently-tiny slot count.
+const MS_STARTING_SLOTS_HANDICAP = 2;
 const MS_BUCKET_CAPACITY_FRACTION = 0.12; // one container holds ~12% of a color's total — never the whole thing
 const MS_BELT_SPEED_COLS_PER_SEC = 40; // provisional — tune by watching it run
 const MS_COLLECT_INTERVAL_MS = 90;      // provisional — min time between collecting successive pixels per container
 // A container doesn't only reach the single column it's exactly aligned
-// with — it also reaches into the columns immediately around it (a window
-// spanning this fraction of the picture's width, centered on the
-// container), collecting from every matching one it finds each collection
-// pulse. Picking off a literal single pixel per ~90ms read as far too slow
-// against pictures hundreds of columns wide; a small physical "reach" (like
-// a real conveyor scoop, not a laser-thin sensor) collects a whole cluster
-// of same-colored pixels per pulse when they're bunched together, which is
-// the common case for a rendered picture (sky bands, foliage, etc).
-const MS_COLLECT_REACH_FRACTION = 0.05;
+// with, and it doesn't only reach the single bottom-most cell of a column
+// either — it reaches into a small 2D neighborhood around its position: a
+// window of nearby COLUMNS (this fraction of the picture's width, centered
+// on the container) at a range of DEPTHS into each one (this fraction of
+// the picture's height, counted in from that column's current frontmost
+// remaining cell). Picking off one literal pixel per ~90ms, from only the
+// single cell every column happened to have exposed, read as far too slow
+// against pictures hundreds of cells per side; a real physical scoop
+// reaches around AND into the pile, not just the one grain dead-center.
+const MS_COLLECT_REACH_FRACTION = 0.10;
 
 // Generated by scripts/generate-mosaik-levels.js. Per level: template name,
 // seed (regenerates the identical grid via the same drawing function),
@@ -360,35 +374,56 @@ function msExposedCount(columns, color) {
 function msColorsInLevel(grid) { return [...new Set(grid)].sort((a, b) => a - b); }
 function msIsCleared(columns) { return columns.every(col => col.length === 0); }
 
+// exp(-x²/2σ²) — a bell curve, not a hard cutoff: weight is 1 at the center
+// and fades smoothly toward (but never exactly reaches) 0 at the edges, so
+// "how far this container reaches" is a matter of likelihood, not a sharp
+// in-or-out square window.
+function msGaussianWeight(distance, sigma) {
+  return Math.exp(-(distance * distance) / (2 * sigma * sigma));
+}
+
 // Advances every active container's belt position by dtMs, and — once its
-// own per-container collection cooldown has elapsed — sweeps a small window
-// of columns centered on it (MS_COLLECT_REACH_FRACTION of the picture's
-// width, wrapping around the belt's edges same as beltPos itself) and
-// collects the bottom-most cell from every column in that window whose
-// current bottom matches its color, not just the one column it's exactly
-// aligned with. MUTATES state.columns/state.containers directly (this runs
-// every animation frame; performance matters here unlike every other
-// mini-game's occasional full-rebuild-on-tap model). Returns the column
-// indices any pixel was actually collected from this tick (each appearing
-// at most once — the window visits every column at most once per pulse),
-// for the caller's visual feedback (empty array in the common case where
-// nothing in the window matched).
+// own per-container collection cooldown has elapsed — reaches into a small
+// 2D neighborhood around it: columns near its belt position (wrapping same
+// as beltPos itself) at shallow depths into each one's current remaining
+// stack. Each candidate cell is collected with probability equal to a 2D
+// Gaussian centered on the container (peak at its own column/frontmost
+// cell, fading with column-distance and depth) — see msGaussianWeight —
+// rather than deterministically grabbing everything within a flat window.
+// MUTATES state.columns/state.containers directly (this runs every
+// animation frame; performance matters here unlike every other mini-game's
+// occasional full-rebuild-on-tap model). Returns the column indices any
+// pixel was actually collected from this tick (duplicates possible if more
+// than one cell was pulled from the same column), for the caller's visual
+// feedback (empty array in the common case where nothing rolled a hit).
 function msTick(state, dtMs) {
   const removedCols = [];
   const stillActive = [];
-  const reach = Math.max(0, Math.floor(state.cols * MS_COLLECT_REACH_FRACTION / 2));
+  const colReach   = Math.max(0, Math.floor(state.cols * MS_COLLECT_REACH_FRACTION / 2));
+  const depthReach = Math.max(1, Math.floor(state.rows * MS_COLLECT_REACH_FRACTION));
+  const colSigma   = Math.max(1, colReach / 3);
+  const depthSigma = Math.max(1, depthReach / 3);
   for (const c of state.containers) {
     c.beltPos = (c.beltPos + state.beltSpeedColsPerSec * dtMs / 1000) % state.cols;
     c.msSinceCollect += dtMs;
     if (c.filled < c.capacity && c.msSinceCollect >= state.collectIntervalMs) {
       const centerCol = Math.floor(c.beltPos);
-      for (let off = -reach; off <= reach && c.filled < c.capacity; off++) {
+      for (let off = -colReach; off <= colReach && c.filled < c.capacity; off++) {
+        const colWeight = msGaussianWeight(off, colSigma);
         const colIdx = ((centerCol + off) % state.cols + state.cols) % state.cols;
         const col = state.columns[colIdx];
-        if (col.length && col[0] === c.color) {
-          col.shift(); // bottom-most cell leaves — direct mutation, no copy, for per-frame performance
-          c.filled++;
-          removedCols.push(colIdx);
+        let examined = 0, idx = 0;
+        while (examined < depthReach && idx < col.length && c.filled < c.capacity) {
+          const isMatch = col[idx] === c.color;
+          const hit = isMatch && Math.random() < colWeight * msGaussianWeight(idx, depthSigma);
+          if (hit) {
+            col.splice(idx, 1); // this cell leaves the stack; the rest re-renders compacted around the gap
+            c.filled++;
+            removedCols.push(colIdx);
+          } else {
+            idx++; // no shift happened, so advance past this position
+          }
+          examined++;
         }
       }
       c.msSinceCollect = 0;
@@ -412,8 +447,9 @@ function msOnColorTap(color) {
   const ms = G.mosaik;
   if (ms.currentLevelIndex == null) return;
   const level = msGenerateLevel(ms.currentLevelIndex);
+  const slotsUnlocked = ms.slotsUnlocked || level.db;
   if (ms.containers.some(c => c.color === color)) return; // already collecting this color
-  if (ms.containers.length >= level.db) { showToast("🪣 Keine freie Behälter! Einen verwerfen (1 Frage)?"); return; }
+  if (ms.containers.length >= slotsUnlocked) { showToast("🪣 Keine freie Behälter! Mehr freischalten (1 Frage) oder einen verwerfen?"); return; }
   if (msColorTotalCount(ms.columns, color) === 0) return; // fully exhausted already
   ms.containers.push({
     color, capacity: msBucketCapacity(level.totalByColor.get(color)),
@@ -421,6 +457,32 @@ function msOnColorTap(color) {
   });
   saveState(); // explicit — mid-level progress must survive a reload
   msRenderColorRow(level);
+}
+
+// Unlocks one more active slot, up to level.db (the generator-proven
+// ceiling — never exceeded, see MS_STARTING_SLOTS_HANDICAP). Mirrors
+// wsBuyExtraBottle / plBuyExtraBay exactly: costs one question.
+function msBuyExtraSlot() {
+  const ms = G.mosaik;
+  if (ms.currentLevelIndex == null) return;
+  const level = msGenerateLevel(ms.currentLevelIndex);
+  const slotsUnlocked = ms.slotsUnlocked || level.db;
+  if (slotsUnlocked >= level.db) {
+    showToast(`Maximal ${level.db} Behälter für dieses Level!`);
+    return;
+  }
+  if (!hasActiveQuestions()) {
+    showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚.");
+    return;
+  }
+  askQuestions("🪣 Behälter freischalten", 1, () => {
+    ms.slotsUnlocked = slotsUnlocked + 1;
+    G.stats.mosaikSlotsUnlocked = (G.stats.mosaikSlotsUnlocked || 0) + 1;
+    checkTrophies();
+    saveState();
+    msRenderColorRow(level);
+    showToast("🪣 Neuer Behälterplatz freigeschaltet!");
+  }, null);
 }
 
 function msOnLevelSolved() {
@@ -451,6 +513,7 @@ function msStartLevel(levelIndex) {
   ms.columns = msColumnsFromGrid(level.grid, level.rows, level.cols);
   ms.containers = [];
   ms.discardsUsed = 0;
+  ms.slotsUnlocked = Math.max(1, level.db - MS_STARTING_SLOTS_HANDICAP);
   saveState();
   msSetupCanvases(level);
   msRenderColorRow(level);
@@ -583,12 +646,16 @@ function msRenderColorRow(level) {
   const bucketRowEl = document.getElementById("ms-bucket-row");
   const colorRowEl = document.getElementById("ms-color-row");
   const discardStatusEl = document.getElementById("ms-discard-status");
+  const buySlotBtn = document.getElementById("ms-buy-slot-btn");
   if (!colorRowEl) return;
+
+  const slotsUnlocked = ms.slotsUnlocked || level.db;
 
   if (infoEl) infoEl.textContent = `Level ${ms.currentLevelIndex + 1} / ${MS_LEVEL_COUNT}`;
 
   if (bucketRowEl) {
     bucketRowEl.innerHTML = Array.from({ length: level.db }, (_, i) => {
+      if (i >= slotsUnlocked) return `<div class="ms-bucket-slot ms-bucket-slot--locked"></div>`;
       const c = ms.containers[i];
       if (!c) return `<div class="ms-bucket-slot ms-bucket-slot--empty"></div>`;
       const pct = Math.round((c.filled / c.capacity) * 100);
@@ -614,6 +681,15 @@ function msRenderColorRow(level) {
 
   if (discardStatusEl) {
     discardStatusEl.textContent = `🗑️ Verwerfen: ${ms.discardsUsed || 0}/${MS_MAX_DISCARDS_PER_LEVEL}`;
+  }
+
+  if (buySlotBtn) {
+    const atCap = slotsUnlocked >= level.db;
+    buySlotBtn.disabled = atCap;
+    buySlotBtn.classList.toggle("ws-buy-bottle-btn--off", atCap);
+    buySlotBtn.textContent = atCap
+      ? "➕ Maximal erreicht"
+      : `➕ Behälter (1 Frage) · ${slotsUnlocked}/${level.db}`;
   }
 }
 
@@ -651,7 +727,7 @@ function msStartLoop() {
     msLastFrameTime = t;
 
     if (dtMs > 0 && ms.containers.length) {
-      const tickState = { columns: ms.columns, containers: ms.containers, cols: level.cols, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+      const tickState = { columns: ms.columns, containers: ms.containers, cols: level.cols, rows: level.rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
       const removedCols = msTick(tickState, dtMs);
       ms.containers = tickState.containers;
       if (removedCols.length) {
@@ -680,6 +756,7 @@ if (typeof window !== 'undefined') {
   window.msRestartLevel = msRestartLevel;
   window.msEnsureQueueAndLevel = msEnsureQueueAndLevel;
   window.msDiscardContainer = msDiscardContainer;
+  window.msBuyExtraSlot = msBuyExtraSlot;
 }
 
 if (typeof module !== 'undefined' && module.exports) {

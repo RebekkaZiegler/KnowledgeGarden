@@ -246,8 +246,9 @@ function defaultState() {
       playOrderPos:        0,
       currentLevelIndex:   null,
       columns:             [],  // LIVE: bottom-up colorIdx stacks, left→right; [] = "no level loaded" sentinel
-      containers:          [],  // LIVE: [{color, capacity, filled, beltPos, msSinceCollect}, ...] — active belt containers, length <= level.db
+      containers:          [],  // LIVE: [{color, capacity, filled, beltPos, msSinceCollect}, ...] — active belt containers, length <= slotsUnlocked
       discardsUsed:        0,   // LIVE: resets to 0 each level start; capped at MS_MAX_DISCARDS_PER_LEVEL
+      slotsUnlocked:       0,   // LIVE: resets to max(1, level.db - MS_STARTING_SLOTS_HANDICAP) each level start; buyable up to level.db
     },
   };
 }
@@ -3296,6 +3297,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Mosaik controls — discard is wired per-bucket in msRenderColorRow, not a single static button
   document.getElementById("ms-restart-btn")?.addEventListener("click",  () => window.msRestartLevel  && window.msRestartLevel());
+  document.getElementById("ms-buy-slot-btn")?.addEventListener("click", () => window.msBuyExtraSlot  && window.msBuyExtraSlot());
 
   // Load game state and render — after listeners so a crash doesn't lose them
   try {

@@ -67,7 +67,7 @@ const TEMPLATE_NAMES = Object.keys(MS_TEMPLATES);
 // solvable, only the generator's own runtime.
 function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards) {
   const columns = msColumnsFromGrid(grid, rows, cols);
-  const state = { columns, containers: [], cols, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   // Must move less than 1 column per tick — msTick only ever checks the
   // column a container's FINAL position for the tick lands on, so a step
   // >= 1 column can skip columns, and at exactly 2 cols/tick (the old

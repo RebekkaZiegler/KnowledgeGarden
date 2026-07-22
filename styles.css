@@ -4144,6 +4144,13 @@ body.plant-open #back-to-garden-btn { display: block; }
   font: inherit;
 }
 .ms-bucket-slot--empty { background: rgba(61, 140, 82, 0.18); border: 1px dashed rgba(61, 140, 82, 0.5); }
+.ms-bucket-slot--locked {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--bg2) 0px, var(--bg2) 5px,
+    var(--bg3) 5px, var(--bg3) 10px
+  );
+}
 .ms-bucket-slot--filled {
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
   background: var(--bg3);
