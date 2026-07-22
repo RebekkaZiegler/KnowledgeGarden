@@ -20,7 +20,7 @@
 // time cap.
 
 const {
-  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msExposedCount,
+  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msExposedCount, msColorTotalCount,
   msBucketCapacity, msIsCleared, msTick, MS_MAX_DISCARDS_PER_LEVEL,
   MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS,
 } = require('../js/mosaik.js');
@@ -57,7 +57,7 @@ function replay(columns, rows, cols, db, totalByColor, maxSimMs) {
           if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
         }
         if (bestColor == null || bestExposed === 0) break;
-        state.containers.push({ color: bestColor, capacity: msBucketCapacity(totalByColor.get(bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        state.containers.push({ color: bestColor, capacity: Math.min(msBucketCapacity(totalByColor.get(bestColor)), msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
         placements++;
       }
     }

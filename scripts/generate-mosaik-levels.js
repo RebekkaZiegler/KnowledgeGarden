@@ -30,7 +30,7 @@
 
 const {
   MS_TEMPLATES, mulberry32, msColumnsFromGrid, msColorsInLevel,
-  msOriginalColorTotals, msBucketCapacity, msExposedCount, msIsCleared, msTick,
+  msOriginalColorTotals, msBucketCapacity, msExposedCount, msColorTotalCount, msIsCleared, msTick,
   MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS, MS_MAX_DISCARDS_PER_LEVEL,
 } = require('../js/mosaik.js');
 
@@ -120,7 +120,7 @@ function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, 
           if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
         }
         if (bestColor == null || bestExposed === 0) break; // no currently-reachable, unassigned color right now
-        state.containers.push({ color: bestColor, capacity: msBucketCapacity(totalByColor.get(bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        state.containers.push({ color: bestColor, capacity: Math.min(msBucketCapacity(totalByColor.get(bestColor)), msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
         placements++;
       }
     }
