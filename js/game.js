@@ -249,7 +249,7 @@ function defaultState() {
       containers:          [],  // LIVE: [{color, capacity, filled, beltPos, msSinceCollect}, ...] — active belt containers, length <= slotsUnlocked
       discardsUsed:        0,   // LIVE: resets to 0 each level start; capped at MS_MAX_DISCARDS_PER_LEVEL
       slotsUnlocked:       0,   // LIVE: resets to max(1, level.db - MS_STARTING_SLOTS_HANDICAP) each level start; buyable up to level.db
-      depotReleasedMask:   0,   // LIVE: bit i set = level.depot.cells[i]'s color has been placed at least once (positionally unblocked); resets to 0 each level start
+      depotReleased:      [],   // LIVE: parallel array to level.depot.cells — index i true = that ONE-TIME-USE bucket has been sent for good; resets to a fresh all-false array (length level.depot.cells.length) each level start
     },
   };
 }
@@ -327,15 +327,23 @@ function normalizeState(s) {
   // the old signatures means discard rather than partial-merge.
   const mosaikColumnsShapeOk = Array.isArray(s.mosaik.columns) &&
     s.mosaik.columns.every(col => Array.isArray(col) && col.every(v => Number.isFinite(v)));
+  // A leftover `depotReleasedMask` NUMBER is the immediately-prior depot
+  // shape (one bit per distinct COLOR, freely re-tappable once released) —
+  // superseded by `depotReleased`, an array parallel to level.depot.cells
+  // (one entry per one-time-use PLACEMENT, several of which can share a
+  // color). No meaningful partial migration between the two (a bitmask
+  // can't be re-indexed onto a different, larger cell list), so it's
+  // treated the same as every earlier legacy shape: discard.
   const mosaikIsLegacyShape = typeof rawMosaik.movesUsed === 'number' ||
     Array.isArray(rawMosaik.slotColor) ||
-    (typeof rawMosaik.slotsUnlocked === 'number' && !Array.isArray(rawMosaik.containers));
+    (typeof rawMosaik.slotsUnlocked === 'number' && !Array.isArray(rawMosaik.containers)) ||
+    typeof rawMosaik.depotReleasedMask === 'number';
   if (!mosaikColumnsShapeOk || mosaikIsLegacyShape) s.mosaik = Object.assign({}, d.mosaik);
-  s.mosaik.playOrder         = Array.isArray(s.mosaik.playOrder)      ? s.mosaik.playOrder    : [];
-  s.mosaik.columns           = Array.isArray(s.mosaik.columns)        ? s.mosaik.columns      : [];
-  s.mosaik.containers        = Array.isArray(s.mosaik.containers)     ? s.mosaik.containers   : [];
-  s.mosaik.discardsUsed      = Number.isFinite(s.mosaik.discardsUsed) ? s.mosaik.discardsUsed : 0;
-  s.mosaik.depotReleasedMask = Number.isFinite(s.mosaik.depotReleasedMask) ? s.mosaik.depotReleasedMask : 0;
+  s.mosaik.playOrder     = Array.isArray(s.mosaik.playOrder)      ? s.mosaik.playOrder    : [];
+  s.mosaik.columns       = Array.isArray(s.mosaik.columns)        ? s.mosaik.columns      : [];
+  s.mosaik.containers    = Array.isArray(s.mosaik.containers)     ? s.mosaik.containers   : [];
+  s.mosaik.discardsUsed  = Number.isFinite(s.mosaik.discardsUsed) ? s.mosaik.discardsUsed : 0;
+  s.mosaik.depotReleased = Array.isArray(s.mosaik.depotReleased)  ? s.mosaik.depotReleased : [];
 
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];

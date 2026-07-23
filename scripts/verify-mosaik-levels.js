@@ -30,49 +30,61 @@ const {
 // real msIsDepotBlocked — same primitive scripts/generate-mosaik-depot.js
 // used to place cells in the first place, but this is its own fresh replay
 // of that peel against the SHIPPED baked cells, not a shared/imported loop.
+// Array-based (not a bitmask) since a level's cell count — one per
+// PLACEMENT, several of which can share a color, not one per distinct
+// color — can exceed 31.
 function depotFullyReleasable(cells) {
-  let releasedMask = 0, progress = true;
+  const released = new Array(cells.length).fill(false);
+  let progress = true;
   while (progress) {
     progress = false;
     for (let i = 0; i < cells.length; i++) {
-      if (releasedMask & (1 << i)) continue;
-      if (!msIsDepotBlocked(cells, releasedMask, i)) { releasedMask |= (1 << i); progress = true; }
+      if (released[i]) continue;
+      if (!msIsDepotBlocked(cells, released, i)) { released[i] = true; progress = true; }
     }
   }
-  return releasedMask === (cells.length === 0 ? 0 : (2 ** cells.length) - 1);
+  return released.every(Boolean);
 }
 
 // Independent depot-gated replay — written fresh here (not imported from
-// scripts/generate-mosaik-depot.js's simulateBeltClearWithDepot) so a
-// strategy bug in the generator's own proof can't silently pass its own
-// verification, same discipline as this file's plain `replay` below.
-// Strategy: release any currently-unblocked, not-yet-released depot cell
-// into a free slot first (free, monotonic, always safe to take), then fall
-// back to discarding a stuck container when a released-or-releasable color
-// is waiting, then fill any remaining free slots from released colors by
-// current exposure — mirrors `replay` below plus the depot-release layer.
+// scripts/generate-mosaik-depot.js's simulateDepotClear) so a strategy bug
+// in the generator's own proof can't silently pass its own verification,
+// same discipline as this file's plain `replay` below. A depot cell's
+// release is unconditional (no exposure gate) and PERMANENT — sent once,
+// gone for good. Two discard triggers, both requiring the container's color
+// to have REINFORCEMENT (another not-yet-released cell of the same color,
+// or discarding would strand whatever it hadn't collected forever) and a
+// SUSTAINED stuck streak (a momentary zero-exposure reading isn't
+// permanent — see js/mosaik.js's msTick doc on depth-reach collection):
+//  A. slots genuinely full, a different not-yet-released unblocked cell
+//     waits for any slot.
+//  B. a same-color jam: a not-yet-released, positionally-unblocked cell
+//     whose only obstacle is its own color already being active.
 function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs) {
   const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const dtMs = 10, checkEveryMs = 1000;
-  let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0, releasedMask = 0;
+  let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
+  const n = cells.length;
+  const released = new Array(n).fill(false);
+  const STUCK_THRESHOLD = 1200; // 20 simulated minutes of sustained zero exposure
 
   const place = (color) => {
     state.containers.push({
       color, capacity: Math.min(msBucketCapacity(totalByColor.get(color)), msColorTotalCount(state.columns, color)),
-      filled: 0, beltPos: 0, msSinceCollect: 0,
+      filled: 0, beltPos: 0, msSinceCollect: 0, stuckChecks: 0,
     });
     placements++;
   };
+  const hasReinforcement = (color) => cells.some((cell, i) => cell.color === color && !released[i]);
   const releaseFill = () => {
     let placed = true;
     while (placed && state.containers.length < db) {
       placed = false;
       const active = new Set(state.containers.map(c => c.color));
-      for (let i = 0; i < cells.length; i++) {
-        if (releasedMask & (1 << i)) continue;
-        if (active.has(cells[i].color)) continue;
-        if (msIsDepotBlocked(cells, releasedMask, i)) continue;
-        releasedMask |= (1 << i);
+      for (let i = 0; i < n; i++) {
+        if (released[i] || active.has(cells[i].color)) continue;
+        if (msIsDepotBlocked(cells, released, i)) continue;
+        released[i] = true;
         place(cells[i].color);
         placed = true;
         break;
@@ -85,38 +97,37 @@ function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs)
       sinceCheck = 0;
       releaseFill();
 
+      for (const c of state.containers) {
+        c.stuckChecks = msExposedCount(state.columns, c.color) === 0 ? c.stuckChecks + 1 : 0;
+      }
+
       let freed = true;
       while (freed) {
         freed = false;
-        if (state.containers.length < db || discards >= MS_MAX_DISCARDS_PER_LEVEL) break;
+        if (discards >= MS_MAX_DISCARDS_PER_LEVEL) break;
         const active = new Set(state.containers.map(c => c.color));
-        const releasedWaiting = [...new Set(state.columns.flat())].some(c =>
-          !active.has(c) && msExposedCount(state.columns, c) > 0 &&
-          cells.some((cell, i) => cell.color === c && (releasedMask & (1 << i))));
-        const unlockWaiting = cells.some((cell, i) =>
-          !(releasedMask & (1 << i)) && !active.has(cell.color) && !msIsDepotBlocked(cells, releasedMask, i));
-        if (!releasedWaiting && !unlockWaiting) break;
-        const stuckIdx = state.containers.findIndex(c => msExposedCount(state.columns, c.color) === 0);
+        let stuckIdx = -1;
+        if (state.containers.length >= db) {
+          const waiting = cells.some((cell, i) =>
+            !released[i] && !active.has(cell.color) && !msIsDepotBlocked(cells, released, i));
+          if (waiting) {
+            stuckIdx = state.containers.findIndex(c => c.stuckChecks >= STUCK_THRESHOLD && hasReinforcement(c.color));
+          }
+        }
+        if (stuckIdx === -1) {
+          for (let i = 0; i < n; i++) {
+            if (released[i] || !active.has(cells[i].color)) continue;
+            if (msIsDepotBlocked(cells, released, i)) continue;
+            const idx = state.containers.findIndex(c => c.color === cells[i].color && c.stuckChecks >= STUCK_THRESHOLD);
+            if (idx !== -1) { stuckIdx = idx; break; }
+          }
+        }
         if (stuckIdx === -1) break;
         state.containers.splice(stuckIdx, 1);
         discards++;
         freed = true;
       }
       releaseFill();
-
-      while (state.containers.length < db) {
-        const active = new Set(state.containers.map(c => c.color));
-        let bestColor = null, bestExposed = -1;
-        for (let i = 0; i < cells.length; i++) {
-          if (!(releasedMask & (1 << i))) continue;
-          const color = cells[i].color;
-          if (active.has(color)) continue;
-          const exposed = msExposedCount(state.columns, color);
-          if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
-        }
-        if (bestColor == null || bestExposed === 0) break;
-        place(bestColor);
-      }
     }
     msTick(state, dtMs);
     elapsedMs += dtMs;
@@ -202,8 +213,8 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     continue;
   }
 
-  if (!level.depot || !Array.isArray(level.depot.cells) || level.depot.cells.length !== level.maxColors) {
-    console.error(`Level ${i}: FAIL — depot missing or cell count (${level.depot && level.depot.cells.length}) !== maxColors (${level.maxColors})`);
+  if (!level.depot || !Array.isArray(level.depot.cells) || level.depot.cells.length < level.maxColors) {
+    console.error(`Level ${i}: FAIL — depot missing or cell count (${level.depot && level.depot.cells.length}) < maxColors (${level.maxColors})`);
     failures++;
     continue;
   }
@@ -213,15 +224,43 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     failures++;
     continue;
   }
+  // Independently re-derive, per color, that its cell count × per-unit
+  // capacity actually covers its full picture supply — not imported from
+  // the generator's own unitsNeeded, so a miscount there can't self-pass.
+  const cellCountByColor = new Map();
+  for (const cell of level.depot.cells) cellCountByColor.set(cell.color, (cellCountByColor.get(cell.color) || 0) + 1);
+  let coverageFailure = null;
+  for (const [color, total] of level.totalByColor) {
+    const count = cellCountByColor.get(color) || 0;
+    const covered = count * msBucketCapacity(total);
+    if (covered < total) { coverageFailure = `color ${color} has only ${count} depot cells (covers ${covered}) for a total supply of ${total}`; break; }
+  }
+  if (coverageFailure) {
+    console.error(`Level ${i}: FAIL — ${coverageFailure}`);
+    failures++;
+    continue;
+  }
   if (!depotFullyReleasable(level.depot.cells)) {
     console.error(`Level ${i}: FAIL — depot layout has a cell that can never release (peel check)`);
     failures++;
     continue;
   }
-  const depotColumns = msColumnsFromGrid(level.grid, level.rows, level.cols);
-  const depotSim = replayWithDepot(depotColumns, level.rows, level.cols, level.db, level.totalByColor, level.depot.cells, maxSimMs);
-  if (!depotSim.cleared) {
-    console.error(`Level ${i}: FAIL — could not clear under depot gating using db=${level.db} within ${MS_MAX_DISCARDS_PER_LEVEL} discards`);
+  // msTick collects probabilistically via real (unseeded) Math.random(), so
+  // a single run can pass or fail on luck alone — confirmed empirically
+  // (one shipped layout cleared only 2 of 8 independent trials despite the
+  // generator accepting it off a single successful run, before the
+  // generator itself was fixed to require multiple confirming trials; see
+  // scripts/generate-mosaik-depot.js). Re-run several times independently
+  // here too rather than trust one roll.
+  const DEPOT_CONFIRM_TRIALS = 5;
+  let depotSim = null, depotClearedAllTrials = true;
+  for (let trial = 0; trial < DEPOT_CONFIRM_TRIALS; trial++) {
+    const depotColumns = msColumnsFromGrid(level.grid, level.rows, level.cols);
+    depotSim = replayWithDepot(depotColumns, level.rows, level.cols, level.db, level.totalByColor, level.depot.cells, maxSimMs);
+    if (!depotSim.cleared) { depotClearedAllTrials = false; break; }
+  }
+  if (!depotClearedAllTrials) {
+    console.error(`Level ${i}: FAIL — could not clear under depot gating using db=${level.db} within ${MS_MAX_DISCARDS_PER_LEVEL} discards (failed at least one of ${DEPOT_CONFIRM_TRIALS} trials)`);
     failures++;
     continue;
   }
