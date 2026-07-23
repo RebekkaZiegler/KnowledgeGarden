@@ -249,6 +249,7 @@ function defaultState() {
       containers:          [],  // LIVE: [{color, capacity, filled, beltPos, msSinceCollect}, ...] — active belt containers, length <= slotsUnlocked
       discardsUsed:        0,   // LIVE: resets to 0 each level start; capped at MS_MAX_DISCARDS_PER_LEVEL
       slotsUnlocked:       0,   // LIVE: resets to max(1, level.db - MS_STARTING_SLOTS_HANDICAP) each level start; buyable up to level.db
+      depotReleasedMask:   0,   // LIVE: bit i set = level.depot.cells[i]'s color has been placed at least once (positionally unblocked); resets to 0 each level start
     },
   };
 }
@@ -308,26 +309,33 @@ function normalizeState(s) {
 
   s.stats.mosaikLevelsCompleted     = s.stats.mosaikLevelsCompleted     || 0;
   s.stats.mosaikContainersDiscarded = s.stats.mosaikContainersDiscarded || 0;
-  s.mosaik = Object.assign({}, d.mosaik, s.mosaik || {});
+  const rawMosaik = s.mosaik || {}; // kept for the legacy-shape check below, BEFORE defaults get merged in
+  s.mosaik = Object.assign({}, d.mosaik, rawMosaik);
   // Defensive shape guard: columns must be an array of arrays of finite
   // numbers. A leftover `movesUsed` key is the oldest (move-budget-based)
   // shape's signature; a leftover `slotColor` array is either of the two
   // fixed-slot-array shapes that came after it; a leftover `slotsUnlocked`
-  // number is the most recent pre-belt shape (capacity buckets with a
-  // buyable slot count). This version replaces all of those with a real-
-  // time conveyor belt (`containers`, a variable-length list of active
-  // buckets, plus `discardsUsed` for the discard-a-stuck-bucket relief
-  // valve) — any of the old signatures means discard rather than
-  // partial-merge.
+  // number WITHOUT a real `containers` array is the most recent pre-belt
+  // shape (capacity buckets with a buyable slot count) — the current shape
+  // also has `slotsUnlocked`, so `containers` (only ever present on the
+  // current shape) is what actually distinguishes them; checked against
+  // `rawMosaik` (the pre-merge save), since checking the post-merge
+  // `s.mosaik` here would see the just-merged-in default and always match.
+  // This version replaces all of those with a real-time conveyor belt
+  // (`containers`, a variable-length list of active buckets, plus
+  // `discardsUsed` for the discard-a-stuck-bucket relief valve) — any of
+  // the old signatures means discard rather than partial-merge.
   const mosaikColumnsShapeOk = Array.isArray(s.mosaik.columns) &&
     s.mosaik.columns.every(col => Array.isArray(col) && col.every(v => Number.isFinite(v)));
-  const mosaikIsLegacyShape = typeof s.mosaik.movesUsed === 'number' ||
-    Array.isArray(s.mosaik.slotColor) || typeof s.mosaik.slotsUnlocked === 'number';
+  const mosaikIsLegacyShape = typeof rawMosaik.movesUsed === 'number' ||
+    Array.isArray(rawMosaik.slotColor) ||
+    (typeof rawMosaik.slotsUnlocked === 'number' && !Array.isArray(rawMosaik.containers));
   if (!mosaikColumnsShapeOk || mosaikIsLegacyShape) s.mosaik = Object.assign({}, d.mosaik);
-  s.mosaik.playOrder    = Array.isArray(s.mosaik.playOrder)      ? s.mosaik.playOrder    : [];
-  s.mosaik.columns      = Array.isArray(s.mosaik.columns)        ? s.mosaik.columns      : [];
-  s.mosaik.containers   = Array.isArray(s.mosaik.containers)     ? s.mosaik.containers   : [];
-  s.mosaik.discardsUsed = Number.isFinite(s.mosaik.discardsUsed) ? s.mosaik.discardsUsed : 0;
+  s.mosaik.playOrder         = Array.isArray(s.mosaik.playOrder)      ? s.mosaik.playOrder    : [];
+  s.mosaik.columns           = Array.isArray(s.mosaik.columns)        ? s.mosaik.columns      : [];
+  s.mosaik.containers        = Array.isArray(s.mosaik.containers)     ? s.mosaik.containers   : [];
+  s.mosaik.discardsUsed      = Number.isFinite(s.mosaik.discardsUsed) ? s.mosaik.discardsUsed : 0;
+  s.mosaik.depotReleasedMask = Number.isFinite(s.mosaik.depotReleasedMask) ? s.mosaik.depotReleasedMask : 0;
 
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];

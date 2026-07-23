@@ -4194,6 +4194,60 @@ body.plant-open #back-to-garden-btn { display: block; }
   transition: transform 0.1s;
 }
 .ms-color-swatch:active { transform: scale(0.9); }
+
+/* Depot grid — Parkplatz's lot-grid blocking mechanic ported to colors
+   instead of cars (see msIsDepotBlocked in js/mosaik.js). Replaces
+   .ms-color-row's content when a level's depot data is present; every
+   color's cell is always rendered here, never omitted, so blocked/ready
+   states stay visible in a fixed position instead of reflowing. */
+.ms-depot-grid {
+  display: grid;
+  gap: 6px;
+  width: min(94vw, 420px);
+  margin: 0.6rem auto 0;
+}
+.ms-depot-cell {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, opacity 0.15s;
+}
+.ms-depot-cell--blocked {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--bg2) 0px, var(--bg2) 5px,
+    var(--bg3) 5px, var(--bg3) 10px
+  );
+  color: rgba(0,0,0,0.35);
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.ms-depot-cell--unblocked {
+  background: rgba(61, 140, 82, 0.18);
+  border: 1px dashed rgba(61, 140, 82, 0.6);
+  color: rgba(0,0,0,0.65);
+  cursor: pointer;
+  animation: ms-depot-ready-pulse 1.4s ease-in-out infinite;
+}
+.ms-depot-cell--idle, .ms-depot-cell--active, .ms-depot-cell--exhausted {
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.25);
+}
+.ms-depot-cell--idle { cursor: pointer; }
+.ms-depot-cell--idle:active { transform: scale(0.92); }
+.ms-depot-cell--active { opacity: 0.85; cursor: default; }
+.ms-depot-cell--exhausted { opacity: 0.35; cursor: default; filter: grayscale(0.4); }
+@keyframes ms-depot-ready-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(61, 140, 82, 0.45); }
+  50%      { box-shadow: 0 0 0 4px rgba(61, 140, 82, 0); }
+}
+
 .ms-canvas-wrap {
   position: relative;
   width: min(94vw, 420px);
