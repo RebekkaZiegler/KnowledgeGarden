@@ -56,16 +56,18 @@ function pickGridDims(n) {
 }
 
 // unitsNeeded = how many separate container placements it already takes to
-// fully exhaust a color's picture supply, given today's msBucketCapacity —
-// each of those placements gets its own visible cell instead of an
+// fully exhaust a color's picture supply, given the level's UNIFORM
+// per-bucket capacity (same for every color in this level — a color with
+// more supply just gets more of these, never a bigger one) — each of
+// those placements gets its own visible cell instead of an
 // infinitely-reusable color selector.
-function unitsNeeded(totalCount) {
-  return Math.max(1, Math.ceil(totalCount / msBucketCapacity(totalCount)));
+function unitsNeeded(totalCount, levelCapacity) {
+  return Math.max(1, Math.ceil(totalCount / levelCapacity));
 }
-function buildColorList(colors, totalByColor) {
+function buildColorList(colors, totalByColor, levelCapacity) {
   const list = [];
   for (const color of colors) {
-    const n = unitsNeeded(totalByColor.get(color));
+    const n = unitsNeeded(totalByColor.get(color), levelCapacity);
     for (let i = 0; i < n; i++) list.push(color);
   }
   return list;
@@ -139,10 +141,11 @@ function simulateDepotClear(grid, rows, cols, slotCount, totalByColor, cells, ma
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
   const n = cells.length;
   const released = new Array(n).fill(false);
+  const levelCapacity = msBucketCapacity(grid.length);
 
   const placeColor = (color) => {
     state.containers.push({
-      color, capacity: Math.min(msBucketCapacity(totalByColor.get(color)), msColorTotalCount(state.columns, color)),
+      color, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, color)),
       filled: 0, beltPos: 0, msSinceCollect: 0, stuckChecks: 0,
     });
     placements++;
@@ -237,7 +240,8 @@ function generateDepotForLevel(levelIndex) {
   const level = msGenerateLevel(levelIndex);
   const colors = msColorsInLevel(level.grid);
   const totalByColor = msOriginalColorTotals(level.grid);
-  const colorList = buildColorList(colors, totalByColor);
+  const levelCapacity = msBucketCapacity(level.grid.length);
+  const colorList = buildColorList(colors, totalByColor, levelCapacity);
   const n = colorList.length;
   const [rows, cols] = pickGridDims(n);
   const maxSimMs = 8 * 60 * 60 * 1000;
@@ -249,7 +253,7 @@ function generateDepotForLevel(levelIndex) {
   // several independent clears on the SAME layout before accepting it
   // filters out marginal layouts that only occasionally clear within the
   // discard budget.
-  const CONFIRM_TRIALS = 5;
+  const CONFIRM_TRIALS = 16;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     const rng = mulberry32(seedForDepot(levelIndex, attempt));

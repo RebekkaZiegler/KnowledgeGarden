@@ -67,10 +67,11 @@ function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs)
   const n = cells.length;
   const released = new Array(n).fill(false);
   const STUCK_THRESHOLD = 1200; // 20 simulated minutes of sustained zero exposure
+  const levelCapacity = msBucketCapacity(rows * cols);
 
   const place = (color) => {
     state.containers.push({
-      color, capacity: Math.min(msBucketCapacity(totalByColor.get(color)), msColorTotalCount(state.columns, color)),
+      color, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, color)),
       filled: 0, beltPos: 0, msSinceCollect: 0, stuckChecks: 0,
     });
     placements++;
@@ -142,6 +143,7 @@ function replay(columns, rows, cols, db, totalByColor, maxSimMs) {
   const dtMs = 10; // must stay under 1 column/tick at this belt speed — see js/mosaik.js's msTick doc
   const checkEveryMs = 1000;
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
+  const levelCapacity = msBucketCapacity(rows * cols);
 
   while (elapsedMs < maxSimMs) {
     if (sinceCheck >= checkEveryMs) {
@@ -169,7 +171,7 @@ function replay(columns, rows, cols, db, totalByColor, maxSimMs) {
           if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
         }
         if (bestColor == null || bestExposed === 0) break;
-        state.containers.push({ color: bestColor, capacity: Math.min(msBucketCapacity(totalByColor.get(bestColor)), msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        state.containers.push({ color: bestColor, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
         placements++;
       }
     }
@@ -224,15 +226,17 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     failures++;
     continue;
   }
-  // Independently re-derive, per color, that its cell count × per-unit
-  // capacity actually covers its full picture supply — not imported from
-  // the generator's own unitsNeeded, so a miscount there can't self-pass.
+  // Independently re-derive, per color, that its cell count × the level's
+  // uniform per-bucket capacity actually covers its full picture supply —
+  // not imported from the generator's own unitsNeeded, so a miscount there
+  // can't self-pass.
   const cellCountByColor = new Map();
   for (const cell of level.depot.cells) cellCountByColor.set(cell.color, (cellCountByColor.get(cell.color) || 0) + 1);
+  const levelCapacity = msBucketCapacity(level.grid.length);
   let coverageFailure = null;
   for (const [color, total] of level.totalByColor) {
     const count = cellCountByColor.get(color) || 0;
-    const covered = count * msBucketCapacity(total);
+    const covered = count * levelCapacity;
     if (covered < total) { coverageFailure = `color ${color} has only ${count} depot cells (covers ${covered}) for a total supply of ${total}`; break; }
   }
   if (coverageFailure) {
@@ -252,7 +256,7 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
   // generator itself was fixed to require multiple confirming trials; see
   // scripts/generate-mosaik-depot.js). Re-run several times independently
   // here too rather than trust one roll.
-  const DEPOT_CONFIRM_TRIALS = 5;
+  const DEPOT_CONFIRM_TRIALS = 16;
   let depotSim = null, depotClearedAllTrials = true;
   for (let trial = 0; trial < DEPOT_CONFIRM_TRIALS; trial++) {
     const depotColumns = msColumnsFromGrid(level.grid, level.rows, level.cols);
