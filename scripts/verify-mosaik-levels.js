@@ -183,7 +183,7 @@ function replay(columns, rows, cols, db, totalByColor, maxSimMs) {
   return { cleared: false, elapsedMs, placements, discards };
 }
 
-const MIN_GRID_SIDE = 200; // sanity floor — nowhere near the old "10x10" complaint
+const MIN_GRID_SIDE = 150; // sanity floor — nowhere near the old "10x10" complaint
 const maxSimMs = 8 * 60 * 60 * 1000;
 let failures = 0;
 

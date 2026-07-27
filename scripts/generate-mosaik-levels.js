@@ -38,18 +38,21 @@ function seedForLevel(levelIndex, salt) {
   return (Math.imul(levelIndex + 1, 2654435761) >>> 0) ^ Math.imul(salt + 1, 0x9e3779b9);
 }
 
-// Difficulty ramp: 80 levels, 6 tiers. PROVISIONAL — resolution grows from
-// well above the old "10x10" complaint up to a genuinely large top tier;
-// since levels are just a tiny descriptor now (no baked pixel data),
-// resolution has no data-size cost, so it grows meaningfully across tiers.
+// Difficulty ramp: 80 levels, 6 tiers. PROVISIONAL — resolution used to
+// grow well past 400px (way more total pixels than a level actually needs
+// to read clearly, given the whole picture is only ever ~16 palette
+// colors), scaled back down around 200px per side: still comfortably above
+// the old "10x10" complaint, just without the escalating pixel counts that
+// pushed placement counts and generation/verification time up for no real
+// visual gain.
 function levelParams(levelIndex) {
   const table = [
-    { max: 15, size: 260 },
-    { max: 30, size: 290 },
-    { max: 45, size: 320 },
-    { max: 60, size: 350 },
-    { max: 75, size: 380 },
-    { max: 80, size: 410 },
+    { max: 15, size: 180 },
+    { max: 30, size: 190 },
+    { max: 45, size: 200 },
+    { max: 60, size: 200 },
+    { max: 75, size: 210 },
+    { max: 80, size: 220 },
   ];
   return table.find(t => levelIndex < t.max) || table[table.length - 1];
 }
@@ -68,6 +71,7 @@ const TEMPLATE_NAMES = Object.keys(MS_TEMPLATES);
 function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards) {
   const columns = msColumnsFromGrid(grid, rows, cols);
   const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+  const levelCapacity = msBucketCapacity(grid.length); // uniform for every color in this level, not a fraction of any one color's own total
   // Must move less than 1 column per tick — msTick only ever checks the
   // column a container's FINAL position for the tick lands on, so a step
   // >= 1 column can skip columns, and at exactly 2 cols/tick (the old
@@ -120,7 +124,7 @@ function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, 
           if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
         }
         if (bestColor == null || bestExposed === 0) break; // no currently-reachable, unassigned color right now
-        state.containers.push({ color: bestColor, capacity: Math.min(msBucketCapacity(totalByColor.get(bestColor)), msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        state.containers.push({ color: bestColor, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
         placements++;
       }
     }
