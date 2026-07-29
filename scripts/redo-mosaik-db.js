@@ -30,13 +30,14 @@ const fs = require('fs');
 const path = require('path');
 const {
   MS_LEVELS, MS_LEVEL_COUNT, msGenerateLevel, msColumnsFromGrid,
-  msOriginalColorTotals, msBucketCapacity, msExposedCount, msColorTotalCount, msIsCleared, msTick,
+  msFamilyExposedCount, msFamilyTotalCount,
+  msOriginalColorTotals, msBucketCapacity, msIsCleared, msTick,
   MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS, MS_MAX_DISCARDS_PER_LEVEL,
 } = require('../js/mosaik.js');
 
-function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards) {
+function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards, colorFamily) {
   const columns = msColumnsFromGrid(grid, rows, cols);
-  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+  const state = { columns, containers: [], cols, rows, colorFamily, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const dtMs = 10; // must stay under 1 column/tick at this belt speed — see js/mosaik.js's msTick doc
   const checkEveryMs = 1000;
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
@@ -49,26 +50,26 @@ function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, 
       while (freedSomething) {
         freedSomething = false;
         if (state.containers.length < slotCount || discards >= maxDiscards) break;
-        const activeColors = new Set(state.containers.map(c => c.color));
-        const waitingColor = [...new Set(state.columns.flat())]
-          .find(c => !activeColors.has(c) && msExposedCount(state.columns, c) > 0);
-        if (waitingColor == null) break;
-        const stuckIdx = state.containers.findIndex(c => msExposedCount(state.columns, c.color) === 0);
+        const activeFamilies = new Set(state.containers.map(c => c.family));
+        const waitingFamily = [...new Set(state.columns.flat().map(c => colorFamily[c]))]
+          .find(f => !activeFamilies.has(f) && msFamilyExposedCount(state.columns, f, colorFamily) > 0);
+        if (waitingFamily == null) break;
+        const stuckIdx = state.containers.findIndex(c => msFamilyExposedCount(state.columns, c.family, colorFamily) === 0);
         if (stuckIdx === -1) break;
         state.containers.splice(stuckIdx, 1);
         discards++;
         freedSomething = true;
       }
       while (state.containers.length < slotCount) {
-        const activeColors = new Set(state.containers.map(c => c.color));
-        let bestColor = null, bestExposed = -1;
-        for (const color of new Set(state.columns.flat())) {
-          if (activeColors.has(color)) continue;
-          const exposed = msExposedCount(state.columns, color);
-          if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
+        const activeFamilies = new Set(state.containers.map(c => c.family));
+        let bestFamily = null, bestExposed = -1;
+        for (const family of new Set(state.columns.flat().map(c => colorFamily[c]))) {
+          if (activeFamilies.has(family)) continue;
+          const exposed = msFamilyExposedCount(state.columns, family, colorFamily);
+          if (exposed > bestExposed) { bestExposed = exposed; bestFamily = family; }
         }
-        if (bestColor == null || bestExposed === 0) break;
-        state.containers.push({ color: bestColor, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        if (bestFamily == null || bestExposed === 0) break;
+        state.containers.push({ family: bestFamily, capacity: Math.min(levelCapacity, msFamilyTotalCount(state.columns, bestFamily, colorFamily)), filled: 0, beltPos: 0, msSinceCollect: 0 });
         placements++;
       }
     }
@@ -80,9 +81,9 @@ function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, 
   return { cleared: false, elapsedMs, placements, discards };
 }
 
-function provenSufficient(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards, trials) {
+function provenSufficient(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards, trials, colorFamily) {
   for (let t = 0; t < trials; t++) {
-    if (!simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards).cleared) return false;
+    if (!simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards, colorFamily).cleared) return false;
   }
   return true;
 }
@@ -94,17 +95,19 @@ for (let i = 0; i < MS_LEVEL_COUNT; i++) {
   const t0 = Date.now();
   const level = msGenerateLevel(i);
   const totalByColor = msOriginalColorTotals(level.grid);
-  let db = Math.max(1, level.maxColors - 2);
+  // -1, not -2 — see scripts/generate-mosaik-levels.js's matching comment;
+  // still just the STARTING guess, auto-incremented below until proven.
+  let db = Math.max(1, level.maxFamilies - 1);
   let proven = false;
-  while (db <= level.maxColors) {
-    if (provenSufficient(level.grid, level.rows, level.cols, db, totalByColor, maxSimMs, MS_MAX_DISCARDS_PER_LEVEL, CONFIRM_TRIALS)) { proven = true; break; }
+  while (db <= level.maxFamilies) {
+    if (provenSufficient(level.grid, level.rows, level.cols, db, totalByColor, maxSimMs, MS_MAX_DISCARDS_PER_LEVEL, CONFIRM_TRIALS, level.colorFamily)) { proven = true; break; }
     db++;
   }
   if (!proven) {
-    console.error(`Level ${i}: FAILED — even db=maxColors (${level.maxColors}) didn't clear ${CONFIRM_TRIALS}/${CONFIRM_TRIALS} trials.`);
+    console.error(`Level ${i}: FAILED — even db=maxFamilies (${level.maxFamilies}) didn't clear ${CONFIRM_TRIALS}/${CONFIRM_TRIALS} trials.`);
     process.exit(1);
   }
-  console.log(`Level ${i}: db=${db} (maxColors=${level.maxColors}, ${Date.now() - t0}ms)`);
+  console.log(`Level ${i}: db=${db} (maxColors=${level.maxColors}, maxFamilies=${level.maxFamilies}, ${Date.now() - t0}ms)`);
   results.push(db);
 }
 

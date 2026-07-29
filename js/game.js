@@ -334,10 +334,18 @@ function normalizeState(s) {
   // color). No meaningful partial migration between the two (a bitmask
   // can't be re-indexed onto a different, larger cell list), so it's
   // treated the same as every earlier legacy shape: discard.
+  // A `containers` entry with no `family` field predates the color-FAMILY
+  // matching mechanic (buckets used to be locked to one exact shade) —
+  // `msTick`'s match test now keys off `.family`, so a stale entry missing
+  // it would silently never collect anything again after reload. An empty
+  // `containers` array (the common case — no level mid-progress with an
+  // active bucket) doesn't match `.some(...)`, so untouched saves aren't
+  // needlessly reset.
   const mosaikIsLegacyShape = typeof rawMosaik.movesUsed === 'number' ||
     Array.isArray(rawMosaik.slotColor) ||
     (typeof rawMosaik.slotsUnlocked === 'number' && !Array.isArray(rawMosaik.containers)) ||
-    typeof rawMosaik.depotReleasedMask === 'number';
+    typeof rawMosaik.depotReleasedMask === 'number' ||
+    (Array.isArray(rawMosaik.containers) && rawMosaik.containers.some(c => c && typeof c.family === 'undefined'));
   if (!mosaikColumnsShapeOk || mosaikIsLegacyShape) s.mosaik = Object.assign({}, d.mosaik);
   s.mosaik.playOrder     = Array.isArray(s.mosaik.playOrder)      ? s.mosaik.playOrder    : [];
   s.mosaik.columns       = Array.isArray(s.mosaik.columns)        ? s.mosaik.columns      : [];

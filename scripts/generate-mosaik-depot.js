@@ -5,24 +5,27 @@
 // buckets), visible from level start, each positionally blocked until
 // unblocked (msIsDepotBlocked, shared with the runtime) then sent exactly
 // once — gone for good afterward, never re-tappable. Several cells can
-// share a color: a color that needs N placements to exhaust its picture
-// supply gets N separate cells, matching a real board where you can see
-// several buckets of the same color sitting in different cells at once
-// (this is the crux of the mechanic — NOT a single infinitely-reusable
-// color selector per color, which is what an earlier version of this
-// mechanic mistakenly shipped).
+// share a FAMILY (a bucket collects any sibling shade of its family, see
+// MS_COLOR_FAMILY/msFamilyTotalCount in js/mosaik.js): a family that needs
+// N placements to exhaust its picture supply gets N separate cells, each
+// baking its own representative exact `color` (for its own swatch) plus
+// the shared `family` (for matching/capacity) — matching a real board
+// where you can see several buckets of the same family sitting in
+// different cells at once (this is the crux of the mechanic — NOT a
+// single infinitely-reusable color selector per family, which is what an
+// earlier version of this mechanic mistakenly shipped).
 //
-// depot shape: { grid:[rows,cols], cells:[{r,c,dir,color}, ...] } — one
-// cell per placement (cells.length equals the level's already-proven total
-// placement count, 57-119 typically), not one per distinct color. Colors
-// repeat; `msBucketCapacity`/the underlying belt-collection economy is
-// untouched.
+// depot shape: { grid:[rows,cols], cells:[{r,c,dir,color,family}, ...] } —
+// one cell per placement (cells.length equals the level's already-proven
+// total placement count), not one per distinct family. Families repeat;
+// `msBucketCapacity`/the underlying belt-collection economy is untouched.
 
 const fs = require('fs');
 const path = require('path');
 const {
-  MS_LEVELS, MS_LEVEL_COUNT, msGenerateLevel, msColumnsFromGrid, msColorsInLevel,
-  msOriginalColorTotals, msBucketCapacity, msColorTotalCount, msExposedCount, msIsCleared, msTick,
+  MS_LEVELS, MS_LEVEL_COUNT, msGenerateLevel, msColumnsFromGrid,
+  msFamiliesInLevel, msFamilyTotalCount, msFamilyExposedCount,
+  msOriginalColorTotals, msBucketCapacity, msIsCleared, msTick,
   msIsDepotBlocked, MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS, MS_MAX_DISCARDS_PER_LEVEL,
 } = require('../js/mosaik.js');
 
@@ -64,11 +67,26 @@ function pickGridDims(n) {
 function unitsNeeded(totalCount, levelCapacity) {
   return Math.max(1, Math.ceil(totalCount / levelCapacity));
 }
-function buildColorList(colors, totalByColor, levelCapacity) {
+// One list entry per depot cell to place, each carrying BOTH the family
+// (drives matching/capacity — several sibling shades share the same
+// bucket) and a representative exact color (drives that one cell's own
+// swatch). unitsNeeded is computed off the FAMILY's total supply, not any
+// one member shade's — this is the actual "fewer buckets" mechanism: a
+// family with several shades needs the same number of cells its old
+// single-shade self would have, not one per shade. Cycles through the
+// family's member colors (present-in-this-picture only, most-supplied
+// first) so a family needing several cells shows varied shades across
+// them rather than repeating one — purely cosmetic, solvability doesn't
+// depend on which shade a given cell happens to display.
+function buildFamilyColorList(families, totalByColor, colorFamily, levelCapacity) {
   const list = [];
-  for (const color of colors) {
-    const n = unitsNeeded(totalByColor.get(color), levelCapacity);
-    for (let i = 0; i < n; i++) list.push(color);
+  for (const family of families) {
+    const members = [...totalByColor.keys()]
+      .filter(c => colorFamily[c] === family)
+      .sort((a, b) => totalByColor.get(b) - totalByColor.get(a));
+    const familyTotal = members.reduce((sum, c) => sum + totalByColor.get(c), 0);
+    const n = unitsNeeded(familyTotal, levelCapacity);
+    for (let i = 0; i < n; i++) list.push({ family, color: members[i % members.length] });
   }
   return list;
 }
@@ -134,42 +152,42 @@ function placeCells(n, rows, cols, rng) {
 // not-yet-released cell of its own color) or discarding it would strand
 // whatever it hadn't collected yet forever (nothing left to ever send for
 // that color again).
-function simulateDepotClear(grid, rows, cols, slotCount, totalByColor, cells, maxSimMs, maxDiscards) {
+function simulateDepotClear(grid, rows, cols, slotCount, totalByColor, cells, maxSimMs, maxDiscards, colorFamily) {
   const columns = msColumnsFromGrid(grid, rows, cols);
-  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+  const state = { columns, containers: [], cols, rows, colorFamily, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const dtMs = 10, checkEveryMs = 1000;
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
   const n = cells.length;
   const released = new Array(n).fill(false);
   const levelCapacity = msBucketCapacity(grid.length);
 
-  const placeColor = (color) => {
+  const placeFamily = (family) => {
     state.containers.push({
-      color, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, color)),
+      family, capacity: Math.min(levelCapacity, msFamilyTotalCount(state.columns, family, colorFamily)),
       filled: 0, beltPos: 0, msSinceCollect: 0, stuckChecks: 0,
     });
     placements++;
   };
-  const hasReinforcement = (color) => cells.some((cell, i) => cell.color === color && !released[i]);
+  const hasReinforcement = (family) => cells.some((cell, i) => cell.family === family && !released[i]);
   const releasePriorityFill = () => {
     let placedSomething = true;
     while (placedSomething && state.containers.length < slotCount) {
       placedSomething = false;
-      const activeColors = new Set(state.containers.map(c => c.color));
+      const activeFamilies = new Set(state.containers.map(c => c.family));
       for (let i = 0; i < n; i++) {
-        if (released[i] || activeColors.has(cells[i].color)) continue;
+        if (released[i] || activeFamilies.has(cells[i].family)) continue;
         if (msIsDepotBlocked(cells, released, i)) continue;
         released[i] = true;
-        placeColor(cells[i].color);
+        placeFamily(cells[i].family);
         placedSomething = true;
         break;
       }
     }
   };
 
-  // How many consecutive checks a color must show zero exposure before its
+  // How many consecutive checks a family must show zero exposure before its
   // container is even eligible for a Case-A discard — a momentary
-  // msExposedCount===0 reading is common and usually resolves within a few
+  // msFamilyExposedCount===0 reading is common and usually resolves within a few
   // checks as OTHER active containers keep digging elsewhere (this
   // codebase's msTick also reaches into a depth window, not just the
   // literal frontmost cell). Discarding on the first bad reading thrashes
@@ -185,37 +203,37 @@ function simulateDepotClear(grid, rows, cols, slotCount, totalByColor, cells, ma
       releasePriorityFill();
 
       for (const c of state.containers) {
-        c.stuckChecks = msExposedCount(state.columns, c.color) === 0 ? c.stuckChecks + 1 : 0;
+        c.stuckChecks = msFamilyExposedCount(state.columns, c.family, colorFamily) === 0 ? c.stuckChecks + 1 : 0;
       }
 
       let freedSomething = true;
       while (freedSomething) {
         freedSomething = false;
         if (discards >= maxDiscards) break;
-        const activeColors = new Set(state.containers.map(c => c.color));
+        const activeFamilies = new Set(state.containers.map(c => c.family));
         let stuckIdx = -1;
         if (state.containers.length >= slotCount) {
           const somethingWaiting = cells.some((cell, i) =>
-            !released[i] && !activeColors.has(cell.color) && !msIsDepotBlocked(cells, released, i));
+            !released[i] && !activeFamilies.has(cell.family) && !msIsDepotBlocked(cells, released, i));
           if (somethingWaiting) {
-            stuckIdx = state.containers.findIndex(c => c.stuckChecks >= STUCK_THRESHOLD && hasReinforcement(c.color));
+            stuckIdx = state.containers.findIndex(c => c.stuckChecks >= STUCK_THRESHOLD && hasReinforcement(c.family));
           }
         }
-        // Case B: a same-color jam — a not-yet-released, positionally-
-        // unblocked cell whose only obstacle is its own color already
+        // Case B: a same-family jam — a not-yet-released, positionally-
+        // unblocked cell whose only obstacle is its own family already
         // being active. This can stall progress even with slots NOT full
         // (case A's precondition doesn't cover it): the constructive
         // placement only guarantees SOME valid release order exists, not
         // that multiple cells are simultaneously releasable at every step,
-        // so a same-color collision can be the sole thing blocking forward
+        // so a same-family collision can be the sole thing blocking forward
         // progress while other slots sit idle. Gated by the same sustained
         // stuckChecks threshold as case A — only a durably stuck twin
         // justifies discarding it.
         if (stuckIdx === -1) {
           for (let i = 0; i < n; i++) {
-            if (released[i] || !activeColors.has(cells[i].color)) continue;
+            if (released[i] || !activeFamilies.has(cells[i].family)) continue;
             if (msIsDepotBlocked(cells, released, i)) continue;
-            const idx = state.containers.findIndex(c => c.color === cells[i].color && c.stuckChecks >= STUCK_THRESHOLD);
+            const idx = state.containers.findIndex(c => c.family === cells[i].family && c.stuckChecks >= STUCK_THRESHOLD);
             if (idx !== -1) { stuckIdx = idx; break; } // safe by construction: cells[i] IS the reinforcement
           }
         }
@@ -238,10 +256,10 @@ function simulateDepotClear(grid, rows, cols, slotCount, totalByColor, cells, ma
 
 function generateDepotForLevel(levelIndex) {
   const level = msGenerateLevel(levelIndex);
-  const colors = msColorsInLevel(level.grid);
+  const families = msFamiliesInLevel(level.grid, level.colorFamily);
   const totalByColor = msOriginalColorTotals(level.grid);
   const levelCapacity = msBucketCapacity(level.grid.length);
-  const colorList = buildColorList(colors, totalByColor, levelCapacity);
+  const colorList = buildFamilyColorList(families, totalByColor, level.colorFamily, levelCapacity);
   const n = colorList.length;
   const [rows, cols] = pickGridDims(n);
   const maxSimMs = 8 * 60 * 60 * 1000;
@@ -260,15 +278,16 @@ function generateDepotForLevel(levelIndex) {
     const cells = placeCells(n, rows, cols, rng);
     if (!cells) continue; // infeasible layout — reroll
 
-    // Assign colors to placed cells via a random permutation — solvability
-    // doesn't depend on which color lands where, this just varies pacing.
-    const shuffledColors = shuffle(colorList.slice(), rng);
-    cells.forEach((cell, i) => { cell.color = shuffledColors[i]; });
+    // Assign family+color to placed cells via a random permutation —
+    // solvability doesn't depend on which family/shade lands where, this
+    // just varies pacing.
+    const shuffledList = shuffle(colorList.slice(), rng);
+    cells.forEach((cell, i) => { cell.color = shuffledList[i].color; cell.family = shuffledList[i].family; });
 
     let best = null;
     let allCleared = true;
     for (let trial = 0; trial < CONFIRM_TRIALS; trial++) {
-      const sim = simulateDepotClear(level.grid, level.rows, level.cols, level.db, totalByColor, cells, maxSimMs, MS_MAX_DISCARDS_PER_LEVEL);
+      const sim = simulateDepotClear(level.grid, level.rows, level.cols, level.db, totalByColor, cells, maxSimMs, MS_MAX_DISCARDS_PER_LEVEL, level.colorFamily);
       if (!sim.cleared) { allCleared = false; break; }
       if (!best || sim.discards > best.discards) best = sim; // keep the worst-case (highest-discard) trial's stats for reporting
     }

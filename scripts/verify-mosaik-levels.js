@@ -20,7 +20,7 @@
 // time cap.
 
 const {
-  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msExposedCount, msColorTotalCount,
+  MS_LEVELS, msGenerateLevel, msColumnsFromGrid, msFamilyExposedCount, msFamilyTotalCount, msTotalsByFamily,
   msBucketCapacity, msIsCleared, msTick, MS_MAX_DISCARDS_PER_LEVEL,
   MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS, msIsDepotBlocked,
 } = require('../js/mosaik.js');
@@ -60,8 +60,8 @@ function depotFullyReleasable(cells) {
 //     waits for any slot.
 //  B. a same-color jam: a not-yet-released, positionally-unblocked cell
 //     whose only obstacle is its own color already being active.
-function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs) {
-  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs, colorFamily) {
+  const state = { columns, containers: [], cols, rows, colorFamily, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const dtMs = 10, checkEveryMs = 1000;
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
   const n = cells.length;
@@ -69,24 +69,24 @@ function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs)
   const STUCK_THRESHOLD = 1200; // 20 simulated minutes of sustained zero exposure
   const levelCapacity = msBucketCapacity(rows * cols);
 
-  const place = (color) => {
+  const place = (family) => {
     state.containers.push({
-      color, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, color)),
+      family, capacity: Math.min(levelCapacity, msFamilyTotalCount(state.columns, family, colorFamily)),
       filled: 0, beltPos: 0, msSinceCollect: 0, stuckChecks: 0,
     });
     placements++;
   };
-  const hasReinforcement = (color) => cells.some((cell, i) => cell.color === color && !released[i]);
+  const hasReinforcement = (family) => cells.some((cell, i) => cell.family === family && !released[i]);
   const releaseFill = () => {
     let placed = true;
     while (placed && state.containers.length < db) {
       placed = false;
-      const active = new Set(state.containers.map(c => c.color));
+      const active = new Set(state.containers.map(c => c.family));
       for (let i = 0; i < n; i++) {
-        if (released[i] || active.has(cells[i].color)) continue;
+        if (released[i] || active.has(cells[i].family)) continue;
         if (msIsDepotBlocked(cells, released, i)) continue;
         released[i] = true;
-        place(cells[i].color);
+        place(cells[i].family);
         placed = true;
         break;
       }
@@ -99,27 +99,27 @@ function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs)
       releaseFill();
 
       for (const c of state.containers) {
-        c.stuckChecks = msExposedCount(state.columns, c.color) === 0 ? c.stuckChecks + 1 : 0;
+        c.stuckChecks = msFamilyExposedCount(state.columns, c.family, colorFamily) === 0 ? c.stuckChecks + 1 : 0;
       }
 
       let freed = true;
       while (freed) {
         freed = false;
         if (discards >= MS_MAX_DISCARDS_PER_LEVEL) break;
-        const active = new Set(state.containers.map(c => c.color));
+        const active = new Set(state.containers.map(c => c.family));
         let stuckIdx = -1;
         if (state.containers.length >= db) {
           const waiting = cells.some((cell, i) =>
-            !released[i] && !active.has(cell.color) && !msIsDepotBlocked(cells, released, i));
+            !released[i] && !active.has(cell.family) && !msIsDepotBlocked(cells, released, i));
           if (waiting) {
-            stuckIdx = state.containers.findIndex(c => c.stuckChecks >= STUCK_THRESHOLD && hasReinforcement(c.color));
+            stuckIdx = state.containers.findIndex(c => c.stuckChecks >= STUCK_THRESHOLD && hasReinforcement(c.family));
           }
         }
         if (stuckIdx === -1) {
           for (let i = 0; i < n; i++) {
-            if (released[i] || !active.has(cells[i].color)) continue;
+            if (released[i] || !active.has(cells[i].family)) continue;
             if (msIsDepotBlocked(cells, released, i)) continue;
-            const idx = state.containers.findIndex(c => c.color === cells[i].color && c.stuckChecks >= STUCK_THRESHOLD);
+            const idx = state.containers.findIndex(c => c.family === cells[i].family && c.stuckChecks >= STUCK_THRESHOLD);
             if (idx !== -1) { stuckIdx = idx; break; }
           }
         }
@@ -138,8 +138,8 @@ function replayWithDepot(columns, rows, cols, db, totalByColor, cells, maxSimMs)
   return { cleared: false, elapsedMs, placements, discards };
 }
 
-function replay(columns, rows, cols, db, totalByColor, maxSimMs) {
-  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+function replay(columns, rows, cols, db, totalByColor, maxSimMs, colorFamily) {
+  const state = { columns, containers: [], cols, rows, colorFamily, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const dtMs = 10; // must stay under 1 column/tick at this belt speed — see js/mosaik.js's msTick doc
   const checkEveryMs = 1000;
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
@@ -152,26 +152,26 @@ function replay(columns, rows, cols, db, totalByColor, maxSimMs) {
       while (freedSomething) {
         freedSomething = false;
         if (state.containers.length < db || discards >= MS_MAX_DISCARDS_PER_LEVEL) break;
-        const activeColors = new Set(state.containers.map(c => c.color));
-        const waitingColor = [...new Set(state.columns.flat())]
-          .find(c => !activeColors.has(c) && msExposedCount(state.columns, c) > 0);
-        if (waitingColor == null) break;
-        const stuckIdx = state.containers.findIndex(c => msExposedCount(state.columns, c.color) === 0);
+        const activeFamilies = new Set(state.containers.map(c => c.family));
+        const waitingFamily = [...new Set(state.columns.flat().map(c => colorFamily[c]))]
+          .find(f => !activeFamilies.has(f) && msFamilyExposedCount(state.columns, f, colorFamily) > 0);
+        if (waitingFamily == null) break;
+        const stuckIdx = state.containers.findIndex(c => msFamilyExposedCount(state.columns, c.family, colorFamily) === 0);
         if (stuckIdx === -1) break;
         state.containers.splice(stuckIdx, 1);
         discards++;
         freedSomething = true;
       }
       while (state.containers.length < db) {
-        const activeColors = new Set(state.containers.map(c => c.color));
-        let bestColor = null, bestExposed = -1;
-        for (const color of new Set(state.columns.flat())) {
-          if (activeColors.has(color)) continue;
-          const exposed = msExposedCount(state.columns, color);
-          if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
+        const activeFamilies = new Set(state.containers.map(c => c.family));
+        let bestFamily = null, bestExposed = -1;
+        for (const family of new Set(state.columns.flat().map(c => colorFamily[c]))) {
+          if (activeFamilies.has(family)) continue;
+          const exposed = msFamilyExposedCount(state.columns, family, colorFamily);
+          if (exposed > bestExposed) { bestExposed = exposed; bestFamily = family; }
         }
-        if (bestColor == null || bestExposed === 0) break;
-        state.containers.push({ color: bestColor, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        if (bestFamily == null || bestExposed === 0) break;
+        state.containers.push({ family: bestFamily, capacity: Math.min(levelCapacity, msFamilyTotalCount(state.columns, bestFamily, colorFamily)), filled: 0, beltPos: 0, msSinceCollect: 0 });
         placements++;
       }
     }
@@ -201,22 +201,22 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     failures++;
     continue;
   }
-  if (level.db < 1 || level.db > level.maxColors) {
-    console.error(`Level ${i}: FAIL — db=${level.db} out of range for maxColors=${level.maxColors}`);
+  if (level.db < 1 || level.db > level.maxFamilies) {
+    console.error(`Level ${i}: FAIL — db=${level.db} out of range for maxFamilies=${level.maxFamilies}`);
     failures++;
     continue;
   }
 
   const columns = msColumnsFromGrid(level.grid, level.rows, level.cols);
-  const sim = replay(columns, level.rows, level.cols, level.db, level.totalByColor, maxSimMs);
+  const sim = replay(columns, level.rows, level.cols, level.db, level.totalByColor, maxSimMs, level.colorFamily);
   if (!sim.cleared) {
     console.error(`Level ${i}: FAIL — could not clear using db=${level.db} within ${MS_MAX_DISCARDS_PER_LEVEL} discards (${raw.template}, ${raw.g.join('x')})`);
     failures++;
     continue;
   }
 
-  if (!level.depot || !Array.isArray(level.depot.cells) || level.depot.cells.length < level.maxColors) {
-    console.error(`Level ${i}: FAIL — depot missing or cell count (${level.depot && level.depot.cells.length}) < maxColors (${level.maxColors})`);
+  if (!level.depot || !Array.isArray(level.depot.cells) || level.depot.cells.length < level.maxFamilies) {
+    console.error(`Level ${i}: FAIL — depot missing or cell count (${level.depot && level.depot.cells.length}) < maxFamilies (${level.maxFamilies})`);
     failures++;
     continue;
   }
@@ -226,18 +226,22 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     failures++;
     continue;
   }
-  // Independently re-derive, per color, that its cell count × the level's
+  // Independently re-derive, per FAMILY, that its cell count × the level's
   // uniform per-bucket capacity actually covers its full picture supply —
   // not imported from the generator's own unitsNeeded, so a miscount there
-  // can't self-pass.
-  const cellCountByColor = new Map();
-  for (const cell of level.depot.cells) cellCountByColor.set(cell.color, (cellCountByColor.get(cell.color) || 0) + 1);
+  // can't self-pass. Grouped by cell.family (not cell.color): the generator
+  // deliberately spreads different representative shades across cells
+  // within one family for visual variety, so grouping by exact color here
+  // would undercount and misreport a real coverage failure.
+  const cellCountByFamily = new Map();
+  for (const cell of level.depot.cells) cellCountByFamily.set(cell.family, (cellCountByFamily.get(cell.family) || 0) + 1);
   const levelCapacity = msBucketCapacity(level.grid.length);
+  const totalByFamily = msTotalsByFamily(level.totalByColor, level.colorFamily);
   let coverageFailure = null;
-  for (const [color, total] of level.totalByColor) {
-    const count = cellCountByColor.get(color) || 0;
+  for (const [family, total] of totalByFamily) {
+    const count = cellCountByFamily.get(family) || 0;
     const covered = count * levelCapacity;
-    if (covered < total) { coverageFailure = `color ${color} has only ${count} depot cells (covers ${covered}) for a total supply of ${total}`; break; }
+    if (covered < total) { coverageFailure = `family ${family} has only ${count} depot cells (covers ${covered}) for a total supply of ${total}`; break; }
   }
   if (coverageFailure) {
     console.error(`Level ${i}: FAIL — ${coverageFailure}`);
@@ -260,7 +264,7 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
   let depotSim = null, depotClearedAllTrials = true;
   for (let trial = 0; trial < DEPOT_CONFIRM_TRIALS; trial++) {
     const depotColumns = msColumnsFromGrid(level.grid, level.rows, level.cols);
-    depotSim = replayWithDepot(depotColumns, level.rows, level.cols, level.db, level.totalByColor, level.depot.cells, maxSimMs);
+    depotSim = replayWithDepot(depotColumns, level.rows, level.cols, level.db, level.totalByColor, level.depot.cells, maxSimMs, level.colorFamily);
     if (!depotSim.cleared) { depotClearedAllTrials = false; break; }
   }
   if (!depotClearedAllTrials) {
@@ -269,7 +273,7 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     continue;
   }
 
-  console.log(`Level ${i}: OK (template=${raw.template}, grid=${raw.g.join('x')}, maxColors=${level.maxColors}, db=${level.db}, placements=${sim.placements}, discards=${sim.discards}, depotCells=${level.depot.cells.length}, depotPlacements=${depotSim.placements}, depotDiscards=${depotSim.discards})`);
+  console.log(`Level ${i}: OK (template=${raw.template}, grid=${raw.g.join('x')}, maxColors=${level.maxColors}, maxFamilies=${level.maxFamilies}, db=${level.db}, placements=${sim.placements}, discards=${sim.discards}, depotCells=${level.depot.cells.length}, depotPlacements=${depotSim.placements}, depotDiscards=${depotSim.discards})`);
 }
 
 console.log(`\n${MS_LEVELS.length - failures}/${MS_LEVELS.length} levels verified clearable (db slots + discard budget) via real shipped functions.`);

@@ -19,11 +19,14 @@
 // Wave and Red Fuji, Van Gogh's Starry Night) went from 2/3 failing to 3/3
 // clearing cleanly (2-8 discards) once blurred pre-quantization was added.
 //
-// This script downloads nothing itself — point it at already-fetched local
-// image files (see SOURCES below) — and only PROVES + PRINTS the level
-// descriptors; pasting them into js/mosaik.js's MS_PHOTO_LEVELS array is a
-// manual step, same division of labor as generate-mosaik-levels.js.
+// This script downloads nothing itself — point it at a JSON manifest of
+// already-fetched local image files (see the SOURCES/manifest shape below)
+// — and only PROVES + PRINTS the level descriptors; pasting them into
+// js/mosaik.js's MS_PHOTO_LEVELS array is a manual step, same division of
+// labor as generate-mosaik-levels.js.
 
+const fs = require('fs');
+const path = require('path');
 const sharp = require('sharp');
 const {
   msColumnsFromGrid, msOriginalColorTotals, msBucketCapacity, msExposedCount,
@@ -39,9 +42,16 @@ const BLUR_SIGMA = 5;   // see file header — the fix for real-photo noise
 // generate-mosaik-levels.js's simulateBeltClear (kept as its own copy per
 // this codebase's existing convention of each script owning its replay
 // loop, so a bug in one script's strategy can't silently pass in another).
+// Photo levels use their own small per-image palette, never MS_COLORS, so
+// there's no family grouping to speak of here — an IDENTITY colorFamily
+// (each color index its own singleton family) is threaded through purely
+// so this shares msTick's now family-aware match test mechanically;
+// family(i) === i makes every comparison below behave exactly like plain
+// exact-match, unchanged from before.
 function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards) {
+  const colorFamily = [...totalByColor.keys()].reduce((m, c) => (m[c] = c, m), []);
   const columns = msColumnsFromGrid(grid, rows, cols);
-  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+  const state = { columns, containers: [], cols, rows, colorFamily, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const dtMs = 10;
   const checkEveryMs = 1000;
   let elapsedMs = 0, sinceCheck = checkEveryMs, placements = 0, discards = 0;
@@ -73,7 +83,7 @@ function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, 
         }
         if (bestColor == null || bestExposed === 0) break;
         state.containers.push({
-          color: bestColor,
+          color: bestColor, family: bestColor, // identity family — see colorFamily comment above
           capacity: Math.min(msBucketCapacity(totalByColor.get(bestColor)), msColorTotalCount(state.columns, bestColor)),
           filled: 0, beltPos: 0, msSinceCollect: 0,
         });
@@ -92,8 +102,15 @@ function rgbToHex([r, g, b]) {
   return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
 }
 
-async function quantize(srcPath) {
-  const quantBuf = await sharp(srcPath)
+async function quantize(srcPath, crop) {
+  let pipeline = sharp(srcPath);
+  // Optional pre-crop ({left,top,width,height} in source pixels) — strips
+  // off a legend/label margin BEFORE the resize's `fit:'cover'` square-crop
+  // runs, so a source image that's mostly diagram + a text sidebar doesn't
+  // have that sidebar dictate what gets cropped away (cover crops to fill
+  // the target square from whatever aspect ratio it's handed).
+  if (crop) pipeline = pipeline.extract(crop);
+  const quantBuf = await pipeline
     .resize(SIZE, SIZE, { fit: 'cover' })
     .blur(BLUR_SIGMA)
     .png({ palette: true, colours: COLORS, dither: 0 })
@@ -118,23 +135,29 @@ async function quantize(srcPath) {
   return { grid, rows: h, cols: w, palette };
 }
 
-const SOURCES = [
-  { id: 'grosse_welle', title: 'Die große Welle vor Kanagawa — Hokusai', file: process.argv[2] },
-  { id: 'roter_fuji', title: 'Roter Fuji — Hokusai', file: process.argv[3] },
-  { id: 'sternennacht', title: 'Sternennacht — Van Gogh', file: process.argv[4] },
-].filter(s => s.file);
-
-if (!SOURCES.length) {
-  console.error('Usage: node generate-mosaik-photo-levels.js <great_wave.jpg> <red_fuji.jpg> <starry_night.jpg>');
+// Manifest-driven: a JSON array of {id, title, file, crop?} — crop is an
+// optional {left,top,width,height} in the SOURCE image's own pixels, for
+// diagrams that mix real illustration with a text legend/sidebar (see
+// quantize's crop comment above). Replaces the original fixed 3-positional-
+// argv interface once a 4th+ source was needed.
+const manifestPath = process.argv[2];
+if (!manifestPath) {
+  console.error('Usage: node generate-mosaik-photo-levels.js <manifest.json>');
+  console.error('  manifest.json: [{ "id": "...", "title": "...", "file": "path/to/image.png", "crop": {"left":0,"top":0,"width":700,"height":1122} }, ...]');
   process.exit(1);
 }
+const SOURCES = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 
 (async () => {
   const results = [];
   for (const src of SOURCES) {
-    const { grid, rows, cols, palette } = await quantize(src.file);
+    const { grid, rows, cols, palette } = await quantize(src.file, src.crop);
     const maxColors = palette.length;
-    const db = Math.max(1, maxColors - 2);
+    // Rough pre-check only (identity family mapping here, so maxFamilies
+    // === maxColors) — scripts/redo-mosaik-db.js re-derives the real db
+    // against the full family-aware mechanic once this is pasted into
+    // MS_PHOTO_LEVELS, same as every other already-shipped level.
+    const db = Math.max(1, maxColors - 1);
     const totalByColor = msOriginalColorTotals(grid);
     const maxSimMs = 8 * 60 * 60 * 1000;
     const sim = simulateBeltClear(grid, rows, cols, db, totalByColor, maxSimMs, MS_MAX_DISCARDS_PER_LEVEL);
@@ -150,12 +173,25 @@ if (!SOURCES.length) {
     });
   }
 
-  console.log('\n--- paste into MS_PHOTO_LEVELS in js/mosaik.js ---\n');
-  console.log('const MS_PHOTO_LEVELS = [');
-  for (const r of results) {
-    console.log(`  { id: ${JSON.stringify(r.id)}, title: ${JSON.stringify(r.title)}, g: [${r.g[0]}, ${r.g[1]}], db: ${r.db},`);
-    console.log(`    palette: ${JSON.stringify(r.palette)},`);
-    console.log(`    pixels: ${JSON.stringify(r.pixels)} },`);
-  }
-  console.log('];');
+  if (!results.length) { console.log('\nNo levels cleared — nothing to write.'); return; }
+
+  // Each level's baked `pixels` string is SIZE*SIZE hex chars (102,400 at
+  // the current 320 resolution) — six figures' worth of that is well past
+  // what's practical to print and hand-paste through an LLM context window,
+  // unlike the original 3-image pilot. APPENDS to the existing
+  // MS_PHOTO_LEVELS array in js/mosaik.js directly (never replaces —
+  // already-shipped photo levels, and their already-baked `db`/`depot`,
+  // are left untouched), same direct-file-splice approach
+  // scripts/generate-mosaik-depot.js and scripts/redo-mosaik-db.js already
+  // use for the exact same reason (baked data too large to paste by hand).
+  const mosaikPath = path.join(__dirname, '../js/mosaik.js');
+  let src = fs.readFileSync(mosaikPath, 'utf8');
+  const photoRe = /const MS_PHOTO_LEVELS = (\[[\s\S]*?\n?\]);/;
+  const m = src.match(photoRe);
+  if (!m) { console.error('MS_PHOTO_LEVELS pattern did not match — aborting without writing.'); process.exit(1); }
+  const existing = JSON.parse(m[1]);
+  const combined = existing.concat(results);
+  src = src.replace(photoRe, 'const MS_PHOTO_LEVELS = ' + JSON.stringify(combined) + ';');
+  fs.writeFileSync(mosaikPath, src);
+  console.log(`\nAppended ${results.length} new photo level(s) to MS_PHOTO_LEVELS in js/mosaik.js (${existing.length} -> ${combined.length} total). db/depot are provisional — rerun redo-mosaik-db.js then generate-mosaik-depot.js next, same as after any other level-set change.`);
 })().catch(e => { console.error(e); process.exit(1); });

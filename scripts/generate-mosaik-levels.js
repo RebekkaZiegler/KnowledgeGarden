@@ -29,8 +29,9 @@
 // count is the point, and recognizing + abandoning a dead pick is the skill.
 
 const {
-  MS_TEMPLATES, mulberry32, msColumnsFromGrid, msColorsInLevel,
-  msOriginalColorTotals, msBucketCapacity, msExposedCount, msColorTotalCount, msIsCleared, msTick,
+  MS_TEMPLATES, MS_COLOR_FAMILY, mulberry32, msColumnsFromGrid, msColorsInLevel,
+  msFamiliesInLevel, msFamilyTotalCount, msFamilyExposedCount,
+  msOriginalColorTotals, msBucketCapacity, msIsCleared, msTick,
   MS_BELT_SPEED_COLS_PER_SEC, MS_COLLECT_INTERVAL_MS, MS_MAX_DISCARDS_PER_LEVEL,
 } = require('../js/mosaik.js');
 
@@ -68,9 +69,9 @@ const TEMPLATE_NAMES = Object.keys(MS_TEMPLATES);
 // of a color's total per container), so a slot freeing up a little later
 // than the instant it could have doesn't change whether the level is
 // solvable, only the generator's own runtime.
-function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards) {
+function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, maxDiscards, colorFamily) {
   const columns = msColumnsFromGrid(grid, rows, cols);
-  const state = { columns, containers: [], cols, rows, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
+  const state = { columns, containers: [], cols, rows, colorFamily, beltSpeedColsPerSec: MS_BELT_SPEED_COLS_PER_SEC, collectIntervalMs: MS_COLLECT_INTERVAL_MS };
   const levelCapacity = msBucketCapacity(grid.length); // uniform for every color in this level, not a fraction of any one color's own total
   // Must move less than 1 column per tick — msTick only ever checks the
   // column a container's FINAL position for the tick lands on, so a step
@@ -99,32 +100,32 @@ function simulateBeltClear(grid, rows, cols, slotCount, totalByColor, maxSimMs, 
       while (freedSomething) {
         freedSomething = false;
         if (state.containers.length < slotCount || discards >= maxDiscards) break;
-        const activeColors = new Set(state.containers.map(c => c.color));
-        const waitingColor = [...new Set(state.columns.flat())]
-          .find(c => !activeColors.has(c) && msExposedCount(state.columns, c) > 0);
-        if (waitingColor == null) break; // no unassigned color needs a slot right now — nothing to fix
-        const stuckIdx = state.containers.findIndex(c => msExposedCount(state.columns, c.color) === 0);
+        const activeFamilies = new Set(state.containers.map(c => c.family));
+        const waitingFamily = [...new Set(state.columns.flat().map(c => colorFamily[c]))]
+          .find(f => !activeFamilies.has(f) && msFamilyExposedCount(state.columns, f, colorFamily) > 0);
+        if (waitingFamily == null) break; // no unassigned family needs a slot right now — nothing to fix
+        const stuckIdx = state.containers.findIndex(c => msFamilyExposedCount(state.columns, c.family, colorFamily) === 0);
         if (stuckIdx === -1) break; // every active container is still making progress — genuinely full, not stuck
         state.containers.splice(stuckIdx, 1);
         discards++;
         freedSomething = true;
       }
       while (state.containers.length < slotCount) {
-        const activeColors = new Set(state.containers.map(c => c.color));
+        const activeFamilies = new Set(state.containers.map(c => c.family));
         // Pick by CURRENTLY EXPOSED count, not total-anywhere-in-picture —
-        // a color that's still fully buried under other colors can't make
+        // a family that's still fully buried under other colors can't make
         // any progress yet no matter how large its total is, and handing
-        // it a slot anyway just permanently starves whichever small color
+        // it a slot anyway just permanently starves whichever small family
         // actually sits at some column's bottom right now (see js/mosaik.js's
-        // msExposedCount doc comment for the deadlock this caused).
-        let bestColor = null, bestExposed = -1;
-        for (const color of new Set(state.columns.flat())) {
-          if (activeColors.has(color)) continue;
-          const exposed = msExposedCount(state.columns, color);
-          if (exposed > bestExposed) { bestExposed = exposed; bestColor = color; }
+        // msFamilyExposedCount doc comment for the deadlock this caused).
+        let bestFamily = null, bestExposed = -1;
+        for (const family of new Set(state.columns.flat().map(c => colorFamily[c]))) {
+          if (activeFamilies.has(family)) continue;
+          const exposed = msFamilyExposedCount(state.columns, family, colorFamily);
+          if (exposed > bestExposed) { bestExposed = exposed; bestFamily = family; }
         }
-        if (bestColor == null || bestExposed === 0) break; // no currently-reachable, unassigned color right now
-        state.containers.push({ color: bestColor, capacity: Math.min(levelCapacity, msColorTotalCount(state.columns, bestColor)), filled: 0, beltPos: 0, msSinceCollect: 0 });
+        if (bestFamily == null || bestExposed === 0) break; // no currently-reachable, unassigned family right now
+        state.containers.push({ family: bestFamily, capacity: Math.min(levelCapacity, msFamilyTotalCount(state.columns, bestFamily, colorFamily)), filled: 0, beltPos: 0, msSinceCollect: 0 });
         placements++;
       }
     }
@@ -145,16 +146,24 @@ function generateLevel(i) {
     const seed = seedForLevel(i, attempt);
     const grid = MS_TEMPLATES[templateName](params.size, params.size, mulberry32(seed));
     const maxColors = msColorsInLevel(grid).length;
-    if (maxColors < 3) continue; // degenerate — needs real color variety for a real puzzle
+    const maxFamilies = msFamiliesInLevel(grid, MS_COLOR_FAMILY).length;
+    if (maxColors < 3 || maxFamilies < 3) continue; // degenerate — needs real color/family variety for a real puzzle
     const totalByColor = msOriginalColorTotals(grid);
-    const db = Math.max(1, maxColors - 2);
+    // -1, not -2: with FAMILIES (not exact colors) driving db, maxFamilies
+    // is typically only 4-6 for procedural templates — a flat -2 handicap
+    // proved too tight in practice (verified levels burning 12-14 of the
+    // 15-discard budget, and independent re-verification occasionally
+    // failing on marginal layouts). One fewer slot than maxFamilies still
+    // forces real discard-and-recognize play, just without the razor-thin
+    // margin.
+    const db = Math.max(1, maxFamilies - 1);
 
-    const sim = simulateBeltClear(grid, params.size, params.size, db, totalByColor, maxSimMs, MS_MAX_DISCARDS_PER_LEVEL);
+    const sim = simulateBeltClear(grid, params.size, params.size, db, totalByColor, maxSimMs, MS_MAX_DISCARDS_PER_LEVEL, MS_COLOR_FAMILY);
     if (!sim.cleared) continue; // db insufficient even with the full discard budget for this seed — reroll
 
     return {
       level: { template: templateName, seed, g: [params.size, params.size], db },
-      attempt, maxColors, placements: sim.placements, discards: sim.discards,
+      attempt, maxColors, maxFamilies, placements: sim.placements, discards: sim.discards,
       simSeconds: Math.round(sim.elapsedMs / 1000),
     };
   }
@@ -171,7 +180,7 @@ for (let i = 0; i < MS_LEVEL_COUNT_TARGET; i++) {
     console.error(`Level ${i}: FAILED after max attempts.`);
     process.exit(1);
   }
-  console.log(`Level ${i}: OK (template=${result.level.template}, size=${result.level.g.join('x')}, maxColors=${result.maxColors}, db=${result.level.db}, placements=${result.placements}, discards=${result.discards}, simSeconds=${result.simSeconds}, attempt=${result.attempt}, ${ms}ms)`);
+  console.log(`Level ${i}: OK (template=${result.level.template}, size=${result.level.g.join('x')}, maxColors=${result.maxColors}, maxFamilies=${result.maxFamilies}, db=${result.level.db}, placements=${result.placements}, discards=${result.discards}, simSeconds=${result.simSeconds}, attempt=${result.attempt}, ${ms}ms)`);
   levels.push(result.level);
 }
 
