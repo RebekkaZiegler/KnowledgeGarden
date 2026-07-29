@@ -156,7 +156,7 @@
   <nav id="bottom-nav">
     <button id="btn-chapters" title="Kapitel">📚</button>
     <button id="btn-trophies" title="Trophäen">🏆</button>
-    <button id="btn-memory" title="Entspannungsmodus">🧘</button>
+    <button id="btn-memory" title="Beschriften">🏷️</button>
     <button id="btn-settings" title="Einstellungen">⚙️</button>
   </nav>
 
@@ -243,23 +243,9 @@
   ════════════════════════════════════════════════════ -->
   <div id="modal-memory" class="modal-overlay" hidden>
     <div class="modal-box">
-      <h2>🧘 Entspannungsmodus</h2>
-      <div class="tabs">
-        <button id="mem-tab-memory" class="tab-btn tab-btn--active" data-mem-tab="memory">🧠 Memory</button>
-        <button id="mem-tab-label" class="tab-btn" data-mem-tab="label">🏷️ Beschriften</button>
-      </div>
+      <h2>🏷️ Beschriften</h2>
 
-      <div id="mem-panel-memory">
-        <div id="memory-intro" class="muted" style="font-size:0.85rem;margin-bottom:0.6rem">Finde die Paare aus Themen, die du schon gelernt hast — ganz ohne Zeitdruck oder Punkte.</div>
-        <div id="memory-stats" class="muted" style="font-size:0.8rem;margin-bottom:0.6rem"></div>
-        <div id="memory-board" class="memory-board"></div>
-        <div id="memory-done" class="memory-done" hidden></div>
-        <div class="row" style="margin-top:0.6rem">
-          <button id="memory-new-round-btn">🔄 Neue Runde</button>
-        </div>
-      </div>
-
-      <div id="mem-panel-label" hidden>
+      <div id="mem-panel-label">
         <div id="label-practice-intro" class="muted" style="font-size:0.85rem;margin-bottom:0.6rem">Wähle eine Beschriftungsübung — ganz ohne Zeitdruck oder Kosten, beliebig oft wiederholbar.</div>
         <div id="label-practice-picker" class="label-pool"></div>
         <div id="label-practice-area"></div>

@@ -2532,79 +2532,6 @@ function showPickerModal(title, items, onSelect) {
 }
 
 /* ══════════════════════════════════════════════════════════
-   MEMORY GAME
-══════════════════════════════════════════════════════════ */
-let memFlipped = [], memMatched = [], memLocked = false;
-
-function initMemory() {
-  memFlipped = []; memMatched = []; memLocked = false;
-
-  const allPlants = PACK_CONTENT.beds.flatMap(b =>
-    b.plants.map(p => ({ ...p, chapterId: b.id }))
-  );
-  const seenPlants = allPlants.filter(p => {
-    const ch = G.chapters[p.chapterId];
-    return ch && Object.values(ch.questions).some(q => q.correctDays.length > 0);
-  });
-
-  if (seenPlants.length < 2) {
-    document.getElementById("memory-board").innerHTML =
-      `<p class="muted" style="font-size:0.85rem">Beantworte zuerst ein paar Fragen.</p>`;
-    return;
-  }
-
-  const pairs = seenPlants.slice(0, 8);
-  const cards = [...pairs, ...pairs].sort(() => Math.random() - 0.5);
-  document.getElementById("memory-stats").textContent = `${pairs.length} Paare`;
-  document.getElementById("memory-done").hidden = true;
-  G.stats.memoryRoundsPlayed++;
-
-  const board = document.getElementById("memory-board");
-  board.innerHTML = cards.map((p, i) =>
-    `<div class="memory-card" data-i="${i}" data-pid="${p.id}"
-      style="aspect-ratio:1;background:var(--bg2);border:1px solid var(--line);border-radius:8px;
-      display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.68rem;
-      text-align:center;padding:0.3rem;min-height:60px;color:transparent;transition:color 0.2s,background 0.2s">
-      ${p.title}
-    </div>`
-  ).join("");
-
-  board.querySelectorAll(".memory-card").forEach(c => { c.onclick = () => flipMemCard(c); });
-  saveState();
-}
-
-function flipMemCard(card) {
-  if (memLocked || card.style.color !== "transparent") return;
-  const i = parseInt(card.dataset.i);
-  if (memFlipped.includes(i)) return;
-  card.style.color      = "var(--text)";
-  card.style.background = "var(--bg3)";
-  memFlipped.push(i);
-  if (memFlipped.length < 2) return;
-
-  memLocked = true;
-  const allCards = document.querySelectorAll(".memory-card");
-  const [a, b]   = memFlipped.map(idx => allCards[idx]);
-
-  if (a.dataset.pid === b.dataset.pid) {
-    [a, b].forEach(c => { c.style.background = "rgba(39,174,96,0.2)"; c.style.borderColor = "#27ae60"; });
-    memMatched.push(...memFlipped);
-    memFlipped = []; memLocked = false;
-    G.stats.memoryPairsMatched++;
-    if (memMatched.length === allCards.length) {
-      document.getElementById("memory-done").hidden = false;
-      document.getElementById("memory-done").textContent = "🎉 Alle Paare gefunden!";
-    }
-    saveState();
-  } else {
-    setTimeout(() => {
-      [a, b].forEach(c => { c.style.color = "transparent"; c.style.background = "var(--bg2)"; });
-      memFlipped = []; memLocked = false;
-    }, 900);
-  }
-}
-
-/* ══════════════════════════════════════════════════════════
    LABEL EXERCISES (Beschriften)
 ══════════════════════════════════════════════════════════ */
 function escapeHtmlText(v) {
@@ -3235,7 +3162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Bottom nav
   document.getElementById("btn-chapters")?.addEventListener("click", () => { renderChapterModal(); openModal("modal-chapters"); });
   document.getElementById("btn-trophies")?.addEventListener("click", () => { renderTrophies(); openModal("modal-trophies"); });
-  document.getElementById("btn-memory")?.addEventListener("click",   () => { initMemory(); renderLabelPicker(); openModal("modal-memory"); });
+  document.getElementById("btn-memory")?.addEventListener("click",   () => { renderLabelPicker(); openModal("modal-memory"); });
   document.getElementById("btn-settings")?.addEventListener("click", () => { renderSettings(); openModal("modal-settings"); });
 
   // Restaurant controls
@@ -3281,18 +3208,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById("update-btn")?.addEventListener("click",        () => openModal("modal-update"));
   document.getElementById("update-cancel-btn")?.addEventListener("click", () => closeModal("modal-update"));
-
-  // Memory tabs
-  document.querySelectorAll("[data-mem-tab]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll("[data-mem-tab]").forEach(b => b.classList.remove("tab-btn--active"));
-      btn.classList.add("tab-btn--active");
-      const tab = btn.dataset.memTab;
-      document.getElementById("mem-panel-memory").hidden = tab !== "memory";
-      document.getElementById("mem-panel-label").hidden  = tab !== "label";
-    });
-  });
-  document.getElementById("memory-new-round-btn")?.addEventListener("click", initMemory);
 
   // Esc closes top modal
   document.addEventListener("keydown", e => {
