@@ -1,16 +1,15 @@
 // Independently re-verifies every shipped Mosaik level using the REAL
-// runtime functions from js/mosaik.js — msGenerateLevel (which re-runs the
-// actual template/seed to reconstruct the grid, exactly like the browser
-// does at load time), msColumnsFromGrid, msExposedCount, msBucketCapacity,
-// msIsCleared, and msTick (the exact function driving both the live RAF
-// loop and this fast-forwarded replay). This script does NOT import the
-// generator's own simulateBeltClear — it reimplements the replay loop
-// itself, so a bug in the generator's own strategy can't silently pass its
-// own verification.
+// runtime functions from js/mosaik.js — msGenerateLevel (which decodes the
+// baked pixel grid, exactly like the browser does at load time),
+// msColumnsFromGrid, msExposedCount, msBucketCapacity, msIsCleared, and
+// msTick (the exact function driving both the live RAF loop and this
+// fast-forwarded replay). This script does NOT import the generator's own
+// simulateBeltClear — it reimplements the replay loop itself, so a bug in
+// the generator's own strategy can't silently pass its own verification.
 //
 // The replay strategy mirrors what a real player does with this mechanic
 // (see js/mosaik.js's header and MS_MAX_DISCARDS_PER_LEVEL comment, and
-// scripts/generate-mosaik-levels.js): greedily fill free slots with
+// scripts/generate-mosaik-photo-levels.js): greedily fill free slots with
 // whichever unassigned color is currently most exposed, and — only when
 // every slot is occupied by containers that have themselves stopped
 // making progress (exposure dropped to 0) while some OTHER color sits
@@ -210,7 +209,7 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
   const columns = msColumnsFromGrid(level.grid, level.rows, level.cols);
   const sim = replay(columns, level.rows, level.cols, level.db, level.totalByColor, maxSimMs, level.colorFamily);
   if (!sim.cleared) {
-    console.error(`Level ${i}: FAIL — could not clear using db=${level.db} within ${MS_MAX_DISCARDS_PER_LEVEL} discards (${raw.template}, ${raw.g.join('x')})`);
+    console.error(`Level ${i}: FAIL — could not clear using db=${level.db} within ${MS_MAX_DISCARDS_PER_LEVEL} discards (${raw.title}, ${raw.g.join('x')})`);
     failures++;
     continue;
   }
@@ -273,7 +272,7 @@ for (let i = 0; i < MS_LEVELS.length; i++) {
     continue;
   }
 
-  console.log(`Level ${i}: OK (template=${raw.template}, grid=${raw.g.join('x')}, maxColors=${level.maxColors}, maxFamilies=${level.maxFamilies}, db=${level.db}, placements=${sim.placements}, discards=${sim.discards}, depotCells=${level.depot.cells.length}, depotPlacements=${depotSim.placements}, depotDiscards=${depotSim.discards})`);
+  console.log(`Level ${i}: OK (title=${raw.title}, grid=${raw.g.join('x')}, maxColors=${level.maxColors}, maxFamilies=${level.maxFamilies}, db=${level.db}, placements=${sim.placements}, discards=${sim.discards}, depotCells=${level.depot.cells.length}, depotPlacements=${depotSim.placements}, depotDiscards=${depotSim.discards})`);
 }
 
 console.log(`\n${MS_LEVELS.length - failures}/${MS_LEVELS.length} levels verified clearable (db slots + discard budget) via real shipped functions.`);

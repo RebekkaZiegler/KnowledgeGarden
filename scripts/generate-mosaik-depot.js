@@ -1,5 +1,5 @@
 // Generates the `depot` field baked onto every entry in js/mosaik.js's
-// MS_LEVELS_GENERATED and MS_PHOTO_LEVELS arrays — the data behind Mosaik's
+// MS_PHOTO_LEVELS array — the data behind Mosaik's
 // depot mechanic: a small lot of ONE-TIME-USE physical buckets (ports
 // Parkplatz's plIsBlocked/car-lot model, js/parking.js, from cars to
 // buckets), visible from level start, each positionally blocked until
@@ -319,15 +319,10 @@ function main() {
   const mosaikPath = path.join(__dirname, '../js/mosaik.js');
   let src = fs.readFileSync(mosaikPath, 'utf8');
 
-  const generatedCount = MS_LEVELS.filter(l => l.template).length;
-  const generatedWithDepot = MS_LEVELS.slice(0, generatedCount).map((l, i) => Object.assign({}, l, { depot: results[i] }));
-  const photoWithDepot = MS_LEVELS.slice(generatedCount).map((l, i) => Object.assign({}, l, { depot: results[generatedCount + i] }));
+  const photoWithDepot = MS_LEVELS.map((l, i) => Object.assign({}, l, { depot: results[i] }));
 
-  const genRe = /const MS_LEVELS_GENERATED = \[[\s\S]*?\n?\];/;
   const photoRe = /const MS_PHOTO_LEVELS = \[[\s\S]*?\n?\];/;
-  if (!genRe.test(src)) { console.error('MS_LEVELS_GENERATED pattern did not match — aborting without writing.'); process.exit(1); }
   if (!photoRe.test(src)) { console.error('MS_PHOTO_LEVELS pattern did not match — aborting without writing.'); process.exit(1); }
-  src = src.replace(genRe, 'const MS_LEVELS_GENERATED = ' + JSON.stringify(generatedWithDepot) + ';');
   src = src.replace(photoRe, 'const MS_PHOTO_LEVELS = ' + JSON.stringify(photoWithDepot) + ';');
   fs.writeFileSync(mosaikPath, src);
   console.log(`\nWrote depot data for ${results.length} levels into js/mosaik.js.`);

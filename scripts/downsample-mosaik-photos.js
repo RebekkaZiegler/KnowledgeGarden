@@ -49,7 +49,7 @@ function downsampleGrid(grid, rows, cols, targetRows, targetCols) {
   return out;
 }
 
-const photoLevels = MS_LEVELS.filter(l => !l.template);
+const photoLevels = MS_LEVELS;
 const downsampled = photoLevels.map(level => {
   const [rows, cols] = level.g;
   const grid = decodePixels(level.pixels);

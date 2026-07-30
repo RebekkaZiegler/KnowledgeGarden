@@ -1,18 +1,16 @@
-// Re-derives `db` for every already-shipped Mosaik level (procedural +
-// photo) under the CURRENT belt-collection mechanics (msTick's half-circle
-// reach, msBucketCapacity's uniform-per-level capacity), WITHOUT touching
-// picture content at all — `template`/`seed`/`g` (procedural) and
-// `pixels`/`palette`/`g` (photo) are carried over exactly as shipped, only
-// `db` changes. Used when the underlying belt mechanics themselves change
-// and existing db values need re-proving, not the pictures regenerated —
-// this doesn't need the original photo source images since it works
-// entirely from already-baked MS_LEVELS data via the real msGenerateLevel
-// (which decodes photo `pixels` or re-runs the procedural template+seed
-// exactly like the browser does).
+// Re-derives `db` for every already-shipped Mosaik level under the CURRENT
+// belt-collection mechanics (msTick's half-circle reach, msBucketCapacity's
+// uniform-per-level capacity), WITHOUT touching picture content at all —
+// `pixels`/`palette`/`g` are carried over exactly as shipped, only `db`
+// changes. Used when the underlying belt mechanics themselves change and
+// existing db values need re-proving, not the pictures regenerated — this
+// doesn't need the original photo source images since it works entirely
+// from already-baked MS_LEVELS data via the real msGenerateLevel (which
+// decodes the baked `pixels` exactly like the browser does).
 //
 // Same "prove via fast-forwarded simulation" strategy as
-// scripts/generate-mosaik-levels.js's simulateBeltClear (own copy, per
-// this codebase's established each-script-owns-its-replay-loop
+// scripts/generate-mosaik-photo-levels.js's simulateBeltClear (own copy,
+// per this codebase's established each-script-owns-its-replay-loop
 // discipline), but requires CONFIRM_TRIALS independent clears at a
 // candidate db before accepting it — msTick collects probabilistically via
 // real (unseeded) Math.random(), so a single successful run doesn't prove
@@ -113,15 +111,10 @@ for (let i = 0; i < MS_LEVEL_COUNT; i++) {
 
 const mosaikPath = path.join(__dirname, '../js/mosaik.js');
 let src = fs.readFileSync(mosaikPath, 'utf8');
-const generatedCount = MS_LEVELS.filter(l => l.template).length;
-const generatedWithDb = MS_LEVELS.slice(0, generatedCount).map((l, i) => Object.assign({}, l, { db: results[i] }));
-const photoWithDb = MS_LEVELS.slice(generatedCount).map((l, i) => Object.assign({}, l, { db: results[generatedCount + i] }));
+const photoWithDb = MS_LEVELS.map((l, i) => Object.assign({}, l, { db: results[i] }));
 
-const genRe = /const MS_LEVELS_GENERATED = \[[\s\S]*?\n?\];/;
 const photoRe = /const MS_PHOTO_LEVELS = \[[\s\S]*?\n?\];/;
-if (!genRe.test(src)) { console.error('MS_LEVELS_GENERATED pattern did not match — aborting without writing.'); process.exit(1); }
 if (!photoRe.test(src)) { console.error('MS_PHOTO_LEVELS pattern did not match — aborting without writing.'); process.exit(1); }
-src = src.replace(genRe, 'const MS_LEVELS_GENERATED = ' + JSON.stringify(generatedWithDb) + ';');
 src = src.replace(photoRe, 'const MS_PHOTO_LEVELS = ' + JSON.stringify(photoWithDb) + ';');
 fs.writeFileSync(mosaikPath, src);
 console.log(`\nWrote updated db for ${results.length} levels into js/mosaik.js (depot fields left stale — rerun generate-mosaik-depot.js next).`);

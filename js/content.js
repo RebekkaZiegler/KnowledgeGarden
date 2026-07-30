@@ -1755,7 +1755,7 @@ const KNOCHENLEHRE_1033_PLANTS = [
     id: "extremitätenskelett",
     title: "Extremitätenskelett",
     harvestQuestions: [
-      { id: "ko_ex_h1", type: "mc", image: "assets/diagrams/knochenlehre_figure_11.png", question: "Welche zwei Knochen bilden den Schultergürtel?", options: [
+      { id: "ko_ex_h1", type: "mc", question: "Welche zwei Knochen bilden den Schultergürtel?", options: [
         { text: "Klavikula (Schlüsselbein) und Skapula (Schulterblatt)", correct: true },
         { text: "Humerus und Skapula", correct: false },
         { text: "Sternum und Klavikula", correct: false },
@@ -1930,7 +1930,6 @@ makeDetailedPlant({
       {
         type: "mc",
         id: "hk_h1",
-        image: "assets/diagrams/knochenlehre_figure_14.png",
         question: "Wie viele Handwurzelknochen gibt es und wie lautet der zugehörige Merkspruch?",
         options: [
           { text: "8 Knochen; Merkspruch: \u201eEin Kahn, der fährt im Mondenschein im Dreieck um das Erbsenbein, Vieleck groß, Vieleck klein, am Kopf, da muss ein Haken sein\u201c", correct: true },
@@ -2669,7 +2668,7 @@ const MUSKELLEHRE_1034_PLANTS = [
     id: "kopfmuskulatur",
     title: "Muskulatur des Kopfes",
     harvestQuestions: [
-      { id: "mu_kopf_h1", type: "mc", image: "assets/diagrams/muskellehre_figure_10.png", question: "Was unterscheidet die mimische Muskulatur strukturell von anderen Skelettmuskeln?", options: [
+      { id: "mu_kopf_h1", type: "mc", question: "Was unterscheidet die mimische Muskulatur strukturell von anderen Skelettmuskeln?", options: [
         { text: "Sie inseriert in Haut/Unterhautgewebe statt Knochen-zu-Knochen – ermöglicht direkte Gesichtshautbewegung", correct: true },
         { text: "Sie ist aus glattem Muskelgewebe aufgebaut, nicht aus quergestreiftem", correct: false },
         { text: "Sie wird vom N. trigeminus innerviert, nicht vom N. facialis", correct: false },
@@ -2727,7 +2726,7 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Alle Muskeln des Thorax einschliesslich der Interkostalmuskeln", correct: false },
         { text: "Nur die Bauchmuskeln als Antagonisten der Rückenstrecker", correct: false }
       ], explanation: "Autochthone Rückenmuskulatur (= 'eigenständige' Rückenmuskeln): stammen aus den Myotomen der Wirbelsegmente und werden durch dorsale Rami der Spinalnerven innerviert. Tiefer Anteil (M. multifidus, Mm. rotatores): segmentale Stabilisierung einzelner Wirbelgelenke. Oberfläche (M. erector spinä, M. longissimus): Aufrichtung der Wirbelsäule. Klinisch: Chronischer Rückenschmerz oft durch Schwäche dieser Muskeln." },
-      { id: "mu_rumpf_h2", type: "mc", image: "assets/diagrams/muskellehre_figure_14.png", question: "Welche Funktion hat der M. transversus abdominis, der tiefste Bauchmuskel?", options: [
+      { id: "mu_rumpf_h2", type: "mc", question: "Welche Funktion hat der M. transversus abdominis, der tiefste Bauchmuskel?", options: [
         { text: "Stabilisierung der Lendenwirbelsäule durch Druckerhöhung im Bauchraum (Bauchpresse) – kein Beugeeffekt auf den Rumpf", correct: true },
         { text: "Rumpfbeugung (Flexion) als stärkster Bauchmuskel", correct: false },
         { text: "Rumpfrotation ipsilateral wie M. obliquus externus", correct: false },
@@ -2754,7 +2753,7 @@ const MUSKELLEHRE_1034_PLANTS = [
       ], explanation: "Bauchmuskeln (rectus, obliquus ext./int., transversus): Hauptfunktionen sind Rumpfbeugung (rectus), Rotation (obliqui), Seitneigung und intraabdominaler Druck (transversus = Bauchpresse). Bauchpresse wichtig bei Miktion, Defäkation, Geburt, Husten, Niesen." }
     ],
     phase4Questions: [
-      { id: "mu_rumpf_mc1", type: "mc", image: "assets/diagrams/muskellehre_figure_12.png", question: "Welche Muskeln gehören zur primären inspiratorischen Atemhilfsmuskulatur?", options: [
+      { id: "mu_rumpf_mc1", type: "mc", question: "Welche Muskeln gehören zur primären inspiratorischen Atemhilfsmuskulatur?", options: [
         { text: "M. sternocleidomastoideus und Mm. scaleni", correct: true },
         { text: "M. rectus abdominis und M. obliquus externus", correct: false },
         { text: "Mm. intercostales interni", correct: false },
@@ -2996,7 +2995,6 @@ const MUSKELLEHRE_1034_PLANTS = [
       {
         type: "mc",
         id: "dp_p4_2",
-        image: "assets/diagrams/muskellehre_figure_13.png",
         question: "Was unterscheidet die Funktion des M. serratus anterior von der des M. pectoralis major?",
         options: [
           { text: "Serratus anterior: fixiert Scapula am Thorax, ermöglicht Armhebung über die Horizontale; Pectoralis major: adduziert und innenrotiert den Arm", correct: true },
@@ -3129,7 +3127,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Lunge durch Luftdruckschwankungen beim Ausatmen", correct: false },
         { text: "Mundhöhle allein durch Zungen- und Lippenbewegung", correct: false }
       ], explanation: "Phonation findet im Kehlkopf statt: Die Aryknorpel (Stellknorpel) nähern die echten Stimmbänder aneinander, Ausatemluft bringt sie zum Schwingen. Die erzeugte Grundschwingung wird in Rachen, Mund und Nasenhöhle als Resonanzraum geformt und zu Sprache moduliert." },
-      { id: "at_ü_h6", type: "mc", image: "assets/diagrams/atmungssystem_figure_5.png", question: "Was ist der Unterschied zwischen oberen und unteren Atemwegen?", options: [
+      { id: "at_ü_h6", type: "mc", question: "Was ist der Unterschied zwischen oberen und unteren Atemwegen?", options: [
         { text: "Obere: Nase, NNH, Rachen; untere: Kehlkopf, Trachea, Bronchien, Lunge", correct: true },
         { text: "Obere: Trachea und Kehlkopf; untere: Nase und Rachen", correct: false },
         { text: "Obere: Alveolen und Bronchiolen; untere: Rachen und Nase", correct: false },
@@ -3233,7 +3231,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Nasenmuscheln und Nasenscheidewand", correct: false },
         { text: "Choanä, Fauces und Epiglottis", correct: false }
       ], explanation: "Der Waldeyer-Rachenring besteht aus Pharyngealtonsille, Gaumenmandeln und Zungenmandel und bildet eine immunologische Abwehrzone am Atemwegseingang." },
-      { id: "at_ra_mc3", type: "mc", image: "assets/diagrams/atmungssystem_figure_7.png", question: "Welche Aussagen zum Rachenraum (Pharynx) sind korrekt?", options: [
+      { id: "at_ra_mc3", type: "mc", question: "Welche Aussagen zum Rachenraum (Pharynx) sind korrekt?", options: [
         { text: "Epipharynx: Verbindung zur Nase (Choanae) und Mittelohr (Tuba auditiva)", correct: true },
         { text: "Hypopharynx: Kreuzung Atemweg–Speiseweg; Epiglottis schützt vor Aspiration", correct: true },
         { text: "Der Mesopharynx führt ausschliesslich Atemluft, kein Speiseweg", correct: false },
@@ -3967,46 +3965,6 @@ const HEILPRAKTIKER_HYBRIDS = [
 
 const LABEL_EXERCISES = [
   {
-    id: "wirbelquerschnitt",
-    title: "Querschnitt eines Wirbels",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/knochenlehre_figure_8.png",
-    bedId: "knochenlehre_1033",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_dorn",     label: "Dornfortsatz",                 left: 22, top:  2, width: 30, height:  8 },
-      { id: "z_epi",      label: "Epiduralraum",                 left: 58, top: 17, width: 28, height:  8 },
-      { id: "z_rück",    label: "Rückenmark",                  left:  2, top: 24, width: 22, height:  8 },
-      { id: "z_csf",      label: "Gehirn-Rückenmark-Flüssigkeit", left: 56, top: 28, width: 32, height: 14 },
-      { id: "z_hinter",   label: "Hinterwurzel",                 left:  2, top: 35, width: 22, height:  8 },
-      { id: "z_vorder",   label: "Vorderwurzel",                 left:  2, top: 46, width: 22, height:  8 },
-      { id: "z_spinal",   label: "Spinalnerv",                   left:  2, top: 72, width: 20, height:  8 },
-      { id: "z_gang",     label: "Spinalganglion",               left: 22, top: 72, width: 24, height:  8 },
-      { id: "z_wirbel",   label: "Wirbelkörper",                left: 42, top: 72, width: 22, height:  8 },
-      { id: "z_quer",     label: "Querfortsatz",                 left: 66, top: 72, width: 22, height:  8 }
-    ]
-  },
-  {
-    id: "atemwege",
-    title: "Organe der Atmung",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/atmungssystem_figure_5.png",
-    bedId: "atmungssystem_1035",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_front",   label: "Frontalsinus",   left:  1, top:  5, width: 20, height:  8 },
-      { id: "z_nase",    label: "Nasenhöhle",      left:  1, top: 14, width: 18, height:  8 },
-      { id: "z_keil",    label: "Keilbeinhöhle",   left: 62, top:  6, width: 24, height:  8 },
-      { id: "z_rachen",  label: "Rachenraum",      left: 62, top: 18, width: 20, height:  8 },
-      { id: "z_luft",    label: "Luftröhre",       left: 55, top: 33, width: 18, height:  8 },
-      { id: "z_rlunge",  label: "Rechte Lunge",    left:  1, top: 53, width: 20, height:  8 },
-      { id: "z_llunge",  label: "Linke Lunge",     left: 68, top: 53, width: 22, height:  8 },
-      { id: "z_zwerg",   label: "Zwerchfell",      left:  1, top: 78, width: 18, height:  8 }
-    ]
-  },
-  {
     id: "epithelgewebe",
     title: "Aufbau des Epithelgewebes",
     passRate: 0.6,
@@ -4019,20 +3977,6 @@ const LABEL_EXERCISES = [
       { id: "z_epithel",  label: "Epithelzellen",              left: 34, top:  3, width: 24, height: 10 },
       { id: "z_basal",    label: "Basalmembran",               left: 43, top: 43, width: 24, height: 10 },
       { id: "z_binde",    label: "Bindegewebe mit Gefäßen",    left: 65, top: 31, width: 30, height: 14 }
-    ]
-  },
-  {
-    id: "rachen",
-    title: "Abschnitte des Rachens",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/atmungssystem_figure_7.png",
-    bedId: "atmungssystem_1035",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_epi",   label: "Epipharynx",  left: 58, top: 20, width: 34, height: 10 },
-      { id: "z_meso",  label: "Mesopharynx", left: 58, top: 36, width: 34, height: 10 },
-      { id: "z_hypo",  label: "Hypopharynx", left: 58, top: 52, width: 34, height: 10 }
     ]
   },
   {
@@ -4123,25 +4067,6 @@ const LABEL_EXERCISES = [
     ]
   },
   {
-    id: "thorax",
-    title: "Knochen des Brustkorbs",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/knochenlehre_figure_11.png",
-    bedId: "knochenlehre_1033",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_clav",   label: "Clavicula",    left:  2, top:  4, width: 22, height:  8 },
-      { id: "z_scap",   label: "Scapula",      left:  2, top: 14, width: 18, height:  8 },
-      { id: "z_hum",    label: "Humerus",      left:  2, top: 24, width: 18, height:  8 },
-      { id: "z_stern",  label: "Sternum",      left: 64, top: 36, width: 18, height:  8 },
-      { id: "z_cost",   label: "Costä",       left: 64, top: 46, width: 18, height:  8 },
-      { id: "z_ws",     label: "Wirbelsäule",  left: 64, top: 56, width: 22, height:  8 },
-      { id: "z_ulna",   label: "Ulna",         left:  2, top: 70, width: 14, height:  8 },
-      { id: "z_rad",    label: "Radius",       left:  2, top: 78, width: 14, height:  8 }
-    ]
-  },
-  {
     id: "schultergelenk",
     title: "Schultergelenk",
     passRate: 0.6,
@@ -4159,25 +4084,6 @@ const LABEL_EXERCISES = [
     ]
   },
   {
-    id: "hand_anatomie",
-    title: "Anatomie der Hand",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/knochenlehre_figure_14.png",
-    bedId: "knochenlehre_1033",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_endgl",  label: "Endglieder",        left:  2, top:  6, width: 22, height:  8 },
-      { id: "z_mitgl",  label: "Mittelglieder",     left:  2, top: 15, width: 24, height:  8 },
-      { id: "z_grundgl",label: "Grundglieder",      left:  2, top: 24, width: 22, height:  8 },
-      { id: "z_mhkn",   label: "Mittelhandknochen", left:  2, top: 38, width: 30, height:  8 },
-      { id: "z_elle",   label: "Elle",              left:  2, top: 85, width: 14, height:  8 },
-      { id: "z_sp",     label: "Speiche",           left: 62, top: 87, width: 18, height:  8 },
-      { id: "z_kahnb",  label: "Kahnbein",          left: 50, top: 77, width: 22, height:  8 },
-      { id: "z_kopfb",  label: "Kopfbein",          left: 50, top: 68, width: 20, height:  8 }
-    ]
-  },
-  {
     id: "kniegelenk",
     title: "Aufbau des Kniegelenks",
     passRate: 0.6,
@@ -4191,78 +4097,6 @@ const LABEL_EXERCISES = [
       { id: "z_kreuz", label: "Kreuzband",                    left: 60, top: 43, width: 22, height:  9 },
       { id: "z_men",   label: "Meniskus",                     left: 60, top: 52, width: 18, height:  9 },
       { id: "z_gb",    label: "Gelenkbänder",                 left: 60, top: 61, width: 24, height:  9 }
-    ]
-  },
-  {
-    id: "gesichtsmuskeln",
-    title: "Muskeln des Gesichts",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/muskellehre_figure_10.png",
-    bedId: "muskellehre_1034",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_front",  label: "M. frontalis",                left: 52, top:  2, width: 38, height:  9 },
-      { id: "z_orbo",   label: "M. orbicularis oculi",        left: 52, top: 13, width: 42, height:  9 },
-      { id: "z_nas",    label: "M. nasalis",                  left: 52, top: 25, width: 22, height:  9 },
-      { id: "z_orbor",  label: "M. orbicularis oris",         left: 52, top: 52, width: 40, height:  9 },
-      { id: "z_bucc",   label: "M. buccinator",               left:  2, top: 42, width: 24, height:  9 },
-      { id: "z_mass",   label: "M. masseter",                 left:  2, top: 56, width: 20, height:  9 }
-    ]
-  },
-  {
-    id: "halsmuskeln",
-    title: "Muskeln des Halses",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/muskellehre_figure_12.png",
-    bedId: "muskellehre_1034",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_spl",   label: "M. splenius capitis",          left:  2, top:  3, width: 32, height:  9 },
-      { id: "z_lev",   label: "M. levator scapulä",          left:  2, top: 12, width: 34, height:  9 },
-      { id: "z_scm",   label: "M. sternocleidomastoideus",    left:  2, top: 22, width: 48, height:  9 },
-      { id: "z_scaa",  label: "M. scalenus anterior",         left:  2, top: 33, width: 34, height:  9 },
-      { id: "z_trap",  label: "M. trapezius",                 left:  2, top: 52, width: 20, height:  9 },
-      { id: "z_thy",   label: "M. thyrohyoideus",             left: 62, top: 12, width: 34, height:  9 },
-      { id: "z_omo",   label: "M. omohyoideus",               left: 62, top: 22, width: 28, height:  9 },
-      { id: "z_sterno",label: "M. sternohyoideus",            left: 62, top: 32, width: 32, height:  9 }
-    ]
-  },
-  {
-    id: "brustmuskeln",
-    title: "Muskeln des Brustkorbs",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/muskellehre_figure_13.png",
-    bedId: "muskellehre_1034",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_scmb",  label: "M. sternocleidomastoideus",  left:  2, top:  3, width: 44, height:  9 },
-      { id: "z_trapb", label: "M. trapezius",               left:  2, top: 12, width: 22, height:  9 },
-      { id: "z_delt",  label: "M. deltoideus",              left:  2, top: 22, width: 22, height:  9 },
-      { id: "z_pect",  label: "M. pectoralis major",        left:  2, top: 34, width: 30, height:  9 },
-      { id: "z_bic",   label: "M. biceps brachii",          left:  2, top: 44, width: 28, height:  9 },
-      { id: "z_serr",  label: "M. serratus anterior",       left:  2, top: 56, width: 30, height:  9 },
-      { id: "z_intc",  label: "Mm. intercostales externi",  left: 60, top: 44, width: 36, height: 12 }
-    ]
-  },
-  {
-    id: "bauchmuskeln",
-    title: "Muskeln des Bauches",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/muskellehre_figure_14.png",
-    bedId: "muskellehre_1034",
-    aspectRatio: "1/1",
-    zones: [
-      { id: "z_obl",   label: "M. obliquus externus abdominis", left:  2, top: 20, width: 46, height: 12 },
-      { id: "z_tens",  label: "M. tensor fasciä latä",        left:  2, top: 44, width: 40, height:  9 },
-      { id: "z_sart",  label: "M. sartorius",                   left:  2, top: 56, width: 22, height:  9 },
-      { id: "z_rfem",  label: "M. rectus femoris",              left:  2, top: 65, width: 30, height:  9 },
-      { id: "z_rect",  label: "M. rectus abdominis",            left: 58, top: 18, width: 38, height:  9 },
-      { id: "z_trans", label: "M. transversus abdominis",       left: 58, top: 28, width: 40, height:  9 },
-      { id: "z_pyr",   label: "M. pyramidalis",                 left: 58, top: 38, width: 26, height:  9 }
     ]
   },
   {
@@ -4333,69 +4167,7 @@ const LABEL_EXERCISES = [
       { id: "z_rundes_band",   label: "rundes Leberband",    left: 84, top: 60, width: 12, height: 8 },
       { id: "z_zwerchfell",    label: "Zwerchfell",          left: 70, top:  0, width: 12, height: 8 }
     ]
-  },
-  {
-    id: "herzklappen",
-    title: "Die Herzklappen",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/herzklappen_numeriert.png",
-    bedId: "herzkreislauf_1036",
-    aspectRatio: "532/517",
-    zones: [
-      { id: "z_pulmonal",   label: "Pulmonalklappe",    left: 70, top:  1, width: 14, height: 8 },
-      { id: "z_aorten",     label: "Aortenklappe",      left: 80, top: 13, width: 14, height: 8 },
-      { id: "z_trikuspidal",label: "Trikuspidalklappe", left: 77, top: 90, width: 14, height: 7 },
-      { id: "z_mitral",     label: "Mitralklappe",      left:  0, top: 89, width: 14, height: 7 }
-    ]
-  },
-  {
-    id: "schilddruese_lage",
-    title: "Lage der Schilddrüse",
-    passRate: 0.6,
-    diagramType: "image",
-    imagePath: "assets/diagrams/schilddruese_numeriert.png",
-    bedId: "hormonsystem_1042",
-    aspectRatio: "467/888",
-    zones: [
-      { id: "z_schildknorpel", label: "Schildknorpel",            left: 31, top: 31, width: 16, height: 8 },
-      { id: "z_isthmus",       label: "Isthmus",                  left: 41, top: 62, width: 16, height: 8 },
-      { id: "z_re_lappen_sd",  label: "rechter Schilddrüsenlappen", left:  5, top: 57, width: 16, height: 8 },
-      { id: "z_li_lappen_sd",  label: "linker Schilddrüsenlappen",  left: 75, top: 56, width: 16, height: 8 },
-      { id: "z_luftroehre",    label: "Luftröhre",                left: 41, top: 80, width: 16, height: 8 }
-    ]
   }
-];
-
-// Bild-Begriff-Paare für den Entspannungsmodus (Memory): zeigt ein Diagramm aus
-// assets/diagrams und lässt es mit seinem Begriff matchen, statt mit abstrakten
-// Detail-Fakten — macht das Zuordnen anschaulicher als z.B. "ca. 120 Mikrometer".
-// Erscheinen erst, wenn der Spieler das zugehörige Beet schon bepflanzt hat.
-const DIAGRAM_MEMORY_PAIRS = [
-  { id: "nephron", image: "assets/diagrams/nephron_aufbau.png", concept: "Nephron", bedId: "urogenitaltrakt_1041" },
-  { id: "niere_laengsschnitt", image: "assets/diagrams/niere_laengsschnitt.png", concept: "Niere im Längsschnitt", bedId: "urogenitaltrakt_1041" },
-  { id: "harnblase", image: "assets/diagrams/harnblase_aufbau.png", concept: "Harnblase", bedId: "urogenitaltrakt_1041" },
-  { id: "maennliches_becken", image: "assets/diagrams/maennliches_becken_sagittal.png", concept: "Männliches Becken im Sagittalschnitt", bedId: "urogenitaltrakt_1041" },
-  { id: "weibliches_becken", image: "assets/diagrams/weibliches_becken_sagittal.png", concept: "Weibliches Becken im Sagittalschnitt", bedId: "urogenitaltrakt_1041" },
-  { id: "weibliche_geschlechtsorgane", image: "assets/diagrams/innere_weibliche_geschlechtsorgane.png", concept: "Gebärmutter, Eileiter und Eierstöcke", bedId: "urogenitaltrakt_1041" },
-  { id: "auge_querschnitt", image: "assets/diagrams/auge_querschnitt.png", concept: "Auge im Querschnitt", bedId: "sinnesorgane_geriatrie_1044" },
-  { id: "ohr_anatomie", image: "assets/diagrams/ohr_anatomie_komplett.png", concept: "Ohr (Hörorgan)", bedId: "sinnesorgane_geriatrie_1044" },
-  { id: "ohrmuschel", image: "assets/diagrams/ohrmuschel_sketch.png", concept: "Ohrmuschel", bedId: "sinnesorgane_geriatrie_1044" },
-  { id: "neuron_synapse", image: "assets/diagrams/neuron_synapse_aufbau.png", concept: "Neuron und Synapse", bedId: "nervensystem_1043" },
-  { id: "gehirn_sagittal", image: "assets/diagrams/gehirn_sagittalschnitt.png", concept: "Gehirn im Sagittalschnitt", bedId: "nervensystem_1043" },
-  { id: "magen", image: "assets/diagrams/magen_aufbau_komplett.png", concept: "Magen", bedId: "verdauungstrakt_1038" },
-  { id: "zahn", image: "assets/diagrams/zahn_aufbau.png", concept: "Zahn im Längsschnitt", bedId: "verdauungstrakt_1038" },
-  { id: "mundrachenraum", image: "assets/diagrams/mundrachenraum_sagittal.png", concept: "Mund- und Rachenraum", bedId: "verdauungstrakt_1038" },
-  { id: "gallenblase", image: "assets/diagrams/gallenblase_gallengangsystem.png", concept: "Gallenblase und Gallengangsystem", bedId: "leber_gallenblase_1040" },
-  { id: "leber", image: "assets/diagrams/leber_illustration.png", concept: "Leber", bedId: "leber_gallenblase_1040" },
-  { id: "herz_klappen", image: "assets/diagrams/herz_querschnitt_klappen.png", concept: "Herz im Querschnitt mit Herzklappen", bedId: "herzkreislauf_1036" },
-  { id: "blutgefaess", image: "assets/diagrams/blutgefaess_zelltypen.png", concept: "Blutgefäß im Querschnitt", bedId: "blutlymphsystem_1037" },
-  { id: "erythrozyten", image: "assets/diagrams/erythrozyten_foto.png", concept: "Erythrozyten (rote Blutkörperchen)", bedId: "blutlymphsystem_1037" },
-  { id: "leukozyten", image: "assets/diagrams/leukozyten_foto.png", concept: "Leukozyten (weiße Blutkörperchen)", bedId: "blutlymphsystem_1037" },
-  { id: "mitochondrium", image: "assets/diagrams/mitochondrium.png", concept: "Mitochondrium", bedId: "zytologie_1031" },
-  { id: "epidermis", image: "assets/diagrams/epidermis_schichten.png", concept: "Epidermis (Hautschichten)", bedId: "histologie_1032" },
-  { id: "pankreas", image: "assets/diagrams/pankreas_abschnitte.png", concept: "Bauchspeicheldrüse (Pankreas)", bedId: "bauchspeicheldruese_1039" },
-  { id: "hormondruesen", image: "assets/diagrams/hormondruesen_uebersicht.png", concept: "Hormondrüsen im Körper", bedId: "hormonsystem_1042" },
 ];
 
 const DEBUG_PLANTS = [
@@ -4611,7 +4383,6 @@ const HERZKREISLAUF_1036_PLANTS = [
       {
         id: "herzklappen_h1",
         type: "mc",
-        image: "assets/diagrams/herzklappen_numeriert.png",
         question: "Welche Klappe liegt zwischen rechtem Vorhof und rechter Kammer?",
         options: [
           { text: "Trikuspidalklappe", correct: true },
@@ -5741,7 +5512,6 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       {
         id: "erythrozyten_mc1",
         type: "mc",
-        image: "assets/diagrams/erythrozyten_foto.png",
         question: "Welche Aussagen zu Erythrozyten und Hämoglobin sind korrekt?",
         options: [
           { text: "Erythrozyten sind kernlos und leben 100–120 Tage", correct: true },
@@ -5804,7 +5574,6 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
       {
         id: "leukozyten_h4",
         type: "mc",
-        image: "assets/diagrams/leukozyten_foto.png",
         question: "Welcher Normalwert gilt für Leukozyten im Blut?",
         options: [
           { text: "4.000–10.000 /µl", correct: true },
@@ -6580,7 +6349,6 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "mundhoehl_zaehne_mc1",
         type: "mc",
-        image: "assets/diagrams/zahn_aufbau.png",
         question: "Welche der folgenden Aussagen zur Mundhöhle und den Zähnen sind korrekt?",
         options: [
           { text: "Das Mundhöhlenepithel ist mehrschichtig, unverhornt und plattenförmig", correct: true },
@@ -6809,7 +6577,6 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
       {
         id: "rachen_schluckakt_h4",
         type: "mc",
-        image: "assets/diagrams/mundrachenraum_sagittal.png",
         question: "Was schützt in der pharyngealen Phase des Schluckakts die unteren Atemwege vor Aspiration?",
         options: [
           { text: "Stimmlippen-Schluss und die Epiglottis", correct: true },
@@ -7463,7 +7230,6 @@ const BAUCHSPEICHELDRUESE_1039_PLANTS = [
       {
         id: "pankreas_anatomie_h2",
         type: "true_false",
-        image: "assets/diagrams/pankreas_abschnitte.png",
         statement: "Die Langerhans-Inseln machen etwa 2% des Pankreasgewebes aus und sind stärker im Pankreasschwanz als im Kopfbereich konzentriert.",
         answer: true,
         explanation: "Die endokrinen Langerhans-Inseln liegen inselartig im exokrinen Parenchym und machen nur ca. 2% des Gewebes aus. Sie sind im Pankreasschwanz (Cauda) dichter konzentriert als im Kopfbereich."
@@ -8185,7 +7951,6 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       {
         id: "leber_anatomie_makroskopie_mc1",
         type: "mc",
-        image: "assets/diagrams/leber_illustration.png",
         question: "Welche Aussagen zur Anatomie und Lage der Leber sind korrekt?",
         options: [
           { text: "Die Leber wiegt ca. 1,5 kg und hat Maße von ca. 23×18×9 cm", correct: true },
@@ -8696,7 +8461,6 @@ const LEBER_GALLENBLASE_1040_PLANTS = [
       {
         id: "gallenblase_gallenwege_mc2",
         type: "mc",
-        image: "assets/diagrams/gallenblase_gallengangsystem.png",
         question: "Welche Aussagen zu den extrahepatischen Gallenwegen sind korrekt?",
         options: [
           { text: "Ductus hepaticus dexter + sinister → Ductus hepaticus communis", correct: true },
@@ -9074,7 +8838,6 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "nephron_feinbau_h3",
         type: "mc",
-        image: "assets/diagrams/nephron_aufbau.png",
         question: "Welche vier Abschnitte bilden das Tubulussystem des Nephrons in der richtigen Reihenfolge?",
         options: [
           { text: "Proximaler Tubulus → Henlesche Schleife → distaler Tubulus → Sammelrohr", correct: true },
@@ -9120,7 +8883,6 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "nephron_feinbau_mc2",
         type: "mc",
-        image: "assets/diagrams/niere_laengsschnitt.png",
         question: "Welche Aussagen zur Blutversorgung der Niere und zum juxtaglomerulären Apparat sind korrekt?",
         options: [
           { text: "Die Niere wird täglich von ca. 1.500–1.800 Litern Blut durchflossen", correct: true },
@@ -9358,7 +9120,6 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "harnleiter_blase_roehre_mc1",
         type: "mc",
-        image: "assets/diagrams/harnblase_aufbau.png",
         question: "Welche Aussagen zu Harnleiter und Harnblase sind korrekt?",
         options: [
           { text: "Harnleiter: ca. 25–30 cm, retroperitoneal, 1–4 peristaltische Bewegungen/min", correct: true },
@@ -9402,7 +9163,6 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "fortpflanzung_mann_h2",
         type: "true_false",
-        image: "assets/diagrams/maennliches_becken_sagittal.png",
         statement: "Der Ductus ejaculatorius entsteht durch Vereinigung des Ductus deferens mit dem Ausführungsgang der Bläschendrüse und durchläuft dann die Prostata, bevor er in die Urethra mündet.",
         answer: true,
         explanation: "Der Weg des Samens: Hoden → Ductuli efferentes → Nebenhoden (Ductus epididymis) → Ductus deferens (durch Leistenkanal) → vereinigt sich mit Bläschendrüsenausgang → Ductus ejaculatorius → durchläuft Prostata → mündet in Urethra (Pars prostatica). Damit ist die Urethra beim Mann der gemeinsame Harn- und Samenweg."
@@ -9517,7 +9277,6 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "fortpflanzung_frau_zyklus_h5",
         type: "true_false",
-        image: "assets/diagrams/weibliches_becken_sagittal.png",
         statement: "Die Befruchtung der Eizelle findet in der Gebärmutter statt; die Eizelle wird nach dem Eisprung direkt vom Uterus aufgenommen.",
         answer: false,
         explanation: "Die Befruchtung findet im Eileiter (Tuba uterina) statt, nicht in der Gebärmutter. Nach dem Eisprung gelangt die Eizelle in die Bauchhöhle, wird von den Flimmerhärchen/Trichterfasern des Eileiterendes aufgefangen und durch Muskelkontraktionen durch den Eileiter transportiert. Im Eileiter trifft sie auf Spermien → Befruchtung. Danach gelangt die befruchtete Eizelle (Zygote) in den Uterus zur Einnistung."
@@ -9527,7 +9286,6 @@ const UROGENITALTRAKT_1041_PLANTS = [
       {
         id: "fortpflanzung_frau_zyklus_mc1",
         type: "mc",
-        image: "assets/diagrams/innere_weibliche_geschlechtsorgane.png",
         question: "Welche Aussagen zu Ovarien, Eileiter und Uterus sind korrekt?",
         options: [
           { text: "Ovarien: Primärfollikel seit der Geburt vorhanden; Östrogen (Follikel) + Progesteron (Gelbkörper)", correct: true },
@@ -10189,7 +9947,6 @@ const HORMONSYSTEM_1042_PLANTS = [
       {
         id: "diagnostik_endokrinium_h2",
         type: "true_false",
-        image: "assets/diagrams/schilddruese_numeriert.png",
         statement: "Bei der Schilddrüsenpalpation deutet eine schlechte Schluckverschieblichkeit auf ein mögliches Karzinom hin.",
         answer: true,
         explanation: "Eine gesunde Schilddrüse ist schluckverschieblich (bewegt sich beim Schlucken mit der Luftröhre), glatt und nicht höckrig. Ist sie schlecht verschieblich, deutet das auf eine Infiltration des umgebenden Gewebes hin — wichtigstes Warnsignal für ein Schilddrüsenkarzinom (CA). Knoten und Schwirren (Überfunktion) sind weitere Palpationsbefunde."
@@ -10631,7 +10388,6 @@ const NERVENSYSTEM_1043_PLANTS = [
       {
         type: "mc",
         id: "1043_03_h3",
-        image: "assets/diagrams/knochenlehre_figure_8.png",
         question: "Wo liegt die graue Substanz (Substantia grisea) im Rückenmark?",
         options: [
           { text: "Innen (zentraler Kern in Schmetterlingsform)", correct: true },
@@ -12047,7 +11803,6 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
       {
         type: "mc",
         id: "1044_01_p4_2",
-        image: "assets/diagrams/ohr_anatomie_komplett.png",
         question: "Welche Aussagen zur Schallweiterleitung sind korrekt? (Mehrere Antworten möglich)",
         options: [
           { text: "Schallwellen treffen zuerst auf das Trommelfell", correct: true },
@@ -12205,7 +11960,6 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
       {
         type: "mc",
         id: "1044_03_p4_1",
-        image: "assets/diagrams/auge_querschnitt.png",
         question: "Welche Aussagen zur Uvea (mittlere Augenhaut) sind korrekt? (Mehrere Antworten möglich)",
         options: [
           { text: "Sie wird auch Gefäßhaut genannt", correct: true },
