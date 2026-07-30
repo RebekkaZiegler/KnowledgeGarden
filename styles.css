@@ -4148,12 +4148,17 @@ body.plant-open #back-to-garden-btn { display: block; }
 /* Every state shows the bucket's REAL color (inline `background`, set in
    JS) always — nothing is ever hidden behind a generic swatch, blocked or
    not, mirroring Parkplatz's own already-colored parked cars. */
+/* Full color stays visible — dimming it made it hard to tell which color
+   a blocked cell even was. "Locked" reads instead through a dashed border
+   plus a slight shrink (the direction glyph inside already shows which
+   way it needs to be freed). */
 .ms-depot-cell--blocked {
-  color: rgba(255,255,255,0.85);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-  opacity: 0.55;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 0 4px rgba(0,0,0,0.5);
   cursor: not-allowed;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+  border: 2px dashed rgba(0,0,0,0.55);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+  transform: scale(0.86);
 }
 .ms-depot-cell--idle {
   cursor: pointer;
