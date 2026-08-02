@@ -684,6 +684,50 @@ header p {
   max-height: 92vh;
 }
 
+/* Alräunchen-Feedback chat ("talk to your Tamagotchi") — see
+   renderTamaChat() in js/game.js. A one-directional bubble list (the
+   Tamagotchi "speaking"), not a two-way chat UI. */
+.tama-chat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+.tama-chat-bubble {
+  background: var(--bg3);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.tama-chat-date { font-size: 0.75rem; text-align: center; }
+.tama-chat-loading { font-size: 0.85rem; text-align: center; }
+.tama-chat-empty {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--muted);
+  text-align: center;
+  padding: 0.4rem 0.6rem;
+}
+.tama-chat-highlights {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.tama-chat-review-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+.tama-chat-review-q { font-weight: 700; margin-bottom: 0.3rem; }
+.tama-chat-review-mine { color: #e8735a; }
+.tama-chat-review-correct { color: #6fd88a; }
+.tama-chat-review-expl, .tama-chat-review-extra { margin-top: 0.3rem; color: var(--muted); }
 
 .modal-close-btn {
   margin-top: 1rem;
@@ -3812,6 +3856,12 @@ body.plant-open #back-to-garden-btn { display: block; }
   font-weight: 400;
   opacity: 0.85;
   margin-top: 0.15rem;
+}
+.clicker-study-btn--secondary {
+  background: var(--bg3);
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-top: 0;
 }
 
 /* ═══════════════════════════════════════

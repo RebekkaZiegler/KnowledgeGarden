@@ -45,6 +45,10 @@
       📖 Frage beantworten
       <span>Füttert dein Alräunchen</span>
     </button>
+    <button id="tama-chat-btn" class="clicker-study-btn clicker-study-btn--secondary">
+      💬 Mit Alräunchen sprechen
+      <span>Rückblick & Feedback</span>
+    </button>
   </div>
 
   <!-- ═══════════════════════════════════════════════════
@@ -259,6 +263,24 @@
       <h2>🏆 Trophäenraum</h2>
       <div id="trophy-list" class="list"></div>
       <button id="close-trophies-btn" class="modal-close-btn">Schließen</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       MODAL: Alräunchen-Feedback ("talk to your Tamagotchi")
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-tama-chat" class="modal-overlay" hidden>
+    <div class="modal-box">
+      <h2>💬 Mit Alräunchen sprechen</h2>
+      <div id="tama-chat-body" class="tama-chat-body"></div>
+      <div class="row" style="margin-top:0.8rem">
+        <button id="tama-chat-export-btn">📤 Heutige Fragen exportieren</button>
+      </div>
+      <div class="muted" style="font-size:0.78rem;margin-top:0.4rem">
+        Export nach <code>feedback/inbox/</code> legen und in einer Claude-Code-Sitzung
+        draufschauen lassen — die Antwort landet dann hier.
+      </div>
+      <button id="close-tama-chat-btn" class="modal-close-btn">Schließen</button>
     </div>
   </div>
 

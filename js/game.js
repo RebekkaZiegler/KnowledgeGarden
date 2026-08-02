@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "3.1.0";   // ← bump this with every push
+const APP_VERSION    = "3.2.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -194,6 +194,7 @@ function defaultState() {
       dailyDate:             null,
       dailyCorrect:          0,
       dailyAnswered:         0,
+      todayAnswers:          [], // { chapterId, questionId, correct, pickedText } — resets alongside dailyDate; feeds the Alräunchen-feedback export (exportTodayFeedback)
       learnedLog:            {},
       activityLog:           {},
     },
@@ -289,6 +290,7 @@ function normalizeState(s) {
   s.stats      = Object.assign({}, d.stats,        s.stats     || {});
   s.stats.activityLog = s.stats.activityLog || {};
   s.stats.learnedLog  = s.stats.learnedLog  || {};
+  s.stats.todayAnswers = Array.isArray(s.stats.todayAnswers) ? s.stats.todayAnswers : [];
   s.stats.waterSortLevelsCompleted    = s.stats.waterSortLevelsCompleted    || 0;
   s.stats.waterSortExtraBottlesBought = s.stats.waterSortExtraBottlesBought || 0;
   s.waterSort = Object.assign({}, d.waterSort, s.waterSort || {});
@@ -547,7 +549,7 @@ function pickNextQuestion() {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-function recordAnswer(chapterId, questionId, correct) {
+function recordAnswer(chapterId, questionId, correct, pickedText) {
   const qs = ensureQuestionState(chapterId, questionId);
   const today = new Date().toISOString().slice(0, 10);
 
@@ -560,8 +562,11 @@ function recordAnswer(chapterId, questionId, correct) {
     G.stats.dailyDate     = today;
     G.stats.dailyCorrect  = 0;
     G.stats.dailyAnswered = 0;
+    G.stats.todayAnswers  = [];
   }
   G.stats.dailyAnswered = (G.stats.dailyAnswered || 0) + 1;
+  G.stats.todayAnswers = G.stats.todayAnswers || [];
+  G.stats.todayAnswers.push({ chapterId, questionId, correct, pickedText });
   G.restaurant.sessionAnswered = (G.restaurant.sessionAnswered || 0) + 1;
   G.stats.activityLog = G.stats.activityLog || {};
   G.stats.activityLog[today] = (G.stats.activityLog[today] || 0) + 1;
@@ -622,6 +627,25 @@ function shuffleArray(arr) {
 
 function isMultiCorrect(q) {
   return q.type === "mc" && (q.options || []).filter(o => o.correct).length > 1;
+}
+
+// What the player actually picked, as display text — feeds
+// G.stats.todayAnswers (see recordAnswer) for the Alräunchen-feedback
+// export. For true/false there's no clicked-option text to read back (the
+// button label is "Wahr"/"Falsch" either way), so it's derived from
+// isCorrect + the question's own answer instead.
+function getPickedAnswerText(q, isCorrect, clickedBtns) {
+  if (q.type === "true_false") {
+    const pickedBool = isCorrect ? (q.answer === true) : (q.answer !== true);
+    return pickedBool ? "Wahr" : "Falsch";
+  }
+  const texts = clickedBtns.map(b => b.textContent).filter(Boolean);
+  return texts.length ? texts.join(", ") : "(keine Auswahl)";
+}
+
+function getCorrectAnswerText(q) {
+  if (q.type === "true_false") return q.answer === true ? "Wahr" : "Falsch";
+  return (q.options || []).filter(o => o.correct).map(o => o.text).join(", ");
 }
 
 function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
@@ -746,7 +770,7 @@ function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDo
     if (sessionWrongStreak === 2) showToast(pickTamaLine(G.tamagotchi.species, "stumble"));
   }
 
-  recordAnswer(entry.chapterId, entry.question.id, isCorrect);
+  recordAnswer(entry.chapterId, entry.question.id, isCorrect, getPickedAnswerText(q, isCorrect, clickedBtns));
   if (isCorrect) onCorrect && onCorrect();
   else onWrong && onWrong();
 
@@ -1059,6 +1083,7 @@ const TAMA_DIALOGUE = {
     stumble:   ["Nicht schlimm, auch Wurzeln verzweigen sich mal falsch.", "Schau nochmal genau hin — ich glaub an dich.", "Kein Grund zur Sorge, wir versuchen es einfach nochmal."],
     evolve:    ["Ich spüre eine Veränderung in mir...", "Etwas Neues wächst aus mir heraus!", "Danke, dass du mich so weit gebracht hast."],
     nearDeath: ["Mir wird kalt... hast du mich vergessen?", "Bitte komm zurück, ich brauche dich.", "Ich halte noch durch, aber nicht mehr lange."],
+    chat:      ["Lass uns zusammen schauen, was du heute gelernt hast.", "Erzähl mir, wie war dein Tag mit den Fragen?", "Ich bin gespannt, was wir heute herausgefunden haben."],
   },
   flamm: {
     feed:      ["Jaaa, mehr Brennstoff!", "Ich werd immer heller, spürst du's?", "Danke! Jetzt loder ich richtig!"],
@@ -1066,6 +1091,7 @@ const TAMA_DIALOGUE = {
     stumble:   ["Autsch, das hat gefunkt — aber okay!", "Kurz durchpusten und nochmal!", "Auch Flammen flackern mal, weiter geht's!"],
     evolve:    ["Ich lodere jetzt noch heller!", "Spürst du die neue Hitze in mir?!", "Ich bin gewachsen — und wie!"],
     nearDeath: ["Ich... werd schwächer... so kalt...", "Bitte, ein bisschen Glut noch, schnell!", "Ich flacker nur noch ganz leise."],
+    chat:      ["Komm, lass uns durchgehen, was heute alles gefunkt hat!", "Erzähl mir vom heutigen Tag — ich bin ganz Ohr!", "Zeit für unser kleines Feuer-Debriefing!"],
   },
   well: {
     feed:      ["Danke, das fließt gut durch mich.", "Ich werde ruhig und klar davon.", "Ein Tropfen Wissen mehr — willkommen."],
@@ -1073,6 +1099,7 @@ const TAMA_DIALOGUE = {
     stumble:   ["Kein Problem, auch Wasser findet Umwege.", "Lass uns kurz zur Ruhe kommen und neu ansetzen.", "Nicht jede Welle trifft — nächstes Mal wieder."],
     evolve:    ["Ich fühle mich tiefer, weiter, klarer.", "Etwas in mir hat sich gesetzt und geklärt.", "Danke, ich bin gereift."],
     nearDeath: ["Ich versiege langsam...", "Bitte, ich brauche wieder etwas Zufluss.", "Es wird still und trocken um mich."],
+    chat:      ["Lass uns in Ruhe zurückschauen, was heute geflossen ist.", "Erzähl mir von deinem Tag — ich höre dir gerne zu.", "Zeit, kurz innezuhalten und zurückzublicken."],
   },
   kiesel: {
     feed:      ["Hm. Nicht schlecht.", "Passt. Mehr davon.", "Solide Antwort. Ich nehm's."],
@@ -1080,6 +1107,7 @@ const TAMA_DIALOGUE = {
     stumble:   ["Passiert. Selbst Felsen bröckeln mal.", "Kurz Staub abklopfen, weiter geht's.", "Nicht der Rede wert. Nochmal."],
     evolve:    ["Ich bin... dichter geworden. Gut.", "Spürst du das? Neue Härte.", "Ich hab mich gefestigt."],
     nearDeath: ["Ich bröckle... langsam...", "Wird Zeit, dass du auftauchst.", "Noch halt ich. Aber nicht ewig."],
+    chat:      ["Los. Schauen wir uns an, was heute lief.", "Erzähl. Ich hör zu.", "Kurzer Rückblick. Los geht's."],
   },
 };
 
@@ -1124,6 +1152,94 @@ const TAMA_RELEASE_LINES = {
 function pickReleaseLine(species, path) {
   const pool = (TAMA_RELEASE_LINES[species] || TAMA_RELEASE_LINES.root)[path || 'b'];
   return pool[Math.floor(Math.random() * pool.length)];
+}
+
+/* ══════════════════════════════════════════════════════════
+   ALRÄUNCHEN-FEEDBACK — an offline "talk to your Tamagotchi" loop with no
+   live AI wired into the app (this is a static, offline-first PWA with no
+   backend to safely hold an API key). Instead: exportTodayFeedback() bundles
+   today's answered questions (G.stats.todayAnswers, see recordAnswer) into
+   a JSON file the player downloads and drops into feedback/inbox/ in the
+   repo; a human then asks Claude (in an ordinary Claude Code session, not a
+   live API call from this app) to read it and write a response into
+   feedback/outbox/latest.json, in the schema documented in
+   feedback/README.md. renderTamaChat() just fetches and displays whatever's
+   there — the "AI" here is a person invoking Claude Code normally, async,
+   not a feature of the running game.
+══════════════════════════════════════════════════════════ */
+function buildFeedbackExport() {
+  const entries = (G.stats.todayAnswers || []).map(a => {
+    const bed = getChapterContent(a.chapterId);
+    const q = bed
+      ? bed.plants.flatMap(p => [...(p.harvestQuestions || []), ...(p.phase4Questions || [])]).find(qq => qq.id === a.questionId)
+      : null;
+    return {
+      kapitel: bed ? bed.title : a.chapterId,
+      frage: q ? (q.type === "true_false" ? q.statement : q.question) : "(Frage nicht mehr im Kapitel vorhanden)",
+      richtig: a.correct,
+      meineAntwort: a.pickedText,
+      korrekteAntwort: q ? getCorrectAnswerText(q) : null,
+      erklaerung: q ? (q.explanation || "") : "",
+    };
+  });
+  return {
+    datum: getTodayDate(),
+    anzahlBeantwortet: entries.length,
+    anzahlRichtig: entries.filter(e => e.richtig).length,
+    fragen: entries,
+  };
+}
+
+function exportTodayFeedback() {
+  const data = buildFeedbackExport();
+  if (!data.fragen.length) { showToast("Heute wurden noch keine Fragen beantwortet — noch nichts zu exportieren."); return; }
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `alraeunchen-feedback-${data.datum}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("📤 Exportiert! Datei nach feedback/inbox/ legen — dann in einer Claude-Code-Sitzung draufschauen lassen.");
+}
+
+// Renders whatever's currently in feedback/outbox/latest.json (written by a
+// human-invoked Claude Code session, see this section's header) as a short
+// series of chat-style bubbles, or a friendly "nothing yet" prompt pointing
+// at the export button if the fetch 404s (fresh save, or the loop hasn't
+// run yet — a completely normal state, not an error to alarm over).
+function renderTamaChat() {
+  const bodyEl = document.getElementById("tama-chat-body");
+  if (!bodyEl) return;
+  const species = G.tamagotchi ? G.tamagotchi.species : null;
+  bodyEl.innerHTML = `<div class="tama-chat-bubble">${escapeHtmlText(pickTamaLine(species, "chat"))}</div>
+    <div class="tama-chat-loading muted">Schau nach, ob es was Neues gibt…</div>`;
+
+  fetch("./feedback/outbox/latest.json", { cache: "no-store" })
+    .then(res => { if (!res.ok) throw new Error("no feedback file"); return res.json(); })
+    .then(data => {
+      const parts = [`<div class="tama-chat-bubble">${escapeHtmlText(data.greeting || pickTamaLine(species, "chat"))}</div>`];
+      if (data.datum) parts.push(`<div class="tama-chat-date muted">Stand: ${escapeHtmlText(data.datum)}</div>`);
+      if (data.summary) parts.push(`<div class="tama-chat-bubble">${escapeHtmlText(data.summary)}</div>`);
+      if (Array.isArray(data.highlights) && data.highlights.length) {
+        parts.push(`<ul class="tama-chat-highlights">${data.highlights.map(h => `<li>${escapeHtmlText(h)}</li>`).join("")}</ul>`);
+      }
+      if (Array.isArray(data.reviewItems) && data.reviewItems.length) {
+        parts.push(data.reviewItems.map(item => `
+          <div class="tama-chat-review-card">
+            <div class="tama-chat-review-q">${escapeHtmlText(item.frage || "")}</div>
+            ${item.meineAntwort ? `<div class="tama-chat-review-mine">Du: ${escapeHtmlText(item.meineAntwort)}</div>` : ""}
+            ${item.korrekteAntwort ? `<div class="tama-chat-review-correct">Richtig: ${escapeHtmlText(item.korrekteAntwort)}</div>` : ""}
+            ${item.erklaerung ? `<div class="tama-chat-review-expl">💬 ${escapeHtmlText(item.erklaerung)}</div>` : ""}
+            ${item.zusatz ? `<div class="tama-chat-review-extra">🌱 ${escapeHtmlText(item.zusatz)}</div>` : ""}
+          </div>`).join(""));
+      }
+      bodyEl.innerHTML = parts.join("");
+    })
+    .catch(() => {
+      bodyEl.innerHTML = `<div class="tama-chat-bubble">${escapeHtmlText(pickTamaLine(species, "chat"))}</div>
+        <div class="tama-chat-empty">Noch kein Feedback für dich da. Exportiere deine heutigen Fragen und lass sie dir in einer Claude-Code-Sitzung anschauen!</div>`;
+    });
 }
 
 function getTamaImage(stage, path, alive, species) {
@@ -3210,6 +3326,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["close-settings-btn", "modal-settings"],
     ["close-raven-btn",    "modal-raven"],
     ["close-kitchen-btn",  "modal-kitchen"],
+    ["close-tama-chat-btn", "modal-tama-chat"],
   ].forEach(([btnId, modalId]) => document.getElementById(btnId)?.addEventListener("click", () => closeModal(modalId)));
 
   // Settings
@@ -3246,6 +3363,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Alräunchen feed button
   document.getElementById("tama-feed-btn")?.addEventListener("click", feedTamagotchiStudy);
+  document.getElementById("tama-chat-btn")?.addEventListener("click", () => { renderTamaChat(); openModal("modal-tama-chat"); });
+  document.getElementById("tama-chat-export-btn")?.addEventListener("click", exportTodayFeedback);
 
   // Water Sort controls
   document.getElementById("ws-buy-bottle-btn")?.addEventListener("click", () => window.wsBuyExtraBottle && window.wsBuyExtraBottle());
