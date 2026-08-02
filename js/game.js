@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "3.0.0";   // ← bump this with every push
+const APP_VERSION    = "3.1.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -258,6 +258,7 @@ function defaultState() {
       currentLevelIndex:   null,
       unlocked:            false, // LIVE: whether this attempt's 1-question gate has been paid — resets to false on every NEW level (not on restart)
       size:                 0,   // LIVE: hole's current size CLASS INDEX (0-based, into HL_SIZE_CLASSES) — resets to 0 each level start
+      growthProgress:       0,   // LIVE: eligible objects eaten since the last size-up, toward hlGrowthThreshold(size) — resets to 0 each level start AND every time it grows
       swallowedMask:       [],   // LIVE: parallel array to level.objects; [] = "no level loaded" sentinel
     },
   };
@@ -369,6 +370,7 @@ function normalizeState(s) {
   s.hole.playOrder      = Array.isArray(s.hole.playOrder)      ? s.hole.playOrder      : [];
   s.hole.swallowedMask  = Array.isArray(s.hole.swallowedMask)  ? s.hole.swallowedMask  : [];
   s.hole.size           = Number.isFinite(s.hole.size) ? s.hole.size : 0;
+  s.hole.growthProgress = Number.isFinite(s.hole.growthProgress) ? s.hole.growthProgress : 0;
 
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
