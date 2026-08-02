@@ -33,6 +33,7 @@
     <button id="top-tab-watersort" class="top-tab">🧪 Tränke</button>
     <button id="top-tab-parking"   class="top-tab">🚗 Parkplatz</button>
     <button id="top-tab-mosaik"    class="top-tab">🧩 Mosaik</button>
+    <button id="top-tab-hole"      class="top-tab">🕳️ Loch</button>
   </div>
 
   <!-- ═══════════════════════════════════════════════════
@@ -150,6 +151,22 @@
       </button>
       <div id="ms-discard-status" class="ms-discard-status"></div>
       <button id="ms-restart-btn" class="ms-icon-btn" title="Neu starten">🔄</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SCREEN: Loch (Hole-Em-All-style drag-physics puzzle)
+  ════════════════════════════════════════════════════ -->
+  <div id="screen-hole" class="mode-screen" hidden>
+    <div id="hl-level-info" class="ws-level-info"></div>
+    <div class="ms-canvas-wrap">
+      <canvas id="hl-board" class="hl-board"></canvas>
+      <div id="hl-start-overlay" class="hl-start-overlay">
+        <button id="hl-start-btn" class="ws-buy-bottle-btn">▶️ Level starten (1 Frage)</button>
+      </div>
+    </div>
+    <div class="ws-controls-row">
+      <button id="hl-restart-btn" class="ws-restart-btn">🔄 Neu starten</button>
     </div>
   </div>
 
@@ -321,6 +338,7 @@
   <script src="./js/watersort.js"></script>
   <script src="./js/parking.js"></script>
   <script src="./js/mosaik.js"></script>
+  <script src="./js/hole.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(reg => { reg.update(); }).catch(() => {});

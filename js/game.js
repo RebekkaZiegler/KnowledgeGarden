@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "2.10.0";   // ← bump this with every push
+const APP_VERSION    = "2.11.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -251,6 +251,15 @@ function defaultState() {
       slotsUnlocked:       0,   // LIVE: resets to max(1, level.db - MS_STARTING_SLOTS_HANDICAP) each level start; buyable up to level.db
       depotReleased:      [],   // LIVE: parallel array to level.depot.cells — index i true = that ONE-TIME-USE bucket has been sent for good; resets to a fresh all-false array (length level.depot.cells.length) each level start
     },
+
+    hole: {
+      playOrder:          [],    // shuffled permutation of [0..HL_LEVEL_COUNT-1]
+      playOrderPos:        0,
+      currentLevelIndex:   null,
+      unlocked:            false, // LIVE: whether this attempt's 1-question gate has been paid — resets to false on every NEW level (not on restart)
+      size:                 1,   // LIVE: hole's current size stat; resets to level.startSize each level start
+      swallowedMask:       [],   // LIVE: parallel array to level.objects; [] = "no level loaded" sentinel
+    },
   };
 }
 
@@ -352,6 +361,14 @@ function normalizeState(s) {
   s.mosaik.containers    = Array.isArray(s.mosaik.containers)     ? s.mosaik.containers   : [];
   s.mosaik.discardsUsed  = Number.isFinite(s.mosaik.discardsUsed) ? s.mosaik.discardsUsed : 0;
   s.mosaik.depotReleased = Array.isArray(s.mosaik.depotReleased)  ? s.mosaik.depotReleased : [];
+
+  // Loch's own stale-level-index guard (against HL_LEVEL_COUNT) lives in
+  // hlEnsureQueueAndLevel, same as the other three minigames' — this block
+  // only needs to guarantee the shape is sane.
+  s.hole = Object.assign({}, d.hole, s.hole || {});
+  s.hole.playOrder      = Array.isArray(s.hole.playOrder)      ? s.hole.playOrder      : [];
+  s.hole.swallowedMask  = Array.isArray(s.hole.swallowedMask)  ? s.hole.swallowedMask  : [];
+  s.hole.size           = Number.isFinite(s.hole.size) ? s.hole.size : 1;
 
   s.tamagotchi = Object.assign({}, defaultState().tamagotchi, s.tamagotchi || {});
   s.tamagotchi.weekScores   = s.tamagotchi.weekScores   || [];
@@ -3120,7 +3137,7 @@ function renderAll() {
 /* ══════════════════════════════════════════════════════════
    MODE SWITCHING — top tabs (Alräunchen / Taverne)
 ══════════════════════════════════════════════════════════ */
-const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", parking: "screen-parking", mosaik: "screen-mosaik" };
+const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", parking: "screen-parking", mosaik: "screen-mosaik", hole: "screen-hole" };
 
 function switchTopTab(tab) {
   Object.entries(TOP_TAB_SCREENS).forEach(([t, id]) => {
@@ -3138,6 +3155,7 @@ function switchTopTab(tab) {
   if (tab === "watersort") window.wsEnsureQueueAndLevel && window.wsEnsureQueueAndLevel();
   if (tab === "parking") window.plEnsureQueueAndLevel && window.plEnsureQueueAndLevel();
   if (tab === "mosaik") window.msEnsureQueueAndLevel && window.msEnsureQueueAndLevel();
+  if (tab === "hole") window.hlEnsureQueueAndLevel && window.hlEnsureQueueAndLevel();
 
   G.activeMode = tab;
   saveState();
@@ -3216,12 +3234,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
-  // Top tabs (Alräunchen / Taverne / Tränke / Parkplatz / Mosaik)
+  // Top tabs (Alräunchen / Taverne / Tränke / Parkplatz / Mosaik / Loch)
   document.getElementById("top-tab-tama")?.addEventListener("click",      () => switchTopTab("tama"));
   document.getElementById("top-tab-games")?.addEventListener("click",     () => switchTopTab("games"));
   document.getElementById("top-tab-watersort")?.addEventListener("click", () => switchTopTab("watersort"));
   document.getElementById("top-tab-parking")?.addEventListener("click",   () => switchTopTab("parking"));
   document.getElementById("top-tab-mosaik")?.addEventListener("click",    () => switchTopTab("mosaik"));
+  document.getElementById("top-tab-hole")?.addEventListener("click",      () => switchTopTab("hole"));
 
   // Alräunchen feed button
   document.getElementById("tama-feed-btn")?.addEventListener("click", feedTamagotchiStudy);
@@ -3237,6 +3256,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mosaik controls — discard is wired per-bucket in msRenderColorRow, not a single static button
   document.getElementById("ms-restart-btn")?.addEventListener("click",  () => window.msRestartLevel  && window.msRestartLevel());
   document.getElementById("ms-buy-slot-btn")?.addEventListener("click", () => window.msBuyExtraSlot  && window.msBuyExtraSlot());
+
+  // Loch controls
+  document.getElementById("hl-start-btn")?.addEventListener("click",   () => window.hlStartAttempt && window.hlStartAttempt());
+  document.getElementById("hl-restart-btn")?.addEventListener("click", () => window.hlRestartLevel  && window.hlRestartLevel());
 
   // Load game state and render — after listeners so a crash doesn't lose them
   try {
