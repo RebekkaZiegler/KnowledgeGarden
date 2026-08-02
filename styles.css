@@ -4209,7 +4209,7 @@ body.plant-open #back-to-garden-btn { display: block; }
 .ms-belt-track {
   position: relative;
   width: min(94vw, 420px);
-  height: 46px;
+  height: 92px;
   margin: 8px auto 0;
   border-radius: 12px;
   background: repeating-linear-gradient(
@@ -4221,6 +4221,21 @@ body.plant-open #back-to-garden-btn { display: block; }
   overflow: hidden;
 }
 .ms-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Wraps the picture + belt-track together so a single particle canvas can
+   span both and animate a collected pixel flying from wherever it was in
+   the picture down into its bucket on the belt below, instead of the pixel
+   just vanishing from the picture with no visible path to the bucket. */
+.ms-play-area {
+  position: relative;
+}
+.ms-particles {
   position: absolute;
   inset: 0;
   width: 100%;
