@@ -241,6 +241,19 @@ function msFamilyTotalCount(columns, family, colorFamily) {
   for (const col of columns) if (col.length) for (const v of col) if (colorFamily[v] === family) n++;
   return n;
 }
+// msFamilyTotalCount scoped down to what's still up for grabs: several
+// containers can now collect the same family at once (see
+// msOnDepotCellTap), so a NEW container mustn't be handed supply another
+// active one already has reserved via its own capacity target — otherwise
+// two containers' capacities could jointly promise more than the picture
+// actually has left, permanently stranding the short-changed one.
+function msFamilyUnclaimedCount(ms, level, family) {
+  const total = msFamilyTotalCount(ms.columns, family, level.colorFamily);
+  const committed = ms.containers
+    .filter(c => c.family === family)
+    .reduce((sum, c) => sum + Math.max(0, c.capacity - c.filled), 0);
+  return Math.max(0, total - committed);
+}
 function msFamilyExposedCount(columns, family, colorFamily) {
   let n = 0;
   for (const col of columns) if (col.length && colorFamily[col[0]] === family) n++;
@@ -449,16 +462,19 @@ function msOnDepotCellTap(cellIdx) {
   const color = level.depot.cells[cellIdx].color;
   const family = level.depot.cells[cellIdx].family;
   const slotsUnlocked = ms.slotsUnlocked || level.db;
-  // Guard is FAMILY-scoped, not exact-shade — a bucket already collecting
-  // any sibling shade of this family already covers this cell's shade too,
-  // so a second bucket for it would just duplicate collection.
-  if (ms.containers.some(c => c.family === family)) { showToast("🪣 Diese Farbe sammelt schon woanders!"); return; }
+  // Several containers can now collect the same family in parallel (each
+  // still only ever the exact color of its own depot cell to render with,
+  // but matched by family — see msTick) — no more "one bucket per color"
+  // guard here.
   if (ms.containers.length >= slotsUnlocked) { showToast("🪣 Keine freie Behälter! Mehr freischalten (1 Frage) oder einen verwerfen?"); return; }
   // Remaining/capacity are scoped to the whole FAMILY's supply, not just
   // this cell's one exact shade — the bucket will collect every sibling
   // shade too, so capping it to this shade's own remainder would strand it
-  // at a partial fill once its own shade runs out with siblings still there.
-  const remaining = msFamilyTotalCount(ms.columns, family, level.colorFamily);
+  // at a partial fill once its own shade runs out with siblings there.
+  // Also subtracts what any OTHER currently-active same-family container
+  // already has reserved (msFamilyUnclaimedCount) — otherwise two
+  // simultaneous buckets could jointly promise more than the picture has.
+  const remaining = msFamilyUnclaimedCount(ms, level, family);
   // Capacity is the level's uniform per-bucket amount, but on a family's
   // LAST placement less than that may actually be left in the picture —
   // cap at what's really still there, or this container could never reach
@@ -722,7 +738,6 @@ function msRenderColorRow(level) {
     });
   }
 
-  const activeFamilies = new Set(ms.containers.map(c => c.family));
   colorRowEl.className = "ms-depot-grid";
   if (!level.depot) {
     colorRowEl.innerHTML = "";
@@ -743,11 +758,13 @@ function msRenderColorRow(level) {
       if (released[idx]) return "";
       const pos = `grid-row:${cell.r + 1};grid-column:${cell.c + 1};`;
       const bg = `background:${level.paletteHex[cell.color]};`;
-      if (activeFamilies.has(cell.family)) {
-        return `<button class="ms-depot-cell ms-depot-cell--active" style="${pos}${bg}" disabled></button>`;
-      }
       const blocked = msIsDepotBlocked(level.depot.cells, released, idx);
-      const exhausted = !blocked && msFamilyTotalCount(ms.columns, cell.family, level.colorFamily) === 0;
+      // "Nothing left worth sending for" now means the family's whole
+      // remaining supply is already reserved by active container(s), not
+      // just "some container somewhere is already on this family" — several
+      // containers can collect the same family in parallel (see
+      // msOnDepotCellTap).
+      const exhausted = !blocked && msFamilyUnclaimedCount(ms, level, cell.family) === 0;
       const cls = blocked ? "ms-depot-cell--blocked" : exhausted ? "ms-depot-cell--exhausted" : "ms-depot-cell--idle";
       const glyph = blocked ? MS_DIR_GLYPH[cell.dir] : "";
       return `<button class="ms-depot-cell ${cls}" style="${pos}${bg}" data-idx="${idx}" title="${blocked ? 'Blockiert' : 'Bereit'}">${glyph}</button>`;
