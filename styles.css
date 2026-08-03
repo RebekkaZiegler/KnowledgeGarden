@@ -728,6 +728,20 @@ header p {
 .tama-chat-review-mine { color: #e8735a; }
 .tama-chat-review-correct { color: #6fd88a; }
 .tama-chat-review-expl, .tama-chat-review-extra { margin-top: 0.3rem; color: var(--muted); }
+.tama-chat-export-text {
+  width: 100%;
+  height: 90px;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-family: monospace;
+  font-size: 0.72rem;
+  background: var(--bg);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  resize: vertical;
+}
+.tama-chat-export-text[hidden] { display: none; }
 
 .modal-close-btn {
   margin-top: 1rem;

@@ -1,0 +1,31 @@
+{
+  "datum": "2026-08-03",
+  "summary": "Starker Tag! 15 von 18 Fragen richtig, und bei allen drei Ausrutschern hast du es im zweiten Versuch sofort korrigiert — das ist genau das Zeichen, dass es Verwechslungen waren, keine echten Wissenslücken. Zytologie (1031) saß heute komplett; die drei Stolpersteine lagen alle in Histologie (1032), rund um Herzmuskel-Zellverbindungen, ein Vorzeichen beim Membranpotential und Bindegewebsfasern.",
+  "highlights": [
+    "Zytologie (1031): alle 5 Fragen auf Anhieb richtig — von Meiose-Mechanismen bis Organellen-Zuordnung.",
+    "Alle drei Fehler wurden beim direkten zweiten Versuch korrigiert — ein gutes Zeichen, dass es kleine Verwechslungen waren, nicht Nichtwissen."
+  ],
+  "reviewItems": [
+    {
+      "frage": "Was sind Disci intercalares (Glanzstreifen)?",
+      "meineAntwort": "Myelinisierte Abschnitte der Herznerven",
+      "korrekteAntwort": "Zell-Zell-Verbindungen zwischen Herzmuskelzellen: Gap Junctions (elektrische Kopplung) + Adhärens-Junctions (mechanische Kopplung)",
+      "erklaerung": "Disci intercalares = Glanzstreifen: transversal verlaufende Zell-Zell-Grenzen der Herzmuskulatur, bestehend aus Gap Junctions (elektrische Kopplung → funktionelles Synzytium) und Adhärens-Junctions/Desmosomen (mechanische Kopplung).",
+      "zusatz": "Verwechslungs-Alarm: 'Myelin' gehört zu NERVENzellen (Isolierung der Axone für saltatorische Leitung) — mit Herzmuskel-Zellverbindungen hat das nichts zu tun. Stell dir Disci intercalares wie 'Steckdosen' zwischen den Herzmuskelzellen vor: Gap Junctions leiten den elektrischen Reiz weiter, Adhärens-Junctions/Desmosomen halten die Zellen beim Kontrahieren mechanisch zusammen. Kein Myelin beteiligt."
+    },
+    {
+      "frage": "Welche Aussagen zum Nervengewebe sind korrekt? (u.a. war 'Ruhemembranpotential beträgt +70 mV' fälschlich mit ausgewählt)",
+      "meineAntwort": "... zusätzlich zu den zwei richtigen: Das Ruhemembranpotential beträgt +70 mV (innen positiv)",
+      "korrekteAntwort": "Astrozyten bilden die Blut-Hirn-Schranke durch Endfüsschen um Kapillaren; Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring",
+      "erklaerung": "Das Ruhemembranpotential beträgt -70 mV, also innen negativer als außen — nicht +70 mV.",
+      "zusatz": "Klassischer Vorzeichen-Stolperstein. Eselsbrücke: 'Ruhe' = Minus-Laune — das Zellinnere ist im Ruhezustand IMMER im Minus (-70 mV). Erst WÄHREND des Aktionspotentials kippt es kurz ins Positive (Peak bei ca. +35 mV durch Na+-Einstrom) — das ist aber die kurze Ausnahme, nicht der Ruhezustand. Wenn eine Frage 'Ruhemembranpotential' UND ein Pluszeichen zusammen zeigt, ist mindestens eins davon meistens falsch."
+    },
+    {
+      "frage": "Welche Aussagen zum Bindegewebe sind korrekt? (u.a. war 'Retikuläre Fasern bestehen aus Kollagen Typ I und bilden Sehnen' fälschlich mit ausgewählt)",
+      "meineAntwort": "... zusätzlich zu den zwei richtigen: Retikuläre Fasern bestehen aus Kollagen Typ I und bilden Sehnen",
+      "korrekteAntwort": "Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten; Mastzellen sezernieren Histamin bei allergischen Reaktionen",
+      "erklaerung": "Retikuläre Fasern bestehen aus Kollagen Typ III und bilden das Stützgitter in Lymphorganen (Milz, Lymphknoten, Knochenmark) — nicht Sehnen, die aus Kollagen Typ I bestehen.",
+      "zusatz": "Merkhilfe für die Kollagentypen: Typ I = 'Eins wie Sehne' — straffes Bindegewebe, Sehnen, Knochen, die 'kräftigen' groben Fasern. Typ III = die RETIKULÄREN (netzartigen) Fasern, benannt nach dem feinen Stützgitter ('Retikulum' = Netz), das sie in Lymphorganen bilden. Wenn 'retikulär' im Text steht, denk an 'Netz in der Milz/im Lymphknoten', nicht an Sehnen."
+    }
+  ]
+}

@@ -1159,13 +1159,29 @@ function pickReleaseLine(species, path) {
    live AI wired into the app (this is a static, offline-first PWA with no
    backend to safely hold an API key). Instead: exportTodayFeedback() bundles
    today's answered questions (G.stats.todayAnswers, see recordAnswer) into
-   a JSON file the player downloads and drops into feedback/inbox/ in the
-   repo; a human then asks Claude (in an ordinary Claude Code session, not a
-   live API call from this app) to read it and write a response into
-   feedback/outbox/latest.json, in the schema documented in
-   feedback/README.md. renderTamaChat() just fetches and displays whatever's
-   there — the "AI" here is a person invoking Claude Code normally, async,
-   not a feature of the running game.
+   JSON, gets it OFF the device (see below), and a human asks Claude (in an
+   ordinary Claude Code session, not a live API call from this app) to read
+   it and write a response into feedback/outbox/latest.json, in the schema
+   documented in feedback/README.md. renderTamaChat() just fetches and
+   displays whatever's there — the "AI" here is a person invoking Claude
+   Code normally, async, not a feature of the running game.
+
+   Getting the export OFF a phone and onto whatever machine has git access
+   is the actually annoying part of this loop, so exportTodayFeedback()
+   tries three escalating options rather than forcing a Downloads-folder
+   file every time:
+     1. navigator.share() with a file — the OS share sheet, letting you
+        hand it straight to whatever app you already use to move things
+        phone→PC (Telegram/WhatsApp-to-self, email, notes, a synced
+        clipboard app...). Best on mobile; most desktop browsers don't
+        support sharing files at all, so this silently isn't offered there.
+     2. Clipboard copy — works nearly everywhere Share doesn't; if you're
+        reading this on the same device you'll talk to Claude on, this is
+        the fastest option of all.
+     3. Plain file download — the original behavior, last resort.
+   The raw JSON is also always shown as selectable text in the modal
+   (#tama-chat-export-text) so manual copy is possible even if both browser
+   APIs are unavailable or denied.
 ══════════════════════════════════════════════════════════ */
 function buildFeedbackExport() {
   const entries = (G.stats.todayAnswers || []).map(a => {
@@ -1190,14 +1206,51 @@ function buildFeedbackExport() {
   };
 }
 
-function exportTodayFeedback() {
+async function exportTodayFeedback() {
   const data = buildFeedbackExport();
   if (!data.fragen.length) { showToast("Heute wurden noch keine Fragen beantwortet — noch nichts zu exportieren."); return; }
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const json = JSON.stringify(data, null, 2);
+  const filename = `alraeunchen-feedback-${data.datum}.json`;
+
+  // The raw text is always shown too (see renderTamaChat), so manual
+  // select-and-copy works even if neither browser API below is available.
+  const textEl = document.getElementById("tama-chat-export-text");
+  if (textEl) { textEl.value = json; textEl.hidden = false; }
+
+  // 1) OS share sheet (mobile) — hand the file straight to whatever app
+  // already moves things phone→PC for you (Telegram/WhatsApp-to-self,
+  // email, notes...), instead of a Downloads-folder file you then have to
+  // go find and move by hand.
+  if (navigator.canShare) {
+    try {
+      const file = new File([json], filename, { type: "application/json" });
+      if (navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: filename });
+        showToast("📤 Geteilt! Schick sie dir selbst zu, dann kann Claude draufschauen.");
+        return;
+      }
+    } catch (e) {
+      if (e && e.name === "AbortError") return; // user cancelled the share sheet — not a failure
+      // fall through to clipboard/download
+    }
+  }
+
+  // 2) Clipboard — works almost everywhere Share doesn't; if you're on the
+  // same device you'll talk to Claude on, this is the fastest path.
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(json);
+      showToast("📋 In die Zwischenablage kopiert! Irgendwo einfügen, wo du später drankommst.");
+      return;
+    } catch (e) { /* fall through to download */ }
+  }
+
+  // 3) Plain file download — last resort.
+  const blob = new Blob([json], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `alraeunchen-feedback-${data.datum}.json`;
+  a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
   showToast("📤 Exportiert! Datei nach feedback/inbox/ legen — dann in einer Claude-Code-Sitzung draufschauen lassen.");
@@ -1211,6 +1264,8 @@ function exportTodayFeedback() {
 function renderTamaChat() {
   const bodyEl = document.getElementById("tama-chat-body");
   if (!bodyEl) return;
+  const textEl = document.getElementById("tama-chat-export-text");
+  if (textEl) { textEl.hidden = true; textEl.value = ""; } // clear any previous session's exported text
   const species = G.tamagotchi ? G.tamagotchi.species : null;
   bodyEl.innerHTML = `<div class="tama-chat-bubble">${escapeHtmlText(pickTamaLine(species, "chat"))}</div>
     <div class="tama-chat-loading muted">Schau nach, ob es was Neues gibt…</div>`;

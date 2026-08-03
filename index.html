@@ -276,9 +276,13 @@
       <div class="row" style="margin-top:0.8rem">
         <button id="tama-chat-export-btn">📤 Heutige Fragen exportieren</button>
       </div>
+      <textarea id="tama-chat-export-text" class="tama-chat-export-text" readonly hidden
+        onclick="this.select()" title="Antippen zum Markieren, dann kopieren"></textarea>
       <div class="muted" style="font-size:0.78rem;margin-top:0.4rem">
-        Export nach <code>feedback/inbox/</code> legen und in einer Claude-Code-Sitzung
-        draufschauen lassen — die Antwort landet dann hier.
+        Wird geteilt oder in die Zwischenablage kopiert, wenn dein Browser das
+        unterstützt — sonst landet eine Datei im Downloads-Ordner. In jedem Fall:
+        nach <code>feedback/inbox/</code> legen (oder direkt zeigen) und in einer
+        Claude-Code-Sitzung draufschauen lassen — die Antwort landet dann hier.
       </div>
       <button id="close-tama-chat-btn" class="modal-close-btn">Schließen</button>
     </div>

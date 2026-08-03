@@ -1,0 +1,151 @@
+{
+  "datum": "2026-08-03",
+  "anzahlBeantwortet": 18,
+  "anzahlRichtig": 15,
+  "fragen": [
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Was ermöglicht die elektrische Kopplung der Herzmuskelzellen?",
+      "richtig": true,
+      "meineAntwort": "Gap Junctions in den Disci intercalares",
+      "korrekteAntwort": "Gap Junctions in den Disci intercalares",
+      "erklaerung": "Die elektrische Kopplung der Herzmuskelzellen erfolgt über Gap Junctions in den Disci intercalares, die Ionenströme direkt zwischen benachbarten Kardiomyozyten weiterleiten."
+    },
+    {
+      "kapitel": "Zytologie (1031)",
+      "frage": "Was sind die beiden Quellen genetischer Vielfalt bei der Meiose?",
+      "richtig": true,
+      "meineAntwort": "Crossing-over (Prophase I) und unabhängige Chromosomensegregation (Metaphase I)",
+      "korrekteAntwort": "Crossing-over (Prophase I) und unabhängige Chromosomensegregation (Metaphase I)",
+      "erklaerung": "Genetische Vielfalt bei der Meiose entsteht durch Crossing-over in der Prophase I (Rekombination) und zufällige Verteilung homologer Chromosomen in der Metaphase I."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Was passiert beim Aktionspotential unmittelbar nach der Depolarisation?",
+      "richtig": true,
+      "meineAntwort": "Repolarisation durch K+-Ausstrom (spannungsgesteuerte K+-Kanäle öffnen, Na+-Kanäle inaktivieren)",
+      "korrekteAntwort": "Repolarisation durch K+-Ausstrom (spannungsgesteuerte K+-Kanäle öffnen, Na+-Kanäle inaktivieren)",
+      "erklaerung": "Aktionspotential: Depolarisation durch Na+-Einstrom → Peak bei ~+35 mV → Repolarisation durch K+-Ausstrom (verzögert) + Na+-Kanal-Inaktivierung → Hyperpolarisation → Ruhepotential. Na+/K+-ATPase stellt Ionengradienten langsam wieder her (Energie für viele APs)."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Was sind Disci intercalares (Glanzstreifen)?",
+      "richtig": false,
+      "meineAntwort": "Myelinisierte Abschnitte der Herznerven",
+      "korrekteAntwort": "Zell-Zell-Verbindungen zwischen Herzmuskelzellen: Gap Junctions (elektrische Kopplung) + Adhärens-Junctions (mechanische Kopplung)",
+      "erklaerung": "Disci intercalares = Glanzstreifen: bei Herzmuskulatur transversal verlaufende Zell-Zell-Grenzen. Bestehen aus: Gap Junctions (elektrische Kopplung → funktionelles Synzytium) und Adhärens-Junctions/Desmosomen (mechanische Kopplung). Im Lichtmikroskop als dunkle Querstreifen sichtbar."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Was sind Disci intercalares (Glanzstreifen)?",
+      "richtig": true,
+      "meineAntwort": "Zell-Zell-Verbindungen zwischen Herzmuskelzellen: Gap Junctions (elektrische Kopplung) + Adhärens-Junctions (mechanische Kopplung)",
+      "korrekteAntwort": "Zell-Zell-Verbindungen zwischen Herzmuskelzellen: Gap Junctions (elektrische Kopplung) + Adhärens-Junctions (mechanische Kopplung)",
+      "erklaerung": "Disci intercalares = Glanzstreifen: bei Herzmuskulatur transversal verlaufende Zell-Zell-Grenzen. Bestehen aus: Gap Junctions (elektrische Kopplung → funktionelles Synzytium) und Adhärens-Junctions/Desmosomen (mechanische Kopplung). Im Lichtmikroskop als dunkle Querstreifen sichtbar."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Haarzellen des Innenohrs sind für sowohl Hören (Cochlea) als auch Gleichgewicht (Vestibularapparat) zuständig.",
+      "richtig": true,
+      "meineAntwort": "Wahr",
+      "korrekteAntwort": "Wahr",
+      "erklaerung": "Im Innenohr gibt es zwei Typen von Haarzellen: Cochleäre Haarzellen (in der Cochlea, Organ of Corti) → Schallwahrnehmung. Vestibuläre Haarzellen (in Macula utriculi/sacculi und Cristae ampullares) → Gleichgewichtssinn und Lage im Raum."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Gliazelltypen kommen im zentralen Nervensystem (ZNS) vor?",
+      "richtig": true,
+      "meineAntwort": "Astrozyten, Oligodendrozyten und Mikroglia",
+      "korrekteAntwort": "Astrozyten, Oligodendrozyten und Mikroglia",
+      "erklaerung": "ZNS-Gliazellen: Astrozyten (Stütze, Blut-Hirn-Schranke, K+-Pufferung), Oligodendrozyten (Myelinisierung im ZNS – ein Oligodendrozyt kann bis zu 50 Axone myelinisieren), Mikroglia (immunaktive Makrophagen des ZNS). Schwann-Zellen myelinisieren dagegen nur im peripheren Nervensystem (PNS) – ein Schwann-Zell-Segment pro Axon."
+    },
+    {
+      "kapitel": "Zytologie (1031)",
+      "frage": "Welche Organellen sind korrekt ihrer Hauptfunktion zugeordnet?",
+      "richtig": true,
+      "meineAntwort": "Golgi-Apparat – Proteinsortierung und Glykosylierung, Lysosom – Abbau durch saure Hydrolasen, Mitochondrium – oxidative Phosphorylierung (ATP)",
+      "korrekteAntwort": "Mitochondrium – oxidative Phosphorylierung (ATP), Lysosom – Abbau durch saure Hydrolasen, Golgi-Apparat – Proteinsortierung und Glykosylierung",
+      "erklaerung": "Mitochondrien (ATP), Lysosomen (saure Hydrolasen) und Golgi-Apparat (Sortierung/Glykosylierung) sind korrekt zugeordnet; das glatte ER synthetisiert Lipide, nicht Proteine."
+    },
+    {
+      "kapitel": "Zytologie (1031)",
+      "frage": "Was unterscheidet numerische von strukturellen Chromosomenaberrationen?",
+      "richtig": true,
+      "meineAntwort": "Numerisch = Änderung der Chromosomenzahl; strukturell = Änderung der Chromosomenstruktur bei gleicher Zahl",
+      "korrekteAntwort": "Numerisch = Änderung der Chromosomenzahl; strukturell = Änderung der Chromosomenstruktur bei gleicher Zahl",
+      "erklaerung": "Numerische Aberrationen verändern die Chromosomenzahl (z.B. Trisomie), während strukturelle Aberrationen (Deletion, Duplikation, Translokation) die Chromosomenstruktur bei gleicher Zahl verändern."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Aussage zur Ernährung von Epithelgewebe ist korrekt?",
+      "richtig": true,
+      "meineAntwort": "Diffusion aus dem subepithelial gelegenen Bindegewebe durch die Basalmembran",
+      "korrekteAntwort": "Diffusion aus dem subepithelial gelegenen Bindegewebe durch die Basalmembran",
+      "erklaerung": "Epithelgewebe ist gefäßlos und erhält Nährstoffe ausschließlich durch Diffusion aus dem darunter liegenden Bindegewebe durch die Basalmembran."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Sekretionsart nutzt Vesikelexozytose ohne Verlust von Zellmaterial?",
+      "richtig": true,
+      "meineAntwort": "Merokrine (ekkrine) Sekretion",
+      "korrekteAntwort": "Merokrine (ekkrine) Sekretion",
+      "erklaerung": "Merokrin (ekkrin) = Vesikel verschmelzen mit der Zellmembran, Sekret wird ausgeschüttet, Zelle bleibt intakt. Beispiel: Bauchspeicheldrüse, Schweissdrüsen. Apokrin: Abschnürung des Zellapex (z.B. Milchdrüse). Holokrin: gesamte Zelle wird zum Sekret (z.B. Talgdrüse)."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Aussagen zu den drei Knochenzellypen sind korrekt?",
+      "richtig": true,
+      "meineAntwort": "Osteoblasten – Knochenaufbau durch Osteoid-Synthese und Mineralisation, Osteozyten – eingemauerte ehemalige Osteoblasten, Erhalt des Knochens, Osteoklasten – mehrkernige Riesenzellen, Knochenabbau durch Säuresekretion",
+      "korrekteAntwort": "Osteoblasten – Knochenaufbau durch Osteoid-Synthese und Mineralisation, Osteozyten – eingemauerte ehemalige Osteoblasten, Erhalt des Knochens, Osteoklasten – mehrkernige Riesenzellen, Knochenabbau durch Säuresekretion",
+      "erklaerung": "Osteoblasten bauen Knochen auf (Osteoid-Synthese/Mineralisation), Osteozyten erhalten ihn als eingemauerte ehemalige Osteoblasten, und Osteoklasten bauen ihn durch Salzsäuresekretion ab."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Aussagen zum Nervengewebe sind korrekt?",
+      "richtig": false,
+      "meineAntwort": "Das Ruhemembranpotential beträgt +70 mV (innen positiv), Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring, Astrozyten bilden die Blut-Hirn-Schranke durch Endfüsschen um Kapillaren",
+      "korrekteAntwort": "Astrozyten bilden die Blut-Hirn-Schranke durch Endfüsschen um Kapillaren, Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring",
+      "erklaerung": "Astrozyten: Blut-Hirn-Schranke. Saltatorische Leitung: Ranvier-Schnürringe. Oligodendrozyten: ZNS (nicht PNS – dort Schwann-Zellen). Ruhemembranpotential: -70 mV (innen negativ)."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Aussagen zum Nervengewebe sind korrekt?",
+      "richtig": true,
+      "meineAntwort": "Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring, Astrozyten bilden die Blut-Hirn-Schranke durch Endfüsschen um Kapillaren",
+      "korrekteAntwort": "Astrozyten bilden die Blut-Hirn-Schranke durch Endfüsschen um Kapillaren, Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring",
+      "erklaerung": "Astrozyten: Blut-Hirn-Schranke. Saltatorische Leitung: Ranvier-Schnürringe. Oligodendrozyten: ZNS (nicht PNS – dort Schwann-Zellen). Ruhemembranpotential: -70 mV (innen negativ)."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Proteine bilden die strukturelle Grundlage von Tight Junctions?",
+      "richtig": true,
+      "meineAntwort": "Claudine und Occludin",
+      "korrekteAntwort": "Claudine und Occludin",
+      "erklaerung": "Tight Junctions bestehen aus Transmembranproteinen: Claudine (verschiedene Subtypen regulieren Selektivität) und Occludin sind die Hauptbausteine. Connexine bilden Gap Junctions. Keratin und Desmoplakin gehören zu Desmosomen. Kollagen IV/Laminin sind Basalmembranbestandteile."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Gutartige Geschwülste aus Fettgewebe werden als Lipome bezeichnet.",
+      "richtig": true,
+      "meineAntwort": "Wahr",
+      "korrekteAntwort": "Wahr",
+      "erklaerung": "Lipome sind die häufigsten gutartigen Weichteiltumoren des Menschen. Sie entstehen aus Adipozyten und wachsen langsam. Bösartige Fettgewebstumore heißen Liposarkome (selten). Das Fettgewebe unterliegt einem ständigen Molekülaustausch – die im Fettgewebe angehäuften Moleküle werden beständig erneuert."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Aussagen zum Bindegewebe sind korrekt?",
+      "richtig": false,
+      "meineAntwort": "Retikuläre Fasern bestehen aus Kollagen Typ I und bilden Sehnen, Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten, Mastzellen sezernieren Histamin bei allergischen Reaktionen",
+      "korrekteAntwort": "Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten, Mastzellen sezernieren Histamin bei allergischen Reaktionen",
+      "erklaerung": "Fibroblasten: Matrixsynthese. Mastzellen: Histamin, Allergie. Straffes Bindegewebe: viele Fasern, wenig Zellen (umgekehrt als lockeres). Retikuläre Fasern: Kollagen Typ III, Stützgitter in Lymphorganen (nicht Sehnen, die sind Typ I)."
+    },
+    {
+      "kapitel": "Histologie (1032)",
+      "frage": "Welche Aussagen zum Bindegewebe sind korrekt?",
+      "richtig": true,
+      "meineAntwort": "Mastzellen sezernieren Histamin bei allergischen Reaktionen, Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten",
+      "korrekteAntwort": "Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten, Mastzellen sezernieren Histamin bei allergischen Reaktionen",
+      "erklaerung": "Fibroblasten: Matrixsynthese. Mastzellen: Histamin, Allergie. Straffes Bindegewebe: viele Fasern, wenig Zellen (umgekehrt als lockeres). Retikuläre Fasern: Kollagen Typ III, Stützgitter in Lymphorganen (nicht Sehnen, die sind Typ I)."
+    }
+  ]
+}
