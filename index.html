@@ -32,6 +32,7 @@
     <button id="top-tab-games"     class="top-tab">🍕 Taverne</button>
     <button id="top-tab-watersort" class="top-tab">🧪 Tränke</button>
     <button id="top-tab-mosaik"    class="top-tab">🧩 Mosaik</button>
+    <button id="top-tab-fresko"    class="top-tab">🏛️ Fresko</button>
     <button id="top-tab-hole"      class="top-tab">🕳️ Loch</button>
   </div>
 
@@ -140,6 +141,25 @@
       </button>
       <div id="ms-discard-status" class="ms-discard-status"></div>
       <button id="ms-restart-btn" class="ms-icon-btn" title="Neu starten">🔄</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
+       SCREEN: Fresko (edge-in picture excavation, no gravity)
+  ════════════════════════════════════════════════════ -->
+  <div id="screen-fresko" class="mode-screen" hidden>
+    <div id="fr-level-info" class="ws-level-info"></div>
+    <div id="fr-bucket-row" class="fr-bucket-row"></div>
+    <div class="fr-canvas-wrap">
+      <canvas id="fr-grid" class="fr-grid"></canvas>
+    </div>
+    <div id="fr-color-row" class="fr-color-row"></div>
+    <div class="fr-controls-row">
+      <button id="fr-buy-slot-btn" class="fr-icon-btn" title="Behälter freischalten (1 Frage)">
+        🪣<span class="fr-icon-btn-badge" id="fr-buy-slot-badge"></span>
+      </button>
+      <div id="fr-discard-status" class="fr-discard-status"></div>
+      <button id="fr-restart-btn" class="fr-icon-btn" title="Neu starten">🔄</button>
     </div>
   </div>
 
@@ -352,6 +372,7 @@
   <script src="./js/game.js"></script>
   <script src="./js/watersort.js"></script>
   <script src="./js/mosaik.js"></script>
+  <script src="./js/fresko.js"></script>
   <script src="./js/vendor/three.min.js"></script>
   <script src="./js/vendor/cannon.min.js"></script>
   <script src="./js/hole.js"></script>

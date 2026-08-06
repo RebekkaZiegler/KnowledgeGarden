@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "3.4.0";   // ← bump this with every push
+const APP_VERSION    = "3.5.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -190,6 +190,8 @@ function defaultState() {
       parkingBaysUnlockedTotal:   0,
       mosaikLevelsCompleted:      0,
       mosaikContainersDiscarded:  0,
+      freskoLevelsCompleted:      0,
+      freskoContainersDiscarded:  0,
       firstPlayDate:         null,
       dailyDate:             null,
       dailyCorrect:          0,
@@ -241,6 +243,17 @@ function defaultState() {
       discardsUsed:        0,   // LIVE: resets to 0 each level start; capped at MS_MAX_DISCARDS_PER_LEVEL
       slotsUnlocked:       0,   // LIVE: resets to max(1, level.db - MS_STARTING_SLOTS_HANDICAP) each level start; buyable up to level.db
       depotReleased:      [],   // LIVE: parallel array to level.depot.cells — index i true = that ONE-TIME-USE bucket has been sent for good; resets to a fresh all-false array (length level.depot.cells.length) each level start
+    },
+
+    fresko: {
+      playOrder:          [],   // shuffled permutation of [0..FR_LEVEL_COUNT-1]
+      playOrderPos:        0,
+      currentLevelIndex:   null,
+      present:             [],  // LIVE: flat boolean array parallel to level.grid, true = not yet chipped away; [] = "no level loaded" sentinel
+      containers:          [],  // LIVE: [{color, family, capacity, filled, msSinceCollect}, ...] — active buckets, length <= slotsUnlocked
+      discardsUsed:        0,   // LIVE: resets to 0 each level start; capped at FR_MAX_DISCARDS_PER_LEVEL
+      slotsUnlocked:       0,   // LIVE: resets to max(1, level.db - FR_STARTING_SLOTS_HANDICAP) each level start; buyable up to level.db
+      depotReleased:      [],   // LIVE: parallel array to level.depot.cells — index i true = that ONE-TIME-USE bucket has been sent for good
     },
 
     hole: {
@@ -349,6 +362,22 @@ function normalizeState(s) {
   s.mosaik.containers    = Array.isArray(s.mosaik.containers)     ? s.mosaik.containers   : [];
   s.mosaik.discardsUsed  = Number.isFinite(s.mosaik.discardsUsed) ? s.mosaik.discardsUsed : 0;
   s.mosaik.depotReleased = Array.isArray(s.mosaik.depotReleased)  ? s.mosaik.depotReleased : [];
+
+  s.stats.freskoLevelsCompleted     = s.stats.freskoLevelsCompleted     || 0;
+  s.stats.freskoContainersDiscarded = s.stats.freskoContainersDiscarded || 0;
+  s.fresko = Object.assign({}, d.fresko, s.fresko || {});
+  // Defensive shape guard, same reasoning as Mosaik's: `present` must be a
+  // flat array of booleans (Fresko has no legacy shape yet since this is
+  // its first version, but a bad/foreign save should still fall back
+  // cleanly rather than crash the RAF loop on load).
+  const freskoPresentShapeOk = Array.isArray(s.fresko.present) &&
+    s.fresko.present.every(v => typeof v === 'boolean');
+  if (!freskoPresentShapeOk) s.fresko = Object.assign({}, d.fresko);
+  s.fresko.playOrder     = Array.isArray(s.fresko.playOrder)      ? s.fresko.playOrder    : [];
+  s.fresko.present       = Array.isArray(s.fresko.present)        ? s.fresko.present      : [];
+  s.fresko.containers    = Array.isArray(s.fresko.containers)     ? s.fresko.containers   : [];
+  s.fresko.discardsUsed  = Number.isFinite(s.fresko.discardsUsed) ? s.fresko.discardsUsed : 0;
+  s.fresko.depotReleased = Array.isArray(s.fresko.depotReleased)  ? s.fresko.depotReleased : [];
 
   // Loch's own stale-level-index guard (against HL_LEVEL_COUNT) lives in
   // hlEnsureQueueAndLevel, same as the other three minigames' — this block
@@ -2882,6 +2911,9 @@ const ACHIEVEMENTS = [
   { id: 'ms_1',      icon: '🧩', name: 'Erstes Mosaik',      desc: '1 Mosaik-Level gelöst',              check: s => (s.mosaikLevelsCompleted || 0) >= 1 },
   { id: 'ms_10',     icon: '🎨', name: 'Farbenspiel',        desc: '10 Mosaik-Level gelöst',             check: s => (s.mosaikLevelsCompleted || 0) >= 10 },
   { id: 'ms_50',     icon: '🖼️', name: 'Mosaik-Meister',     desc: '50 Mosaik-Level gelöst',              check: s => (s.mosaikLevelsCompleted || 0) >= 50 },
+  { id: 'fr_1',      icon: '🏛️', name: 'Erstes Fresko',      desc: '1 Fresko freigelegt',                 check: s => (s.freskoLevelsCompleted || 0) >= 1 },
+  { id: 'fr_10',     icon: '🖌️', name: 'Restaurator',        desc: '10 Fresken freigelegt',               check: s => (s.freskoLevelsCompleted || 0) >= 10 },
+  { id: 'fr_50',     icon: '🏺', name: 'Fresko-Meister',     desc: '50 Fresken freigelegt',                check: s => (s.freskoLevelsCompleted || 0) >= 50 },
   { id: 'day_5',     icon: '📅', name: '5 Tage',            desc: '5 Tage gespielt',                    check: s => (s.daysPlayed || 0) >= 5 },
   { id: 'day_30',    icon: '🗓️', name: 'Ein Monat',         desc: '30 Tage gespielt',                   check: s => (s.daysPlayed || 0) >= 30 },
 ];
@@ -3295,7 +3327,7 @@ function renderAll() {
 /* ══════════════════════════════════════════════════════════
    MODE SWITCHING — top tabs (Alräunchen / Taverne)
 ══════════════════════════════════════════════════════════ */
-const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", mosaik: "screen-mosaik", hole: "screen-hole" };
+const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", mosaik: "screen-mosaik", fresko: "screen-fresko", hole: "screen-hole" };
 
 function switchTopTab(tab) {
   Object.entries(TOP_TAB_SCREENS).forEach(([t, id]) => {
@@ -3312,6 +3344,7 @@ function switchTopTab(tab) {
   if (tab === "tama") renderTamagotchi();
   if (tab === "watersort") window.wsEnsureQueueAndLevel && window.wsEnsureQueueAndLevel();
   if (tab === "mosaik") window.msEnsureQueueAndLevel && window.msEnsureQueueAndLevel();
+  if (tab === "fresko") window.frEnsureQueueAndLevel && window.frEnsureQueueAndLevel();
   if (tab === "hole") window.hlEnsureQueueAndLevel && window.hlEnsureQueueAndLevel();
 
   G.activeMode = tab;
@@ -3397,6 +3430,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("top-tab-games")?.addEventListener("click",     () => switchTopTab("games"));
   document.getElementById("top-tab-watersort")?.addEventListener("click", () => switchTopTab("watersort"));
   document.getElementById("top-tab-mosaik")?.addEventListener("click",    () => switchTopTab("mosaik"));
+  document.getElementById("top-tab-fresko")?.addEventListener("click",    () => switchTopTab("fresko"));
   document.getElementById("top-tab-hole")?.addEventListener("click",      () => switchTopTab("hole"));
 
   // Alräunchen feed button
@@ -3411,6 +3445,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mosaik controls — discard is wired per-bucket in msRenderColorRow, not a single static button
   document.getElementById("ms-restart-btn")?.addEventListener("click",  () => window.msRestartLevel  && window.msRestartLevel());
   document.getElementById("ms-buy-slot-btn")?.addEventListener("click", () => window.msBuyExtraSlot  && window.msBuyExtraSlot());
+
+  // Fresko controls — discard is wired per-bucket in frRenderColorRow, not a single static button
+  document.getElementById("fr-restart-btn")?.addEventListener("click",  () => window.frRestartLevel  && window.frRestartLevel());
+  document.getElementById("fr-buy-slot-btn")?.addEventListener("click", () => window.frBuyExtraSlot  && window.frBuyExtraSlot());
 
   // Loch controls
   document.getElementById("hl-start-btn")?.addEventListener("click",   () => window.hlStartAttempt && window.hlStartAttempt());

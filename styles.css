@@ -4283,3 +4283,173 @@ body.plant-open #back-to-garden-btn { display: block; }
   box-shadow: 0 0 0 2px var(--bg1, #141a17);
 }
 
+/* ═══════════════════════════════════════
+   FRESKO (edge-in picture excavation, no gravity/belt) —
+   same bucket-row/depot-grid visuals as Mosaik's (.ms-bucket-row/
+   .ms-depot-grid above), duplicated under fr- rather than reused directly
+   so the two games' CSS stays decoupled (matches this app's per-game
+   namespacing convention). No belt-track/overlay/particle canvas here —
+   containers never move, so .fr-canvas-wrap only ever holds the one
+   picture canvas.
+═══════════════════════════════════════ */
+.fr-bucket-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: min(94vw, 420px);
+  margin: 0 auto 0.6rem;
+}
+.fr-bucket-slot {
+  position: relative;
+  flex: 1 0 32px;
+  aspect-ratio: 1.2;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+.fr-bucket-slot--empty { background: rgba(61, 140, 82, 0.18); border: 1px dashed rgba(61, 140, 82, 0.5); }
+.fr-bucket-slot--locked {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--bg2) 0px, var(--bg2) 5px,
+    var(--bg3) 5px, var(--bg3) 10px
+  );
+}
+.fr-bucket-slot--filled {
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+  background: var(--bg3);
+  cursor: pointer;
+}
+.fr-bucket-slot--filled:active { transform: scale(0.94); }
+.fr-bucket-fill {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.35);
+  transition: height 0.3s ease-out;
+}
+.fr-bucket-label {
+  position: relative;
+  padding: 2px 0 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+.fr-discard-status {
+  font-size: 0.75rem;
+  opacity: 0.75;
+  align-self: center;
+}
+.fr-depot-grid {
+  display: grid;
+  gap: 4px;
+  width: min(94vw, 420px);
+  max-height: 46vh;
+  overflow-y: auto;
+  margin: 0.6rem auto 0;
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.08);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12);
+}
+.fr-depot-cell {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, opacity 0.15s;
+}
+.fr-depot-cell--blocked {
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7), 0 0 4px rgba(0,0,0,0.5);
+  cursor: not-allowed;
+  border: 2px dashed rgba(0,0,0,0.55);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+  transform: scale(0.86);
+}
+.fr-depot-cell--idle {
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.25);
+  animation: fr-depot-ready-pulse 1.6s ease-in-out infinite;
+}
+.fr-depot-cell--idle:active { transform: scale(0.92); }
+.fr-depot-cell--exhausted {
+  opacity: 0.35;
+  cursor: default;
+  filter: grayscale(0.4);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+}
+@keyframes fr-depot-ready-pulse {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 0 0 0 rgba(255,255,255,0.5); }
+  50%      { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25), 0 0 0 3px rgba(255,255,255,0); }
+}
+.fr-canvas-wrap {
+  position: relative;
+  width: min(94vw, 420px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, var(--bg3), var(--bg2));
+  box-shadow: 0 2px 0 rgba(0,0,0,0.15), inset 0 0 0 1px rgba(0,0,0,0.15), 0 6px 16px rgba(0,0,0,0.2);
+}
+.fr-grid {
+  position: absolute;
+  top: 10px; left: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border-radius: 10px;
+  image-rendering: pixelated;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+}
+.fr-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0.7rem auto 0;
+}
+.fr-icon-btn {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(160deg, var(--bg3), var(--bg2));
+  box-shadow: 0 2px 0 rgba(0,0,0,0.2), inset 0 0 0 1px rgba(0,0,0,0.15);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.fr-icon-btn:active { transform: scale(0.92); }
+.fr-icon-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.fr-icon-btn-badge {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  min-width: 18px;
+  padding: 1px 4px;
+  border-radius: 9px;
+  background: var(--accent, #e0413a);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 0 0 2px var(--bg1, #141a17);
+}
+
