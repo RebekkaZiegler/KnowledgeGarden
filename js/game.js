@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "3.3.0";   // ← bump this with every push
+const APP_VERSION    = "3.4.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -231,16 +231,6 @@ function defaultState() {
       selectedBottle:      null, // tap-selected source bottle index, or null
     },
 
-    parkingLot: {
-      playOrder:          [],    // shuffled permutation of [0..PL_LEVEL_COUNT-1]
-      playOrderPos:        0,
-      currentLevelIndex:   null,
-      parkedMask:           0,   // LIVE: bit i set = car i still parked
-      bayCar:              [],   // LIVE: len=level's maxBays; carIdx or null — [] = "no level loaded" sentinel
-      bayFilled:           [],   // LIVE: parallel array, seats filled so far per bay slot
-      queuePos:             0,   // LIVE: index into level's passenger queue (front pointer)
-      bayUnlocked:           0,  // LIVE: resets to level.db each level start; grows via plBuyExtraBay up to maxBays
-    },
 
     mosaik: {
       playOrder:          [],   // shuffled permutation of [0..MS_LEVEL_COUNT-1]
@@ -306,18 +296,13 @@ function normalizeState(s) {
   if (s.waterSort.bottles.length > 0 && Array.isArray(s.waterSort.bottles[0])) {
     s.waterSort = Object.assign({}, d.waterSort);
   }
+  // Parkplatz was retired — parkingLevelsCompleted/parkingBaysUnlockedTotal
+  // stay defaulted (harmless, preserves any already-earned trophy history
+  // for past players, same reasoning as the Memory minigame's retirement);
+  // the live parkingLot board state itself had no historical value and is
+  // no longer created or migrated.
   s.stats.parkingLevelsCompleted   = s.stats.parkingLevelsCompleted   || 0;
   s.stats.parkingBaysUnlockedTotal = s.stats.parkingBaysUnlockedTotal || 0;
-  s.parkingLot = Object.assign({}, d.parkingLot, s.parkingLot || {});
-  // Old shape (Rush Hour sliding cars) had a non-empty `vehicles` array,
-  // which the new passenger-matching shape never has — presence of one is
-  // exactly the old-shape signal, so discard rather than migrate.
-  if (Array.isArray(s.parkingLot.vehicles) && s.parkingLot.vehicles.length > 0) {
-    s.parkingLot = Object.assign({}, d.parkingLot);
-  }
-  s.parkingLot.playOrder = Array.isArray(s.parkingLot.playOrder) ? s.parkingLot.playOrder : [];
-  s.parkingLot.bayCar    = Array.isArray(s.parkingLot.bayCar)    ? s.parkingLot.bayCar    : [];
-  s.parkingLot.bayFilled = Array.isArray(s.parkingLot.bayFilled) ? s.parkingLot.bayFilled : [];
 
   s.stats.mosaikLevelsCompleted     = s.stats.mosaikLevelsCompleted     || 0;
   s.stats.mosaikContainersDiscarded = s.stats.mosaikContainersDiscarded || 0;
@@ -3310,7 +3295,7 @@ function renderAll() {
 /* ══════════════════════════════════════════════════════════
    MODE SWITCHING — top tabs (Alräunchen / Taverne)
 ══════════════════════════════════════════════════════════ */
-const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", parking: "screen-parking", mosaik: "screen-mosaik", hole: "screen-hole" };
+const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", mosaik: "screen-mosaik", hole: "screen-hole" };
 
 function switchTopTab(tab) {
   Object.entries(TOP_TAB_SCREENS).forEach(([t, id]) => {
@@ -3326,7 +3311,6 @@ function switchTopTab(tab) {
 
   if (tab === "tama") renderTamagotchi();
   if (tab === "watersort") window.wsEnsureQueueAndLevel && window.wsEnsureQueueAndLevel();
-  if (tab === "parking") window.plEnsureQueueAndLevel && window.plEnsureQueueAndLevel();
   if (tab === "mosaik") window.msEnsureQueueAndLevel && window.msEnsureQueueAndLevel();
   if (tab === "hole") window.hlEnsureQueueAndLevel && window.hlEnsureQueueAndLevel();
 
@@ -3408,11 +3392,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
-  // Top tabs (Alräunchen / Taverne / Tränke / Parkplatz / Mosaik / Loch)
+  // Top tabs (Alräunchen / Taverne / Tränke / Mosaik / Loch)
   document.getElementById("top-tab-tama")?.addEventListener("click",      () => switchTopTab("tama"));
   document.getElementById("top-tab-games")?.addEventListener("click",     () => switchTopTab("games"));
   document.getElementById("top-tab-watersort")?.addEventListener("click", () => switchTopTab("watersort"));
-  document.getElementById("top-tab-parking")?.addEventListener("click",   () => switchTopTab("parking"));
   document.getElementById("top-tab-mosaik")?.addEventListener("click",    () => switchTopTab("mosaik"));
   document.getElementById("top-tab-hole")?.addEventListener("click",      () => switchTopTab("hole"));
 
@@ -3424,10 +3407,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Water Sort controls
   document.getElementById("ws-buy-bottle-btn")?.addEventListener("click", () => window.wsBuyExtraBottle && window.wsBuyExtraBottle());
   document.getElementById("ws-restart-btn")?.addEventListener("click",    () => window.wsRestartLevel   && window.wsRestartLevel());
-
-  // Parkplatz controls
-  document.getElementById("pl-buy-bay-btn")?.addEventListener("click", () => window.plBuyExtraBay && window.plBuyExtraBay());
-  document.getElementById("pl-restart-btn")?.addEventListener("click", () => window.plRestartLevel && window.plRestartLevel());
 
   // Mosaik controls — discard is wired per-bucket in msRenderColorRow, not a single static button
   document.getElementById("ms-restart-btn")?.addEventListener("click",  () => window.msRestartLevel  && window.msRestartLevel());
