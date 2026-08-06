@@ -3,25 +3,21 @@
 // the stencil shapes, or just reroll the level pool. Paste the printed
 // `const HL_LEVELS = [...]` line over the existing one in js/hole.js.
 //
-// v3: objects are no longer scattered into loose random clusters — each
-// level is a handful of "sites" scattered across a big world (much larger
-// than one screen; the live game's camera follows the hole and pans/zooms
-// as it grows rather than showing one small fixed board), and each site's
-// objects are placed on the "on" cells of a simple icon silhouette (star/
-// heart/house/etc. — see HL_STENCILS) rather than randomly, so a pile reads
-// as a recognizable shape from above before you dig into it.
+// v4: within one pile, same-size objects are grouped together — a
+// concentric-ring circle (small in the middle, bigger further out), a
+// flat triangle in uniform rows, or a genuine vertical tower of one size
+// stacked to the top — rather than v3's per-object random size scattered
+// across a shape's footprint. See planLevelSites/hlStencilBand below.
 //
 // Still runs a REAL headless Cannon.js physics simulation per level:
 //   1. Build a global class sequence (indices into HL_SIZE_CLASSES, shared
 //      with js/hole.js) via the same "next index <= currently reachable
 //      index" construction used by every other minigame's generator in this
-//      repo, then hand out contiguous chunks of it to each site's cells (a
-//      contiguous chunk has a narrower size range than a random sample of
-//      the same length would — see dropAndSettle's comment on why that
-//      matters for box colliders specifically).
+//      repo — except now it's one class per GROUP (a ring, a row, a whole
+//      tower), not one class per individual object.
 //   2. Drop those objects (as box bodies — see dropAndSettle's comment on
-//      why boxes, not spheres) from a short height above their stencil
-//      cell's world position, and let them settle under gravity.
+//      why boxes, not spheres) from a short height above their group's
+//      world position(s), and let them settle under gravity.
 //   3. Bake the SETTLED transforms into the level data — the live game loads
 //      this pre-settled snapshot directly rather than re-simulating the drop
 //      every session.
@@ -41,10 +37,12 @@
 //   - The rim collider MUST have real vertical extent (a cylinder, not a
 //     flat disc) — confined to floor height, it could never dislodge
 //     anything sitting on TOP of a pile.
-//   - Box colliders stack (spheres barely do), but too wide a size spread
-//     within one pile can bury a small object under a big one in a way
-//     that's genuinely hard to guarantee reachable — this is why
-//     HL_MAX_CLASS_IDX_CAP stays well below HL_SIZE_CLASSES' full range.
+//   - Box colliders stack (spheres barely do), but a big class spread
+//     WITHIN one vertically-stacked pile can bury a small object under a
+//     big one in a way that's genuinely hard to guarantee reachable — see
+//     the note on HL_MAX_CLASS_IDX_CAP below for why grouping by uniform
+//     size (this version's whole point) sidesteps that risk structurally
+//     rather than just capping the size range tighter.
 //   - A single static visit doesn't always dislodge a wedged box; jiggling
 //     the rim with small random offsets around each target does, reliably.
 
@@ -113,14 +111,65 @@ function hlStencilCells(name, gridSize) {
   return cells;
 }
 
+// Which uniform-size BAND a cell belongs to, band 0 being wherever the
+// pile is easiest to start eating into (so a freshly-arrived, still-small
+// hole always has *something* immediately reachable) and higher bands
+// growing outward/upward from there — a concentric-ring circle (band 0 =
+// center, growing outward), a flat triangle/house/tree/heart/arrow in
+// uniform rows (band 0 = base, growing toward the tip), all objects
+// resting flat on the ground within any one of these (no vertical
+// stacking — that's what the dedicated 'stack' site type below is for).
+const HL_STENCIL_BANDS = 3;
+function hlStencilBand(name, x, y) {
+  switch (name) {
+    case 'circle':
+    case 'ring':
+    case 'diamond': {
+      const rho = name === 'diamond' ? Math.abs(x) + Math.abs(y) : Math.sqrt(x * x + y * y);
+      return Math.min(HL_STENCIL_BANDS - 1, Math.floor(rho * HL_STENCIL_BANDS));
+    }
+    case 'cross': {
+      const rho = Math.max(Math.abs(x), Math.abs(y));
+      return Math.min(HL_STENCIL_BANDS - 1, Math.floor(rho * HL_STENCIL_BANDS));
+    }
+    default: { // heart, arrow, house, tree — row bands, base (y=-1) to tip (y=1)
+      const t = (y + 1) / 2;
+      return Math.min(HL_STENCIL_BANDS - 1, Math.max(0, Math.floor(t * HL_STENCIL_BANDS)));
+    }
+  }
+}
+
 const HL_STENCIL_GRID = 9;      // resolution each site's stencil is rasterized at — 23-49 "on" cells depending on shape
 const HL_STENCIL_CELL_SIZE = 0.75; // world units per cell — a 9-cell-wide shape spans ~6 units, comfortably inside the live game's initial (zoomed-in) camera view
 
-// Difficulty ramp: site count grows from 2 to 5 across the pool (each site
-// is one stencil-shaped pile, ~25-55 objects depending on the shape and how
-// many cells get a 2nd stacked object). The class cap stays at 3 (of
-// HL_SIZE_CLASSES' 7 entries) for the same box-collider burial-risk reason
-// as before — see this file's header.
+// A genuine vertical tower — several columns of ONE uniform size stacked
+// straight up, rather than a flat footprint. Whole-tower-one-size (not
+// graduated by height) is deliberate: a big object resting on a small one
+// is a real physical burial risk (see this file's header); uniform boxes
+// stacking on each other is the one configuration already proven to
+// settle reliably AND stay fully solvable — once the hole reaches that
+// one class, the tower's whole base becomes eatable at once and crumbles
+// down from there.
+const HL_STACK_CHANCE = 0.25;
+const HL_STACK_COLUMNS_MIN = 1, HL_STACK_COLUMNS_MAX = 3;
+// Capped at 8, not the visually-more-dramatic 11 originally tried — measured
+// directly (see makeWorld's solver.iterations comment): even at 25 solver
+// iterations, an 11-tall column with realistic per-box jitter reliably only
+// keeps 1-3 boxes actually stacked before toppling, while 6-8 stays at
+// 97-100% of full height across many random seeds. A shorter tower that
+// reliably stands beats a taller one that collapses into a flat pile.
+const HL_STACK_HEIGHT_MIN = 4, HL_STACK_HEIGHT_MAX = 8;
+
+// Difficulty ramp: site count grows from 2 to 5 across the pool. The class
+// cap stays at 3 (of HL_SIZE_CLASSES' 7 entries) — grouping by uniform size
+// (this version's whole point) removes the risk of a small object ending
+// up physically buried under a much bigger one (different-class groups are
+// always spatially separate: different rings, different rows, never
+// stacked on top of each other), but that was only ever ONE of the two
+// reasons the cap existed — the other being that a wider size spread also
+// just means fewer, sparser levels within the same object-count budget.
+// Worth revisiting with real testing if more size variety is wanted later;
+// left conservative here rather than re-opening that whole tuning pass.
 const HL_LEVEL_COUNT = 40;
 const HL_MAX_CLASS_IDX_CAP = 3;
 function levelParams(levelIndex) {
@@ -129,17 +178,19 @@ function levelParams(levelIndex) {
   return { siteCount, maxClassIdx };
 }
 
-// Same "eating order" construction as before: each new object's class is
+// Same "eating order" construction as before: each new GROUP's class is
 // drawn from [0, min(reachableIdx, maxClassIdx)], reachableIdx ratcheting up
 // after each draw. Under the live game's THRESHOLD growth rule (see
 // hlGrowthThreshold) this is a slightly conservative — but still safe —
 // heuristic for "roughly how much size variety is reasonable to hand out";
 // the real solvability proof is verifyClears below, which uses the actual
-// threshold rule, not this construction.
-function buildClassSequence(objectCount, maxClassIdx, rng) {
+// threshold rule, not this construction. Operates on GROUPS now (one
+// uniform-size ring/row/tower), not individual objects — same function,
+// just called with a group count instead of a raw object count.
+function buildClassSequence(count, maxClassIdx, rng) {
   let reachableIdx = 0;
   const classes = [];
-  for (let i = 0; i < objectCount; i++) {
+  for (let i = 0; i < count; i++) {
     const cap = Math.min(reachableIdx, maxClassIdx);
     const idx = Math.floor(rng() * (cap + 1));
     classes.push(idx);
@@ -152,7 +203,19 @@ function makeWorld() {
   const world = new CANNON.World();
   world.gravity.set(0, -9.82, 0);
   world.broadphase = new CANNON.NaiveBroadphase();
-  world.solver.iterations = 10;
+  // 10 (the original value, fine for the flat single-layer stencil groups)
+  // turned out nowhere near enough for the 'stack' site type: measured
+  // directly, a column of boxes released together and left to settle at 10
+  // iterations just sinks straight through each other and ends up flat on
+  // the floor, no matter the mass or how little the boxes are jittered —
+  // classic under-resolved-stacking-contacts. 25 reliably keeps a
+  // realistically-jittered 6-7-box column at 97-100% of its full stacked
+  // height across many seeds; below ~20 it's unreliable. Costs more solver
+  // time per step, but only actively-colliding (awake) bodies are ever
+  // iterated — a big resting level pays for this at effectively zero
+  // ongoing cost, same reasoning as the sleep-state performance argument
+  // elsewhere in this file.
+  world.solver.iterations = 25;
   const ground = new CANNON.Body({ mass: 0 });
   ground.addShape(new CANNON.Plane());
   ground.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2);
@@ -195,30 +258,44 @@ function pickSiteCenters(siteCount, rng) {
   return centers;
 }
 
-// Assigns each site a stencil (no immediate repeat) and expands it into a
-// flat list of {x, z} world offsets from the site center — one per stencil
-// cell, plus a further ~20% of cells getting a SECOND position stacked
-// directly above the first (dropped from extra height so it lands on top),
-// which is where genuine "on top of each other, crumbles when disturbed"
-// piles come from now that most positions are otherwise one-object-per-cell
-// (spread across a shape's area rather than jammed into one tight cluster).
-function planSitePositions(siteCount, rng) {
-  const positions = []; // { siteIndex, x, z, stackDepth }
-  let lastStencil = null;
+// Plans siteCount sites, each either a flat stencil silhouette (grouped
+// into uniform-size bands, see hlStencilBand) or a vertical stack (a
+// single uniform-size group). Returns [{ siteIndex, cells: [{x,z,stackIndex}] }]
+// per GROUP — one entry per uniform-size region, not per site — ready to
+// have classes handed out by buildClassSequence.
+function planLevelGroups(siteCount, rng) {
+  const groups = [];
+  let lastType = null;
   for (let s = 0; s < siteCount; s++) {
-    let stencil;
-    do { stencil = HL_STENCILS[Math.floor(rng() * HL_STENCILS.length)]; } while (stencil === lastStencil && HL_STENCILS.length > 1);
-    lastStencil = stencil;
-    const cells = hlStencilCells(stencil, HL_STENCIL_GRID);
-    for (const [gx, gz] of cells) {
-      positions.push({ siteIndex: s, x: gx * HL_STENCIL_CELL_SIZE, z: gz * HL_STENCIL_CELL_SIZE, stackDepth: 0 });
-      if (rng() < 0.2) positions.push({ siteIndex: s, x: gx * HL_STENCIL_CELL_SIZE, z: gz * HL_STENCIL_CELL_SIZE, stackDepth: 1 });
+    if (rng() < HL_STACK_CHANCE && lastType !== 'stack') {
+      const columns = HL_STACK_COLUMNS_MIN + Math.floor(rng() * (HL_STACK_COLUMNS_MAX - HL_STACK_COLUMNS_MIN + 1));
+      const height = HL_STACK_HEIGHT_MIN + Math.floor(rng() * (HL_STACK_HEIGHT_MAX - HL_STACK_HEIGHT_MIN + 1));
+      const cells = [];
+      for (let c = 0; c < columns; c++) {
+        const cx = columns > 1 ? (rng() * 2 - 1) * 0.5 * HL_STENCIL_CELL_SIZE : 0;
+        const cz = columns > 1 ? (rng() * 2 - 1) * 0.5 * HL_STENCIL_CELL_SIZE : 0;
+        for (let h = 0; h < height; h++) cells.push({ x: cx, z: cz, stackIndex: h, kind: 'stack' });
+      }
+      groups.push({ siteIndex: s, cells });
+      lastType = 'stack';
+      continue;
     }
+    let stencil;
+    do { stencil = HL_STENCILS[Math.floor(rng() * HL_STENCILS.length)]; } while (stencil === lastType && HL_STENCILS.length > 1);
+    lastType = stencil;
+    const rawCells = hlStencilCells(stencil, HL_STENCIL_GRID);
+    const half = (HL_STENCIL_GRID - 1) / 2;
+    const byBand = Array.from({ length: HL_STENCIL_BANDS }, () => []);
+    for (const [gx, gz] of rawCells) {
+      const band = hlStencilBand(stencil, gx / half, gz / half);
+      byBand[band].push({ x: gx * HL_STENCIL_CELL_SIZE, z: gz * HL_STENCIL_CELL_SIZE, stackIndex: 0 });
+    }
+    for (const cells of byBand) if (cells.length) groups.push({ siteIndex: s, cells });
   }
-  return positions;
+  return groups;
 }
 
-function dropAndSettle(world, siteCenters, sitePositions, classSeq, rng) {
+function dropAndSettle(world, siteCenters, sitePositions, rng) {
   // Box colliders, not spheres — measured directly during an earlier
   // version: spheres barely stack (a sphere balanced on another is only in
   // equilibrium if perfectly centered, so any real jitter just rolls them
@@ -227,25 +304,36 @@ function dropAndSettle(world, siteCenters, sitePositions, classSeq, rng) {
   // sphere/cylinder/cone/etc, see js/hole.js's hlShapeFor) are no worse an
   // approximation of a box collider than they'd be of a sphere one — same
   // "simplify the physics shape" tradeoff every casual physics game makes.
-  const objs = sitePositions.map((pos, i) => {
-    const classIdx = classSeq[i];
-    const r = HL_SIZE_CLASSES[classIdx];
+  const objs = sitePositions.map(pos => {
+    const r = HL_SIZE_CLASSES[pos.classIdx];
     const center = siteCenters[pos.siteIndex];
+    const isStack = pos.kind === 'stack';
+    // Stacks get much tighter placement jitter than flat piles — measured
+    // directly (see makeWorld's solver.iterations comment): a single-layer
+    // flat pile tolerates real randomness fine (nothing to topple, it's
+    // already on the floor), but a tall column is only reliably stable with
+    // boxes dropped close to true vertical alignment. The drop gap also
+    // scales with this object's own radius (r*2 + margin) rather than a
+    // fixed constant, so it works correctly across whichever class a given
+    // stack site happens to be.
+    const xzJitter = isStack ? 0.02 : 0.08;
+    const tiltJitter = isStack ? 0.05 : 0.3;
+    const dropGap = isStack ? r * 2 + 0.02 : 0.6;
     const body = new CANNON.Body({ mass: Math.max(0.2, r * r * r) });
     body.addShape(new CANNON.Box(new CANNON.Vec3(r, r, r)));
     body.position.set(
-      center.x + pos.x + (rng() * 2 - 1) * 0.08,
-      1.5 + pos.stackDepth * 0.6,
-      center.z + pos.z + (rng() * 2 - 1) * 0.08
+      center.x + pos.x + (rng() * 2 - 1) * xzJitter,
+      1.0 + pos.stackIndex * dropGap,
+      center.z + pos.z + (rng() * 2 - 1) * xzJitter
     );
-    body.quaternion.setFromEuler((rng() - 0.5) * 0.3, rng() * Math.PI, (rng() - 0.5) * 0.3);
+    body.quaternion.setFromEuler((rng() - 0.5) * tiltJitter, isStack ? 0 : rng() * Math.PI, (rng() - 0.5) * tiltJitter);
     body.allowSleep = true;
     body.sleepSpeedLimit = 0.15;
     body.sleepTimeLimit = 0.3;
-    body.linearDamping = 0.5;
-    body.angularDamping = 0.5;
+    body.linearDamping = isStack ? 0.7 : 0.5;
+    body.angularDamping = isStack ? 0.7 : 0.5;
     world.addBody(body);
-    return { body, classIdx, r, alive: true };
+    return { body, classIdx: pos.classIdx, r, alive: true };
   });
 
   const dt = 1 / 60;
@@ -350,11 +438,17 @@ for (let i = 0; i < HL_LEVEL_COUNT; i++) {
   while (attempt < maxAttempts && !accepted) {
     const rng = mulberry32(seedForLevel(i, attempt));
     const siteCenters = pickSiteCenters(siteCount, rng);
-    const sitePositions = planSitePositions(siteCount, rng);
+    const groups = planLevelGroups(siteCount, rng);
+    const groupClasses = buildClassSequence(groups.length, maxClassIdx, rng);
+    const sitePositions = [];
+    groups.forEach((g, gi) => {
+      for (const cell of g.cells) {
+        sitePositions.push({ siteIndex: g.siteIndex, x: cell.x, z: cell.z, stackIndex: cell.stackIndex, classIdx: groupClasses[gi], kind: cell.kind });
+      }
+    });
     objectCount = sitePositions.length;
-    const classSeq = buildClassSequence(objectCount, maxClassIdx, rng);
     const world = makeWorld();
-    const objs = dropAndSettle(world, siteCenters, sitePositions, classSeq, rng);
+    const objs = dropAndSettle(world, siteCenters, sitePositions, rng);
     // Snapshot the settled transforms BEFORE verifyClears mutates the world
     // (it removes bodies as it swallows them).
     const settled = objs.map(o => ({
