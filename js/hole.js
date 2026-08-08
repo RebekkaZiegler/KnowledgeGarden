@@ -103,7 +103,11 @@ function hlHoleRadius(classIdx) { return HL_HOLE_RADII[classIdx]; }
 // hole grows to the next class — an escalating threshold rather than an
 // instant grow-on-first-bite, so there's real "how far to the next size"
 // progress to show (see hl-growth-bar in the live game section/index.html).
-function hlGrowthThreshold(classIdx) { return 2 + classIdx; }
+// Raised from 2+classIdx (2,3,4,5...) after direct feedback that it still
+// grew after clearing what looked like just one small cluster — the
+// reference games it's modeled on visibly require chewing through a whole
+// grouped pile of 5-9 same-size items per size tier, not two or three.
+function hlGrowthThreshold(classIdx) { return 6 + classIdx * 2; }
 
 // Visual-only variety — geometry/color pairs objects are rendered as, keyed
 // off a deterministic hash of (levelIndex, objectIndex) so the same object
@@ -173,7 +177,20 @@ let hlCamFrustum = HL_CAM_BASE_FRUSTUM; // eased current half-height of the orth
 // Time constant (seconds) for the rim's exponential follow toward the drag
 // target — see hlStartLoop's frame() for the formula. The camera tracks the
 // rim directly, so this also governs how "weighty" panning feels.
-const HL_FOLLOW_TAU = 0.55;
+const HL_FOLLOW_TAU = 0.7;
+// Hard cap (world units/sec) on the rim's actual movement speed, layered on
+// top of the exponential ease above. Pure distance-proportional easing has
+// no ceiling on its own: a big/fast swipe sets a drag target far from the
+// rim, and right at that instant the ease's implied speed is
+// distance/HL_FOLLOW_TAU — for anything but a small nearby target that's
+// far higher than this cap, so a large swipe was still reading as an
+// effective teleport even after HL_FOLLOW_TAU was raised once already. This
+// clamps the per-frame step distance directly, independent of how far the
+// target is, so the rim (and the camera tracking it) never crosses the
+// world faster than this regardless of swipe size — small nearby
+// adjustments still feel responsive since the un-clamped ease is already
+// slower than this cap at short range.
+const HL_MAX_FOLLOW_SPEED = 4;
 
 function hlObjectRadius(classIdx) { return HL_SIZE_CLASSES[classIdx]; }
 
@@ -592,8 +609,13 @@ function hlStartLoop() {
       // as the rim (and the camera, which tracks it) snapping to the
       // pointer instead of trailing it with any real weight.
       const ease = 1 - Math.exp(-dtSec / HL_FOLLOW_TAU);
-      hlRimX += (hlDragTargetX - hlRimX) * ease;
-      hlRimZ += (hlDragTargetZ - hlRimZ) * ease;
+      let stepX = (hlDragTargetX - hlRimX) * ease;
+      let stepZ = (hlDragTargetZ - hlRimZ) * ease;
+      const stepDist = Math.hypot(stepX, stepZ);
+      const maxStep = HL_MAX_FOLLOW_SPEED * dtSec;
+      if (stepDist > maxStep) { const k = maxStep / stepDist; stepX *= k; stepZ *= k; }
+      hlRimX += stepX;
+      hlRimZ += stepZ;
       hlRimBody.position.set(hlRimX, HL_RIM_HEIGHT / 2, hlRimZ);
       hlUpdateHolePitMesh(hl.size);
       hlUpdateCamera(false);
