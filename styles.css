@@ -3323,6 +3323,50 @@ body.plant-open #back-to-garden-btn { display: block; }
   transition: filter 0.15s;
 }
 .question-continue-btn:hover { filter: brightness(1.1); }
+
+/* Reconstruct learning card (fill-in-the-blank) */
+.reconstruct-sentence {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 0.9rem;
+}
+.reconstruct-blank {
+  display: inline-block;
+  min-width: 4.5rem;
+  margin: 0 0.15rem;
+  padding: 0.1rem 0.5rem;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--bg2);
+  border: none;
+  border-bottom: 2px dashed var(--accent);
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.reconstruct-blank--filled { border-bottom-style: solid; color: var(--text); }
+.reconstruct-blank--correct { border-bottom-color: #27ae60 !important; color: #7eda9c !important; cursor: default; }
+.reconstruct-blank--wrong   { border-bottom-color: #c0392b !important; color: #e07070 !important; cursor: default; }
+.reconstruct-wordbank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.reconstruct-word-btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.reconstruct-word-btn:hover:enabled { background: var(--bg3); border-color: var(--accent); }
+.reconstruct-word-btn:disabled { opacity: 0.35; cursor: default; }
 .question-continue-btn[hidden] { display: none; }
 
 /* ── Raven order modal ── */

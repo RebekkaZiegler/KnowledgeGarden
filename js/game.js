@@ -402,6 +402,15 @@ function normalizeState(s) {
   s.restaurant.sessionCorrect  = 0;
   s.restaurant.sessionAnswered = 0;
   s.chapters      = s.chapters      || {};
+  // Backfill learningPasses on question states saved before learning cards
+  // existed — must default via || 0, since `undefined < 2` is false, not
+  // true, and would silently skip the learning gate otherwise.
+  for (const ch of Object.values(s.chapters)) {
+    if (!ch || !ch.questions) continue;
+    for (const qs of Object.values(ch.questions)) {
+      qs.learningPasses = qs.learningPasses || 0;
+    }
+  }
   s.inventory     = s.inventory     || {};
   s.releasedPets  = s.releasedPets  || [];
   s.ravenOrders = s.ravenOrders || [];
@@ -497,12 +506,31 @@ function ensureChapterState(chapterId) {
 
 function ensureQuestionState(chapterId, questionId) {
   const ch = ensureChapterState(chapterId);
-  if (!ch.questions[questionId]) ch.questions[questionId] = { correctDays: [], wrongThisSession: false, nextAvailableDay: 0, timesCorrect: 0, timesWrong: 0 };
+  if (!ch.questions[questionId]) ch.questions[questionId] = { correctDays: [], wrongThisSession: false, nextAvailableDay: 0, timesCorrect: 0, timesWrong: 0, learningPasses: 0 };
   return ch.questions[questionId];
 }
 
-function isQuestionMastered(qs) {
-  return qs && new Set(qs.correctDays).size >= 3;
+// Learning cards — an optional pre-question teaching step (see LEARNING_CARD
+// docs in docs/ADDING_A_CHAPTER.md). A question with a learningCard needs
+// LEARNING_PASSES_REQUIRED correct card passes (same-sitting reps are fine,
+// no day-spacing) before it ever enters the real quiz flow; once unlocked it
+// only needs 2 correct days to master instead of 3, since the learning step
+// already did part of the work.
+const LEARNING_PASSES_REQUIRED = 2;
+
+function hasLearningCard(q) { return !!q.learningCard; }
+function masteryThreshold(q) { return hasLearningCard(q) ? 2 : 3; }
+
+function isQuestionMastered(q, qs) {
+  return qs && new Set(qs.correctDays).size >= masteryThreshold(q);
+}
+
+// True while a question still needs (more) learning-card passes before it's
+// eligible for the real quiz. Independent of pool membership so it stays
+// correct for entries pulled from the session-retry-queue too (see
+// pickNextQuestion), which don't carry a pool-computed state snapshot.
+function needsLearningCard(q, qs) {
+  return hasLearningCard(q) && (!qs || (qs.learningPasses || 0) < LEARNING_PASSES_REQUIRED) && !isQuestionMastered(q, qs);
 }
 
 function isChapterComplete(chapterId) {
@@ -512,7 +540,7 @@ function isChapterComplete(chapterId) {
   if (!allQ.length) return false;
   const ch = G.chapters[chapterId];
   if (!ch) return false;
-  return allQ.every(q => isQuestionMastered(ch.questions[q.id]));
+  return allQ.every(q => isQuestionMastered(q, ch.questions[q.id]));
 }
 
 function buildQuestionPool() {
@@ -526,7 +554,7 @@ function buildQuestionPool() {
       const allQ = [...(plant.harvestQuestions || []), ...(plant.phase4Questions || [])];
       for (const q of allQ) {
         const qs = chState.questions[q.id];
-        if (qs && isQuestionMastered(qs)) continue;
+        if (qs && isQuestionMastered(q, qs)) continue;
         if (qs && qs.correctDays.includes(today)) continue;
         if (qs && qs.nextAvailableDay > today) continue;
         pool.push({ chapterId: chId, question: q, state: qs });
@@ -537,6 +565,15 @@ function buildQuestionPool() {
 }
 
 let sessionWrongQueue = []; // { chapterId, questionId }
+
+// Buckets an entry by how many reps its CURRENT phase (learning or quiz)
+// still has under its belt, so pickNextQuestion can keep spreading reps
+// across facts before drilling any single one repeatedly, regardless of
+// which phase it's in.
+function currentPhaseRepCount(q, qs) {
+  if (needsLearningCard(q, qs)) return qs ? (qs.learningPasses || 0) : 0; // 0 or 1
+  return qs ? new Set(qs.correctDays).size : 0;                           // 0, 1, (2)
+}
 
 function pickNextQuestion() {
   // 1. Session retry queue
@@ -551,19 +588,19 @@ function pickNextQuestion() {
   const pool = buildQuestionPool();
   if (!pool.length) return null;
 
-  const unseen   = pool.filter(e => !e.state || e.state.correctDays.length === 0);
+  const unseen = pool.filter(e => currentPhaseRepCount(e.question, e.state) === 0);
   if (unseen.length) return unseen[Math.floor(Math.random() * unseen.length)];
 
-  const once     = pool.filter(e => e.state && e.state.correctDays.length === 1);
+  const once   = pool.filter(e => currentPhaseRepCount(e.question, e.state) === 1);
   if (once.length) return once[Math.floor(Math.random() * once.length)];
 
-  const twice    = pool.filter(e => e.state && e.state.correctDays.length === 2);
+  const twice  = pool.filter(e => currentPhaseRepCount(e.question, e.state) === 2);
   if (twice.length) return twice[Math.floor(Math.random() * twice.length)];
 
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-function recordAnswer(chapterId, questionId, correct, pickedText) {
+function recordAnswer(chapterId, questionId, correct, pickedText, isLearningPhase) {
   const qs = ensureQuestionState(chapterId, questionId);
   const today = new Date().toISOString().slice(0, 10);
 
@@ -580,7 +617,10 @@ function recordAnswer(chapterId, questionId, correct, pickedText) {
   }
   G.stats.dailyAnswered = (G.stats.dailyAnswered || 0) + 1;
   G.stats.todayAnswers = G.stats.todayAnswers || [];
-  G.stats.todayAnswers.push({ chapterId, questionId, correct, pickedText });
+  // isLearningPhase tags entries answered against a synthesized learning
+  // card rather than the real question — buildFeedbackExport needs this to
+  // avoid pairing a learning-card pickedText with the real question's text.
+  G.stats.todayAnswers.push({ chapterId, questionId, correct, pickedText, isLearningPhase: !!isLearningPhase });
   G.restaurant.sessionAnswered = (G.restaurant.sessionAnswered || 0) + 1;
   G.stats.activityLog = G.stats.activityLog || {};
   G.stats.activityLog[today] = (G.stats.activityLog[today] || 0) + 1;
@@ -589,27 +629,35 @@ function recordAnswer(chapterId, questionId, correct, pickedText) {
     G.stats.totalCorrect++;
     qs.timesCorrect = (qs.timesCorrect || 0) + 1;
     G.restaurant.sessionCorrect = (G.restaurant.sessionCorrect || 0) + 1;
-    const firstTimeToday = !qs.correctDays.includes(today);
-    if (firstTimeToday) {
-      G.stats.dailyCorrect++;
-      qs.correctDays.push(today);
-      G.stats.learnedLog = G.stats.learnedLog || {};
-      G.stats.learnedLog[today] = (G.stats.learnedLog[today] || 0) + 1;
-      // Update streak when daily goal is first reached today
-      if (G.stats.dailyCorrect === DAILY_GOAL && G.stats.lastStreakDate !== today) {
-        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
-        G.stats.streak = (G.stats.lastStreakDate === yesterday) ? (G.stats.streak || 0) + 1 : 1;
-        G.stats.lastStreakDate = today;
-        if (G.stats.streak > (G.stats.bestStreak || 0)) G.stats.bestStreak = G.stats.streak;
+
+    if (isLearningPhase) {
+      // Learning-card reps: no day-spacing, don't touch correctDays/mastery.
+      qs.learningPasses = (qs.learningPasses || 0) + 1;
+    } else {
+      const firstTimeToday = !qs.correctDays.includes(today);
+      if (firstTimeToday) {
+        G.stats.dailyCorrect++;
+        qs.correctDays.push(today);
+        G.stats.learnedLog = G.stats.learnedLog || {};
+        G.stats.learnedLog[today] = (G.stats.learnedLog[today] || 0) + 1;
+        // Update streak when daily goal is first reached today
+        if (G.stats.dailyCorrect === DAILY_GOAL && G.stats.lastStreakDate !== today) {
+          const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+          G.stats.streak = (G.stats.lastStreakDate === yesterday) ? (G.stats.streak || 0) + 1 : 1;
+          G.stats.lastStreakDate = today;
+          if (G.stats.streak > (G.stats.bestStreak || 0)) G.stats.bestStreak = G.stats.streak;
+        }
       }
+      checkChapterCompletion(chapterId);
     }
     qs.wrongThisSession = false;
     sessionWrongQueue = sessionWrongQueue.filter(e => !(e.chapterId === chapterId && e.questionId === questionId));
-    checkChapterCompletion(chapterId);
   } else {
     qs.timesWrong = (qs.timesWrong || 0) + 1;
-    qs.wrongThisSession    = true;
-    qs.nextAvailableDay    = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+    qs.wrongThisSession = true;
+    // Real wrong answers push to tomorrow; learning-card wrong answers stay
+    // retriable same-sitting (see LEARNING_PASSES_REQUIRED docs above).
+    if (!isLearningPhase) qs.nextAvailableDay = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
     if (!sessionWrongQueue.find(e => e.chapterId === chapterId && e.questionId === questionId))
       sessionWrongQueue.push({ chapterId, questionId });
   }
@@ -662,7 +710,7 @@ function getCorrectAnswerText(q) {
   return (q.options || []).filter(o => o.correct).map(o => o.text).join(", ");
 }
 
-function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
+function showQuestion(contextText, entry, onCorrect, onWrong, onDone, isLearningPhase) {
   const modal    = document.getElementById("modal-question");
   const ctxEl    = document.getElementById("question-context");
   const statsEl  = document.getElementById("question-stats");
@@ -675,7 +723,7 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
   const q = entry.question;
   ctxEl.textContent  = contextText + (entry.isRetry ? " · Wiederholung" : "");
   const qs = entry.chapterId ? ensureQuestionState(entry.chapterId, q.id) : null;
-  if (qs && (qs.timesCorrect || qs.timesWrong)) {
+  if (!isLearningPhase && qs && (qs.timesCorrect || qs.timesWrong)) {
     statsEl.innerHTML = `<span class="question-stat-correct">✓ ${qs.timesCorrect || 0}</span> · <span class="question-stat-wrong">✗ ${qs.timesWrong || 0}</span>`;
     statsEl.hidden = false;
   } else {
@@ -695,7 +743,7 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
       btn.className   = "question-option-btn";
       btn.textContent = label;
       const isTrue = label === "Wahr";
-      btn.onclick = () => resolveQuestion(isTrue === (q.answer === true), [btn], entry, onCorrect, onWrong, onDone);
+      btn.onclick = () => resolveQuestion(isTrue === (q.answer === true), [btn], entry, onCorrect, onWrong, onDone, isLearningPhase);
       optsEl.appendChild(btn);
     });
 
@@ -724,7 +772,7 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
       const allCorrectSelected = (q.options || []).filter(o => o.correct)
         .every(o => selected.some(b => b.textContent === o.text));
       const noWrongSelected = selected.every(b => b.dataset.correct === "1");
-      resolveQuestion(allCorrectSelected && noWrongSelected, selected, entry, onCorrect, onWrong, onDone);
+      resolveQuestion(allCorrectSelected && noWrongSelected, selected, entry, onCorrect, onWrong, onDone, isLearningPhase);
       confirmBtn.remove();
     };
     optsEl.appendChild(confirmBtn);
@@ -735,7 +783,7 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
       const btn = document.createElement("button");
       btn.className   = "question-option-btn";
       btn.textContent = opt.text;
-      btn.onclick = () => resolveQuestion(opt.correct, [btn], entry, onCorrect, onWrong, onDone);
+      btn.onclick = () => resolveQuestion(opt.correct, [btn], entry, onCorrect, onWrong, onDone, isLearningPhase);
       optsEl.appendChild(btn);
     });
   }
@@ -743,28 +791,13 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone) {
   modal.hidden = false;
 }
 
-function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDone) {
-  const optsEl  = document.getElementById("question-options");
+// Shared tail for every answer-resolution path (real quiz options, and the
+// reconstruct learning card's own submit button): reveals feedback, updates
+// the session combo streak, records the answer, fires the caller's
+// onCorrect/onWrong, and arms the Weiter-button to close+onDone.
+function finishAnswer(isCorrect, entry, pickedText, onCorrect, onWrong, onDone, isLearningPhase) {
   const fbEl    = document.getElementById("question-feedback");
   const contBtn = document.getElementById("question-continue-btn");
-  const q       = entry.question;
-
-  Array.from(optsEl.querySelectorAll(".question-option-btn")).forEach(btn => {
-    btn.disabled = true;
-    btn.classList.remove("question-option-btn--selected");
-    if (q.type === "true_false") {
-      const btnIsTrue = btn.textContent === "Wahr";
-      if (btnIsTrue === (q.answer === true)) btn.classList.add("question-option-btn--correct");
-      else if (clickedBtns.includes(btn) && !isCorrect) btn.classList.add("question-option-btn--wrong");
-    } else {
-      const opt = (q.options || []).find(o => o.text === btn.textContent);
-      if (opt) {
-        if (opt.correct) btn.classList.add("question-option-btn--correct");
-        else if (clickedBtns.includes(btn)) btn.classList.add("question-option-btn--wrong");
-      }
-    }
-  });
-
   fbEl.hidden    = false;
   contBtn.hidden = false;
 
@@ -784,7 +817,7 @@ function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDo
     if (sessionWrongStreak === 2) showToast(pickTamaLine(G.tamagotchi.species, "stumble"));
   }
 
-  recordAnswer(entry.chapterId, entry.question.id, isCorrect, getPickedAnswerText(q, isCorrect, clickedBtns));
+  recordAnswer(entry.chapterId, entry.question.id, isCorrect, pickedText, isLearningPhase);
   if (isCorrect) onCorrect && onCorrect();
   else onWrong && onWrong();
 
@@ -792,6 +825,174 @@ function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDo
     document.getElementById("modal-question").hidden = true;
     onDone && onDone();
   };
+}
+
+function resolveQuestion(isCorrect, clickedBtns, entry, onCorrect, onWrong, onDone, isLearningPhase) {
+  const optsEl = document.getElementById("question-options");
+  const q      = entry.question;
+
+  Array.from(optsEl.querySelectorAll(".question-option-btn")).forEach(btn => {
+    btn.disabled = true;
+    btn.classList.remove("question-option-btn--selected");
+    if (q.type === "true_false") {
+      const btnIsTrue = btn.textContent === "Wahr";
+      if (btnIsTrue === (q.answer === true)) btn.classList.add("question-option-btn--correct");
+      else if (clickedBtns.includes(btn) && !isCorrect) btn.classList.add("question-option-btn--wrong");
+    } else {
+      const opt = (q.options || []).find(o => o.text === btn.textContent);
+      if (opt) {
+        if (opt.correct) btn.classList.add("question-option-btn--correct");
+        else if (clickedBtns.includes(btn)) btn.classList.add("question-option-btn--wrong");
+      }
+    }
+  });
+
+  finishAnswer(isCorrect, entry, getPickedAnswerText(q, isCorrect, clickedBtns), onCorrect, onWrong, onDone, isLearningPhase);
+}
+
+// Maps a learningCard's authored data onto a "virtual question" shaped like
+// a real true_false/mc question, so showQuestion/resolveQuestion's existing
+// rendering can be reused as-is for predict/teachback/oddoneout. Keeps the
+// REAL question's id so recordAnswer writes learning progress into the
+// correct state bucket. "reconstruct" has no renderable mapping — it's
+// handled separately by renderReconstructCard.
+function buildVirtualQuestion(q) {
+  const lc = q.learningCard;
+  switch (lc.type) {
+    case "predict":
+      return { id: q.id, type: "true_false", statement: lc.statement, answer: lc.answer, explanation: lc.reveal };
+    case "teachback":
+      return { id: q.id, type: "mc", question: lc.prompt, options: lc.checklist, explanation: lc.reveal };
+    case "oddoneout":
+      return {
+        id: q.id, type: "mc",
+        question: "Welche Aussage ist FALSCH?",
+        options: lc.statements.map(s => ({ text: s.text, correct: s.isWrong })),
+        explanation: lc.whyWrong
+      };
+    case "reconstruct":
+      return { id: q.id, type: "reconstruct" };
+    default:
+      throw new Error(`Unbekannter learningCard-Typ: ${lc.type}`);
+  }
+}
+
+// Fill-in-the-blank learning card: player taps word-bank tiles into blank
+// slots (in order) drawn from learningCard.template, then confirms. Builds
+// into the same #question-options container showQuestion already uses
+// dynamically, so no markup changes are needed.
+function renderReconstructCard(contextText, entry, learningCard, onCorrect, onWrong, onDone) {
+  const modal    = document.getElementById("modal-question");
+  const ctxEl    = document.getElementById("question-context");
+  const statsEl  = document.getElementById("question-stats");
+  const imgEl    = document.getElementById("question-image");
+  const textEl   = document.getElementById("question-text");
+  const optsEl   = document.getElementById("question-options");
+  const fbEl     = document.getElementById("question-feedback");
+  const contBtn  = document.getElementById("question-continue-btn");
+
+  ctxEl.textContent  = contextText;
+  statsEl.hidden     = true;
+  imgEl.hidden       = true;
+  imgEl.src          = "";
+  textEl.textContent = "Setze die fehlenden Begriffe ein:";
+  optsEl.innerHTML   = "";
+  fbEl.textContent   = learningCard.reveal || "";
+  fbEl.hidden        = true;
+  contBtn.hidden     = true;
+
+  const blanks = learningCard.blanks;
+  const words  = shuffleArray([...blanks, ...(learningCard.distractors || [])]);
+  const filled = new Array(blanks.length).fill(null); // index -> { word, btn } | null
+  let submitBtn;
+
+  const sentenceEl = document.createElement("div");
+  sentenceEl.className = "reconstruct-sentence";
+  const slotEls = [];
+  const parts = learningCard.template.split("___");
+  parts.forEach((part, i) => {
+    if (part) sentenceEl.appendChild(document.createTextNode(part));
+    if (i < parts.length - 1) {
+      const slot = document.createElement("button");
+      slot.type        = "button";
+      slot.className   = "reconstruct-blank";
+      slot.textContent = "___";
+      const slotIndex  = i;
+      slot.onclick = () => {
+        const f = filled[slotIndex];
+        if (!f) return;
+        f.btn.disabled = false;
+        filled[slotIndex] = null;
+        slot.textContent = "___";
+        slot.classList.remove("reconstruct-blank--filled");
+        submitBtn.hidden = true;
+      };
+      slotEls.push(slot);
+      sentenceEl.appendChild(slot);
+    }
+  });
+  optsEl.appendChild(sentenceEl);
+
+  const wordBank = document.createElement("div");
+  wordBank.className = "reconstruct-wordbank";
+  words.forEach(word => {
+    const btn = document.createElement("button");
+    btn.type        = "button";
+    btn.className   = "reconstruct-word-btn";
+    btn.textContent = word;
+    btn.onclick = () => {
+      const nextIndex = filled.findIndex(f => f == null);
+      if (nextIndex === -1) return;
+      filled[nextIndex] = { word, btn };
+      slotEls[nextIndex].textContent = word;
+      slotEls[nextIndex].classList.add("reconstruct-blank--filled");
+      btn.disabled = true;
+      submitBtn.hidden = !filled.every(f => f != null);
+    };
+    wordBank.appendChild(btn);
+  });
+  optsEl.appendChild(wordBank);
+
+  submitBtn = document.createElement("button");
+  submitBtn.className   = "question-confirm-multi-btn";
+  submitBtn.textContent = "Bestätigen ✓";
+  submitBtn.hidden      = true;
+  submitBtn.onclick = () => {
+    const isCorrect = blanks.every((w, i) => filled[i] && filled[i].word === w);
+    Array.from(wordBank.children).forEach(b => b.disabled = true);
+    slotEls.forEach((slot, i) => {
+      slot.disabled = true;
+      const ok = filled[i] && filled[i].word === blanks[i];
+      slot.classList.add(ok ? "reconstruct-blank--correct" : "reconstruct-blank--wrong");
+      if (!ok) slot.textContent = `${filled[i] ? filled[i].word : "___"} → ${blanks[i]}`;
+    });
+    submitBtn.hidden = true;
+    finishAnswer(isCorrect, entry, filled.map(f => f ? f.word : "").join(", "), onCorrect, onWrong, onDone, true);
+  };
+  optsEl.appendChild(submitBtn);
+
+  modal.hidden = false;
+}
+
+// Single entry point for every question-consuming call site (feeding,
+// revive, watering, raven orders, soap, askQuestions). Routes to the
+// learning-card UI when the entry's real question still needs one, or to
+// the normal quiz flow otherwise. Same callback contract as showQuestion,
+// so callers don't need to know which phase they're getting.
+function presentEntry(contextText, entry, onCorrect, onWrong, onDone) {
+  const qs = entry.chapterId ? ensureQuestionState(entry.chapterId, entry.question.id) : null;
+  if (needsLearningCard(entry.question, qs)) {
+    const vq = buildVirtualQuestion(entry.question);
+    const learnEntry = { chapterId: entry.chapterId, question: vq, isRetry: entry.isRetry };
+    const badgedContext = "📖 Lernen · " + contextText;
+    if (vq.type === "reconstruct") {
+      renderReconstructCard(badgedContext, learnEntry, entry.question.learningCard, onCorrect, onWrong, onDone);
+    } else {
+      showQuestion(badgedContext, learnEntry, onCorrect, onWrong, onDone, true);
+    }
+    return;
+  }
+  showQuestion(contextText, entry, onCorrect, onWrong, onDone, false);
 }
 
 // Ask `count` questions in sequence, calling onAllDone when finished
@@ -803,7 +1004,7 @@ function askQuestions(contextText, count, onAllDone, onEachCorrect) {
     if (correct >= count) { onAllDone && onAllDone(); return; }
     const entry = pickNextQuestion();
     if (!entry) { onAllDone && onAllDone(); return; }
-    showQuestion(contextText, entry,
+    presentEntry(contextText, entry,
       () => { correct++; feedTamagotchi(); onEachCorrect && onEachCorrect(); },
       () => {},
       next
@@ -820,7 +1021,7 @@ function hasActiveQuestions() {
    STATS BAR
 ══════════════════════════════════════════════════════════ */
 function getLearningProgress() {
-  let total = 0, mastered = 0, activeTotal = 0, activeMastered = 0;
+  let total = 0, mastered = 0, activeTotal = 0, activeMastered = 0, remainingEvents = 0;
   for (const bed of PACK_CONTENT.beds) {
     const ch = G.chapters[bed.id];
     const isActive = ch && ch.activated;
@@ -828,8 +1029,17 @@ function getLearningProgress() {
       for (const q of [...(plant.harvestQuestions || []), ...(plant.phase4Questions || [])]) {
         total++;
         const qs = ch ? ch.questions[q.id] : null;
-        const done = qs && isQuestionMastered(qs);
+        const done = qs && isQuestionMastered(q, qs);
         if (done) mastered++;
+        else {
+          // Events (learning-card passes + quiz-correct-days) still needed
+          // to finish this one question — feeds requiredToday below. A
+          // gated question can need up to 4 events total instead of 3.
+          const correctDaysCount = qs ? new Set(qs.correctDays).size : 0;
+          remainingEvents += hasLearningCard(q)
+            ? Math.max(0, LEARNING_PASSES_REQUIRED - (qs ? (qs.learningPasses || 0) : 0)) + Math.max(0, 2 - correctDaysCount)
+            : Math.max(0, 3 - correctDaysCount);
+        }
         if (isActive) {
           activeTotal++;
           if (done) activeMastered++;
@@ -837,7 +1047,7 @@ function getLearningProgress() {
       }
     }
   }
-  return { total, mastered, remaining: total - mastered, activeTotal, activeMastered };
+  return { total, mastered, remaining: total - mastered, remainingEvents, activeTotal, activeMastered };
 }
 
 function getDueTodayCount() {
@@ -1203,6 +1413,32 @@ function buildFeedbackExport() {
     const q = bed
       ? bed.plants.flatMap(p => [...(p.harvestQuestions || []), ...(p.phase4Questions || [])]).find(qq => qq.id === a.questionId)
       : null;
+    // Learning-phase answers were resolved against a synthesized learning
+    // card, not the real question text — pull frage/korrekteAntwort/
+    // erklaerung from the card so they don't get shown next to mismatched
+    // real-question text (see presentEntry/buildVirtualQuestion).
+    if (a.isLearningPhase && q && q.learningCard) {
+      const lc = q.learningCard;
+      if (lc.type === "reconstruct") {
+        return {
+          kapitel: bed.title,
+          frage: `📖 Lernkarte: ${lc.template}`,
+          richtig: a.correct,
+          meineAntwort: a.pickedText,
+          korrekteAntwort: lc.blanks.join(", "),
+          erklaerung: lc.reveal || "",
+        };
+      }
+      const vq = buildVirtualQuestion(q);
+      return {
+        kapitel: bed.title,
+        frage: `📖 Lernkarte: ${vq.type === "true_false" ? vq.statement : vq.question}`,
+        richtig: a.correct,
+        meineAntwort: a.pickedText,
+        korrekteAntwort: getCorrectAnswerText(vq),
+        erklaerung: vq.explanation || "",
+      };
+    }
     return {
       kapitel: bed ? bed.title : a.chapterId,
       frage: q ? (q.type === "true_false" ? q.statement : q.question) : "(Frage nicht mehr im Kapitel vorhanden)",
@@ -1340,7 +1576,7 @@ function feedTamagotchiStudy() {
   if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
   const entry = pickNextQuestion();
   if (!entry) { showToast("Keine Fragen verfügbar."); return; }
-  showQuestion("🌱 Alräunchen füttern", entry,
+  presentEntry("🌱 Alräunchen füttern", entry,
     () => { feedTamagotchi(); },
     () => {},
     () => { saveState(); renderTamagotchi(); }
@@ -1374,9 +1610,9 @@ function checkTamagotchiDay() {
   // stay on track for the exam deadline, given current remaining content.
   // Rises only when behind schedule, falls as you make progress — a big
   // study day lowers tomorrow's requirement instead of raising it.
-  const { remaining } = getLearningProgress();
+  const { remainingEvents } = getLearningProgress();
   const daysLeft = Math.max(1, (EXAM_DEADLINE - Date.now()) / 86400000);
-  t.requiredToday = Math.max(3, Math.ceil(remaining / daysLeft));
+  t.requiredToday = Math.max(3, Math.ceil(remainingEvents / daysLeft));
 
   // Missed day tracking — a shield earned from a big study day (50+
   // answers) fully absorbs one missed-day penalty instead of delaying it.
@@ -1483,7 +1719,7 @@ function reviveTamagotchiStudy() {
   if (!hasActiveQuestions()) { showToast("Keine aktiven Fragen! Aktiviere Kapitel unter 📚."); return; }
   const entry = pickNextQuestion();
   if (!entry) { showToast("Keine Fragen verfügbar."); return; }
-  showQuestion("🌿 Alräunchen wiederbeleben", entry,
+  presentEntry("🌿 Alräunchen wiederbeleben", entry,
     () => { advanceRevive(); },
     () => {},
     () => { saveState(); renderTamagotchi(); }
@@ -1765,7 +2001,7 @@ function waterPlant(patchIdx) {
   const entry = pickNextQuestion();
   if (!entry) { showToast("Keine Fragen verfügbar."); return; }
 
-  showQuestion("💧 Wässern", entry,
+  presentEntry("💧 Wässern", entry,
     () => {
       const slot = G.garden.patches[patchIdx];
       if (!slot) return;
@@ -2675,7 +2911,7 @@ function renderChapterModal() {
     const status = getChapterStatus(bed.id);
     const ch     = G.chapters[bed.id];
     const allQ   = bed.plants.flatMap(p => p.harvestQuestions || []);
-    const mastered = allQ.filter(q => ch && isQuestionMastered(ch.questions[q.id])).length;
+    const mastered = allQ.filter(q => ch && isQuestionMastered(q, ch.questions[q.id])).length;
     const label  = { red: "Nicht gestartet", orange: "Pausiert", yellow: "Aktiv", green: "Fertig" }[status];
 
     return `<div class="chapter-item" data-cid="${bed.id}">
@@ -3004,7 +3240,7 @@ function renderTrophies() {
       for (const q of [...(plant.harvestQuestions||[]), ...(plant.phase4Questions||[])]) {
         qTotal++;
         const qs = ch.questions?.[q.id];
-        if (isQuestionMastered(qs)) qMastered++;
+        if (isQuestionMastered(q, qs)) qMastered++;
         else if (qs && qs.correctDays?.length > 0) qSeen++;
       }
     }
@@ -3061,7 +3297,7 @@ function renderTrophies() {
       bed.plants.forEach(p => {
         [...(p.harvestQuestions||[]), ...(p.phase4Questions||[])].forEach(q => {
           chTotal++;
-          if (isQuestionMastered(ch.questions[q.id])) chMastered++;
+          if (isQuestionMastered(q, ch.questions[q.id])) chMastered++;
         });
       });
       const pct = chTotal > 0 ? Math.round(chMastered / chTotal * 100) : 0;

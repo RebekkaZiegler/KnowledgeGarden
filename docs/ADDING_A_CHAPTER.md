@@ -13,8 +13,11 @@ Das Spiel hat zwei Modi (Alräunchen + Taverne), die denselben Fragenpool und de
 - **`harvestQuestions`** erscheinen überall: beim Füttern des Alräunchens, beim Bewässern von Pflanzen (Taverne), beim Raben-Bestellen und beim Reinigen.
 - **`phase4Questions`** erscheinen im Restaurant — sie setzen voraus, dass der Spieler das Thema bereits durch die Ernte kennt.
 
+### Lernkarten (learningCard) — Lernen vor dem Testen
+Jede `harvestQuestion` und `phase4Question` kann ein optionales `learningCard`-Feld tragen (siehe Schritt 3). Solange eine Frage ihre Lernkarte noch nicht **2× korrekt** absolviert hat (beides in einer Sitzung möglich, kein Tagesabstand nötig), erscheint statt der echten Frage die Lernkarte — ein interaktiver Lernschritt, der den Fakt zuerst vermittelt statt ihn kalt abzufragen. Erst danach fließt die echte Frage in den normalen Fragenpool ein.
+
 ### Mastery
-Eine Frage gilt als gemeistert, wenn sie an **3 verschiedenen Kalendertagen** korrekt beantwortet wurde.
+Eine Frage ohne Lernkarte gilt als gemeistert, wenn sie an **3 verschiedenen Kalendertagen** korrekt beantwortet wurde. Eine Frage **mit** Lernkarte braucht nur **2 verschiedene Kalendertage** — der vorgeschaltete Lernschritt kompensiert die reduzierte Anzahl.
 
 ### Pflanzenwachstum (Taverne)
 Pflanzen wachsen nicht über Tage, sondern über richtige Antworten: Jede korrekte Antwort beim Bewässern gibt `+1 growthPoint`. Nach 2 Punkten ist die Pflanze erntereif. Es gibt keinen Tageszyklus mehr — Wachstum ist sofort nach der Antwort sichtbar.
@@ -30,6 +33,8 @@ Bestellungen werden sofort geliefert, sobald die zugehörige Frage korrekt beant
 | `phase4Questions` | Nur Restaurant | Synthese, Zusammenhänge, Abgrenzungen; mehrere richtige Antworten möglich |
 
 `phase4Questions` erscheinen nie während der Pflanzphase — sie setzen voraus, dass der Spieler das Thema bereits durch die Ernte kennt.
+
+**Aktueller Stand (wichtig):** Die Trennung "harvestQuestions bei Fütterung/Bewässerung/Raben/Reinigen" vs. "phase4Questions im Restaurant" ist im Code aktuell **nicht** umgesetzt — beide Fragetypen landen im selben gemeinsamen Fragenpool (`buildQuestionPool()` in js/game.js) und können an jeder der oben genannten Stellen auftauchen. Die Tabelle beschreibt die beabsichtigte Rolle jedes Fragetyps für die Fragengestaltung; sie ist keine Aussage darüber, wo eine Frage im Spiel tatsächlich auftaucht.
 
 ---
 
@@ -181,48 +186,54 @@ Jede Pflanze hat diese Struktur:
 makeDetailedPlant({
   id: "eindeutige_id",          // snake_case, einmalig in der ganzen Datei
   title: "Titel der Pflanze",   // wird im Spiel angezeigt
-  contextHint: "Studienbrief XXXX Titel des Kapitels",
 
-  phase1: {
-    soil:  { statement: "...", answer: true/false, solution: "..." },
-    seed:  { statement: "...", answer: true/false, solution: "..." },
-    water: { statement: "...", answer: true/false, solution: "..." }
-  },
-
-  harvestQuestions: [ ... ],   // so viele wie nötig, damit jeder Fakt aus phase1 mindestens einmal abgefragt wird
+  harvestQuestions: [ ... ],   // so viele wie nötig, damit jeder prüfungsrelevante Fakt mindestens einmal abgefragt wird
   phase4Questions: [ ... ]     // so viele wie nötig, damit alle wichtigen Zusammenhänge getestet werden
 })
 ```
 
-`phase2` ist optional — wird automatisch mit Standardwerten befüllt wenn weggelassen.
+`colorOverride` ist optional (individuelle Pflanzenfarbe im Garten). **Achtung:** `makeDetailedPlant()` (js/content.js) kopiert nur `id`, `title`, `harvestQuestions`, `phase4Questions`, `colorOverride` aus der Definition — jedes andere Top-Level-Feld wird stillschweigend verworfen und landet nie im Spiel. Neues Wissen wird nicht (mehr) auf Plant-Ebene eingeführt, sondern pro Frage über `learningCard` (siehe Schritt 3).
 
 ---
 
-## Schritt 3 — Phase 1: Die drei Lernschritte
+## Schritt 3 — Lernkarten (`learningCard`)
 
-Phase 1 ist der einzige Ort, wo neues Wissen eingeführt wird.
+Jede einzelne `harvestQuestion` und `phase4Question` kann ein optionales `learningCard`-Feld tragen. Eine Lernkarte ist ein interaktiver Lernschritt, der **vor** der echten Frage erscheint: Solange der Spieler sie noch nicht 2× korrekt absolviert hat, ersetzt sie die echte Frage überall dort, wo diese im Fragenpool auftauchen würde. Danach braucht die echte Frage nur noch 2 statt 3 korrekte Tage, um als gemeistert zu gelten (siehe „Mastery" oben).
 
-**Regel: Alles, was in `harvestQuestions` oder `phase4Questions` abgefragt wird, muss in mindestens einem der drei `solution`-Felder erklärt worden sein.**
+**Lernkarten sind Pflicht für jede neue Frage** (sowohl `harvestQuestions` als auch `phase4Questions`). Bestehende Fragen ohne Lernkarte funktionieren unverändert weiter (ungegatet, 3-Tage-Mastery) — sie werden schrittweise nachgerüstet.
+
+Es gibt vier Mechanik-Typen. Wähle pro Frage den Typ, der am besten zum Fakt passt:
+
+| Typ | Wann verwenden | Testet |
+|---|---|---|
+| `predict` | Ein einzelner, gut zu erratender Fakt ("Was bewirkt Struktur X?") | Vermutung vor der Erklärung |
+| `teachback` | Eine Aussage/Frage bündelt mehrere zusammengehörige Teilpunkte, oder Vorbereitung auf eine `phase4Question`-Synthese | Auswahl der richtigen Kernpunkte aus einer gemischten Liste |
+| `oddoneout` | Themen mit einer verbreiteten Verwechslung oder einer plausibel klingenden, aber falschen Aussage | Erkennen der einen falschen Aussage unter drei richtigen |
+| `reconstruct` | Exakte Terminologie, Aufzählungen oder Reihenfolgen, bei denen der genaue Wortlaut zählt | Zusammensetzen des Lückentexts aus einer Wortbank |
+
+**Datenformate:**
 
 ```javascript
-soil: {
-  statement: "Aussage, die der Spieler als wahr oder falsch einordnen soll.",
-  answer: true,   // oder false
-  solution: "Erklärung, die VOR der Frage angezeigt wird. Vollständige Sätze, kein Pronomen ohne Bezug. 2–4 Sätze reichen."
-}
+// predict — Wahr/Falsch-Vermutung VOR der Erklärung, dann reveal
+learningCard: { type: "predict", statement: "...", answer: true, reveal: "2–3 Sätze Erklärung" }
+
+// teachback — Mehrfachauswahl: die echten Kernpunkte aus einer gemischten Liste auswählen (mind. 2 correct:true)
+learningCard: { type: "teachback", prompt: "Welche der folgenden gehören zu X?",
+  checklist: [{text:"...", correct:true}, {text:"...", correct:false}, ...], reveal: "..." }
+
+// oddoneout — Einfachauswahl: 3 richtige Aussagen + 1 falsche, Spieler wählt die FALSCHE
+learningCard: { type: "oddoneout", statements: [{text:"...", isWrong:false}, ..., {text:"...", isWrong:true}], whyWrong: "..." }
+
+// reconstruct — Lückentext, Begriffe werden aus einer Wortbank in die Lücken getippt
+learningCard: { type: "reconstruct", template: "Die vier Grundeigenschaften sind ___, ___, ___ und ___.",
+  blanks: ["Stoffwechsel","Wachstum","Reizbarkeit","Reproduktion"], distractors: ["Atmung","Bewegung"] }
 ```
 
-- `statement` = die True/False-Frage
-- `answer` = die korrekte Antwort
-- `solution` = Lerntext, der zuerst gezeigt wird, dann als Erklärung nach der Antwort
-
-**Gute `solution`:** Eigenständig lesbar, keine Abkürzungen ohne Erklärung, deckt den Inhalt ab, der später getestet wird.
-
-**Längenbegrenzung: maximal 3 Sätze pro `solution`.** Das ist eine harte Grenze für Lesbarkeit auf dem Mobilgerät.
-
-**Zu viel Inhalt für 3 Sätze?** → Pflanze aufteilen, nicht kürzen. Lieber zwei Pflanzen mit je 3 fokussierten Sätzen als eine Pflanze mit gekürztem Text, der die Fragen nicht mehr abdeckt. Niemals einen `solution`-Text kürzen und die dazugehörigen `harvestQuestions` stehenlassen — der Spieler wird dann über Inhalte abgefragt, die er nie erklärt bekommen hat.
-
-**Tipp für Vollständigkeit:** Schreib zuerst alle Fragen (Schritte 4+5), dann schau, welche Fakten in `solution` noch fehlen — und ergänze sie.
+**Regeln:**
+- `reveal`/`whyWrong` gilt wie `explanation`: eigenständig lesbar, maximal 3 Sätze, deckt den Fakt ab, der danach in der echten Frage getestet wird.
+- `reconstruct`-Lücken testen üblicherweise 2–4 Begriffe pro Karte — nicht jedes einzelne Wort des Satzes als eigene Lücke.
+- `teachback`-Listen brauchen mindestens 2 `correct:true`-Einträge (sonst rendert das Spiel sie nicht als Mehrfachauswahl) und mindestens 1 plausible falsche Ablenkeroption.
+- `oddoneout` braucht genau 1 `isWrong:true`-Eintrag unter 3 `isWrong:false`-Aussagen.
 
 ---
 
@@ -333,14 +344,16 @@ Vor dem Commit folgendes manuell durchgehen:
 
 **Formales:**
 - [ ] Alle `id`-Felder sind einmalig (kein Duplikat in der ganzen Datei)
-- [ ] Jede `solution` ist eigenständig lesbar (kein "Es", "Sie" ohne klaren Bezug im selben Satz)
+- [ ] Jede `explanation`/`reveal`/`whyWrong` ist eigenständig lesbar (kein "Es", "Sie" ohne klaren Bezug im selben Satz)
 - [ ] Alle `options`-Arrays haben genau 4 Einträge
 - [ ] Alle `harvestQuestion`-MC-Arrays haben genau 1 `correct: true`
-- [ ] Jeder prüfungsrelevante Fakt aus Phase 1 ist durch mindestens eine `harvestQuestion` abgedeckt
+- [ ] Jede `harvestQuestion` und `phase4Question` hat ein `learningCard`-Feld (siehe Schritt 3)
+- [ ] Jede `teachback`-Checkliste hat mind. 2 `correct:true` und mind. 1 `correct:false`; jedes `oddoneout` hat genau 1 `isWrong:true`
 - [ ] Alle wichtigen Zusammenhänge sind durch mindestens eine `phase4Question` abgedeckt
 
 **Inhalt:**
-- [ ] Jede `harvestQuestion` und `phase4Question` — ist der abgefragte Fakt in einer `solution` von Phase 1 eingeführt?
+- [ ] Jede `harvestQuestion` und `phase4Question` testet einen Fakt, der prüfungsrelevant ist
+- [ ] Jede Lernkarte testet denselben Fakt wie ihre zugehörige Frage, nur mit einer anderen Formulierung/Interaktion — kein Widerspruch zur `explanation`
 - [ ] Jede `phase4Question` testet wirklich Synthese/Zusammenhänge, nicht nur dieselben Einzelfakten wie die harvestQuestions
 - [ ] Die Coverage-Tabelle aus Schritt 7 ist vollständig — kein prüfungsrelevanter Fakt fehlt
 - [ ] Wenn mehrere `correct: true` in einem `phase4Question`-Array: Die falschen Optionen sind wirklich falsch, nicht nur "unvollständig richtig"
@@ -354,24 +367,6 @@ const BEISPIEL_1099_PLANTS = [
   makeDetailedPlant({
     id: "beispiel_thema",
     title: "Beispiel-Thema",
-    contextHint: "Studienbrief 1099 Beispiel-Kapitel",
-    phase1: {
-      soil: {
-        statement: "Das Beispiel-Thema ist ein eigenständiges Teilgebiet mit definierten Strukturen.",
-        answer: true,
-        solution: "Das Beispiel-Thema umfasst die Strukturen A, B und C. A ist zuständig für X, B für Y. Diese Strukturen wirken zusammen, um Z zu ermöglichen."
-      },
-      seed: {
-        statement: "Struktur A hat keine funktionale Bedeutung im Beispiel-Thema.",
-        answer: false,
-        solution: "Struktur A ist verantwortlich für X und damit unverzichtbar. Ohne A kann Z nicht stattfinden. Struktur A besteht aus den Untereinheiten A1 und A2, die sich gegenseitig regulieren."
-      },
-      water: {
-        statement: "Die Kombination von A und B ist notwendig für den Prozess Z.",
-        answer: true,
-        solution: "A und B kooperieren bei Prozess Z: A liefert den Ausgangsstoff, B katalysiert die Umwandlung. Klinische Relevanz: Ein Ausfall von B führt zu Erkrankung M."
-      }
-    },
     harvestQuestions: [
       {
         id: "bt_h1",
@@ -383,16 +378,23 @@ const BEISPIEL_1099_PLANTS = [
           { text: "Z ersetzen", correct: false },
           { text: "Keine Funktion", correct: false }
         ],
-        explanation: "Struktur A ist für X verantwortlich und damit Voraussetzung für Z."
+        explanation: "Struktur A ist für X verantwortlich und damit Voraussetzung für Z.",
+        learningCard: { type: "predict", statement: "Struktur A ist für die Funktion X verantwortlich.", answer: true, reveal: "Struktur A umfasst die Untereinheiten A1 und A2 und ist Voraussetzung für Prozess Z." }
       },
       {
         id: "bt_h2",
         type: "true_false",
         statement: "Ein Ausfall von B führt zur Erkrankung M.",
         answer: true,
-        explanation: "B katalysiert die Umwandlung in Prozess Z. Fehlt B, stockt Z und es entsteht Erkrankung M."
+        explanation: "B katalysiert die Umwandlung in Prozess Z. Fehlt B, stockt Z und es entsteht Erkrankung M.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "B katalysiert die Umwandlung in Prozess Z.", isWrong: false },
+          { text: "Ein Ausfall von B führt zur Erkrankung M.", isWrong: false },
+          { text: "A liefert den Ausgangsstoff für Prozess Z.", isWrong: false },
+          { text: "Ein Ausfall von B hat keine klinischen Folgen.", isWrong: true }
+        ], whyWrong: "Fehlt B, stockt Prozess Z — daraus entsteht die Erkrankung M. Das hat also sehr wohl klinische Folgen." }
       }
-      // ... mindestens 3 weitere Fragen, bis ALLE Fakten aus phase1 abgedeckt sind
+      // ... mindestens 3 weitere Fragen, bis ALLE prüfungsrelevanten Fakten abgedeckt sind
     ],
     phase4Questions: [
       {
@@ -404,7 +406,13 @@ const BEISPIEL_1099_PLANTS = [
           { text: "B ist bedeutungslos", correct: false },
           { text: "A und B kooperieren bei Prozess Z", correct: true },
           { text: "A und B sind identisch", correct: false }
-        ]
+        ],
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Struktur A und B treffen zu?", checklist: [
+          { text: "A liefert den Ausgangsstoff für Prozess Z", correct: true },
+          { text: "A und B kooperieren bei Prozess Z", correct: true },
+          { text: "B katalysiert die Umwandlung", correct: true },
+          { text: "B ist bedeutungslos", correct: false }
+        ], reveal: "A und B kooperieren bei Prozess Z: A liefert den Ausgangsstoff, B katalysiert die Umwandlung." }
       },
       {
         id: "bt_mc2",
@@ -415,7 +423,8 @@ const BEISPIEL_1099_PLANTS = [
           { text: "Struktur A übernimmt die Funktion von B", correct: false },
           { text: "Erkrankung M tritt auf", correct: true },
           { text: "Untereinheit A1 wird aktiviert", correct: false }
-        ]
+        ],
+        learningCard: { type: "reconstruct", template: "Fehlt B, kommt Prozess ___ zum Erliegen und es entsteht Erkrankung ___.", blanks: ["Z", "M"], distractors: ["Y", "N"] }
       }
     ]
   })
