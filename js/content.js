@@ -1880,27 +1880,48 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Desmal: nur in den Extremitäten; enchondral: nur im Schädel", correct: false },
         { text: "Beide Formen sind identisch – der Name ist nur verschieden", correct: false },
         { text: "Enchondral: direkte Knochenbildung; desmal: über Knorpelvorläuferstufe", correct: false }
-      ], explanation: "Desmale Ossifikation (griech. desmos = Band): Osteoblasten differenzieren direkt aus Mesenchymzellen und bilden Knochen ohne Knorpelvorläfer. Beispiele: Schedelknochen (Frontal-, Parietale), Klavikula, Gesichtsknochen. Enchondrale Ossifikation: Knorpelmodell wird durch Knochen ersetzt; Beispiele: alle langen Röhrenknochen, Beckenknochen, Rippen." },
+      ], explanation: "Desmale Ossifikation (griech. desmos = Band): Osteoblasten differenzieren direkt aus Mesenchymzellen und bilden Knochen ohne Knorpelvorläfer. Beispiele: Schedelknochen (Frontal-, Parietale), Klavikula, Gesichtsknochen. Enchondrale Ossifikation: Knorpelmodell wird durch Knochen ersetzt; Beispiele: alle langen Röhrenknochen, Beckenknochen, Rippen.",
+        learningCard: { type: "reconstruct", template: "___ Ossifikation: direkte Knochenbildung aus Mesenchym (z.B. Schädelknochen); ___ Ossifikation: Knochenbildung über eine Knorpelvorläuferstufe (z.B. lange Röhrenknochen).", blanks: ["Desmale", "Enchondrale"], distractors: ["Periostale", "Endostale"], reveal: "Beispiele für desmale Ossifikation: Schädelknochen, Klavikula. Beispiele für enchondrale Ossifikation: lange Röhrenknochen, Beckenknochen, Rippen." } },
       { id: "ko_bau_h2", type: "mc", question: "Was bezeichnet die 'periostale Ossifikation' beim Dickenwachstum?", options: [
         { text: "Knochenaufbau unter dem Periost durch Osteoblasten auf der Knochenoberfläche", correct: true },
         { text: "Knochenabbau in der Markhöhle durch Osteoklasten", correct: false },
         { text: "Verknorpelung des Periosts bei Frakturheilung", correct: false },
         { text: "Knochenbildung in der Epiphysenfuge", correct: false }
-      ], explanation: "Das Längenwachstum erfolgt enchondral in der Epiphysenfuge. Das Dickenwachstum (Apposition) erfolgt periosteal: Osteoblasten unter dem Periost legen konzentrisch neue Knochenlamellen auf die Knochenoberfläche. Gleichzeitig bauen Osteoklasten endosteal ab, um die Markhöhlengrösse beizubehalten." },
-      { id: "ko_bau_h3", type: "true_false", statement: "Bei der Frakturheilung wird immer zuerst Geflechtknochen gebildet, der später zu Lamellenknochen umgebaut wird.", answer: true, explanation: "Frakturheilung verläuft in Phasen: Hämatom → Granulationsgewebe → Kallus (periostaler Kallus aus Faserknorpel, später Geflechtknochen) → Umbau zu Lamellenknochen. Geflechtknochen ist schnell aber schwächer (ungeordnete Kollagenfasern); Lamellenknochen ist stark und biomechanisch optimiert (geordnete konzentrische Lamellen)." },
-      { id: "ko_bau_h4", type: "true_false", statement: "Das Wolff'sche Gesetz besagt, dass Knochen seine Struktur an die einwirkenden Kräfte anpasst.", answer: true, explanation: "Wolff'sches Gesetz (1892): Knochen baut sich entsprechend den einwirkenden Kräften um. Belastung → Verdichtung (Osteoblastenaktivität). Entlastung/Immobilität → Abbau (Osteoklastenaktivität überwiegt). Klinisch: Osteoporose bei Bettlägerigkeit, Knochenhypertrophie bei Sportlern." },
+      ], explanation: "Das Längenwachstum erfolgt enchondral in der Epiphysenfuge. Das Dickenwachstum (Apposition) erfolgt periosteal: Osteoblasten unter dem Periost legen konzentrisch neue Knochenlamellen auf die Knochenoberfläche. Gleichzeitig bauen Osteoklasten endosteal ab, um die Markhöhlengrösse beizubehalten.",
+        learningCard: { type: "predict", statement: "Das Dickenwachstum des Knochens erfolgt periosteal durch Osteoblasten unter dem Periost.", answer: true, reveal: "Das Längenwachstum erfolgt dagegen enchondral in der Epiphysenfuge. Gleichzeitig bauen Osteoklasten endosteal ab, um die Markhöhlengröße beizubehalten." } },
+      { id: "ko_bau_h3", type: "true_false", statement: "Bei der Frakturheilung wird immer zuerst Geflechtknochen gebildet, der später zu Lamellenknochen umgebaut wird.", answer: true, explanation: "Frakturheilung verläuft in Phasen: Hämatom → Granulationsgewebe → Kallus (periostaler Kallus aus Faserknorpel, später Geflechtknochen) → Umbau zu Lamellenknochen. Geflechtknochen ist schnell aber schwächer (ungeordnete Kollagenfasern); Lamellenknochen ist stark und biomechanisch optimiert (geordnete konzentrische Lamellen).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Frakturheilung treffen zu?", checklist: [
+          { text: "Zuerst wird Geflechtknochen gebildet.", correct: true },
+          { text: "Geflechtknochen wird später zu Lamellenknochen umgebaut.", correct: true },
+          { text: "Der Ablauf ist Hämatom → Granulationsgewebe → Kallus → Umbau.", correct: true },
+          { text: "Lamellenknochen entsteht sofort, ohne Zwischenstufe.", correct: false }
+        ], reveal: "Geflechtknochen ist schnell gebildet, aber schwächer (ungeordnete Kollagenfasern); Lamellenknochen ist stark und biomechanisch optimiert (geordnete Lamellen)." } },
+      { id: "ko_bau_h4", type: "true_false", statement: "Das Wolff'sche Gesetz besagt, dass Knochen seine Struktur an die einwirkenden Kräfte anpasst.", answer: true, explanation: "Wolff'sches Gesetz (1892): Knochen baut sich entsprechend den einwirkenden Kräften um. Belastung → Verdichtung (Osteoblastenaktivität). Entlastung/Immobilität → Abbau (Osteoklastenaktivität überwiegt). Klinisch: Osteoporose bei Bettlägerigkeit, Knochenhypertrophie bei Sportlern.",
+        learningCard: { type: "predict", statement: "Das Wolff'sche Gesetz besagt, dass Knochen seine Struktur an die einwirkenden Kräfte anpasst.", answer: true, reveal: "Belastung führt zu Verdichtung (Osteoblastenaktivität), Entlastung oder Immobilität zu Abbau (Osteoklastenaktivität überwiegt) — klinisch sichtbar bei Osteoporose durch Bettlägerigkeit oder Knochenhypertrophie bei Sportlern." } },
       { id: "ko_bau_h5", type: "mc", question: "Wie lösen Osteoklasten Knochensubstanz auf?", options: [
         { text: "Durch Salzsäuresekretion (pH-Absenkung) und proteolytische Enzyme (Cathepsin K)", correct: true },
         { text: "Durch mechanische Zertrümmerung der Knochenmatrix", correct: false },
         { text: "Durch Absorption von Kalzium ohne chemische Prozesse", correct: false },
         { text: "Durch ATP-getriebene Phagozytose ganzer Knochenbälkchen", correct: false }
-      ], explanation: "Osteoklasten: vielkernige Riesenzellen aus mononukleären Vorläufern. Sie bilden eine 'Versiegelungszone' und sezernieren Salzsäure (pH ~4.5) sowie Proteasen (Cathepsin K) → Mineralien und Kollagen werden aufgelöst. RANKL-Signalweg stimuliert Osteoklastenaktivität (Angriffspunkt moderner Osteoporosemedikamente)." },
+      ], explanation: "Osteoklasten: vielkernige Riesenzellen aus mononukleären Vorläufern. Sie bilden eine 'Versiegelungszone' und sezernieren Salzsäure (pH ~4.5) sowie Proteasen (Cathepsin K) → Mineralien und Kollagen werden aufgelöst. RANKL-Signalweg stimuliert Osteoklastenaktivität (Angriffspunkt moderner Osteoporosemedikamente).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Osteoklasten sezernieren Salzsäure zur pH-Absenkung.", isWrong: false },
+          { text: "Osteoklasten setzen proteolytische Enzyme wie Cathepsin K frei.", isWrong: false },
+          { text: "Der RANKL-Signalweg stimuliert die Osteoklastenaktivität.", isWrong: false },
+          { text: "Osteoklasten bauen Knochen durch mechanische Zertrümmerung ab.", isWrong: true }
+        ], whyWrong: "Osteoklasten arbeiten chemisch, nicht mechanisch: sie senken den pH mit Salzsäure und lösen die Matrix mit Proteasen wie Cathepsin K auf." } },
       { id: "ko_bau_h6", type: "mc", question: "Welche Hormone regulieren den Kalziumhaushalt und damit auch den Knochenumbau?", options: [
         { text: "Parathormon (PTH, stimuliert Knochenabbau und Kalziumfreisetzung), Calcitonin (hemmt Abbau), Vitamin D (fördert Kalziumresorption)", correct: true },
         { text: "Nur Insulin und Glucagon regulieren den Kalziumstoffwechsel", correct: false },
         { text: "Cortisol stimuliert Knochenaufbau", correct: false },
         { text: "Nur Parathormon ist relevant, andere Hormone haben keinen Einfluss", correct: false }
-      ], explanation: "Knochenumbau-Hormone: PTH (Hypokalzämie → Osteoklasten aktivieren → Kalzium aus Knochen), Calcitonin (aus C-Zellen Schilddrüse → Osteoklasten hemmen → Kalziumsenkung), Vitamin D (fördert Kalziumresorption im Darm). Östrogen schützt vor Knochenabbau → Osteoporose nach Menopause." }
+      ], explanation: "Knochenumbau-Hormone: PTH (Hypokalzämie → Osteoklasten aktivieren → Kalzium aus Knochen), Calcitonin (aus C-Zellen Schilddrüse → Osteoklasten hemmen → Kalziumsenkung), Vitamin D (fördert Kalziumresorption im Darm). Östrogen schützt vor Knochenabbau → Osteoporose nach Menopause.",
+        learningCard: { type: "teachback", prompt: "Welche Hormone regulieren den Kalziumhaushalt und Knochenumbau?", checklist: [
+          { text: "Parathormon (PTH) stimuliert Knochenabbau und Kalziumfreisetzung.", correct: true },
+          { text: "Calcitonin hemmt den Knochenabbau.", correct: true },
+          { text: "Vitamin D fördert die Kalziumresorption im Darm.", correct: true },
+          { text: "Insulin ist das zentrale Regulationshormon des Kalziumhaushalts.", correct: false }
+        ], reveal: "Östrogen schützt zusätzlich vor Knochenabbau — daher die erhöhte Osteoporose-Gefahr nach der Menopause." } }
     ],
     phase4Questions: [
       { id: "ko_bau_mc1", type: "mc", question: "Welche Knochen entstehen durch desmale (membranöser) Ossifikation?", options: [
@@ -1908,19 +1929,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Lange Röhrenknochen (Femur, Humerus)", correct: false },
         { text: "Rippen und Brustbein", correct: false },
         { text: "Beckenknochen", correct: false }
-      ], explanation: "Schädelknochen wie Stirn-, Scheitel- und Hinterhauptsknochen entstehen durch desmale Ossifikation direkt aus Bindegewebe, ohne einen Knorpelvorläufer." },
+      ], explanation: "Schädelknochen wie Stirn-, Scheitel- und Hinterhauptsknochen entstehen durch desmale Ossifikation direkt aus Bindegewebe, ohne einen Knorpelvorläufer.",
+        learningCard: { type: "predict", statement: "Schädelknochen wie Stirn-, Scheitel- und Hinterhauptsbein entstehen durch desmale Ossifikation direkt aus Bindegewebe.", answer: true, reveal: "Lange Röhrenknochen, Rippen, Brustbein und Beckenknochen entstehen dagegen enchondral, über eine Knorpelvorläuferstufe." } },
       { id: "ko_bau_mc2", type: "mc", question: "Welche Phasen der Frakturheilung verlaufen in korrekter Reihenfolge?", options: [
         { text: "Hämatom → Granulationsgewebe → Kallus (Geflechtknochen) → Lamellenknochen", correct: true },
         { text: "Lamellenknochen → Geflechtknochen → Kallus → Hämatom", correct: false },
         { text: "Direkte Ossifikation ohne Knorpelphase bei allen Knochen", correct: false },
         { text: "Hämatom → sofortige Lamellenknochenbildung ohne Zwischenschritte", correct: false }
-      ], explanation: "Die Frakturheilung verläuft in Phasen: Hämatom, Granulationsgewebe, Kallus (Geflechtknochen), dann Umbau zu Lamellenknochen über Monate." },
+      ], explanation: "Die Frakturheilung verläuft in Phasen: Hämatom, Granulationsgewebe, Kallus (Geflechtknochen), dann Umbau zu Lamellenknochen über Monate.",
+        learningCard: { type: "reconstruct", template: "Frakturheilung: ___ → Granulationsgewebe → Kallus (___) → Lamellenknochen.", blanks: ["Hämatom", "Geflechtknochen"], distractors: ["Ödem", "Osteoid"], reveal: "Dieser Umbau von Geflecht- zu Lamellenknochen dauert Monate." } },
       { id: "ko_bau_mc3", type: "mc", question: "Welche Aussagen zu Knochenaufbau und -umbau sind korrekt?", options: [
         { text: "Osteoklasten bauen Knochen durch Salzsäuresekretion ab", correct: true },
         { text: "Das Wolff'sche Gesetz: Knochen passt sich an mechanische Belastung an", correct: true },
         { text: "Osteoblasten sind für den Knochenabbau verantwortlich", correct: false },
         { text: "Desmale Ossifikation erfolgt über eine Knorpelvorläuferstufe", correct: false }
-      ], explanation: "Osteoklasten: Abbau durch Salzsäure. Wolff: Belastungsanpassung. Osteoblasten bauen auf (nicht ab). Desmale Ossifikation: direkt aus Mesenchym ohne Knorpel (enchondral hat die Knorpelvorläuferstufe)."}
+      ], explanation: "Osteoklasten: Abbau durch Salzsäure. Wolff: Belastungsanpassung. Osteoblasten bauen auf (nicht ab). Desmale Ossifikation: direkt aus Mesenchym ohne Knorpel (enchondral hat die Knorpelvorläuferstufe).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Knochenaufbau und -umbau treffen zu?", checklist: [
+          { text: "Osteoklasten bauen Knochen durch Salzsäuresekretion ab.", correct: true },
+          { text: "Das Wolff'sche Gesetz beschreibt die Anpassung an mechanische Belastung.", correct: true },
+          { text: "Osteoblasten sind für den Knochenabbau verantwortlich.", correct: false },
+          { text: "Desmale Ossifikation erfolgt über eine Knorpelvorläuferstufe.", correct: false }
+        ], reveal: "Osteoblasten bauen Knochen auf, nicht ab. Desmale Ossifikation läuft direkt aus Mesenchym ohne Knorpelvorläufer — das ist die enchondrale Ossifikation." }}
     ]
   }),
   makeDetailedPlant({
@@ -1932,27 +1961,43 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Verkalkungszone → Proliferationszone → Reservezone", correct: false },
         { text: "Nur zwei Zonen: Wachstumszone und Knochenzone", correct: false },
         { text: "Reservezone → Verkalkungszone → Hypertrophiezone → Proliferationszone", correct: false }
-      ], explanation: "Die Epiphysenfuge (Physis) hat histologisch vier Zonen: 1. Reservezone (ruhende Chondrozyten), 2. Proliferationszone (Zellteilung, Säulenbau), 3. Hypertrophiezone (Zellgrössenzunahme, Matrix-Mineralisation), 4. Verkalkungszone (Apoptose der Chondrozyten, Knochenmatrix-Einlagerung durch Osteoblasten)." },
+      ], explanation: "Die Epiphysenfuge (Physis) hat histologisch vier Zonen: 1. Reservezone (ruhende Chondrozyten), 2. Proliferationszone (Zellteilung, Säulenbau), 3. Hypertrophiezone (Zellgrössenzunahme, Matrix-Mineralisation), 4. Verkalkungszone (Apoptose der Chondrozyten, Knochenmatrix-Einlagerung durch Osteoblasten).",
+        learningCard: { type: "reconstruct", template: "Die Epiphysenfuge hat vier Zonen in der Reihenfolge: Reservezone → ___ → ___ → Verkalkungszone.", blanks: ["Proliferationszone", "Hypertrophiezone"], distractors: ["Resorptionszone", "Mineralisationszone"], reveal: "In der Proliferationszone teilen sich die Chondrozyten, in der Hypertrophiezone nehmen sie an Größe zu und die Matrix mineralisiert." } },
       { id: "ko_w_h2", type: "mc", question: "Welches Hormon ist der wichtigste Stimulator des Längenwachstums?", options: [
         { text: "Wachstumshormon (STH/GH) – wirkt über IGF-1", correct: true },
         { text: "Parathormon (PTH)", correct: false },
         { text: "Cortisol", correct: false },
         { text: "Aldosteron", correct: false }
-      ], explanation: "Wachstumshormon (STH = Somatotropin) wird von der Hypophyse ausgeschüttet und stimuliert die Leber zur Produktion von IGF-1 (Insulin-like Growth Factor 1). IGF-1 stimuliert Chondrozytenproliferation in der Epiphysenfuge. Mangel: Kleinwuchs (hypophysärer Nanismus). Überschuss vor Fugenschluss: Gigantismus; nach Fugenschluss: Akromegalie." },
-      { id: "ko_w_h3", type: "true_false", statement: "Knochenwachstum und Knochenumbau sind funktionell gekoppelt.", answer: true, explanation: "Während das Längenwachstum in den Epiphysenfugen stattfindet, muss gleichzeitig das Knochendurchmesserwachstum (periostales Dickenwachstum) mit koordiniertem endostalem Abbau kombiniert werden, um die Proportionen und Markhöhlengrösse beizubehalten. Wachstum ohne Umbau würde zu massiven, schweren Knochen ohne Markhöhlel führen." },
-      { id: "ko_w_h4", type: "true_false", statement: "Sexualhormone fördern zunächst das Wachstum und bewirken dann den Schluss der Epiphysenfugen.", answer: true, explanation: "Östrogen und Testosteron stimulieren das Wachstum zu Beginn der Pubertät, beschleunigen dann aber die Ossifikation der Epiphysenfugen. Das erklärt den pubertären Wachstumsschub und das Ende des Längenwachstums. Überschuss an Sexualhormonen vor Pubertät → frühzeitiger Fugenschluss → Kleinwuchs." },
+      ], explanation: "Wachstumshormon (STH = Somatotropin) wird von der Hypophyse ausgeschüttet und stimuliert die Leber zur Produktion von IGF-1 (Insulin-like Growth Factor 1). IGF-1 stimuliert Chondrozytenproliferation in der Epiphysenfuge. Mangel: Kleinwuchs (hypophysärer Nanismus). Überschuss vor Fugenschluss: Gigantismus; nach Fugenschluss: Akromegalie.",
+        learningCard: { type: "predict", statement: "Wachstumshormon (STH) ist der wichtigste Stimulator des Längenwachstums und wirkt über IGF-1.", answer: true, reveal: "Mangel führt zu Kleinwuchs (hypophysärer Nanismus); Überschuss vor Fugenschluss zu Gigantismus, danach zu Akromegalie." } },
+      { id: "ko_w_h3", type: "true_false", statement: "Knochenwachstum und Knochenumbau sind funktionell gekoppelt.", answer: true, explanation: "Während das Längenwachstum in den Epiphysenfugen stattfindet, muss gleichzeitig das Knochendurchmesserwachstum (periostales Dickenwachstum) mit koordiniertem endostalem Abbau kombiniert werden, um die Proportionen und Markhöhlengrösse beizubehalten. Wachstum ohne Umbau würde zu massiven, schweren Knochen ohne Markhöhlel führen.",
+        learningCard: { type: "predict", statement: "Knochenwachstum und Knochenumbau sind funktionell gekoppelt.", answer: true, reveal: "Während das Längenwachstum in der Epiphysenfuge stattfindet, muss das periostale Dickenwachstum mit endostalem Abbau koordiniert werden, um Proportionen und Markhöhle zu erhalten." } },
+      { id: "ko_w_h4", type: "true_false", statement: "Sexualhormone fördern zunächst das Wachstum und bewirken dann den Schluss der Epiphysenfugen.", answer: true, explanation: "Östrogen und Testosteron stimulieren das Wachstum zu Beginn der Pubertät, beschleunigen dann aber die Ossifikation der Epiphysenfugen. Das erklärt den pubertären Wachstumsschub und das Ende des Längenwachstums. Überschuss an Sexualhormonen vor Pubertät → frühzeitiger Fugenschluss → Kleinwuchs.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Sexualhormone fördern zu Beginn der Pubertät das Wachstum.", isWrong: false },
+          { text: "Sexualhormone beschleunigen später die Ossifikation der Epiphysenfugen.", isWrong: false },
+          { text: "Ein Überschuss an Sexualhormonen vor der Pubertät führt zu Kleinwuchs.", isWrong: false },
+          { text: "Sexualhormone haben keinen Einfluss auf den Epiphysenfugenschluss.", isWrong: true }
+        ], whyWrong: "Das Gegenteil ist richtig: Sexualhormone bewirken gerade den Schluss der Epiphysenfugen und beenden damit das Längenwachstum." } },
       { id: "ko_w_h5", type: "mc", question: "Was ist der Unterschied zwischen Geflechtknochen und Lamellenknochen?", options: [
         { text: "Geflechtknochen: ungeordnete Kollagenfasern (schnell, weniger stark); Lamellenknochen: konzentrische Kollagenlamellen (langsamer, biomechanisch optimiert)", correct: true },
         { text: "Geflechtknochen enthält Hydroxylapatit, Lamellenknochen kein Kalzium", correct: false },
         { text: "Geflechtknochen ist reifer als Lamellenknochen", correct: false },
         { text: "Beide sind identisch, nur der Name ist verschieden", correct: false }
-      ], explanation: "Geflechtknochen: primitive Form bei Frakturheilung und Entwicklung, ungeordnete Kollagenfasern. Lamellenknochen: reife Form, konzentrisch geordnete Kollagenlamellen in Osteonen, biomechanisch optimiert für Belastung. Umbau von Geflecht zu Lamelle dauert Monate bis Jahre." },
+      ], explanation: "Geflechtknochen: primitive Form bei Frakturheilung und Entwicklung, ungeordnete Kollagenfasern. Lamellenknochen: reife Form, konzentrisch geordnete Kollagenlamellen in Osteonen, biomechanisch optimiert für Belastung. Umbau von Geflecht zu Lamelle dauert Monate bis Jahre.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Geflecht- und Lamellenknochen treffen zu?", checklist: [
+          { text: "Geflechtknochen hat ungeordnete Kollagenfasern.", correct: true },
+          { text: "Lamellenknochen hat konzentrische, geordnete Kollagenlamellen.", correct: true },
+          { text: "Lamellenknochen ist biomechanisch optimierter als Geflechtknochen.", correct: true },
+          { text: "Geflechtknochen enthält kein Kalzium.", correct: false }
+        ], reveal: "Der Umbau von Geflecht- zu Lamellenknochen dauert Monate bis Jahre." } },
       { id: "ko_w_h6", type: "mc", question: "Was passiert, wenn Wachstumshormon nach Schluss der Epiphysenfugen übermässig produziert wird?", options: [
         { text: "Akromegalie: Vergrösserung von Akren (Hände, Füsse, Kinn, Nase) ohne Grössenänderung", correct: true },
         { text: "Gigantismus: generelles Längenwachstum des Körpers", correct: false },
         { text: "Kleinwuchs durch Osteoporose", correct: false },
         { text: "Keine Auswirkung, da Epiphysenfugen geschlossen sind", correct: false }
-      ], explanation: "Vor Fugenschluss: Überschuss → Gigantismus. Nach Fugenschluss: Überschuss → Akromegalie (Wachstum der Akren, Gesichtsknochen, Organe). Wachstumsmangel → hypophysärer Nanismus. STH-Überschuss in der Kindheit → Gigantismus (Robert Wadlow: 2,72 m)." }
+      ], explanation: "Vor Fugenschluss: Überschuss → Gigantismus. Nach Fugenschluss: Überschuss → Akromegalie (Wachstum der Akren, Gesichtsknochen, Organe). Wachstumsmangel → hypophysärer Nanismus. STH-Überschuss in der Kindheit → Gigantismus (Robert Wadlow: 2,72 m).",
+        learningCard: { type: "predict", statement: "Übermäßiges Wachstumshormon nach Schluss der Epiphysenfugen verursacht Akromegalie.", answer: true, reveal: "Akromegalie zeigt sich als Vergrößerung der Akren (Hände, Füße, Kinn, Nase) ohne weiteres Längenwachstum. Vor dem Fugenschluss führt ein Überschuss stattdessen zu Gigantismus." } }
     ],
     phase4Questions: [
       { id: "ko_w_mc1", type: "mc", question: "Welche Faktoren steuern das Längenwachstum der Knochen?", options: [
@@ -1960,19 +2005,32 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Schilddrüsenhormone (T3, T4)", correct: true },
         { text: "Sexualhormone (Östrogen/Testosteron – fördern und später verschliessen Epiphysenfugen)", correct: true },
         { text: "Calcitonin (haupstimulator des Längenwachstums)", correct: false }
-      ], explanation: "Wachstumshormon/IGF-1, Schilddrüsenhormone und Sexualhormone steuern das Längenwachstum; Calcitonin ist kein Hauptstimulator des Längenwachstums." },
+      ], explanation: "Wachstumshormon/IGF-1, Schilddrüsenhormone und Sexualhormone steuern das Längenwachstum; Calcitonin ist kein Hauptstimulator des Längenwachstums.",
+        learningCard: { type: "teachback", prompt: "Welche Faktoren steuern das Längenwachstum der Knochen?", checklist: [
+          { text: "Wachstumshormon und IGF-1", correct: true },
+          { text: "Schilddrüsenhormone (T3, T4)", correct: true },
+          { text: "Sexualhormone (fördern und verschließen später die Epiphysenfugen)", correct: true },
+          { text: "Calcitonin als Hauptstimulator", correct: false }
+        ], reveal: "Calcitonin reguliert den Kalziumhaushalt, ist aber kein Hauptstimulator des Längenwachstums." } },
       { id: "ko_w_mc2", type: "mc", question: "Was ist der radiologische Befund beim Epiphysenfugenschluss?", options: [
         { text: "Die Epiphysenfuge ist als helle (radioluzente) Linie zwischen Epi- und Diaphyse nicht mehr sichtbar", correct: true },
         { text: "Die Epiphysenfuge verbreitert sich und wird radiopak (weiss)", correct: false },
         { text: "Epiphysen und Diaphyse trennen sich im Röntgenbild", correct: false },
         { text: "Epiphysenfugen sind im Röntgenbild nie sichtbar", correct: false }
-      ], explanation: "Beim Epiphysenfugenschluss verknöchert der Knorpel, wodurch die radioluzente Linie zwischen Epi- und Diaphyse verschwindet und kein Längenwachstum mehr möglich ist." },
+      ], explanation: "Beim Epiphysenfugenschluss verknöchert der Knorpel, wodurch die radioluzente Linie zwischen Epi- und Diaphyse verschwindet und kein Längenwachstum mehr möglich ist.",
+        learningCard: { type: "predict", statement: "Beim Epiphysenfugenschluss verschwindet die radioluzente Linie zwischen Epi- und Diaphyse im Röntgenbild.", answer: true, reveal: "Der Knorpel verknöchert vollständig, wodurch kein Längenwachstum mehr möglich ist." } },
       { id: "ko_w_mc3", type: "mc", question: "Welche Aussagen zum Knochenwachstum sind korrekt?", options: [
         { text: "Schilddrüsenhormone (T3, T4) sind für normales Längenwachstum unerlässlich", correct: true },
         { text: "Sexualhormone fördern zunächst Wachstum, dann bewirken sie Fugenschluss", correct: true },
         { text: "Das Dickenwachstum erfolgt in der Epiphysenfuge", correct: false },
         { text: "Geflechtknochen ist belastungsfester als Lamellenknochen", correct: false }
-      ], explanation: "T3/T4: fehlen → Kretinismus (Kleinwuchs). Sexualhormone: Wachstum dann Fugenschluss. Dickenwachstum: periosteal (Osteoblasten unter dem Periost), nicht in der Epiphysenfuge. Lamellenknochen: biomechanisch überlegen gegenüber Geflechtknochen."}
+      ], explanation: "T3/T4: fehlen → Kretinismus (Kleinwuchs). Sexualhormone: Wachstum dann Fugenschluss. Dickenwachstum: periosteal (Osteoblasten unter dem Periost), nicht in der Epiphysenfuge. Lamellenknochen: biomechanisch überlegen gegenüber Geflechtknochen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Knochenwachstum treffen zu?", checklist: [
+          { text: "Schilddrüsenhormone sind für normales Längenwachstum unerlässlich.", correct: true },
+          { text: "Sexualhormone fördern zunächst Wachstum, bewirken dann Fugenschluss.", correct: true },
+          { text: "Das Dickenwachstum erfolgt in der Epiphysenfuge.", correct: false },
+          { text: "Geflechtknochen ist belastungsfester als Lamellenknochen.", correct: false }
+        ], reveal: "Das Dickenwachstum erfolgt periosteal, nicht in der Epiphysenfuge; Lamellenknochen ist dem Geflechtknochen biomechanisch überlegen." }}
     ]
   }),
   makeDetailedPlant({
@@ -1984,32 +2042,48 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Frontalebene (Koronarebene)", correct: false },
         { text: "Transversalebene (Horizontalebene)", correct: false },
         { text: "Diagonalebene", correct: false }
-      ], explanation: "Die Sagittalebene verläuft von anterior nach posterior und teilt den Körper in rechte und linke Hälfte. Die Medianebene ist die mittlere Sagittalebene. Die Frontalebene teilt in ventral/dorsal, die Transversalebene in kranial/kaudal." },
+      ], explanation: "Die Sagittalebene verläuft von anterior nach posterior und teilt den Körper in rechte und linke Hälfte. Die Medianebene ist die mittlere Sagittalebene. Die Frontalebene teilt in ventral/dorsal, die Transversalebene in kranial/kaudal.",
+        learningCard: { type: "predict", statement: "Die Sagittalebene teilt den Körper in eine rechte und eine linke Hälfte.", answer: true, reveal: "Die Frontalebene teilt in ventral/dorsal, die Transversalebene in kranial/kaudal. Die Medianebene ist die mittlere Sagittalebene." } },
       { id: "ko_lb_h2", type: "mc", question: "Was bedeuten die Lagebezeichnungen 'proximal' und 'distal'?", options: [
         { text: "Proximal = rumpfnah; distal = rumpffern (v.a. an Extremitäten)", correct: true },
         { text: "Proximal = oberflächennah; distal = tief gelegen", correct: false },
         { text: "Proximal = vorne; distal = hinten", correct: false },
         { text: "Proximal = kopfwärts; distal = fusswärts", correct: false }
-      ], explanation: "Proximal (lat. proximus = nah) bezeichnet die rumpfnahe Lage an Extremitäten: die Schulter ist proximal des Ellenbogens. Distal (lat. distans = entfernt) bezeichnet die rumpfferne Lage: die Hand ist distal des Ellenbogens. Die Begriffe sind relational, nicht absolut." },
+      ], explanation: "Proximal (lat. proximus = nah) bezeichnet die rumpfnahe Lage an Extremitäten: die Schulter ist proximal des Ellenbogens. Distal (lat. distans = entfernt) bezeichnet die rumpfferne Lage: die Hand ist distal des Ellenbogens. Die Begriffe sind relational, nicht absolut.",
+        learningCard: { type: "reconstruct", template: "___ bedeutet rumpfnah, ___ bedeutet rumpffern — beide Begriffe beschreiben die Lage an Extremitäten.", blanks: ["Proximal", "Distal"], distractors: ["Medial", "Lateral"], reveal: "Die Schulter ist proximal des Ellenbogens, die Hand ist distal des Ellenbogens — die Begriffe sind relational, nicht absolut." } },
       { id: "ko_lb_h3", type: "mc", question: "Um welche Achse erfolgt Flexion und Extension?", options: [
         { text: "Transversalachse (Querachse) – Bewegung in der Sagittalebene", correct: true },
         { text: "Sagittalachse – Bewegung in der Frontalebene", correct: false },
         { text: "Vertikalachse – Bewegung in der Transversalebene", correct: false },
         { text: "Frontalebene selbst ohne zugehörige Achse", correct: false }
-      ], explanation: "Flexion/Extension: Sagittalebene, Transversalachse (z.B. Kniebeugung). Abduktion/Adduktion: Frontalebene, Sagittalachse (z.B. Arm seitlich heben). Rotation: Transversalebene, Vertikalachse (z.B. Kopfdrehen). Jede Bewegungsebene hat ihre zugehörige Drehachse." },
-      { id: "ko_lb_h4", type: "true_false", statement: "Medial bedeutet zur Körpermitte hin, lateral bedeutet von der Körpermitte weg.", answer: true, explanation: "Medial (lat. medius = mittig): zur Medianebene hin. Lateral (lat. latus = Seite): von der Medianebene weg. Beispiel: Die Tibia liegt medial der Fibula. Ulna liegt medial des Radius." },
+      ], explanation: "Flexion/Extension: Sagittalebene, Transversalachse (z.B. Kniebeugung). Abduktion/Adduktion: Frontalebene, Sagittalachse (z.B. Arm seitlich heben). Rotation: Transversalebene, Vertikalachse (z.B. Kopfdrehen). Jede Bewegungsebene hat ihre zugehörige Drehachse.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Bewegungsebenen und -achsen treffen zu?", checklist: [
+          { text: "Flexion/Extension erfolgt in der Sagittalebene um die Transversalachse.", correct: true },
+          { text: "Abduktion/Adduktion erfolgt in der Frontalebene um die Sagittalachse.", correct: true },
+          { text: "Rotation erfolgt in der Transversalebene um die Vertikalachse.", correct: true },
+          { text: "Jede Bewegungsebene hat dieselbe Achse.", correct: false }
+        ], reveal: "Jede Bewegungsebene hat ihre eigene, zugehörige Drehachse." } },
+      { id: "ko_lb_h4", type: "true_false", statement: "Medial bedeutet zur Körpermitte hin, lateral bedeutet von der Körpermitte weg.", answer: true, explanation: "Medial (lat. medius = mittig): zur Medianebene hin. Lateral (lat. latus = Seite): von der Medianebene weg. Beispiel: Die Tibia liegt medial der Fibula. Ulna liegt medial des Radius.",
+        learningCard: { type: "predict", statement: "Medial bedeutet zur Körpermitte hin, lateral bedeutet von der Körpermitte weg.", answer: true, reveal: "Beispiel: Die Tibia liegt medial der Fibula, die Ulna liegt medial des Radius." } },
       { id: "ko_lb_h5", type: "mc", question: "Welche Lagebezeichnung bedeutet 'zur Körperoberfläche hin'?", options: [
         { text: "Superfizial (oberflächlich)", correct: true },
         { text: "Profund (tief)", correct: false },
         { text: "Lateral", correct: false },
         { text: "Anterior", correct: false }
-      ], explanation: "Superfizial = oberflächennah (zur Haut hin). Profund = tief (von der Haut weg, in Richtung Körperinneres). Anterior/posterior: vorne/hinten. Diese Begriffe sind wichtig für Schichten-Beschreibungen (z.B. 'oberflächliche Faszie vs. tiefe Faszie')." },
+      ], explanation: "Superfizial = oberflächennah (zur Haut hin). Profund = tief (von der Haut weg, in Richtung Körperinneres). Anterior/posterior: vorne/hinten. Diese Begriffe sind wichtig für Schichten-Beschreibungen (z.B. 'oberflächliche Faszie vs. tiefe Faszie').",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Superfizial bedeutet oberflächennah.", isWrong: false },
+          { text: "Profund bedeutet tief, von der Haut weg.", isWrong: false },
+          { text: "Anterior und posterior bezeichnen vorne und hinten.", isWrong: false },
+          { text: "Superfizial bedeutet tief im Körperinneren.", isWrong: true }
+        ], whyWrong: "Superfizial bedeutet gerade das Gegenteil — zur Körperoberfläche hin. 'Profund' bezeichnet die tiefe Lage." } },
       { id: "ko_lb_h6", type: "mc", question: "In welcher Ebene verlaufen Rotationsbewegungen (z.B. Kopfdrehen)?", options: [
         { text: "Transversalebene (Horizontalebene) – um die Vertikalachse", correct: true },
         { text: "Sagittalebene – um die Transversalachse", correct: false },
         { text: "Frontalebene – um die Sagittalachse", correct: false },
         { text: "Medianebene – um alle Achsen gleichzeitig", correct: false }
-      ], explanation: "Rotation (Drehung um Längs-/Vertikalachse) erfolgt in der Transversalebene. Flexion/Extension: Sagittalebene. Abduktion/Adduktion: Frontalebene. Jede Bewegungsart hat eine definierte Ebene-Achse-Kombination." }
+      ], explanation: "Rotation (Drehung um Längs-/Vertikalachse) erfolgt in der Transversalebene. Flexion/Extension: Sagittalebene. Abduktion/Adduktion: Frontalebene. Jede Bewegungsart hat eine definierte Ebene-Achse-Kombination.",
+        learningCard: { type: "reconstruct", template: "Rotationsbewegungen wie das Kopfdrehen verlaufen in der ___ um die ___achse.", blanks: ["Transversalebene", "Vertikal"], distractors: ["Sagittalebene", "Transversal"], reveal: "Flexion/Extension verlaufen in der Sagittalebene, Abduktion/Adduktion in der Frontalebene — jede Bewegungsart hat eine feste Ebene-Achse-Kombination." } }
     ],
     phase4Questions: [
       { id: "ko_lb_mc1", type: "mc", question: "Was bedeutet 'kranial'?", options: [
@@ -2017,19 +2091,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Fusswärts, in Richtung Unterschenkel", correct: false },
         { text: "Zur Körpermitte hin (medial)", correct: false },
         { text: "Zur Körperoberfläche hin (superfizial)", correct: false }
-      ], explanation: "Kranial bedeutet kopfwärts in Richtung Schädel, als anatomische Lagebezeichnung zur Beschreibung der Position relativ zum Kopf." },
+      ], explanation: "Kranial bedeutet kopfwärts in Richtung Schädel, als anatomische Lagebezeichnung zur Beschreibung der Position relativ zum Kopf.",
+        learningCard: { type: "predict", statement: "Kranial bedeutet kopfwärts, in Richtung Schädel.", answer: true, reveal: "Es ist eine anatomische Lagebezeichnung zur Beschreibung der Position relativ zum Kopf." } },
       { id: "ko_lb_mc2", type: "mc", question: "Welche Ebene teilt den Körper in eine vordere (ventrale) und hintere (dorsale) Hälfte?", options: [
         { text: "Frontalebene (Koronarebene)", correct: true },
         { text: "Sagittalebene", correct: false },
         { text: "Transversalebene", correct: false },
         { text: "Medianebene", correct: false }
-      ], explanation: "Die Frontalebene teilt den Körper in eine ventrale (vordere) und dorsale (hintere) Hälfte; die Sagittalebene in links und rechts; die Transversalebene in oben und unten." },
+      ], explanation: "Die Frontalebene teilt den Körper in eine ventrale (vordere) und dorsale (hintere) Hälfte; die Sagittalebene in links und rechts; die Transversalebene in oben und unten.",
+        learningCard: { type: "predict", statement: "Die Frontalebene teilt den Körper in eine vordere (ventrale) und hintere (dorsale) Hälfte.", answer: true, reveal: "Die Sagittalebene teilt in links und rechts, die Transversalebene in oben und unten." } },
       { id: "ko_lb_mc3", type: "mc", question: "Welche Aussagen zu Lagebezeichnungen und Körperebenen sind korrekt?", options: [
         { text: "Sagittalebene teilt den Körper in rechte und linke Hälfte", correct: true },
         { text: "Proximal = rumpfnah; distal = rumpffern (an Extremitäten)", correct: true },
         { text: "Frontalebene teilt den Körper in obere und untere Hälfte", correct: false },
         { text: "Lateral bedeutet zur Körpermitte hin", correct: false }
-      ], explanation: "Sagittalebene: rechts/links. Proximal/distal: rumpfnah/-fern. Frontalebene teilt ventral/dorsal (nicht oben/unten – das ist die Transversalebene). Lateral: von der Mitte weg (medial = zur Mitte hin)."}
+      ], explanation: "Sagittalebene: rechts/links. Proximal/distal: rumpfnah/-fern. Frontalebene teilt ventral/dorsal (nicht oben/unten – das ist die Transversalebene). Lateral: von der Mitte weg (medial = zur Mitte hin).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Lagebezeichnungen und Körperebenen treffen zu?", checklist: [
+          { text: "Die Sagittalebene teilt den Körper in rechte und linke Hälfte.", correct: true },
+          { text: "Proximal bedeutet rumpfnah, distal rumpffern.", correct: true },
+          { text: "Die Frontalebene teilt den Körper in obere und untere Hälfte.", correct: false },
+          { text: "Lateral bedeutet zur Körpermitte hin.", correct: false }
+        ], reveal: "Die Frontalebene teilt ventral/dorsal (die Transversalebene teilt oben/unten); lateral bedeutet von der Mitte weg, nicht zur Mitte hin." }}
     ]
   }),
   makeDetailedPlant({
@@ -2041,32 +2123,48 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Annähernd gleiche Ausdehnung in alle Raumrichtungen", correct: false },
         { text: "Sehr dünne Plattenform mit überwiegend Spongiosa", correct: false },
         { text: "Unregelmassige Form ohne erkennbare Systematik", correct: false }
-      ], explanation: "Lange Röhrenknochen (Os longum) haben eine ausgepragte Diaphyse (Schaft) aus kompakter Kortikalis, zwei Epiphysen und eine Markhöhle mit Fettmark (Erwachsene). Beispiele: Femur, Humerus, Tibia, Fibula, Radius, Ulna. Die Länge überwiegt die Breite deutlich." },
+      ], explanation: "Lange Röhrenknochen (Os longum) haben eine ausgepragte Diaphyse (Schaft) aus kompakter Kortikalis, zwei Epiphysen und eine Markhöhle mit Fettmark (Erwachsene). Beispiele: Femur, Humerus, Tibia, Fibula, Radius, Ulna. Die Länge überwiegt die Breite deutlich.",
+        learningCard: { type: "predict", statement: "Lange Röhrenknochen wie der Femur haben eine deutlich längere als breite Form mit Diaphyse und zwei Epiphysen.", answer: true, reveal: "Die Diaphyse besteht aus kompakter Kortikalis mit einer Markhöhle, die beim Erwachsenen Fettmark enthält." } },
       { id: "ko_fo_h2", type: "mc", question: "Warum enthalten platte Knochen wie Brustbein und Schulterblatt auch im Erwachsenenalter rotes Knochenmark?", options: [
         { text: "Weil platte Knochen hämatopötisch aktiv sind und Blutbildung stattfindet", correct: true },
         { text: "Weil platte Knochen keine Markhöhle haben und stattdessen gelbes Mark speichern", correct: false },
         { text: "Weil platte Knochen keine Knochenzellen enthalten", correct: false },
         { text: "Weil rotes Mark nur in der Kindheit vorhanden ist und im Erwachsenenalter fehlt", correct: false }
-      ], explanation: "Platte Knochen (Ossa plana) wie Sternum, Skapula, Ossa cranii enthalten auch im Erwachsenenalter rotes Knochenmark in ihrer Spongiosa (Diplö bei Schädelknochen). Im Gegensatz dazu wird die Diaphyse langer Röhrenknochen im Erwachsenenalter durch gelbes Fettmark ersetzt. Klinisch wichtig: Knochenmarkpunktion am Sternum oder Beckenkamm." },
+      ], explanation: "Platte Knochen (Ossa plana) wie Sternum, Skapula, Ossa cranii enthalten auch im Erwachsenenalter rotes Knochenmark in ihrer Spongiosa (Diplö bei Schädelknochen). Im Gegensatz dazu wird die Diaphyse langer Röhrenknochen im Erwachsenenalter durch gelbes Fettmark ersetzt. Klinisch wichtig: Knochenmarkpunktion am Sternum oder Beckenkamm.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Platte Knochen wie Sternum und Skapula sind hämatopoetisch aktiv.", isWrong: false },
+          { text: "Sie enthalten auch im Erwachsenenalter rotes Knochenmark in der Spongiosa.", isWrong: false },
+          { text: "Die Diaphyse langer Röhrenknochen wird im Erwachsenenalter durch gelbes Fettmark ersetzt.", isWrong: false },
+          { text: "Platte Knochen enthalten kein Knochenmark, da sie keine Markhöhle haben.", isWrong: true }
+        ], whyWrong: "Platte Knochen haben zwar keine Markhöhle wie Röhrenknochen, enthalten aber rotes Mark in ihrer Spongiosa (bei Schädelknochen Diploe genannt)." } },
       { id: "ko_fo_h3", type: "mc", question: "Welchem Knochentyp werden Wirbelkörper zugeordnet?", options: [
         { text: "Unregelmässige Knochen (Ossa irregularia)", correct: true },
         { text: "Lange Knochen", correct: false },
         { text: "Kurze Knochen", correct: false },
         { text: "Platte Knochen", correct: false }
-      ], explanation: "Wirbel haben eine komplexe unregelmässige Form (Wirbelkörper + Bogen + Fortsätze) und passen in keine der anderen Kategorien. Weitere unregelmässige Knochen: Gesichtsschädelknochen, Os coxä (Hüftbein). Die Klassifikation 'unregelmässig' ist ein Sammelbegriff für Knochen ohne einfache geometrische Grundform." },
-      { id: "ko_fo_h4", type: "true_false", statement: "Sesambeine sind eine Sonderform von Knochen, die in Sehnen eingelagert sind.", answer: true, explanation: "Sesambeine (Ossa sesamoidea) liegen in Sehnen eingebettet und schützen diese vor übermässigem Druck. Das grösste Sesambein ist die Patella (Kniescheibe) in der Quadrizepssehne. Sesambeine erhöhen auch den Hebelarm der Sehne." },
+      ], explanation: "Wirbel haben eine komplexe unregelmässige Form (Wirbelkörper + Bogen + Fortsätze) und passen in keine der anderen Kategorien. Weitere unregelmässige Knochen: Gesichtsschädelknochen, Os coxä (Hüftbein). Die Klassifikation 'unregelmässig' ist ein Sammelbegriff für Knochen ohne einfache geometrische Grundform.",
+        learningCard: { type: "predict", statement: "Wirbelkörper werden den unregelmäßigen Knochen (Ossa irregularia) zugeordnet.", answer: true, reveal: "Ihre komplexe Form aus Körper, Bogen und Fortsätzen passt in keine andere Kategorie — weitere Beispiele sind Gesichtsschädelknochen und das Os coxae." } },
+      { id: "ko_fo_h4", type: "true_false", statement: "Sesambeine sind eine Sonderform von Knochen, die in Sehnen eingelagert sind.", answer: true, explanation: "Sesambeine (Ossa sesamoidea) liegen in Sehnen eingebettet und schützen diese vor übermässigem Druck. Das grösste Sesambein ist die Patella (Kniescheibe) in der Quadrizepssehne. Sesambeine erhöhen auch den Hebelarm der Sehne.",
+        learningCard: { type: "predict", statement: "Sesambeine sind eine Sonderform von Knochen, die in Sehnen eingelagert sind.", answer: true, reveal: "Das größte Sesambein ist die Patella (Kniescheibe) in der Quadrizepssehne; Sesambeine erhöhen zusätzlich den Hebelarm der Sehne." } },
       { id: "ko_fo_h5", type: "mc", question: "Welche Knochen sind typische Beispiele für platte Knochen (Ossa plana)?", options: [
         { text: "Sternum, Skapula und Schädelplatten (Calvaria)", correct: true },
         { text: "Femur, Tibia und Humerus", correct: false },
         { text: "Hand- und Fusswurzelknochen", correct: false },
         { text: "Wirbelkörper und Os coxae", correct: false }
-      ], explanation: "Platte Knochen: grossflächig, dünn, Spongiosa zwischen zwei Kortikalisplatten (bei Schädelknochen: Diploe). Funktion: Organschutz (Schädelplatten) und Muskelansatz (Skapula). Enthalten im Erwachsenenalter rotes Knochenmark." },
+      ], explanation: "Platte Knochen: grossflächig, dünn, Spongiosa zwischen zwei Kortikalisplatten (bei Schädelknochen: Diploe). Funktion: Organschutz (Schädelplatten) und Muskelansatz (Skapula). Enthalten im Erwachsenenalter rotes Knochenmark.",
+        learningCard: { type: "reconstruct", template: "Typische platte Knochen (Ossa plana) sind ___, ___ und die Schädelplatten (Calvaria).", blanks: ["Sternum", "Skapula"], distractors: ["Femur", "Tibia"], reveal: "Platte Knochen bestehen aus Spongiosa zwischen zwei Kortikalisplatten und dienen Organschutz sowie Muskelansatz." } },
       { id: "ko_fo_h6", type: "mc", question: "Warum ist die Diaphyse langer Knochen aus dichter Kompakta aufgebaut?", options: [
         { text: "Um Biegekräften standzuhalten – Kompakta in der Peripherie = grösster Hebelarm gegen Biegung", correct: true },
         { text: "Um möglichst viel Knochenmark zu speichern", correct: false },
         { text: "Weil Kompakta leichter ist als Spongiosa", correct: false },
         { text: "Weil im Schaft keine Knochenumbauaktivität stattfindet", correct: false }
-      ], explanation: "Kompakta in der Peripherie bietet maximale Biegesteifigkeit bei minimalem Gewicht (Hohlröhrenprinzip). Die Markhöhle (mit Fettmark) ist leicht. Spongiosa in den Epiphysen verteilt Druckkräfte (trabekuläre Architektur folgt Kraftlinien)." }
+      ], explanation: "Kompakta in der Peripherie bietet maximale Biegesteifigkeit bei minimalem Gewicht (Hohlröhrenprinzip). Die Markhöhle (mit Fettmark) ist leicht. Spongiosa in den Epiphysen verteilt Druckkräfte (trabekuläre Architektur folgt Kraftlinien).",
+        learningCard: { type: "teachback", prompt: "Warum ist die Diaphyse langer Knochen aus dichter Kompakta aufgebaut?", checklist: [
+          { text: "Kompakta in der Peripherie bietet maximale Biegesteifigkeit.", correct: true },
+          { text: "Das Hohlröhrenprinzip spart dabei Gewicht.", correct: true },
+          { text: "Die Markhöhle mit Fettmark ist leicht.", correct: true },
+          { text: "Kompakta dient primär der Speicherung von Knochenmark.", correct: false }
+        ], reveal: "Spongiosa in den Epiphysen verteilt dagegen Druckkräfte entlang der Kraftlinien der trabekulären Architektur." } }
     ],
     phase4Questions: [
       { id: "ko_fo_mc1", type: "mc", question: "Welchem Knochentyp entspricht der Oberschenkelknochen (Femur)?", options: [
@@ -2074,19 +2172,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Kurzer Knochen", correct: false },
         { text: "Platter Knochen", correct: false },
         { text: "Unregelmässiger Knochen", correct: false }
-      ], explanation: "Der Femur ist ein langer Knochen (Röhrenknochen), da seine Längsausdehnung deutlich größer als sein Querschnitt ist und er aus Diaphyse, Metaphysen und Epiphysen besteht." },
+      ], explanation: "Der Femur ist ein langer Knochen (Röhrenknochen), da seine Längsausdehnung deutlich größer als sein Querschnitt ist und er aus Diaphyse, Metaphysen und Epiphysen besteht.",
+        learningCard: { type: "predict", statement: "Der Femur ist ein langer Knochen, da seine Längsausdehnung deutlich größer als sein Querschnitt ist.", answer: true, reveal: "Er besteht aus Diaphyse, Metaphysen und Epiphysen — dem typischen Aufbau langer Röhrenknochen." } },
       { id: "ko_fo_mc2", type: "mc", question: "Was kennzeichnet kurze Knochen?", options: [
         { text: "Annähernd gleiche Ausdehnung in alle Richtungen, z. B. Hand-/Fusswurzelknochen", correct: true },
         { text: "Eine deutlich längere als breite Form", correct: false },
         { text: "Eine sehr dünne plattenförmige Gestalt", correct: false },
         { text: "Ausschliessliches Vorkommen im Schädel", correct: false }
-      ], explanation: "Kurze Knochen (z.B. Hand- und Fusswurzelknochen) haben annähernd gleiche Ausdehnung in alle Richtungen und bestehen hauptsächlich aus Spongiosa mit dünner Kortikalis." },
+      ], explanation: "Kurze Knochen (z.B. Hand- und Fusswurzelknochen) haben annähernd gleiche Ausdehnung in alle Richtungen und bestehen hauptsächlich aus Spongiosa mit dünner Kortikalis.",
+        learningCard: { type: "predict", statement: "Kurze Knochen wie Hand- und Fußwurzelknochen haben in allen Richtungen annähernd gleiche Ausdehnung.", answer: true, reveal: "Sie bestehen hauptsächlich aus Spongiosa mit einer dünnen Kortikalis." } },
       { id: "ko_fo_mc3", type: "mc", question: "Welche Aussagen zu Knochenformen sind korrekt?", options: [
         { text: "Platte Knochen enthalten auch im Erwachsenenalter rotes Knochenmark", correct: true },
         { text: "Sesambeine sind in Sehnen eingelagert und vergrössern den Hebelarm", correct: true },
         { text: "Die Diaphyse langer Knochen ist mit rotem Knochenmark gefüllt", correct: false },
         { text: "Wirbelkörper werden zu den langen Röhrenknochen gezählt", correct: false }
-      ], explanation: "Platte Knochen: rotes Mark im Erwachsenenalter (hämatopoetisch aktiv). Sesambeine: in Sehnen, z.B. Patella. Diaphyse langer Knochen: gelbes Fettmark beim Erwachsenen. Wirbel: unregelmässige Knochen, nicht lange."}
+      ], explanation: "Platte Knochen: rotes Mark im Erwachsenenalter (hämatopoetisch aktiv). Sesambeine: in Sehnen, z.B. Patella. Diaphyse langer Knochen: gelbes Fettmark beim Erwachsenen. Wirbel: unregelmässige Knochen, nicht lange.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Knochenformen treffen zu?", checklist: [
+          { text: "Platte Knochen enthalten auch im Erwachsenenalter rotes Knochenmark.", correct: true },
+          { text: "Sesambeine liegen in Sehnen und vergrößern den Hebelarm.", correct: true },
+          { text: "Die Diaphyse langer Knochen ist mit rotem Knochenmark gefüllt.", correct: false },
+          { text: "Wirbelkörper zählen zu den langen Röhrenknochen.", correct: false }
+        ], reveal: "Die Diaphyse enthält beim Erwachsenen gelbes Fettmark; Wirbelkörper sind unregelmäßige Knochen, keine langen Röhrenknochen." }}
     ]
   }),
   makeDetailedPlant({
@@ -2098,32 +2204,48 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "8 Knochen: vier Schädelknochen und vier Gesichtsknochen", correct: false },
         { text: "Ein einziger Knochen, der beim Erwachsenen vollständig verwachsen ist", correct: false },
         { text: "14 Knochen: Neurocranium hat 10, Viscerocranium hat 4", correct: false }
-      ], explanation: "Der Schädel besteht aus 22 Einzelknochen: das Neurocranium (Hirnschädel) umfasst 8 Knochen (z.B. Os frontale, Os parietale, Os occipitale, Os temporale, Os sphenoidale) und bildet den Schutzraum für das Gehirn. Das Viscerocranium (Gesichtsschädel) umfasst 14 Knochen und bildet den Kauapparat und die Eingangsstrukturen der Atemwege." },
+      ], explanation: "Der Schädel besteht aus 22 Einzelknochen: das Neurocranium (Hirnschädel) umfasst 8 Knochen (z.B. Os frontale, Os parietale, Os occipitale, Os temporale, Os sphenoidale) und bildet den Schutzraum für das Gehirn. Das Viscerocranium (Gesichtsschädel) umfasst 14 Knochen und bildet den Kauapparat und die Eingangsstrukturen der Atemwege.",
+        learningCard: { type: "reconstruct", template: "Der Schädel besteht aus 22 Knochen: das ___ (Hirnschädel, 8 Knochen) und das ___ (Gesichtsschädel, 14 Knochen).", blanks: ["Neurocranium", "Viscerocranium"], distractors: ["Splanchnocranium", "Calvaria"], reveal: "Das Neurocranium schützt das Gehirn, das Viscerocranium bildet den Kauapparat und die Eingangsstrukturen der Atemwege." } },
       { id: "ko_as_h2", type: "mc", question: "Wie viele Rippenpaare hat der Mensch und wie viele sind echte Rippen (Costä verä)?", options: [
         { text: "12 Rippenpaare; die ersten 7 sind echte Rippen (direkter Kontakt zum Sternum)", correct: true },
         { text: "10 Rippenpaare; alle sind echte Rippen", correct: false },
         { text: "12 Rippenpaare; die ersten 10 sind echte Rippen", correct: false },
         { text: "14 Rippenpaare; nur die letzten 2 sind falsche Rippen", correct: false }
-      ], explanation: "Der Brustkorb hat 12 Rippenpaare: Costä verä (echte Rippen, 1–7): direkter Knorpelansatz am Sternum. Costä spuriä (falsche Rippen, 8–10): verbinden sich über gemeinsamen Knorpel mit Rippe 7. Costä fluctuantes (freie Rippen, 11–12): keine sternale Verbindung. Das Brustbein (Sternum) besteht aus Manubrium, Corpus und Processus xiphoideus." },
+      ], explanation: "Der Brustkorb hat 12 Rippenpaare: Costä verä (echte Rippen, 1–7): direkter Knorpelansatz am Sternum. Costä spuriä (falsche Rippen, 8–10): verbinden sich über gemeinsamen Knorpel mit Rippe 7. Costä fluctuantes (freie Rippen, 11–12): keine sternale Verbindung. Das Brustbein (Sternum) besteht aus Manubrium, Corpus und Processus xiphoideus.",
+        learningCard: { type: "predict", statement: "Der Mensch hat 12 Rippenpaare, von denen die ersten 7 echte Rippen (Costae verae) mit direktem Kontakt zum Sternum sind.", answer: true, reveal: "Costae spuriae (8–10) verbinden sich über gemeinsamen Knorpel mit Rippe 7, Costae fluctuantes (11–12) haben keine sternale Verbindung." } },
       { id: "ko_as_h3", type: "mc", question: "Welche Organe werden primär durch das Achsenskelett geschützt?", options: [
         { text: "Gehirn (Schädel), Rückenmark (Wirbelsäule), Herz und Lunge (Brustkorb)", correct: true },
         { text: "Leber und Nieren (Wirbelsäule), Magen (Brustkorb)", correct: false },
         { text: "Hirn und Milz (Schädel), Blase (Wirbelsäule)", correct: false },
         { text: "Ausschliesslich Gehirn und Rückenmark – kein Schutz des Herzens", correct: false }
-      ], explanation: "Das Achsenskelett hat eine doppelte Funktion: Tragstruktur und Organschutz. Schädel schützt Gehirn und Hirnstamm, Wirbelsäule schützt Rückenmark im Spinalkanal, Brustkorb (Rippen + Sternum + BWS) schützt Herz und Lunge. Der Bauchraum wird vom Achsenskelett nicht knochern umschlossen – dort dienen Muskeln als Schutz." },
-      { id: "ko_as_h4", type: "true_false", statement: "Das Brustbein (Sternum) besteht aus Manubrium, Corpus sterni und Processus xiphoideus.", answer: true, explanation: "Das Sternum ist dreiteilig: Manubrium sterni (oben, Ansatz Klavikula und 1./2. Rippe), Corpus sterni (Mittelteil, Ansatz Rippen 2-7), Processus xiphoideus (Schwertfortsatz, klinisch als Leitstruktur bei Reanimation). Knochenmarkpunktion am Sternum ist möglich (enthält rotes Mark)." },
+      ], explanation: "Das Achsenskelett hat eine doppelte Funktion: Tragstruktur und Organschutz. Schädel schützt Gehirn und Hirnstamm, Wirbelsäule schützt Rückenmark im Spinalkanal, Brustkorb (Rippen + Sternum + BWS) schützt Herz und Lunge. Der Bauchraum wird vom Achsenskelett nicht knochern umschlossen – dort dienen Muskeln als Schutz.",
+        learningCard: { type: "teachback", prompt: "Welche Organe schützt das Achsenskelett primär?", checklist: [
+          { text: "Das Gehirn (Schädel)", correct: true },
+          { text: "Das Rückenmark (Wirbelsäule)", correct: true },
+          { text: "Herz und Lunge (Brustkorb)", correct: true },
+          { text: "Leber und Nieren", correct: false }
+        ], reveal: "Der Bauchraum wird vom Achsenskelett nicht knöchern umschlossen — dort dienen Muskeln als Schutz." } },
+      { id: "ko_as_h4", type: "true_false", statement: "Das Brustbein (Sternum) besteht aus Manubrium, Corpus sterni und Processus xiphoideus.", answer: true, explanation: "Das Sternum ist dreiteilig: Manubrium sterni (oben, Ansatz Klavikula und 1./2. Rippe), Corpus sterni (Mittelteil, Ansatz Rippen 2-7), Processus xiphoideus (Schwertfortsatz, klinisch als Leitstruktur bei Reanimation). Knochenmarkpunktion am Sternum ist möglich (enthält rotes Mark).",
+        learningCard: { type: "predict", statement: "Das Brustbein (Sternum) besteht aus Manubrium, Corpus sterni und Processus xiphoideus.", answer: true, reveal: "Das Manubrium trägt Klavikula und 1./2. Rippe, das Corpus die Rippen 2–7, der Processus xiphoideus dient klinisch als Leitstruktur bei der Reanimation." } },
       { id: "ko_as_h5", type: "mc", question: "Was sind freie Rippen (Costae fluctuantes)?", options: [
         { text: "Rippen 11 und 12, die keine sternale Verbindung haben", correct: true },
         { text: "Rippen 8-10, die über gemeinsamen Knorpel mit Rippe 7 verbunden sind", correct: false },
         { text: "Rippen 1-7 mit direktem Kontakt zum Sternum", correct: false },
         { text: "Alle Rippen, die bei Einatmung frei beweglich sind", correct: false }
-      ], explanation: "Einteilung: Costae verae (1-7): direkt am Sternum. Costae spuriae (8-10): gemeinsamer Knorpel, kein direkter Sternalkontakt. Costae fluctuantes (11-12): freie Enden, hängen 'in der Luft'. Diese Einteilung ist klausurrelevant." },
+      ], explanation: "Einteilung: Costae verae (1-7): direkt am Sternum. Costae spuriae (8-10): gemeinsamer Knorpel, kein direkter Sternalkontakt. Costae fluctuantes (11-12): freie Enden, hängen 'in der Luft'. Diese Einteilung ist klausurrelevant.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Costae fluctuantes sind die Rippen 11 und 12.", isWrong: false },
+          { text: "Sie haben keine sternale Verbindung.", isWrong: false },
+          { text: "Costae verae (1–7) haben direkten Kontakt zum Sternum.", isWrong: false },
+          { text: "Costae fluctuantes sind die Rippen 1–7.", isWrong: true }
+        ], whyWrong: "Die Rippen 1–7 sind die echten Rippen (Costae verae) mit direktem Sternumkontakt — die freien Rippen (Costae fluctuantes) sind die Rippen 11 und 12." } },
       { id: "ko_as_h6", type: "mc", question: "Was ist der Unterschied zwischen Neurocranium und Viscerocranium?", options: [
         { text: "Neurocranium (Hirnschädel, 8 Knochen) schützt das Gehirn; Viscerocranium (Gesichtsschädel, 14 Knochen) bildet Kauapparat und Gesicht", correct: true },
         { text: "Neurocranium = vorderer Schädel; Viscerocranium = hinterer Schädel", correct: false },
         { text: "Beide Begriffe bezeichnen denselben Schädelabschnitt", correct: false },
         { text: "Viscerocranium enthält das Gehirn und ist daher grösser", correct: false }
-      ], explanation: "Neurocranium: 8 Knochen (u.a. Os frontale, parietale, occipitale, temporale, sphenoidale). Viscerocranium: 14 Knochen (u.a. Mandibula, Maxilla, Os zygomaticum). Die Mandibula (Unterkiefer) ist der einzige bewegliche Schädelknochen." }
+      ], explanation: "Neurocranium: 8 Knochen (u.a. Os frontale, parietale, occipitale, temporale, sphenoidale). Viscerocranium: 14 Knochen (u.a. Mandibula, Maxilla, Os zygomaticum). Die Mandibula (Unterkiefer) ist der einzige bewegliche Schädelknochen.",
+        learningCard: { type: "predict", statement: "Das Neurocranium (8 Knochen) schützt das Gehirn, das Viscerocranium (14 Knochen) bildet Kauapparat und Gesicht.", answer: true, reveal: "Die Mandibula (Unterkiefer) ist der einzige bewegliche Schädelknochen." } }
     ],
     phase4Questions: [
       { id: "ko_as_mc1", type: "mc", question: "Welche Strukturen gehören zum Achsenskelett?", options: [
@@ -2131,19 +2253,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Schulterblatt, Schlüsselbein und Rippen", correct: false },
         { text: "Becken, Femur und Humerus", correct: false },
         { text: "Wirbelsäule, Becken und untere Extremität", correct: false }
-      ], explanation: "Das Achsenskelett bildet die Körperlängsachse und besteht aus Schädel, Wirbelsäule und dem knöchernen Brustkorb; Extremitäten und Beckengürtel gehören zum Appendikularskelett." },
+      ], explanation: "Das Achsenskelett bildet die Körperlängsachse und besteht aus Schädel, Wirbelsäule und dem knöchernen Brustkorb; Extremitäten und Beckengürtel gehören zum Appendikularskelett.",
+        learningCard: { type: "predict", statement: "Zum Achsenskelett gehören Schädel, Wirbelsäule und der knöcherne Brustkorb.", answer: true, reveal: "Extremitäten und Beckengürtel gehören dagegen zum Appendikularskelett." } },
       { id: "ko_as_mc2", type: "mc", question: "In wie viele Abschnitte wird die Wirbelsäule gegliedert?", options: [
         { text: "Fünf: HWS, BWS, LWS, Sakrum und Steissbein", correct: true },
         { text: "Drei: Hals-, Brust- und Lendenwirbelsäule", correct: false },
         { text: "Vier: Hals-, Brust-, Lenden- und Kreuzwirbel", correct: false },
         { text: "Sechs Abschnitte mit jeweils eigener Bogenstruktur", correct: false }
-      ], explanation: "Die Wirbelsäule gliedert sich in fünf Abschnitte: 7 Halswirbel (HWS), 12 Brustwirbel (BWS), 5 Lendenwirbel (LWS), Sakrum (5 verwachsene Wirbel) und Steissbein." },
+      ], explanation: "Die Wirbelsäule gliedert sich in fünf Abschnitte: 7 Halswirbel (HWS), 12 Brustwirbel (BWS), 5 Lendenwirbel (LWS), Sakrum (5 verwachsene Wirbel) und Steissbein.",
+        learningCard: { type: "reconstruct", template: "Die Wirbelsäule gliedert sich in fünf Abschnitte: HWS, BWS, LWS, ___ und ___.", blanks: ["Sakrum", "Steißbein"], distractors: ["Coccygealwirbel", "Kokzyx-Fuge"], reveal: "7 Halswirbel, 12 Brustwirbel, 5 Lendenwirbel, das Sakrum (5 verwachsene Wirbel) und das Steißbein." } },
       { id: "ko_as_mc3", type: "mc", question: "Welche Aussagen zum Achsenskelett sind korrekt?", options: [
         { text: "Schädel schützt Gehirn, Wirbelsäule schützt Rückenmark, Brustkorb schützt Herz und Lunge", correct: true },
         { text: "Costae fluctuantes (freie Rippen) haben keine sternale Verbindung", correct: true },
         { text: "Das Viscerocranium enthält das Gehirn und schützt es vor Trauma", correct: false },
         { text: "Das Sternum besteht aus 5 einzelnen Knochen", correct: false }
-      ], explanation: "Achsenskelett schützt drei Organsysteme. Freie Rippen 11-12 = Costae fluctuantes. Viscerocranium = Gesichtsschädel (Kauapparat, nicht Gehirn). Sternum: 3 Teile (Manubrium, Corpus, Processus xiphoideus)."}
+      ], explanation: "Achsenskelett schützt drei Organsysteme. Freie Rippen 11-12 = Costae fluctuantes. Viscerocranium = Gesichtsschädel (Kauapparat, nicht Gehirn). Sternum: 3 Teile (Manubrium, Corpus, Processus xiphoideus).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Achsenskelett treffen zu?", checklist: [
+          { text: "Schädel schützt Gehirn, Wirbelsäule schützt Rückenmark, Brustkorb schützt Herz und Lunge.", correct: true },
+          { text: "Costae fluctuantes haben keine sternale Verbindung.", correct: true },
+          { text: "Das Viscerocranium enthält das Gehirn.", correct: false },
+          { text: "Das Sternum besteht aus 5 einzelnen Knochen.", correct: false }
+        ], reveal: "Das Viscerocranium ist der Gesichtsschädel (Kauapparat), nicht der Gehirnschutz; das Sternum besteht aus 3 Teilen." }}
     ]
   }),
   makeDetailedPlant({
@@ -2155,32 +2285,48 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Periost (aussen) und Spongiosa (innen)", correct: false },
         { text: "Kompakta (aussen) und Hyalinknorpel (innen)", correct: false },
         { text: "Elastin (aussen) und Kollagen (innen)", correct: false }
-      ], explanation: "Die Bandscheibe besteht aus: Anulus fibrosus – konzentrischer Faserring aus Kollagen Typ I für Zugfestigkeit; Nucleus pulposus – wasserreicher Gallertkern (80% Wasser, Aggrekan) der den Druck puffernd verteilt. Bei Bandscheibenvorfall prolabiert der Nucleus durch einen Riss im Anulus und kann Nervenwurzeln komprimieren." },
+      ], explanation: "Die Bandscheibe besteht aus: Anulus fibrosus – konzentrischer Faserring aus Kollagen Typ I für Zugfestigkeit; Nucleus pulposus – wasserreicher Gallertkern (80% Wasser, Aggrekan) der den Druck puffernd verteilt. Bei Bandscheibenvorfall prolabiert der Nucleus durch einen Riss im Anulus und kann Nervenwurzeln komprimieren.",
+        learningCard: { type: "reconstruct", template: "Die Bandscheibe besteht aus dem äußeren ___ (Faserring) und dem inneren ___ (Gallertkern).", blanks: ["Anulus fibrosus", "Nucleus pulposus"], distractors: ["Periost", "Perichondrium"], reveal: "Bei einem Bandscheibenvorfall prolabiert der Nucleus durch einen Riss im Anulus und kann Nervenwurzeln komprimieren." } },
       { id: "ko_ws_h2", type: "mc", question: "Welche physiologischen Krümmungen hat die Wirbelsäule (sagittale Sicht)?", options: [
         { text: "HWS und LWS: Lordose (nach vorne); BWS und Sakrum: Kyphose (nach hinten)", correct: true },
         { text: "Alle Abschnitte zeigen gleichmässige Kyphose nach hinten", correct: false },
         { text: "Die Wirbelsäule ist im Idealfall gerade ohne Krümmungen", correct: false },
         { text: "HWS: Kyphose; LWS: Lordose; BWS: Lordose", correct: false }
-      ], explanation: "Die Wirbelsäule hat im Seitenbild ein S-förmiges Doppelkurvenmodell: Zervikallordose + Brustkyphose + Lendenlordose + Sakralkyphose. Diese Krümmungen erhöhen die Stabilität (federnd) und Belastungskapazität. Pathologische Krümmungen: Skoliose (seitlich), verstärkte Kyphose (Rundrucken), verstärkte Lordose (Hohlkreuz)." },
+      ], explanation: "Die Wirbelsäule hat im Seitenbild ein S-förmiges Doppelkurvenmodell: Zervikallordose + Brustkyphose + Lendenlordose + Sakralkyphose. Diese Krümmungen erhöhen die Stabilität (federnd) und Belastungskapazität. Pathologische Krümmungen: Skoliose (seitlich), verstärkte Kyphose (Rundrucken), verstärkte Lordose (Hohlkreuz).",
+        learningCard: { type: "teachback", prompt: "Welche physiologischen Krümmungen hat die Wirbelsäule?", checklist: [
+          { text: "HWS und LWS zeigen eine Lordose (nach vorne).", correct: true },
+          { text: "BWS und Sakrum zeigen eine Kyphose (nach hinten).", correct: true },
+          { text: "Die Krümmungen erhöhen die federnde Stabilität.", correct: true },
+          { text: "Die Wirbelsäule ist im Idealfall gerade, ohne Krümmungen.", correct: false }
+        ], reveal: "Pathologische Abweichungen sind Skoliose (seitlich), verstärkte Kyphose (Rundrücken) und verstärkte Lordose (Hohlkreuz)." } },
       { id: "ko_ws_h3", type: "mc", question: "An welcher Höhe des Rückenmarks endet das Rückenmark selbst beim Erwachsenen?", options: [
         { text: "Auf Höhe LWK 1–2 (Conus medullaris); danach folgt die Cauda equina", correct: true },
         { text: "Auf Höhe SWK 1 (bis zum Steissbein)", correct: false },
         { text: "Auf Höhe BWK 12 genau", correct: false },
         { text: "Das Rückenmark füllt den gesamten Wirbelkanal bis zum Os sacrum", correct: false }
-      ], explanation: "Das Rückenmark endet beim Erwachsenen am Conus medullaris auf Höhe LWK 1-2. Kaudal davon verlaufen die langen Nervenwurzeln (L2-S5) als Cauda equina ('Pferdeschweif') im Liquorraum. Klinisch relevant: Lumbalpunktion unterhalb LWK 3/4 trifft keine Rückenmarkstruktur mehr." },
-      { id: "ko_ws_h4", type: "true_false", statement: "Das Ligamentum flavum verbindet benachbarte Wirbelbögen und enthält viel elastisches Gewebe.", answer: true, explanation: "Lig. flavum (gelbes Band): zwischen Wirbelbögen, reich an elastischen Fasern (gelbliche Farbe). Ermöglicht Rückstellung nach Vorwärtsbeugung. Klinisch: Hypertrophie des Lig. flavum kann zur spinalen Stenose führen." },
+      ], explanation: "Das Rückenmark endet beim Erwachsenen am Conus medullaris auf Höhe LWK 1-2. Kaudal davon verlaufen die langen Nervenwurzeln (L2-S5) als Cauda equina ('Pferdeschweif') im Liquorraum. Klinisch relevant: Lumbalpunktion unterhalb LWK 3/4 trifft keine Rückenmarkstruktur mehr.",
+        learningCard: { type: "predict", statement: "Das Rückenmark endet beim Erwachsenen als Conus medullaris auf Höhe LWK 1–2.", answer: true, reveal: "Kaudal davon verlaufen die Nervenwurzeln als Cauda equina. Eine Lumbalpunktion unterhalb LWK 3/4 trifft deshalb keine Rückenmarkstruktur mehr." } },
+      { id: "ko_ws_h4", type: "true_false", statement: "Das Ligamentum flavum verbindet benachbarte Wirbelbögen und enthält viel elastisches Gewebe.", answer: true, explanation: "Lig. flavum (gelbes Band): zwischen Wirbelbögen, reich an elastischen Fasern (gelbliche Farbe). Ermöglicht Rückstellung nach Vorwärtsbeugung. Klinisch: Hypertrophie des Lig. flavum kann zur spinalen Stenose führen.",
+        learningCard: { type: "predict", statement: "Das Ligamentum flavum verbindet benachbarte Wirbelbögen und enthält viel elastisches Gewebe.", answer: true, reveal: "Es ermöglicht die Rückstellung nach Vorwärtsbeugung; eine Hypertrophie kann zur spinalen Stenose führen." } },
       { id: "ko_ws_h5", type: "mc", question: "Wie viele Wirbel hat die Wirbelsäule in jedem Abschnitt?", options: [
         { text: "7 HWS, 12 BWS, 5 LWS, 5 Sacrum (verwachsen), 4–5 Steissbein (verwachsen)", correct: true },
         { text: "5 HWS, 10 BWS, 7 LWS, 5 Sacrum", correct: false },
         { text: "7 HWS, 10 BWS, 7 LWS, 3 Sacrum", correct: false },
         { text: "Alle Abschnitte haben je 5 Wirbel", correct: false }
-      ], explanation: "Merkhilfe: 7+12+5 = 24 freie Wirbel (entspricht Stunden/Tag, Monaten/Jahr, Werktagen/Woche). Dazu 5 verwachsene Kreuzwirbel (Sacrum) und 4-5 Steisswirbel (Coccyx). Gesamtzahl: 33-34 Wirbel." },
+      ], explanation: "Merkhilfe: 7+12+5 = 24 freie Wirbel (entspricht Stunden/Tag, Monaten/Jahr, Werktagen/Woche). Dazu 5 verwachsene Kreuzwirbel (Sacrum) und 4-5 Steisswirbel (Coccyx). Gesamtzahl: 33-34 Wirbel.",
+        learningCard: { type: "reconstruct", template: "Die Wirbelsäule hat 7 Hals-, ___ Brust- und ___ Lendenwirbel, dazu das verwachsene Sakrum und Steißbein.", blanks: ["12", "5"], distractors: ["10", "7"], reveal: "Merkhilfe: 7+12+5 = 24 freie Wirbel — wie Stunden am Tag, Monate im Jahr oder Werktage plus Wochenende." } },
       { id: "ko_ws_h6", type: "mc", question: "Was ist ein Bandscheibenvorfall (Prolaps) und welche Struktur prolabiert?", options: [
         { text: "Der Nucleus pulposus prolabiert durch Riss im Anulus fibrosus und kann Nervenwurzeln komprimieren", correct: true },
         { text: "Ein Wirbelkörper verschiebt sich auf einen anderen (Spondylolisthesis)", correct: false },
         { text: "Der Anulus fibrosus löst sich vom Wirbelkörper", correct: false },
         { text: "Das Lig. longitudinale posterius reisst und das Rückenmark prolabiert", correct: false }
-      ], explanation: "Bandscheibenvorfall: Riss im Anulus fibrosus → Nucleus pulposus tritt aus. Häufig dorsolateral (Lig. longitudinale posterius verläuft zentral). Kompression der Nervenwurzel → radikuläre Schmerzen (Ischias bei LWS-Vorfall). Häufigste Etagen: L4/L5 und L5/S1." }
+      ], explanation: "Bandscheibenvorfall: Riss im Anulus fibrosus → Nucleus pulposus tritt aus. Häufig dorsolateral (Lig. longitudinale posterius verläuft zentral). Kompression der Nervenwurzel → radikuläre Schmerzen (Ischias bei LWS-Vorfall). Häufigste Etagen: L4/L5 und L5/S1.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Beim Bandscheibenvorfall prolabiert der Nucleus pulposus durch einen Riss im Anulus fibrosus.", isWrong: false },
+          { text: "Die Kompression der Nervenwurzel verursacht radikuläre Schmerzen.", isWrong: false },
+          { text: "Häufige Etagen sind L4/L5 und L5/S1.", isWrong: false },
+          { text: "Beim Bandscheibenvorfall verschiebt sich ein Wirbelkörper auf einen anderen.", isWrong: true }
+        ], whyWrong: "Das ist eine Spondylolisthesis, ein anderes Krankheitsbild — beim Bandscheibenvorfall prolabiert der Gallertkern, kein Wirbelkörper verschiebt sich." } }
     ],
     phase4Questions: [
       { id: "ko_ws_mc1", type: "mc", question: "Welche Funktion haben die Bandscheiben der Wirbelsäule?", options: [
@@ -2188,19 +2334,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Knochenernährung und Blutversorgung der Wirbelkörper", correct: false },
         { text: "Ausschliesslich passive Verbindung ohne Dämpfungsfunktion", correct: false },
         { text: "Stabilisierung durch aktive Muskelkontraktion", correct: false }
-      ], explanation: "Bandscheiben bestehen aus Anulus fibrosus und Nucleus pulposus und dienen der Stossdämpfung sowie der Ermöglichung von Beweglichkeit zwischen benachbarten Wirbelkörpern." },
+      ], explanation: "Bandscheiben bestehen aus Anulus fibrosus und Nucleus pulposus und dienen der Stossdämpfung sowie der Ermöglichung von Beweglichkeit zwischen benachbarten Wirbelkörpern.",
+        learningCard: { type: "predict", statement: "Bandscheiben dienen der Stoßdämpfung und ermöglichen Beweglichkeit zwischen Wirbelkörpern.", answer: true, reveal: "Sie bestehen aus Anulus fibrosus und Nucleus pulposus und übernehmen keine Ernährungs- oder Blutversorgungsfunktion." } },
       { id: "ko_ws_mc2", type: "mc", question: "Welches Band verläuft entlang der Vorderflähe der Wirbelkörper?", options: [
         { text: "Ligamentum longitudinale anterius", correct: true },
         { text: "Ligamentum longitudinale posterius", correct: false },
         { text: "Ligamentum flavum", correct: false },
         { text: "Ligamentum interspinale", correct: false }
-      ], explanation: "Das Ligamentum longitudinale anterius verläuft entlang der Vorderfläche der Wirbelkörper und verhindert eine übermäßige Extension der Wirbelsäule." },
+      ], explanation: "Das Ligamentum longitudinale anterius verläuft entlang der Vorderfläche der Wirbelkörper und verhindert eine übermäßige Extension der Wirbelsäule.",
+        learningCard: { type: "predict", statement: "Das Ligamentum longitudinale anterius verläuft entlang der Vorderfläche der Wirbelkörper.", answer: true, reveal: "Es verhindert eine übermäßige Extension der Wirbelsäule." } },
       { id: "ko_ws_mc3", type: "mc", question: "Welche Aussagen zur Wirbelsäule sind korrekt?", options: [
         { text: "HWS und LWS zeigen Lordose, BWS und Sakrum zeigen Kyphose", correct: true },
         { text: "Das Rückenmark endet auf Höhe LWK 1-2 als Conus medullaris", correct: true },
         { text: "Der Nucleus pulposus besteht aus festem Kollagen und nicht aus Gel", correct: false },
         { text: "Lumbalpunktion wird am sichersten auf Höhe BWK 12 durchgeführt", correct: false }
-      ], explanation: "Wirbelsäule: HWS/LWS=Lordose, BWS/Sakrum=Kyphose. Conus medullaris: LWK 1-2. Nucleus pulposus: wasserreicher Gallertkern (80% Wasser). Lumbalpunktion: unterhalb LWK 3/4, um Rückenmark nicht zu verletzen."}
+      ], explanation: "Wirbelsäule: HWS/LWS=Lordose, BWS/Sakrum=Kyphose. Conus medullaris: LWK 1-2. Nucleus pulposus: wasserreicher Gallertkern (80% Wasser). Lumbalpunktion: unterhalb LWK 3/4, um Rückenmark nicht zu verletzen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Wirbelsäule treffen zu?", checklist: [
+          { text: "HWS und LWS zeigen Lordose, BWS und Sakrum zeigen Kyphose.", correct: true },
+          { text: "Das Rückenmark endet auf Höhe LWK 1–2 als Conus medullaris.", correct: true },
+          { text: "Der Nucleus pulposus besteht aus festem Kollagen.", correct: false },
+          { text: "Die Lumbalpunktion wird sicher auf Höhe BWK 12 durchgeführt.", correct: false }
+        ], reveal: "Der Nucleus pulposus ist ein wasserreicher Gallertkern (80% Wasser); die Lumbalpunktion erfolgt unterhalb LWK 3/4, nicht auf Höhe BWK 12." }}
     ]
   }),
   makeDetailedPlant({
@@ -2212,32 +2366,48 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Humerus und Skapula", correct: false },
         { text: "Sternum und Klavikula", correct: false },
         { text: "Skapula und erster Rippenknorpel", correct: false }
-      ], explanation: "Der Schultergürtel (Cingulum membri superioris) besteht aus Klavikula und Skapula. Die Klavikula ist das einzige knöcherne Band zwischen Schultergürtel und Achsenskelett (Sternoklavikulargelenk). Die Skapula liegt dorsal am Thorax und bildet mit dem Humerus das Schultergelenk (Articulatio humeri)." },
+      ], explanation: "Der Schultergürtel (Cingulum membri superioris) besteht aus Klavikula und Skapula. Die Klavikula ist das einzige knöcherne Band zwischen Schultergürtel und Achsenskelett (Sternoklavikulargelenk). Die Skapula liegt dorsal am Thorax und bildet mit dem Humerus das Schultergelenk (Articulatio humeri).",
+        learningCard: { type: "predict", statement: "Der Schultergürtel besteht aus Klavikula und Skapula.", answer: true, reveal: "Die Klavikula ist das einzige knöcherne Band zwischen Schultergürtel und Achsenskelett (Sternoklavikulargelenk); die Skapula bildet mit dem Humerus das Schultergelenk." } },
       { id: "ko_ex_h2", type: "mc", question: "Was ist das Os coxä und woraus besteht es?", options: [
         { text: "Das Hüftbein, das aus Os ilium, Os ischii und Os pubis verwachsen ist", correct: true },
         { text: "Das Hüftbein, das aus Femur und Acetabulum besteht", correct: false },
         { text: "Ein anderer Name für den Oberschenkelknochen (Femur)", correct: false },
         { text: "Der Sakralknochen (Kreuzbein) als Teil des Beckenringes", correct: false }
-      ], explanation: "Das Os coxä (Hüftbein) entsteht durch Verwachsung dreier Knochen: Os ilium (Darmbein, oben), Os ischii (Sitzbein, hinten-unten) und Os pubis (Schambein, vorne). Beide Os coxä verbinden sich vorne an der Symphyse und hinten mit dem Sacrum zu dem knöhernen Beckenring." },
+      ], explanation: "Das Os coxä (Hüftbein) entsteht durch Verwachsung dreier Knochen: Os ilium (Darmbein, oben), Os ischii (Sitzbein, hinten-unten) und Os pubis (Schambein, vorne). Beide Os coxä verbinden sich vorne an der Symphyse und hinten mit dem Sacrum zu dem knöhernen Beckenring.",
+        learningCard: { type: "reconstruct", template: "Das Os coxae (Hüftbein) entsteht durch Verwachsung von Os ___, Os ___ und Os pubis.", blanks: ["ilium", "ischii"], distractors: ["sacrum", "coccygis"], reveal: "Beide Os coxae verbinden sich vorne an der Symphyse und hinten mit dem Sacrum zum knöchernen Beckenring." } },
       { id: "ko_ex_h3", type: "mc", question: "Welcher Knochen bildet die Verbindung zwischen Oberschenkel und Unterschenkel?", options: [
         { text: "Das Kniegelenk zwischen Femur, Tibia und Patella", correct: true },
         { text: "Die Fibula als Hauptlasttrageknochen des Unterschenkels", correct: false },
         { text: "Der Talus (Sprungbein) als Verbindung zwischen Ober- und Unterschenkel", correct: false },
         { text: "Direkter Kontakt zwischen Femur und Fibula", correct: false }
-      ], explanation: "Das Kniegelenk (Art. genus) verbindet Femur (Oberschenkel), Tibia (Haupt-Lasttrageknochen des Unterschenkels) und Patella (Kniescheibe, als Sesambein im M. quadriceps-Sehne). Die Fibula bildet keine Kniegelenkfläche, sondern liegt lateral der Tibia und dient als Muskeln-Ansatz und Austauschorgan für Sprunggelenk (Malleolus lateralis)." },
-      { id: "ko_ex_h4", type: "true_false", statement: "Die Klavikula ist das einzige knöcherne Band zwischen Schultergürtel und Achsenskelett.", answer: true, explanation: "Die Klavikula verbindet medial mit dem Sternum (Sternoklavikulargelenk) und lateral mit der Skapula (Akromioklavikulargelenk). Die Skapula selbst hat keinen direkten knöchernen Kontakt mit dem Achsenskelett." },
+      ], explanation: "Das Kniegelenk (Art. genus) verbindet Femur (Oberschenkel), Tibia (Haupt-Lasttrageknochen des Unterschenkels) und Patella (Kniescheibe, als Sesambein im M. quadriceps-Sehne). Die Fibula bildet keine Kniegelenkfläche, sondern liegt lateral der Tibia und dient als Muskeln-Ansatz und Austauschorgan für Sprunggelenk (Malleolus lateralis).",
+        learningCard: { type: "teachback", prompt: "Welche Knochen bilden das Kniegelenk?", checklist: [
+          { text: "Femur", correct: true },
+          { text: "Tibia", correct: true },
+          { text: "Patella", correct: true },
+          { text: "Fibula", correct: false }
+        ], reveal: "Die Fibula bildet keine Kniegelenkfläche — sie liegt lateral der Tibia und dient dem Sprunggelenk (Malleolus lateralis) und Muskelansätzen." } },
+      { id: "ko_ex_h4", type: "true_false", statement: "Die Klavikula ist das einzige knöcherne Band zwischen Schultergürtel und Achsenskelett.", answer: true, explanation: "Die Klavikula verbindet medial mit dem Sternum (Sternoklavikulargelenk) und lateral mit der Skapula (Akromioklavikulargelenk). Die Skapula selbst hat keinen direkten knöchernen Kontakt mit dem Achsenskelett.",
+        learningCard: { type: "predict", statement: "Die Klavikula ist das einzige knöcherne Band zwischen Schultergürtel und Achsenskelett.", answer: true, reveal: "Sie verbindet medial mit dem Sternum (Sternoklavikulargelenk) und lateral mit der Skapula (Akromioklavikulargelenk) — die Skapula selbst hat keinen direkten Knochenkontakt zum Achsenskelett." } },
       { id: "ko_ex_h5", type: "mc", question: "Welche Knochen bilden den Beckenring?", options: [
         { text: "Beide Os coxae (je aus Os ilium, ischii und pubis) + Sacrum, verbunden durch Symphyse und ISG", correct: true },
         { text: "Os ilium, Femur und Sacrum", correct: false },
         { text: "Nur die Wirbelkörper L4-S5", correct: false },
         { text: "Femur, Os pubis und Steissbein", correct: false }
-      ], explanation: "Der knöcherne Beckenring: beide Os coxae verbinden sich vorne an der Symphysis pubica (Faserknorpel) und hinten beidseits mit dem Sacrum über das Iliosakralgelenk (ISG). Das Os coxae selbst entsteht durch Verwachsung von Os ilium, Os ischii und Os pubis." },
+      ], explanation: "Der knöcherne Beckenring: beide Os coxae verbinden sich vorne an der Symphysis pubica (Faserknorpel) und hinten beidseits mit dem Sacrum über das Iliosakralgelenk (ISG). Das Os coxae selbst entsteht durch Verwachsung von Os ilium, Os ischii und Os pubis.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Beckenring besteht aus beiden Os coxae und dem Sacrum.", isWrong: false },
+          { text: "Die Verbindung vorne heißt Symphysis pubica.", isWrong: false },
+          { text: "Die Verbindung hinten erfolgt über das Iliosakralgelenk.", isWrong: false },
+          { text: "Der Beckenring besteht nur aus den Wirbelkörpern L4–S5.", isWrong: true }
+        ], whyWrong: "Der Beckenring besteht aus beiden Os coxae plus Sacrum, verbunden durch Symphyse (vorne) und ISG (hinten) — nicht nur aus Wirbelkörpern." } },
       { id: "ko_ex_h6", type: "mc", question: "Welche Funktion hat die Patella?", options: [
         { text: "Sesambein im Sehnenapparat des M. quadriceps; verlängert den Hebelarm der Streckung am Knie", correct: true },
         { text: "Verbindet Femur und Tibia direkt als Knochen", correct: false },
         { text: "Bildet die laterale Begrenzung des Kniegelenks", correct: false },
         { text: "Ist ein reines Schutzknochen ohne mechanische Funktion", correct: false }
-      ], explanation: "Patella = Kniescheibe, grösstes Sesambein des Körpers. Liegt in der Sehne des M. quadriceps femoris. Funktion: erhöht den Hebelarm der Kniestreckung durch Auslenkung der Sehne, sodass der Quadriceps effizienter arbeiten kann." }
+      ], explanation: "Patella = Kniescheibe, grösstes Sesambein des Körpers. Liegt in der Sehne des M. quadriceps femoris. Funktion: erhöht den Hebelarm der Kniestreckung durch Auslenkung der Sehne, sodass der Quadriceps effizienter arbeiten kann.",
+        learningCard: { type: "predict", statement: "Die Patella ist ein Sesambein im Sehnenapparat des M. quadriceps und verlängert dessen Hebelarm.", answer: true, reveal: "Sie ist das größte Sesambein des Körpers und macht die Kniestreckung mechanisch effizienter." } }
     ],
     phase4Questions: [
       { id: "ko_ex_mc1", type: "mc", question: "Welche Knochen gehören zur unteren Extremität?", options: [
@@ -2245,19 +2415,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Humerus, Radius, Ulna und Handwurzelknochen", correct: false },
         { text: "Klavikula, Skapula, Humerus und Radius", correct: false },
         { text: "Becken, Femur, Patella und Humerus", correct: false }
-      ], explanation: "Die untere Extremität besteht aus Femur (Oberschenkel), Tibia und Fibula (Unterschenkel), Patella sowie Fuss- und Zehenknochen." },
+      ], explanation: "Die untere Extremität besteht aus Femur (Oberschenkel), Tibia und Fibula (Unterschenkel), Patella sowie Fuss- und Zehenknochen.",
+        learningCard: { type: "predict", statement: "Zur unteren Extremität gehören Femur, Tibia, Fibula und die Fußwurzelknochen.", answer: true, reveal: "Zur oberen Extremität gehören dagegen Humerus, Radius, Ulna und die Handwurzelknochen." } },
       { id: "ko_ex_mc2", type: "mc", question: "Welche Knochen bilden den Schultergürte?", options: [
         { text: "Klavikula (Schlüsselbein) und Skapula (Schulterblatt)", correct: true },
         { text: "Humerus und Klavikula", correct: false },
         { text: "Skapula und Humerus", correct: false },
         { text: "Sternum und Klavikula allein", correct: false }
-      ], explanation: "Der Schultergürtel besteht aus Klavikula (Schlüsselbein) und Skapula (Schulterblatt) und verbindet die obere Extremität mit dem Achsenskelett." },
+      ], explanation: "Der Schultergürtel besteht aus Klavikula (Schlüsselbein) und Skapula (Schulterblatt) und verbindet die obere Extremität mit dem Achsenskelett.",
+        learningCard: { type: "reconstruct", template: "Der Schultergürtel besteht aus ___ (Schlüsselbein) und ___ (Schulterblatt).", blanks: ["Klavikula", "Skapula"], distractors: ["Humerus", "Sternum"], reveal: "Er verbindet die obere Extremität mit dem Achsenskelett." } },
       { id: "ko_ex_mc3", type: "mc", question: "Welche Aussagen zum Extremitätenskelett sind korrekt?", options: [
         { text: "Die Klavikula verbindet Schultergürtel (Sternoklavikulargelenk) mit dem Achsenskelett", correct: true },
         { text: "Das Kniegelenk verbindet Femur, Tibia und Patella", correct: true },
         { text: "Die Fibula ist der Hauptlasttrageknochen des Unterschenkels", correct: false },
         { text: "Das Os coxae besteht aus nur einem einzigen Knochen ohne Verwachsung", correct: false }
-      ], explanation: "Klavikula: einzige knöcherne Verbindung Schultergürtel–Achsenskelett. Knie: Femur+Tibia+Patella. Fibula: Lasttragetung ist Tibia, Fibula dient als Muskelansatz. Os coxae: Verwachsung von Os ilium, ischii und pubis."}
+      ], explanation: "Klavikula: einzige knöcherne Verbindung Schultergürtel–Achsenskelett. Knie: Femur+Tibia+Patella. Fibula: Lasttragetung ist Tibia, Fibula dient als Muskelansatz. Os coxae: Verwachsung von Os ilium, ischii und pubis.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Extremitätenskelett treffen zu?", checklist: [
+          { text: "Die Klavikula verbindet den Schultergürtel mit dem Achsenskelett.", correct: true },
+          { text: "Das Kniegelenk verbindet Femur, Tibia und Patella.", correct: true },
+          { text: "Die Fibula ist der Hauptlasttrageknochen des Unterschenkels.", correct: false },
+          { text: "Das Os coxae besteht aus nur einem einzigen Knochen.", correct: false }
+        ], reveal: "Die Tibia trägt die Hauptlast, die Fibula dient als Muskelansatz; das Os coxae entsteht aus der Verwachsung von drei Knochen." }}
     ]
   }),
   makeDetailedPlant({
@@ -2269,32 +2447,53 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Periost, Sehnen und Muskeln", correct: false },
         { text: "Knochen, Knorpelgewebe und Muskeln ohne Gelenkhöhle", correct: false },
         { text: "Nur Gelenkknorpel – Kapsel ist optional", correct: false }
-      ], explanation: "Eine Diarthrose hat als Mindestanforderung: Gelenkknorpel (schmierloses, avaskular ernährtes Gleitlager), Gelenkspalt/-höhle (gefüllt mit Synovia), Gelenkkapsel (Stratum fibrosum aussen, Membrana synovialis innen). Menisken, Disci, Bursen und extrakapsulare Bänder sind mögliche Zusatzstrukturen je nach Gelenktyp." },
+      ], explanation: "Eine Diarthrose hat als Mindestanforderung: Gelenkknorpel (schmierloses, avaskular ernährtes Gleitlager), Gelenkspalt/-höhle (gefüllt mit Synovia), Gelenkkapsel (Stratum fibrosum aussen, Membrana synovialis innen). Menisken, Disci, Bursen und extrakapsulare Bänder sind mögliche Zusatzstrukturen je nach Gelenktyp.",
+        learningCard: { type: "teachback", prompt: "Welche Strukturen gehören zwingend zu einem echten Gelenk (Diarthrose)?", checklist: [
+          { text: "Gelenkknorpel", correct: true },
+          { text: "Gelenkhöhle mit Synovia", correct: true },
+          { text: "Gelenkkapsel", correct: true },
+          { text: "Menisken", correct: false }
+        ], reveal: "Menisken, Disci, Bursen und extrakapsuläre Bänder sind mögliche Zusatzstrukturen, aber keine zwingenden Mindestbestandteile." } },
       { id: "ko_gk_h2", type: "mc", question: "Was ist die Funktion der Gelenkflüssigkeit (Synovia)?", options: [
         { text: "Reibungsminderung, Nährstoffversorgung des Gelenkknorpels und Stossdämpfung", correct: true },
         { text: "Produktion von Antikörpern bei Gelenkinfektion", correct: false },
         { text: "Direkte Druckübertragung zwischen den Gelenkpartnern", correct: false },
         { text: "Mineralisation des Knorpelgewebes mit Hydroxylapatit", correct: false }
-      ], explanation: "Synovia (Gelenkflüssigkeit) hat drei Funktionen: 1. Schmierung (Reibungsköffizient Gelenk < Eis auf Eis), 2. Ernährung des Gelenkknorpels durch Diffusion (avaskular!), 3. Stossdämpfung als viskö Flüssigkeit. Produziert von der Membrana synovialis. Bei Gelenkentzuendung steigt die Synoviamenge (Gelenkerguss)." },
+      ], explanation: "Synovia (Gelenkflüssigkeit) hat drei Funktionen: 1. Schmierung (Reibungsköffizient Gelenk < Eis auf Eis), 2. Ernährung des Gelenkknorpels durch Diffusion (avaskular!), 3. Stossdämpfung als viskö Flüssigkeit. Produziert von der Membrana synovialis. Bei Gelenkentzuendung steigt die Synoviamenge (Gelenkerguss).",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen hat die Gelenkflüssigkeit (Synovia)?", checklist: [
+          { text: "Reibungsminderung", correct: true },
+          { text: "Nährstoffversorgung des Gelenkknorpels", correct: true },
+          { text: "Stoßdämpfung", correct: true },
+          { text: "Antikörperproduktion", correct: false }
+        ], reveal: "Synovia wird von der Membrana synovialis produziert; bei Gelenkentzündung steigt die Menge (Gelenkerguss)." } },
       { id: "ko_gk_h3", type: "mc", question: "Welches ist ein Beispiel für eine Synarthrose (unechtes Gelenk)?", options: [
         { text: "Schädelnäthe (Suturä cranii)", correct: true },
         { text: "Kniegelenk (Art. genus)", correct: false },
         { text: "Schultergelenk (Art. humeri)", correct: false },
         { text: "Hüftgelenk (Art. coxä)", correct: false }
-      ], explanation: "Synarthrosen erlauben kaum oder keine Bewegung. Beispiele: Schädelnäthe (Suturä: bindegewebige Verbindung beim Kind, knöhernd beim Erwachsenen), Symphyse (Faserknorpel), Syndesmose (Bindegewebe: distale Tibiofibularverbindung). Alle Diarthrosen haben eine echte Gelenkhöhle und sind frei beweglich." },
-      { id: "ko_gk_h4", type: "true_false", statement: "Der Gelenkknorpel besitzt keine eigene Blutversorgung und wird durch Synovia ernährt.", answer: true, explanation: "Gelenkknorpel ist avaskular (keine Blutgefässe). Ernährung erfolgt durch Diffusion aus der Synovia. Das erklärt die schlechte Regenerationsfähigkeit des Knorpels und die klinische Bedeutung von Gelenkentzündungen (Arthritis → Synovia-Veränderung → Knorpelschaden)." },
+      ], explanation: "Synarthrosen erlauben kaum oder keine Bewegung. Beispiele: Schädelnäthe (Suturä: bindegewebige Verbindung beim Kind, knöhernd beim Erwachsenen), Symphyse (Faserknorpel), Syndesmose (Bindegewebe: distale Tibiofibularverbindung). Alle Diarthrosen haben eine echte Gelenkhöhle und sind frei beweglich.",
+        learningCard: { type: "predict", statement: "Schädelnähte (Suturae cranii) sind ein Beispiel für eine Synarthrose (unechtes Gelenk).", answer: true, reveal: "Synarthrosen erlauben kaum oder keine Bewegung — im Gegensatz zu Diarthrosen wie dem Knie- oder Hüftgelenk, die eine echte Gelenkhöhle haben und frei beweglich sind." } },
+      { id: "ko_gk_h4", type: "true_false", statement: "Der Gelenkknorpel besitzt keine eigene Blutversorgung und wird durch Synovia ernährt.", answer: true, explanation: "Gelenkknorpel ist avaskular (keine Blutgefässe). Ernährung erfolgt durch Diffusion aus der Synovia. Das erklärt die schlechte Regenerationsfähigkeit des Knorpels und die klinische Bedeutung von Gelenkentzündungen (Arthritis → Synovia-Veränderung → Knorpelschaden).",
+        learningCard: { type: "predict", statement: "Der Gelenkknorpel besitzt keine eigene Blutversorgung und wird durch Synovia ernährt.", answer: true, reveal: "Das erklärt die schlechte Regenerationsfähigkeit des Knorpels — bei Arthritis führt eine veränderte Synovia direkt zu Knorpelschäden." } },
       { id: "ko_gk_h5", type: "mc", question: "Was ist eine Amphiarthrose?", options: [
         { text: "Ein straffes echtes Gelenk mit sehr kleiner Gelenkhöhle und minimaler Beweglichkeit (z.B. Iliosakralgelenk)", correct: true },
         { text: "Ein Gelenk ohne jede Beweglichkeit wie Schädelnähte", correct: false },
         { text: "Ein sehr bewegliches Kugelgelenk mit tiefer Pfanne", correct: false },
         { text: "Ein Faserknorpelgelenk ohne echte Gelenkhöhle wie die Symphyse", correct: false }
-      ], explanation: "Amphiarthrose: echtes Gelenk (Gelenkhöhle vorhanden), aber sehr straffe Kapsel und Bänder → minimale Beweglichkeit. Beispiel: Iliosakralgelenk (ISG), Art. acromioclavicularis. Unterschied zur Synarthrose: Amphiarthrose hat eine Gelenkhöhle." },
+      ], explanation: "Amphiarthrose: echtes Gelenk (Gelenkhöhle vorhanden), aber sehr straffe Kapsel und Bänder → minimale Beweglichkeit. Beispiel: Iliosakralgelenk (ISG), Art. acromioclavicularis. Unterschied zur Synarthrose: Amphiarthrose hat eine Gelenkhöhle.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Eine Amphiarthrose ist ein echtes Gelenk mit sehr kleiner Gelenkhöhle.", isWrong: false },
+          { text: "Sie hat eine straffe Kapsel und minimale Beweglichkeit.", isWrong: false },
+          { text: "Das Iliosakralgelenk ist ein Beispiel für eine Amphiarthrose.", isWrong: false },
+          { text: "Eine Amphiarthrose hat gar keine Gelenkhöhle, wie eine Synarthrose.", isWrong: true }
+        ], whyWrong: "Der entscheidende Unterschied zur Synarthrose ist gerade, dass die Amphiarthrose eine (sehr kleine) Gelenkhöhle besitzt." } },
       { id: "ko_gk_h6", type: "mc", question: "Was unterscheidet Kapselligamente von extrakapsulären Bändern?", options: [
         { text: "Kapselligamente sind Verdickungen der Gelenkkapsel selbst; extrakapsuläre Bänder liegen ausserhalb der Kapsel", correct: true },
         { text: "Kapselligamente bestehen aus Knorpel, extrakapsuläre Bänder aus Knochen", correct: false },
         { text: "Kapselligamente sind nur am Knie zu finden", correct: false },
         { text: "Es gibt keinen funktionellen Unterschied zwischen beiden", correct: false }
-      ], explanation: "Kapselligamente: Teile des Stratum fibrosum der Gelenkkapsel, die verdickt sind und als Bänder fungieren (z.B. Lig. iliofemorale). Extrakapsuläre Bänder: ausserhalb der Kapsel. Intrakapsuläre Bänder: innerhalb der Gelenkhöhle (z.B. Kreuzbänder). Alle stabilisieren das Gelenk." }
+      ], explanation: "Kapselligamente: Teile des Stratum fibrosum der Gelenkkapsel, die verdickt sind und als Bänder fungieren (z.B. Lig. iliofemorale). Extrakapsuläre Bänder: ausserhalb der Kapsel. Intrakapsuläre Bänder: innerhalb der Gelenkhöhle (z.B. Kreuzbänder). Alle stabilisieren das Gelenk.",
+        learningCard: { type: "predict", statement: "Kapselligamente sind Verdickungen der Gelenkkapsel selbst, extrakapsuläre Bänder liegen außerhalb der Kapsel.", answer: true, reveal: "Intrakapsuläre Bänder liegen dagegen innerhalb der Gelenkhöhle, z.B. die Kreuzbänder — alle drei Typen stabilisieren das Gelenk." } }
     ],
     phase4Questions: [
       { id: "ko_gk_mc1", type: "mc", question: "Was unterscheidet echte Gelenke (Diarthrosen) von unechten Gelenken (Synarthrosen)?", options: [
@@ -2302,19 +2501,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Synarthrosen ermöglichen die grösste Beweglichkeit", correct: false },
         { text: "Diarthrosen sind nicht von einer Gelenkkapsel umhüllt", correct: false },
         { text: "Synarthrosen kommen nur in der unteren Extremität vor", correct: false }
-      ], explanation: "Echte Gelenke (Diarthrosen) besitzen einen flüssigkeitsgefüllten Gelenkspalt mit Synovia, während Synarthrosen keine Gelenkhöhle haben und wenig oder keine Bewegung erlauben." },
+      ], explanation: "Echte Gelenke (Diarthrosen) besitzen einen flüssigkeitsgefüllten Gelenkspalt mit Synovia, während Synarthrosen keine Gelenkhöhle haben und wenig oder keine Bewegung erlauben.",
+        learningCard: { type: "predict", statement: "Diarthrosen besitzen einen Gelenkspalt mit Gelenkflüssigkeit.", answer: true, reveal: "Synarthrosen haben keine Gelenkhöhle und erlauben wenig oder keine Bewegung." } },
       { id: "ko_gk_mc2", type: "mc", question: "Welche Struktur produziert die Gelenkflüssigkeit (Synovia)?", options: [
         { text: "Die Synovialmembran (Membrana synovialis)", correct: true },
         { text: "Das Periost", correct: false },
         { text: "Der Gelenkknorpel", correct: false },
         { text: "Das Stratum fibrosum der Gelenkkapsel", correct: false }
-      ], explanation: "Die Synovialmembran als innere Schicht der Gelenkkapsel produziert die Gelenkflüssigkeit (Synovia), die Reibung vermindert und den Gelenkknorpel ernährt." },
+      ], explanation: "Die Synovialmembran als innere Schicht der Gelenkkapsel produziert die Gelenkflüssigkeit (Synovia), die Reibung vermindert und den Gelenkknorpel ernährt.",
+        learningCard: { type: "predict", statement: "Die Synovialmembran (Membrana synovialis) produziert die Gelenkflüssigkeit.", answer: true, reveal: "Sie bildet die innere Schicht der Gelenkkapsel und vermindert Reibung sowie ernährt den Gelenkknorpel." } },
       { id: "ko_gk_mc3", type: "mc", question: "Welche Aussagen zu Gelenkgrundlagen sind korrekt?", options: [
         { text: "Diarthrosen besitzen zwingend Gelenkknorpel, Gelenkhöhle und Kapsel", correct: true },
         { text: "Synovia ernährt den avaskulären Gelenkknorpel durch Diffusion", correct: true },
         { text: "Synarthrosen haben eine grosse Gelenkhöhle und maximale Beweglichkeit", correct: false },
         { text: "Die Membrana synovialis besteht aus Faserknorpel", correct: false }
-      ], explanation: "Diarthrosen: Knorpel + Höhle + Kapsel. Synovia: Ernährung, Schmierung, Stossdämpfung; produziert von Membrana synovialis (nicht Faserknorpel). Synarthrosen: keine Gelenkhöhle, kaum Bewegung."}
+      ], explanation: "Diarthrosen: Knorpel + Höhle + Kapsel. Synovia: Ernährung, Schmierung, Stossdämpfung; produziert von Membrana synovialis (nicht Faserknorpel). Synarthrosen: keine Gelenkhöhle, kaum Bewegung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Gelenkgrundlagen treffen zu?", checklist: [
+          { text: "Diarthrosen besitzen zwingend Gelenkknorpel, Gelenkhöhle und Kapsel.", correct: true },
+          { text: "Synovia ernährt den avaskulären Gelenkknorpel durch Diffusion.", correct: true },
+          { text: "Synarthrosen haben eine große Gelenkhöhle und maximale Beweglichkeit.", correct: false },
+          { text: "Die Membrana synovialis besteht aus Faserknorpel.", correct: false }
+        ], reveal: "Synarthrosen haben gerade keine Gelenkhöhle; die Membrana synovialis ist eine spezialisierte Bindegewebsschicht, kein Faserknorpel." }}
     ]
   }),
   makeDetailedPlant({
@@ -2326,32 +2533,48 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Drei Achsen; Beispiel: Schultergelenk", correct: false },
         { text: "Eine Achse; Beispiel: Kniegelenk", correct: false },
         { text: "Keine Achsen; dient nur der Stossdämpfung", correct: false }
-      ], explanation: "Das Sattelgelenk (Articulatio sellaris) hat zwei konvex-konkave Gelenkflächen (sattelförmig), die zwei Bewegungsachsen erlauben: Flexion/Extension + Abduktion/Adduktion. Das klassische Beispiel ist das Daumensattelgelenk, das die Opposition des Daumens (Greifen) ermöglicht. Kein axiales Gleiten/Rotation möglich." },
+      ], explanation: "Das Sattelgelenk (Articulatio sellaris) hat zwei konvex-konkave Gelenkflächen (sattelförmig), die zwei Bewegungsachsen erlauben: Flexion/Extension + Abduktion/Adduktion. Das klassische Beispiel ist das Daumensattelgelenk, das die Opposition des Daumens (Greifen) ermöglicht. Kein axiales Gleiten/Rotation möglich.",
+        learningCard: { type: "predict", statement: "Das Sattelgelenk ist biaxial — das Daumensattelgelenk ist ein klassisches Beispiel.", answer: true, reveal: "Es erlaubt Flexion/Extension sowie Abduktion/Adduktion, aber keine Rotation — beim Daumen ermöglicht das die Opposition (Greifen)." } },
       { id: "ko_ga_h2", type: "mc", image: "assets/diagrams/knochenlehre_figure_12.png", question: "Was unterscheidet das Kugelgelenk der Schulter vom Kugelgelenk der Hüft in Bezug auf Stabilität und Mobilität?", options: [
         { text: "Schulter: flache Pfanne = grössere Mobilität, aber weniger Stabilität; Hüft: tiefe Pfanne = stabiler, aber weniger mobil", correct: true },
         { text: "Schulter und Hüft sind vollständig identisch in Form und Stabilität", correct: false },
         { text: "Hüft: grössere Mobilität als Schulter; Schulter: stabiler durch Acetabulum", correct: false },
         { text: "Schulter hat mehr Freiheitsgrade als Hüft, daher auch stabiler", correct: false }
-      ], explanation: "Schultergelenk: flache Pfanne (Cavitas glenoidalis), Kopf überragt Pfanne 3:1 → grösste Mobilität des Körpers (3 Achsen, 6 Freiheitsgrade), aber Stabilisierung abhängig von Rotatorenmanschette und Bändern. Hüftgelenk: tiefe Pfanne (Acetabulum umschliessen den Kopf zu 2/3) → Stabilität für Lastaufnahme, weniger Bewegungsumfang." },
+      ], explanation: "Schultergelenk: flache Pfanne (Cavitas glenoidalis), Kopf überragt Pfanne 3:1 → grösste Mobilität des Körpers (3 Achsen, 6 Freiheitsgrade), aber Stabilisierung abhängig von Rotatorenmanschette und Bändern. Hüftgelenk: tiefe Pfanne (Acetabulum umschliessen den Kopf zu 2/3) → Stabilität für Lastaufnahme, weniger Bewegungsumfang.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Schulter- und Hüftgelenk treffen zu?", checklist: [
+          { text: "Die Schulter hat eine flache Pfanne und dadurch mehr Mobilität.", correct: true },
+          { text: "Die Hüfte hat eine tiefe Pfanne und dadurch mehr Stabilität.", correct: true },
+          { text: "Die Schulter hat die größte Beweglichkeit des Körpers.", correct: true },
+          { text: "Schulter und Hüfte sind in Form und Stabilität identisch.", correct: false }
+        ], reveal: "Die Schulter braucht deshalb zusätzliche Stabilisierung durch Rotatorenmanschette und Bänder." } },
       { id: "ko_ga_h3", type: "mc", question: "Ein Zapfengelenk (Radgelenk) erlaubt welche Bewegung?", options: [
         { text: "Nur Rotation um die Längsachse des Knochens", correct: true },
         { text: "Flexion und Extension um eine Querachse", correct: false },
         { text: "Abduktion und Adduktion in der Frontalebene", correct: false },
         { text: "Alle Bewegungen wie ein Kugelgelenk", correct: false }
-      ], explanation: "Das Zapfengelenk (Articulatio trochoidea) hat einen zylindrischen Zapfen, der in einem Knochenring dreht – nur Rotation um die Längsachse ist möglich (uniaxial). Beispiele: proximales und distales Radioulnargelenk (Unterarmdrehung: Pronation/Supination), Atlantoaxialgelenk (Kopfrotation)." },
-      { id: "ko_ga_h4", type: "true_false", statement: "Das Scharniergelenk (Ginglymus) erlaubt nur Bewegung in einer Ebene um eine Querachse.", answer: true, explanation: "Scharniergelenk: uniaxial (eine Achse), Bewegung in der Sagittalebene → Flexion und Extension. Beispiele: Ellenbogengelenk (Humeroulnargelenk), Fingergelenke. Keine Rotation, keine Abduktion möglich." },
+      ], explanation: "Das Zapfengelenk (Articulatio trochoidea) hat einen zylindrischen Zapfen, der in einem Knochenring dreht – nur Rotation um die Längsachse ist möglich (uniaxial). Beispiele: proximales und distales Radioulnargelenk (Unterarmdrehung: Pronation/Supination), Atlantoaxialgelenk (Kopfrotation).",
+        learningCard: { type: "predict", statement: "Ein Zapfengelenk erlaubt nur Rotation um die Längsachse des Knochens.", answer: true, reveal: "Beispiele sind das proximale und distale Radioulnargelenk (Pronation/Supination) sowie das Atlantoaxialgelenk (Kopfrotation)." } },
+      { id: "ko_ga_h4", type: "true_false", statement: "Das Scharniergelenk (Ginglymus) erlaubt nur Bewegung in einer Ebene um eine Querachse.", answer: true, explanation: "Scharniergelenk: uniaxial (eine Achse), Bewegung in der Sagittalebene → Flexion und Extension. Beispiele: Ellenbogengelenk (Humeroulnargelenk), Fingergelenke. Keine Rotation, keine Abduktion möglich.",
+        learningCard: { type: "predict", statement: "Das Scharniergelenk erlaubt nur Bewegung in einer Ebene um eine Querachse.", answer: true, reveal: "Beispiele sind das Ellenbogengelenk (Humeroulnargelenk) und die Fingergelenke — Rotation oder Abduktion sind hier nicht möglich." } },
       { id: "ko_ga_h5", type: "mc", question: "Welches Gelenk ist ein Eigelenk (Ellipsoidgelenk) und welche Bewegungen sind möglich?", options: [
         { text: "Handgelenk (Art. radiocarpalis); Flexion/Extension + Abduktion/Adduktion (2 Achsen, keine Rotation)", correct: true },
         { text: "Schultergelenk; alle Bewegungen inklusive Rotation (3 Achsen)", correct: false },
         { text: "Daumensattelgelenk; nur Flexion/Extension (1 Achse)", correct: false },
         { text: "Atlantoaxialgelenk; nur Rotation (1 Achse)", correct: false }
-      ], explanation: "Eigelenk (Ellipsoidgelenk): ovaler Kopf in elliptischer Pfanne, biaxial wie Sattelgelenk aber keine Rotation. Klassisches Beispiel: Handgelenk. Erlaubt Flexion/Extension + Radial-/Ulnarabduktion, keine Axialrotation." },
+      ], explanation: "Eigelenk (Ellipsoidgelenk): ovaler Kopf in elliptischer Pfanne, biaxial wie Sattelgelenk aber keine Rotation. Klassisches Beispiel: Handgelenk. Erlaubt Flexion/Extension + Radial-/Ulnarabduktion, keine Axialrotation.",
+        learningCard: { type: "reconstruct", template: "Das ___ ist ein klassisches Eigelenk: biaxial mit Flexion/Extension und Abduktion/Adduktion, aber ohne ___.", blanks: ["Handgelenk", "Rotation"], distractors: ["Kniegelenk", "Translation"], reveal: "Der ovale Kopf liegt in einer elliptischen Pfanne — ähnlich dem Sattelgelenk, aber ohne dessen Rotationsfreiheit." } },
       { id: "ko_ga_h6", type: "mc", question: "Was ist der entscheidende Unterschied zwischen Kugelgelenk und Eigelenk?", options: [
         { text: "Kugelgelenk: 3 Achsen (inkl. Rotation); Eigelenk: 2 Achsen (keine Rotation)", correct: true },
         { text: "Kugelgelenk: 1 Achse; Eigelenk: 3 Achsen", correct: false },
         { text: "Beide erlauben dieselben Bewegungen, unterscheiden sich nur in der Form", correct: false },
         { text: "Eigelenk erlaubt mehr Bewegung als Kugelgelenk", correct: false }
-      ], explanation: "Kugelgelenk (triaxial): Flexion/Extension + Abduktion/Adduktion + Rotation + Zirkumduktion. Eigelenk (biaxial): wie Sattelgelenk ohne Rotation. Diese Unterscheidung ist beim Bewegungsanalyse-Fragen entscheidend." }
+      ], explanation: "Kugelgelenk (triaxial): Flexion/Extension + Abduktion/Adduktion + Rotation + Zirkumduktion. Eigelenk (biaxial): wie Sattelgelenk ohne Rotation. Diese Unterscheidung ist beim Bewegungsanalyse-Fragen entscheidend.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Kugelgelenk ist triaxial und erlaubt Rotation.", isWrong: false },
+          { text: "Das Eigelenk ist biaxial und erlaubt keine Rotation.", isWrong: false },
+          { text: "Beide Gelenktypen unterscheiden sich in der Anzahl der Bewegungsachsen.", isWrong: false },
+          { text: "Das Eigelenk erlaubt mehr Bewegung als das Kugelgelenk.", isWrong: true }
+        ], whyWrong: "Das Kugelgelenk hat mit drei Achsen (inkl. Rotation) mehr Freiheitsgrade als das zweiachsige Eigelenk." } }
     ],
     phase4Questions: [
       { id: "ko_ga_mc1", type: "mc", question: "Welches Gelenk erlaubt Bewegungen in allen Raumebenen (mehrachsig)?", options: [
@@ -2359,19 +2582,27 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Scharniergelenk (z. B. Kniegelenk)", correct: false },
         { text: "Zapfengelenk (z. B. proximales Radioulnargelenk)", correct: false },
         { text: "Eigelenk (z. B. Handgelenk)", correct: false }
-      ], explanation: "Das Kugelgelenk (z.B. Schultergelenk) erlaubt Bewegungen in allen Raumebenen (Flexion/Extension, Abduktion/Adduktion, Rotation), da die Kugel in der Pfanne allseitig gleiten kann." },
+      ], explanation: "Das Kugelgelenk (z.B. Schultergelenk) erlaubt Bewegungen in allen Raumebenen (Flexion/Extension, Abduktion/Adduktion, Rotation), da die Kugel in der Pfanne allseitig gleiten kann.",
+        learningCard: { type: "predict", statement: "Das Kugelgelenk erlaubt Bewegungen in allen Raumebenen.", answer: true, reveal: "Ein klassisches Beispiel ist das Schultergelenk, dessen Kugel allseitig in der Pfanne gleiten kann." } },
       { id: "ko_ga_mc2", type: "mc", question: "Welchem Gelenktyp entspricht das Kniegelenk hauptsächlich?", options: [
         { text: "Scharniergelenk (Ginglymus)", correct: true },
         { text: "Kugelgelenk", correct: false },
         { text: "Sattelgelenk", correct: false },
         { text: "Amphiarthrose", correct: false }
-      ], explanation: "Das Kniegelenk ist hauptsächlich ein Scharniergelenk (Ginglymus), das primär Flexion und Extension erlaubt, mit geringer Rotationsmöglichkeit bei gebeugtem Knie." },
+      ], explanation: "Das Kniegelenk ist hauptsächlich ein Scharniergelenk (Ginglymus), das primär Flexion und Extension erlaubt, mit geringer Rotationsmöglichkeit bei gebeugtem Knie.",
+        learningCard: { type: "predict", statement: "Das Kniegelenk ist hauptsächlich ein Scharniergelenk (Ginglymus).", answer: true, reveal: "Es erlaubt primär Flexion und Extension, mit geringer Rotationsmöglichkeit bei gebeugtem Knie." } },
       { id: "ko_ga_mc3", type: "mc", question: "Welche Aussagen zu Gelenkarten sind korrekt?", options: [
         { text: "Kugelgelenk (z.B. Schulter) ist triaxial und ermöglicht auch Rotation", correct: true },
         { text: "Zapfengelenk erlaubt nur Rotation um die Längsachse", correct: true },
         { text: "Sattelgelenk ist uniaxial und erlaubt nur Flexion/Extension", correct: false },
         { text: "Scharniergelenk erlaubt Bewegungen in allen Raumebenen", correct: false }
-      ], explanation: "Kugelgelenk: triaxial inkl. Rotation. Zapfengelenk: nur Axialrotation (Radioulnar, Atlantoaxial). Sattelgelenk: biaxial, Flex/Ext + Ab/Adduktion, keine Rotation. Scharniergelenk: uniaxial, nur Flex/Ext."}
+      ], explanation: "Kugelgelenk: triaxial inkl. Rotation. Zapfengelenk: nur Axialrotation (Radioulnar, Atlantoaxial). Sattelgelenk: biaxial, Flex/Ext + Ab/Adduktion, keine Rotation. Scharniergelenk: uniaxial, nur Flex/Ext.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Gelenkarten treffen zu?", checklist: [
+          { text: "Das Kugelgelenk ist triaxial und ermöglicht auch Rotation.", correct: true },
+          { text: "Das Zapfengelenk erlaubt nur Rotation um die Längsachse.", correct: true },
+          { text: "Das Sattelgelenk ist uniaxial und erlaubt nur Flexion/Extension.", correct: false },
+          { text: "Das Scharniergelenk erlaubt Bewegungen in allen Raumebenen.", correct: false }
+        ], reveal: "Das Sattelgelenk ist biaxial (Flexion/Extension + Abduktion/Adduktion); das Scharniergelenk ist uniaxial und erlaubt nur eine Bewegungsebene." }}
     ]
   }),
 
