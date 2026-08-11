@@ -5036,6 +5036,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Mediastinum wird nicht weiter unterteilt", correct: false },
         ],
         explanation: "Das Mediastinum wird durch das Perikard in oberes und unteres Mediastinum unterteilt. Das untere gliedert sich in vorderes (vor dem Perikard), mittleres (Herz + Perikard) und hinteres (hinter dem Perikard). Das obere enthält Thymus, Aortenbogen, Trachea, Ösophagus und V. cava superior.",
+        learningCard: { type: "reconstruct", template: "Das Mediastinum gliedert sich in oberes und unteres Mediastinum; das untere unterteilt sich weiter in vorderes, ___ und ___ Mediastinum.", blanks: ["mittleres", "hinteres"], distractors: ["laterales", "kraniales"], reveal: "Das obere Mediastinum enthält u.a. Thymus, Aortenbogen, Trachea, Ösophagus und die V. cava superior." },
       },
       {
         type: "mc",
@@ -5048,6 +5049,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "L1 (1. Lendenwirbel)", correct: false },
         ],
         explanation: "Die drei Zwerchfelldurchtritte (Eselsbrücke: 8-10-12 von kranial nach kaudal): Foramen venae cavae Th8 (V. cava inferior + rechter N. phrenicus), Hiatus oesophageus Th10 (Ösophagus + beide Nn. vagi), Hiatus aorticus Th12 (Aorta + Ductus thoracicus). Klinisch: Hiatushernie = Magenteile durch Hiatus oesophageus in Thorax.",
+        learningCard: { type: "predict", statement: "Der Hiatus oesophageus, durch den Ösophagus und beide Nn. vagi treten, liegt auf Höhe Th10.", answer: true, reveal: "Merkhilfe 8-10-12: Foramen venae cavae (Th8), Hiatus oesophageus (Th10), Hiatus aorticus (Th12)." },
       },
       {
         type: "mc",
@@ -5060,6 +5062,12 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Nur Fettgewebe und Bindegewebe", correct: false },
         ],
         explanation: "Oberes Mediastinum (über dem Perikard): Thymus (beim Kind groß, beim Erwachsenen Fettgewebe), Trachea, Aortenbogen (mit Truncus brachiocephalicus, A. carotis communis sin., A. subclavia sin.), Ösophagus, V. cava superior, Nn. vagi, Nn. phrenici, Ductus thoracicus.",
+        learningCard: { type: "teachback", prompt: "Was enthält das obere Mediastinum?", checklist: [
+          { text: "Thymus", correct: true },
+          { text: "Trachea und Aortenbogen", correct: true },
+          { text: "Ösophagus und V. cava superior", correct: true },
+          { text: "Herz und Perikard", correct: false }
+        ], reveal: "Herz und Perikard gehören zum mittleren unteren Mediastinum, nicht zum oberen." },
       },
       {
         type: "true_false",
@@ -5067,6 +5075,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         statement: "Durch den Hiatus aorticus auf Höhe Th12 treten Aorta und Ductus thoracicus durch das Zwerchfell.",
         answer: true,
         explanation: "Der Hiatus aorticus (Th12) liegt hinter dem Zwerchfell und ist kein echter Durchbruch durch die Muskulatur, sondern eine Lücke zwischen Zwerchfell und Wirbelkörper – daher kann er nicht durch Zwerchfellkontraktion verengt werden. Der Ductus thoracicus (größtes Lymphgefäß) begleitet die Aorta durch diesen Hiatus.",
+        learningCard: { type: "predict", statement: "Durch den Hiatus aorticus auf Höhe Th12 treten Aorta und Ductus thoracicus durch das Zwerchfell.", answer: true, reveal: "Der Hiatus aorticus liegt hinter dem Zwerchfell zwischen Muskulatur und Wirbelkörper und kann daher nicht durch Zwerchfellkontraktion verengt werden." },
       },
       {
         type: "mc",
@@ -5079,6 +5088,12 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Ductus thoracicus", correct: false },
         ],
         explanation: "Foramen venae cavae (Th8): V. cava inferior + rechter N. phrenicus. Der Durchtritt liegt im Centrum tendineum (Sehnenzentrum) des Zwerchfells. Klinisch: Bei rechtsseitiger Zwerchfelllähmung (N. phrenicus) fehlt die aktive Inspiration rechts.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Durch das Foramen venae cavae (Th8) tritt die V. cava inferior.", isWrong: false },
+          { text: "Der rechte N. phrenicus tritt ebenfalls durch das Foramen venae cavae.", isWrong: false },
+          { text: "Der Durchtritt liegt im Centrum tendineum des Zwerchfells.", isWrong: false },
+          { text: "Durch das Foramen venae cavae tritt die Aorta descendens.", isWrong: true }
+        ], whyWrong: "Die Aorta descendens tritt durch den Hiatus aorticus (Th12), nicht durch das Foramen venae cavae (Th8) — dort verläuft die V. cava inferior." },
       },
     ],
     phase4Questions: [
@@ -5093,6 +5108,12 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Ösophagus tritt auf Höhe Th12 durch das Zwerchfell", correct: false },
         ],
         explanation: "Merkhilfe 8-10-12: V. cava inf. (Th8), Ösophagus+Nn.vagi (Th10), Aorta+Ductus thoracicus (Th12). Klinisch: Hiatushernie = Magen durch Hiatus oesophageus; Aortenaneurysma kann Ductus thoracicus komprimieren.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Zwerchfelldurchtritten treffen zu?", checklist: [
+          { text: "Foramen venae cavae (Th8): V. cava inferior", correct: true },
+          { text: "Hiatus oesophageus (Th10): Ösophagus + Nn. vagi", correct: true },
+          { text: "Hiatus aorticus (Th12): Aorta + Ductus thoracicus", correct: true },
+          { text: "Der Ösophagus tritt auf Höhe Th12 durch das Zwerchfell.", correct: false }
+        ], reveal: "Merkhilfe 8-10-12: der Ösophagus tritt auf Höhe Th10 durch, nicht Th12." },
       },
       {
         type: "mc",
@@ -5105,6 +5126,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Nur Fettgewebe ohne Organe", correct: false },
         ],
         explanation: "Mittleres unteres Mediastinum = Herzraum: Herz + Perikard + Wurzeln der Aorta und A./V. pulmonales + Nn. phrenici (verlaufen seitlich am Perikard). Davor: vorderes Mediastinum (Thymusreste, Fett); dahinter: hinteres Mediastinum (Ösophagus, Aorta desc., V. azygos, Ductus thoracicus).",
+        learningCard: { type: "predict", statement: "Das mittlere untere Mediastinum enthält das Herz mit Perikard sowie die Nn. phrenici.", answer: true, reveal: "Davor liegt das vordere Mediastinum (Thymusreste, Fett), dahinter das hintere Mediastinum (Ösophagus, Aorta descendens, Ductus thoracicus)." },
       },
     ],
   }),
@@ -5123,6 +5145,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Der Kortex hemmt das Atemzentrum bei willkürlichem Atemanhalten", correct: false },
         ],
         explanation: "Hering-Breuer-Reflex: Slow Adapting Receptors (SAR) in Bronchialwand → bei Lungendehnung → N. vagus → Medulla oblongata → Inspirationshemmung + Exspirationsbeginn. Schützt vor Überdehnung (Volutrauma). Beim Menschen v.a. bei tiefer Atmung und beim Neugeborenen aktiv.",
+        learningCard: { type: "predict", statement: "Der Hering-Breuer-Reflex hemmt über Dehnungsrezeptoren und den N. vagus die Inspiration bei Überdehnung der Lunge.", answer: true, reveal: "Er schützt vor Überdehnung (Volutrauma) und ist besonders bei tiefer Atmung und beim Neugeborenen aktiv." },
       },
       {
         type: "mc",
@@ -5135,6 +5158,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "pH 6,8–7,0; pCO2 45–55 mmHg", correct: false },
         ],
         explanation: "BGA-Normalwerte: pH 7,35–7,45 (leicht basisch), pO2 80–100 mmHg (arteriell), pCO2 35–45 mmHg, HCO3− 22–26 mmol/l, BE ±2 mmol/l. Respiratorische Azidose: pCO2 >45 + pH <7,35 (z.B. bei COPD, Hypoventilation). Respiratorische Alkalose: pCO2 <35 + pH >7,45 (z.B. bei Hyperventilation).",
+        learningCard: { type: "reconstruct", template: "Normalwerte der Blutgasanalyse: pH ___ und pCO2 ___ mmHg.", blanks: ["7,35–7,45", "35–45"], distractors: ["7,0–7,2", "50–60"], reveal: "Weitere Normwerte sind pO2 80–100 mmHg (arteriell) und HCO3− 22–26 mmol/l." },
       },
       {
         type: "mc",
@@ -5147,6 +5171,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Nur pO2 ändert sich, pCO2 bleibt konstant", correct: false },
         ],
         explanation: "Hyperventilation: zu viel CO2 wird ausgeatmet → pCO2 ↓ → weniger H2CO3 → weniger H+ → pH ↑ (Alkalose). Symptome: Schwindel, Taubheitsgefühl, Kribbelparästhesien (durch Hyperventilationstetanie). Gegenmittel: Tütenatmung (CO2 rückatmen) oder bewusstes Verlangsamung.",
+        learningCard: { type: "predict", statement: "Bei Hyperventilation sinkt der pCO2 (Hypokapnie) und der pH steigt (respiratorische Alkalose).", answer: true, reveal: "Symptome sind Schwindel und Kribbelparästhesien; ein Gegenmittel ist z.B. Tütenatmung zur CO2-Rückatmung." },
       },
       {
         type: "true_false",
@@ -5154,6 +5179,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         statement: "Der Hering-Breuer-Reflex ist ein mechanisch-reflektorischer Schutz der Lunge vor Überdehnung.",
         answer: true,
         explanation: "Im Gegensatz zur chemischen Atemsteuerung (CO2/O2/pH) nutzt die mechanisch-reflektorische Steuerung Dehnungsrezeptoren (Mechanorezeptoren) als Sensoren. Der Hering-Breuer-Reflex ist ein negativer Feedback-Mechanismus: Je mehr sich die Lunge ausdehnt, desto stärker hemmt er die weitere Inspiration.",
+        learningCard: { type: "predict", statement: "Der Hering-Breuer-Reflex ist ein mechanisch-reflektorischer Schutz der Lunge vor Überdehnung.", answer: true, reveal: "Im Gegensatz zur chemischen Atemsteuerung nutzt er Dehnungsrezeptoren als Sensoren — je mehr sich die Lunge dehnt, desto stärker hemmt er die weitere Inspiration." },
       },
       {
         type: "mc",
@@ -5166,6 +5192,12 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Normale Blutgaswerte bei erhöhter Atemfrequenz", correct: false },
         ],
         explanation: "Respiratorische Azidose: Hypoventilation → CO2-Retention → pCO2 >45 mmHg → pH <7,35. Ursachen: COPD (obstruktive Ventilationsstörung), Atemdepression (Morphin), Atemmuskellähmung. Behandlung: Atemunterstützung/Beatmung. Metabolische Azidose entsteht dagegen durch Säureanhäufung (z.B. Ketoazidose) oder Bikarbonatverlust.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Respiratorische Azidose bedeutet pH <7,35 und pCO2 >45 mmHg.", isWrong: false },
+          { text: "Eine häufige Ursache ist Hypoventilation, z.B. bei COPD.", isWrong: false },
+          { text: "Die Behandlung erfolgt durch Atemunterstützung.", isWrong: false },
+          { text: "Respiratorische Azidose entsteht durch Hyperventilation.", isWrong: true }
+        ], whyWrong: "Hyperventilation führt zu respiratorischer Alkalose (pCO2 sinkt, pH steigt) — respiratorische Azidose entsteht durch Hypoventilation und CO2-Retention." },
       },
     ],
     phase4Questions: [
@@ -5180,6 +5212,12 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "Dehnungsrezeptoren messen den CO2-Gehalt der Alveolarluft", correct: false },
         ],
         explanation: "Zwei Atemsteuerungsebenen: 1. Chemisch (CO2/O2/pH-Sensoren → Chemorezeptoren → Frequenz/Tiefe anpassen). 2. Mechanisch-reflektorisch (Dehnungsrezeptoren → N. vagus → Hering-Breuer = Inspirationsbremse). Beide laufen parallel und ergänzen sich.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur mechanischen Atemsteuerung treffen zu?", checklist: [
+          { text: "Der Hering-Breuer-Reflex hemmt die Inspiration bei Überdehnung über den N. vagus.", correct: true },
+          { text: "Die mechanische Steuerung ergänzt die chemische Steuerung (CO2/O2/pH).", correct: true },
+          { text: "Der Hering-Breuer-Reflex stimuliert die Inspiration.", correct: false },
+          { text: "Dehnungsrezeptoren messen den CO2-Gehalt der Alveolarluft.", correct: false }
+        ], reveal: "Dehnungsrezeptoren messen mechanische Lungendehnung, nicht den CO2-Gehalt — das übernehmen die Chemorezeptoren." },
       },
       {
         type: "mc",
@@ -5192,6 +5230,7 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
           { text: "pH <7,35 + HCO3− erniedrigt (metabolische Azidose)", correct: false },
         ],
         explanation: "BGA-Interpretation: Respiratorische Alkalose = Hyperventilation → CO2 ↓ → pH ↑. Respiratorische Azidose = Hypoventilation → CO2 ↑ → pH ↓. Metabolische Störungen betreffen primär HCO3−. Merkhilfe: pH und pCO2 zeigen bei respiratorischen Störungen in ENTGEGENGESETZTE Richtungen (CO2 ↑ → pH ↓).",
+        learningCard: { type: "predict", statement: "Ein pH über 7,45 bei einem pCO2 unter 35 mmHg spricht für eine respiratorische Alkalose.", answer: true, reveal: "Bei respiratorischen Störungen bewegen sich pH und pCO2 immer in entgegengesetzte Richtungen — steigt pCO2, sinkt der pH, und umgekehrt." },
       },
     ],
   }),
