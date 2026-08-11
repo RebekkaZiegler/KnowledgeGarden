@@ -6891,14 +6891,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "pH < 7,00", correct: false },
           { text: "pH > 7,36", correct: false }
         ],
-        explanation: "Der Normalbereich des Blut-pH liegt bei 7,36–7,44. Werte darunter (< 7,36) nennt man Azidose, Werte darüber (> 7,44) Alkalose."
+        explanation: "Der Normalbereich des Blut-pH liegt bei 7,36–7,44. Werte darunter (< 7,36) nennt man Azidose, Werte darüber (> 7,44) Alkalose.",
+        learningCard: { type: "predict", statement: "Ein Blut-pH von 7,30 gilt bereits als Azidose.", answer: true, reveal: "Der Normalbereich des Blut-pH liegt bei 7,36–7,44. Werte darunter (< 7,36) nennt man Azidose, Werte darüber (> 7,44) Alkalose." }
       },
       {
         id: "blut_zusammensetzung_h2",
         type: "true_false",
         statement: "Der Hämatokrit bei Männern liegt normalerweise zwischen 40 und 52 %.",
         answer: true,
-        explanation: "Der Hämatokrit (Erythrozytenanteil am Gesamtblutvolumen) beträgt bei Männern 40–52 %, bei Frauen 37–48 %."
+        explanation: "Der Hämatokrit (Erythrozytenanteil am Gesamtblutvolumen) beträgt bei Männern 40–52 %, bei Frauen 37–48 %.",
+        learningCard: { type: "reconstruct", template: "Der Hämatokrit beträgt bei Männern ___–___ %, bei Frauen 37–48 %.", blanks: ["40", "52"], distractors: ["37", "48"], reveal: "Der Hämatokrit beschreibt den Erythrozytenanteil am Gesamtblutvolumen: bei Männern 40–52 %, bei Frauen 37–48 %." }
       },
       {
         id: "blut_zusammensetzung_h3",
@@ -6910,7 +6912,13 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Plasma hat keinen Eiweißanteil, Serum schon", correct: false },
           { text: "Serum enthält alle Gerinnungsfaktoren", correct: false }
         ],
-        explanation: "Blutserum entsteht nach der Gerinnung: Fibrinogen ist zu Fibrin umgewandelt und nicht mehr vorhanden. Plasma (mit Gerinnungshemmern gewonnen) enthält noch Fibrinogen."
+        explanation: "Blutserum entsteht nach der Gerinnung: Fibrinogen ist zu Fibrin umgewandelt und nicht mehr vorhanden. Plasma (mit Gerinnungshemmern gewonnen) enthält noch Fibrinogen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Blutserum entsteht nach der Gerinnung des Blutes.", isWrong: false },
+          { text: "Blutplasma wird mit Gerinnungshemmern gewonnen und enthält noch Fibrinogen.", isWrong: false },
+          { text: "Blutserum enthält kein Fibrinogen mehr, weil es zu Fibrin umgewandelt wurde.", isWrong: false },
+          { text: "Blutserum enthält mehr Fibrinogen als Blutplasma.", isWrong: true }
+        ], whyWrong: "Blutserum entsteht nach der Gerinnung, wenn Fibrinogen bereits zu Fibrin umgewandelt ist – es enthält also kein Fibrinogen mehr. Blutplasma dagegen enthält noch Fibrinogen." }
       },
       {
         id: "blut_zusammensetzung_h4",
@@ -6922,14 +6930,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "27 mmol/l", correct: false },
           { text: "5 mmol/l", correct: false }
         ],
-        explanation: "Na⁺ ist das häufigste Kation im Plasma mit 143 mmol/l. Die Gesamtkationen betragen 155 mmol/l (= isoton zur Gesamtanionenkonzentration)."
+        explanation: "Na⁺ ist das häufigste Kation im Plasma mit 143 mmol/l. Die Gesamtkationen betragen 155 mmol/l (= isoton zur Gesamtanionenkonzentration).",
+        learningCard: { type: "predict", statement: "Natrium (Na⁺) ist das häufigste Kation im Blutplasma.", answer: true, reveal: "Na⁺ ist mit 143 mmol/l das häufigste Kation im Plasma. Die Gesamtkationen betragen 155 mmol/l und sind damit isoton zur Gesamtanionenkonzentration." }
       },
       {
         id: "blut_zusammensetzung_h5",
         type: "true_false",
         statement: "Das Blut macht beim Erwachsenen ca. 6–8 % des Körpergewichts aus.",
         answer: true,
-        explanation: "Das Blutvolumen beträgt beim Erwachsenen ca. 4–6 Liter, entsprechend 6–8 % des Körpergewichts."
+        explanation: "Das Blutvolumen beträgt beim Erwachsenen ca. 4–6 Liter, entsprechend 6–8 % des Körpergewichts.",
+        learningCard: { type: "predict", statement: "Das Blut macht beim Erwachsenen ca. 6–8 % des Körpergewichts aus.", answer: true, reveal: "Das Blutvolumen beträgt beim Erwachsenen ca. 4–6 Liter. Das entspricht etwa 6–8 % des Körpergewichts." }
       }
     ],
     phase4Questions: [
@@ -6944,6 +6954,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Die Gesamtkonzentration von Kationen und Anionen im Plasma beträgt je 155 mmol/l (Isotonie)", correct: true }
         ],
         explanation: "Blutplasma ist leicht alkalisch (pH 7,36-7,44); der Hämatokrit beschreibt den Erythrozytenanteil; Blutserum enthält kein Fibrinogen (wurde durch Gerinnung verbraucht), Blutplasma dagegen schon; Isotonie entsteht durch je 155 mmol/l Kationen und Anionen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Zusammensetzung des Blutes treffen zu?", checklist: [
+          { text: "Blutplasma ist leicht alkalisch mit pH 7,36–7,44.", correct: true },
+          { text: "Der Hämatokrit beschreibt den Erythrozytenanteil am Gesamtblutvolumen.", correct: true },
+          { text: "Kationen und Anionen liegen im Plasma je bei 155 mmol/l (Isotonie).", correct: true },
+          { text: "Blutserum enthält noch Fibrinogen.", correct: false }
+        ], reveal: "Blutplasma ist leicht alkalisch (pH 7,36–7,44), der Hämatokrit beschreibt den Erythrozytenanteil, und je 155 mmol/l Kationen und Anionen sorgen für Isotonie. Blutserum enthält dagegen kein Fibrinogen mehr." },
       },
       {
         id: "blut_zusammensetzung_mc2",
@@ -6956,6 +6972,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Das Blut macht ca. 6–8 % des Körpergewichts aus", correct: true }
         ],
         explanation: "Normwerte: Hämatokrit Frauen 37-48%, Plasma enthält 90-91% Wasser, Blut ca. 6-8% des Körpergewichts; ein pH unter 7,36 ist eine Azidose (nicht Alkalose).",
+        learningCard: { type: "reconstruct", template: "Bei Frauen liegt der Hämatokrit normalerweise bei ___–48 %, und Plasma enthält ca. ___ % Wasser.", blanks: ["37", "90"], distractors: ["40", "70"], reveal: "Bei Frauen liegt der Hämatokrit normalerweise bei 37–48 %, Plasma enthält 90–91 % Wasser. Ein pH unter 7,36 ist eine Azidose, keine Alkalose." },
       }
     ]
   }),
@@ -6974,14 +6991,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Infektabwehr", correct: false },
           { text: "Blutgerinnung", correct: false }
         ],
-        explanation: "Alpha-2-Globuline hemmen eiweißspaltende Enzyme (Proteasen). Alpha-1-Globuline übernehmen den Fetttransport, Gamma-Globuline die Infektabwehr, Fibrinogen die Blutgerinnung."
+        explanation: "Alpha-2-Globuline hemmen eiweißspaltende Enzyme (Proteasen). Alpha-1-Globuline übernehmen den Fetttransport, Gamma-Globuline die Infektabwehr, Fibrinogen die Blutgerinnung.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen gehören zu den Plasmaproteinen?", checklist: [
+          { text: "Alpha-2-Globuline hemmen eiweißspaltende Enzyme (Proteasen).", correct: true },
+          { text: "Alpha-1-Globuline übernehmen den Fetttransport.", correct: true },
+          { text: "Gamma-Globuline übernehmen die Infektabwehr.", correct: true },
+          { text: "Alpha-2-Globuline sind für die Blutgerinnung zuständig.", correct: false }
+        ], reveal: "Alpha-2-Globuline hemmen Proteasen, Alpha-1-Globuline transportieren Fett, und Gamma-Globuline übernehmen die Infektabwehr. Die Blutgerinnung wird dagegen von Fibrinogen übernommen." }
       },
       {
         id: "plasmaproteine_h2",
         type: "true_false",
         statement: "Ein Albuminmangel führt zu Ödemen, weil der kolloid-osmotische Druck sinkt.",
         answer: true,
-        explanation: "Albumin ist der Haupterzeuger des kolloid-osmotischen Drucks. Sinkt Albumin (z. B. bei Lebererkrankung), sinkt der Onkotische Druck → Flüssigkeit verbleibt im Gewebe → Ödeme."
+        explanation: "Albumin ist der Haupterzeuger des kolloid-osmotischen Drucks. Sinkt Albumin (z. B. bei Lebererkrankung), sinkt der Onkotische Druck → Flüssigkeit verbleibt im Gewebe → Ödeme.",
+        learningCard: { type: "predict", statement: "Ein Albuminmangel kann zu Ödemen führen, weil der kolloid-osmotische Druck sinkt.", answer: true, reveal: "Albumin ist der Haupterzeuger des kolloid-osmotischen Drucks. Sinkt Albumin (z. B. bei Lebererkrankung), sinkt der onkotische Druck, und Flüssigkeit verbleibt im Gewebe – es entstehen Ödeme." }
       },
       {
         id: "plasmaproteine_h3",
@@ -6993,7 +7017,13 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Gamma-Globuline", correct: false },
           { text: "Alpha-1-Globuline", correct: false }
         ],
-        explanation: "Beta-Globuline (z. B. Transferrin) transportieren Eisen und sind für die Erythropoese (Blutbildung) wichtig. Gamma-Globuline sind Immunglobuline."
+        explanation: "Beta-Globuline (z. B. Transferrin) transportieren Eisen und sind für die Erythropoese (Blutbildung) wichtig. Gamma-Globuline sind Immunglobuline.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Beta-Globuline transportieren Eisen und sind wichtig für die Blutbildung.", isWrong: false },
+          { text: "Transferrin ist ein Beta-Globulin.", isWrong: false },
+          { text: "Gamma-Globuline sind Immunglobuline.", isWrong: false },
+          { text: "Alpha-1-Globuline transportieren Eisen und sind wichtig für die Blutbildung.", isWrong: true }
+        ], whyWrong: "Eisen wird von Beta-Globulinen wie Transferrin transportiert, nicht von Alpha-1-Globulinen. Alpha-1-Globuline sind stattdessen für den Fetttransport zuständig." }
       },
       {
         id: "plasmaproteine_h4",
@@ -7005,14 +7035,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Fetttransport, Enzyme hemmen, Blutdruck regulieren", correct: false },
           { text: "Transport, Blutgerinnung, kolloid-osmotischer Druck", correct: false }
         ],
-        explanation: "Albumin erfüllt drei Hauptaufgaben: kolloid-osmotischer Druck (Flüssigkeitshaushalt), Transportfunktion (Fettsäuren, Hormone, Medikamente) und Pufferfunktion (Blut-pH)."
+        explanation: "Albumin erfüllt drei Hauptaufgaben: kolloid-osmotischer Druck (Flüssigkeitshaushalt), Transportfunktion (Fettsäuren, Hormone, Medikamente) und Pufferfunktion (Blut-pH).",
+        learningCard: { type: "reconstruct", template: "Albumin hat drei Hauptaufgaben: ___, ___ und ___.", blanks: ["kolloid-osmotischer Druck", "Transportfunktion", "Pufferfunktion"], distractors: ["Blutgerinnung", "Infektabwehr"], reveal: "Albumin erfüllt drei Hauptaufgaben: kolloid-osmotischer Druck (Flüssigkeitshaushalt), Transportfunktion (Fettsäuren, Hormone, Medikamente) und Pufferfunktion (Blut-pH)." }
       },
       {
         id: "plasmaproteine_h5",
         type: "true_false",
         statement: "Fibrinogen gehört zu den Plasmaproteinen und ist der Hauptgerinnungsstoff.",
         answer: true,
-        explanation: "Fibrinogen (Faktor I) ist ein lösliches Plasmaprotein, das bei der Gerinnung durch Thrombin in unlösliches Fibrin umgewandelt wird und das Gerinnsel stabilisiert."
+        explanation: "Fibrinogen (Faktor I) ist ein lösliches Plasmaprotein, das bei der Gerinnung durch Thrombin in unlösliches Fibrin umgewandelt wird und das Gerinnsel stabilisiert.",
+        learningCard: { type: "predict", statement: "Fibrinogen ist der Hauptgerinnungsstoff im Blutplasma.", answer: true, reveal: "Fibrinogen (Faktor I) ist ein lösliches Plasmaprotein, das bei der Gerinnung durch Thrombin in unlösliches Fibrin umgewandelt wird und das Gerinnsel stabilisiert." }
       }
     ],
     phase4Questions: [
@@ -7027,6 +7059,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Albuminmangel kann zu Ödemen führen", correct: true }
         ],
         explanation: "Albumin ist das häufigste Plasmaprotein und erzeugt den kolloid-osmotischen Druck; Albuminmangel (z.B. bei Leberzirrhose) führt zu Ödemen, weil Flüssigkeit ins Interstitium austritt; Gamma-Globuline sind Immunglobuline.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Albumin erzeugt den kolloid-osmotischen Druck.", isWrong: false },
+          { text: "Gamma-Globuline sind Immunglobuline und dienen der Infektabwehr.", isWrong: false },
+          { text: "Albuminmangel kann zu Ödemen führen.", isWrong: false },
+          { text: "Beta-Globuline hemmen eiweißspaltende Enzyme.", isWrong: true }
+        ], whyWrong: "Eiweißspaltende Enzyme werden von Alpha-2-Globulinen gehemmt, nicht von Beta-Globulinen. Beta-Globuline transportieren stattdessen Eisen." },
       },
       {
         id: "plasmaproteine_mc2",
@@ -7039,6 +7077,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Alpha-2-Globuline hemmen Proteasen", correct: true }
         ],
         explanation: "Globuline haben spezifische Transportfunktionen: Alpha-1-Globuline transportieren Fett (Lipoproteine), Beta-Globuline transportieren Eisen (Transferrin), Alpha-2-Globuline hemmen Proteasen; Immunglobuline sind Gamma-Globuline.",
+        learningCard: { type: "teachback", prompt: "Welche Transportfunktionen der Globuline treffen zu?", checklist: [
+          { text: "Alpha-1-Globuline transportieren Fett.", correct: true },
+          { text: "Beta-Globuline transportieren Eisen.", correct: true },
+          { text: "Alpha-2-Globuline hemmen Proteasen.", correct: true },
+          { text: "Alpha-2-Globuline sind Immunglobuline.", correct: false }
+        ], reveal: "Alpha-1-Globuline transportieren Fett, Beta-Globuline transportieren Eisen (Transferrin), und Alpha-2-Globuline hemmen Proteasen. Immunglobuline sind dagegen die Gamma-Globuline." },
       }
     ]
   }),
@@ -7057,14 +7101,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "1 Häm-Gruppe, 1 O₂", correct: false },
           { text: "4 Häm-Gruppen, 8 O₂", correct: false }
         ],
-        explanation: "Hämoglobin hat 4 Polypeptidketten, jede mit einer Häm-Gruppe (Fe²⁺). Jede Häm-Gruppe kann 1 O₂ binden → 4 O₂ pro Hämoglobinmolekül."
+        explanation: "Hämoglobin hat 4 Polypeptidketten, jede mit einer Häm-Gruppe (Fe²⁺). Jede Häm-Gruppe kann 1 O₂ binden → 4 O₂ pro Hämoglobinmolekül.",
+        learningCard: { type: "reconstruct", template: "Hämoglobin hat ___ Häm-Gruppen und kann damit ___ O₂-Moleküle binden.", blanks: ["4", "4"], distractors: ["2", "8"], reveal: "Hämoglobin hat 4 Polypeptidketten, jede mit einer Häm-Gruppe (Fe²⁺). Jede Häm-Gruppe bindet 1 O₂ – insgesamt also 4 O₂ pro Hämoglobinmolekül." }
       },
       {
         id: "erythrozyten_h2",
         type: "true_false",
         statement: "Erythrozyten werden hauptsächlich in der Milz gebildet.",
         answer: false,
-        explanation: "Erythrozyten werden im roten Knochenmark gebildet (Erythropoese). Milz und Leber sind die Abbauorte überalterter Erythrozyten."
+        explanation: "Erythrozyten werden im roten Knochenmark gebildet (Erythropoese). Milz und Leber sind die Abbauorte überalterter Erythrozyten.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Erythrozyten werden im roten Knochenmark gebildet.", isWrong: false },
+          { text: "Die Erythropoese findet im Knochenmark statt.", isWrong: false },
+          { text: "Milz und Leber sind die Abbauorte überalterter Erythrozyten.", isWrong: false },
+          { text: "Erythrozyten werden hauptsächlich in der Milz gebildet.", isWrong: true }
+        ], whyWrong: "Erythrozyten werden im roten Knochenmark gebildet (Erythropoese), nicht in der Milz. Milz und Leber sind stattdessen die Abbauorte überalterter Erythrozyten." }
       },
       {
         id: "erythrozyten_h3",
@@ -7076,7 +7127,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Nitrit löst Hämoglobin auf", correct: false },
           { text: "Nitrit blockiert die Erythropoese im Knochenmark", correct: false }
         ],
-        explanation: "Nitrit oxidiert das Fe²⁺ in der Häm-Gruppe zu Fe³⁺ (Methämoglobin). Methämoglobin bindet O₂ zu fest – es kann nicht mehr abgegeben werden → Zyanose, bei Säuglingen als 'Blue Baby' bekannt."
+        explanation: "Nitrit oxidiert das Fe²⁺ in der Häm-Gruppe zu Fe³⁺ (Methämoglobin). Methämoglobin bindet O₂ zu fest – es kann nicht mehr abgegeben werden → Zyanose, bei Säuglingen als 'Blue Baby' bekannt.",
+        learningCard: { type: "predict", statement: "Nitrit oxidiert das Fe²⁺ im Hämoglobin zu Fe³⁺, das Sauerstoff dann nicht mehr abgeben kann.", answer: true, reveal: "Nitrit oxidiert das Fe²⁺ in der Häm-Gruppe zu Fe³⁺ (Methämoglobin). Methämoglobin bindet O₂ zu fest und kann es nicht mehr abgeben – das führt zu Zyanose, bei Säuglingen als 'Blue Baby' bekannt." }
       },
       {
         id: "erythrozyten_h4",
@@ -7088,14 +7140,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Myoglobin kommt nur im Blut vor", correct: false },
           { text: "Myoglobin gibt O₂ leichter ab als Hämoglobin", correct: false }
         ],
-        explanation: "Myoglobin ist ein Muskelsauerstoffspeicher mit nur 1 Häm-Gruppe. Es bindet O₂ stärker als Hämoglobin und gibt es erst bei sehr niedrigem O₂-Partialdruck ab."
+        explanation: "Myoglobin ist ein Muskelsauerstoffspeicher mit nur 1 Häm-Gruppe. Es bindet O₂ stärker als Hämoglobin und gibt es erst bei sehr niedrigem O₂-Partialdruck ab.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Myoglobin hat nur 1 Häm-Gruppe.", isWrong: false },
+          { text: "Myoglobin ist ein Muskelsauerstoffspeicher.", isWrong: false },
+          { text: "Myoglobin bindet O₂ stärker als Hämoglobin.", isWrong: false },
+          { text: "Myoglobin gibt O₂ leichter ab als Hämoglobin.", isWrong: true }
+        ], whyWrong: "Myoglobin bindet O₂ stärker als Hämoglobin und gibt es erst bei sehr niedrigem O₂-Partialdruck ab – es gibt O₂ also gerade nicht leichter ab." }
       },
       {
         id: "erythrozyten_h5",
         type: "true_false",
         statement: "CO bindet ca. 300-mal stärker an Hämoglobin als O₂.",
         answer: true,
-        explanation: "CO verdrängt O₂ an den Häm-Gruppen und führt zu CO-Hämoglobin (HbCO), das kein O₂ transportieren kann. Die Bindung ist sehr fest, aber reversibel – Therapie mit 100 % O₂ oder Hyperbarkammer."
+        explanation: "CO verdrängt O₂ an den Häm-Gruppen und führt zu CO-Hämoglobin (HbCO), das kein O₂ transportieren kann. Die Bindung ist sehr fest, aber reversibel – Therapie mit 100 % O₂ oder Hyperbarkammer.",
+        learningCard: { type: "predict", statement: "CO bindet ca. 300-mal stärker an Hämoglobin als O₂.", answer: true, reveal: "CO verdrängt O₂ an den Häm-Gruppen und bildet CO-Hämoglobin (HbCO), das keinen Sauerstoff transportieren kann. Die Bindung ist sehr fest, aber reversibel – Therapie mit 100 % O₂ oder Hyperbarkammer." }
       }
     ],
     phase4Questions: [
@@ -7110,6 +7169,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "CO bindet ca. 300-mal stärker an Hämoglobin als O₂", correct: true }
         ],
         explanation: "Erythrozyten sind kernlos, leben 100-120 Tage und tragen Hämoglobin mit 4 Häm-Gruppen (je Fe2+); CO bindet ca. 300-fach stärker als O2 und blockiert damit die Sauerstoffversorgung; sie werden im Knochenmark gebildet und in Milz und Leber abgebaut.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Erythrozyten und Hämoglobin treffen zu?", checklist: [
+          { text: "Erythrozyten sind kernlos und leben 100–120 Tage.", correct: true },
+          { text: "Hämoglobin enthält 4 Häm-Gruppen mit je einem Fe²⁺-Ion.", correct: true },
+          { text: "CO bindet ca. 300-mal stärker an Hämoglobin als O₂.", correct: true },
+          { text: "Erythrozyten werden in der Milz gebildet.", correct: false }
+        ], reveal: "Erythrozyten sind kernlos, leben 100–120 Tage und tragen Hämoglobin mit 4 Häm-Gruppen. CO bindet etwa 300-fach stärker als O₂; gebildet werden Erythrozyten im Knochenmark, nicht in der Milz." },
       },
       {
         id: "erythrozyten_mc2",
@@ -7122,6 +7187,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "CO-Vergiftung ist irreversibel und daher immer tödlich", correct: false }
         ],
         explanation: "Nitritvergiftung oxidiert Fe2+ zu Fe3+ (Methämoglobin, kann kein O2 abgeben); Myoglobin hat nur 1 (nicht 4) Häm-Gruppe; CO-Vergiftung ist reversibel (Therapie: reiner O2 oder Hyperbare-O2); O2-Bindung ist eine Oxygenation, keine chemische Oxidation.",
+        learningCard: { type: "reconstruct", template: "Nitrit oxidiert Fe²⁺ zu ___, wodurch ___ entsteht, das kein O₂ mehr abgeben kann.", blanks: ["Fe³⁺", "Methämoglobin"], distractors: ["Fe⁴⁺", "Carboxyhämoglobin"], reveal: "Nitritvergiftung oxidiert Fe²⁺ zu Fe³⁺, wodurch Methämoglobin entsteht, das kein O₂ mehr abgeben kann. Die O₂-Bindung an gesundes Hämoglobin ist dagegen eine Oxygenation, keine chemische Oxidation, und CO-Vergiftung ist reversibel behandelbar." },
       }
     ]
   }),
@@ -7140,14 +7206,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Basophile Granulozyten", correct: false },
           { text: "Monozyten", correct: false }
         ],
-        explanation: "Eosinophile sind bei Allergien und Parasitosen erhöht (Eosinophilie). Neutrophile bekämpfen Bakterieninfekte, Basophile setzen Histamin frei, Monozyten sind Vorläufer der Makrophagen."
+        explanation: "Eosinophile sind bei Allergien und Parasitosen erhöht (Eosinophilie). Neutrophile bekämpfen Bakterieninfekte, Basophile setzen Histamin frei, Monozyten sind Vorläufer der Makrophagen.",
+        learningCard: { type: "predict", statement: "Eosinophile Granulozyten treten bei Allergien und Parasitenbefall in erhöhter Anzahl auf.", answer: true, reveal: "Eosinophile sind bei Allergien und Parasitosen erhöht (Eosinophilie). Neutrophile bekämpfen dagegen Bakterieninfekte, Basophile setzen Histamin frei, und Monozyten sind Vorläufer der Makrophagen." }
       },
       {
         id: "leukozyten_h2",
         type: "true_false",
         statement: "Eine Linksverschiebung im Differenzialblutbild bedeutet, dass mehr reife segmentkernige Neutrophile vorhanden sind.",
         answer: false,
-        explanation: "Eine Linksverschiebung bedeutet, dass mehr unreife, stabkernige Neutrophile auftreten – Zeichen einer gesteigerten Granulopoese bei starker Bakterieninfektion oder Entzündung."
+        explanation: "Eine Linksverschiebung bedeutet, dass mehr unreife, stabkernige Neutrophile auftreten – Zeichen einer gesteigerten Granulopoese bei starker Bakterieninfektion oder Entzündung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Eine Linksverschiebung zeigt vermehrte unreife, stabkernige Neutrophile.", isWrong: false },
+          { text: "Eine Linksverschiebung ist ein Zeichen gesteigerter Granulopoese.", isWrong: false },
+          { text: "Eine Linksverschiebung tritt bei starker Bakterieninfektion oder Entzündung auf.", isWrong: false },
+          { text: "Eine Linksverschiebung bedeutet mehr reife segmentkernige Neutrophile.", isWrong: true }
+        ], whyWrong: "Eine Linksverschiebung bedeutet das Gegenteil: mehr unreife, stabkernige Neutrophile treten auf – ein Zeichen gesteigerter Granulopoese bei starker Infektion oder Entzündung." }
       },
       {
         id: "leukozyten_h3",
@@ -7159,7 +7232,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Agranulozytose äußert sich als Erhöhung der neutrophilen Granulozyten", correct: false },
           { text: "Nur Basophile werden durch diese Medikamente beeinflusst", correct: false }
         ],
-        explanation: "Agranulozytose (starker Abfall der Granulozyten) kann als reversible Nebenwirkung von Paracetamol, Phenacetin und Pyrazol-Derivaten auftreten – kein dauerhafter Verlust."
+        explanation: "Agranulozytose (starker Abfall der Granulozyten) kann als reversible Nebenwirkung von Paracetamol, Phenacetin und Pyrazol-Derivaten auftreten – kein dauerhafter Verlust.",
+        learningCard: { type: "predict", statement: "Paracetamol, Phenacetin und Pyrazol-Derivate können reversibel eine Agranulozytose auslösen.", answer: true, reveal: "Agranulozytose (starker Abfall der Granulozyten) kann als reversible Nebenwirkung von Paracetamol, Phenacetin und Pyrazol-Derivaten auftreten. Es handelt sich dabei nicht um einen dauerhaften Verlust der Leukozyten." }
       },
       {
         id: "leukozyten_h4",
@@ -7171,14 +7245,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "4,8–5,9 Mio/µl", correct: false },
           { text: "1.000–3.000 /µl", correct: false }
         ],
-        explanation: "Leukozyten: Normalwert 4.000–10.000/µl. Thrombozyten: 150.000–300.000/µl. Erythrozyten: 4,8–5,9 Mio/µl (Männer)."
+        explanation: "Leukozyten: Normalwert 4.000–10.000/µl. Thrombozyten: 150.000–300.000/µl. Erythrozyten: 4,8–5,9 Mio/µl (Männer).",
+        learningCard: { type: "reconstruct", template: "Der Normalwert für Leukozyten liegt bei ___–___ /µl.", blanks: ["4.000", "10.000"], distractors: ["150.000", "300.000"], reveal: "Leukozyten: Normalwert 4.000–10.000/µl. Thrombozyten liegen bei 150.000–300.000/µl, Erythrozyten (Männer) bei 4,8–5,9 Mio/µl." }
       },
       {
         id: "leukozyten_h5",
         type: "true_false",
         statement: "Basophile Granulozyten enthalten Heparin, Histamin und Serotonin.",
         answer: true,
-        explanation: "Basophile speichern Heparin (gerinnungshemmend), Histamin und Serotonin in ihren Granula. Sie spielen eine Rolle bei allergischen Reaktionen und Basophilie tritt u. a. bei CML und Allergien auf."
+        explanation: "Basophile speichern Heparin (gerinnungshemmend), Histamin und Serotonin in ihren Granula. Sie spielen eine Rolle bei allergischen Reaktionen und Basophilie tritt u. a. bei CML und Allergien auf.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu basophilen Granulozyten treffen zu?", checklist: [
+          { text: "Basophile speichern Heparin, Histamin und Serotonin.", correct: true },
+          { text: "Basophile spielen eine Rolle bei allergischen Reaktionen.", correct: true },
+          { text: "Basophilie tritt u. a. bei CML und Allergien auf.", correct: true },
+          { text: "Basophile bekämpfen primär Bakterieninfekte.", correct: false }
+        ], reveal: "Basophile speichern Heparin (gerinnungshemmend), Histamin und Serotonin in ihren Granula. Sie spielen eine Rolle bei allergischen Reaktionen, und Basophilie tritt u. a. bei CML und Allergien auf." }
       }
     ],
     phase4Questions: [
@@ -7193,6 +7274,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Basophile enthalten Heparin und Histamin", correct: true }
         ],
         explanation: "Neutrophile sind mit 30-70% die häufigsten Leukozyten; Eosinophile zeigen Tagesrhythmus und steigen bei Allergien an; Basophile enthalten Heparin und Histamin; Monozyten sind die größten (nicht kleinsten) Leukozyten.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Neutrophile Granulozyten machen 30–70 % der Leukozyten aus.", isWrong: false },
+          { text: "Eosinophile zeigen einen Tagesrhythmus und sind bei Allergien erhöht.", isWrong: false },
+          { text: "Basophile enthalten Heparin und Histamin.", isWrong: false },
+          { text: "Monozyten sind die kleinsten Leukozyten.", isWrong: true }
+        ], whyWrong: "Monozyten sind tatsächlich die größten, nicht die kleinsten Leukozyten. Neutrophile (30–70 %), Eosinophile (Tagesrhythmus, Allergien) und Basophile (Heparin, Histamin) sind dagegen korrekt beschrieben." },
       },
       {
         id: "leukozyten_mc2",
@@ -7205,6 +7292,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Knochenmarkschädigungen", correct: true }
         ],
         explanation: "Leukopenie entsteht durch direkte Virusschädigung (HIV, Influenza, Masern), Hemmung der Knochenmarkproduktion durch Zytostatika oder Knochenmarkschädigungen; akute Bakterieninfektionen verursachen dagegen eine Leukozytose.",
+        learningCard: { type: "reconstruct", template: "Leukopenie entsteht durch Virusinfektionen wie ___, durch ___-Therapie oder durch Knochenmarkschädigungen.", blanks: ["HIV", "Zytostatika"], distractors: ["Antibiotika", "Bakterien"], reveal: "Leukopenie entsteht durch direkte Virusschädigung (z. B. HIV, Influenza, Masern), durch Hemmung der Knochenmarkproduktion mit Zytostatika oder durch Knochenmarkschädigungen. Akute Bakterieninfektionen verursachen dagegen eine Leukozytose, keine Leukopenie." },
       }
     ]
   }),
@@ -7223,14 +7311,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Fibrinogen", correct: false },
           { text: "Prothrombin", correct: false }
         ],
-        explanation: "Der von-Willebrand-Faktor (vWF) bindet an den GP-Ib-Rezeptor der Thrombozyten und vermittelt deren Adhäsion an freigelegtes Kollagen der verletzten Gefäßwand – erster Schritt der primären Hämostase."
+        explanation: "Der von-Willebrand-Faktor (vWF) bindet an den GP-Ib-Rezeptor der Thrombozyten und vermittelt deren Adhäsion an freigelegtes Kollagen der verletzten Gefäßwand – erster Schritt der primären Hämostase.",
+        learningCard: { type: "predict", statement: "Der von-Willebrand-Faktor vermittelt die Adhäsion der Thrombozyten an die verletzte Gefäßwand.", answer: true, reveal: "Der von-Willebrand-Faktor (vWF) bindet an den GP-Ib-Rezeptor der Thrombozyten und vermittelt deren Adhäsion an freigelegtes Kollagen der verletzten Gefäßwand. Das ist der erste Schritt der primären Hämostase." }
       },
       {
         id: "haemostase_h2",
         type: "true_false",
         statement: "Bei der Blutgerinnung nach Morawitz entsteht aus Fibrinogen durch Thrombin das unlösliche Fibrin.",
         answer: true,
-        explanation: "Thrombin (gebildet aus Prothrombin durch Thrombokinase + Ca²⁺) spaltet Fibrinogen zu Fibrin. Fibrin polymerisiert und bildet das Gerüst des roten, stabilen Thrombus."
+        explanation: "Thrombin (gebildet aus Prothrombin durch Thrombokinase + Ca²⁺) spaltet Fibrinogen zu Fibrin. Fibrin polymerisiert und bildet das Gerüst des roten, stabilen Thrombus.",
+        learningCard: { type: "reconstruct", template: "Thrombin spaltet ___ zu ___, das polymerisiert und das Gerüst des roten Thrombus bildet.", blanks: ["Fibrinogen", "Fibrin"], distractors: ["Prothrombin", "Plasmin"], reveal: "Thrombin (gebildet aus Prothrombin durch Thrombokinase und Ca²⁺) spaltet Fibrinogen zu Fibrin. Fibrin polymerisiert und bildet das Gerüst des roten, stabilen Thrombus." }
       },
       {
         id: "haemostase_h3",
@@ -7242,7 +7332,13 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Afibrinogenämie (Faktor-I-Mangel)", correct: false },
           { text: "Hagemann-Syndrom (Faktor-XII-Mangel)", correct: false }
         ],
-        explanation: "Prothrombin (Faktor II) wird Vitamin-K-abhängig in der Leber synthetisiert. Vitamin-K-Mangel → Hypoprothrombinämie. Hämophilie A und B sind angeboren (X-chromosomal), Afibrinogenämie (Faktor I) und Hagemann-Syndrom (Faktor XII) ebenfalls angeboren."
+        explanation: "Prothrombin (Faktor II) wird Vitamin-K-abhängig in der Leber synthetisiert. Vitamin-K-Mangel → Hypoprothrombinämie. Hämophilie A und B sind angeboren (X-chromosomal), Afibrinogenämie (Faktor I) und Hagemann-Syndrom (Faktor XII) ebenfalls angeboren.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Vitamin-K-Mangel führt zu einer Hypoprothrombinämie (Faktor-II-Mangel).", isWrong: false },
+          { text: "Prothrombin wird Vitamin-K-abhängig in der Leber synthetisiert.", isWrong: false },
+          { text: "Hämophilie A und B sind angeborene, X-chromosomale Gerinnungsstörungen.", isWrong: false },
+          { text: "Vitamin-K-Mangel verursacht Hämophilie A.", isWrong: true }
+        ], whyWrong: "Vitamin-K-Mangel verursacht eine Hypoprothrombinämie (Faktor-II-Mangel), nicht Hämophilie A. Hämophilie A und B sind angeborene, X-chromosomale Störungen und unabhängig vom Vitamin-K-Status." }
       },
       {
         id: "haemostase_h4",
@@ -7254,14 +7350,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "ASS blockiert Vitamin-K-abhängige Gerinnungsfaktoren wie Cumarin", correct: false },
           { text: "ASS ist bei gleichzeitiger Gabe von Marcumar unbedenklich", correct: false }
         ],
-        explanation: "ASS hemmt die Thrombozytenaggregation irreversibel. Die Kombination ASS + Marcumar erhöht das GI-Blutungsrisiko und ist daher mit Vorsicht einzusetzen."
+        explanation: "ASS hemmt die Thrombozytenaggregation irreversibel. Die Kombination ASS + Marcumar erhöht das GI-Blutungsrisiko und ist daher mit Vorsicht einzusetzen.",
+        learningCard: { type: "predict", statement: "ASS (Acetylsalicylsäure) hemmt die Thrombozytenaggregation.", answer: true, reveal: "ASS hemmt die Thrombozytenaggregation irreversibel. Die Kombination von ASS mit Marcumar erhöht das Blutungsrisiko im Magen-Darm-Trakt und ist daher mit Vorsicht einzusetzen." }
       },
       {
         id: "haemostase_h5",
         type: "true_false",
         statement: "Hämophilie A und Hämophilie B werden X-chromosomal rezessiv vererbt, weshalb fast ausschließlich Männer erkranken.",
         answer: true,
-        explanation: "Hämophilie A (Faktor-VIII-Mangel) und Hämophilie B (Faktor-IX-Mangel) sind X-chromosomal rezessiv vererbt. Da Männer nur ein X-Chromosom haben, erkranken sie bei einem defekten Allel direkt; Frauen sind meist Konduktorinnen."
+        explanation: "Hämophilie A (Faktor-VIII-Mangel) und Hämophilie B (Faktor-IX-Mangel) sind X-chromosomal rezessiv vererbt. Da Männer nur ein X-Chromosom haben, erkranken sie bei einem defekten Allel direkt; Frauen sind meist Konduktorinnen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Hämophilie A und B treffen zu?", checklist: [
+          { text: "Hämophilie A und B werden X-chromosomal rezessiv vererbt.", correct: true },
+          { text: "Fast ausschließlich Männer erkranken an Hämophilie A und B.", correct: true },
+          { text: "Frauen sind meist Konduktorinnen (Überträgerinnen).", correct: true },
+          { text: "Hämophilie A und B werden autosomal-dominant vererbt.", correct: false }
+        ], reveal: "Hämophilie A (Faktor-VIII-Mangel) und Hämophilie B (Faktor-IX-Mangel) sind X-chromosomal rezessiv vererbt. Da Männer nur ein X-Chromosom haben, erkranken sie direkt bei einem defekten Allel; Frauen sind meist nur Konduktorinnen." }
       }
     ],
     phase4Questions: [
@@ -7276,6 +7379,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Fibrinogen wird durch Thrombin zu Fibrin umgewandelt", correct: true }
         ],
         explanation: "Die primäre Hämostase (1-3 Min, weißer Thrombus) wird vom von-Willebrand-Faktor vermittelt; in der sekundären Hämostase wandelt Thrombin Fibrinogen zu Fibrin; die extrinsische Gerinnungskaskade läuft schneller ab als die intrinsische.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die primäre Hämostase dauert 1–3 Minuten und endet im weißen Thrombus.", isWrong: false },
+          { text: "Der von-Willebrand-Faktor vermittelt die Thrombozytenadhäsion.", isWrong: false },
+          { text: "Fibrinogen wird durch Thrombin zu Fibrin umgewandelt.", isWrong: false },
+          { text: "Die extrinsische Aktivierung verläuft langsamer als die intrinsische.", isWrong: true }
+        ], whyWrong: "Die extrinsische Aktivierung verläuft tatsächlich schneller als die intrinsische, nicht langsamer. Primäre Hämostase (1–3 Min, weißer Thrombus) und die Umwandlung von Fibrinogen zu Fibrin durch Thrombin sind dagegen korrekt beschrieben." },
       },
       {
         id: "haemostase_mc2",
@@ -7288,6 +7397,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Natriumcitrat aktiviert Antithrombin III", correct: false }
         ],
         explanation: "Antikoagulantien: Heparin aktiviert Antithrombin III (wirkt sofort), Cumarin blockiert Vitamin-K-abhängige Gerinnungsfaktoren, ASS hemmt irreversibel die Thrombozytenaggregation; Natriumcitrat bindet Calcium und wird nur ex vivo eingesetzt.",
+        learningCard: { type: "reconstruct", template: "___ aktiviert Antithrombin III, ___ blockiert Vitamin-K-abhängige Gerinnungsfaktoren, und ___ hemmt irreversibel die Thrombozytenaggregation.", blanks: ["Heparin", "Cumarin", "ASS"], distractors: ["Natriumcitrat", "Plasmin"], reveal: "Heparin aktiviert Antithrombin III und wirkt sofort, Cumarin (Marcumar) blockiert Vitamin-K-abhängige Gerinnungsfaktoren, und ASS hemmt irreversibel die Thrombozytenaggregation. Natriumcitrat bindet dagegen nur ex vivo Calcium." },
       }
     ]
   }),
@@ -7306,14 +7416,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Anti-A und Anti-B", correct: false },
           { text: "Keine Antikörper", correct: false }
         ],
-        explanation: "Bei Blutgruppe A sitzen A-Antigene auf den Erythrozyten; im Plasma befinden sich Anti-B-Antikörper. Bei Blutgruppe 0 sind beide Antikörper vorhanden."
+        explanation: "Bei Blutgruppe A sitzen A-Antigene auf den Erythrozyten; im Plasma befinden sich Anti-B-Antikörper. Bei Blutgruppe 0 sind beide Antikörper vorhanden.",
+        learningCard: { type: "predict", statement: "Eine Person mit Blutgruppe A hat Anti-B-Antikörper im Plasma.", answer: true, reveal: "Bei Blutgruppe A sitzen A-Antigene auf den Erythrozyten; im Plasma befinden sich Anti-B-Antikörper. Bei Blutgruppe 0 sind dagegen beide Antikörper (Anti-A und Anti-B) vorhanden." }
       },
       {
         id: "blutgruppen_h2",
         type: "true_false",
         statement: "Erythroblastosis fetalis tritt bereits bei der ersten Schwangerschaft einer Rh-negativen Mutter mit einem Rh-positiven Kind auf.",
         answer: false,
-        explanation: "Bei der ersten Schwangerschaft erfolgt nur die Sensibilisierung (Bildung von Anti-D nach Blutkontakt bei Geburt). Ab der zweiten Schwangerschaft mit Rh-positivem Kind greifen die mütterlichen IgG-Antikörper die kindlichen Erythrozyten an → Erythroblastosis fetalis."
+        explanation: "Bei der ersten Schwangerschaft erfolgt nur die Sensibilisierung (Bildung von Anti-D nach Blutkontakt bei Geburt). Ab der zweiten Schwangerschaft mit Rh-positivem Kind greifen die mütterlichen IgG-Antikörper die kindlichen Erythrozyten an → Erythroblastosis fetalis.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Bei der ersten Schwangerschaft erfolgt nur die Sensibilisierung der Mutter.", isWrong: false },
+          { text: "Anti-D-Antikörper entstehen nach Blutkontakt bei der Geburt.", isWrong: false },
+          { text: "Ab der zweiten Schwangerschaft können mütterliche IgG-Antikörper die kindlichen Erythrozyten angreifen.", isWrong: false },
+          { text: "Erythroblastosis fetalis tritt bereits bei der ersten Schwangerschaft auf.", isWrong: true }
+        ], whyWrong: "Bei der ersten Schwangerschaft erfolgt nur die Sensibilisierung. Die Erythroblastosis fetalis tritt erst ab der zweiten Schwangerschaft auf, wenn mütterliche IgG-Antikörper die kindlichen Erythrozyten angreifen." }
       },
       {
         id: "blutgruppen_h3",
@@ -7325,7 +7442,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Nur direkt nach der Geburt", correct: false },
           { text: "Gar nicht – nur bei tatsächlicher Sensibilisierung", correct: false }
         ],
-        explanation: "Die Anti-D-Prophylaxe (Gabe von Anti-D-Immunglobulin) wird vorbeugend in der 28.–30. SSW und erneut direkt nach der Geburt eines Rh-positiven Kindes gegeben."
+        explanation: "Die Anti-D-Prophylaxe (Gabe von Anti-D-Immunglobulin) wird vorbeugend in der 28.–30. SSW und erneut direkt nach der Geburt eines Rh-positiven Kindes gegeben.",
+        learningCard: { type: "reconstruct", template: "Die Anti-D-Prophylaxe wird in der ___.–___. SSW und direkt nach der Geburt gegeben.", blanks: ["28", "30"], distractors: ["12", "20"], reveal: "Die Anti-D-Prophylaxe (Gabe von Anti-D-Immunglobulin) wird vorbeugend in der 28.–30. SSW und erneut direkt nach der Geburt eines Rh-positiven Kindes gegeben." }
       },
       {
         id: "blutgruppen_h4",
@@ -7337,14 +7455,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Agglutinine sind Antigene, Agglutinogene Antikörper", correct: false },
           { text: "Agglutinogene kommen nur im Plasma vor", correct: false }
         ],
-        explanation: "Agglutinogene (Antigene A/B) sitzen auf den Erythrozyten. Agglutinine (Antikörper anti-A/anti-B) befinden sich im Plasma – sie agglutinieren (verklumpen) die Erythrozyten bei falscher Blutgruppe."
+        explanation: "Agglutinogene (Antigene A/B) sitzen auf den Erythrozyten. Agglutinine (Antikörper anti-A/anti-B) befinden sich im Plasma – sie agglutinieren (verklumpen) die Erythrozyten bei falscher Blutgruppe.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Agglutinogene sind Antigene auf den Erythrozyten.", isWrong: false },
+          { text: "Agglutinine sind Antikörper im Plasma.", isWrong: false },
+          { text: "Agglutinine verklumpen Erythrozyten bei falscher Blutgruppe.", isWrong: false },
+          { text: "Agglutinogene und Agglutinine sitzen beide auf den Erythrozyten.", isWrong: true }
+        ], whyWrong: "Agglutinogene (Antigene) sitzen auf den Erythrozyten, Agglutinine (Antikörper) dagegen im Plasma – sie sitzen also nicht am selben Ort." }
       },
       {
         id: "blutgruppen_h5",
         type: "true_false",
         statement: "Das ABO-System wurde 1901 von Karl Landsteiner entdeckt.",
         answer: true,
-        explanation: "Karl Landsteiner entdeckte 1901 das ABO-Blutgruppensystem und erhielt dafür 1930 den Nobelpreis für Medizin."
+        explanation: "Karl Landsteiner entdeckte 1901 das ABO-Blutgruppensystem und erhielt dafür 1930 den Nobelpreis für Medizin.",
+        learningCard: { type: "predict", statement: "Karl Landsteiner entdeckte das ABO-Blutgruppensystem im Jahr 1901.", answer: true, reveal: "Karl Landsteiner entdeckte 1901 das ABO-Blutgruppensystem und erhielt dafür 1930 den Nobelpreis für Medizin." }
       }
     ],
     phase4Questions: [
@@ -7359,6 +7484,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Vor Transfusionen sind Kreuzprobe und Bedside-Test obligat", correct: true }
         ],
         explanation: "Blutgruppe AB hat keine Antikörper und ist universeller Empfänger; Blutgruppe 0 hat keine A/B-Antigene auf Erythrozyten (aber beide Antikörper); vor Transfusionen sind Kreuzprobe und Bedside-Test obligat.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum ABO-System treffen zu?", checklist: [
+          { text: "Blutgruppe AB hat keine Antikörper und ist der universelle Empfänger.", correct: true },
+          { text: "Agglutinogene sind Antigene auf den Erythrozyten.", correct: true },
+          { text: "Vor Transfusionen sind Kreuzprobe und Bedside-Test obligat.", correct: true },
+          { text: "Blutgruppe 0 hat A- und B-Antigene auf den Erythrozyten.", correct: false }
+        ], reveal: "Blutgruppe AB hat keine Antikörper und ist universeller Empfänger; Agglutinogene sind Antigene auf den Erythrozyten; vor Transfusionen sind Kreuzprobe und Bedside-Test obligat. Blutgruppe 0 hat dagegen keine A/B-Antigene auf den Erythrozyten." },
       },
       {
         id: "blutgruppen_mc2",
@@ -7371,6 +7502,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Anti-D-Prophylaxe wird in der 28.–30. SSW und nach der Geburt gegeben", correct: true }
         ],
         explanation: "Ca. 85% der Menschen sind Rh-positiv (nicht negativ); Rh-Antikörper entstehen erst nach Sensibilisierung; Erythroblastosis fetalis tritt ab der zweiten Schwangerschaft auf, weshalb Anti-D-Prophylaxe in der 28.-30. SSW und nach der Geburt gegeben wird.",
+        learningCard: { type: "reconstruct", template: "Ca. ___ % der Bevölkerung sind Rh-positiv; Rh-Antikörper entstehen erst nach ___.", blanks: ["85", "Sensibilisierung"], distractors: ["15", "Geburt"], reveal: "Ca. 85 % der Menschen sind Rh-positiv (nicht negativ). Rh-Antikörper entstehen erst nach Sensibilisierung durch Kontakt mit Rh-positivem Blut, weshalb Erythroblastosis fetalis erst ab der zweiten Schwangerschaft auftreten kann." },
       }
     ]
   }),
@@ -7389,14 +7521,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "T-Helferzellen, B-Lymphozyten, NK-Zellen", correct: false },
           { text: "Thrombozyten, Erythrozyten, Monozyten", correct: false }
         ],
-        explanation: "Das MMS umfasst gewebsständige Makrophagen: Mikroglia (ZNS), Alveolar-Makrophagen (Lunge), Kupffer-Zellen (Leber), Osteoklasten (Knochen), dendritische Zellen – alle entstammen Monozyten-Vorläufern."
+        explanation: "Das MMS umfasst gewebsständige Makrophagen: Mikroglia (ZNS), Alveolar-Makrophagen (Lunge), Kupffer-Zellen (Leber), Osteoklasten (Knochen), dendritische Zellen – alle entstammen Monozyten-Vorläufern.",
+        learningCard: { type: "reconstruct", template: "Zum MMS gehören ___ (ZNS), ___-Zellen (Leber) und Alveolar-Makrophagen (Lunge).", blanks: ["Mikroglia", "Kupffer"], distractors: ["Langerhans", "Osteoblasten"], reveal: "Das MMS umfasst gewebsständige Makrophagen: Mikroglia (ZNS), Kupffer-Zellen (Leber), Alveolar-Makrophagen (Lunge) und Osteoklasten (Knochen) – alle entstammen Monozyten-Vorläufern." }
       },
       {
         id: "abwehr_unspezifisch_h2",
         type: "true_false",
         statement: "Interferone hemmen die Replikation von Viren in infizierten Zellen.",
         answer: true,
-        explanation: "Interferone (Typ I: IFN-α, IFN-β) werden von virusinfizierten Zellen freigesetzt und signalisieren Nachbarzellen, einen antiviralen Zustand einzunehmen, der Virusreplikation hemmt."
+        explanation: "Interferone (Typ I: IFN-α, IFN-β) werden von virusinfizierten Zellen freigesetzt und signalisieren Nachbarzellen, einen antiviralen Zustand einzunehmen, der Virusreplikation hemmt.",
+        learningCard: { type: "predict", statement: "Interferone hemmen die Replikation von Viren in infizierten Zellen.", answer: true, reveal: "Interferone (Typ I: IFN-α, IFN-β) werden von virusinfizierten Zellen freigesetzt und signalisieren Nachbarzellen, einen antiviralen Zustand einzunehmen. Dieser Zustand hemmt die Virusreplikation." }
       },
       {
         id: "abwehr_unspezifisch_h3",
@@ -7408,7 +7542,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Anlockung von Makrophagen durch Chemokine", correct: false },
           { text: "Aktivierung von NK-Zellen", correct: false }
         ],
-        explanation: "Opsonierung bedeutet, dass Komplementfragmente (C3b) an Pathogene binden und diese für Phagozyten 'erkennbarer' machen. Daneben lysiert das Komplementsystem Bakterien direkt und wirkt chemotaktisch."
+        explanation: "Opsonierung bedeutet, dass Komplementfragmente (C3b) an Pathogene binden und diese für Phagozyten 'erkennbarer' machen. Daneben lysiert das Komplementsystem Bakterien direkt und wirkt chemotaktisch.",
+        learningCard: { type: "predict", statement: "Opsonierung erleichtert die Phagozytose von Pathogenen durch Makrophagen.", answer: true, reveal: "Opsonierung bedeutet, dass Komplementfragmente (C3b) an Pathogene binden und diese für Phagozyten 'erkennbarer' machen. Das Komplementsystem lysiert Bakterien daneben auch direkt und wirkt chemotaktisch." }
       },
       {
         id: "abwehr_unspezifisch_h4",
@@ -7420,14 +7555,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Unspezifische Abwehr ist langsamer als die spezifische", correct: false },
           { text: "Unspezifische Abwehr erkennt spezifische Antigene", correct: false }
         ],
-        explanation: "Die unspezifische Abwehr ist angeboren, schnell und kennt kein immunologisches Gedächtnis. Sie unterscheidet nicht zwischen verschiedenen Erregern. Die spezifische Abwehr ist langsamer, hochspezifisch und bildet Gedächtniszellen."
+        explanation: "Die unspezifische Abwehr ist angeboren, schnell und kennt kein immunologisches Gedächtnis. Sie unterscheidet nicht zwischen verschiedenen Erregern. Die spezifische Abwehr ist langsamer, hochspezifisch und bildet Gedächtniszellen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die unspezifische Abwehr ist angeboren.", isWrong: false },
+          { text: "Die unspezifische Abwehr kennt kein immunologisches Gedächtnis.", isWrong: false },
+          { text: "Die spezifische Abwehr bildet Gedächtniszellen.", isWrong: false },
+          { text: "Die unspezifische Abwehr bildet Antikörper.", isWrong: true }
+        ], whyWrong: "Antikörper werden von der spezifischen, nicht der unspezifischen Abwehr gebildet. Die unspezifische Abwehr ist angeboren, schnell und kennt kein immunologisches Gedächtnis." }
       },
       {
         id: "abwehr_unspezifisch_h5",
         type: "true_false",
         statement: "NK-Zellen töten virusinfizierte Zellen ohne vorherige Sensibilisierung.",
         answer: true,
-        explanation: "NK-Zellen (Natürliche Killerzellen) sind Teil der unspezifischen Abwehr. Sie erkennen Zellen mit fehlendem oder reduziertem MHC-I (wie virusinfizierte oder Tumorzellen) und töten sie durch Perforin und Granzyme."
+        explanation: "NK-Zellen (Natürliche Killerzellen) sind Teil der unspezifischen Abwehr. Sie erkennen Zellen mit fehlendem oder reduziertem MHC-I (wie virusinfizierte oder Tumorzellen) und töten sie durch Perforin und Granzyme.",
+        learningCard: { type: "predict", statement: "NK-Zellen können virusinfizierte Zellen ohne vorherige Sensibilisierung töten.", answer: true, reveal: "NK-Zellen (Natürliche Killerzellen) sind Teil der unspezifischen Abwehr. Sie erkennen Zellen mit fehlendem oder reduziertem MHC-I (wie virusinfizierte oder Tumorzellen) und töten sie durch Perforin und Granzyme." }
       }
     ],
     phase4Questions: [
@@ -7442,6 +7584,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Unspezifische Abwehr hat kein immunologisches Gedächtnis", correct: true }
         ],
         explanation: "Die unspezifische Abwehr reagiert sofort ohne Gedächtnis: Komplementsystem lysiert Bakterien direkt und opsoniert sie, NK-Zellen erkennen MHC-I-Verlust auf Tumorzellen ohne Sensibilisierung; CRP ist ein unspezifisches Akute-Phase-Protein (kein Antikörper).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur unspezifischen Abwehr treffen zu?", checklist: [
+          { text: "Das Komplementsystem lysiert Bakterien direkt und fördert Phagozytose durch Opsonierung.", correct: true },
+          { text: "NK-Zellen erkennen Tumorzellen ohne vorherige Sensibilisierung.", correct: true },
+          { text: "Die unspezifische Abwehr hat kein immunologisches Gedächtnis.", correct: true },
+          { text: "CRP ist ein spezifischer Antikörper gegen bestimmte Bakterien.", correct: false }
+        ], reveal: "Das Komplementsystem lysiert Bakterien direkt und opsoniert sie; NK-Zellen erkennen MHC-I-Verlust ohne vorherige Sensibilisierung; die unspezifische Abwehr hat kein Gedächtnis. CRP ist dagegen ein unspezifisches Akute-Phase-Protein, kein Antikörper." },
       },
       {
         id: "abwehr_unspezifisch_mc2",
@@ -7454,6 +7602,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "NK-Zellen (Zytotoxine gegen infizierte Zellen)", correct: true }
         ],
         explanation: "Die zelluläre unspezifische Abwehr umfasst Neutrophile (Phagozytose), Makrophagen in verschiedenen Geweben (Mikroglia, Kupffer-Zellen, Alveolarmakrophagen) und NK-Zellen; Plasmazellen produzieren Antikörper und gehören zur spezifischen humoralen Abwehr.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Neutrophile Granulozyten gehören zur unspezifischen zellulären Abwehr (Phagozytose).", isWrong: false },
+          { text: "Makrophagen wie Mikroglia und Kupffer-Zellen gehören zur unspezifischen Abwehr.", isWrong: false },
+          { text: "NK-Zellen gehören zur unspezifischen zellulären Abwehr.", isWrong: false },
+          { text: "Plasmazellen gehören zur unspezifischen zellulären Abwehr.", isWrong: true }
+        ], whyWrong: "Plasmazellen produzieren Antikörper und gehören zur spezifischen humoralen Abwehr, nicht zur unspezifischen zellulären Abwehr. Neutrophile, Makrophagen und NK-Zellen sind dagegen Teil der unspezifischen zellulären Abwehr." },
       }
     ]
   }),
@@ -7472,14 +7626,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "IgA", correct: false },
           { text: "IgE", correct: false }
         ],
-        explanation: "IgM ist das erste Immunglobulin, das nach Erstkontakt mit einem Antigen gebildet wird (primäre Immunantwort). IgG dominiert bei der sekundären (Gedächtnis-)Immunantwort."
+        explanation: "IgM ist das erste Immunglobulin, das nach Erstkontakt mit einem Antigen gebildet wird (primäre Immunantwort). IgG dominiert bei der sekundären (Gedächtnis-)Immunantwort.",
+        learningCard: { type: "predict", statement: "IgM ist das erste Immunglobulin, das bei einer primären Immunantwort gebildet wird.", answer: true, reveal: "IgM ist das erste Immunglobulin, das nach Erstkontakt mit einem Antigen gebildet wird (primäre Immunantwort). IgG dominiert dagegen bei der sekundären (Gedächtnis-)Immunantwort." }
       },
       {
         id: "abwehr_spezifisch_h2",
         type: "true_false",
         statement: "T-Lymphozyten werden im Knochenmark geprägt, B-Lymphozyten im Thymus.",
         answer: false,
-        explanation: "Umgekehrt: T-Lymphozyten werden im Thymus geprägt (Thymopoese), B-Lymphozyten im Knochenmark (beim Fetus auch in der Bursa Fabricii bei Vögeln – daher 'B-Lymphozyten')."
+        explanation: "Umgekehrt: T-Lymphozyten werden im Thymus geprägt (Thymopoese), B-Lymphozyten im Knochenmark (beim Fetus auch in der Bursa Fabricii bei Vögeln – daher 'B-Lymphozyten').",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "T-Lymphozyten werden im Thymus geprägt (Thymopoese).", isWrong: false },
+          { text: "B-Lymphozyten werden im Knochenmark geprägt.", isWrong: false },
+          { text: "Der Name 'B-Lymphozyten' geht auf die Bursa Fabricii bei Vögeln zurück.", isWrong: false },
+          { text: "T-Lymphozyten werden im Knochenmark geprägt, B-Lymphozyten im Thymus.", isWrong: true }
+        ], whyWrong: "Es ist umgekehrt: T-Lymphozyten werden im Thymus geprägt, B-Lymphozyten im Knochenmark – der Name 'B-Lymphozyten' geht auf die Bursa Fabricii bei Vögeln zurück." }
       },
       {
         id: "abwehr_spezifisch_h3",
@@ -7491,7 +7652,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "IgG", correct: false },
           { text: "IgD", correct: false }
         ],
-        explanation: "IgE bindet an Mastzellen und basophile Granulozyten. Bei Kontakt mit Allergen → Histaminfreisetzung → allergische Reaktion. IgE spielt auch eine Rolle bei der Parasitenabwehr."
+        explanation: "IgE bindet an Mastzellen und basophile Granulozyten. Bei Kontakt mit Allergen → Histaminfreisetzung → allergische Reaktion. IgE spielt auch eine Rolle bei der Parasitenabwehr.",
+        learningCard: { type: "predict", statement: "IgE ist mit Allergien und der Parasitenabwehr assoziiert.", answer: true, reveal: "IgE bindet an Mastzellen und basophile Granulozyten. Bei Kontakt mit einem Allergen kommt es zur Histaminfreisetzung und allergischen Reaktion; IgE spielt auch eine Rolle bei der Parasitenabwehr." }
       },
       {
         id: "abwehr_spezifisch_h4",
@@ -7503,14 +7665,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Sie töten virusinfizierte Zellen direkt", correct: false },
           { text: "Sie produzieren Immunglobuline", correct: false }
         ],
-        explanation: "Regulatorische T-Zellen (Tregs, früher T-Suppressorzellen) dämpfen überschießende Immunantworten und sind wichtig für die Selbsttoleranz (Verhinderung von Autoimmunerkrankungen)."
+        explanation: "Regulatorische T-Zellen (Tregs, früher T-Suppressorzellen) dämpfen überschießende Immunantworten und sind wichtig für die Selbsttoleranz (Verhinderung von Autoimmunerkrankungen).",
+        learningCard: { type: "predict", statement: "Regulatorische T-Zellen (Tregs) dämpfen die Immunantwort und verhindern Überreaktionen.", answer: true, reveal: "Regulatorische T-Zellen (Tregs, früher T-Suppressorzellen) dämpfen überschießende Immunantworten. Sie sind wichtig für die Selbsttoleranz und verhindern damit Autoimmunerkrankungen." }
       },
       {
         id: "abwehr_spezifisch_h5",
         type: "true_false",
         statement: "IgA schützt Schleimhäute und kommt in Muttermilch vor, kann aber die Plazenta nicht passieren.",
         answer: true,
-        explanation: "IgA (sekretorisches IgA) findet sich in Tränen, Speichel, Schleimhautsekreten und Kolostrum/Muttermilch. Es ist nicht plazentagängig – Nestschutz wird durch IgG (plazentagängig) vermittelt."
+        explanation: "IgA (sekretorisches IgA) findet sich in Tränen, Speichel, Schleimhautsekreten und Kolostrum/Muttermilch. Es ist nicht plazentagängig – Nestschutz wird durch IgG (plazentagängig) vermittelt.",
+        learningCard: { type: "reconstruct", template: "___ schützt Schleimhäute und kommt in der Muttermilch vor, ist aber nicht ___.", blanks: ["IgA", "plazentagängig"], distractors: ["IgG", "wasserlöslich"], reveal: "IgA (sekretorisches IgA) findet sich in Tränen, Speichel, Schleimhautsekreten und Kolostrum/Muttermilch. Es ist nicht plazentagängig – Nestschutz wird stattdessen durch das plazentagängige IgG vermittelt." }
       }
     ],
     phase4Questions: [
@@ -7525,6 +7689,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "IgA ist plazentagängig und schützt das Neugeborene", correct: false }
         ],
         explanation: "IgG ist das einzige plazentagängige Immunglobulin (Nestschutz), IgM dominiert die Primärantwort, IgE vermittelt Typ-I-Allergien über Mastzellen; IgA schützt Schleimhäute und ist nicht plazentagängig.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Immunglobulinen treffen zu?", checklist: [
+          { text: "IgG ist plazentagängig und vermittelt Nestschutz beim Neugeborenen.", correct: true },
+          { text: "IgM ist das erste Immunglobulin der primären Immunantwort.", correct: true },
+          { text: "IgE vermittelt allergische Reaktionen über Mastzellen.", correct: true },
+          { text: "IgA ist plazentagängig und schützt das Neugeborene.", correct: false }
+        ], reveal: "IgG ist das einzige plazentagängige Immunglobulin (Nestschutz), IgM dominiert die Primärantwort, und IgE vermittelt Typ-I-Allergien über Mastzellen. IgA schützt dagegen Schleimhäute und ist nicht plazentagängig." },
       },
       {
         id: "abwehr_spezifisch_mc2",
@@ -7537,6 +7707,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "T-Gedächtniszellen ermöglichen eine schnellere Reaktion beim Zweitkontakt", correct: true }
         ],
         explanation: "T-Lymphozyten werden im Thymus geprägt; T-Helferzellen (CD4+) aktivieren Makrophagen und B-Zellen; zytotoxische T-Zellen (CD8+) töten direkt infizierte Zellen und produzieren keine Antikörper; Gedächtniszellen ermöglichen die schnellere Sekundärantwort.",
+        learningCard: { type: "reconstruct", template: "___-Zellen (CD4+) aktivieren Makrophagen und B-Zellen, während ___-Zellen (CD8+) infizierte Zellen direkt töten.", blanks: ["T-Helfer", "zytotoxische T"], distractors: ["B-Gedächtnis", "Treg"], reveal: "T-Helferzellen (CD4+) aktivieren Makrophagen und B-Zellen, während zytotoxische T-Zellen (CD8+) infizierte Zellen direkt töten und keine Antikörper produzieren. T-Gedächtniszellen ermöglichen eine schnellere Reaktion beim Zweitkontakt." },
       }
     ]
   }),
@@ -7555,14 +7726,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Toxoidimpfstoff", correct: false },
           { text: "mRNA-Impfstoff", correct: false }
         ],
-        explanation: "Lebendimpfstoffe enthalten attenuierte (abgeschwächte) Erreger, die sich im Körper begrenzt vermehren → stärkste Immunantwort. Beispiele: MMR (Masern, Mumps, Röteln), Varizellen, orale Polio."
+        explanation: "Lebendimpfstoffe enthalten attenuierte (abgeschwächte) Erreger, die sich im Körper begrenzt vermehren → stärkste Immunantwort. Beispiele: MMR (Masern, Mumps, Röteln), Varizellen, orale Polio.",
+        learningCard: { type: "predict", statement: "Lebendimpfstoffe enthalten abgeschwächte, noch vermehrungsfähige Erreger.", answer: true, reveal: "Lebendimpfstoffe enthalten attenuierte (abgeschwächte) Erreger, die sich im Körper begrenzt vermehren – das erzeugt die stärkste Immunantwort. Beispiele sind MMR (Masern, Mumps, Röteln), Varizellen und die orale Polio-Impfung." }
       },
       {
         id: "impfungen_h2",
         type: "true_false",
         statement: "Passive Immunisierung hinterlässt kein immunologisches Gedächtnis.",
         answer: true,
-        explanation: "Bei passiver Immunisierung werden fertige Antikörper zugeführt (Hyperimmunserum). Der Körper bildet keine eigenen Antikörper und keine Gedächtniszellen → Schutz ist auf die Halbwertszeit der übertragenen Antikörper begrenzt."
+        explanation: "Bei passiver Immunisierung werden fertige Antikörper zugeführt (Hyperimmunserum). Der Körper bildet keine eigenen Antikörper und keine Gedächtniszellen → Schutz ist auf die Halbwertszeit der übertragenen Antikörper begrenzt.",
+        learningCard: { type: "predict", statement: "Passive Immunisierung hinterlässt kein immunologisches Gedächtnis.", answer: true, reveal: "Bei passiver Immunisierung werden fertige Antikörper zugeführt (Hyperimmunserum). Der Körper bildet keine eigenen Antikörper und keine Gedächtniszellen, daher ist der Schutz auf die Halbwertszeit der übertragenen Antikörper begrenzt." }
       },
       {
         id: "impfungen_h3",
@@ -7574,7 +7747,13 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Masern-Routineimpfung im Säuglingsalter", correct: false },
           { text: "COVID-19-Erstimpfung", correct: false }
         ],
-        explanation: "Bei Tetanus-Wunden ohne ausreichenden Impfschutz werden gleichzeitig Antikörper (Hyperimmunserum, Sofortschutz) und Impfstoff (aktive Immunisierung, Langzeitschutz) gegeben → Simultanimpfung."
+        explanation: "Bei Tetanus-Wunden ohne ausreichenden Impfschutz werden gleichzeitig Antikörper (Hyperimmunserum, Sofortschutz) und Impfstoff (aktive Immunisierung, Langzeitschutz) gegeben → Simultanimpfung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Simultanimpfung wird bei Tetanus-Wunden ohne ausreichenden Impfschutz eingesetzt.", isWrong: false },
+          { text: "Simultanimpfung kombiniert Antikörpergabe (Sofortschutz) und Impfstoff (Langzeitschutz).", isWrong: false },
+          { text: "Simultanimpfung gibt gleichzeitig Hyperimmunserum und aktiven Impfstoff.", isWrong: false },
+          { text: "Simultanimpfung wird zur saisonalen Grippeprophylaxe eingesetzt.", isWrong: true }
+        ], whyWrong: "Simultanimpfung wird bei akuter Gefährdung wie Tetanus-Wunden ohne ausreichenden Impfschutz eingesetzt, nicht zur saisonalen Grippeprophylaxe. Sie kombiniert Antikörpergabe (Sofortschutz) mit aktivem Impfstoff (Langzeitschutz)." }
       },
       {
         id: "impfungen_h4",
@@ -7586,14 +7765,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "mRNA für ein Erregerprotein", correct: false },
           { text: "Abgetötete Viren", correct: false }
         ],
-        explanation: "Toxoidimpfstoffe enthalten chemisch oder thermisch inaktivierte Toxine (Toxoide). Sie induzieren Antitoxin-Antikörper. Beispiele: Tetanus- und Diphtherieimpfstoff."
+        explanation: "Toxoidimpfstoffe enthalten chemisch oder thermisch inaktivierte Toxine (Toxoide). Sie induzieren Antitoxin-Antikörper. Beispiele: Tetanus- und Diphtherieimpfstoff.",
+        learningCard: { type: "predict", statement: "Toxoidimpfstoffe enthalten inaktivierte bakterielle Toxine.", answer: true, reveal: "Toxoidimpfstoffe enthalten chemisch oder thermisch inaktivierte Toxine (Toxoide) und induzieren Antitoxin-Antikörper. Beispiele sind der Tetanus- und der Diphtherieimpfstoff." }
       },
       {
         id: "impfungen_h5",
         type: "true_false",
         statement: "Impfschäden sind in Deutschland meldepflichtig, und das Impfen ist Ärzten vorbehalten.",
         answer: true,
-        explanation: "Nach dem Infektionsschutzgesetz (IfSG) sind Impfschäden meldepflichtig. Das Impfen selbst ist ein ärztlicher Eingriff (Heilkunde) und darf nur von approbierten Ärzten durchgeführt werden."
+        explanation: "Nach dem Infektionsschutzgesetz (IfSG) sind Impfschäden meldepflichtig. Das Impfen selbst ist ein ärztlicher Eingriff (Heilkunde) und darf nur von approbierten Ärzten durchgeführt werden.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Impfungen und ihrer rechtlichen Regelung treffen zu?", checklist: [
+          { text: "Impfschäden sind in Deutschland meldepflichtig.", correct: true },
+          { text: "Impfen ist ein ärztlicher Eingriff und approbierten Ärzten vorbehalten.", correct: true },
+          { text: "Die Meldepflicht ergibt sich aus dem Infektionsschutzgesetz (IfSG).", correct: true },
+          { text: "Impfen darf von jeder medizinischen Fachkraft ohne Approbation durchgeführt werden.", correct: false }
+        ], reveal: "Nach dem Infektionsschutzgesetz (IfSG) sind Impfschäden meldepflichtig. Das Impfen selbst ist ein ärztlicher Eingriff (Heilkunde) und darf nur von approbierten Ärzten durchgeführt werden." }
       }
     ],
     phase4Questions: [
@@ -7608,6 +7794,7 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Toxoidimpfstoffe enthalten inaktivierte Toxine (z. B. Tetanus, Diphtherie)", correct: true }
         ],
         explanation: "Aktive Immunisierung bildet Gedächtniszellen für Langzeitschutz (nicht sofortig wie Serum); Lebendimpfstoffe enthalten vermehrungsfähige abgeschwächte Erreger; Toxoidimpfstoffe enthalten inaktivierte Toxine (Tetanus, Diphtherie).",
+        learningCard: { type: "reconstruct", template: "Aktive Immunisierung bildet ___ für Langzeitschutz; ___ enthalten vermehrungsfähige, abgeschwächte Erreger.", blanks: ["Gedächtniszellen", "Lebendimpfstoffe"], distractors: ["Antikörper", "Toxoidimpfstoffe"], reveal: "Aktive Immunisierung bildet Gedächtniszellen für Langzeitschutz, im Gegensatz zum sofortigen, aber kurzfristigen Schutz durch Serum. Lebendimpfstoffe enthalten vermehrungsfähige, abgeschwächte Erreger, Toxoidimpfstoffe dagegen inaktivierte Toxine (z. B. Tetanus, Diphtherie)." },
       },
       {
         id: "impfungen_mc2",
@@ -7620,6 +7807,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Hyperimmunserum wird u. a. bei Tetanus, Tollwut und Schlangenbiss eingesetzt", correct: true }
         ],
         explanation: "Passive Immunisierung durch Hyperimmunserum bietet sofortigen, aber kurzfristigen Schutz ohne Gedächtniszellen, weshalb sie bei akuter Gefährdung (Tetanus, Tollwut, Schlangenbiss) eingesetzt wird; Simultanimpfung kombiniert aktive und passive Immunisierung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur passiven Immunisierung und Simultanimpfung treffen zu?", checklist: [
+          { text: "Passive Immunisierung schützt sofort, aber nur kurzfristig.", correct: true },
+          { text: "Simultanimpfung kombiniert aktive und passive Immunisierung.", correct: true },
+          { text: "Hyperimmunserum wird u. a. bei Tetanus, Tollwut und Schlangenbiss eingesetzt.", correct: true },
+          { text: "Passive Immunisierung bildet Gedächtniszellen für Langzeitschutz.", correct: false }
+        ], reveal: "Passive Immunisierung durch Hyperimmunserum bietet sofortigen, aber kurzfristigen Schutz ohne Gedächtniszellen. Sie wird bei akuter Gefährdung (Tetanus, Tollwut, Schlangenbiss) eingesetzt, und Simultanimpfung kombiniert sie mit aktiver Immunisierung." },
       }
     ]
   }),
@@ -7638,14 +7831,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "T-Lymphozyten → Zytokinausschüttung", correct: false },
           { text: "IgG/IgM-Komplexe in Gefäßwänden → Entzündung", correct: false }
         ],
-        explanation: "Typ I (Soforttyp): IgE-Antikörper binden an Mastzellen. Bei erneutem Allergenkontakt → Quervernetzung von IgE → Degranulation: Histamin, Prostaglandine, Leukotriene werden freigesetzt → allergische Symptome."
+        explanation: "Typ I (Soforttyp): IgE-Antikörper binden an Mastzellen. Bei erneutem Allergenkontakt → Quervernetzung von IgE → Degranulation: Histamin, Prostaglandine, Leukotriene werden freigesetzt → allergische Symptome.",
+        learningCard: { type: "predict", statement: "Typ-I-Allergien werden durch IgE auf Mastzellen vermittelt, was zur Histaminfreisetzung führt.", answer: true, reveal: "Typ I (Soforttyp): IgE-Antikörper binden an Mastzellen. Bei erneutem Allergenkontakt vernetzen sich die IgE-Moleküle, die Mastzellen degranulieren und setzen Histamin, Prostaglandine und Leukotriene frei." }
       },
       {
         id: "allergien_h2",
         type: "true_false",
         statement: "Typ-IV-Allergien treten 12–72 h nach Allergenkontakt auf und werden durch T-Lymphozyten vermittelt.",
         answer: true,
-        explanation: "Typ IV (verzögerter Typ, delayed-type hypersensitivity): keine Antikörper beteiligt, sondern sensibilisierte T-Lymphozyten und Makrophagen. Reaktion nach 12–72 h. Beispiele: Kontaktekzem, Tuberkulinreaktion, Transplantatabstoßung."
+        explanation: "Typ IV (verzögerter Typ, delayed-type hypersensitivity): keine Antikörper beteiligt, sondern sensibilisierte T-Lymphozyten und Makrophagen. Reaktion nach 12–72 h. Beispiele: Kontaktekzem, Tuberkulinreaktion, Transplantatabstoßung.",
+        learningCard: { type: "reconstruct", template: "Typ-IV-Allergien treten ___–___ Stunden nach Allergenkontakt auf und werden durch T-Lymphozyten vermittelt.", blanks: ["12", "72"], distractors: ["1", "24"], reveal: "Typ IV (verzögerter Typ) wird nicht durch Antikörper, sondern durch sensibilisierte T-Lymphozyten und Makrophagen vermittelt. Die Reaktion tritt nach 12–72 h auf, Beispiele sind Kontaktekzem, Tuberkulinreaktion und Transplantatabstoßung." }
       },
       {
         id: "allergien_h3",
@@ -7657,7 +7852,13 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Kontaktekzem, Transplantatabstoßung", correct: false },
           { text: "Glomerulonephritis, Vogelzüchterlunge", correct: false }
         ],
-        explanation: "Typ II (zytotoxisch): IgG/IgM + Komplement oder Makrophagen zerstören Zellen, die das Antigen tragen. Klinisch: medikamentös induzierte Agranulozytose/Thrombozytopenie, Transfusionszwischenfälle, Morbus haemolyticus neonatorum."
+        explanation: "Typ II (zytotoxisch): IgG/IgM + Komplement oder Makrophagen zerstören Zellen, die das Antigen tragen. Klinisch: medikamentös induzierte Agranulozytose/Thrombozytopenie, Transfusionszwischenfälle, Morbus haemolyticus neonatorum.",
+        learningCard: { type: "teachback", prompt: "Welche Erkrankungen sind Beispiele für eine Typ-II-Allergie (zytotoxischer Typ)?", checklist: [
+          { text: "Agranulozytose (medikamentös induziert)", correct: true },
+          { text: "Thrombozytopenie", correct: true },
+          { text: "Transfusionshämolyse", correct: true },
+          { text: "Heuschnupfen", correct: false }
+        ], reveal: "Typ II (zytotoxisch) entsteht durch IgG/IgM plus Komplement oder Makrophagen, die Zellen mit dem Antigen zerstören. Klinisch zeigt sich das als medikamentös induzierte Agranulozytose, Thrombozytopenie oder Transfusionshämolyse; Heuschnupfen ist dagegen eine Typ-I-Reaktion." }
       },
       {
         id: "allergien_h4",
@@ -7669,14 +7870,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Kortison intravenös", correct: false },
           { text: "Salbutamol inhalativ", correct: false }
         ],
-        explanation: "Bei Anaphylaxie ist Adrenalin (Epinephrin) i.m. (Oberschenkel) das Mittel der ersten Wahl. Es wirkt vasokonstriktiv (hebt Blutdruck) und bronchospasmolytisch. Antihistaminika und Kortison sind Mittel zweiter Wahl."
+        explanation: "Bei Anaphylaxie ist Adrenalin (Epinephrin) i.m. (Oberschenkel) das Mittel der ersten Wahl. Es wirkt vasokonstriktiv (hebt Blutdruck) und bronchospasmolytisch. Antihistaminika und Kortison sind Mittel zweiter Wahl.",
+        learningCard: { type: "predict", statement: "Adrenalin intramuskulär ist die Erstbehandlung beim anaphylaktischen Schock.", answer: true, reveal: "Bei Anaphylaxie ist Adrenalin (Epinephrin) i.m. (Oberschenkel) das Mittel der ersten Wahl. Es wirkt vasokonstriktiv und bronchospasmolytisch; Antihistaminika und Kortison sind Mittel zweiter Wahl." }
       },
       {
         id: "allergien_h5",
         type: "true_false",
         statement: "Vogelzüchterlunge ist ein Beispiel für eine Typ-III-Allergie durch Ablagerung von Immunkomplexen.",
         answer: true,
-        explanation: "Vogelzüchterlunge (exogen-allergische Alveolitis) entsteht durch Immunkomplexe aus IgG und Vogelantigenen (Kotproteine), die sich in der Alveolarwand ablagern → Typ-III-Reaktion mit granulomatöser Entzündung."
+        explanation: "Vogelzüchterlunge (exogen-allergische Alveolitis) entsteht durch Immunkomplexe aus IgG und Vogelantigenen (Kotproteine), die sich in der Alveolarwand ablagern → Typ-III-Reaktion mit granulomatöser Entzündung.",
+        learningCard: { type: "predict", statement: "Vogelzüchterlunge ist ein Beispiel für eine Typ-III-Allergie durch Immunkomplexablagerung.", answer: true, reveal: "Vogelzüchterlunge (exogen-allergische Alveolitis) entsteht durch Immunkomplexe aus IgG und Vogelantigenen (Kotproteine), die sich in der Alveolarwand ablagern. Das ist eine Typ-III-Reaktion mit granulomatöser Entzündung." }
       }
     ],
     phase4Questions: [
@@ -7691,6 +7894,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Kontaktekzeme entstehen durch Typ-I-Reaktion", correct: false }
         ],
         explanation: "Typ I (IgE/Mastzellen, Sofort), Typ II (zytotoxisch, IgG/IgM), Typ III (Immunkomplexablagerung in Gefäßwänden), Typ IV (T-Zell-vermittelt, verzögert 12-72 h); Kontaktekzeme entstehen durch Typ IV, nicht Typ I.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Typ I wird durch IgE auf Mastzellen vermittelt und verursacht Sofortreaktionen.", isWrong: false },
+          { text: "Typ IV wird durch T-Lymphozyten vermittelt und tritt verzögert nach 12–72 h auf.", isWrong: false },
+          { text: "Typ III entsteht durch Ablagerung von Immunkomplexen in Gefäßwänden.", isWrong: false },
+          { text: "Kontaktekzeme entstehen durch eine Typ-I-Reaktion.", isWrong: true }
+        ], whyWrong: "Kontaktekzeme entstehen durch eine Typ-IV-Reaktion (T-Zell-vermittelt), nicht durch Typ I. Typ I (IgE/Mastzellen), Typ III (Immunkomplexe) und Typ IV (T-Zellen, 12–72 h) sind dagegen korrekt beschrieben." },
       },
       {
         id: "allergien_mc2",
@@ -7703,6 +7912,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Transfusionshämolyse kann eine Typ-II-Reaktion sein", correct: true }
         ],
         explanation: "Anaphylaxie ist die schwerste Typ-I-Reaktion mit sofortiger i.m.-Adrenalintherapie; Typ-II-Reaktionen werden durch IgG/IgM (nicht T-Lymphozyten) vermittelt und umfassen z.B. Transfusionshämolyse.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum anaphylaktischen Schock und zur Typ-II-Allergie treffen zu?", checklist: [
+          { text: "Anaphylaxie ist die schwerste Form der Typ-I-Allergie.", correct: true },
+          { text: "Adrenalin i.m. ist die Erstbehandlung beim anaphylaktischen Schock.", correct: true },
+          { text: "Transfusionshämolyse kann eine Typ-II-Reaktion sein.", correct: true },
+          { text: "Typ II wird durch T-Lymphozyten vermittelt.", correct: false }
+        ], reveal: "Anaphylaxie ist die schwerste Typ-I-Reaktion und wird sofort mit Adrenalin i.m. behandelt. Typ-II-Reaktionen wie die Transfusionshämolyse werden durch IgG/IgM vermittelt, nicht durch T-Lymphozyten." },
       }
     ]
   }),
@@ -7721,14 +7936,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Nur Beine und Becken", correct: false },
           { text: "Rechte Kopf/Hals/Arm-Seite", correct: false }
         ],
-        explanation: "Der Ductus thoracicus drainiert die gesamte untere Körperhälfte plus die linke obere. Der Ductus lymphaticus dexter ist zuständig für die rechte Kopf/Hals/Arm-Seite."
+        explanation: "Der Ductus thoracicus drainiert die gesamte untere Körperhälfte plus die linke obere. Der Ductus lymphaticus dexter ist zuständig für die rechte Kopf/Hals/Arm-Seite.",
+        learningCard: { type: "reconstruct", template: "Der Ductus thoracicus drainiert Beine, Becken, Bauch und die ___ obere Körperhälfte; der Ductus lymphaticus dexter drainiert die ___ Kopf/Hals/Arm-Seite.", blanks: ["linke", "rechte"], distractors: ["obere", "untere"], reveal: "Der Ductus thoracicus drainiert die gesamte untere Körperhälfte plus die linke obere. Der Ductus lymphaticus dexter ist dagegen zuständig für die rechte Kopf/Hals/Arm-Seite." }
       },
       {
         id: "lymphsystem_h2",
         type: "true_false",
         statement: "Der Thymus ist auch beim Erwachsenen ein großes aktives Organ, das T-Lymphozyten produziert.",
         answer: false,
-        explanation: "Der Thymus ist bei Kindern aktiv (Thymopoese). Mit der Pubertät beginnt die Involution → beim Erwachsenen nur noch haselnussgroßes Fettgewebe. T-Lymphozyten werden weiterhin im Knochenmark gebildet, aber die 'Prägung' (Thymopoese) findet im Thymus statt – die Kapazität nimmt mit dem Alter ab."
+        explanation: "Der Thymus ist bei Kindern aktiv (Thymopoese). Mit der Pubertät beginnt die Involution → beim Erwachsenen nur noch haselnussgroßes Fettgewebe. T-Lymphozyten werden weiterhin im Knochenmark gebildet, aber die 'Prägung' (Thymopoese) findet im Thymus statt – die Kapazität nimmt mit dem Alter ab.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Thymus ist bei Kindern aktiv (Thymopoese).", isWrong: false },
+          { text: "Mit der Pubertät beginnt die Involution des Thymus.", isWrong: false },
+          { text: "Beim Erwachsenen ist der Thymus nur noch haselnussgroßes Fettgewebe.", isWrong: false },
+          { text: "Der Thymus ist beim Erwachsenen ein großes aktives Organ.", isWrong: true }
+        ], whyWrong: "Beim Erwachsenen ist der Thymus nach der pubertären Involution nur noch haselnussgroßes Fettgewebe, kein großes aktives Organ. Aktiv ist der Thymus vor allem im Kindesalter." }
       },
       {
         id: "lymphsystem_h3",
@@ -7740,7 +7962,13 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Fettresorption aus dem Darm", correct: false },
           { text: "Lymphe filtern und in das Blut zurückführen", correct: false }
         ],
-        explanation: "Milzfunktionen: rote Pulpa = Blutspeicherung + Abbau überalterter Erythrozyten (Erythrozytengrab) + Eisenspeicherung; weiße Pulpa = Immunabwehr (Antigenprüfung des Blutes). T-Zell-Prägung ist Thymusfunktion."
+        explanation: "Milzfunktionen: rote Pulpa = Blutspeicherung + Abbau überalterter Erythrozyten (Erythrozytengrab) + Eisenspeicherung; weiße Pulpa = Immunabwehr (Antigenprüfung des Blutes). T-Zell-Prägung ist Thymusfunktion.",
+        learningCard: { type: "teachback", prompt: "Welche Aufgaben hat die Milz?", checklist: [
+          { text: "Blutspeicherung", correct: true },
+          { text: "Blutmauserung (Abbau alter Erythrozyten)", correct: true },
+          { text: "Abwehr (Antigenprüfung des Blutes)", correct: true },
+          { text: "Prägung der T-Lymphozyten", correct: false }
+        ], reveal: "Die Milz übernimmt Blutspeicherung, Blutmauserung (Abbau überalterter Erythrozyten) und Abwehr über die weiße Pulpa. Die Prägung der T-Lymphozyten ist dagegen Aufgabe des Thymus." }
       },
       {
         id: "lymphsystem_h4",
@@ -7752,14 +7980,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Zungenmandel (Tonsilla lingualis)", correct: false },
           { text: "Alle drei Mandeln werden entfernt", correct: false }
         ],
-        explanation: "Tonsillektomie bezeichnet die Entfernung der Gaumenmandeln (Tonsillae palatinae). Die Rachenmandel wird bei Adenotomie entfernt. Zungenmandeln werden sehr selten operiert."
+        explanation: "Tonsillektomie bezeichnet die Entfernung der Gaumenmandeln (Tonsillae palatinae). Die Rachenmandel wird bei Adenotomie entfernt. Zungenmandeln werden sehr selten operiert.",
+        learningCard: { type: "predict", statement: "Bei einer Tonsillektomie wird die Gaumenmandel entfernt.", answer: true, reveal: "Tonsillektomie bezeichnet die Entfernung der Gaumenmandeln (Tonsillae palatinae). Die Rachenmandel wird dagegen bei einer Adenotomie entfernt." }
       },
       {
         id: "lymphsystem_h5",
         type: "true_false",
         statement: "Peyer-Plaques und Appendix bilden zusammen das GALT (gut-associated lymphoid tissue).",
         answer: true,
-        explanation: "GALT (darmassoziiertes Lymphgewebe) umfasst Peyer-Plaques (Lymphfollikelansammlungen in Jejunum und Ileum) und den Appendix vermiformis – sie bilden eine erste Immunbarriere im Darm."
+        explanation: "GALT (darmassoziiertes Lymphgewebe) umfasst Peyer-Plaques (Lymphfollikelansammlungen in Jejunum und Ileum) und den Appendix vermiformis – sie bilden eine erste Immunbarriere im Darm.",
+        learningCard: { type: "predict", statement: "Peyer-Plaques und Appendix bilden zusammen das GALT (gut-associated lymphoid tissue).", answer: true, reveal: "GALT (darmassoziiertes Lymphgewebe) umfasst Peyer-Plaques (Lymphfollikelansammlungen in Jejunum und Ileum) und den Appendix vermiformis. Sie bilden gemeinsam eine erste Immunbarriere im Darm." }
       }
     ],
     phase4Questions: [
@@ -7774,6 +8004,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Täglich werden 2–3 Liter Lymphe ins Blut zurückgeführt", correct: true }
         ],
         explanation: "Der Ductus thoracicus mündet in den linken Angulus venosus; Lymphgefäße beginnen blind im Gewebe; täglich werden 2-3 L Lymphe ins Blut zurückgeführt; die Milz liegt im linken (nicht rechten) Oberbauch.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Lymphgefäßsystem und Lymphorganen treffen zu?", checklist: [
+          { text: "Der Ductus thoracicus mündet in den linken Angulus venosus.", correct: true },
+          { text: "Lymphgefäße beginnen blind und besitzen Klappen.", correct: true },
+          { text: "Täglich werden 2–3 Liter Lymphe ins Blut zurückgeführt.", correct: true },
+          { text: "Die Milz liegt im rechten Oberbauch.", correct: false }
+        ], reveal: "Der Ductus thoracicus mündet in den linken Angulus venosus; Lymphgefäße beginnen blind im Gewebe und besitzen Klappen; täglich werden 2–3 L Lymphe zurückgeführt. Die Milz liegt dagegen im linken, nicht rechten Oberbauch." },
       },
       {
         id: "lymphsystem_mc2",
@@ -7786,6 +8022,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Peyer-Plaques und Appendix bilden das GALT", correct: true }
         ],
         explanation: "Die Milz baut überalterte Erythrozyten ab (Blutmauserung); der Thymus involiert nach der Pubertät; die Adenotomie entfernt die Rachenmandel (nicht Tonsillektomie); Peyer-Plaques und Appendix bilden das GALT.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Milz baut überalterte Erythrozyten ab (Blutmauserung).", isWrong: false },
+          { text: "Der Thymus involiert nach der Pubertät.", isWrong: false },
+          { text: "Peyer-Plaques und Appendix bilden das GALT.", isWrong: false },
+          { text: "Die Rachenmandel wird bei Tonsillektomie entfernt.", isWrong: true }
+        ], whyWrong: "Die Rachenmandel wird bei einer Adenotomie entfernt, nicht bei einer Tonsillektomie (diese entfernt die Gaumenmandeln). Die Aussagen zu Milz, Thymus-Involution und GALT sind dagegen korrekt." },
       }
     ]
   }),
@@ -7804,14 +8046,21 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Abwehr: nur durch Antikörper der B-Lymphozyten", correct: false },
           { text: "Schutz: Regulierung des Blutdrucks durch Vasokonstriktion", correct: false }
         ],
-        explanation: "Blutfunktionen: Transport (O2, CO2, Nährstoffe, Hormone, Wärme), Abwehr (Leukozyten, Ak, Komplement), Regulation (pH, Temperatur, Elektrolyte), Schutz/Homöostase (Gerinnung, kolloid-osmotischer Druck)."
+        explanation: "Blutfunktionen: Transport (O2, CO2, Nährstoffe, Hormone, Wärme), Abwehr (Leukozyten, Ak, Komplement), Regulation (pH, Temperatur, Elektrolyte), Schutz/Homöostase (Gerinnung, kolloid-osmotischer Druck).",
+        learningCard: { type: "teachback", prompt: "Welche der folgenden sind Hauptfunktionen des Blutes?", checklist: [
+          { text: "Transport von O₂, CO₂, Nährstoffen und Hormonen", correct: true },
+          { text: "Abwehr durch Leukozyten, Antikörper und Komplement", correct: true },
+          { text: "Regulation von pH, Temperatur und Elektrolythaushalt", correct: true },
+          { text: "Ausschließlich Sauerstofftransport", correct: false }
+        ], reveal: "Blut übernimmt vier Hauptfunktionen: Transport (O₂, CO₂, Nährstoffe, Hormone, Wärme), Abwehr (Leukozyten, Antikörper, Komplement) und Regulation (pH, Temperatur, Elektrolyte). Dazu kommt Schutz/Homöostase durch Gerinnung und kolloid-osmotischen Druck." }
       },
       {
         id: "blutfkt_h2",
         type: "true_false",
         statement: "Thrombozyten werden durch Abschnürung von Megakaryozyten im Knochenmark gebildet.",
         answer: true,
-        explanation: "Megakaryozyten sind riesige Knochenmarkszellen, deren Zytoplasma in kleine kernlose Fragmente (Thrombozyten) abgeschnürt wird. Thrombozyten haben daher keinen Zellkern."
+        explanation: "Megakaryozyten sind riesige Knochenmarkszellen, deren Zytoplasma in kleine kernlose Fragmente (Thrombozyten) abgeschnürt wird. Thrombozyten haben daher keinen Zellkern.",
+        learningCard: { type: "predict", statement: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten im Knochenmark.", answer: true, reveal: "Megakaryozyten sind riesige Knochenmarkszellen, deren Zytoplasma in kleine kernlose Fragmente (Thrombozyten) abgeschnürt wird. Thrombozyten haben daher keinen Zellkern." }
       },
       {
         id: "blutfkt_h3",
@@ -7824,14 +8073,16 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "4,8–5,9 Mio/µl", correct: false },
           { text: "500–1.500/µl", correct: false }
         ],
-        explanation: "Thrombozyten: 150.000–300.000/µl. Leukozyten: 4.000–10.000/µl. Erythrozyten: 4,8–5,9 Mio/µl (Männer). Thrombozytopenie (unter 150.000) erhöht das Blutungsrisiko."
+        explanation: "Thrombozyten: 150.000–300.000/µl. Leukozyten: 4.000–10.000/µl. Erythrozyten: 4,8–5,9 Mio/µl (Männer). Thrombozytopenie (unter 150.000) erhöht das Blutungsrisiko.",
+        learningCard: { type: "reconstruct", template: "Der Normalwert für Thrombozyten liegt bei ___–___/µl.", blanks: ["150.000", "300.000"], distractors: ["4.000", "10.000"], reveal: "Thrombozyten: 150.000–300.000/µl. Leukozyten liegen bei 4.000–10.000/µl, Erythrozyten (Männer) bei 4,8–5,9 Mio/µl. Thrombozytopenie (unter 150.000) erhöht das Blutungsrisiko." }
       },
       {
         id: "blutfkt_h4",
         type: "true_false",
         statement: "Lymphknoten enthalten in der Rinde Lymphfollikel mit Lymphozyten, die bei Aktivierung Keimzentren bilden.",
         answer: true,
-        explanation: "Lymphknoten-Rinde: primäre Lymphfollikel (ruhende B-Lymphozyten) und sekundäre Lymphfollikel (aktiviert, mit hellem Keimzentrum = Proliferationszone). Die Keimzentren entstehen bei einer Immunantwort."
+        explanation: "Lymphknoten-Rinde: primäre Lymphfollikel (ruhende B-Lymphozyten) und sekundäre Lymphfollikel (aktiviert, mit hellem Keimzentrum = Proliferationszone). Die Keimzentren entstehen bei einer Immunantwort.",
+        learningCard: { type: "predict", statement: "Lymphknoten enthalten in der Rinde Lymphfollikel, die bei Aktivierung Keimzentren bilden.", answer: true, reveal: "Lymphknoten-Rinde: primäre Lymphfollikel enthalten ruhende B-Lymphozyten, sekundäre Lymphfollikel sind aktiviert und besitzen ein helles Keimzentrum (Proliferationszone). Die Keimzentren entstehen im Rahmen einer Immunantwort." }
       },
       {
         id: "blutfkt_h5",
@@ -7843,7 +8094,8 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "24–48 Stunden", correct: false },
           { text: "4–6 Wochen", correct: false }
         ],
-        explanation: "Thrombozyten leben 5–11 Tage (Erythrozyten 100–120 Tage, Granulozyten nur wenige Stunden bis Tage). Alte Thrombozyten werden in Milz und Leber abgebaut."
+        explanation: "Thrombozyten leben 5–11 Tage (Erythrozyten 100–120 Tage, Granulozyten nur wenige Stunden bis Tage). Alte Thrombozyten werden in Milz und Leber abgebaut.",
+        learningCard: { type: "predict", statement: "Thrombozyten leben im Blut 5–11 Tage.", answer: true, reveal: "Thrombozyten leben 5–11 Tage (Erythrozyten dagegen 100–120 Tage, Granulozyten nur wenige Stunden bis Tage). Alte Thrombozyten werden in Milz und Leber abgebaut." }
       }
     ],
     phase4Questions: [
@@ -7858,6 +8110,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Der Normalwert für Thrombozyten beträgt 150.000–300.000/µl", correct: true }
         ],
         explanation: "Blut übernimmt Transport-, Abwehr- und Regulationsfunktionen (pH, Temperatur, Elektrolyte); Thrombozyten entstehen durch Abschnürung von Megakaryozyten und leben nur 5-11 Tage (nicht 100-120 Tage wie Erythrozyten).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Blut reguliert pH, Körpertemperatur und Elektrolythaushalt.", isWrong: false },
+          { text: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten.", isWrong: false },
+          { text: "Der Normalwert für Thrombozyten beträgt 150.000–300.000/µl.", isWrong: false },
+          { text: "Thrombozyten leben 100–120 Tage wie Erythrozyten.", isWrong: true }
+        ], whyWrong: "Thrombozyten leben nur 5–11 Tage, nicht 100–120 Tage wie Erythrozyten. Die Aussagen zu Blutregulation, Megakaryozyten-Abschnürung und dem Thrombozyten-Normwert sind dagegen korrekt." },
       },
       {
         id: "blutfkt_mc2",
@@ -7870,6 +8128,12 @@ const BLUTLYMPHSYSTEM_1037_PLANTS = [
           { text: "Lymphknoten filtern Blut wie die Milz", correct: false }
         ],
         explanation: "Bis zu 700 Lymphknoten filtern Lymphe biologisch durch Makrophagen und Lymphozyten; aktivierte Lymphfollikel bilden Keimzentren; Blut wird durch die Milz (nicht Lymphknoten) gefiltert.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Lymphknoten treffen zu?", checklist: [
+          { text: "Im menschlichen Körper gibt es bis zu 700 Lymphknoten.", correct: true },
+          { text: "Lymphknoten filtern Lymphe biologisch durch Makrophagen und Lymphozyten.", correct: true },
+          { text: "Aktivierte Lymphfollikel in der Rinde besitzen ein Keimzentrum.", correct: true },
+          { text: "Lymphknoten filtern Blut wie die Milz.", correct: false }
+        ], reveal: "Bis zu 700 Lymphknoten filtern Lymphe biologisch durch Makrophagen und Lymphozyten; aktivierte Lymphfollikel bilden Keimzentren. Blut wird dagegen durch die Milz gefiltert, nicht durch Lymphknoten." },
       }
     ]
   })
