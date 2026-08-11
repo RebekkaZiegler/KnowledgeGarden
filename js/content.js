@@ -18301,7 +18301,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "1810", correct: false },
           { text: "1800", correct: false }
         ],
-        explanation: "1790 beschäftigte sich Hahnemann mit der Übersetzung einer Materia Medica und machte den Chinarinden-Selbstversuch, der zur Entdeckung des Ähnlichkeitsprinzips führte. Das Organon erschien erst 1810."
+        explanation: "1790 beschäftigte sich Hahnemann mit der Übersetzung einer Materia Medica und machte den Chinarinden-Selbstversuch, der zur Entdeckung des Ähnlichkeitsprinzips führte. Das Organon erschien erst 1810.",
+        learningCard: { type: "predict", statement: "Hahnemann machte 1790 den entscheidenden Chinarinden-Selbstversuch.", answer: true, reveal: "Dieser Selbstversuch führte zur Entdeckung des Ähnlichkeitsprinzips; das Organon erschien erst 1810." }
       },
       {
         type: "mc",
@@ -18313,14 +18314,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Die Dosis macht das Gift", correct: false },
           { text: "Gleiche Ursache, gleiche Wirkung", correct: false }
         ],
-        explanation: "Similia similibus curentur = Ähnliches wird durch Ähnliches geheilt – das Grundprinzip der Homöopathie. 'Contraria contrariis curantur' ist dagegen das Prinzip der Allopathie (Schulmedizin)."
+        explanation: "Similia similibus curentur = Ähnliches wird durch Ähnliches geheilt – das Grundprinzip der Homöopathie. 'Contraria contrariis curantur' ist dagegen das Prinzip der Allopathie (Schulmedizin).",
+        learningCard: { type: "predict", statement: "'Similia similibus curentur' bedeutet 'Ähnliches wird durch Ähnliches geheilt'.", answer: true, reveal: "'Contraria contrariis curantur' ist dagegen das Prinzip der Allopathie (Schulmedizin)." }
       },
       {
         type: "true_false",
         id: "1048_01_h3",
         statement: "Die Entdeckung des Ähnlichkeitsprinzips war zur Zeit Hahnemanns völlig neu und in der Medizingeschichte unbekannt.",
         answer: false,
-        explanation: "Bereits Hippokrates und Paracelsus kannten das Simile-Prinzip, auch in den indischen Veden wurde es beschrieben. Hahnemann entwickelte es jedoch als Erster konsequent weiter und machte es zum Grundpfeiler einer eigenen Heilmethode."
+        explanation: "Bereits Hippokrates und Paracelsus kannten das Simile-Prinzip, auch in den indischen Veden wurde es beschrieben. Hahnemann entwickelte es jedoch als Erster konsequent weiter und machte es zum Grundpfeiler einer eigenen Heilmethode.",
+        learningCard: { type: "predict", statement: "Die Entdeckung des Ähnlichkeitsprinzips war zur Zeit Hahnemanns völlig neu und in der Medizingeschichte unbekannt.", answer: false, reveal: "Bereits Hippokrates und Paracelsus kannten das Simile-Prinzip; Hahnemann entwickelte es jedoch als Erster konsequent zu einer eigenen Heilmethode weiter." }
       },
       {
         type: "mc",
@@ -18332,14 +18335,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Das Repertorium", correct: false },
           { text: "Die Arzneimittellehre", correct: false }
         ],
-        explanation: "Das 'Organon der Heilkunst' erschien 1810 als erste Gesamtdarstellung der Homöopathie. Die Materia Medica ist eine Arzneimittellehre, das Repertorium ein Nachschlagewerk zur Mittelfindung."
+        explanation: "Das 'Organon der Heilkunst' erschien 1810 als erste Gesamtdarstellung der Homöopathie. Die Materia Medica ist eine Arzneimittellehre, das Repertorium ein Nachschlagewerk zur Mittelfindung.",
+        learningCard: { type: "predict", statement: "Hahnemanns Gesamtdarstellung der Homöopathie von 1810 heißt 'Das Organon'.", answer: true, reveal: "Die Materia Medica ist eine Arzneimittellehre, das Repertorium ein Nachschlagewerk zur Mittelfindung." }
       },
       {
         type: "true_false",
         id: "1048_01_h5",
         statement: "Die Homöopathie hat in der Notfallmedizin ihren wichtigsten Einsatzbereich.",
         answer: false,
-        explanation: "Die Homöopathie hat in der Notfallmedizin keinen Platz. Wenn die Selbstheilungskräfte nicht mehr aktivierbar sind oder akute Gefahr besteht, müssen schulmedizinische Mittel eingesetzt werden."
+        explanation: "Die Homöopathie hat in der Notfallmedizin keinen Platz. Wenn die Selbstheilungskräfte nicht mehr aktivierbar sind oder akute Gefahr besteht, müssen schulmedizinische Mittel eingesetzt werden.",
+        learningCard: { type: "predict", statement: "Die Homöopathie hat in der Notfallmedizin ihren wichtigsten Einsatzbereich.", answer: false, reveal: "Die Homöopathie hat in der Notfallmedizin keinen Platz — bei akuter Gefahr müssen schulmedizinische Mittel eingesetzt werden." }
       }
     ],
     phase4Questions: [
@@ -18353,7 +18358,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Homöopathie und Schulmedizin schließen einander grundsätzlich aus", correct: false },
           { text: "Homöopathie hat in der Notfallmedizin keinen Platz", correct: true }
         ],
-        explanation: "Homöopathie aktiviert Selbstheilungskräfte; Schulmedizin arbeitet antagonistisch (Contraria). Beide ergänzen sich – Homöopathie kann Schulmedizin unterstützen, hat aber klare Grenzen (Notfall, fehlende Selbstheilungskraft). Sie schließen sich nicht aus."
+        explanation: "Homöopathie aktiviert Selbstheilungskräfte; Schulmedizin arbeitet antagonistisch (Contraria). Beide ergänzen sich – Homöopathie kann Schulmedizin unterstützen, hat aber klare Grenzen (Notfall, fehlende Selbstheilungskraft). Sie schließen sich nicht aus.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Homöopathie und Schulmedizin sind korrekt?", checklist: [
+          { text: "Homöopathie zielt auf Aktivierung der Selbstheilungskräfte ab", correct: true },
+          { text: "Die Schulmedizin arbeitet nach dem Contraria-Prinzip", correct: true },
+          { text: "Homöopathie hat in der Notfallmedizin keinen Platz", correct: true },
+          { text: "Homöopathie und Schulmedizin schließen einander grundsätzlich aus", correct: false }
+        ], reveal: "Beide Ansätze ergänzen sich — sie schließen sich nicht grundsätzlich aus." }
       },
       {
         type: "mc",
@@ -18365,7 +18376,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Eine genaue schulmedizinische Diagnose ist zwingend nötig", correct: false },
           { text: "Eindeutige, klar abgrenzbare Symptome erleichtern die Mittelfindung", correct: true }
         ],
-        explanation: "Das Simile muss gefunden werden, die Selbstheilungskräfte müssen reagieren können. Eine Diagnose ist für die Homöopathie nicht zwingend – die Symptome als Ganzes zählen. Indifferente Symptomatik macht die Mittelfindung schwierig."
+        explanation: "Das Simile muss gefunden werden, die Selbstheilungskräfte müssen reagieren können. Eine Diagnose ist für die Homöopathie nicht zwingend – die Symptome als Ganzes zählen. Indifferente Symptomatik macht die Mittelfindung schwierig.",
+        learningCard: { type: "teachback", prompt: "Welche Voraussetzungen müssen für eine erfolgreiche homöopathische Behandlung erfüllt sein?", checklist: [
+          { text: "Das Simile – das ähnlichste Mittel – muss gefunden werden", correct: true },
+          { text: "Die Selbstheilungskräfte des Patienten müssen noch ansprechbar sein", correct: true },
+          { text: "Eindeutige, klar abgrenzbare Symptome erleichtern die Mittelfindung", correct: true },
+          { text: "Eine genaue schulmedizinische Diagnose ist zwingend nötig", correct: false }
+        ], reveal: "Eine Diagnose ist für die Homöopathie nicht zwingend — die Symptome als Ganzes zählen." }
       }
     ]
   }),
@@ -18384,14 +18401,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Etwa 3.000", correct: false },
           { text: "Etwa 500", correct: false }
         ],
-        explanation: "Hahnemann prüfte etwa 200 Mittel. Heute sind rund 3.000 homöopathische Mittel bekannt, was hohe Anforderungen an den Homöopathen stellt."
+        explanation: "Hahnemann prüfte etwa 200 Mittel. Heute sind rund 3.000 homöopathische Mittel bekannt, was hohe Anforderungen an den Homöopathen stellt.",
+        learningCard: { type: "predict", statement: "Hahnemann unterzog etwa 200 Mittel selbst einer Arzneimittelprüfung.", answer: true, reveal: "Heute sind rund 3.000 homöopathische Mittel bekannt, was hohe Anforderungen an den Homöopathen stellt." }
       },
       {
         type: "true_false",
         id: "1048_02_h2",
         statement: "Bei der Potenzierung ist die Verdünnung selbst wichtiger als die Verschüttelung.",
         answer: false,
-        explanation: "Wichtiger für die Wirkung ist die Verschüttelung/Verreibung nach jedem Verdünnungsschritt – nicht die Verdünnung selbst. Erst durch diesen Vorgang wird die Substanz 'dynamisiert'."
+        explanation: "Wichtiger für die Wirkung ist die Verschüttelung/Verreibung nach jedem Verdünnungsschritt – nicht die Verdünnung selbst. Erst durch diesen Vorgang wird die Substanz 'dynamisiert'.",
+        learningCard: { type: "predict", statement: "Bei der Potenzierung ist die Verdünnung selbst wichtiger als die Verschüttelung.", answer: false, reveal: "Wichtiger für die Wirkung ist die Verschüttelung/Verreibung nach jedem Verdünnungsschritt — erst dadurch wird die Substanz 'dynamisiert'." }
       },
       {
         type: "mc",
@@ -18403,7 +18422,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Die chemische Strukturformel des Wirkstoffs", correct: false },
           { text: "Die Liste der Erkrankungen, bei denen ein Mittel eingesetzt wird", correct: false }
         ],
-        explanation: "Das Arzneimittelbild entsteht durch die Arzneimittelprüfung am gesunden Individuum. Alle beobachteten Symptomveränderungen werden detailliert festgehalten und bilden das Arzneimittelbild."
+        explanation: "Das Arzneimittelbild entsteht durch die Arzneimittelprüfung am gesunden Individuum. Alle beobachteten Symptomveränderungen werden detailliert festgehalten und bilden das Arzneimittelbild.",
+        learningCard: { type: "predict", statement: "Ein 'Arzneimittelbild' ist die Sammlung aller Symptome, die ein Mittel bei der Prüfung am Gesunden hervorruft.", answer: true, reveal: "Alle beobachteten Symptomveränderungen werden detailliert festgehalten und bilden das Arzneimittelbild." }
       },
       {
         type: "mc",
@@ -18415,14 +18435,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Die Verdünnungsstufen der Mittel", correct: false },
           { text: "Die Hauptindikationen eines Mittels", correct: false }
         ],
-        explanation: "Modalitäten sind Faktoren wie Kälte/Wärme, Bewegung/Ruhe, Tageszeit usw., die Symptome verbessern oder verschlechtern. Sie sind ein wesentlicher Teil des Arzneimittelbildes und entscheidend für die Mittelfindung."
+        explanation: "Modalitäten sind Faktoren wie Kälte/Wärme, Bewegung/Ruhe, Tageszeit usw., die Symptome verbessern oder verschlechtern. Sie sind ein wesentlicher Teil des Arzneimittelbildes und entscheidend für die Mittelfindung.",
+        learningCard: { type: "predict", statement: "Modalitäten sind Einflüsse, die Intensität, Qualität oder Ort der Symptome verändern.", answer: true, reveal: "Sie sind ein wesentlicher Teil des Arzneimittelbildes und entscheidend für die Mittelfindung." }
       },
       {
         type: "true_false",
         id: "1048_02_h5",
         statement: "Das Simile muss immer dasselbe sein, egal welcher Patient dieselbe Erkrankung hat.",
         answer: false,
-        explanation: "Die Homöopathie ist individuell: Drei Patienten mit derselben Diagnose (z. B. Fieber) können drei verschiedene Mittel benötigen, weil sie unterschiedlich auf die Erkrankung reagieren."
+        explanation: "Die Homöopathie ist individuell: Drei Patienten mit derselben Diagnose (z. B. Fieber) können drei verschiedene Mittel benötigen, weil sie unterschiedlich auf die Erkrankung reagieren.",
+        learningCard: { type: "predict", statement: "Das Simile muss immer dasselbe sein, egal welcher Patient dieselbe Erkrankung hat.", answer: false, reveal: "Die Homöopathie ist individuell — drei Patienten mit derselben Diagnose können drei verschiedene Mittel benötigen." }
       }
     ],
     phase4Questions: [
@@ -18436,7 +18458,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Hahnemann prüfte ca. 200 Mittel, heute sind ca. 3000 bekannt", correct: true },
           { text: "Das Arzneimittelbild enthält alle beobachteten Symptomveränderungen", correct: true }
         ],
-        explanation: "Die Arzneimittelprüfung findet am Gesunden statt. Hahnemann prüfte ~200 Mittel; heute ~3000 bekannt. Das Arzneimittelbild fasst alle Symptomveränderungen zusammen und bildet die Basis für die Mittelfindung."
+        explanation: "Die Arzneimittelprüfung findet am Gesunden statt. Hahnemann prüfte ~200 Mittel; heute ~3000 bekannt. Das Arzneimittelbild fasst alle Symptomveränderungen zusammen und bildet die Basis für die Mittelfindung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur homöopathischen Arzneimittelprüfung und den Arzneimittelbildern sind korrekt?", checklist: [
+          { text: "Die Prüfung erfolgt am gesunden Individuum", correct: true },
+          { text: "Hahnemann prüfte ca. 200 Mittel, heute sind ca. 3000 bekannt", correct: true },
+          { text: "Das Arzneimittelbild enthält alle beobachteten Symptomveränderungen", correct: true },
+          { text: "Die Prüfung erfolgt an kranken Patienten", correct: false }
+        ], reveal: "Die Arzneimittelprüfung findet am Gesunden statt, nicht an Kranken." }
       },
       {
         type: "mc",
@@ -18448,7 +18476,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Nur die Hauptdiagnose laut ICD-10", correct: false },
           { text: "Familienanamnese und Lebensgeschichte des Patienten", correct: true }
         ],
-        explanation: "Für die homöopathische Fallaufnahme sind Modalitäten, Leitsymptome und die gesamte Lebens- und Familienanamnese entscheidend. Die ICD-Diagnose allein ist nachrangig – die Gesamtheit der Symptome ist maßgeblich."
+        explanation: "Für die homöopathische Fallaufnahme sind Modalitäten, Leitsymptome und die gesamte Lebens- und Familienanamnese entscheidend. Die ICD-Diagnose allein ist nachrangig – die Gesamtheit der Symptome ist maßgeblich.",
+        learningCard: { type: "teachback", prompt: "Welche Informationen sind für die homöopathische Fallaufnahme besonders relevant?", checklist: [
+          { text: "Modalitäten (besser/schlechter bei...)", correct: true },
+          { text: "Leitsymptome (auffällige, ungewöhnliche Symptome)", correct: true },
+          { text: "Familienanamnese und Lebensgeschichte des Patienten", correct: true },
+          { text: "Nur die Hauptdiagnose laut ICD-10", correct: false }
+        ], reveal: "Die ICD-Diagnose allein ist nachrangig — die Gesamtheit der Symptome ist maßgeblich." }
       }
     ]
   }),
@@ -18467,14 +18501,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "1:50.000", correct: false },
           { text: "1:1.000", correct: false }
         ],
-        explanation: "C(entesimal)-Potenzen: 1:100 (1 Teil Urtinktur + 99 Teile Träger), 100 Schüttelschläge pro Schritt. D-Potenzen: 1:10. LM-Potenzen: 1:50.000."
+        explanation: "C(entesimal)-Potenzen: 1:100 (1 Teil Urtinktur + 99 Teile Träger), 100 Schüttelschläge pro Schritt. D-Potenzen: 1:10. LM-Potenzen: 1:50.000.",
+        learningCard: { type: "predict", statement: "C-Potenzen werden im Verhältnis 1:100 pro Potenzierungsschritt verdünnt.", answer: true, reveal: "D-Potenzen werden dagegen 1:10 verdünnt, LM-Potenzen 1:50.000." }
       },
       {
         type: "true_false",
         id: "1048_03_h2",
         statement: "Ab der Potenz D24 / C12 befindet sich statistisch kein Molekül der Ausgangssubstanz mehr im Arzneimittel.",
         answer: true,
-        explanation: "Ab D24 / C12 / LM3 ist laut Avogadro-Konstante (6,022 × 10²³ Teilchen/mol) kein Molekül mehr nachweisbar. Hochpotenzen wirken nach homöopathischer Theorie als Informationsträger."
+        explanation: "Ab D24 / C12 / LM3 ist laut Avogadro-Konstante (6,022 × 10²³ Teilchen/mol) kein Molekül mehr nachweisbar. Hochpotenzen wirken nach homöopathischer Theorie als Informationsträger.",
+        learningCard: { type: "predict", statement: "Ab der Potenz D24 / C12 befindet sich statistisch kein Molekül der Ausgangssubstanz mehr im Arzneimittel.", answer: true, reveal: "Das ergibt sich aus der Avogadro-Konstante (6,022 × 10²³ Teilchen/mol); Hochpotenzen wirken nach homöopathischer Theorie als Informationsträger." }
       },
       {
         type: "mc",
@@ -18486,7 +18522,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Bei chronisch Kranken", correct: false },
           { text: "Bei Erkältungspatienten", correct: false }
         ],
-        explanation: "Hochpotenzen dürfen nicht bei stark geschwächten Patienten eingesetzt werden und dürfen dem Patienten nie mitgegeben werden. Sie gehören nur in erfahrene Hände."
+        explanation: "Hochpotenzen dürfen nicht bei stark geschwächten Patienten eingesetzt werden und dürfen dem Patienten nie mitgegeben werden. Sie gehören nur in erfahrene Hände.",
+        learningCard: { type: "predict", statement: "Hochpotenzen dürfen bei stark geschwächten Patienten nicht eingesetzt werden.", answer: true, reveal: "Sie dürfen dem Patienten außerdem nie mitgegeben werden und gehören nur in erfahrene Hände." }
       },
       {
         type: "mc",
@@ -18498,14 +18535,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "D6 bis D22", correct: false },
           { text: "LM-Potenzen", correct: false }
         ],
-        explanation: "Tiefpotenzen = unter D6/C3 (noch Substanz nachweisbar, direkte Arznereize, kurze Wirkdauer, häufige Gaben). Mittelpotenzen = D6–D22/C3–C11. Hochpotenzen = ab D23/C12/LM3."
+        explanation: "Tiefpotenzen = unter D6/C3 (noch Substanz nachweisbar, direkte Arznereize, kurze Wirkdauer, häufige Gaben). Mittelpotenzen = D6–D22/C3–C11. Hochpotenzen = ab D23/C12/LM3.",
+        learningCard: { type: "reconstruct", template: "Als Tiefpotenzen gelten Potenzen unter ___ bzw. unter ___.", blanks: ["D6", "C3"], distractors: ["D23", "C12"], reveal: "Mittelpotenzen liegen bei D6–D22/C3–C11, Hochpotenzen ab D23/C12/LM3." }
       },
       {
         type: "true_false",
         id: "1048_03_h5",
         statement: "LM-Potenzen wurden von Hahnemann selbst entwickelt.",
         answer: true,
-        explanation: "Die C- und LM-Potenzen gehen direkt auf Hahnemann zurück. LM-Potenzen (Verdünnung 1:50.000) wirken besonders weich und eignen sich für chronisch Kranke."
+        explanation: "Die C- und LM-Potenzen gehen direkt auf Hahnemann zurück. LM-Potenzen (Verdünnung 1:50.000) wirken besonders weich und eignen sich für chronisch Kranke.",
+        learningCard: { type: "predict", statement: "LM-Potenzen wurden von Hahnemann selbst entwickelt.", answer: true, reveal: "LM-Potenzen (Verdünnung 1:50.000) wirken besonders weich und eignen sich für chronisch Kranke." }
       }
     ],
     phase4Questions: [
@@ -18519,7 +18558,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Bei Hochpotenzen kann man sicher sein, noch mit Materie zu arbeiten", correct: false },
           { text: "Je akuter die Erkrankung, desto häufiger und niedrigere Potenz", correct: true }
         ],
-        explanation: "Tiefpotenzen = akute Erkrankungen, häufige Gaben. Hochpotenzen = tiefgreifend, Konstitution/Gemüt, keine Materie mehr vorhanden (ab D24/C12). Je akuter die Erkrankung, desto niedriger die Potenz und häufiger die Gabe."
+        explanation: "Tiefpotenzen = akute Erkrankungen, häufige Gaben. Hochpotenzen = tiefgreifend, Konstitution/Gemüt, keine Materie mehr vorhanden (ab D24/C12). Je akuter die Erkrankung, desto niedriger die Potenz und häufiger die Gabe.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Potenzstufen sind korrekt?", checklist: [
+          { text: "Tiefpotenzen kommen vor allem bei akuten Erkrankungen zum Einsatz", correct: true },
+          { text: "Hochpotenzen wirken auf Konstitution, Persönlichkeit und Gemüt", correct: true },
+          { text: "Je akuter die Erkrankung, desto häufiger und niedrigere Potenz", correct: true },
+          { text: "Bei Hochpotenzen kann man sicher sein, noch mit Materie zu arbeiten", correct: false }
+        ], reveal: "Ab D24/C12 ist statistisch keine Materie der Ursubstanz mehr vorhanden." }
       },
       {
         type: "mc",
@@ -18531,7 +18576,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Bei Hochpotenzen ist die Information materiell und substanzgebunden", correct: false },
           { text: "Je höher die Potenz, desto immaterieller und tiefgreifender die Wirkung", correct: true }
         ],
-        explanation: "Das Arzneimittel speichert die Information der Ursubstanz im Träger. Alkohol, Wasser, Milchzucker sind Informationsträger. Bei Hochpotenzen ist die Information rein immateriell-energetisch – nicht mehr substanzgebunden."
+        explanation: "Das Arzneimittel speichert die Information der Ursubstanz im Träger. Alkohol, Wasser, Milchzucker sind Informationsträger. Bei Hochpotenzen ist die Information rein immateriell-energetisch – nicht mehr substanzgebunden.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Homöopathie als Informationsmedizin treffen zu?", checklist: [
+          { text: "Das Arzneimittel gilt als Informationsspeicher der Ursubstanz", correct: true },
+          { text: "Alkohol, Wasser und Milchzucker dienen als Informationsträger", correct: true },
+          { text: "Je höher die Potenz, desto immaterieller und tiefgreifender die Wirkung", correct: true },
+          { text: "Bei Hochpotenzen ist die Information materiell und substanzgebunden", correct: false }
+        ], reveal: "Bei Hochpotenzen ist die Information rein immateriell-energetisch, nicht mehr substanzgebunden." }
       }
     ]
   }),
@@ -18550,14 +18601,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "1 Globulus", correct: false },
           { text: "10–15 Globuli", correct: false }
         ],
-        explanation: "Eine homöopathische Gabe besteht aus 1 Tablette, 2–3 Globuli oder 10 Tropfen."
+        explanation: "Eine homöopathische Gabe besteht aus 1 Tablette, 2–3 Globuli oder 10 Tropfen.",
+        learningCard: { type: "predict", statement: "Eine homöopathische Gabe besteht üblicherweise aus 2–3 Globuli.", answer: true, reveal: "Alternativ: 1 Tablette oder 10 Tropfen." }
       },
       {
         type: "true_false",
         id: "1048_04_h2",
         statement: "Bei akuten Erkrankungen muss nach der dritten Gabe eine Verbesserung eintreten, sonst ist das Mittel falsch gewählt.",
         answer: true,
-        explanation: "Spätestens nach der dritten Gabe muss eine Verbesserung eintreten, sonst wurde das falsche Mittel gewählt. Bei akuten Erkrankungen muss die Heilung spätestens nach einer Woche eingetreten sein."
+        explanation: "Spätestens nach der dritten Gabe muss eine Verbesserung eintreten, sonst wurde das falsche Mittel gewählt. Bei akuten Erkrankungen muss die Heilung spätestens nach einer Woche eingetreten sein.",
+        learningCard: { type: "predict", statement: "Bei akuten Erkrankungen muss nach der dritten Gabe eine Verbesserung eintreten, sonst ist das Mittel falsch gewählt.", answer: true, reveal: "Bei akuten Erkrankungen muss die Heilung spätestens nach einer Woche eingetreten sein." }
       },
       {
         type: "mc",
@@ -18569,7 +18622,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Die Nahrung blockiert die Resorption über den Darm", correct: false },
           { text: "Sie sollen unter der Zunge resorbiert werden", correct: false }
         ],
-        explanation: "Die Magensäure kann die Mittel zerstören. Deshalb sollen Homöopathika über die Mundschleimhaut aufgenommen werden – nicht geschluckt und verdaut werden."
+        explanation: "Die Magensäure kann die Mittel zerstören. Deshalb sollen Homöopathika über die Mundschleimhaut aufgenommen werden – nicht geschluckt und verdaut werden.",
+        learningCard: { type: "predict", statement: "Homöopathika sollen nicht mit dem Essen eingenommen werden, weil die Magensäure die Mittel zerstören kann.", answer: true, reveal: "Deshalb sollen sie über die Mundschleimhaut aufgenommen werden, nicht geschluckt und verdaut werden." }
       },
       {
         type: "mc",
@@ -18581,14 +18635,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Nach einer Erstverschlimmerung", correct: false },
           { text: "Immer nach genau 4 Wochen", correct: false }
         ],
-        explanation: "Bei chronischen Erkrankungen muss nach spätestens 6–8 Wochen das Mittel gewechselt werden, wenn die Verbesserung stagniert oder es nach einer Erstverschlimmerung keine Besserung gibt."
+        explanation: "Bei chronischen Erkrankungen muss nach spätestens 6–8 Wochen das Mittel gewechselt werden, wenn die Verbesserung stagniert oder es nach einer Erstverschlimmerung keine Besserung gibt.",
+        learningCard: { type: "predict", statement: "Bei chronischen Erkrankungen muss das Mittel spätestens nach 6–8 Wochen ohne ausreichende Besserung gewechselt werden.", answer: true, reveal: "Das gilt, wenn die Verbesserung stagniert oder nach einer Erstverschlimmerung keine Besserung eintritt." }
       },
       {
         type: "true_false",
         id: "1048_04_h5",
         statement: "Homöopathische Salben können bedenkenlos in offene Wunden gegeben werden.",
         answer: false,
-        explanation: "Salben sollten nur in Ausnahmefällen angewendet werden und dürfen nie in offene Wunden gegeben werden, da das Fett die Wunde verschmutzt und die Heilung behindert."
+        explanation: "Salben sollten nur in Ausnahmefällen angewendet werden und dürfen nie in offene Wunden gegeben werden, da das Fett die Wunde verschmutzt und die Heilung behindert.",
+        learningCard: { type: "predict", statement: "Homöopathische Salben können bedenkenlos in offene Wunden gegeben werden.", answer: false, reveal: "Salben dürfen nie in offene Wunden gegeben werden, da das Fett die Wunde verschmutzt und die Heilung behindert." }
       }
     ],
     phase4Questions: [
@@ -18602,7 +18658,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Bei heftiger Erstverschlimmerung sollte das Mittel sofort abgesetzt werden", correct: false },
           { text: "Bei heftiger Erstverschlimmerung sollten Potenz und Mittelwahl überdacht werden", correct: true }
         ],
-        explanation: "Die Erstverschlimmerung ist fast immer ein positives Zeichen – der Körper reagiert. Bei heftiger EV: Potenz und Mittelwahl überdenken (evtl. zu hohe Potenz oder falsches Mittel). Sofortiges Absetzen ist nicht automatisch indiziert."
+        explanation: "Die Erstverschlimmerung ist fast immer ein positives Zeichen – der Körper reagiert. Bei heftiger EV: Potenz und Mittelwahl überdenken (evtl. zu hohe Potenz oder falsches Mittel). Sofortiges Absetzen ist nicht automatisch indiziert.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Erstverschlimmerung sind korrekt?", checklist: [
+          { text: "Sie ist meist ein Zeichen einsetzender Besserung", correct: true },
+          { text: "Sie zeigt, dass der Körper auf das Mittel reagiert", correct: true },
+          { text: "Bei heftiger Erstverschlimmerung sollten Potenz und Mittelwahl überdacht werden", correct: true },
+          { text: "Bei heftiger Erstverschlimmerung sollte das Mittel sofort abgesetzt werden", correct: false }
+        ], reveal: "Sofortiges Absetzen ist nicht automatisch indiziert — zuerst sollten Potenz und Mittelwahl überdacht werden." }
       },
       {
         type: "mc",
@@ -18614,7 +18676,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Immunsuppressive Medikamente (Antibiotika, Kortikoid) hemmen die Wirkung", correct: true },
           { text: "Homöopathika wirken grundsätzlich erst nach 3 Monaten", correct: false }
         ],
-        explanation: "Ausbleibende Reaktion kann folgende Ursachen haben: falsches Mittel, falsche Potenz/Dosierung, blockierte Selbstheilungskräfte, immunsuppressive Medikamente oder langsame Wirkung der Erkrankung. Homöopathika wirken nicht erst nach 3 Monaten."
+        explanation: "Ausbleibende Reaktion kann folgende Ursachen haben: falsches Mittel, falsche Potenz/Dosierung, blockierte Selbstheilungskräfte, immunsuppressive Medikamente oder langsame Wirkung der Erkrankung. Homöopathika wirken nicht erst nach 3 Monaten.",
+        learningCard: { type: "teachback", prompt: "Welche Faktoren können erklären, warum ein Patient nicht auf das Homöopathikum reagiert?", checklist: [
+          { text: "Das falsche Arzneimittel wurde ausgewählt", correct: true },
+          { text: "Die Potenz oder Dosierung war falsch", correct: true },
+          { text: "Immunsuppressive Medikamente (Antibiotika, Kortikoid) hemmen die Wirkung", correct: true },
+          { text: "Homöopathika wirken grundsätzlich erst nach 3 Monaten", correct: false }
+        ], reveal: "Homöopathika wirken nicht grundsätzlich erst nach 3 Monaten." }
       }
     ]
   }),
@@ -18633,14 +18701,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Aus Muschelsand", correct: false },
           { text: "Aus Kalkspat", correct: false }
         ],
-        explanation: "Calcium carbonicum ist die innere weiße Austernschale (Ostrea edulis). Es ist eines der wichtigsten Konstitutionsmittel in der Homöopathie."
+        explanation: "Calcium carbonicum ist die innere weiße Austernschale (Ostrea edulis). Es ist eines der wichtigsten Konstitutionsmittel in der Homöopathie.",
+        learningCard: { type: "predict", statement: "Calcium carbonicum wird aus der inneren weißen Austernschale hergestellt.", answer: true, reveal: "Es ist eines der wichtigsten Konstitutionsmittel in der Homöopathie." }
       },
       {
         type: "true_false",
         id: "1048_05_h2",
         statement: "Calcium carbonicum-Patienten zeigen trotz ihrer scheinbaren Robustheit eine Neigung zu Infekten.",
         answer: true,
-        explanation: "Obwohl Calcium carbonicum-Typen grobknochig und eher korpulent sind und robust wirken, neigen sie zu Infekten. Die scheinbare Robustheit täuscht."
+        explanation: "Obwohl Calcium carbonicum-Typen grobknochig und eher korpulent sind und robust wirken, neigen sie zu Infekten. Die scheinbare Robustheit täuscht.",
+        learningCard: { type: "predict", statement: "Calcium carbonicum-Patienten zeigen trotz ihrer scheinbaren Robustheit eine Neigung zu Infekten.", answer: true, reveal: "Obwohl Calcium carbonicum-Typen grobknochig, korpulent und robust wirken, täuscht diese scheinbare Robustheit." }
       },
       {
         type: "mc",
@@ -18652,14 +18722,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Ängstlich, schreckhaft, träge, korpulent", correct: false },
           { text: "Cholerisch, hager, nervös, reizbar", correct: false }
         ],
-        explanation: "Sepia-Typen sind gerne allein, distanziert, möchten nicht berührt werden. Schlaffe Bindegewebe und Muskeltonus sind typisch. Das Sepia-Bild entspricht meist Frauen."
+        explanation: "Sepia-Typen sind gerne allein, distanziert, möchten nicht berührt werden. Schlaffe Bindegewebe und Muskeltonus sind typisch. Das Sepia-Bild entspricht meist Frauen.",
+        learningCard: { type: "predict", statement: "Sepia-Typen sind typischerweise gerne allein, distanziert, mit schlaffem Bindegewebe, meist Frauen.", answer: true, reveal: "Sie möchten oft nicht berührt werden — das Sepia-Bild entspricht meist Frauen." }
       },
       {
         type: "true_false",
         id: "1048_05_h4",
         statement: "Sepia-Patienten zeigen charakteristischerweise abendliche Schwäche und morgendliche Munterkeit.",
         answer: false,
-        explanation: "Sepia zeigt das umgekehrte Muster: morgendliche Schwäche und abendliche Munterkeit. Das ist ein charakteristisches Leitsymptom des Sepia-Bildes."
+        explanation: "Sepia zeigt das umgekehrte Muster: morgendliche Schwäche und abendliche Munterkeit. Das ist ein charakteristisches Leitsymptom des Sepia-Bildes.",
+        learningCard: { type: "predict", statement: "Sepia-Patienten zeigen charakteristischerweise abendliche Schwäche und morgendliche Munterkeit.", answer: false, reveal: "Sepia zeigt das umgekehrte Muster: morgendliche Schwäche und abendliche Munterkeit." }
       },
       {
         type: "mc",
@@ -18671,7 +18743,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "In Ruhe und bei Alleinsein", correct: false },
           { text: "Durch Berührung und abends", correct: false }
         ],
-        explanation: "Calcium carbonicum verschlimmert sich durch Kälte, Nässe, Bewegung und Luftzug. Besserung tritt bei trockenem Klima auf."
+        explanation: "Calcium carbonicum verschlimmert sich durch Kälte, Nässe, Bewegung und Luftzug. Besserung tritt bei trockenem Klima auf.",
+        learningCard: { type: "predict", statement: "Die Symptome bei Calcium carbonicum verschlimmern sich durch Kälte, Nässe und Bewegung.", answer: true, reveal: "Besserung tritt dagegen bei trockenem Klima auf." }
       }
     ],
     phase4Questions: [
@@ -18685,7 +18758,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Konstitutionsmittel sind nur für körperliche, nicht für psychische Symptome zuständig", correct: false },
           { text: "Alle Konstitutionsmittel gehören zu den Polychresten", correct: true }
         ],
-        explanation: "Konstitutionsmittel erfassen den ganzen Menschen (Körper-Geist-Seele) inklusive Persönlichkeit und psychischer Verfassung. Polychreste haben ein breites Wirkspektrum. Alle Konstitutionsmittel sind Polychreste."
+        explanation: "Konstitutionsmittel erfassen den ganzen Menschen (Körper-Geist-Seele) inklusive Persönlichkeit und psychischer Verfassung. Polychreste haben ein breites Wirkspektrum. Alle Konstitutionsmittel sind Polychreste.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Polychresten und Konstitutionsmitteln sind korrekt?", checklist: [
+          { text: "Konstitutionsmittel erfassen Körper, Geist und Seele als Einheit", correct: true },
+          { text: "Polychreste können bei einer Vielzahl von Erkrankungen angewendet werden", correct: true },
+          { text: "Alle Konstitutionsmittel gehören zu den Polychresten", correct: true },
+          { text: "Konstitutionsmittel sind nur für körperliche, nicht für psychische Symptome zuständig", correct: false }
+        ], reveal: "Konstitutionsmittel erfassen den ganzen Menschen inklusive Persönlichkeit und psychischer Verfassung." }
       },
       {
         type: "mc",
@@ -18697,7 +18776,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Beide Typen bevorzugen Gesellschaft und Berührung", correct: false },
           { text: "Sepia bessert sich bei längerer schneller Bewegung, Calc. carb. verschlimmert sich dabei", correct: true }
         ],
-        explanation: "Calc. carb.: Krämpfe nach Schreck; schlechter Kälte/Bewegung. Sepia: Gebärmuttervorfall möglich; schlechter Kälte, besser bei längerer schneller Bewegung. Beide: schlechter Kälte. Sepia: nicht gerne Gesellschaft/Berührung."
+        explanation: "Calc. carb.: Krämpfe nach Schreck; schlechter Kälte/Bewegung. Sepia: Gebärmuttervorfall möglich; schlechter Kälte, besser bei längerer schneller Bewegung. Beide: schlechter Kälte. Sepia: nicht gerne Gesellschaft/Berührung.",
+        learningCard: { type: "teachback", prompt: "Vergleichen Sie Calcium carbonicum und Sepia: Welche Aussagen stimmen?", checklist: [
+          { text: "Calc. carb. neigt zu Krämpfen nach Schreck, Sepia zu Gebärmuttervorfall", correct: true },
+          { text: "Beide verschlimmern sich durch Kälte", correct: true },
+          { text: "Sepia bessert sich bei längerer schneller Bewegung, Calc. carb. verschlimmert sich dabei", correct: true },
+          { text: "Beide Typen bevorzugen Gesellschaft und Berührung", correct: false }
+        ], reveal: "Sepia meidet dagegen Gesellschaft und Berührung." }
       }
     ]
   }),
@@ -18716,14 +18801,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Große Veränderlichkeit aller Symptome", correct: false },
           { text: "Rechtsseitige Beschwerden", correct: false }
         ],
-        explanation: "Das Leitsymptom von Phosphorus ist die extreme Unfähigkeit allein zu sein – außerordentlich ausgeprägt. Wasserscheue = Sulfur, Veränderlichkeit = Pulsatilla, Rechtsseitigkeit = Lycopodium."
+        explanation: "Das Leitsymptom von Phosphorus ist die extreme Unfähigkeit allein zu sein – außerordentlich ausgeprägt. Wasserscheue = Sulfur, Veränderlichkeit = Pulsatilla, Rechtsseitigkeit = Lycopodium.",
+        learningCard: { type: "predict", statement: "Das charakteristischste Leitsymptom von Phosphorus ist die extreme Unfähigkeit, allein zu sein.", answer: true, reveal: "Wasserscheue ist dagegen typisch für Sulfur, Veränderlichkeit für Pulsatilla, Rechtsseitigkeit für Lycopodium." }
       },
       {
         type: "true_false",
         id: "1048_06_h2",
         statement: "Sulfur kann heftige Erstverschlimmerungen auslösen und Patienten müssen darauf aufmerksam gemacht werden.",
         answer: true,
-        explanation: "Sulfur ist bekannt dafür, heftige Erstverschlimmerungen auszulösen. Da Sulfur ein reaktionssteigerndes Mittel ist, können Patienten mit starken Reaktionen überrascht werden."
+        explanation: "Sulfur ist bekannt dafür, heftige Erstverschlimmerungen auszulösen. Da Sulfur ein reaktionssteigerndes Mittel ist, können Patienten mit starken Reaktionen überrascht werden.",
+        learningCard: { type: "predict", statement: "Sulfur kann heftige Erstverschlimmerungen auslösen und Patienten müssen darauf aufmerksam gemacht werden.", answer: true, reveal: "Sulfur ist ein reaktionssteigerndes Mittel, das Patienten mit starken Reaktionen überraschen kann." }
       },
       {
         type: "mc",
@@ -18735,7 +18822,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Zwischen 08:00 und 12:00 Uhr", correct: false },
           { text: "Immer morgens", correct: false }
         ],
-        explanation: "Lycopodium zeigt seine typische Verschlimmerung zwischen 16 und 20 Uhr. Das ist ein charakteristisches Leitsymptom dieses Mittels."
+        explanation: "Lycopodium zeigt seine typische Verschlimmerung zwischen 16 und 20 Uhr. Das ist ein charakteristisches Leitsymptom dieses Mittels.",
+        learningCard: { type: "predict", statement: "Lycopodium zeigt seine typische Verschlimmerung zwischen 16 und 20 Uhr.", answer: true, reveal: "Das ist ein charakteristisches Leitsymptom dieses Mittels." }
       },
       {
         type: "mc",
@@ -18747,14 +18835,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Scharf, wundmachend und übelriechend", correct: false },
           { text: "Trocken und verkrustet", correct: false }
         ],
-        explanation: "Pulsatilla-Absonderungen sind charakteristisch: dick, mild (nicht ätzend) und gelblich-grün. Wässrig-ätzend = Allium Cepa/Gelsemium; scharf/wundmachend = Mercurius solubilis."
+        explanation: "Pulsatilla-Absonderungen sind charakteristisch: dick, mild (nicht ätzend) und gelblich-grün. Wässrig-ätzend = Allium Cepa/Gelsemium; scharf/wundmachend = Mercurius solubilis.",
+        learningCard: { type: "predict", statement: "Beim Pulsatilla-Typ sind die Schleimabsonderungen charakteristischerweise dick, mild und gelblich-grün.", answer: true, reveal: "Wässrig-ätzende Absonderungen sind dagegen typisch für Allium Cepa/Gelsemium, scharf-wundmachende für Mercurius solubilis." }
       },
       {
         type: "true_false",
         id: "1048_06_h5",
         statement: "Bei Phosphorus-Patienten liegt die typische Besserung auf der linken Körperseite.",
         answer: false,
-        explanation: "Phosphorus-Patienten fühlen sich besser, wenn sie auf der rechten Seite liegen. Liegen auf der linken Seite führt zur Verschlimmerung."
+        explanation: "Phosphorus-Patienten fühlen sich besser, wenn sie auf der rechten Seite liegen. Liegen auf der linken Seite führt zur Verschlimmerung.",
+        learningCard: { type: "predict", statement: "Bei Phosphorus-Patienten liegt die typische Besserung auf der linken Körperseite.", answer: false, reveal: "Phosphorus-Patienten fühlen sich besser, wenn sie auf der rechten Seite liegen; das Liegen auf der linken Seite führt zur Verschlimmerung." }
       }
     ],
     phase4Questions: [
@@ -18768,7 +18858,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Besserung durch Wärme und Bewegung", correct: true },
           { text: "Ausgeprägte Gesellschaftsbedürftigkeit", correct: false }
         ],
-        explanation: "Sulfur: Wasserscheue, rote Körperöffnungen, besser bei Wärme/Bewegung. Ausgeprägte Gesellschaftsbedürftigkeit ist ein Phosphorus-Merkmal."
+        explanation: "Sulfur: Wasserscheue, rote Körperöffnungen, besser bei Wärme/Bewegung. Ausgeprägte Gesellschaftsbedürftigkeit ist ein Phosphorus-Merkmal.",
+        learningCard: { type: "teachback", prompt: "Welche Merkmale sind charakteristisch für den Sulfur-Typ?", checklist: [
+          { text: "Wasserscheue (wäscht sich selten)", correct: true },
+          { text: "Alle Körperöffnungen sind rot", correct: true },
+          { text: "Besserung durch Wärme und Bewegung", correct: true },
+          { text: "Ausgeprägte Gesellschaftsbedürftigkeit", correct: false }
+        ], reveal: "Ausgeprägte Gesellschaftsbedürftigkeit ist ein Phosphorus-Merkmal, kein Sulfur-Merkmal." }
       },
       {
         type: "mc",
@@ -18780,7 +18876,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Pulsatilla → große Veränderlichkeit aller Symptome", correct: true },
           { text: "Sulfur → abendliche Schwäche und morgendliche Munterkeit", correct: false }
         ],
-        explanation: "Phosphorus: hämorrhagische Diathese. Lycopodium: Rechtsmittel. Pulsatilla: veränderliche Symptome. Abendliche Munterkeit / morgendliche Schwäche = Sepia, nicht Sulfur."
+        explanation: "Phosphorus: hämorrhagische Diathese. Lycopodium: Rechtsmittel. Pulsatilla: veränderliche Symptome. Abendliche Munterkeit / morgendliche Schwäche = Sepia, nicht Sulfur.",
+        learningCard: { type: "teachback", prompt: "Welche Zuordnungen von Mittel und Leitsymptom sind korrekt?", checklist: [
+          { text: "Phosphorus → hämorrhagische Neigung (kleine Wunden bluten ausdauernd)", correct: true },
+          { text: "Lycopodium → 'Rechtsmittel', Beschwerden beginnen rechts", correct: true },
+          { text: "Pulsatilla → große Veränderlichkeit aller Symptome", correct: true },
+          { text: "Sulfur → abendliche Schwäche und morgendliche Munterkeit", correct: false }
+        ], reveal: "Abendliche Munterkeit und morgendliche Schwäche sind Sepia-Symptome, nicht Sulfur-Symptome." }
       }
     ]
   }),
@@ -18799,14 +18901,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Bandscheibenvorfall mit brennenden Schmerzen, die sich durch Wärme bessern", correct: false },
           { text: "Bandscheibenvorfall nach Durchnässung", correct: false }
         ],
-        explanation: "Ein plötzlich auftretender Bandscheibenvorfall mit brettharter Versteifung der Bauchmuskeln ist eine typische Indikation für Nux vomica."
+        explanation: "Ein plötzlich auftretender Bandscheibenvorfall mit brettharter Versteifung der Bauchmuskeln ist eine typische Indikation für Nux vomica.",
+        learningCard: { type: "predict", statement: "Ein plötzlicher Bandscheibenvorfall mit brettharter Versteifung der Bauchmuskeln ist ein typisches Leitmerkmal für Nux vomica.", answer: true, reveal: "Nux vomica ist bei plötzlich auftretenden Beschwerden mit brettharter Muskelversteifung indiziert." }
       },
       {
         type: "true_false",
         id: "1048_07_h2",
         statement: "Graphites ist besonders indiziert bei honigartigen Sekreten aus Hautausschlägen.",
         answer: true,
-        explanation: "Die schmierigen Hautausschläge mit honigartigen Sekret sind ein klassisches Leitsymptom von Graphites. Ekzeme hinter den Ohren und zwischen den Zehen sind ebenfalls typisch."
+        explanation: "Die schmierigen Hautausschläge mit honigartigen Sekret sind ein klassisches Leitsymptom von Graphites. Ekzeme hinter den Ohren und zwischen den Zehen sind ebenfalls typisch.",
+        learningCard: { type: "predict", statement: "Graphites ist besonders indiziert bei honigartigen Sekreten aus Hautausschlägen.", answer: true, reveal: "Ekzeme hinter den Ohren und zwischen den Zehen sind ebenfalls typisch für Graphites." }
       },
       {
         type: "mc",
@@ -18818,14 +18922,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Diabetes mellitus", correct: false },
           { text: "Herzrhythmusstörungen", correct: false }
         ],
-        explanation: "Eine Schilddrüsenunterfunktion zeigt oft Graphites-Symptome (phlegmatisch, frostig, traurig, Haut-/Haar-Probleme). Graphites ist daher ein wichtiges Mittel bei Hypothyreose-ähnlichen Zuständen."
+        explanation: "Eine Schilddrüsenunterfunktion zeigt oft Graphites-Symptome (phlegmatisch, frostig, traurig, Haut-/Haar-Probleme). Graphites ist daher ein wichtiges Mittel bei Hypothyreose-ähnlichen Zuständen.",
+        learningCard: { type: "predict", statement: "Eine Schilddrüsenunterfunktion ist häufig mit dem Graphites-Bild assoziiert.", answer: true, reveal: "Graphites-Typen sind phlegmatisch, frostig, traurig und zeigen Haut-/Haarprobleme." }
       },
       {
         type: "true_false",
         id: "1048_07_h4",
         statement: "Komplexmittel haben eine strenge Arzneimittelprüfung am Gesunden durchlaufen.",
         answer: false,
-        explanation: "Komplexmittel haben keine Arzneimittelprüfung hinter sich. Sie werden nach allopathischen (symptomatischen) Gesichtspunkten eingesetzt und berücksichtigen nicht die individuelle Gesamtsymptomatik."
+        explanation: "Komplexmittel haben keine Arzneimittelprüfung hinter sich. Sie werden nach allopathischen (symptomatischen) Gesichtspunkten eingesetzt und berücksichtigen nicht die individuelle Gesamtsymptomatik.",
+        learningCard: { type: "predict", statement: "Komplexmittel haben eine strenge Arzneimittelprüfung am Gesunden durchlaufen.", answer: false, reveal: "Komplexmittel werden nach allopathischen (symptomatischen) Gesichtspunkten eingesetzt und berücksichtigen nicht die individuelle Gesamtsymptomatik." }
       },
       {
         type: "mc",
@@ -18837,7 +18943,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Es entsteht eine Abhängigkeit", correct: false },
           { text: "Die Erkrankung verschlimmert sich immer dramatisch", correct: false }
         ],
-        explanation: "Ist das homöopathische Einzelmittel falsch gewählt, geschieht nichts – es wirkt nicht. Das ist einer der Vorteile: kein Schaden bei falscher Wahl. Komplexmittel wirken im günstigsten Fall langsamer als das Similimum, manchmal gar nicht."
+        explanation: "Ist das homöopathische Einzelmittel falsch gewählt, geschieht nichts – es wirkt nicht. Das ist einer der Vorteile: kein Schaden bei falscher Wahl. Komplexmittel wirken im günstigsten Fall langsamer als das Similimum, manchmal gar nicht.",
+        learningCard: { type: "predict", statement: "Wird bei einem homöopathischen Patienten das falsche Einzelmittel gewählt, geschieht in der Regel einfach nichts.", answer: true, reveal: "Das Mittel wirkt dann schlicht nicht — das ist ein Vorteil, da keine Schäden bei falscher Wahl entstehen." }
       }
     ],
     phase4Questions: [
@@ -18851,7 +18958,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Beide bessern sich bei Geräuschen und hellem Licht", correct: false },
           { text: "Nux vomica: besser in Ruhe; Graphites: besser im Dunkeln", correct: true }
         ],
-        explanation: "Nux vomica: cholerisch/reizbar/männlich; MDT/Bandscheibe; besser in Ruhe. Graphites: phlegmatisch/traurig/frostig; Haut/Mastdarm/Haare; besser im Dunkeln. Nux vomica verschlimmert sich durch Licht und Geräusche."
+        explanation: "Nux vomica: cholerisch/reizbar/männlich; MDT/Bandscheibe; besser in Ruhe. Graphites: phlegmatisch/traurig/frostig; Haut/Mastdarm/Haare; besser im Dunkeln. Nux vomica verschlimmert sich durch Licht und Geräusche.",
+        learningCard: { type: "teachback", prompt: "Welche Merkmale unterscheiden Nux vomica von Graphites?", checklist: [
+          { text: "Nux vomica: cholerisch, reizbar, männlich; Graphites: phlegmatisch, traurig, frostig", correct: true },
+          { text: "Nux vomica: MDT-Störungen, Bandscheibe; Graphites: Haut, Ekzeme, Mastdarm", correct: true },
+          { text: "Nux vomica: besser in Ruhe; Graphites: besser im Dunkeln", correct: true },
+          { text: "Beide bessern sich bei Geräuschen und hellem Licht", correct: false }
+        ], reveal: "Nux vomica verschlimmert sich gerade durch Licht und Geräusche." }
       },
       {
         type: "mc",
@@ -18863,7 +18976,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Komplexmittel wirken besser als das Similimum, weil mehr Wirkstoffe enthalten sind", correct: false },
           { text: "Einige Einzelmittel antidotieren sich gegenseitig und dürfen nicht kombiniert werden", correct: true }
         ],
-        explanation: "Das Similimum (richtig gewähltes Einzelmittel) ist immer überlegen. Komplexmittel mit zu vielen Bestandteilen überfordern den Organismus. Einige Mittel antidotieren sich gegenseitig."
+        explanation: "Das Similimum (richtig gewähltes Einzelmittel) ist immer überlegen. Komplexmittel mit zu vielen Bestandteilen überfordern den Organismus. Einige Mittel antidotieren sich gegenseitig.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Vergleich Einzelmittel vs. Komplexmittel sind korrekt?", checklist: [
+          { text: "Das richtig gewählte Similimum ist das wirksamste Mittel", correct: true },
+          { text: "Komplexmittel können bei zu vielen Einzelmitteln den Organismus überfordern", correct: true },
+          { text: "Einige Einzelmittel antidotieren sich gegenseitig und dürfen nicht kombiniert werden", correct: true },
+          { text: "Komplexmittel wirken besser als das Similimum, weil mehr Wirkstoffe enthalten sind", correct: false }
+        ], reveal: "Das Similimum ist immer überlegen — mehr Wirkstoffe bedeuten nicht bessere Wirkung." }
       }
     ]
   }),
@@ -18882,7 +19001,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Aconitum: durch Wärme ausgelöst; Belladonna: durch Kälte ausgelöst", correct: false },
           { text: "Aconitum: weite Pupillen; Belladonna: enge Pupillen", correct: false }
         ],
-        explanation: "Aconitum: kein Schwitzen, Todesangst, Fieber durch kalten trockenen Wind. Belladonna: schwitzt, weite glänzende Pupillen, feuerrote Tonsillen, kaum ansprechbar."
+        explanation: "Aconitum: kein Schwitzen, Todesangst, Fieber durch kalten trockenen Wind. Belladonna: schwitzt, weite glänzende Pupillen, feuerrote Tonsillen, kaum ansprechbar.",
+        learningCard: { type: "predict", statement: "Aconitum zeigt beim Fieber kein Schwitzen und Todesangst, Belladonna dagegen Schwitzen und feuerrote Tonsillen.", answer: true, reveal: "Aconitum tritt typischerweise nach kaltem, trockenem Wind auf; Belladonna-Patienten haben weite glänzende Pupillen und sind kaum ansprechbar." }
       },
       {
         type: "mc",
@@ -18894,14 +19014,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "C3 (Tiefpotenz)", correct: false },
           { text: "D12 (Mittelpotenz)", correct: false }
         ],
-        explanation: "Bei Kopfverletzungen sollte Arnica möglichst in einer Hochpotenz (C1000) gegeben werden. Bei Operationen wird C30 vor und nach dem Eingriff empfohlen."
+        explanation: "Bei Kopfverletzungen sollte Arnica möglichst in einer Hochpotenz (C1000) gegeben werden. Bei Operationen wird C30 vor und nach dem Eingriff empfohlen.",
+        learningCard: { type: "predict", statement: "Bei Kopfverletzungen wird Arnica möglichst in einer Hochpotenz (C1000) empfohlen.", answer: true, reveal: "Bei Operationen wird dagegen C30 vor und nach dem Eingriff empfohlen." }
       },
       {
         type: "true_false",
         id: "1048_08_h3",
         statement: "Bei Hepar sulfuris bestimmt die Potenz die Wirkungsrichtung auf die Eiterung.",
         answer: true,
-        explanation: "Bei Hepar sulfuris gilt: Tiefpotenz = Eiterung ausspülen; Mittelpotenz = Eiterung stoppen/einschmelzen; Hochpotenz = Entzündung ausheilen. Dies ist einzigartig in der Homöopathie."
+        explanation: "Bei Hepar sulfuris gilt: Tiefpotenz = Eiterung ausspülen; Mittelpotenz = Eiterung stoppen/einschmelzen; Hochpotenz = Entzündung ausheilen. Dies ist einzigartig in der Homöopathie.",
+        learningCard: { type: "predict", statement: "Bei Hepar sulfuris bestimmt die Potenz die Wirkungsrichtung auf die Eiterung.", answer: true, reveal: "Tiefpotenz spült die Eiterung aus, Mittelpotenz stoppt/schmilzt sie ein, Hochpotenz heilt die Entzündung aus." }
       },
       {
         type: "mc",
@@ -18913,14 +19035,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Beide zeigen ätzende Absonderungen aus Nase und Augen", correct: false },
           { text: "Allium Cepa: regt den Kreislauf an; Gelsemium: antidotiert andere Mittel", correct: false }
         ],
-        explanation: "Allium Cepa: Nase und Augen laufen (wie beim Zwiebelschneiden) – Nasensekrete ätzend, Augensekrete mild. Gelsemium: schwüles Wetter, durstlos, langsam, heiße Nasensekrete, Gliederschmerzen."
+        explanation: "Allium Cepa: Nase und Augen laufen (wie beim Zwiebelschneiden) – Nasensekrete ätzend, Augensekrete mild. Gelsemium: schwüles Wetter, durstlos, langsam, heiße Nasensekrete, Gliederschmerzen.",
+        learningCard: { type: "predict", statement: "Allium Cepa zeigt ätzende Nasensekrete bei milden Augensekreten, Gelsemium ist dagegen völlig durstlos mit langsamer Entwicklung.", answer: true, reveal: "Allium Cepa erinnert an das Zwiebelschneiden, Gelsemium tritt eher bei schwülem Wetter mit heißen Nasensekreten und Gliederschmerzen auf." }
       },
       {
         type: "true_false",
         id: "1048_08_h5",
         statement: "Camphora kann gleichzeitig mit anderen homöopathischen Mitteln eingenommen werden.",
         answer: false,
-        explanation: "Camphora antidotiert alle anderen homöopathischen Mittel – es hebt ihre Wirkung auf. Camphora darf daher nie gleichzeitig mit anderen Homöopathika gegeben werden."
+        explanation: "Camphora antidotiert alle anderen homöopathischen Mittel – es hebt ihre Wirkung auf. Camphora darf daher nie gleichzeitig mit anderen Homöopathika gegeben werden.",
+        learningCard: { type: "predict", statement: "Camphora kann gleichzeitig mit anderen homöopathischen Mitteln eingenommen werden.", answer: false, reveal: "Camphora antidotiert alle anderen homöopathischen Mittel und darf daher nie gleichzeitig mit ihnen gegeben werden." }
       }
     ],
     phase4Questions: [
@@ -18934,7 +19058,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Mercurius → wässrige Entzündungen ohne Eiter", correct: false },
           { text: "Myristica sebifera → 'homöopathisches Messer', fördert Abszessreifung", correct: true }
         ],
-        explanation: "Apis: Bienenstich-ähnlich. Bryonia: exsudativ, besser Druck/Ruhe. Mercurius: eitrige Entzündungen mit scharfen, wundmachenden Absonderungen (nicht wässrig). Myristica: 'homöopathisches Messer'."
+        explanation: "Apis: Bienenstich-ähnlich. Bryonia: exsudativ, besser Druck/Ruhe. Mercurius: eitrige Entzündungen mit scharfen, wundmachenden Absonderungen (nicht wässrig). Myristica: 'homöopathisches Messer'.",
+        learningCard: { type: "teachback", prompt: "Welche Zuordnungen von Entzündungsmittel und Charakteristikum sind korrekt?", checklist: [
+          { text: "Apis → brennend-stechende Entzündung, ödematös, hellrot wie Bienenstich", correct: true },
+          { text: "Bryonia → exsudative Entzündung; besser bei festem Druck und Ruhe", correct: true },
+          { text: "Myristica sebifera → 'homöopathisches Messer', fördert Abszessreifung", correct: true },
+          { text: "Mercurius → wässrige Entzündungen ohne Eiter", correct: false }
+        ], reveal: "Mercurius steht für eitrige Entzündungen mit scharfen, wundmachenden Absonderungen, nicht für wässrige Entzündungen." }
       },
       {
         type: "mc",
@@ -18946,7 +19076,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Gelsemium (warm-feuchtes, schwüles Wetter)", correct: true },
           { text: "Aconitum (kalter, trockener Wind)", correct: false }
         ],
-        explanation: "Dulcamara, Rhus tox. und Gelsemium werden alle durch Feuchtigkeit/Nässe ausgelöst. Aconitum dagegen ist typisch für Erkältungen/Fieber durch kalten, trockenen Wind."
+        explanation: "Dulcamara, Rhus tox. und Gelsemium werden alle durch Feuchtigkeit/Nässe ausgelöst. Aconitum dagegen ist typisch für Erkältungen/Fieber durch kalten, trockenen Wind.",
+        learningCard: { type: "teachback", prompt: "Welche Erkältungsmittel werden durch Feuchtigkeit oder Nässe als Auslöser charakterisiert?", checklist: [
+          { text: "Dulcamara (Feuchtigkeit, Nebel, Sommer/Spätsommer)", correct: true },
+          { text: "Rhus toxicodendron (Kälte, Feuchtigkeit, Durchnässung)", correct: true },
+          { text: "Gelsemium (warm-feuchtes, schwüles Wetter)", correct: true },
+          { text: "Aconitum (kalter, trockener Wind)", correct: false }
+        ], reveal: "Aconitum ist typisch für Erkältungen durch kalten, trockenen Wind — nicht durch Feuchtigkeit." }
       }
     ]
   }),
@@ -18960,7 +19096,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
         type: "true_false",
         statement: "Die 5 W-Fragen der homöopathischen Anamnese lauten: Wo (Lokalisation), Wie (Empfindung), Wodurch (Modalitäten), Womit (Begleitsymptome) und Warum (Ursache).",
         answer: true,
-        explanation: "Korrekt. Diese 5 Fragen bilden das Gerüst der homöopathischen Fallaufnahme. Sie helfen, das vollständige individuelle Symptombild zu erfassen – weit über die schulmedizinische Diagnose hinaus."
+        explanation: "Korrekt. Diese 5 Fragen bilden das Gerüst der homöopathischen Fallaufnahme. Sie helfen, das vollständige individuelle Symptombild zu erfassen – weit über die schulmedizinische Diagnose hinaus.",
+        learningCard: { type: "reconstruct", template: "Die 5 W-Fragen lauten: Wo, Wie, ___, Womit und ___.", blanks: ["Wodurch", "Warum"], distractors: ["Wann", "Wer"], reveal: "Sie helfen, das vollständige individuelle Symptombild zu erfassen — weit über die schulmedizinische Diagnose hinaus." }
       },
       {
         id: "1048_09_h2",
@@ -18972,14 +19109,16 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Die Begleitsymptome (z.B. Kopfschmerz mit Übelkeit)", correct: false },
           { text: "Die Ursache (Trauma, Impfung, emotionales Erlebnis)", correct: false }
         ],
-        explanation: "Wodurch = Modalitäten (besser/schlechter bei Wärme/Kälte, Bewegung/Ruhe, Tageszeiten). Den Ursprungsort erfasst 'Wo'; Begleitsymptome erfasst 'Womit'; die Ursache erfasst 'Warum'."
+        explanation: "Wodurch = Modalitäten (besser/schlechter bei Wärme/Kälte, Bewegung/Ruhe, Tageszeiten). Den Ursprungsort erfasst 'Wo'; Begleitsymptome erfasst 'Womit'; die Ursache erfasst 'Warum'.",
+        learningCard: { type: "predict", statement: "Die Frage 'Wodurch' in der homöopathischen Anamnese erfasst die Modalitäten.", answer: true, reveal: "Den Ursprungsort erfasst 'Wo', Begleitsymptome 'Womit', die Ursache 'Warum'." }
       },
       {
         id: "1048_09_h3",
         type: "true_false",
         statement: "Am 26. Mai 2022 strich der Deutsche Ärztetag die Zusatzbezeichnung 'Homöopathie' aus der Musterweiterbildungsordnung (MWBO).",
         answer: true,
-        explanation: "Korrekt. Der Deutsche Ärztetag 2022 beschloss, die Zusatzbezeichnung Homöopathie aus der MWBO zu streichen. Homöopathie ist damit keine offiziell anerkannte ärztliche Weiterbildungsbezeichnung mehr."
+        explanation: "Korrekt. Der Deutsche Ärztetag 2022 beschloss, die Zusatzbezeichnung Homöopathie aus der MWBO zu streichen. Homöopathie ist damit keine offiziell anerkannte ärztliche Weiterbildungsbezeichnung mehr.",
+        learningCard: { type: "predict", statement: "Am 26. Mai 2022 strich der Deutsche Ärztetag die Zusatzbezeichnung 'Homöopathie' aus der Musterweiterbildungsordnung (MWBO).", answer: true, reveal: "Homöopathie ist damit keine offiziell anerkannte ärztliche Weiterbildungsbezeichnung mehr." }
       },
       {
         id: "1048_09_h4",
@@ -18991,7 +19130,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Bei akuten Erkrankungen immer Hochpotenzen (D30+)", correct: false },
           { text: "Bei akuten Erkrankungen ist die Potenz irrelevant – nur das Mittel zählt", correct: false }
         ],
-        explanation: "Je akuter → niedrigere Potenz + häufigere Gabe. Tiefpotenzen haben kurze Wirkdauer, deshalb bei Akutfällen öfter wiederholen. Bei hochakut gilt: zuerst das richtige Mittel, erst dann die ideale Potenz."
+        explanation: "Je akuter → niedrigere Potenz + häufigere Gabe. Tiefpotenzen haben kurze Wirkdauer, deshalb bei Akutfällen öfter wiederholen. Bei hochakut gilt: zuerst das richtige Mittel, erst dann die ideale Potenz.",
+        learningCard: { type: "predict", statement: "Je akuter eine Erkrankung ist, desto niedriger sollte die Potenz und desto häufiger die Gabe sein.", answer: true, reveal: "Bei hochakuten Fällen gilt: zuerst das richtige Mittel wählen, erst dann die ideale Potenz." }
       },
       {
         id: "1048_09_h5",
@@ -19003,7 +19143,8 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Alle objektiv messbaren Symptome (Fieber, Puls, Laborwerte)", correct: false },
           { text: "Symptome, die durch die schulmedizinische Diagnose erklärt werden", correct: false }
         ],
-        explanation: "Leitsymptome sind gerade die seltsamen, ungewöhnlichen, auffälligen Symptome – nicht die gewöhnlichen, erkrankungstypischen. Sie führen am direktesten zum passenden homöopathischen Mittel (Similimum)."
+        explanation: "Leitsymptome sind gerade die seltsamen, ungewöhnlichen, auffälligen Symptome – nicht die gewöhnlichen, erkrankungstypischen. Sie führen am direktesten zum passenden homöopathischen Mittel (Similimum).",
+        learningCard: { type: "predict", statement: "Leitsymptome sind besonders auffällige, seltsame oder ungewöhnliche Symptome, die zur Mittelfindung führen.", answer: true, reveal: "Sie führen am direktesten zum passenden homöopathischen Mittel (Similimum) — nicht die gewöhnlichen, erkrankungstypischen Symptome." }
       }
     ],
     phase4Questions: [
@@ -19017,7 +19158,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Für die Mittelfindung reicht die schulmedizinische ICD-Diagnose allein aus", correct: false },
           { text: "Leitsymptome = besonders seltsame, auffällige Symptome → zeigen das passende Mittel an", correct: true }
         ],
-        explanation: "Die schulmedizinische Diagnose allein reicht nicht – die Gesamtheit aller Symptome (inkl. Leitsymptome und Modalitäten) ist entscheidend. 'Womit' = Begleitsymptome; 'Warum' = Ursache."
+        explanation: "Die schulmedizinische Diagnose allein reicht nicht – die Gesamtheit aller Symptome (inkl. Leitsymptome und Modalitäten) ist entscheidend. 'Womit' = Begleitsymptome; 'Warum' = Ursache.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur homöopathischen Fallaufnahme sind korrekt?", checklist: [
+          { text: "'Womit' erfasst Begleitsymptome (z.B. Übelkeit begleitend zum Kopfschmerz)", correct: true },
+          { text: "'Warum' fragt nach der auslösenden Ursache (Trauma, Impfung, emotionales Erlebnis)", correct: true },
+          { text: "Leitsymptome = besonders seltsame, auffällige Symptome → zeigen das passende Mittel an", correct: true },
+          { text: "Für die Mittelfindung reicht die schulmedizinische ICD-Diagnose allein aus", correct: false }
+        ], reveal: "Die Gesamtheit aller Symptome, inklusive Leitsymptome und Modalitäten, ist entscheidend — die ICD-Diagnose allein reicht nicht." }
       },
       {
         id: "1048_09_p4_2",
@@ -19029,7 +19176,13 @@ const HOMOEOPATHIE_1048_PLANTS = [
           { text: "Der Deutsche Ärztetag strich 2022 die Zusatzbezeichnung Homöopathie aus der MWBO", correct: true },
           { text: "Homöopathie ist seit 2022 in der Notfallmedizin der Schulmedizin gleichgestellt", correct: false }
         ],
-        explanation: "Die Faustregel akut→niedrig/häufig gilt allgemein. Bei Notfall: Mittelwahl > Potenzwahl. Der Ärztetag-Beschluss 2022 entzieht der Homöopathie die offizielle ärztliche Weiterbildungsanerkennung. In der Notfallmedizin hat Homöopathie grundsätzlich keinen Platz."
+        explanation: "Die Faustregel akut→niedrig/häufig gilt allgemein. Bei Notfall: Mittelwahl > Potenzwahl. Der Ärztetag-Beschluss 2022 entzieht der Homöopathie die offizielle ärztliche Weiterbildungsanerkennung. In der Notfallmedizin hat Homöopathie grundsätzlich keinen Platz.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Potenzwahl und aktuellem Status der Homöopathie sind korrekt?", checklist: [
+          { text: "Je akuter die Erkrankung, umso niedriger die Potenz und häufiger die Gabe", correct: true },
+          { text: "Bei hochakuten Fällen: zuerst das richtige Mittel, erst dann die ideale Potenz", correct: true },
+          { text: "Der Deutsche Ärztetag strich 2022 die Zusatzbezeichnung Homöopathie aus der MWBO", correct: true },
+          { text: "Homöopathie ist seit 2022 in der Notfallmedizin der Schulmedizin gleichgestellt", correct: false }
+        ], reveal: "In der Notfallmedizin hat Homöopathie grundsätzlich keinen Platz." }
       }
     ]
   })
