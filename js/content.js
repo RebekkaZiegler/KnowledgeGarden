@@ -2621,6 +2621,12 @@ makeDetailedPlant({
           { text: "5 Knochen, direkt als Verlängerung der Mittelhandknochen; kein eigener Merkspruch, da mit Ossa metacarpi identisch", correct: false },
         ],
         explanation: "Die 8 Handwurzelknochen (proximal nach distal): Os scaphoideum (Kahnbein), Os lunatum (Mondbein), Os triquetrum (Dreieckbein), Os pisiforme (Erbsenbein), Os trapezium (großes Vieleckbein), Os trapezoideum (kleines Vieleckbein), Os capitatum (Kopfbein), Os hamatum (Hakenbein). Der Merkspruch hilft, die Reihenfolge zu behalten.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Handwurzelknochen treffen zu?", checklist: [
+          { text: "Es gibt 8 Handwurzelknochen.", correct: true },
+          { text: "Sie liegen in zwei Reihen.", correct: true },
+          { text: "Ein Merkspruch hilft, ihre Reihenfolge zu behalten.", correct: true },
+          { text: "Es gibt 7 Handwurzelknochen ohne festen Merkspruch.", correct: false }
+        ], reveal: "Proximal nach distal: Kahnbein, Mondbein, Dreieckbein, Erbsenbein, großes und kleines Vieleckbein, Kopfbein, Hakenbein." },
       },
       {
         type: "mc",
@@ -2633,6 +2639,7 @@ makeDetailedPlant({
           { text: "Nur ein Gelenk: Humero-Ulnar-Gelenk", correct: false },
         ],
         explanation: "Das Ellenbogengelenk vereint drei Gelenke in einer Kapsel: 1. Art. humero radialis (Humerus – Radius), 2. Art. humero ulnaris (Humerus – Ulna, Hauptgelenk für Flexion/Extension), 3. Art. radio-ulnaris proximalis (Radius – Ulna, für Pronation/Supination). Alle drei Teilgelenke sind von einer gemeinsamen Gelenkkapsel umgeben.",
+        learningCard: { type: "reconstruct", template: "Das Ellenbogengelenk vereint drei Gelenke: Art. humero radialis, Art. humero ___ (Hauptgelenk für Flexion/Extension) und Art. ___ proximalis.", blanks: ["ulnaris", "radio-ulnaris"], distractors: ["carpalis", "femoralis"], reveal: "Alle drei Teilgelenke sind von einer gemeinsamen Gelenkkapsel umgeben." },
       },
       {
         type: "mc",
@@ -2645,6 +2652,7 @@ makeDetailedPlant({
           { text: "12 Phalangen: Daumen 2, Zeigefinger 2, restliche Finger 3", correct: false },
         ],
         explanation: "Daumen (Digitus I): nur Phalanx proximalis + distalis (kein Mittelglied). Finger II–V: je Phalanx proximalis (Grundglied), media (Mittelglied), distalis (Endglied). Summe: 2 + 3 + 3 + 3 + 3 = 14 Phalangen. Die Fingerglieder werden als „Digiti manus“ bezeichnet.",
+        learningCard: { type: "predict", statement: "Die Hand hat insgesamt 14 Phalangen — der Daumen hat nur 2, die anderen Finger je 3.", answer: true, reveal: "Finger II–V haben je Grund-, Mittel- und Endglied (3 Phalangen); der Daumen hat kein Mittelglied." },
       },
       {
         type: "mc",
@@ -2657,6 +2665,12 @@ makeDetailedPlant({
           { text: "Os capitatum (Kopfbein)", correct: false },
         ],
         explanation: "Das Os scaphoideum (Kahnbein) liegt radial in der proximalen Reihe der Handwurzel und ist an der anatomischen Tabatière tastbar. Es ist der häufigste frakturierte Handwurzelknochen (Sturz auf die ausgestreckte Hand). Besonderes Risiko: schlechte Blutversorgung → Gefahr der avaskulären Knochennekrose bei Fraktur.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Os scaphoideum liegt an der anatomischen Tabatière.", isWrong: false },
+          { text: "Es ist der häufigste frakturierte Handwurzelknochen.", isWrong: false },
+          { text: "Bei Fraktur droht eine avaskuläre Knochennekrose.", isWrong: false },
+          { text: "Das Os hamatum ist der häufigste frakturierte Handwurzelknochen.", isWrong: true }
+        ], whyWrong: "Das Os scaphoideum (Kahnbein) ist der am häufigsten frakturierte Handwurzelknochen — meist bei Sturz auf die ausgestreckte Hand." },
       },
       {
         type: "true_false",
@@ -2664,6 +2678,7 @@ makeDetailedPlant({
         statement: "Mittelhandknochen (Ossa metacarpalia) und Phalangen werden beide zu den Handknochen gezählt.",
         answer: true,
         explanation: "Der Handknochen-Komplex umfasst: 8 Handwurzelknochen (Carpus) + 5 Mittelhandknochen (Metacarpus: Ossa metacarpalia I–V) + 14 Fingerknochen (Phalangen). Zwischen Mittelhandknochen und Grundgliedern liegen Metakarpophalangealgelenke (MCP-Gelenke); zwischen den Phalangen liegen Interphalangealgelenke (PIP/DIP).",
+        learningCard: { type: "predict", statement: "Mittelhandknochen (Ossa metacarpalia) und Phalangen werden beide zu den Handknochen gezählt.", answer: true, reveal: "Der Handknochen-Komplex umfasst 8 Handwurzelknochen, 5 Mittelhandknochen und 14 Fingerknochen (Phalangen)." },
       },
     ],
     phase4Questions: [
@@ -2678,6 +2693,12 @@ makeDetailedPlant({
           { text: "Alle Bewegungen werden durch das Art. radio-ulnaris proximalis ermöglicht", correct: false },
         ],
         explanation: "Art. humero ulnaris: Scharniergelenk → Flexion/Extension. Art. radio-ulnaris proximalis (+ distalis): Drehgelenk → Pronation (Handinnenfläche nach unten) / Supination (Handinnenfläche nach oben). Art. humero radialis: beteiligt an Flexion/Extension und Pronation/Supination. Alle drei Teilgelenke arbeiten funktionell zusammen.",
+        learningCard: { type: "teachback", prompt: "Welche Bewegungen ermöglicht das Ellenbogengelenk?", checklist: [
+          { text: "Flexion und Extension über das Humero-Ulnar-Gelenk", correct: true },
+          { text: "Pronation und Supination über die Radioulnargelenke", correct: true },
+          { text: "Das Humero-Radial-Gelenk ist an beiden Bewegungen beteiligt", correct: true },
+          { text: "Abduktion und Adduktion", correct: false }
+        ], reveal: "Alle drei Teilgelenke des Ellenbogens arbeiten funktionell zusammen — Abduktion/Adduktion ist hier nicht möglich." },
       },
       {
         type: "mc",
@@ -2690,6 +2711,12 @@ makeDetailedPlant({
           { text: "Alle fünf Finger haben identisch 3 Phalangen", correct: false },
         ],
         explanation: "Carpus: 8 Knochen in 2 Reihen. Daumen: 2 Phalangen (kein Mittelglied). Metacarpalia: I–V vom Daumen (radial) zur Kleinfingenseite (ulnar). Daumen-Sonderstellung: ermöglicht Oppositionsbewegung (Daumenballengelenk = Sattelgelenk).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Handknochen treffen zu?", checklist: [
+          { text: "8 Handwurzelknochen bilden den Carpus in zwei Reihen.", correct: true },
+          { text: "Dem Daumen fehlt das Mittelglied.", correct: true },
+          { text: "Die Mittelhandknochen heißen Ossa metacarpalia I–V.", correct: true },
+          { text: "Alle fünf Finger haben identisch 3 Phalangen.", correct: false }
+        ], reveal: "Der Daumen hat nur 2 Phalangen — seine Sonderstellung ermöglicht die Oppositionsbewegung über das Daumensattelgelenk." },
       },
     ],
   }),
@@ -2709,6 +2736,7 @@ makeDetailedPlant({
           { text: "Es gibt keinen Merkspruch für die Fußwurzelknochen", correct: false },
         ],
         explanation: "Der Merkspruch „Springt die Ferse in den Kahn, kriegt sie dreimal Keile von dem Würfelbeine!“ enthält: Ferse = Calcaneus, Kahn = Os naviculare, dreimal Keile = 3 Ossa cuneiformia, Würfelbein = Os cuboideum. Der Talus (Sprungbein) ist das Verbindungsgelenk, das in der Malleolengabel sitzt.",
+        learningCard: { type: "reconstruct", template: "Der Merkspruch für die Fußwurzelknochen nennt: Ferse (___), Kahn (Os naviculare), dreimal Keile (Ossa cuneiformia) und ___ (Os cuboideum).", blanks: ["Calcaneus", "Würfelbein"], distractors: ["Talus", "Metatarsale"], reveal: "Der Talus (Sprungbein) ist das Verbindungsgelenk, das in der Malleolengabel sitzt." },
       },
       {
         type: "mc",
@@ -2721,6 +2749,12 @@ makeDetailedPlant({
           { text: "Oberes: nur Extension; unteres: nur Flexion", correct: false },
         ],
         explanation: "Oberes Sprunggelenk (Articulatio talocruralis): Tibia + Fibula (Malleolengabel) + Talus → Scharniergelenk; Bewegungen: Dorsalextension (Fuß hochziehen) und Plantarflexion (Fußspitze strecken). Unteres Sprunggelenk: Talus + Calcaneus + Os naviculare → Zapfengelenk; Bewegungen: Pronation (Fußaußenrand hebt) und Supination (Fußinnenrand hebt).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Sprunggelenken treffen zu?", checklist: [
+          { text: "Das obere Sprunggelenk ist ein Scharniergelenk für Dorsalextension/Plantarflexion.", correct: true },
+          { text: "Das untere Sprunggelenk ist ein Zapfengelenk für Pronation/Supination.", correct: true },
+          { text: "Beide Gelenke haben unterschiedliche Bewegungsachsen.", correct: true },
+          { text: "Beide Sprunggelenke ermöglichen identische Bewegungen.", correct: false }
+        ], reveal: "Das obere Sprunggelenk liegt zwischen Malleolengabel und Talus, das untere zwischen Talus, Calcaneus und Os naviculare." },
       },
       {
         type: "mc",
@@ -2733,6 +2767,7 @@ makeDetailedPlant({
           { text: "Calcaneus und Tibia allein", correct: false },
         ],
         explanation: "Das obere Sprunggelenk (Articulatio talocruralis) wird durch die Malleolengabel – bestehend aus dem Innenknöchel (Malleolus medialis = unteres Ende der Tibia) und dem Außenknöchel (Malleolus lateralis = unteres Ende der Fibula) – gebildet, die den Talus umfasst. Die tastbaren Knöchel sind die Malleolen.",
+        learningCard: { type: "predict", statement: "Das obere Sprunggelenk wird von Tibia, Fibula (Malleolengabel) und dem Talus gebildet.", answer: true, reveal: "Die Malleolengabel besteht aus Innenknöchel (Tibia) und Außenknöchel (Fibula) — den tastbaren Knöcheln." },
       },
       {
         type: "mc",
@@ -2745,6 +2780,7 @@ makeDetailedPlant({
           { text: "Proximaler, medialer und distaler Fußabschnitt", correct: false },
         ],
         explanation: "Der Fuß gliedert sich anatomisch in: 1. Tarsus (Fußwurzel): 7 Knochen, 2. Metatarsus (Mittelfuß): 5 Ossa metatarsalia I–V (vom großen Zeh ausgehend), 3. Digiti (Zehen): 14 Phalangen – Großzeh 2, Zehen II–V je 3. Analoges Bauprinzip wie bei der Hand.",
+        learningCard: { type: "reconstruct", template: "Der Fuß gliedert sich in ___ (Fußwurzel), ___ (Mittelfuß) und Digiti (Zehen).", blanks: ["Tarsus", "Metatarsus"], distractors: ["Carpus", "Metacarpus"], reveal: "Das ist dasselbe Bauprinzip wie bei der Hand — Tarsus hat 7 Knochen, Metatarsus 5 Ossa metatarsalia." },
       },
       {
         type: "true_false",
@@ -2752,6 +2788,7 @@ makeDetailedPlant({
         statement: "Der Calcaneus (Fersenbein) ist der größte Knochen des Fußes.",
         answer: true,
         explanation: "Der Calcaneus ist der größte und kräftigste Knochen des Tarsus und bildet die Fersenauflage. An ihm setzt die Achillessehne (Tendo calcaneus) an. Über den Talus, der auf dem Calcaneus sitzt, werden Körpergewicht und Stoßbelastungen auf den Fuß übertragen.",
+        learningCard: { type: "predict", statement: "Der Calcaneus (Fersenbein) ist der größte Knochen des Fußes.", answer: true, reveal: "An ihm setzt die Achillessehne an; über den auf ihm sitzenden Talus werden Körpergewicht und Stoßbelastungen übertragen." },
       },
     ],
     phase4Questions: [
@@ -2766,6 +2803,12 @@ makeDetailedPlant({
           { text: "Das obere Sprunggelenk ist ein Zapfengelenk für Rotationsbewegungen", correct: false },
         ],
         explanation: "Tarsus: 7 Knochen. Oberes Sprunggelenk: Scharniergelenk (Dorsalextension/Plantarflexion) zwischen Malleolengabel und Talus. Unteres Sprunggelenk: Zapfengelenk (Pronation/Supination). Analoges Prinzip wie Handgelenke: proximale und distale Reihen mit je spezifischen Bewegungsachsen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Fußknochen und Sprunggelenken treffen zu?", checklist: [
+          { text: "Der Tarsus besteht aus 7 Knochen.", correct: true },
+          { text: "Das obere Sprunggelenk sitzt zwischen Malleolengabel und Talus.", correct: true },
+          { text: "Das untere Sprunggelenk ermöglicht Pronation und Supination.", correct: true },
+          { text: "Das obere Sprunggelenk ist ein Zapfengelenk für Rotation.", correct: false }
+        ], reveal: "Das obere Sprunggelenk ist ein Scharniergelenk (Dorsalextension/Plantarflexion) — Rotation übernimmt das untere Sprunggelenk." },
       },
       {
         type: "mc",
@@ -2778,6 +2821,7 @@ makeDetailedPlant({
           { text: "Fußgewölbeprobleme betreffen ausschließlich das obere Sprunggelenk", correct: false },
         ],
         explanation: "Das Fußgewölbe wirkt als Stoßdämpfer. Ein Plattfuß oder Hohlfuß verändert die Belastungsachse der gesamten unteren Extremität: Fehlrotationen im Unterschenkel und am Knie, veränderte Beckenstellung, Fehlbelastung der Lendenwirbelsäule. Ungünstige Fußgewölbe können daher Knieschmerzen, Hüftprobleme und Rückenbeschwerden verursachen.",
+        learningCard: { type: "predict", statement: "Fehlbelastungen im Fußgewölbe können die Achsenverhältnisse der gesamten unteren Extremität und Wirbelsäule verändern.", answer: true, reveal: "Ein Platt- oder Hohlfuß kann so Knieschmerzen, Hüftprobleme und Rückenbeschwerden verursachen." },
       },
     ],
   }),
@@ -2797,6 +2841,12 @@ makeDetailedPlant({
           { text: "Genu varum ist immer behandlungsbedürftig und pathologisch; Genu valgum ist bei Kleinkindern (2.–6. Lj.) vollständig physiologisch", correct: false },
         ],
         explanation: "Genu varum (O-Bein): Der mediale Winkel am Kniegelenk ist kleiner als der physiologische Wert → Beine weichen bogenförmig nach außen aus (wie ein ‚O'). Genu valgum (X-Bein): Der mediale Winkel ist größer → Knie krümmen sich nach innen (wie ein ‚X'). Physiologisch: Winkel Collum/Corpus femoris ≈ 126–128° beim Erwachsenen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Genu varum (O-Bein) bedeutet, die Beine weichen nach außen aus.", isWrong: false },
+          { text: "Genu valgum (X-Bein) bedeutet, die Knie krümmen sich nach innen.", isWrong: false },
+          { text: "Der physiologische Winkel Collum/Corpus femoris liegt bei ca. 126–128°.", isWrong: false },
+          { text: "Genu varum und Genu valgum bezeichnen dasselbe Fehlstellungsbild.", isWrong: true }
+        ], whyWrong: "Genu varum (O-Bein) und Genu valgum (X-Bein) sind entgegengesetzte Fehlstellungen — der mediale Kniewinkel ist einmal kleiner, einmal größer als physiologisch." },
       },
       {
         type: "mc",
@@ -2809,6 +2859,7 @@ makeDetailedPlant({
           { text: "Der Knochen ist hier knorpelartig und nicht mineralisiert", correct: false },
         ],
         explanation: "Das Collum femoris (Oberschenkelhals) verbindet den Caput femoris schräg mit dem Corpus femoris. Hohe Torsions- und Scherkräfte wirken auf diesen Bereich. Bei Osteoporose (häufig postmenopausal) nimmt die Knochendichte gerade hier stark ab. Sturz → Schenkelhals­fraktur = häufigste Fraktur älterer Menschen, oft mit Operationsbedarf (Endoprothese).",
+        learningCard: { type: "predict", statement: "Das Collum femoris ist bei älteren Menschen besonders frakturgefährdet, weil hohe Torsionskräfte auf einen durch Osteoporose geschwächten Knochen treffen.", answer: true, reveal: "Ein Sturz führt dort häufig zur Schenkelhalsfraktur — der häufigsten Fraktur älterer Menschen, oft mit Operationsbedarf." },
       },
       {
         type: "mc",
@@ -2822,6 +2873,7 @@ makeDetailedPlant({
           { text: "Seitenbänder (Lig. collaterale tibiale und fibulare)", correct: false },
         ],
         explanation: "Die Kreuzbänder (vorderes + hinteres) kreuzen sich im Innern des Kniegelenks und sind bei gebeugtem Knie gespannt → sichern das Gelenk gegen Schub. Seitenbänder sind bei gestrecktem Knie gespannt → verhindern Rotation in Streckstellung. Menisci dienen der Druckentlastung. Alle vier Strukturen wirken zusammen.",
+        learningCard: { type: "predict", statement: "Vorderes und hinteres Kreuzband sichern die Stabilität des Kniegelenks in Beugestellung.", answer: true, reveal: "Die Seitenbänder sind dagegen bei gestrecktem Knie gespannt und verhindern dort Rotation; alle Strukturen wirken zusammen." },
       },
       {
         type: "mc",
@@ -2834,6 +2886,12 @@ makeDetailedPlant({
           { text: "Nur dekorative Strukturen ohne biomechanische Bedeutung", correct: false },
         ],
         explanation: "Menisci (medialer und lateraler Meniskus): Halbmondförmige Faserknorpelscheiben, die der unebenen Kontaktfläche zwischen Femur und Tibia aufgelagert sind. Funktion: Druckverteilung, Stoßdämpfung, Flächenvergrößerung, Stabilisierung. Vergleichbar mit Bandscheiben der Wirbelsäule. Meniskusrisse sind häufige Sportverletzungen.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen haben die Menisci im Kniegelenk?", checklist: [
+          { text: "Druckverteilung zwischen Femur und Tibia", correct: true },
+          { text: "Stoßdämpfung", correct: true },
+          { text: "Vergrößerung der Gelenkfläche", correct: true },
+          { text: "Produktion von Synovia", correct: false }
+        ], reveal: "Menisci sind Faserknorpelscheiben, vergleichbar mit den Bandscheiben der Wirbelsäule — Synovia wird von der Membrana synovialis produziert, nicht von den Menisci." },
       },
       {
         type: "true_false",
@@ -2841,6 +2899,7 @@ makeDetailedPlant({
         statement: "Das Femur (Oberschenkelknochen) ist der größte, stärkste und längste Röhrenknochen des menschlichen Körpers.",
         answer: true,
         explanation: "Das Femur trägt das gesamte Körpergewicht beim Gehen und Stehen. Wichtige anatomische Landmarken: Caput femoris (Gelenkkopf im Acetabulum), Collum femoris (Schenkelhals, Frakturstelle), Trochanter major und minor (Muskelansätze), Condylus medialis und lateralis (Gelenkknochen des Kniegelenks). Die Körpergröße eines Menschen korreliert mit der Femurlänge.",
+        learningCard: { type: "predict", statement: "Das Femur ist der größte, stärkste und längste Röhrenknochen des menschlichen Körpers.", answer: true, reveal: "Wichtige Landmarken sind Caput femoris, Collum femoris, Trochanter major/minor sowie Condylus medialis/lateralis." },
       },
     ],
     phase4Questions: [
@@ -2855,6 +2914,12 @@ makeDetailedPlant({
           { text: "Das Kniegelenk ist ein einfaches Scharniergelenk ohne Sonderstrukturen", correct: false },
         ],
         explanation: "Kniegelenk: Femorotibialgelenk (Mischform aus Rad- und Scharniergelenk = Drehwinkelgelenk) + Femoropatellargelenk. Stabilisierung durch: Kreuzbänder (in Beugung), Seitenbänder (in Streckung), Menisci (Druckverteilung), Patella (Hebelarm). Das Knie ist eher instabil knöchern → daher so viele Sonderstrukturen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Kniegelenk treffen zu?", checklist: [
+          { text: "Es ist das größte und komplexeste Gelenk des Bewegungsapparates.", correct: true },
+          { text: "Kreuzbänder sichern es in Beugestellung, Seitenbänder in Streckstellung.", correct: true },
+          { text: "Menisci dienen als Druckverteiler.", correct: true },
+          { text: "Es ist ein einfaches Scharniergelenk ohne Sonderstrukturen.", correct: false }
+        ], reveal: "Das Knie ist knöchern eher instabil — deshalb braucht es so viele stabilisierende Sonderstrukturen." },
       },
       {
         type: "mc",
@@ -2867,6 +2932,7 @@ makeDetailedPlant({
           { text: "Condylus medialis ist ausschließlich ein Muskelansatz ohne Gelenkfunktion", correct: false },
         ],
         explanation: "Klinisch relevant am Femur: 1. Collum femoris → Schenkelhals­fraktur bei Osteoporose/Sturz, oft Endoprothese nötig. 2. Trochanter major → Orientierungspunkt für dorsoglutäale Injektion (Ventroglutäalmethode bevorzugt). 3. Condylus medialis/lateralis → Kniegelenkflächen. 4. Genu varum/valgum → Achsfehlstellungen mit Langzeitfolgen für Knie/Hüfte.",
+        learningCard: { type: "reconstruct", template: "Klinisch relevant am Femur: ___ (Frakturstelle bei Älteren) und ___ (Orientierungspunkt für Injektionen).", blanks: ["Collum femoris", "Trochanter major"], distractors: ["Condylus medialis", "Linea aspera"], reveal: "Genu varum/valgum (Achsfehlstellungen) haben zudem Langzeitfolgen für Knie und Hüfte." },
       },
     ],
   }),
@@ -2886,6 +2952,12 @@ makeDetailedPlant({
           { text: "Nur drei Typen: Symphyse, Synostose und Syndesmose", correct: false },
         ],
         explanation: "Synarthrosen (unechte Gelenke, keine Gelenkhöhle): Knorpelgelenke: 1. Symphyse (Faserknorpel, z.B. Schambeinfuge), 2. Synchondrose (hyaliner Knorpel, z.B. Synchondrosis xiphosternalis). Bindegewebsgelenke: 3. Sutur (Schädelnaht, → verknöchert zur Synostose), 4. Syndesmose (Bindegewebe, z.B. Membrana interossea cruris Tibia–Fibula), 5. Gomphose (Einkeilen: Zähne in Alveolen), 6. Synostose (knöchern: Os sacrum).",
+        learningCard: { type: "teachback", prompt: "Welche Typen von Synarthrosen gehören zu den sechs Grundformen?", checklist: [
+          { text: "Symphyse", correct: true },
+          { text: "Synchondrose", correct: true },
+          { text: "Sutur, Syndesmose, Gomphose und Synostose", correct: true },
+          { text: "Kugelgelenk", correct: false }
+        ], reveal: "Das Kugelgelenk ist ein echtes Gelenk (Diarthrose), keine Synarthrose — Synarthrosen haben keine Gelenkhöhle." },
       },
       {
         type: "mc",
@@ -2898,6 +2970,12 @@ makeDetailedPlant({
           { text: "Symphyse: ausschließlich an Schädelnähten zwischen Scheitel- und Stirnbein; Synchondrose: ausschließlich im Becken als Schambeinfuge", correct: false },
         ],
         explanation: "Symphyse: zwei Knochen durch Faserknorpel verbunden. Beispiele: Symphysis pubica (Schambeinfuge), Symphysis intervertebralis (Bandscheiben). Synchondrose: Verbindung durch hyalinen Knorpel. Beispiele: Synchondrosis xiphosternalis (Schwertfortsatz–Sternum), Synchondrosis sphenooccipitalis (Keilbein–Hinterhauptsbein, verknöchert ~18. Lj.). Beide erlauben minimale Federbewegungen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Eine Symphyse verbindet Knochen durch Faserknorpel.", isWrong: false },
+          { text: "Eine Synchondrose verbindet Knochen durch hyalinen Knorpel.", isWrong: false },
+          { text: "Die Schambeinfuge ist ein Beispiel für eine Symphyse.", isWrong: false },
+          { text: "Symphyse und Synchondrose bestehen beide aus hyalinem Knorpel.", isWrong: true }
+        ], whyWrong: "Die Symphyse besteht aus Faserknorpel, nur die Synchondrose besteht aus hyalinem Knorpel — das ist gerade der Unterschied." },
       },
       {
         type: "mc",
@@ -2911,6 +2989,7 @@ makeDetailedPlant({
           { text: "Keine freie Bewegung möglich, da es eine Synostose ist", correct: false },
         ],
         explanation: "Unteres Kopfgelenk (Atlantoaxialgelenk, C1–C2): Zapfengelenk. Der Dens axis (Zahn des Axis, C2 – Wirbelkörper des Atlas) ragt in den vorderen Atlasbogen. Das Ligamentum transversum atlantis hält den Dens axis fest und verhindert seine Verschiebung ins Rückenmark. Bei Riss dieses Bandes → Lebensgefahr! Drehung ca. 30° nach jeder Seite.",
+        learningCard: { type: "predict", statement: "Das untere Kopfgelenk (Atlantoaxialgelenk) ermöglicht die Drehbewegung des Kopfes, gesichert durch das Ligamentum transversum atlantis.", answer: true, reveal: "Das Band hält den Dens axis fest — bei seinem Riss droht Lebensgefahr durch Verschiebung des Dens ins Rückenmark." },
       },
       {
         type: "mc",
@@ -2923,6 +3002,7 @@ makeDetailedPlant({
           { text: "Das Kaugelenk ermöglicht das Nicken", correct: false },
         ],
         explanation: "Oberes Kopfgelenk (Atlantooccipitalgelenk): bildet sich zwischen den Gelenkflächen des Atlas (C1) und den Kondylen des Os occipitale. Es ist ein Eigelenk (Kondylarthrose) → ermöglicht das Nicken (Flexion/Extension des Kopfes). Unteres Kopfgelenk (Atlantoaxialgelenk): Atlas–Axis → Drehen (Rotation). Zusammen bilden beide Gelenke die Kopfgelenke.",
+        learningCard: { type: "reconstruct", template: "Das ___ Kopfgelenk (zwischen Atlas und Os occipitale) ermöglicht das Nicken; das ___ Kopfgelenk (Atlas–Axis) ermöglicht die Drehung.", blanks: ["obere", "untere"], distractors: ["mittlere", "seitliche"], reveal: "Zusammen bilden beide Gelenke die Kopfgelenke." },
       },
       {
         type: "true_false",
@@ -2930,6 +3010,7 @@ makeDetailedPlant({
         statement: "Eine Syndesmose ist eine bindegewebige Verbindung zweier Knochen; ein Beispiel ist die Membrana interossea cruris zwischen Tibia und Fibula.",
         answer: true,
         explanation: "Bei der Syndesmose werden zwei Knochen durch kollagene oder elastische Bindegewebsfasern (Membrana interossea) zusammengehalten. Die Membrana interossea cruris zwischen Tibia und Fibula dient gleichzeitig als Ursprungsfläche für Muskeln. Eine Syndesmose erlaubt geringfügige Mikrobewegungen und überträgt Kräfte – daher ist eine Verletzung (z.B. bei Knöchelbruch) klinisch relevant.",
+        learningCard: { type: "predict", statement: "Eine Syndesmose ist eine bindegewebige Verbindung zweier Knochen, wie die Membrana interossea cruris zwischen Tibia und Fibula.", answer: true, reveal: "Sie erlaubt geringfügige Mikrobewegungen und überträgt Kräfte — eine Verletzung, etwa bei einem Knöchelbruch, ist klinisch relevant." },
       },
     ],
     phase4Questions: [
@@ -2944,6 +3025,12 @@ makeDetailedPlant({
           { text: "Synchondrosen sind knöcherne Verbindungen ohne Knorpelanteil", correct: false },
         ],
         explanation: "Symphyse: Faserknorpel (Bandscheiben, Schambeinfuge). Sutur → Synostose: Entwicklung der Schädelknochen. Gomphose: Zahnverankerung. Synchondrose: hyaliner Knorpel (nicht knöchern) – Beispiel: Epiphysenfuge ist funktionell eine Synchondrose. Synostose: echte knöcherne Fusion (Os sacrum aus fusionierten Wirbelkörpern).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Synarthrosen-Subtypen treffen zu?", checklist: [
+          { text: "Symphysen verbinden Knochen durch Faserknorpel.", correct: true },
+          { text: "Suturen verknöchern im Alter zu Synostosen.", correct: true },
+          { text: "Gomphosen verankern Zähne in den Alveolen.", correct: true },
+          { text: "Synchondrosen sind knöcherne Verbindungen ohne Knorpelanteil.", correct: false }
+        ], reveal: "Synchondrosen bestehen gerade aus hyalinem Knorpel, nicht aus Knochen — die Epiphysenfuge ist funktionell eine Synchondrose." },
       },
       {
         type: "mc",
@@ -2956,6 +3043,7 @@ makeDetailedPlant({
           { text: "Es ist klinisch wenig bedeutsam, da es sich leicht regeneriert", correct: false },
         ],
         explanation: "Das Lig. transversum atlantis hält den Dens axis des Axis (C2) sicher im vorderen Atlasbogen. Bei Riss (z.B. Hochrasanztrauma, rheumatoide Arthritis mit Ligamentlockerung) kann der Dens axis nach dorsal in das Rückenmark eindringen → Tetraplegie oder Tod. Klinisch: Ausschluss einer atlantoaxialen Instabilität vor Narkoseeinleitung (Intubation) bei RA-Patienten.",
+        learningCard: { type: "predict", statement: "Das Ligamentum transversum atlantis hält den Dens axis in Position — bei einem Riss droht eine Kompression des Rückenmarks.", answer: true, reveal: "Deshalb wird bei rheumatoider Arthritis vor einer Intubationsnarkose eine atlantoaxiale Instabilität ausgeschlossen." },
       },
     ],
   }),
