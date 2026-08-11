@@ -40,20 +40,29 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Atmung, Wachstum, Erregbarkeit und Verdauung", correct: false },
         { text: "Stoffwechsel, Magnetismus, Reproduktion und Bewegung", correct: false },
         { text: "Zellteilung, Osmoregulation, Reizbarkeit und Atmung", correct: false }
-      ], explanation: "Die vier Grundeigenschaften des Lebens – Stoffwechsel, Wachstum, Reizbarkeit und Reproduktion – muss jede Zelle besitzen. Kein subzelluläres Element (Organelle, Molekül) erfüllt alle vier gleichzeitig." },
+      ], explanation: "Die vier Grundeigenschaften des Lebens – Stoffwechsel, Wachstum, Reizbarkeit und Reproduktion – muss jede Zelle besitzen. Kein subzelluläres Element (Organelle, Molekül) erfüllt alle vier gleichzeitig.", learningCard: { type: "reconstruct", template: "Die vier Grundeigenschaften des Lebens sind ___, ___, ___ und ___, die jede Zelle besitzen muss.", blanks: ["Stoffwechsel", "Wachstum", "Reizbarkeit", "Reproduktion"], distractors: ["Atmung", "Bewegung"] } },
       { id: "zb_h2", type: "mc", question: "Was bezeichnen die Begriffe Morphologie und Physiologie im Zellkontext?", options: [
         { text: "Morphologie = Aufbau/Form der Zelle; Physiologie = Funktion/Prozesse der Zelle", correct: true },
         { text: "Morphologie = Funktion; Physiologie = Aufbau", correct: false },
         { text: "Morphologie = Zellkern; Physiologie = Zytoplasma", correct: false },
         { text: "Beide Begriffe bezeichnen dasselbe – den Zellstoffwechsel", correct: false }
-      ], explanation: "Der Zellbegriff verbindet Morphologie (griech. morphe = Form: Aufbau, Grösse, Gestalt der Zelle) mit Physiologie (griech. physis = Natur: Funktion, Stoffwechsel, Prozesse). Struktur erklärt Funktion – das Kernprinzip der Zytologie." },
-      { id: "zb_h3", type: "true_false", statement: "Die Organisationsebenen von der Zelle bis zum Organismus lauten: Zelle → Gewebe → Organ → Organsystem → Organismus.", answer: true, explanation: "Diese Hierarchie ist das Grundprinzip biologischer Organisation: Gleichartig differenzierte Zellen bilden Gewebe, Gewebe organisieren sich zu Organen, Organe zu Organsystemen und diese zusammen zum Organismus." },
+      ], explanation: "Der Zellbegriff verbindet Morphologie (griech. morphe = Form: Aufbau, Grösse, Gestalt der Zelle) mit Physiologie (griech. physis = Natur: Funktion, Stoffwechsel, Prozesse). Struktur erklärt Funktion – das Kernprinzip der Zytologie.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Morphologie und Physiologie treffen zu?", checklist: [
+        { text: "Morphologie bezeichnet Aufbau, Grösse und Form der Zelle.", correct: true },
+        { text: "Physiologie bezeichnet Funktion und Stoffwechsel der Zelle.", correct: true },
+        { text: "Morphologie und Physiologie bezeichnen beide dasselbe: den Zellstoffwechsel.", correct: false }
+      ], reveal: "Der Zellbegriff verbindet Morphologie (Aufbau, Form der Zelle) mit Physiologie (Funktion, Prozesse der Zelle). Struktur erklärt Funktion – das Kernprinzip der Zytologie." } },
+      { id: "zb_h3", type: "true_false", statement: "Die Organisationsebenen von der Zelle bis zum Organismus lauten: Zelle → Gewebe → Organ → Organsystem → Organismus.", answer: true, explanation: "Diese Hierarchie ist das Grundprinzip biologischer Organisation: Gleichartig differenzierte Zellen bilden Gewebe, Gewebe organisieren sich zu Organen, Organe zu Organsystemen und diese zusammen zum Organismus.", learningCard: { type: "predict", statement: "Die Organisationsebenen von der Zelle bis zum Organismus lauten: Zelle → Gewebe → Organ → Organsystem → Organismus.", answer: true, reveal: "Diese Hierarchie ist das Grundprinzip biologischer Organisation: Gleichartig differenzierte Zellen bilden Gewebe, Gewebe organisieren sich zu Organen, Organe zu Organsystemen und diese zusammen zum Organismus." } },
       { id: "zb_h6", type: "mc", question: "In welche Kategorie des hierarchischen Aufbaus ist 'Leber' einzuordnen?", options: [
         { text: "Organ (besteht aus mehreren Gewebetypen)", correct: true },
         { text: "Gewebe (gleichartige Zellen mit gemeinsamer Funktion)", correct: false },
         { text: "Organsystem (funktionell verknüpfte Organe)", correct: false },
         { text: "Zelle (kleinste Einheit)", correct: false }
-      ], explanation: "Die Leber ist ein Organ: Sie besteht aus mehreren Gewebetypen (Leberparenchymzellen/Hepatozyten, Bindegewebe, Gefässe, Gallengänge). Das Verdauungssystem wäre dagegen das Organsystem, zu dem die Leber gehört." }
+      ], explanation: "Die Leber ist ein Organ: Sie besteht aus mehreren Gewebetypen (Leberparenchymzellen/Hepatozyten, Bindegewebe, Gefässe, Gallengänge). Das Verdauungssystem wäre dagegen das Organsystem, zu dem die Leber gehört.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Leber ist ein Organ.", isWrong: false },
+        { text: "Die Leber besteht aus mehreren Gewebetypen wie Hepatozyten und Bindegewebe.", isWrong: false },
+        { text: "Die Leber gehört zum Organsystem Verdauungssystem.", isWrong: false },
+        { text: "Die Leber ist selbst ein Organsystem.", isWrong: true }
+      ], whyWrong: "Die Leber ist kein Organsystem, sondern ein Organ, das aus mehreren Gewebetypen besteht und zum Organsystem Verdauungssystem gehört." } }
     ],
     phase4Questions: [
       { id: "zb_mc1", type: "mc", question: "Welche Aussagen zur biologischen Organisationshierarchie sind korrekt?", options: [
@@ -61,15 +70,24 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Organe sind kleiner als Gewebe", correct: false },
         { text: "Gleichartig differenzierte Zellen bilden einen Gewebeverband", correct: true },
         { text: "Ein Organismus besteht aus maximal einem Organsystem", correct: false }
-      ], explanation: "Zellen sind die Grundbausteine des Lebens: Gleichartige Zellen bilden Gewebe, Gewebe verbinden sich zu Organen, Organe zu Organsystemen und diese zum Organismus." }
+      ], explanation: "Zellen sind die Grundbausteine des Lebens: Gleichartige Zellen bilden Gewebe, Gewebe verbinden sich zu Organen, Organe zu Organsystemen und diese zum Organismus.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur biologischen Organisationshierarchie treffen zu?", checklist: [
+        { text: "Zellen bilden Gewebe, Gewebe bilden Organe.", correct: true },
+        { text: "Gleichartig differenzierte Zellen bilden einen Gewebeverband.", correct: true },
+        { text: "Organe sind kleiner als Gewebe.", correct: false }
+      ], reveal: "Zellen sind die Grundbausteine des Lebens: Gleichartige Zellen bilden Gewebe, Gewebe verbinden sich zu Organen, Organe zu Organsystemen und diese zum Organismus." } }
     ]
   }),
   makeDetailedPlant({
     id: "zelle_viren_einzeller",
     title: "Viren und Einzeller",
     harvestQuestions: [
-      { id: "zb_h4", type: "true_false", statement: "Virionen (Viren) gelten als kleinste lebensfähige Einheiten, da sie sich reproduzieren können.", answer: false, explanation: "Viren sind keine Zellen und gelten nicht als lebensfähig: Sie besitzen keinen eigenen Stoffwechsel und können sich nur unter Nutzung der Replikationsmaschinerie einer Wirtszelle vermehren. Sie erfüllen nicht alle vier Grundeigenschaften des Lebens eigenständig." },
-      { id: "zb_h5", type: "true_false", statement: "Einzeller wie Amöben oder Paramecien sind vollständige Organismen, die alle Lebensfunktionen in einer Zelle vereinen.", answer: true, explanation: "Protozoen (tierische Einzeller) wie Amöben und Paramecien erledigen Ernährung, Bewegung, Reizaufnahme und Fortpflanzung in einer einzigen Zelle – ohne Gewebeverband. Sie belegen, dass die Zelle selbst die kleinste lebensfähige Einheit ist." }
+      { id: "zb_h4", type: "true_false", statement: "Virionen (Viren) gelten als kleinste lebensfähige Einheiten, da sie sich reproduzieren können.", answer: false, explanation: "Viren sind keine Zellen und gelten nicht als lebensfähig: Sie besitzen keinen eigenen Stoffwechsel und können sich nur unter Nutzung der Replikationsmaschinerie einer Wirtszelle vermehren. Sie erfüllen nicht alle vier Grundeigenschaften des Lebens eigenständig.", learningCard: { type: "predict", statement: "Viren gelten als lebensfähig, weil sie sich eigenständig reproduzieren können.", answer: false, reveal: "Viren sind keine Zellen und gelten nicht als lebensfähig: Sie besitzen keinen eigenen Stoffwechsel und können sich nur unter Nutzung der Replikationsmaschinerie einer Wirtszelle vermehren. Sie erfüllen nicht alle vier Grundeigenschaften des Lebens eigenständig." } },
+      { id: "zb_h5", type: "true_false", statement: "Einzeller wie Amöben oder Paramecien sind vollständige Organismen, die alle Lebensfunktionen in einer Zelle vereinen.", answer: true, explanation: "Protozoen (tierische Einzeller) wie Amöben und Paramecien erledigen Ernährung, Bewegung, Reizaufnahme und Fortpflanzung in einer einzigen Zelle – ohne Gewebeverband. Sie belegen, dass die Zelle selbst die kleinste lebensfähige Einheit ist.", learningCard: { type: "teachback", prompt: "Welche Lebensfunktionen erledigen Einzeller wie Amöben oder Paramecien in einer einzigen Zelle?", checklist: [
+        { text: "Ernährung", correct: true },
+        { text: "Bewegung", correct: true },
+        { text: "Reizaufnahme und Fortpflanzung", correct: true },
+        { text: "Nur Fortpflanzung, alles andere übernimmt ein Gewebeverband", correct: false }
+      ], reveal: "Protozoen (tierische Einzeller) wie Amöben und Paramecien erledigen Ernährung, Bewegung, Reizaufnahme und Fortpflanzung in einer einzigen Zelle – ohne Gewebeverband. Sie belegen, dass die Zelle selbst die kleinste lebensfähige Einheit ist." } }
     ],
     phase4Questions: [
       { id: "zb_mc2", type: "mc", question: "Warum gelten Viren nicht als lebende Zellen?", options: [
@@ -77,7 +95,12 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Sie sind zu gross für eine Zelle", correct: false },
         { text: "Sie besitzen keine Nukleinsäuren", correct: false },
         { text: "Sie fehlen in prokaryonten Organismen", correct: false }
-      ], explanation: "Viren besitzen keinen eigenen Stoffwechsel und keine Zellstruktur, weshalb sie sich nur durch Nutzung des Stoffwechsels einer Wirtszelle vermehren können." }
+      ], explanation: "Viren besitzen keinen eigenen Stoffwechsel und keine Zellstruktur, weshalb sie sich nur durch Nutzung des Stoffwechsels einer Wirtszelle vermehren können.", learningCard: { type: "oddoneout", statements: [
+        { text: "Viren besitzen keinen eigenen Stoffwechsel.", isWrong: false },
+        { text: "Viren können sich nur durch Nutzung des Stoffwechsels einer Wirtszelle vermehren.", isWrong: false },
+        { text: "Viren besitzen keine eigenständige Zellstruktur.", isWrong: false },
+        { text: "Viren sind zu gross, um in eine Zelle zu passen.", isWrong: true }
+      ], whyWrong: "Viren sind nicht zu gross für eine Zelle – im Gegenteil, sie sind winzig. Der eigentliche Grund ist, dass ihnen ein eigener Stoffwechsel fehlt und sie deshalb die Replikationsmaschinerie einer Wirtszelle nutzen müssen." } }
     ]
   }),
   makeDetailedPlant({
@@ -89,22 +112,37 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Ca. 7–8 Mikrometer", correct: false },
         { text: "Ca. 1–2 Mikrometer", correct: false },
         { text: "Ca. 500 Mikrometer", correct: false }
-      ], explanation: "Die Eizelle hat ca. 120 µm Durchmesser und ist damit gerade noch mit blossem Auge sichtbar. Zum Vergleich: Erythrozyten sind ca. 7–8 µm (bikonkave Scheiben), Bakterien ca. 1–2 µm." },
+      ], explanation: "Die Eizelle hat ca. 120 µm Durchmesser und ist damit gerade noch mit blossem Auge sichtbar. Zum Vergleich: Erythrozyten sind ca. 7–8 µm (bikonkave Scheiben), Bakterien ca. 1–2 µm.", learningCard: { type: "reconstruct", template: "Die grösste menschliche Zelle ist die ___ mit einem Durchmesser von ca. 120 ___.", blanks: ["Eizelle", "Mikrometer"], distractors: ["Erythrozyt", "Millimeter"] } },
       { id: "zf_h2", type: "mc", question: "Welche Zellform erleichtert die Verformbarkeit beim Durchqueren enger Kapillaren?", options: [
         { text: "Bikonkave Scheibenform (Erythrozyten)", correct: true },
         { text: "Kugelige Form (Lymphozyten)", correct: false },
         { text: "Spindelform (Muskelfasern)", correct: false },
         { text: "Pseudopodienform (Makrophagen)", correct: false }
-      ], explanation: "Die bikonkave Scheibenform der Erythrozyten ist eine spezifische Anpassung: Sie maximiert die Diffusionsoberfläche für den Gasaustausch und ermöglicht die extreme Verformbarkeit beim Passieren von Kapillaren mit nur 3–4 µm Durchmesser – kleiner als der Erythrozyt selbst." },
-      { id: "zf_h3", type: "true_false", statement: "Thrombozyten sind keine vollständigen Zellen, sondern kernlose Membranfragmente, die von Megakaryozyten im Knochenmark abgeschnürt werden.", answer: true, explanation: "Thrombozyten entstehen durch Fragmentierung von Megakaryozyten im Knochenmark. Sie besitzen keinen Zellkern, keine DNA und können sich nicht teilen. Trotzdem sind sie lebenswichtige Zellstrukturen für die Hämostase (Blutgerinnung)." },
-      { id: "zf_h4", type: "true_false", statement: "Reife Erythrozyten besitzen Mitochondrien für ihre ATP-Versorgung.", answer: false, explanation: "Reife Erythrozyten besitzen weder Mitochondrien noch einen Zellkern. Sie gewinnen ATP ausschliesslich aus der anaeroben Glykolyse. Dieser Verzicht auf Organellen ist funktionell sinnvoll: Er schafft Platz für maximale Hämoglobinbeladung." },
+      ], explanation: "Die bikonkave Scheibenform der Erythrozyten ist eine spezifische Anpassung: Sie maximiert die Diffusionsoberfläche für den Gasaustausch und ermöglicht die extreme Verformbarkeit beim Passieren von Kapillaren mit nur 3–4 µm Durchmesser – kleiner als der Erythrozyt selbst.", learningCard: { type: "predict", statement: "Die bikonkave Scheibenform der Erythrozyten erleichtert ihre Verformbarkeit beim Durchqueren enger Kapillaren.", answer: true, reveal: "Die bikonkave Scheibenform der Erythrozyten maximiert die Diffusionsoberfläche für den Gasaustausch und ermöglicht die extreme Verformbarkeit beim Passieren von Kapillaren mit nur 3–4 µm Durchmesser – kleiner als der Erythrozyt selbst." } },
+      { id: "zf_h3", type: "true_false", statement: "Thrombozyten sind keine vollständigen Zellen, sondern kernlose Membranfragmente, die von Megakaryozyten im Knochenmark abgeschnürt werden.", answer: true, explanation: "Thrombozyten entstehen durch Fragmentierung von Megakaryozyten im Knochenmark. Sie besitzen keinen Zellkern, keine DNA und können sich nicht teilen. Trotzdem sind sie lebenswichtige Zellstrukturen für die Hämostase (Blutgerinnung).", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Thrombozyten treffen zu?", checklist: [
+        { text: "Sie entstehen durch Fragmentierung von Megakaryozyten im Knochenmark.", correct: true },
+        { text: "Sie besitzen keinen Zellkern und keine DNA.", correct: true },
+        { text: "Sie sind wichtig für die Hämostase (Blutgerinnung).", correct: true },
+        { text: "Sie können sich wie normale Zellen teilen.", correct: false }
+      ], reveal: "Thrombozyten entstehen durch Fragmentierung von Megakaryozyten im Knochenmark. Sie besitzen keinen Zellkern, keine DNA und können sich nicht teilen, sind aber lebenswichtig für die Hämostase (Blutgerinnung)." } },
+      { id: "zf_h4", type: "true_false", statement: "Reife Erythrozyten besitzen Mitochondrien für ihre ATP-Versorgung.", answer: false, explanation: "Reife Erythrozyten besitzen weder Mitochondrien noch einen Zellkern. Sie gewinnen ATP ausschliesslich aus der anaeroben Glykolyse. Dieser Verzicht auf Organellen ist funktionell sinnvoll: Er schafft Platz für maximale Hämoglobinbeladung.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Stoffwechsel reifer Erythrozyten treffen zu?", checklist: [
+        { text: "Sie besitzen weder Mitochondrien noch einen Zellkern.", correct: true },
+        { text: "Sie gewinnen ATP ausschliesslich durch anaerobe Glykolyse.", correct: true },
+        { text: "Der Verzicht auf Organellen schafft Platz für maximale Hämoglobinbeladung.", correct: true },
+        { text: "Sie nutzen Mitochondrien für die ATP-Gewinnung.", correct: false }
+      ], reveal: "Reife Erythrozyten besitzen weder Mitochondrien noch einen Zellkern und gewinnen ATP ausschliesslich aus der anaeroben Glykolyse. Dieser Verzicht auf Organellen schafft Platz für maximale Hämoglobinbeladung." } },
       { id: "zf_h5", type: "mc", question: "Warum können motorische Nervenzellen (Motoneuronen) Axone von über einem Meter Länge ausbilden?", options: [
         { text: "Weil ihre Signalübertragungsfunktion eine physische Verbindung zwischen weit entfernten Strukturen erfordert", correct: true },
         { text: "Weil sie durch rasante Zellteilung immer länger werden", correct: false },
         { text: "Weil sie alle anderen Organellen in den Axonfortsatz auslagern", correct: false },
         { text: "Weil sie die einzigen Zellen ohne Ruhemembranpotential sind", correct: false }
-      ], explanation: "Motoneuronen müssen elektrische Signale vom Rückenmark bis zu Muskeln in den Extremitäten leiten – z.B. das Axon des N. ischiadicus vom Rückenmark bis zur Wadenmuskulatur. Diese Funktion erfordert eine physische Kontinuität von >1 m." },
-      { id: "zf_h6", type: "true_false", statement: "Glatte Muskelzellen sind spindelförmig und besitzen einen zentral gelegenen ovalen Kern, während Skelettmuskelfasern mehrere randständige Kerne aufweisen.", answer: true, explanation: "Die histologische Unterscheidung ist prüfungsrelevant: Glatte Muskelzellen – spindelförmig, ein zentraler Kern. Skelettmuskelfasern – lang ausgezogen, viele randständige Kerne (polynodt, da durch Zellfusion entstanden). Herzmuskelzellen – quer gestreift, ein zentraler Kern." }
+      ], explanation: "Motoneuronen müssen elektrische Signale vom Rückenmark bis zu Muskeln in den Extremitäten leiten – z.B. das Axon des N. ischiadicus vom Rückenmark bis zur Wadenmuskulatur. Diese Funktion erfordert eine physische Kontinuität von >1 m.", learningCard: { type: "oddoneout", statements: [
+        { text: "Motoneuronen leiten elektrische Signale vom Rückenmark bis zu Muskeln in den Extremitäten.", isWrong: false },
+        { text: "Das Axon des N. ischiadicus reicht vom Rückenmark bis zur Wadenmuskulatur.", isWrong: false },
+        { text: "Diese Funktion erfordert eine physische Kontinuität von über einem Meter.", isWrong: false },
+        { text: "Motoneuronen werden durch rasante Zellteilung immer länger.", isWrong: true }
+      ], whyWrong: "Motoneuronen wachsen nicht durch Zellteilung länger – ihre Länge ergibt sich aus der physischen Kontinuität, die zur Signalleitung vom Rückenmark bis zu weit entfernten Muskeln nötig ist, wie beim über einen Meter langen Axon des N. ischiadicus." } },
+      { id: "zf_h6", type: "true_false", statement: "Glatte Muskelzellen sind spindelförmig und besitzen einen zentral gelegenen ovalen Kern, während Skelettmuskelfasern mehrere randständige Kerne aufweisen.", answer: true, explanation: "Die histologische Unterscheidung ist prüfungsrelevant: Glatte Muskelzellen – spindelförmig, ein zentraler Kern. Skelettmuskelfasern – lang ausgezogen, viele randständige Kerne (polynodt, da durch Zellfusion entstanden). Herzmuskelzellen – quer gestreift, ein zentraler Kern.", learningCard: { type: "reconstruct", template: "Glatte Muskelzellen sind ___ mit einem zentralen Kern, während Skelettmuskelfasern lang ausgezogen sind und mehrere ___ Kerne besitzen.", blanks: ["spindelförmig", "randständige"], distractors: ["kugelig", "zentrale"] } }
     ],
     phase4Questions: [
       { id: "zf_mc1", type: "mc", question: "Welche Aussagen zu Erythrozyten sind korrekt?", options: [
@@ -112,25 +150,35 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Sie besitzen keinen Zellkern", correct: true },
         { text: "Sie gewinnen ATP durch anaerobe Glykolyse", correct: true },
         { text: "Sie enthalten Mitochondrien zur oxidativen Phosphorylierung", correct: false }
-      ], explanation: "Erythrozyten sind kernlos und haben bikonkave Scheibenform (7-8 µm); sie gewinnen ATP ausschließlich durch anaerobe Glykolyse, da ihnen Mitochondrien fehlen." },
+      ], explanation: "Erythrozyten sind kernlos und haben bikonkave Scheibenform (7-8 µm); sie gewinnen ATP ausschließlich durch anaerobe Glykolyse, da ihnen Mitochondrien fehlen.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Erythrozyten treffen zu?", checklist: [
+        { text: "Sie haben bikonkave Scheibenform und ca. 7–8 µm Durchmesser.", correct: true },
+        { text: "Sie besitzen keinen Zellkern.", correct: true },
+        { text: "Sie gewinnen ATP durch anaerobe Glykolyse.", correct: true },
+        { text: "Sie enthalten Mitochondrien zur oxidativen Phosphorylierung.", correct: false }
+      ], reveal: "Erythrozyten sind kernlos und haben bikonkave Scheibenform (7–8 µm); sie gewinnen ATP ausschließlich durch anaerobe Glykolyse, da ihnen Mitochondrien fehlen." } },
       { id: "zf_mc2", type: "mc", question: "Welche Zelle hat den grössten Durchmesser aller menschlichen Zellen?", options: [
         { text: "Eizelle (Ovum, ca. 120 µm)", correct: true },
         { text: "Makrophage (ca. 20 µm)", correct: false },
         { text: "Erythrozyt (ca. 7–8 µm)", correct: false },
         { text: "Neutrophiler Granulozyt (ca. 12 µm)", correct: false }
-      ], explanation: "Die reife Eizelle hat mit ca. 120 µm den größten Durchmesser aller menschlichen Zellen, da sie Nährstoffreserven für die frühe Embryonalentwicklung speichern muss." },
+      ], explanation: "Die reife Eizelle hat mit ca. 120 µm den größten Durchmesser aller menschlichen Zellen, da sie Nährstoffreserven für die frühe Embryonalentwicklung speichern muss.", learningCard: { type: "predict", statement: "Die Eizelle (Ovum) hat mit ca. 120 µm den grössten Durchmesser aller menschlichen Zellen.", answer: true, reveal: "Die reife Eizelle hat mit ca. 120 µm den größten Durchmesser aller menschlichen Zellen, da sie Nährstoffreserven für die frühe Embryonalentwicklung speichern muss." } },
       { id: "zf_mc3", type: "mc", question: "Welche Zellformen sind den genannten Zelltypen korrekt zugeordnet?", options: [
         { text: "Erythrozyt – bikonkave Scheibe", correct: true },
         { text: "Glatte Muskelzelle – spindelförmig mit zentralem Kern", correct: true },
         { text: "Nervenzelle – kugelig ohne Fortsätze", correct: false },
         { text: "Skelettmuskelfaser – spindelförmig mit zentralem Kern", correct: false }
-      ], explanation: "Erythrozyten sind bikonkav scheibenförmig und glatte Muskelzellen spindelförmig mit zentralem Kern, während Nervenzellen vielgestaltige Fortsätze und Skelettmuskelfasern mehrere randständige Kerne besitzen." },
+      ], explanation: "Erythrozyten sind bikonkav scheibenförmig und glatte Muskelzellen spindelförmig mit zentralem Kern, während Nervenzellen vielgestaltige Fortsätze und Skelettmuskelfasern mehrere randständige Kerne besitzen.", learningCard: { type: "oddoneout", statements: [
+        { text: "Erythrozyten sind bikonkav scheibenförmig.", isWrong: false },
+        { text: "Glatte Muskelzellen sind spindelförmig mit zentralem Kern.", isWrong: false },
+        { text: "Skelettmuskelfasern besitzen mehrere randständige Kerne.", isWrong: false },
+        { text: "Nervenzellen sind kugelig und besitzen keine Fortsätze.", isWrong: true }
+      ], whyWrong: "Nervenzellen sind nicht kugelig und fortsatzlos – sie bilden vielgestaltige Fortsätze aus, im Unterschied zu den bikonkaven Erythrozyten, spindelförmigen glatten Muskelzellen und mehrkernigen Skelettmuskelfasern." } },
       { id: "zf_mc4", type: "mc", question: "Welche Zellform ist typisch für Epithelzellen, die eine Grenzfläche bedecken?", options: [
         { text: "Flach (platt), um möglichst viel Fläche abzudecken", correct: true },
         { text: "Spindelförmig, um Kontraktionskräfte zu erzeugen", correct: false },
         { text: "Kuboidal mit langen Ausläufern für die Signalleitung", correct: false },
         { text: "Bikonkav, um die Sauerstoffkapazität zu maximieren", correct: false }
-      ], explanation: "Epithelzellen, die Grenzflächen bedecken, sind flach (platt), um mit minimalem Materialaufwand eine maximale Fläche abzudecken, wie im einschichtigen Plattenepithel der Blutkapillaren." }
+      ], explanation: "Epithelzellen, die Grenzflächen bedecken, sind flach (platt), um mit minimalem Materialaufwand eine maximale Fläche abzudecken, wie im einschichtigen Plattenepithel der Blutkapillaren.", learningCard: { type: "predict", statement: "Epithelzellen, die eine Grenzfläche bedecken, sind typischerweise flach (platt), um mit minimalem Materialaufwand eine möglichst grosse Fläche abzudecken.", answer: true, reveal: "Epithelzellen, die Grenzflächen bedecken, sind flach (platt), um mit minimalem Materialaufwand eine maximale Fläche abzudecken, wie im einschichtigen Plattenepithel der Blutkapillaren." } }
     ]
   }),
   makeDetailedPlant({
@@ -142,9 +190,14 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Pilze", correct: false },
         { text: "Pflanzen", correct: false },
         { text: "Protisten (Einzeller wie Amöben)", correct: false }
-      ], explanation: "Prokaryoten umfassen nur zwei Domänen: Bacteria und Archäa. Alle anderen – Tiere, Pflanzen, Pilze und Protisten – sind Eukaryoten. Diese Zweiteilung ist die fundamentalste Klassifikation der Lebewelt." },
-      { id: "pe_h4", type: "true_false", statement: "Prokaryonte Zellen besitzen keinen membranbegrenzten Zellkern – ihre DNA liegt als Nucleoid frei im Zytoplasma.", answer: true, explanation: "Bei Prokaryoten liegt die zirkuläre chromosomale DNA als Nucleoid (keine Kernhülle) im Zytoplasma. Zusätzlich können kleine ringförmige DNA-Stücke (Plasmide) vorhanden sein. Das Fehlen der Kernhülle ist das Definitionsmerkmal der Prokaryoten." },
-      { id: "pe_h6", type: "true_false", statement: "Reife Erythrozyten des Menschen sind kernlos, entstammen aber eukaryon Vorläuferzellen.", answer: true, explanation: "Erythroblasten (Vorläuferzellen) sind eukaryonte Zellen mit vollständigem Kern. Im Laufe der Erythropöse im Knochenmark stossen reifende Erythrozyten ihren Kern aus – das Endprodukt (reifer Erythrozyt) ist kernlos, aber kein Prokaryot, da der Kernverlust ein Reifungsergebnis ist." }
+      ], explanation: "Prokaryoten umfassen nur zwei Domänen: Bacteria und Archäa. Alle anderen – Tiere, Pflanzen, Pilze und Protisten – sind Eukaryoten. Diese Zweiteilung ist die fundamentalste Klassifikation der Lebewelt.", learningCard: { type: "reconstruct", template: "Die Prokaryoten umfassen genau zwei Domänen: ___ und ___. Alle anderen Lebewesen sind Eukaryoten.", blanks: ["Bacteria", "Archäen"], distractors: ["Pilze", "Pflanzen"] } },
+      { id: "pe_h4", type: "true_false", statement: "Prokaryonte Zellen besitzen keinen membranbegrenzten Zellkern – ihre DNA liegt als Nucleoid frei im Zytoplasma.", answer: true, explanation: "Bei Prokaryoten liegt die zirkuläre chromosomale DNA als Nucleoid (keine Kernhülle) im Zytoplasma. Zusätzlich können kleine ringförmige DNA-Stücke (Plasmide) vorhanden sein. Das Fehlen der Kernhülle ist das Definitionsmerkmal der Prokaryoten.", learningCard: { type: "predict", statement: "Prokaryonte Zellen besitzen keinen membranbegrenzten Zellkern – ihre DNA liegt als Nucleoid frei im Zytoplasma.", answer: true, reveal: "Bei Prokaryoten liegt die zirkuläre chromosomale DNA als Nucleoid (keine Kernhülle) im Zytoplasma; zusätzlich können kleine ringförmige Plasmide vorhanden sein. Das Fehlen der Kernhülle ist das Definitionsmerkmal der Prokaryoten." } },
+      { id: "pe_h6", type: "true_false", statement: "Reife Erythrozyten des Menschen sind kernlos, entstammen aber eukaryon Vorläuferzellen.", answer: true, explanation: "Erythroblasten (Vorläuferzellen) sind eukaryonte Zellen mit vollständigem Kern. Im Laufe der Erythropöse im Knochenmark stossen reifende Erythrozyten ihren Kern aus – das Endprodukt (reifer Erythrozyt) ist kernlos, aber kein Prokaryot, da der Kernverlust ein Reifungsergebnis ist.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Kernlosigkeit reifer Erythrozyten treffen zu?", checklist: [
+        { text: "Erythroblasten (Vorläuferzellen) sind eukaryonte Zellen mit vollständigem Kern.", correct: true },
+        { text: "Reifende Erythrozyten stossen ihren Kern im Knochenmark aus.", correct: true },
+        { text: "Der reife, kernlose Erythrozyt ist trotzdem kein Prokaryot, da der Kernverlust ein Reifungsergebnis ist.", correct: true },
+        { text: "Erythroblasten sind bereits von Geburt an kernlos wie Prokaryoten.", correct: false }
+      ], reveal: "Erythroblasten sind eukaryonte Zellen mit vollständigem Kern. Reifende Erythrozyten stossen ihn im Knochenmark aus – der reife Erythrozyt ist kernlos, aber kein Prokaryot, da der Kernverlust ein Reifungsergebnis ist." } }
     ],
     phase4Questions: [
       { id: "pe_mc1", type: "mc", question: "Welche Merkmalskombination beschreibt korrekt Prokaryoten (im Unterschied zu Eukaryoten)?", options: [
@@ -152,7 +205,12 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Zellkern vorhanden, 70S-Ribosomen, Mitochondrien vorhanden", correct: false },
         { text: "Kein Zellkern, 80S-Ribosomen, Golgi-Apparat vorhanden", correct: false },
         { text: "Kein Zellkern, 70S-Ribosomen, Mitochondrien vorhanden", correct: false }
-      ], explanation: "Prokaryoten haben kein membranumschlossenes Zellkern-Äquivalent (Nucleoid), verwenden 70S-Ribosomen (Ziel für Antibiotika) und besitzen keine membranumschlossenen Organellen wie Mitochondrien oder Golgi-Apparat." }
+      ], explanation: "Prokaryoten haben kein membranumschlossenes Zellkern-Äquivalent (Nucleoid), verwenden 70S-Ribosomen (Ziel für Antibiotika) und besitzen keine membranumschlossenen Organellen wie Mitochondrien oder Golgi-Apparat.", learningCard: { type: "oddoneout", statements: [
+        { text: "Prokaryoten besitzen kein membranumschlossenes Zellkern-Äquivalent.", isWrong: false },
+        { text: "Prokaryoten verwenden 70S-Ribosomen, die ein Ziel für Antibiotika sind.", isWrong: false },
+        { text: "Prokaryoten besitzen keine membranumschlossenen Organellen wie Mitochondrien.", isWrong: false },
+        { text: "Prokaryoten besitzen einen Golgi-Apparat zur Proteinsortierung.", isWrong: true }
+      ], whyWrong: "Prokaryoten besitzen keinen Golgi-Apparat – sie haben generell keine membranumschlossenen Organellen, kein echtes Zellkern-Äquivalent und nutzen stattdessen 70S-Ribosomen." } }
     ]
   }),
   makeDetailedPlant({
@@ -164,9 +222,19 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Ribosomen (70S-Typ)", correct: true },
         { text: "Mitochondrien", correct: false },
         { text: "Golgi-Apparat", correct: false }
-      ], explanation: "Prokaryoten besitzen Ribosomen (70S-Typ), aber keinen membranbegrenzten Zellkern, keine Mitochondrien und keinen Golgi-Apparat. Eukaryonte Ribosomen sind grösser (80S) – dieser Unterschied erklärt, warum viele Antibiotika (z.B. Tetracycline) gezielt prokaryonte 70S-Ribosomen hemmen, ohne menschliche Zellen zu schädigen." },
-      { id: "pe_h2", type: "true_false", statement: "Bei Prokaryoten läufen Transkription und Translation gleichzeitig im selben Zellraum ab.", answer: true, explanation: "Da Prokaryoten keine Kernhülle besitzen, kann ein Ribosom an die mRNA binden und mit der Translation beginnen, während die RNA-Polymerase die mRNA noch transkribiert (sog. Kopplungsprinzip). Bei Eukaryoten sind Transkription (im Kern) und Translation (im Zytoplasma) räumlich getrennt." },
-      { id: "pe_h5", type: "true_false", statement: "Pilze sind Prokaryoten und deshalb besonders empfindlich gegenüber bakteriziden Antibiotika.", answer: false, explanation: "Pilze sind Eukaryoten – sie haben membranumschlossene Zellkerne, Mitochondrien und 80S-Ribosomen wie menschliche Zellen. Antibiotika, die auf prokaryonte Strukturen (70S-Ribosomen, Peptidoglykan-Zellwand) abzielen, wirken daher nicht gegen Pilze. Pilzinfektionen erfordern Antimykotika." }
+      ], explanation: "Prokaryoten besitzen Ribosomen (70S-Typ), aber keinen membranbegrenzten Zellkern, keine Mitochondrien und keinen Golgi-Apparat. Eukaryonte Ribosomen sind grösser (80S) – dieser Unterschied erklärt, warum viele Antibiotika (z.B. Tetracycline) gezielt prokaryonte 70S-Ribosomen hemmen, ohne menschliche Zellen zu schädigen.", learningCard: { type: "oddoneout", statements: [
+        { text: "Prokaryoten besitzen Ribosomen vom 70S-Typ.", isWrong: false },
+        { text: "Prokaryoten besitzen keinen membranbegrenzten Zellkern.", isWrong: false },
+        { text: "Eukaryonte Ribosomen sind mit 80S grösser als prokaryonte.", isWrong: false },
+        { text: "Prokaryoten besitzen Mitochondrien wie Eukaryoten.", isWrong: true }
+      ], whyWrong: "Prokaryoten besitzen keine Mitochondrien – sie haben Ribosomen (70S-Typ), aber keinen membranbegrenzten Zellkern und keine membranumschlossenen Organellen, im Unterschied zu den grösseren 80S-Ribosomen der Eukaryoten." } },
+      { id: "pe_h2", type: "true_false", statement: "Bei Prokaryoten läufen Transkription und Translation gleichzeitig im selben Zellraum ab.", answer: true, explanation: "Da Prokaryoten keine Kernhülle besitzen, kann ein Ribosom an die mRNA binden und mit der Translation beginnen, während die RNA-Polymerase die mRNA noch transkribiert (sog. Kopplungsprinzip). Bei Eukaryoten sind Transkription (im Kern) und Translation (im Zytoplasma) räumlich getrennt.", learningCard: { type: "predict", statement: "Bei Prokaryoten läufen Transkription und Translation gleichzeitig im selben Zellraum ab.", answer: true, reveal: "Da Prokaryoten keine Kernhülle besitzen, kann ein Ribosom an die mRNA binden und mit der Translation beginnen, während die RNA-Polymerase die mRNA noch transkribiert (Kopplungsprinzip). Bei Eukaryoten sind Transkription (im Kern) und Translation (im Zytoplasma) räumlich getrennt." } },
+      { id: "pe_h5", type: "true_false", statement: "Pilze sind Prokaryoten und deshalb besonders empfindlich gegenüber bakteriziden Antibiotika.", answer: false, explanation: "Pilze sind Eukaryoten – sie haben membranumschlossene Zellkerne, Mitochondrien und 80S-Ribosomen wie menschliche Zellen. Antibiotika, die auf prokaryonte Strukturen (70S-Ribosomen, Peptidoglykan-Zellwand) abzielen, wirken daher nicht gegen Pilze. Pilzinfektionen erfordern Antimykotika.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Pilzen und Antibiotika treffen zu?", checklist: [
+        { text: "Pilze sind Eukaryoten mit membranumschlossenen Zellkernen.", correct: true },
+        { text: "Pilze besitzen Mitochondrien und 80S-Ribosomen wie menschliche Zellen.", correct: true },
+        { text: "Antibiotika gegen prokaryonte Strukturen wirken nicht gegen Pilze.", correct: true },
+        { text: "Pilze sind Prokaryoten ohne Zellkern.", correct: false }
+      ], reveal: "Pilze sind Eukaryoten mit membranumschlossenen Zellkernen, Mitochondrien und 80S-Ribosomen wie menschliche Zellen. Antibiotika, die auf prokaryonte Strukturen abzielen, wirken daher nicht gegen Pilze – dafür braucht es Antimykotika." } }
     ],
     phase4Questions: [
       { id: "pe_mc2", type: "mc", question: "Warum wirken viele Antibiotika nicht gegen Pilzinfektionen?", options: [
@@ -174,7 +242,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Weil Pilze keine Zellwand besitzen", correct: false },
         { text: "Weil Pilze prokaryonte Zellen ohne Zellkern sind", correct: false },
         { text: "Weil Antibiotika ausschliesslich auf Viren wirken", correct: false }
-      ], explanation: "Pilze sind Eukaryoten mit 80S-Ribosomen ähnlich menschlichen Zellen, weshalb Antibiotika gegen prokaryonte 70S-Ribosomen Pilzzellen nicht schädigen." }
+      ], explanation: "Pilze sind Eukaryoten mit 80S-Ribosomen ähnlich menschlichen Zellen, weshalb Antibiotika gegen prokaryonte 70S-Ribosomen Pilzzellen nicht schädigen.", learningCard: { type: "reconstruct", template: "Pilze sind ___ mit ___-Ribosomen, weshalb viele Antibiotika, die auf prokaryonte Strukturen zielen, nicht gegen sie wirken.", blanks: ["Eukaryoten", "80S"], distractors: ["Prokaryoten", "70S"] } }
     ]
   }),
   makeDetailedPlant({
@@ -186,9 +254,14 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Knochen, Knorpel, Blut und Lymphe", correct: false },
         { text: "Drüsen-, Endothel-, Parenchym- und Stammzellgewebe", correct: false },
         { text: "Mesenchym, Ektoderm, Entoderm und Mesoderm", correct: false }
-      ], explanation: "Die vier Grundgewebetypen sind: Epithelgewebe (Bedeckung, Sekretion), Binde- und Stützgewebe (Stoff-Transport, Halt), Muskelgewebe (Kontraktion), Nervengewebe (Erregungsleitung). Alle anderen Gewebe (Knochen, Knorpel, Blut) sind spezialisierte Unterformen des Bindegewebes." },
-      { id: "zd_h2", type: "true_false", statement: "Beim Prozess der Zelldifferenzierung verändert sich der DNA-Gehalt der Zelle.", answer: false, explanation: "Die DNA-Sequenz bleibt bei der Differenzierung unverändert – jede Körperzelle enthält denselben diploiden Chromosomensatz. Was sich ändert, ist das Genexpressionsmuster: Nur bestimmte Gene werden in einer Leberzelle, nur andere in einer Muskelzelle abgelesen (epigenetische Regulation)." },
-      { id: "zd_h6", type: "true_false", statement: "Zelldifferenzierung ist Voraussetzung für die Ausbildung spezialisierter Organe und Gewebe.", answer: true, explanation: "Organe sind aus mehreren Gewebetypen zusammengesetzt, und Gewebe bestehen aus differenzierten Zellen. Ohne Differenzierung gäbe es nur undifferenzierte Zellmassen ohne spezifische Funktion – die Entstehung komplexer Organe wie Herz oder Leber wäre unmöglich." }
+      ], explanation: "Die vier Grundgewebetypen sind: Epithelgewebe (Bedeckung, Sekretion), Binde- und Stützgewebe (Stoff-Transport, Halt), Muskelgewebe (Kontraktion), Nervengewebe (Erregungsleitung). Alle anderen Gewebe (Knochen, Knorpel, Blut) sind spezialisierte Unterformen des Bindegewebes.", learningCard: { type: "reconstruct", template: "Die vier Grundgewebetypen sind ___, ___, ___ und ___.", blanks: ["Epithelgewebe", "Binde- und Stützgewebe", "Muskelgewebe", "Nervengewebe"], distractors: ["Knochen", "Blut"] } },
+      { id: "zd_h2", type: "true_false", statement: "Beim Prozess der Zelldifferenzierung verändert sich der DNA-Gehalt der Zelle.", answer: false, explanation: "Die DNA-Sequenz bleibt bei der Differenzierung unverändert – jede Körperzelle enthält denselben diploiden Chromosomensatz. Was sich ändert, ist das Genexpressionsmuster: Nur bestimmte Gene werden in einer Leberzelle, nur andere in einer Muskelzelle abgelesen (epigenetische Regulation).", learningCard: { type: "predict", statement: "Beim Prozess der Zelldifferenzierung verändert sich der DNA-Gehalt der Zelle.", answer: false, reveal: "Die DNA-Sequenz bleibt bei der Differenzierung unverändert – jede Körperzelle enthält denselben diploiden Chromosomensatz. Was sich ändert, ist das Genexpressionsmuster (epigenetische Regulation), sodass nur bestimmte Gene in einer Leberzelle und andere in einer Muskelzelle abgelesen werden." } },
+      { id: "zd_h6", type: "true_false", statement: "Zelldifferenzierung ist Voraussetzung für die Ausbildung spezialisierter Organe und Gewebe.", answer: true, explanation: "Organe sind aus mehreren Gewebetypen zusammengesetzt, und Gewebe bestehen aus differenzierten Zellen. Ohne Differenzierung gäbe es nur undifferenzierte Zellmassen ohne spezifische Funktion – die Entstehung komplexer Organe wie Herz oder Leber wäre unmöglich.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Bedeutung der Zelldifferenzierung treffen zu?", checklist: [
+        { text: "Organe sind aus mehreren Gewebetypen zusammengesetzt.", correct: true },
+        { text: "Gewebe bestehen aus differenzierten Zellen.", correct: true },
+        { text: "Ohne Differenzierung gäbe es nur undifferenzierte Zellmassen ohne spezifische Funktion.", correct: true },
+        { text: "Zelldifferenzierung ist für die Organbildung unwichtig.", correct: false }
+      ], reveal: "Organe sind aus mehreren Gewebetypen zusammengesetzt, und Gewebe bestehen aus differenzierten Zellen. Ohne Differenzierung gäbe es nur undifferenzierte Zellmassen ohne spezifische Funktion – komplexe Organe wie Herz oder Leber könnten nicht entstehen." } }
     ],
     phase4Questions: [
       { id: "zd_mc1", type: "mc", question: "Welche Aussagen zur Zelldifferenzierung sind korrekt?", options: [
@@ -196,21 +269,31 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Differenzierung verändert das Genexpressionsmuster, nicht die DNA", correct: true },
         { text: "Pluripotente Stammzellen können alle somatischen Zelltypen bilden", correct: true },
         { text: "Hoch differenzierte Neuronen teilen sich regelmässig im Erwachsenenalter", correct: false }
-      ], explanation: "Bei der Zelldifferenzierung bleibt die DNA-Sequenz unverändert; lediglich das Genexpressionsmuster ändert sich epigenetisch, sodass pluripotente Stammzellen alle somatischen Zelltypen bilden können." }
+      ], explanation: "Bei der Zelldifferenzierung bleibt die DNA-Sequenz unverändert; lediglich das Genexpressionsmuster ändert sich epigenetisch, sodass pluripotente Stammzellen alle somatischen Zelltypen bilden können.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die DNA-Sequenz bleibt bei der Differenzierung unverändert.", isWrong: false },
+        { text: "Differenzierung verändert das Genexpressionsmuster, nicht die DNA.", isWrong: false },
+        { text: "Pluripotente Stammzellen können alle somatischen Zelltypen bilden.", isWrong: false },
+        { text: "Bei der Zelldifferenzierung verändert sich die DNA-Sequenz der Zelle.", isWrong: true }
+      ], whyWrong: "Bei der Zelldifferenzierung bleibt die DNA-Sequenz unverändert – lediglich das Genexpressionsmuster ändert sich epigenetisch, sodass pluripotente Stammzellen alle somatischen Zelltypen bilden können." } }
     ]
   }),
   makeDetailedPlant({
     id: "stammzellen_potenz",
     title: "Stammzellen und Differenzierungspotenz",
     harvestQuestions: [
-      { id: "zd_h3", type: "true_false", statement: "Pluripotente Stammzellen können sich zu jedem Gewebetyp differenzieren, nicht aber zu extra-embryonalem Gewebe.", answer: true, explanation: "Pluripotente Zellen (z.B. embryonale Stammzellen, iPS-Zellen) können alle somatischen Gewebetypen bilden. Im Gegensatz dazu können totipotente Zellen (z.B. befruchtete Eizelle, frühe Blastomeren) auch Placenta und Trophoblast bilden. Multipotente Stammzellen (z.B. hämatopoetische) können nur eine begrenzte Zahl von Zelltypen bilden." },
-      { id: "zd_h4", type: "true_false", statement: "Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie teilen sich nach der Entwicklung nicht mehr.", answer: true, explanation: "Postmitotische Zellen wie ausgereifte Neuronen haben den Zellzyklus dauerhaft verlassen. Das erklärt, warum Hirnschäden und Rückenmarksverletzungen nur schwer zu regenerieren sind – verlorene Neuronen können nicht durch Zellteilung ersetzt werden. Nur bestimmte Stammzellnischen im Gehirn (z.B. Hippokampus) behalten eine begrenzte Neurogenese." },
+      { id: "zd_h3", type: "true_false", statement: "Pluripotente Stammzellen können sich zu jedem Gewebetyp differenzieren, nicht aber zu extra-embryonalem Gewebe.", answer: true, explanation: "Pluripotente Zellen (z.B. embryonale Stammzellen, iPS-Zellen) können alle somatischen Gewebetypen bilden. Im Gegensatz dazu können totipotente Zellen (z.B. befruchtete Eizelle, frühe Blastomeren) auch Placenta und Trophoblast bilden. Multipotente Stammzellen (z.B. hämatopoetische) können nur eine begrenzte Zahl von Zelltypen bilden.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Stammzell-Potenzen treffen zu?", checklist: [
+        { text: "Pluripotente Zellen können alle somatischen Gewebetypen bilden.", correct: true },
+        { text: "Totipotente Zellen können zusätzlich Placenta und Trophoblast bilden.", correct: true },
+        { text: "Multipotente Stammzellen können nur eine begrenzte Zahl von Zelltypen bilden.", correct: true },
+        { text: "Pluripotente Zellen können ebenfalls Placentagewebe bilden.", correct: false }
+      ], reveal: "Pluripotente Zellen können alle somatischen Gewebetypen bilden, aber kein extra-embryonales Gewebe. Totipotente Zellen können zusätzlich Placenta und Trophoblast bilden, während multipotente Stammzellen nur eine begrenzte Zahl von Zelltypen bilden können." } },
+      { id: "zd_h4", type: "true_false", statement: "Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie teilen sich nach der Entwicklung nicht mehr.", answer: true, explanation: "Postmitotische Zellen wie ausgereifte Neuronen haben den Zellzyklus dauerhaft verlassen. Das erklärt, warum Hirnschäden und Rückenmarksverletzungen nur schwer zu regenerieren sind – verlorene Neuronen können nicht durch Zellteilung ersetzt werden. Nur bestimmte Stammzellnischen im Gehirn (z.B. Hippokampus) behalten eine begrenzte Neurogenese.", learningCard: { type: "predict", statement: "Hoch differenzierte Zellen wie ausgereifte Neuronen sind postmitotisch – sie teilen sich nach der Entwicklung nicht mehr.", answer: true, reveal: "Postmitotische Zellen wie ausgereifte Neuronen haben den Zellzyklus dauerhaft verlassen, weshalb verlorene Neuronen nicht durch Zellteilung ersetzt werden können. Nur bestimmte Stammzellnischen im Gehirn (z.B. Hippokampus) behalten eine begrenzte Neurogenese." } },
       { id: "zd_h5", type: "mc", question: "Was bezeichnet man als 'Totipotenz' einer Zelle?", options: [
         { text: "Die Fähigkeit, alle Zelltypen einschliesslich extra-embryonalem Gewebe zu bilden", correct: true },
         { text: "Die Fähigkeit, sich unbegrenzt zu teilen", correct: false },
         { text: "Die Fähigkeit, mehrere Gewebetypen, aber kein extra-embryonales Gewebe zu bilden", correct: false },
         { text: "Die Fähigkeit zur Zellteilung ohne DNA-Replikation", correct: false }
-      ], explanation: "Totipotenz: Fähigkeit zur Bildung aller Zelltypen (Soma + extra-embryonal wie Plazenta) – nur befruchtete Eizelle und frühe Blastomeren. Pluripotenz: alle somatischen Typen, kein extra-embryonal (embryonale Stammzellen). Multipotenz: begrenzte Typen (z.B. hämatopoetische Stammzellen)." }
+      ], explanation: "Totipotenz: Fähigkeit zur Bildung aller Zelltypen (Soma + extra-embryonal wie Plazenta) – nur befruchtete Eizelle und frühe Blastomeren. Pluripotenz: alle somatischen Typen, kein extra-embryonal (embryonale Stammzellen). Multipotenz: begrenzte Typen (z.B. hämatopoetische Stammzellen).", learningCard: { type: "reconstruct", template: "___ ist die Fähigkeit, alle Zelltypen einschliesslich extra-embryonalem Gewebe zu bilden; ___ bildet alle somatischen Typen ohne extra-embryonales Gewebe; ___ bildet nur eine begrenzte Zahl verwandter Zelltypen.", blanks: ["Totipotenz", "Pluripotenz", "Multipotenz"], distractors: ["Omnipotenz", "Unipotenz"] } }
     ],
     phase4Questions: [
       { id: "zd_mc2", type: "mc", question: "Welche Reihenfolge der Differenzierungspotenz ist korrekt (höchste zuerst)?", options: [
@@ -218,7 +301,12 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Multipotenz → Pluripotenz → Totipotenz", correct: false },
         { text: "Pluripotenz → Totipotenz → Multipotenz", correct: false },
         { text: "Alle drei Begriffe bezeichnen dasselbe", correct: false }
-      ], explanation: "Die Differenzierungspotenz nimmt ab von totipotent (gesamter Organismus) über pluripotent (alle somatischen Zelltypen) zu multipotent (mehrere verwandte Zelltypen)." }
+      ], explanation: "Die Differenzierungspotenz nimmt ab von totipotent (gesamter Organismus) über pluripotent (alle somatischen Zelltypen) zu multipotent (mehrere verwandte Zelltypen).", learningCard: { type: "oddoneout", statements: [
+        { text: "Totipotente Zellen können den gesamten Organismus bilden.", isWrong: false },
+        { text: "Pluripotente Zellen können alle somatischen Zelltypen bilden.", isWrong: false },
+        { text: "Multipotente Zellen können mehrere verwandte Zelltypen bilden.", isWrong: false },
+        { text: "Die Differenzierungspotenz nimmt von totipotent über multipotent zu pluripotent ab.", isWrong: true }
+      ], whyWrong: "Die richtige Reihenfolge ist totipotent → pluripotent → multipotent, nicht totipotent → multipotent → pluripotent – die Differenzierungspotenz nimmt in dieser Reihenfolge schrittweise ab." } }
     ]
   }),
   makeDetailedPlant({
@@ -230,14 +318,19 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Natriumionen (Na+)", correct: false },
         { text: "Glukose", correct: false },
         { text: "ATP", correct: false }
-      ], explanation: "Kleine unpolare Moleküle wie O2, CO2 und Fettsäuren lösen sich in der Lipidschicht und passieren frei. Geladene Ionen (Na+, K+, Cl-) benötigen Ionenkanäle, Glukose einen GLUT-Transporter, und grosse Moleküle wie Proteine werden per Endo-/Exozytose transportiert." },
+      ], explanation: "Kleine unpolare Moleküle wie O2, CO2 und Fettsäuren lösen sich in der Lipidschicht und passieren frei. Geladene Ionen (Na+, K+, Cl-) benötigen Ionenkanäle, Glukose einen GLUT-Transporter, und grosse Moleküle wie Proteine werden per Endo-/Exozytose transportiert.", learningCard: { type: "predict", statement: "Sauerstoff (O2) und Kohlendioxid (CO2) können die Lipiddoppelschicht der Zellmembran ohne Transportproteine frei passieren.", answer: true, reveal: "Kleine unpolare Moleküle wie O2, CO2 und Fettsäuren lösen sich in der Lipidschicht und passieren frei. Geladene Ionen benötigen dagegen Ionenkanäle, Glukose einen GLUT-Transporter, und grosse Moleküle wie Proteine werden per Endo-/Exozytose transportiert." } },
       { id: "zm_h2", type: "mc", question: "Was beschreibt die Na+/K+-ATPase?", options: [
         { text: "Eine Pumpe, die 3 Na+ aus der Zelle und 2 K+ in die Zelle transportiert (unter ATP-Verbrauch)", correct: true },
         { text: "Eine Pumpe, die ATP aus der Zelle exportiert", correct: false },
         { text: "Einen passiven Kanal für Na+ und K+ entlang des Konzentrationsgradienten", correct: false },
         { text: "Ein Enzym, das ATP aus Glukose synthetisiert", correct: false }
-      ], explanation: "Die Na+/K+-ATPase ist eine aktive Ionenpumpe: Pro ATP-Molekül werden 3 Na+ aus der Zelle gepumpt und 2 K+ in die Zelle. Dadurch entsteht das Ruhemembranpotential (ca. -70 mV) und der hohe intrazelluläre K+-Gehalt. Sie verbraucht ca. 20–40% des zellularen ATP." },
-      { id: "zm_h3", type: "true_false", statement: "Der Unterschied zwischen erleichterter Diffusion und aktivem Transport liegt im Energieverbrauch: Erleichterte Diffusion ist passiv, aktiver Transport verbraucht ATP.", answer: true, explanation: "Erleichterte Diffusion (z.B. Glukose durch GLUT-Transporter) läuft entlang des Konzentrationsgradienten ohne Energieverbrauch ab. Aktiver Transport (z.B. Na+/K+-ATPase) pumpt Moleküle gegen ihren Gradienten und benötigt ATP. Beide verwenden Transportproteine." }
+      ], explanation: "Die Na+/K+-ATPase ist eine aktive Ionenpumpe: Pro ATP-Molekül werden 3 Na+ aus der Zelle gepumpt und 2 K+ in die Zelle. Dadurch entsteht das Ruhemembranpotential (ca. -70 mV) und der hohe intrazelluläre K+-Gehalt. Sie verbraucht ca. 20–40% des zellularen ATP.", learningCard: { type: "reconstruct", template: "Die Na+/K+-ATPase transportiert pro ATP-Molekül ___ Na+ aus der Zelle und ___ K+ in die Zelle und erzeugt so das ___.", blanks: ["3", "2", "Ruhemembranpotential"], distractors: ["1", "4"] } },
+      { id: "zm_h3", type: "true_false", statement: "Der Unterschied zwischen erleichterter Diffusion und aktivem Transport liegt im Energieverbrauch: Erleichterte Diffusion ist passiv, aktiver Transport verbraucht ATP.", answer: true, explanation: "Erleichterte Diffusion (z.B. Glukose durch GLUT-Transporter) läuft entlang des Konzentrationsgradienten ohne Energieverbrauch ab. Aktiver Transport (z.B. Na+/K+-ATPase) pumpt Moleküle gegen ihren Gradienten und benötigt ATP. Beide verwenden Transportproteine.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu erleichterter Diffusion und aktivem Transport treffen zu?", checklist: [
+        { text: "Erleichterte Diffusion läuft entlang des Konzentrationsgradienten ohne Energieverbrauch ab.", correct: true },
+        { text: "Aktiver Transport pumpt Moleküle gegen ihren Gradienten und benötigt ATP.", correct: true },
+        { text: "Beide Transportarten verwenden Transportproteine.", correct: true },
+        { text: "Aktiver Transport verläuft ebenfalls ohne Energieverbrauch.", correct: false }
+      ], reveal: "Erleichterte Diffusion (z.B. Glukose durch GLUT-Transporter) läuft ohne Energieverbrauch entlang des Konzentrationsgradienten ab, während aktiver Transport (z.B. Na+/K+-ATPase) Moleküle gegen ihren Gradienten pumpt und ATP benötigt. Beide verwenden Transportproteine." } }
     ],
     phase4Questions: [
       { id: "zm_mc1", type: "mc", question: "Welche Transportprozesse sind passiv (kein ATP-Verbrauch)?", options: [
@@ -245,27 +338,47 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Erleichterte Diffusion (z.B. Glukose durch GLUT)", correct: true },
         { text: "Osmose (Wassertransport)", correct: true },
         { text: "Na+/K+-ATPase", correct: false }
-      ], explanation: "Einfache Diffusion, erleichterte Diffusion und Osmose sind passive Transportprozesse, da sie entlang von Konzentrations- oder Druckgefällen ohne ATP-Verbrauch ablaufen." },
+      ], explanation: "Einfache Diffusion, erleichterte Diffusion und Osmose sind passive Transportprozesse, da sie entlang von Konzentrations- oder Druckgefällen ohne ATP-Verbrauch ablaufen.", learningCard: { type: "oddoneout", statements: [
+        { text: "Einfache Diffusion ist ein passiver Transportprozess.", isWrong: false },
+        { text: "Erleichterte Diffusion (z.B. Glukose durch GLUT) ist ein passiver Transportprozess.", isWrong: false },
+        { text: "Osmose ist ein passiver Transportprozess.", isWrong: false },
+        { text: "Die Na+/K+-ATPase ist ein passiver Transportprozess.", isWrong: true }
+      ], whyWrong: "Die Na+/K+-ATPase ist kein passiver Prozess – im Gegensatz zu einfacher Diffusion, erleichterter Diffusion und Osmose, die alle entlang von Konzentrations- oder Druckgefällen ohne ATP-Verbrauch ablaufen, verbraucht sie aktiv ATP." } },
       { id: "zm_mc2", type: "mc", question: "Was bewirkt die Na+/K+-ATPase pro Transportzyklus?", options: [
         { text: "3 Na+ aus der Zelle, 2 K+ in die Zelle – unter Verbrauch von 1 ATP", correct: true },
         { text: "2 Na+ in die Zelle, 3 K+ aus der Zelle", correct: false },
         { text: "ATP-Synthese durch Na+-Rückstrom", correct: false },
         { text: "Gleichmässige Verteilung von Na+ und K+ ohne ATP-Verbrauch", correct: false }
-      ], explanation: "Die Na+/K+-ATPase pumpt pro Zyklus 3 Na+ aus der Zelle heraus und 2 K+ hinein, wobei 1 ATP hydrolysiert wird, was das Ruhemembranpotential aufrechthält." }
+      ], explanation: "Die Na+/K+-ATPase pumpt pro Zyklus 3 Na+ aus der Zelle heraus und 2 K+ hinein, wobei 1 ATP hydrolysiert wird, was das Ruhemembranpotential aufrechthält.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Transportzyklus der Na+/K+-ATPase treffen zu?", checklist: [
+        { text: "Sie pumpt pro Zyklus 3 Na+ aus der Zelle heraus.", correct: true },
+        { text: "Sie pumpt pro Zyklus 2 K+ in die Zelle hinein.", correct: true },
+        { text: "Pro Zyklus wird 1 ATP hydrolysiert.", correct: true },
+        { text: "Sie transportiert Na+ und K+ ohne ATP-Verbrauch.", correct: false }
+      ], reveal: "Die Na+/K+-ATPase pumpt pro Zyklus 3 Na+ aus der Zelle heraus und 2 K+ hinein, wobei 1 ATP hydrolysiert wird, was das Ruhemembranpotential aufrechterhält." } }
     ]
   }),
   makeDetailedPlant({
     id: "zellmembran_endozytose_modell",
     title: "Zellmembran: Endozytose, Osmose und Fluid-Mosaik-Modell",
     harvestQuestions: [
-      { id: "zm_h4", type: "true_false", statement: "Phagozytose und Pinozytose sind beides Formen der Endozytose, unterscheiden sich aber in der Grösse des aufgenommenen Materials.", answer: true, explanation: "Endozytose ist der Oberbegriff für die Aufnahme von Material durch Einstülpen der Membran. Phagozytose (griech. phagein = fressen) nimmt grosse feste Partikel auf (Bakterien, Zelltrümmer) – durch spezialisierte Zellen wie Makrophagen. Pinozytose (griech. pinein = trinken) nimmt kleine Flüssigkeitstropfen auf – in fast allen Zelltypen." },
+      { id: "zm_h4", type: "true_false", statement: "Phagozytose und Pinozytose sind beides Formen der Endozytose, unterscheiden sich aber in der Grösse des aufgenommenen Materials.", answer: true, explanation: "Endozytose ist der Oberbegriff für die Aufnahme von Material durch Einstülpen der Membran. Phagozytose (griech. phagein = fressen) nimmt grosse feste Partikel auf (Bakterien, Zelltrümmer) – durch spezialisierte Zellen wie Makrophagen. Pinozytose (griech. pinein = trinken) nimmt kleine Flüssigkeitstropfen auf – in fast allen Zelltypen.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Phagozytose und Pinozytose treffen zu?", checklist: [
+        { text: "Phagozytose nimmt grosse feste Partikel auf, z.B. Bakterien oder Zelltrümmer.", correct: true },
+        { text: "Pinozytose nimmt kleine Flüssigkeitstropfen auf.", correct: true },
+        { text: "Beide sind Formen der Endozytose.", correct: true },
+        { text: "Phagozytose findet ausschliesslich in Nervenzellen statt.", correct: false }
+      ], reveal: "Endozytose ist der Oberbegriff für die Aufnahme von Material durch Einstülpen der Membran. Phagozytose nimmt grosse feste Partikel auf (durch spezialisierte Zellen wie Makrophagen), Pinozytose nimmt kleine Flüssigkeitstropfen auf – in fast allen Zelltypen." } },
       { id: "zm_h5", type: "mc", question: "Was versteht man unter dem 'Fluid-Mosaik-Modell' der Zellmembran?", options: [
         { text: "Die Membran ist eine bewegliche Phospholipid-Doppelschicht mit eingelagerten, lateral beweglichen Proteinen", correct: true },
         { text: "Die Membran ist starr und unveränderlich wie eine Glasplatte", correct: false },
         { text: "Die Membran besteht ausschliesslich aus Proteinen ohne Lipide", correct: false },
         { text: "Die Proteine sind fest verankert und können sich nicht seitlich bewegen", correct: false }
-      ], explanation: "Das Fluid-Mosaik-Modell (Singer & Nicolson 1972) beschreibt die Membran als flüssig-kristallines Gebilde: Phospholipide bewegen sich lateral (Fluidität), Proteine sitzen wie Mosaiksteine in dieser Schicht und können sich ebenfalls bewegen. Diese Flexibilität erklärt die dynamische Anpassung der Membranfunktion." },
-      { id: "zm_h6", type: "true_false", statement: "Osmose ist der passive Wassertransport durch eine semipermeable Membran entlang eines Konzentrationsgradienten.", answer: true, explanation: "Osmose ist die Nettobewegung von Wasser von der Seite mit niedrigerer Gelöstkonzentration (hohe Wasseraktivität) zur Seite mit höherer Gelöstkonzentration. Bei Erythrozyten in hyperosmolarer Lösung tritt Wasser aus → Zelle schrumpft (Krenation). In hypoosmolarer Lösung tritt Wasser ein → Zelle schwillt (Lyse-Risiko)." }
+      ], explanation: "Das Fluid-Mosaik-Modell (Singer & Nicolson 1972) beschreibt die Membran als flüssig-kristallines Gebilde: Phospholipide bewegen sich lateral (Fluidität), Proteine sitzen wie Mosaiksteine in dieser Schicht und können sich ebenfalls bewegen. Diese Flexibilität erklärt die dynamische Anpassung der Membranfunktion.", learningCard: { type: "predict", statement: "Nach dem Fluid-Mosaik-Modell ist die Zellmembran eine bewegliche Phospholipid-Doppelschicht mit eingelagerten, lateral beweglichen Proteinen.", answer: true, reveal: "Das Fluid-Mosaik-Modell (Singer & Nicolson 1972) beschreibt die Membran als flüssig-kristallines Gebilde: Phospholipide bewegen sich lateral, Proteine sitzen wie Mosaiksteine in dieser Schicht und können sich ebenfalls bewegen." } },
+      { id: "zm_h6", type: "true_false", statement: "Osmose ist der passive Wassertransport durch eine semipermeable Membran entlang eines Konzentrationsgradienten.", answer: true, explanation: "Osmose ist die Nettobewegung von Wasser von der Seite mit niedrigerer Gelöstkonzentration (hohe Wasseraktivität) zur Seite mit höherer Gelöstkonzentration. Bei Erythrozyten in hyperosmolarer Lösung tritt Wasser aus → Zelle schrumpft (Krenation). In hypoosmolarer Lösung tritt Wasser ein → Zelle schwillt (Lyse-Risiko).", learningCard: { type: "oddoneout", statements: [
+        { text: "Osmose ist die Nettobewegung von Wasser zur Seite mit höherer Gelöstkonzentration.", isWrong: false },
+        { text: "In hyperosmolarer Lösung schrumpft die Erythrozytenzelle (Krenation).", isWrong: false },
+        { text: "In hypoosmolarer Lösung schwillt die Zelle an (Lyse-Risiko).", isWrong: false },
+        { text: "Osmose benötigt aktiven ATP-Verbrauch.", isWrong: true }
+      ], whyWrong: "Osmose ist ein passiver Prozess ohne ATP-Verbrauch – Wasser bewegt sich zur Seite mit höherer Gelöstkonzentration, wodurch Zellen in hyperosmolarer Lösung schrumpfen (Krenation) und in hypoosmolarer Lösung anschwellen (Lyse-Risiko)." } }
     ],
     phase4Questions: []
   }),
@@ -278,20 +391,30 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Golgi-Apparat", correct: false },
         { text: "Ribosom", correct: false },
         { text: "Lysosom", correct: false }
-      ], explanation: "Mitochondrien produzieren ATP durch oxidative Phosphorylierung in der inneren Membran (Cristae). Die Elektronentransportkette pumpt H+-Ionen, die ATP-Synthase antreiben. Pro Glukosemolekül entstehen ca. 30–32 ATP. Das Ribosom ist für Proteinsynthese, der Golgi für Sortierung, Lysosomen für den Abbau zuständig." },
+      ], explanation: "Mitochondrien produzieren ATP durch oxidative Phosphorylierung in der inneren Membran (Cristae). Die Elektronentransportkette pumpt H+-Ionen, die ATP-Synthase antreiben. Pro Glukosemolekül entstehen ca. 30–32 ATP. Das Ribosom ist für Proteinsynthese, der Golgi für Sortierung, Lysosomen für den Abbau zuständig.", learningCard: { type: "reconstruct", template: "Mitochondrien produzieren ATP durch ___ in der inneren Membran, den sogenannten ___.", blanks: ["oxidative Phosphorylierung", "Cristae"], distractors: ["Glykolyse", "Ribosomen"] } },
       { id: "zo_h2", type: "mc", question: "Welche Organelle ist für die Lipidsynthese und Steroidhormonsynthese hauptsächlich verantwortlich?", options: [
         { text: "Glattes endoplasmatisches Retikulum (glattes ER)", correct: true },
         { text: "Raues endoplasmatisches Retikulum (raues ER)", correct: false },
         { text: "Ribosom", correct: false },
         { text: "Peroxisom", correct: false }
-      ], explanation: "Das glatte ER (ohne Ribosomen) ist Ort der Lipidsynthese, Steroidhormonsynthese und des Fremdstoffabbaus (Detoxifikation, v.a. in der Leber). Das raue ER (mit Ribosomen) ist primär für Proteinsynthese und -faltung von Sekretproteinen zuständig." },
+      ], explanation: "Das glatte ER (ohne Ribosomen) ist Ort der Lipidsynthese, Steroidhormonsynthese und des Fremdstoffabbaus (Detoxifikation, v.a. in der Leber). Das raue ER (mit Ribosomen) ist primär für Proteinsynthese und -faltung von Sekretproteinen zuständig.", learningCard: { type: "predict", statement: "Das glatte endoplasmatische Retikulum (ohne Ribosomen) ist hauptverantwortlich für Lipid- und Steroidhormonsynthese.", answer: true, reveal: "Das glatte ER (ohne Ribosomen) ist Ort der Lipidsynthese, Steroidhormonsynthese und des Fremdstoffabbaus (v.a. in der Leber). Das raue ER (mit Ribosomen) ist dagegen primär für Proteinsynthese und -faltung von Sekretproteinen zuständig." } },
       { id: "zo_h5", type: "mc", question: "Was ist der Unterschied zwischen freien und membrangebundenen Ribosomen?", options: [
         { text: "Freie Ribosomen synthetisieren zytosolische Proteine; membrangebundene am rauen ER Sekret- und Membranproteine", correct: true },
         { text: "Membrangebundene Ribosomen sind grösser und produzieren mehr Proteine", correct: false },
         { text: "Freie Ribosomen sitzen ausschliesslich im Zellkern", correct: false },
         { text: "Es gibt keinen funktionellen Unterschied", correct: false }
-      ], explanation: "Freie Ribosomen im Zytosol produzieren Proteine, die in der Zelle bleiben (Zytoskelettproteine, Enzyme des Zytosols). Membrangebundene Ribosomen am rauen ER produzieren Proteine, die sekretiert werden (Antikörper, Hormone) oder in Membranen integriert werden (Rezeptoren, Transporter)." },
-      { id: "zo_h6", type: "true_false", statement: "Der Golgi-Apparat modifiziert Proteine aus dem ER durch Glykosylierung und leitet sie an ihren Zielort (trans-Golgi-Sortierung).", answer: true, explanation: "Der Golgi-Apparat empfängt Vesikel vom ER (cis-Golgi), modifiziert Proteine (Zuckeranbau = Glykosylierung, Phosphorylierung) und sortiert sie am trans-Golgi auf Zielorte: Lysosomen, Sekretionsvesikel für Exozytose oder direkt zur Plasmamembran. Ohne Golgi würden Proteine unkontrolliert in der Zelle verteilt." }
+      ], explanation: "Freie Ribosomen im Zytosol produzieren Proteine, die in der Zelle bleiben (Zytoskelettproteine, Enzyme des Zytosols). Membrangebundene Ribosomen am rauen ER produzieren Proteine, die sekretiert werden (Antikörper, Hormone) oder in Membranen integriert werden (Rezeptoren, Transporter).", learningCard: { type: "teachback", prompt: "Welche Aussagen zu freien und membrangebundenen Ribosomen treffen zu?", checklist: [
+        { text: "Freie Ribosomen produzieren Proteine, die in der Zelle bleiben (z.B. Zytoskelettproteine).", correct: true },
+        { text: "Membrangebundene Ribosomen am rauen ER produzieren Sekretproteine wie Antikörper oder Hormone.", correct: true },
+        { text: "Membrangebundene Ribosomen produzieren auch Membranproteine wie Rezeptoren.", correct: true },
+        { text: "Freie Ribosomen sitzen ausschliesslich im Zellkern.", correct: false }
+      ], reveal: "Freie Ribosomen im Zytosol produzieren Proteine, die in der Zelle bleiben. Membrangebundene Ribosomen am rauen ER produzieren Proteine, die sekretiert werden oder in Membranen integriert werden." } },
+      { id: "zo_h6", type: "true_false", statement: "Der Golgi-Apparat modifiziert Proteine aus dem ER durch Glykosylierung und leitet sie an ihren Zielort (trans-Golgi-Sortierung).", answer: true, explanation: "Der Golgi-Apparat empfängt Vesikel vom ER (cis-Golgi), modifiziert Proteine (Zuckeranbau = Glykosylierung, Phosphorylierung) und sortiert sie am trans-Golgi auf Zielorte: Lysosomen, Sekretionsvesikel für Exozytose oder direkt zur Plasmamembran. Ohne Golgi würden Proteine unkontrolliert in der Zelle verteilt.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der Golgi-Apparat empfängt Vesikel vom ER am cis-Golgi.", isWrong: false },
+        { text: "Der Golgi-Apparat modifiziert Proteine durch Glykosylierung.", isWrong: false },
+        { text: "Am trans-Golgi werden Proteine zu ihren Zielorten sortiert.", isWrong: false },
+        { text: "Ohne Golgi-Apparat würden Proteine trotzdem korrekt sortiert.", isWrong: true }
+      ], whyWrong: "Ohne den Golgi-Apparat würden Proteine unkontrolliert in der Zelle verteilt – er empfängt Vesikel vom ER (cis-Golgi), modifiziert Proteine durch Glykosylierung und sortiert sie am trans-Golgi zu ihren Zielorten." } }
     ],
     phase4Questions: [
       { id: "zo_mc1", type: "mc", question: "Welche Organellen sind korrekt ihrer Hauptfunktion zugeordnet?", options: [
@@ -299,15 +422,20 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Lysosom – Abbau durch saure Hydrolasen", correct: true },
         { text: "Golgi-Apparat – Proteinsortierung und Glykosylierung", correct: true },
         { text: "Glattes ER – Proteinsynthese", correct: false }
-      ], explanation: "Mitochondrien (ATP), Lysosomen (saure Hydrolasen) und Golgi-Apparat (Sortierung/Glykosylierung) sind korrekt zugeordnet; das glatte ER synthetisiert Lipide, nicht Proteine." }
+      ], explanation: "Mitochondrien (ATP), Lysosomen (saure Hydrolasen) und Golgi-Apparat (Sortierung/Glykosylierung) sind korrekt zugeordnet; das glatte ER synthetisiert Lipide, nicht Proteine.", learningCard: { type: "teachback", prompt: "Welche Organellen sind korrekt ihrer Hauptfunktion zugeordnet?", checklist: [
+        { text: "Mitochondrium – oxidative Phosphorylierung (ATP).", correct: true },
+        { text: "Lysosom – Abbau durch saure Hydrolasen.", correct: true },
+        { text: "Golgi-Apparat – Proteinsortierung und Glykosylierung.", correct: true },
+        { text: "Glattes ER – Proteinsynthese.", correct: false }
+      ], reveal: "Mitochondrien (ATP), Lysosomen (saure Hydrolasen) und Golgi-Apparat (Sortierung/Glykosylierung) sind korrekt zugeordnet; das glatte ER synthetisiert Lipide, nicht Proteine." } }
     ]
   }),
   makeDetailedPlant({
     id: "organellen_mitochondrien_lysosomen",
     title: "Organellen: Mitochondrien und Lysosomen",
     harvestQuestions: [
-      { id: "zo_h3", type: "true_false", statement: "Lysosomen enthalten saure Hydrolasen und bauen zelleigene und aufgenommene Makromoleküle ab.", answer: true, explanation: "Lysosomen haben einen sauren Innen-pH (ca. 4,5–5) und enthalten über 50 verschiedene Hydrolasen (Lipasen, Proteasen, Nukleasen). Sie bauen aufgenommene Partikel (Phagosomen) und beschädigte Organellen (Autophagie) ab. Ein Mangel an lysosomalen Enzymen führt zu sog. lysosomalen Speicherkrankheiten." },
-      { id: "zo_h4", type: "true_false", statement: "Mitochondrien besitzen eine eigene zirkuläre DNA (mtDNA) und 70S-Ribosomen – Belege für ihre bakterielle Herkunft.", answer: true, explanation: "Die Endosymbiosetheorie (Lynn Margulis) erklärt die Mitochondrien als evolutionäre Nachfahren alphaproteobakterieller Endosymbionten. Belege: eigene zirkuläre DNA (wie Bakterien), 70S-Ribosomen (wie Prokaryoten), binäre Teilung, maternale Vererbung der mtDNA, und doppelte Membran." }
+      { id: "zo_h3", type: "true_false", statement: "Lysosomen enthalten saure Hydrolasen und bauen zelleigene und aufgenommene Makromoleküle ab.", answer: true, explanation: "Lysosomen haben einen sauren Innen-pH (ca. 4,5–5) und enthalten über 50 verschiedene Hydrolasen (Lipasen, Proteasen, Nukleasen). Sie bauen aufgenommene Partikel (Phagosomen) und beschädigte Organellen (Autophagie) ab. Ein Mangel an lysosomalen Enzymen führt zu sog. lysosomalen Speicherkrankheiten.", learningCard: { type: "predict", statement: "Lysosomen enthalten saure Hydrolasen und bauen zelleigene und aufgenommene Makromoleküle ab.", answer: true, reveal: "Lysosomen haben einen sauren Innen-pH und enthalten über 50 verschiedene Hydrolasen. Sie bauen aufgenommene Partikel (Phagosomen) und beschädigte Organellen (Autophagie) ab; ein Mangel an lysosomalen Enzymen führt zu lysosomalen Speicherkrankheiten." } },
+      { id: "zo_h4", type: "true_false", statement: "Mitochondrien besitzen eine eigene zirkuläre DNA (mtDNA) und 70S-Ribosomen – Belege für ihre bakterielle Herkunft.", answer: true, explanation: "Die Endosymbiosetheorie (Lynn Margulis) erklärt die Mitochondrien als evolutionäre Nachfahren alphaproteobakterieller Endosymbionten. Belege: eigene zirkuläre DNA (wie Bakterien), 70S-Ribosomen (wie Prokaryoten), binäre Teilung, maternale Vererbung der mtDNA, und doppelte Membran.", learningCard: { type: "reconstruct", template: "Mitochondrien besitzen eine eigene ___ DNA und ___-Ribosomen – Belege für ihre ___ Herkunft laut Endosymbiosetheorie.", blanks: ["zirkuläre", "70S", "bakterielle"], distractors: ["lineare", "80S"] } }
     ],
     phase4Questions: [
       { id: "zo_mc2", type: "mc", question: "Warum stützt die mitochondriale DNA die Endosymbiosetheorie?", options: [
@@ -315,7 +443,12 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Weil Mitochondrien-DNA identisch mit der Kern-DNA ist", correct: false },
         { text: "Weil Mitochondrien keine eigene DNA besitzen", correct: false },
         { text: "Weil die mtDNA linear wie eukaryonte Chromosomen ist", correct: false }
-      ], explanation: "Die zirkuläre mtDNA und 70S-Ribosomen der Mitochondrien ähneln Bakterien und stützen die Endosymbiosetheorie, wonach Mitochondrien aus freilebenden Prokaryoten entstanden." }
+      ], explanation: "Die zirkuläre mtDNA und 70S-Ribosomen der Mitochondrien ähneln Bakterien und stützen die Endosymbiosetheorie, wonach Mitochondrien aus freilebenden Prokaryoten entstanden.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die mtDNA der Mitochondrien ist zirkulär wie bei Bakterien.", isWrong: false },
+        { text: "Mitochondrien besitzen 70S-Ribosomen wie Prokaryoten.", isWrong: false },
+        { text: "Diese Merkmale stützen die Endosymbiosetheorie.", isWrong: false },
+        { text: "Die mtDNA ist linear wie eukaryonte Chromosomen.", isWrong: true }
+      ], whyWrong: "Die mtDNA ist nicht linear, sondern zirkulär wie bakterielle DNA – zusammen mit den 70S-Ribosomen der Mitochondrien stützt das die Endosymbiosetheorie, wonach Mitochondrien aus freilebenden Prokaryoten entstanden." } }
     ]
   }),
   makeDetailedPlant({
@@ -327,10 +460,20 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Euchromatin ist nur in der Mitose sichtbar; Heterochromatin immer", correct: false },
         { text: "Heterochromatin enthält RNA; Euchromatin nur DNA", correct: false },
         { text: "Beide sind funktionell identisch", correct: false }
-      ], explanation: "Euchromatin ('echtes Chromatin') ist aufgelockert und zugänglich für RNA-Polymerase – Gene hier werden aktiv transkribiert. Heterochromatin ist dicht kondensiert und transkriptionsarm. Die Umwandlung zwischen beiden Zuständen reguliert Genexpression (epigenetische Regulation)." },
-      { id: "zk_h3", type: "true_false", statement: "Skelettmuskelfasern sind vielkernig, weil sie durch Fusion mehrerer Myoblasten entstehen.", answer: true, explanation: "Skelettmuskelfasern entstehen embryonal durch Fusion vieler Myoblasten (Myogenese). Das Ergebnis ist eine polynukleäre Riesenzelle mit bis zu mehreren hundert randständigen Kernen. Diese Vielkernigkeit ist normal und wichtig für die koordinierte Proteinexpression in der langen Faser." },
-      { id: "zk_h4", type: "true_false", statement: "Der menschliche Zellkern enthält 46 Chromosomen, davon 44 Autosomen und 2 Gonosomen (Geschlechtschromosomen).", answer: true, explanation: "46 Chromosomen in 23 Paaren: 22 Autosomenpaare (Körperchromosomen, nummeriert 1–22) und 1 Gonosomenpaar (Geschlechtschromosomen: XX bei Frauen, XY bei Männern). Jedes Paar besteht aus einem maternalen und einem paternalen homologen Chromosom." },
-      { id: "zk_h6", type: "true_false", statement: "Chromatin ist genetisch inaktives Reservematerial im Zellkern ohne Funktion.", answer: false, explanation: "Chromatin ist der funktionelle Zustand der DNA im Kern: Euchromatin ist aufgelockert und transkriptionsaktiv, Heterochromatin ist kondensiert und weitgehend inaktiv. Der Verdichtungsgrad des Chromatins reguliert also, welche Gene aktiv sind – Chromatin ist damit ein zentrales Regulationswerkzeug der Zelle." }
+      ], explanation: "Euchromatin ('echtes Chromatin') ist aufgelockert und zugänglich für RNA-Polymerase – Gene hier werden aktiv transkribiert. Heterochromatin ist dicht kondensiert und transkriptionsarm. Die Umwandlung zwischen beiden Zuständen reguliert Genexpression (epigenetische Regulation).", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Euchromatin und Heterochromatin treffen zu?", checklist: [
+        { text: "Euchromatin ist aufgelockert und transkriptionsaktiv.", correct: true },
+        { text: "Heterochromatin ist kondensiert und weitgehend inaktiv.", correct: true },
+        { text: "Die Umwandlung zwischen beiden Zuständen reguliert die Genexpression.", correct: true },
+        { text: "Euchromatin ist nur während der Mitose sichtbar.", correct: false }
+      ], reveal: "Euchromatin ist aufgelockert und zugänglich für RNA-Polymerase – Gene hier werden aktiv transkribiert. Heterochromatin ist dicht kondensiert und transkriptionsarm; die Umwandlung zwischen beiden Zuständen reguliert die Genexpression." } },
+      { id: "zk_h3", type: "true_false", statement: "Skelettmuskelfasern sind vielkernig, weil sie durch Fusion mehrerer Myoblasten entstehen.", answer: true, explanation: "Skelettmuskelfasern entstehen embryonal durch Fusion vieler Myoblasten (Myogenese). Das Ergebnis ist eine polynukleäre Riesenzelle mit bis zu mehreren hundert randständigen Kernen. Diese Vielkernigkeit ist normal und wichtig für die koordinierte Proteinexpression in der langen Faser.", learningCard: { type: "predict", statement: "Skelettmuskelfasern sind vielkernig, weil sie durch Fusion mehrerer Myoblasten entstehen.", answer: true, reveal: "Skelettmuskelfasern entstehen embryonal durch Fusion vieler Myoblasten (Myogenese). Das Ergebnis ist eine polynukleäre Riesenzelle mit bis zu mehreren hundert randständigen Kernen, wichtig für die koordinierte Proteinexpression in der langen Faser." } },
+      { id: "zk_h4", type: "true_false", statement: "Der menschliche Zellkern enthält 46 Chromosomen, davon 44 Autosomen und 2 Gonosomen (Geschlechtschromosomen).", answer: true, explanation: "46 Chromosomen in 23 Paaren: 22 Autosomenpaare (Körperchromosomen, nummeriert 1–22) und 1 Gonosomenpaar (Geschlechtschromosomen: XX bei Frauen, XY bei Männern). Jedes Paar besteht aus einem maternalen und einem paternalen homologen Chromosom.", learningCard: { type: "reconstruct", template: "Der menschliche Zellkern enthält ___ Chromosomen: ___ Autosomen und ___ Gonosomen (Geschlechtschromosomen).", blanks: ["46", "44", "2"], distractors: ["48", "23"] } },
+      { id: "zk_h6", type: "true_false", statement: "Chromatin ist genetisch inaktives Reservematerial im Zellkern ohne Funktion.", answer: false, explanation: "Chromatin ist der funktionelle Zustand der DNA im Kern: Euchromatin ist aufgelockert und transkriptionsaktiv, Heterochromatin ist kondensiert und weitgehend inaktiv. Der Verdichtungsgrad des Chromatins reguliert also, welche Gene aktiv sind – Chromatin ist damit ein zentrales Regulationswerkzeug der Zelle.", learningCard: { type: "oddoneout", statements: [
+        { text: "Euchromatin ist aufgelockert und transkriptionsaktiv.", isWrong: false },
+        { text: "Heterochromatin ist kondensiert und weitgehend inaktiv.", isWrong: false },
+        { text: "Der Verdichtungsgrad des Chromatins reguliert, welche Gene aktiv sind.", isWrong: false },
+        { text: "Chromatin ist genetisch inaktives Reservematerial ohne Funktion.", isWrong: true }
+      ], whyWrong: "Chromatin ist kein inaktives Reservematerial, sondern der funktionelle Zustand der DNA im Kern: Euchromatin ist transkriptionsaktiv, Heterochromatin weitgehend inaktiv, und der Verdichtungsgrad reguliert, welche Gene aktiv sind." } }
     ],
     phase4Questions: [
       { id: "zk_mc1", type: "mc", question: "Welche Aussagen zum Zellkern sind korrekt?", options: [
@@ -338,26 +481,36 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv", correct: true },
         { text: "Kernporen kontrollieren den Transport zwischen Kern und Zytoplasma", correct: true },
         { text: "Der Nukleolus ist von einer eigenen Membran umschlossen", correct: false }
-      ], explanation: "Diploide Körperzellen enthalten 46 Chromosomen; Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv; Kernporen regulieren den Transport, der Nukleolus besitzt keine eigene Membran." },
+      ], explanation: "Diploide Körperzellen enthalten 46 Chromosomen; Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv; Kernporen regulieren den Transport, der Nukleolus besitzt keine eigene Membran.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Zellkern treffen zu?", checklist: [
+        { text: "Der Kern enthält 46 Chromosomen in diploiden Körperzellen.", correct: true },
+        { text: "Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv.", correct: true },
+        { text: "Kernporen kontrollieren den Transport zwischen Kern und Zytoplasma.", correct: true },
+        { text: "Der Nukleolus ist von einer eigenen Membran umschlossen.", correct: false }
+      ], reveal: "Diploide Körperzellen enthalten 46 Chromosomen; Euchromatin ist transkriptionsaktiv, Heterochromatin inaktiv; Kernporen regulieren den Transport, und der Nukleolus besitzt keine eigene Membran." } },
       { id: "zk_mc2", type: "mc", question: "Warum sind Skelettmuskelfasern vielkernig?", options: [
         { text: "Weil sie embryonal durch Fusion vieler Myoblasten entstehen", correct: true },
         { text: "Weil sie sich durch Mitose extrem stark teilen", correct: false },
         { text: "Weil jeder Abschnitt der Faser einen eigenen Kern benötigt wie ein eigener Organismus", correct: false },
         { text: "Weil Skelettmuskelfasern prokaryonte Zellen sind", correct: false }
-      ], explanation: "Skelettmuskelfasern sind vielkernig, weil sie embryonal durch Fusion vieler einkerniger Myoblasten entstehen und nicht durch Kernteilung." }
+      ], explanation: "Skelettmuskelfasern sind vielkernig, weil sie embryonal durch Fusion vieler einkerniger Myoblasten entstehen und nicht durch Kernteilung.", learningCard: { type: "oddoneout", statements: [
+        { text: "Skelettmuskelfasern entstehen embryonal durch Fusion vieler Myoblasten.", isWrong: false },
+        { text: "Das Ergebnis ist eine polynukleäre Riesenzelle mit vielen randständigen Kernen.", isWrong: false },
+        { text: "Diese Vielkernigkeit ist wichtig für die koordinierte Proteinexpression in der langen Faser.", isWrong: false },
+        { text: "Skelettmuskelfasern sind vielkernig, weil sie sich durch Mitose extrem stark teilen.", isWrong: true }
+      ], whyWrong: "Skelettmuskelfasern sind nicht wegen häufiger Mitose vielkernig, sondern weil sie embryonal durch Fusion vieler einkerniger Myoblasten entstehen und nicht durch Kernteilung." } }
     ]
   }),
   makeDetailedPlant({
     id: "zellkern_kernporen_nukleolus",
     title: "Zellkern: Kernporen und Nukleolus",
     harvestQuestions: [
-      { id: "zk_h2", type: "true_false", statement: "Die Kernporen (nuclear pore complex, NPC) kontrollieren den selektiven Transport zwischen Kern und Zytoplasma.", answer: true, explanation: "Kernporen sind grosse Proteinkomplexe (~120 nm) in der Kernhülle. Kleine Moleküle diffundieren frei; grosse Moleküle (Proteine >40 kDa, mRNA) werden aktiv durch Importine/Exportine unter GTP-Verbrauch transportiert. mRNA verlässt den Kern durch Kernporen; Transkriptionsfaktoren werden aktiv importiert." },
+      { id: "zk_h2", type: "true_false", statement: "Die Kernporen (nuclear pore complex, NPC) kontrollieren den selektiven Transport zwischen Kern und Zytoplasma.", answer: true, explanation: "Kernporen sind grosse Proteinkomplexe (~120 nm) in der Kernhülle. Kleine Moleküle diffundieren frei; grosse Moleküle (Proteine >40 kDa, mRNA) werden aktiv durch Importine/Exportine unter GTP-Verbrauch transportiert. mRNA verlässt den Kern durch Kernporen; Transkriptionsfaktoren werden aktiv importiert.", learningCard: { type: "predict", statement: "Die Kernporen (nuclear pore complex) kontrollieren den selektiven Transport zwischen Kern und Zytoplasma.", answer: true, reveal: "Kernporen sind grosse Proteinkomplexe in der Kernhülle: Kleine Moleküle diffundieren frei, während grosse Moleküle (Proteine, mRNA) aktiv durch Importine/Exportine unter GTP-Verbrauch transportiert werden." } },
       { id: "zk_h5", type: "mc", question: "Wo werden die Untereinheiten der Ribosomen assembliert?", options: [
         { text: "Im Nukleolus (innerhalb des Zellkerns)", correct: true },
         { text: "Im rauen ER", correct: false },
         { text: "Im Golgi-Apparat", correct: false },
         { text: "Im Zytosol frei floating", correct: false }
-      ], explanation: "Der Nukleolus ist eine kernplasmische Struktur (ohne Membran), die rDNA-Gene enthält. Hier werden ribosomale RNA (rRNA) transkribiert und mit ribosomalen Proteinen zu 40S- und 60S-Untereinheiten (bei Eukaryoten) vorassembliert, die dann durch Kernporen ins Zytoplasma exportiert werden." }
+      ], explanation: "Der Nukleolus ist eine kernplasmische Struktur (ohne Membran), die rDNA-Gene enthält. Hier werden ribosomale RNA (rRNA) transkribiert und mit ribosomalen Proteinen zu 40S- und 60S-Untereinheiten (bei Eukaryoten) vorassembliert, die dann durch Kernporen ins Zytoplasma exportiert werden.", learningCard: { type: "reconstruct", template: "Ribosomen-Untereinheiten werden im ___ assembliert und anschliessend durch die ___ ins Zytoplasma exportiert.", blanks: ["Nukleolus", "Kernporen"], distractors: ["Golgi-Apparat", "Mitochondrien"] } }
     ],
     phase4Questions: []
   }),
@@ -370,15 +523,25 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "In der Mitochondrienmatrix", correct: false },
         { text: "Im Zellkern", correct: false },
         { text: "Im rauen ER", correct: false }
-      ], explanation: "Die Glykolyse (Abbau von Glukose zu Pyruvat) findet ausschliesslich im Zytosol statt – bei Prokaryoten wie Eukaryoten. Der Zitratzyklus (Pyruvat-Weiterverarbeitung) und die oxidative Phosphorylierung (Atmungskette) sind dagegen auf die Mitochondrien beschränkt." },
+      ], explanation: "Die Glykolyse (Abbau von Glukose zu Pyruvat) findet ausschliesslich im Zytosol statt – bei Prokaryoten wie Eukaryoten. Der Zitratzyklus (Pyruvat-Weiterverarbeitung) und die oxidative Phosphorylierung (Atmungskette) sind dagegen auf die Mitochondrien beschränkt.", learningCard: { type: "predict", statement: "Die Glykolyse findet ausschliesslich im Zytosol statt, nicht in den Mitochondrien.", answer: true, reveal: "Die Glykolyse (Abbau von Glukose zu Pyruvat) findet ausschliesslich im Zytosol statt – bei Prokaryoten wie Eukaryoten. Der Zitratzyklus und die oxidative Phosphorylierung sind dagegen auf die Mitochondrien beschränkt." } },
       { id: "sw_h2", type: "mc", question: "Wie viele ATP-Moleküle entstehen netto aus einem Glukosemolekül bei der aeroben Oxidation (Gesamtbilanz)?", options: [
         { text: "Ca. 30–32 ATP (bei vollständiger Oxidation inkl. Atmungskette)", correct: true },
         { text: "2 ATP (nur Glykolyse ohne Atmungskette)", correct: false },
         { text: "38 ATP (veraltete Schätzung ohne Membranverluste)", correct: false },
         { text: "Keines – Glykolyse verbraucht ATP", correct: false }
-      ], explanation: "Glykolyse allein ergibt netto 2 ATP. Der Zitratzyklus und die oxidative Phosphorylierung liefern den Rest. Moderne Werte liegen bei ca. 30–32 ATP (frühere 36–38 waren Schätzungen ohne Membranpotentialverluste). Bei anaerober Glykolyse entstehen nur 2 ATP." },
-      { id: "sw_h4", type: "true_false", statement: "Katabolismus bezeichnet den abbauenden, Anabolismus den aufbauenden Teil des Stoffwechsels.", answer: true, explanation: "Katabolismus umfasst alle abbauenden Reaktionen (Glykolyse, Lipolyse, Proteolyse), bei denen komplexe Moleküle aufgespalten und Energie freigesetzt wird. Anabolismus umfasst aufbauende Reaktionen (Proteinsynthese, Glykogensynthese), die Energie verbrauchen und neue Biomoleküle erzeugen." },
-      { id: "sw_h6", type: "true_false", statement: "Beim Zitratzyklus (Krebszyklus) wird Pyruvat direkt weiterverarbeitet, ohne vorherige Umwandlung.", answer: false, explanation: "Pyruvat (aus der Glykolyse) wird zuerst durch den Pyruvat-Dehydrogenase-Komplex zu Acetyl-CoA umgewandelt (oxidative Decarboxylierung, mit CO2-Freisetzung und NADH-Gewinnung). Erst Acetyl-CoA tritt in den Zitratzyklus ein. Diese Umwandlung ist ein eigener regulierter Schritt in der Mitochondrienmatrix." }
+      ], explanation: "Glykolyse allein ergibt netto 2 ATP. Der Zitratzyklus und die oxidative Phosphorylierung liefern den Rest. Moderne Werte liegen bei ca. 30–32 ATP (frühere 36–38 waren Schätzungen ohne Membranpotentialverluste). Bei anaerober Glykolyse entstehen nur 2 ATP.", learningCard: { type: "reconstruct", template: "Glykolyse allein ergibt netto ___ ATP; die vollständige aerobe Oxidation eines Glukosemoleküls liefert insgesamt ca. ___ ATP.", blanks: ["2", "30–32"], distractors: ["4", "38"] } },
+      { id: "sw_h4", type: "true_false", statement: "Katabolismus bezeichnet den abbauenden, Anabolismus den aufbauenden Teil des Stoffwechsels.", answer: true, explanation: "Katabolismus umfasst alle abbauenden Reaktionen (Glykolyse, Lipolyse, Proteolyse), bei denen komplexe Moleküle aufgespalten und Energie freigesetzt wird. Anabolismus umfasst aufbauende Reaktionen (Proteinsynthese, Glykogensynthese), die Energie verbrauchen und neue Biomoleküle erzeugen.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Katabolismus und Anabolismus treffen zu?", checklist: [
+        { text: "Katabolismus umfasst abbauende Reaktionen, bei denen Energie freigesetzt wird.", correct: true },
+        { text: "Anabolismus umfasst aufbauende Reaktionen, die Energie verbrauchen.", correct: true },
+        { text: "Glykolyse, Lipolyse und Proteolyse gehören zum Katabolismus.", correct: true },
+        { text: "Anabolismus setzt Energie frei statt sie zu verbrauchen.", correct: false }
+      ], reveal: "Katabolismus umfasst abbauende Reaktionen (Glykolyse, Lipolyse, Proteolyse), bei denen Energie freigesetzt wird. Anabolismus umfasst aufbauende Reaktionen (Proteinsynthese, Glykogensynthese), die Energie verbrauchen und neue Biomoleküle erzeugen." } },
+      { id: "sw_h6", type: "true_false", statement: "Beim Zitratzyklus (Krebszyklus) wird Pyruvat direkt weiterverarbeitet, ohne vorherige Umwandlung.", answer: false, explanation: "Pyruvat (aus der Glykolyse) wird zuerst durch den Pyruvat-Dehydrogenase-Komplex zu Acetyl-CoA umgewandelt (oxidative Decarboxylierung, mit CO2-Freisetzung und NADH-Gewinnung). Erst Acetyl-CoA tritt in den Zitratzyklus ein. Diese Umwandlung ist ein eigener regulierter Schritt in der Mitochondrienmatrix.", learningCard: { type: "oddoneout", statements: [
+        { text: "Pyruvat wird durch den Pyruvat-Dehydrogenase-Komplex zu Acetyl-CoA umgewandelt.", isWrong: false },
+        { text: "Bei dieser Umwandlung entstehen CO2 und NADH.", isWrong: false },
+        { text: "Erst Acetyl-CoA tritt in den Zitratzyklus ein.", isWrong: false },
+        { text: "Pyruvat wird ohne vorherige Umwandlung direkt im Zitratzyklus weiterverarbeitet.", isWrong: true }
+      ], whyWrong: "Pyruvat wird nicht direkt im Zitratzyklus verarbeitet – es wird zuerst durch den Pyruvat-Dehydrogenase-Komplex zu Acetyl-CoA umgewandelt (mit CO2-Freisetzung und NADH-Gewinnung), und erst Acetyl-CoA tritt in den Zitratzyklus ein." } }
     ],
     phase4Questions: [
       { id: "sw_mc1", type: "mc", question: "Welche Stoffwechselwege laufen in der Mitochondrienmatrix ab?", options: [
@@ -386,20 +549,30 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Oxidative Phosphorylierung (in der inneren Membran)", correct: true },
         { text: "Glykolyse", correct: false },
         { text: "Proteinsynthese am Ribosom", correct: false }
-      ], explanation: "Der Zitratzyklus läuft in der Mitochondrienmatrix ab, die oxidative Phosphorylierung an der inneren Membran; die Glykolyse dagegen findet im Zytoplasma statt." }
+      ], explanation: "Der Zitratzyklus läuft in der Mitochondrienmatrix ab, die oxidative Phosphorylierung an der inneren Membran; die Glykolyse dagegen findet im Zytoplasma statt.", learningCard: { type: "teachback", prompt: "Welche Stoffwechselwege laufen in oder an den Mitochondrien ab?", checklist: [
+        { text: "Der Zitratzyklus läuft in der Mitochondrienmatrix ab.", correct: true },
+        { text: "Die oxidative Phosphorylierung läuft an der inneren Mitochondrienmembran ab.", correct: true },
+        { text: "Die Glykolyse findet im Zytoplasma statt, nicht in den Mitochondrien.", correct: true },
+        { text: "Die Glykolyse läuft in der Mitochondrienmatrix ab.", correct: false }
+      ], reveal: "Der Zitratzyklus läuft in der Mitochondrienmatrix ab, die oxidative Phosphorylierung an der inneren Membran; die Glykolyse dagegen findet im Zytoplasma statt." } }
     ]
   }),
   makeDetailedPlant({
     id: "stoffwechsel_dogma_aminosaeuren",
     title: "Stoffwechsel: Zentrales Dogma und essentielle Aminosäuren",
     harvestQuestions: [
-      { id: "sw_h3", type: "true_false", statement: "Essentielle Aminosäuren können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden.", answer: true, explanation: "Von den 20 proteinogenen Aminosäuren sind beim gesunden Erwachsenen 8 essentiell (Valin, Leucin, Isoleucin, Methionin, Threonin, Phenylalanin, Tryptophan, Lysin) – d.h. der Körper kann sie nicht selbst herstellen. 2 weitere gelten als semi-essentiell in bestimmten Lebensphasen (Arginin, Histidin)." },
+      { id: "sw_h3", type: "true_false", statement: "Essentielle Aminosäuren können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden.", answer: true, explanation: "Von den 20 proteinogenen Aminosäuren sind beim gesunden Erwachsenen 8 essentiell (Valin, Leucin, Isoleucin, Methionin, Threonin, Phenylalanin, Tryptophan, Lysin) – d.h. der Körper kann sie nicht selbst herstellen. 2 weitere gelten als semi-essentiell in bestimmten Lebensphasen (Arginin, Histidin).", learningCard: { type: "reconstruct", template: "Von den 20 proteinogenen Aminosäuren sind beim gesunden Erwachsenen ___ essentiell; ___ weitere gelten als semi-essentiell.", blanks: ["8", "2"], distractors: ["10", "5"] } },
       { id: "sw_h5", type: "mc", question: "Welche Schritte umfasst das 'zentrale Dogma der Molekularbiologie'?", options: [
         { text: "Replikation (DNA→DNA), Transkription (DNA→RNA), Translation (RNA→Protein)", correct: true },
         { text: "Replikation, Osmose, Glykolyse", correct: false },
         { text: "Transkription (RNA→DNA), Translation (Protein→RNA)", correct: false },
         { text: "Nur Translation (DNA direkt zu Protein)", correct: false }
-      ], explanation: "Das zentrale Dogma (Crick 1958): Replikation = DNA wird zu DNA verdoppelt; Transkription = DNA wird im Kern zu mRNA umgeschrieben (durch RNA-Polymerase); Translation = mRNA wird am Ribosom zu Protein übersetzt. Reverse Transkription (RNA→DNA) ist möglich durch Retroviren, aber nicht der Standardweg." }
+      ], explanation: "Das zentrale Dogma (Crick 1958): Replikation = DNA wird zu DNA verdoppelt; Transkription = DNA wird im Kern zu mRNA umgeschrieben (durch RNA-Polymerase); Translation = mRNA wird am Ribosom zu Protein übersetzt. Reverse Transkription (RNA→DNA) ist möglich durch Retroviren, aber nicht der Standardweg.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum zentralen Dogma der Molekularbiologie treffen zu?", checklist: [
+        { text: "Replikation bedeutet, dass DNA zu DNA verdoppelt wird.", correct: true },
+        { text: "Transkription bedeutet, dass DNA im Kern zu mRNA umgeschrieben wird.", correct: true },
+        { text: "Translation bedeutet, dass mRNA am Ribosom zu Protein übersetzt wird.", correct: true },
+        { text: "Translation bezeichnet die direkte Umwandlung von DNA zu Protein ohne RNA-Zwischenschritt.", correct: false }
+      ], reveal: "Das zentrale Dogma (Crick 1958): Replikation = DNA wird zu DNA verdoppelt; Transkription = DNA wird im Kern zu mRNA umgeschrieben; Translation = mRNA wird am Ribosom zu Protein übersetzt." } }
     ],
     phase4Questions: [
       { id: "sw_mc2", type: "mc", question: "Welche Aussagen zu essentiellen Aminosäuren sind korrekt?", options: [
@@ -407,7 +580,12 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Es gibt 8 essentielle Aminosäuren beim gesunden Erwachsenen", correct: true },
         { text: "Leucin und Tryptophan gehören dazu", correct: true },
         { text: "Alle 20 Aminosäuren sind essentiell", correct: false }
-      ], explanation: "Essentielle Aminosäuren (beim Erwachsenen 8, darunter Leucin und Tryptophan) können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden." }
+      ], explanation: "Essentielle Aminosäuren (beim Erwachsenen 8, darunter Leucin und Tryptophan) können vom Körper nicht selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden.", learningCard: { type: "oddoneout", statements: [
+        { text: "Essentielle Aminosäuren können vom Körper nicht selbst synthetisiert werden.", isWrong: false },
+        { text: "Es gibt 8 essentielle Aminosäuren beim gesunden Erwachsenen.", isWrong: false },
+        { text: "Leucin und Tryptophan gehören zu den essentiellen Aminosäuren.", isWrong: false },
+        { text: "Alle 20 Aminosäuren sind essentiell.", isWrong: true }
+      ], whyWrong: "Nicht alle 20 Aminosäuren sind essentiell – nur 8 (darunter Leucin und Tryptophan) können beim gesunden Erwachsenen nicht vom Körper selbst synthetisiert werden und müssen mit der Nahrung aufgenommen werden." } }
     ]
   }),
   makeDetailedPlant({
@@ -419,22 +597,32 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Chromosomen richten sich in der Äquatorialplatte aus", correct: false },
         { text: "Die Kernhülle löst sich auf und Chromosomen kondensieren", correct: false },
         { text: "Neue Zellkerne und Zellmembranen bilden sich", correct: false }
-      ], explanation: "Anaphase: Centromere werden durch Kohäsin-Spaltung getrennt, Motorproteine (Kinesin, Dynein) ziehen die Schwesterchromatiden aktiv zu den gegenüberliegenden Polen. Jede Tochterzelle erhält einen vollständigen Chromosomensatz. Metaphase = Ausrichtung in Äquatorialplatte; Prophase = Kondensation + Kernhüllenauflösung; Telophase = neue Kerne." },
+      ], explanation: "Anaphase: Centromere werden durch Kohäsin-Spaltung getrennt, Motorproteine (Kinesin, Dynein) ziehen die Schwesterchromatiden aktiv zu den gegenüberliegenden Polen. Jede Tochterzelle erhält einen vollständigen Chromosomensatz. Metaphase = Ausrichtung in Äquatorialplatte; Prophase = Kondensation + Kernhüllenauflösung; Telophase = neue Kerne.", learningCard: { type: "predict", statement: "In der Anaphase der Mitose werden die Schwesterchromatiden durch Spindelfasern zu den gegenüberliegenden Zellpolen gezogen.", answer: true, reveal: "In der Anaphase werden Centromere durch Kohäsin-Spaltung getrennt und Motorproteine ziehen die Schwesterchromatiden aktiv zu den gegenüberliegenden Polen, sodass jede Tochterzelle einen vollständigen Chromosomensatz erhält." } },
       { id: "mi_h2", type: "mc", question: "Was wird in der Interphase (G2-Phase) für die Mitose vorbereitet?", options: [
         { text: "Die replizierte DNA wird auf Fehler geprüft und Zellorganellen werden verdoppelt", correct: true },
         { text: "Die Kernteilung findet statt", correct: false },
         { text: "Chromosomen kondensieren und die Kernhülle löst sich auf", correct: false },
         { text: "Schwesterchromatiden werden zu den Polen gezogen", correct: false }
-      ], explanation: "Die Interphase gliedert sich in G1 (Zellwachstum), S-Phase (DNA-Replikation) und G2 (Wachstum, Vorbereitung: Proteine für Spindelapparat werden synthetisiert, DNA-Schäden werden repariert). Die eigentliche Kernteilung (Karyokinese) beginnt erst in der Prophase." },
-      { id: "mi_h3", type: "true_false", statement: "Der Spindelapparat der Mitose besteht aus Mikrotubuli, die von Zentrosomen ausgehen.", answer: true, explanation: "Der Spindelapparat (mitotische Spindel) besteht aus Mikrotubuli, die von den zwei Zentrosomen (Zellpolen) ausgehen. Kinetochor-Mikrotubuli verbinden sich mit den Kinetochoren der Chromosomen und ziehen sie in der Anaphase auseinander. Der Spindelapparat ist der molekulare Motor der Chromosomentrennung." },
-      { id: "mi_h4", type: "true_false", statement: "Die Zytokinese (Zellteilung) beginnt während der Telophase und trennt das Zytoplasma.", answer: true, explanation: "Zytokinese und Karyokinese (Kernteilung) sind getrennte Prozesse: Die Karyokinese (Prophasn bis Telophase) teilt den Kern, die Zytokinese teilt danach das Zytoplasma. In tierischen Zellen geschieht dies durch einen kontraktilen Ring aus Aktin und Myosin II (Furche); in Pflanzenzellen durch eine Zellplatte." },
+      ], explanation: "Die Interphase gliedert sich in G1 (Zellwachstum), S-Phase (DNA-Replikation) und G2 (Wachstum, Vorbereitung: Proteine für Spindelapparat werden synthetisiert, DNA-Schäden werden repariert). Die eigentliche Kernteilung (Karyokinese) beginnt erst in der Prophase.", learningCard: { type: "reconstruct", template: "In der ___-Phase der Interphase wird die replizierte DNA auf Fehler geprüft und ___ werden verdoppelt bzw. Spindelproteine synthetisiert.", blanks: ["G2", "Zellorganellen"], distractors: ["G1", "Chromosomen"] } },
+      { id: "mi_h3", type: "true_false", statement: "Der Spindelapparat der Mitose besteht aus Mikrotubuli, die von Zentrosomen ausgehen.", answer: true, explanation: "Der Spindelapparat (mitotische Spindel) besteht aus Mikrotubuli, die von den zwei Zentrosomen (Zellpolen) ausgehen. Kinetochor-Mikrotubuli verbinden sich mit den Kinetochoren der Chromosomen und ziehen sie in der Anaphase auseinander. Der Spindelapparat ist der molekulare Motor der Chromosomentrennung.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Spindelapparat treffen zu?", checklist: [
+        { text: "Der Spindelapparat besteht aus Mikrotubuli.", correct: true },
+        { text: "Die Mikrotubuli gehen von den Zentrosomen (Zellpolen) aus.", correct: true },
+        { text: "Kinetochor-Mikrotubuli verbinden sich mit den Kinetochoren der Chromosomen.", correct: true },
+        { text: "Der Spindelapparat besteht aus Aktinfilamenten.", correct: false }
+      ], reveal: "Der Spindelapparat besteht aus Mikrotubuli, die von den zwei Zentrosomen (Zellpolen) ausgehen. Kinetochor-Mikrotubuli verbinden sich mit den Kinetochoren der Chromosomen und ziehen sie in der Anaphase auseinander." } },
+      { id: "mi_h4", type: "true_false", statement: "Die Zytokinese (Zellteilung) beginnt während der Telophase und trennt das Zytoplasma.", answer: true, explanation: "Zytokinese und Karyokinese (Kernteilung) sind getrennte Prozesse: Die Karyokinese (Prophasn bis Telophase) teilt den Kern, die Zytokinese teilt danach das Zytoplasma. In tierischen Zellen geschieht dies durch einen kontraktilen Ring aus Aktin und Myosin II (Furche); in Pflanzenzellen durch eine Zellplatte.", learningCard: { type: "oddoneout", statements: [
+        { text: "Karyokinese und Zytokinese sind getrennte Prozesse.", isWrong: false },
+        { text: "Die Zytokinese teilt das Zytoplasma, nachdem die Karyokinese den Kern geteilt hat.", isWrong: false },
+        { text: "In tierischen Zellen geschieht die Zytokinese durch einen kontraktilen Ring aus Aktin und Myosin II.", isWrong: false },
+        { text: "In Pflanzenzellen geschieht die Zytokinese ebenfalls durch einen kontraktilen Ring aus Aktin und Myosin.", isWrong: true }
+      ], whyWrong: "In Pflanzenzellen entsteht die Trennung nicht durch einen kontraktilen Ring, sondern durch eine Zellplatte – der kontraktile Ring aus Aktin und Myosin II ist typisch für tierische Zellen." } },
       { id: "mi_h5", type: "mc", question: "Was ist der wichtigste Unterschied zwischen Karyokinese und Zytokinese?", options: [
         { text: "Karyokinese = Kernteilung; Zytokinese = Zellteilung (Zytoplasmatrennung)", correct: true },
         { text: "Karyokinese = Zellteilung; Zytokinese = Kernteilung", correct: false },
         { text: "Beide Begriffe bezeichnen dasselbe", correct: false },
         { text: "Karyokinese findet nur bei der Meiose statt", correct: false }
-      ], explanation: "Karyokinese (griech. karyon = Kern) bezeichnet die Teilung des Zellkerns durch die Mitosephasen. Zytokinese (griech. kytos = Zelle, kinein = bewegen) bezeichnet die anschliessende Teilung des Zytoplasmas. Beide sind notwendig für die vollständige Zellteilung; in manchen Geweben (z.B. frühem Embryo) kann Karyokinese ohne Zytokinese ablaufen." },
-      { id: "mi_h6", type: "true_false", statement: "Nach vollständiger Mitose besitzen beide Tochterzellen denselben diploiden Chromosomensatz wie die Mutterzelle.", answer: true, explanation: "Da die DNA in der Interphase vollständig repliziert und dann durch die Mitosephasen exakt auf beide Tochterkerne verteilt wird, enthalten beide Tochterzellen den vollständigen diploiden Chromosomensatz (2n = 46) der Mutterzelle. Dies sichert genetische Stabilität." }
+      ], explanation: "Karyokinese (griech. karyon = Kern) bezeichnet die Teilung des Zellkerns durch die Mitosephasen. Zytokinese (griech. kytos = Zelle, kinein = bewegen) bezeichnet die anschliessende Teilung des Zytoplasmas. Beide sind notwendig für die vollständige Zellteilung; in manchen Geweben (z.B. frühem Embryo) kann Karyokinese ohne Zytokinese ablaufen.", learningCard: { type: "predict", statement: "Karyokinese bezeichnet die Teilung des Zellkerns, Zytokinese die anschliessende Teilung des Zytoplasmas.", answer: true, reveal: "Karyokinese bezeichnet die Teilung des Zellkerns durch die Mitosephasen, Zytokinese die anschliessende Teilung des Zytoplasmas. Beide sind für die vollständige Zellteilung nötig; in manchen Geweben kann Karyokinese auch ohne Zytokinese ablaufen." } },
+      { id: "mi_h6", type: "true_false", statement: "Nach vollständiger Mitose besitzen beide Tochterzellen denselben diploiden Chromosomensatz wie die Mutterzelle.", answer: true, explanation: "Da die DNA in der Interphase vollständig repliziert und dann durch die Mitosephasen exakt auf beide Tochterkerne verteilt wird, enthalten beide Tochterzellen den vollständigen diploiden Chromosomensatz (2n = 46) der Mutterzelle. Dies sichert genetische Stabilität.", learningCard: { type: "reconstruct", template: "Nach vollständiger Mitose besitzen beide Tochterzellen denselben ___ Chromosomensatz wie die Mutterzelle (2n = ___).", blanks: ["diploiden", "46"], distractors: ["haploiden", "23"] } }
     ],
     phase4Questions: [
       { id: "mi_mc1", type: "mc", question: "Welche Ereignisse sind der jeweiligen Mitosephase korrekt zugeordnet?", options: [
@@ -442,13 +630,23 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Metaphase: Ausrichtung der Chromosomen in der Äquatorialplatte", correct: true },
         { text: "Anaphase: Trennung der Schwesterchromatiden zu den Zellpolen", correct: true },
         { text: "Anaphase: Bildung neuer Kernhüllenl", correct: false }
-      ], explanation: "In der Prophase kondensieren Chromosomen und die Kernhülle löst sich auf, in der Metaphase ordnen sie sich in der Äquatorialplatte, in der Anaphase trennen sich Schwesterchromatiden zu den Polen." },
+      ], explanation: "In der Prophase kondensieren Chromosomen und die Kernhülle löst sich auf, in der Metaphase ordnen sie sich in der Äquatorialplatte, in der Anaphase trennen sich Schwesterchromatiden zu den Polen.", learningCard: { type: "teachback", prompt: "Welche Ereignisse sind der jeweiligen Mitosephase korrekt zugeordnet?", checklist: [
+        { text: "Prophase: Chromosomenkondensation und Kernhüllenauflösung.", correct: true },
+        { text: "Metaphase: Ausrichtung der Chromosomen in der Äquatorialplatte.", correct: true },
+        { text: "Anaphase: Trennung der Schwesterchromatiden zu den Zellpolen.", correct: true },
+        { text: "Anaphase: Bildung neuer Kernhüllen.", correct: false }
+      ], reveal: "In der Prophase kondensieren Chromosomen und die Kernhülle löst sich auf, in der Metaphase ordnen sie sich in der Äquatorialplatte, und in der Anaphase trennen sich die Schwesterchromatiden zu den Polen." } },
       { id: "mi_mc2", type: "mc", question: "Was ist korrekt bezueglich des Spindelapparats?", options: [
         { text: "Er besteht aus Mikrotubuli, die von Zentrosomen ausgehen", correct: true },
         { text: "Er zieht Chromosomen in der Anaphase zu den Zellpolen", correct: true },
         { text: "Er besteht aus Aktinfilamenten", correct: false },
         { text: "Er bildet sich in der Interphase, nicht während der Mitose", correct: false }
-      ], explanation: "Der Spindelapparat besteht aus Mikrotubuli (von Zentrosomen), zieht in der Anaphase Chromosomen zu den Zellpolen und besteht nicht aus Aktinfilamenten." }
+      ], explanation: "Der Spindelapparat besteht aus Mikrotubuli (von Zentrosomen), zieht in der Anaphase Chromosomen zu den Zellpolen und besteht nicht aus Aktinfilamenten.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der Spindelapparat besteht aus Mikrotubuli, die von Zentrosomen ausgehen.", isWrong: false },
+        { text: "Er zieht Chromosomen in der Anaphase zu den Zellpolen.", isWrong: false },
+        { text: "Er bildet sich während der Mitosephasen.", isWrong: false },
+        { text: "Er besteht aus Aktinfilamenten.", isWrong: true }
+      ], whyWrong: "Der Spindelapparat besteht nicht aus Aktinfilamenten, sondern aus Mikrotubuli, die von Zentrosomen ausgehen und in der Anaphase die Chromosomen zu den Zellpolen ziehen." } }
     ]
   }),
   makeDetailedPlant({
@@ -718,32 +916,47 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Connexin (Connexone)", correct: false },
         { text: "Keratin und Desmoplakin", correct: false },
         { text: "Kollagen Typ IV und Laminin", correct: false }
-      ], explanation: "Tight Junctions bestehen aus Transmembranproteinen: Claudine (verschiedene Subtypen regulieren Selektivität) und Occludin sind die Hauptbausteine. Connexine bilden Gap Junctions. Keratin und Desmoplakin gehören zu Desmosomen. Kollagen IV/Laminin sind Basalmembranbestandteile." },
+      ], explanation: "Tight Junctions bestehen aus Transmembranproteinen: Claudine (verschiedene Subtypen regulieren Selektivität) und Occludin sind die Hauptbausteine. Connexine bilden Gap Junctions. Keratin und Desmoplakin gehören zu Desmosomen. Kollagen IV/Laminin sind Basalmembranbestandteile.", learningCard: { type: "predict", statement: "Tight Junctions bestehen hauptsächlich aus den Proteinen Claudin und Occludin.", answer: true, reveal: "Tight Junctions bestehen aus den Transmembranproteinen Claudin und Occludin. Connexine bilden dagegen Gap Junctions, und Keratin/Desmoplakin gehören zu Desmosomen." } },
       { id: "hi_zv_h2", type: "mc", question: "Was können Gap Junctions passieren lassen – was können sie NICHT durchlassen?", options: [
         { text: "Durchlassbar: Ionen, cAMP, kleine Moleküle bis ca. 1 kDa; NICHT: Proteine und DNA", correct: true },
         { text: "Durchlassbar: Proteine und DNA; NICHT: Ionen", correct: false },
         { text: "Durchlassbar: nichts – Gap Junctions dichten nur ab", correct: false },
         { text: "Durchlassbar: alle Moleküle ohne Grösspenlimit", correct: false }
-      ], explanation: "Gap Junctions (aus Connexonen: je 6 Connexin-Proteine) erlauben den Durchtritt von Molekülen bis ca. 1 kDa: Ionen (Na+, K+, Ca2+), cAMP, IP3, Glukose, Aminosäuren. Proteine (>1 kDa) können nicht passieren. Im Herzmuskel koppeln Gap Junctions die Erregung elektrisch zwischen Kardiomyozyten." },
+      ], explanation: "Gap Junctions (aus Connexonen: je 6 Connexin-Proteine) erlauben den Durchtritt von Molekülen bis ca. 1 kDa: Ionen (Na+, K+, Ca2+), cAMP, IP3, Glukose, Aminosäuren. Proteine (>1 kDa) können nicht passieren. Im Herzmuskel koppeln Gap Junctions die Erregung elektrisch zwischen Kardiomyozyten.", learningCard: { type: "teachback", prompt: "Was können Gap Junctions durchlassen?", checklist: [
+        { text: "Ionen wie Na+, K+, Ca2+", correct: true },
+        { text: "cAMP, IP3 und kleine Moleküle bis ca. 1 kDa", correct: true },
+        { text: "Proteine über 1 kDa", correct: false },
+        { text: "DNA", correct: false }
+      ], reveal: "Gap Junctions lassen Moleküle bis ca. 1 kDa durch: Ionen, cAMP, IP3, Glukose und Aminosäuren. Proteine und DNA sind zu groß und können nicht passieren." } },
       { id: "hi_zv_h3", type: "mc", question: "Welches Intermediarfilament verankern Desmosomen in benachbarten Zellen?", options: [
         { text: "Keratin (Zytokeratin)", correct: true },
         { text: "Aktin", correct: false },
         { text: "Vimentin", correct: false },
         { text: "Mikrotubuli", correct: false }
-      ], explanation: "Desmosomen (Maculä adhärentes) verbinden Keratin-Intermediarfilamente benachbarter Zellen über Desmoplakin und Desmoglein/Desmocollin. Sie verleihen epithelialen Geweben (Haut, Herzmuskel) Zugfestigkeit. Autoantikörper gegen Desmoglein führen zur Pemphigus vulgaris (blasenbildende Hauterkrankung)." },
-      { id: "hi_zv_h4", type: "true_false", statement: "Tight Junctions verhindern die parazelluläre Diffusion von Ionen und kleinen Molekülen durch den Interzellularraum.", answer: true, explanation: "Tight Junctions dichten den parazellulären Weg vollständig ab, indem Claudin und Occludin eine fest versiegelte Kontaktstelle zwischen benachbarten Epithelzellen bilden. An der Blut-Hirn-Schranke ist diese Abdichtung besonders ausgeprägt." },
+      ], explanation: "Desmosomen (Maculä adhärentes) verbinden Keratin-Intermediarfilamente benachbarter Zellen über Desmoplakin und Desmoglein/Desmocollin. Sie verleihen epithelialen Geweben (Haut, Herzmuskel) Zugfestigkeit. Autoantikörper gegen Desmoglein führen zur Pemphigus vulgaris (blasenbildende Hauterkrankung).", learningCard: { type: "reconstruct", template: "Desmosomen verbinden ___-Intermediärfilamente benachbarter Zellen über das Ankerprotein ___.", blanks: ["Keratin", "Desmoplakin"], distractors: ["Aktin", "Vimentin"] } },
+      { id: "hi_zv_h4", type: "true_false", statement: "Tight Junctions verhindern die parazelluläre Diffusion von Ionen und kleinen Molekülen durch den Interzellularraum.", answer: true, explanation: "Tight Junctions dichten den parazellulären Weg vollständig ab, indem Claudin und Occludin eine fest versiegelte Kontaktstelle zwischen benachbarten Epithelzellen bilden. An der Blut-Hirn-Schranke ist diese Abdichtung besonders ausgeprägt.", learningCard: { type: "oddoneout", statements: [
+        { text: "Tight Junctions dichten den parazellulären Weg zwischen Epithelzellen ab.", isWrong: false },
+        { text: "Claudin und Occludin bilden die versiegelte Kontaktstelle der Tight Junctions.", isWrong: false },
+        { text: "An der Blut-Hirn-Schranke ist die Abdichtung durch Tight Junctions besonders ausgeprägt.", isWrong: false },
+        { text: "Tight Junctions lassen Ionen und kleine Moleküle frei durch den Interzellularraum passieren.", isWrong: true }
+      ], whyWrong: "Tight Junctions verhindern gerade die parazelluläre Diffusion von Ionen und kleinen Molekülen, da Claudin und Occludin die Kontaktstelle vollständig versiegeln. Genau das macht sie an der Blut-Hirn-Schranke besonders wichtig." } },
       { id: "hi_zv_h5", type: "mc", question: "Aus wie vielen Connexin-Proteinen besteht ein einzelnes Connexon (Halbkanal) einer Gap Junction?", options: [
         { text: "Sechs Connexin-Proteine", correct: true },
         { text: "Zwei Connexin-Proteine", correct: false },
         { text: "Zwölf Connexin-Proteine", correct: false },
         { text: "Vier Connexin-Proteine", correct: false }
-      ], explanation: "Ein Connexon besteht aus sechs Connexin-Proteinen, die ringförmig einen Kanal bilden. Zwei gegenüberliegende Connexone – je eines aus einer Zelle – bilden zusammen den vollständigen Gap-Junction-Kanal, der Ionen und kleine Moleküle bis ca. 1 kDa durchlässt." },
+      ], explanation: "Ein Connexon besteht aus sechs Connexin-Proteinen, die ringförmig einen Kanal bilden. Zwei gegenüberliegende Connexone – je eines aus einer Zelle – bilden zusammen den vollständigen Gap-Junction-Kanal, der Ionen und kleine Moleküle bis ca. 1 kDa durchlässt.", learningCard: { type: "predict", statement: "Ein Connexon besteht aus sechs Connexin-Proteinen.", answer: true, reveal: "Ein Connexon besteht aus sechs Connexin-Proteinen, die ringförmig einen Kanal bilden. Zwei gegenüberliegende Connexone aus benachbarten Zellen bilden zusammen den vollständigen Gap-Junction-Kanal." } },
       { id: "hi_zv_h6", type: "mc", question: "Welche Verbindungsproteine sind spezifisch für Adhäsionskontakte (Desmosomen)?", options: [
         { text: "Desmoplakin und Desmoglein", correct: true },
         { text: "Claudin und Occludin", correct: false },
         { text: "Connexin", correct: false },
         { text: "Kollagen Typ IV und Laminin", correct: false }
-      ], explanation: "Desmosomen enthalten die desmosomalen Cadherine Desmoglein und Desmocollin sowie das Ankerprotein Desmoplakin, das die Keratin-Intermediarfilamente verknüpft. Claudin/Occludin gehören zu Tight Junctions, Connexin zu Gap Junctions." }
+      ], explanation: "Desmosomen enthalten die desmosomalen Cadherine Desmoglein und Desmocollin sowie das Ankerprotein Desmoplakin, das die Keratin-Intermediarfilamente verknüpft. Claudin/Occludin gehören zu Tight Junctions, Connexin zu Gap Junctions.", learningCard: { type: "teachback", prompt: "Welche Proteine gehören zu Desmosomen?", checklist: [
+        { text: "Desmoglein und Desmocollin (desmosomale Cadherine)", correct: true },
+        { text: "Desmoplakin (Ankerprotein für Keratin-Filamente)", correct: true },
+        { text: "Claudin und Occludin", correct: false },
+        { text: "Connexin", correct: false }
+      ], reveal: "Desmosomen enthalten die desmosomalen Cadherine Desmoglein und Desmocollin sowie das Ankerprotein Desmoplakin, das die Keratin-Intermediärfilamente verknüpft. Claudin/Occludin gehören zu Tight Junctions, Connexin zu Gap Junctions." } }
     ],
     phase4Questions: [
       { id: "hi_zv_mc1", type: "mc", question: "Welche Zellverbindungen und ihre Hauptproteine sind korrekt zugeordnet?", options: [
@@ -751,19 +964,24 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Gap Junction – Connexin", correct: true },
         { text: "Desmosom – Keratin (verankert durch Desmoplakin)", correct: true },
         { text: "Adhärens-Junction – Connexin", correct: false }
-      ], explanation: "Tight Junctions (Claudin/Occludin), Gap Junctions (Connexin) und Desmosomen (Keratin/Desmoplakin) sind korrekt zugeordnet; Adhärens-Junctions verwenden Cadherin, nicht Connexin." },
+      ], explanation: "Tight Junctions (Claudin/Occludin), Gap Junctions (Connexin) und Desmosomen (Keratin/Desmoplakin) sind korrekt zugeordnet; Adhärens-Junctions verwenden Cadherin, nicht Connexin.", learningCard: { type: "reconstruct", template: "Tight Junction – Claudin und Occludin; Gap Junction – ___; Desmosom – ___ (verankert durch Desmoplakin).", blanks: ["Connexin", "Keratin"], distractors: ["Cadherin", "Aktin"] } },
       { id: "hi_zv_mc2", type: "mc", question: "Welche Zellverbindung ist an der Blut-Hirn-Schranke für die Abdichtung verantwortlich?", options: [
         { text: "Tight Junctions zwischen Gehirn-Endothelzellen", correct: true },
         { text: "Gap Junctions", correct: false },
         { text: "Desmosomen", correct: false },
         { text: "Adhärens-Junctions", correct: false }
-      ], explanation: "Tight Junctions zwischen Gehirn-Endothelzellen verschließen den parazellulären Spalt vollständig und verhindern den unkontrollierten Durchtritt von Substanzen ins Hirngewebe." },
+      ], explanation: "Tight Junctions zwischen Gehirn-Endothelzellen verschließen den parazellulären Spalt vollständig und verhindern den unkontrollierten Durchtritt von Substanzen ins Hirngewebe.", learningCard: { type: "predict", statement: "An der Blut-Hirn-Schranke werden die Endothelzellen des Gehirns durch Tight Junctions abgedichtet.", answer: true, reveal: "Tight Junctions zwischen Gehirn-Endothelzellen verschließen den parazellulären Spalt vollständig und verhindern den unkontrollierten Durchtritt von Substanzen ins Hirngewebe." } },
       { id: "hi_zv_mc3", type: "mc", question: "Welche Aussagen zu Gap Junctions und ihrer physiologischen Bedeutung sind korrekt?", options: [
         { text: "Gap Junctions ermöglichen direkten Ionen- und Kleinmolekültransfer zwischen benachbarten Zellen", correct: true },
         { text: "Im Herzmuskel koppeln Gap Junctions die elektrische Erregung zwischen Kardiomyozyten", correct: true },
         { text: "Gap Junctions lassen Proteine und DNA frei passieren", correct: false },
         { text: "Gap Junctions bestehen aus Claudin-Proteinen", correct: false }
-      ], explanation: "Gap Junctions aus Connexinen ermöglichen direkten Ionen- und Kleinmolekültransfer zwischen Zellen und koppeln im Herzmuskel die elektrische Erregung; Makromoleküle können nicht passieren." }
+      ], explanation: "Gap Junctions aus Connexinen ermöglichen direkten Ionen- und Kleinmolekültransfer zwischen Zellen und koppeln im Herzmuskel die elektrische Erregung; Makromoleküle können nicht passieren.", learningCard: { type: "oddoneout", statements: [
+        { text: "Gap Junctions ermöglichen direkten Ionen- und Kleinmolekültransfer zwischen benachbarten Zellen.", isWrong: false },
+        { text: "Im Herzmuskel koppeln Gap Junctions die elektrische Erregung zwischen Kardiomyozyten.", isWrong: false },
+        { text: "Gap Junctions bestehen aus Connexin-Proteinen.", isWrong: false },
+        { text: "Gap Junctions lassen Proteine und DNA frei zwischen Zellen passieren.", isWrong: true }
+      ], whyWrong: "Gap Junctions lassen nur Ionen und kleine Moleküle bis ca. 1 kDa passieren. Proteine und DNA sind zu groß und können nicht hindurchtreten." } }
     ]
   }),
   makeDetailedPlant({
@@ -775,22 +993,32 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Synapsen und Gap Junctions ausschliesslich", correct: false },
         { text: "Kollagenfasern zwischen den Zellen", correct: false },
         { text: "Nur Desmosomen, keine anderen Verbindungen", correct: false }
-      ], explanation: "Epithelzellen sind durch drei Haupttypen von Zellverbindungen verbunden: Tight Junctions (dichten parazellulären Weg ab), Adhärens-Junctions (mechanische Kopplung) und Desmosomen (Zugkräfte). Zusammen bilden sie den festen Zellverband." },
-      { id: "hi_ep_h2", type: "true_false", statement: "Die Basalmembran enthält hauptsächlich Kollagen Typ IV und Laminin.", answer: true, explanation: "Die Basalmembran besteht vor allem aus Kollagen Typ IV (Netzwerk) und Laminin (Verankerung der Epithelzellen). Dazu kommen Perlecan (Heparansulfat-Proteoglykan) und Nidogen. Kollagen Typ I findet sich dagegen im Bindegewebe, nicht in der Basalmembran." },
-      { id: "hi_ep_h3", type: "true_false", statement: "Epithelgewebe ernährt sich durch Diffusion aus dem darunterliegenden Bindegewebe, da es keine eigenen Blutgefässe besitzt.", answer: true, explanation: "Epithelien sind avaskular – keine eigenen Blutgefässe. Säuerstoff und Nährstoffe diffundieren aus den Kapillaren des subepithelial gelegenen Bindegewebes durch die Basalmembran. Die maximale Epitheldicke wird dadurch durch die Diffusionsstrecke begrenzt (mehrschichtige Epithelien können trotzdem dick sein, da die Basalzellen nah an den Kapillaren liegen)." },
+      ], explanation: "Epithelzellen sind durch drei Haupttypen von Zellverbindungen verbunden: Tight Junctions (dichten parazellulären Weg ab), Adhärens-Junctions (mechanische Kopplung) und Desmosomen (Zugkräfte). Zusammen bilden sie den festen Zellverband.", learningCard: { type: "teachback", prompt: "Welche Zellverbindungen halten Epithelzellen zusammen?", checklist: [
+        { text: "Tight Junctions (dichten den parazellulären Weg ab)", correct: true },
+        { text: "Adhärens-Junctions (mechanische Kopplung)", correct: true },
+        { text: "Desmosomen (vermitteln Zugkräfte)", correct: true },
+        { text: "Synapsen zwischen Nachbarzellen", correct: false }
+      ], reveal: "Epithelzellen sind durch drei Haupttypen von Zellverbindungen verbunden: Tight Junctions, Adhärens-Junctions und Desmosomen. Zusammen bilden sie den festen Zellverband." } },
+      { id: "hi_ep_h2", type: "true_false", statement: "Die Basalmembran enthält hauptsächlich Kollagen Typ IV und Laminin.", answer: true, explanation: "Die Basalmembran besteht vor allem aus Kollagen Typ IV (Netzwerk) und Laminin (Verankerung der Epithelzellen). Dazu kommen Perlecan (Heparansulfat-Proteoglykan) und Nidogen. Kollagen Typ I findet sich dagegen im Bindegewebe, nicht in der Basalmembran.", learningCard: { type: "predict", statement: "Die Basalmembran besteht hauptsächlich aus Kollagen Typ IV und Laminin.", answer: true, reveal: "Die Basalmembran besteht vor allem aus Kollagen Typ IV, das ein Netzwerk bildet, und Laminin, das die Epithelzellen verankert. Kollagen Typ I findet sich dagegen im Bindegewebe, nicht in der Basalmembran." } },
+      { id: "hi_ep_h3", type: "true_false", statement: "Epithelgewebe ernährt sich durch Diffusion aus dem darunterliegenden Bindegewebe, da es keine eigenen Blutgefässe besitzt.", answer: true, explanation: "Epithelien sind avaskular – keine eigenen Blutgefässe. Säuerstoff und Nährstoffe diffundieren aus den Kapillaren des subepithelial gelegenen Bindegewebes durch die Basalmembran. Die maximale Epitheldicke wird dadurch durch die Diffusionsstrecke begrenzt (mehrschichtige Epithelien können trotzdem dick sein, da die Basalzellen nah an den Kapillaren liegen).", learningCard: { type: "oddoneout", statements: [
+        { text: "Epithelgewebe besitzt keine eigenen Blutgefäße.", isWrong: false },
+        { text: "Sauerstoff und Nährstoffe diffundieren aus Kapillaren des Bindegewebes durch die Basalmembran.", isWrong: false },
+        { text: "Die Diffusionsstrecke begrenzt die maximale Epitheldicke.", isWrong: false },
+        { text: "Epithelgewebe besitzt eigene Blutgefäße, die es direkt versorgen.", isWrong: true }
+      ], whyWrong: "Epithelien sind avaskulär und besitzen keine eigenen Blutgefäße. Sauerstoff und Nährstoffe erreichen sie ausschließlich durch Diffusion aus dem darunterliegenden Bindegewebe." } },
       { id: "hi_ep_h4", type: "mc", question: "Was sind die zwei Hauptbestandteile der Basalmembran unter Epithelgewebe?", options: [
         { text: "Kollagen Typ IV (Netzwerkbildner) und Laminin (Verankerungsprotein)", correct: true },
         { text: "Kollagen Typ I und Elastin", correct: false },
         { text: "Aktin und Myosin", correct: false },
         { text: "Keratin und Desmoplakin", correct: false }
-      ], explanation: "Die Basalmembran besteht vor allem aus Kollagen Typ IV, das ein feines Netzwerk bildet, und Laminin, das die Epithelzellen verankert. Weitere Bestandteile sind Perlecan und Nidogen. Kollagen Typ I findet sich dagegen im Bindegewebe und nicht in der Basalmembran." },
-      { id: "hi_ep_h5", type: "true_false", statement: "Flimmerepithel in den Atemwegen transportiert Schleim aktiv nach aussen.", answer: true, explanation: "Das mehrreihige Flimmerepithel der Atemwege trägt Zilien, die durch koordinierte Schlagbewegungen Schleim und eingeschlossene Partikel in Richtung Rachen befördern (mukoziliäre Clearance). Dies ist ein wichtiger Schutzmechanismus der Atemwege." },
+      ], explanation: "Die Basalmembran besteht vor allem aus Kollagen Typ IV, das ein feines Netzwerk bildet, und Laminin, das die Epithelzellen verankert. Weitere Bestandteile sind Perlecan und Nidogen. Kollagen Typ I findet sich dagegen im Bindegewebe und nicht in der Basalmembran.", learningCard: { type: "reconstruct", template: "Die Basalmembran besteht vor allem aus Kollagen Typ ___ (Netzwerkbildner) und ___ (Verankerungsprotein).", blanks: ["IV", "Laminin"], distractors: ["I", "Elastin"] } },
+      { id: "hi_ep_h5", type: "true_false", statement: "Flimmerepithel in den Atemwegen transportiert Schleim aktiv nach aussen.", answer: true, explanation: "Das mehrreihige Flimmerepithel der Atemwege trägt Zilien, die durch koordinierte Schlagbewegungen Schleim und eingeschlossene Partikel in Richtung Rachen befördern (mukoziliäre Clearance). Dies ist ein wichtiger Schutzmechanismus der Atemwege.", learningCard: { type: "predict", statement: "Flimmerepithel in den Atemwegen transportiert Schleim aktiv nach außen.", answer: true, reveal: "Das mehrreihige Flimmerepithel der Atemwege trägt Zilien, die durch koordinierte Schlagbewegungen Schleim und eingeschlossene Partikel in Richtung Rachen befördern. Dieser Mechanismus heißt mukoziliäre Clearance und schützt die Atemwege." } },
       { id: "hi_ep_h6", type: "mc", question: "Welcher Epitheltyp resorbiert Nährstoffe und welche Strukturen ermöglichen dies?", options: [
         { text: "Einschichtiges Säulenepithel mit Mikrovilli im Darm", correct: true },
         { text: "Mehrschichtiges Plattenepithel mit Keratinschicht", correct: false },
         { text: "Mehrreihiges Flimmerepithel der Atemwege", correct: false },
         { text: "Übergangsepithel (Urothel) der Harnblase", correct: false }
-      ], explanation: "Das einschichtige Säulenepithel des Dünndarms besitzt auf der apikalen Seite Mikrovilli (Bürstensaum), die die Resorptionsfläche erheblich vergrössern. Deckepithel kann je nach Typ hochspezialisiert sein: Nicht nur Schutz, sondern auch Resorption ist möglich." }
+      ], explanation: "Das einschichtige Säulenepithel des Dünndarms besitzt auf der apikalen Seite Mikrovilli (Bürstensaum), die die Resorptionsfläche erheblich vergrössern. Deckepithel kann je nach Typ hochspezialisiert sein: Nicht nur Schutz, sondern auch Resorption ist möglich.", learningCard: { type: "reconstruct", template: "Das einschichtige ___epithel des Dünndarms besitzt apikale ___ zur Vergrößerung der Resorptionsfläche.", blanks: ["Säulen", "Mikrovilli"], distractors: ["Platten", "Zilien"] } }
     ],
     phase4Questions: [
       { id: "hi_ep_mc1", type: "mc", question: "Welche Antwort benennt korrekt die drei Grundtypen von Epithelgewebe?", options: [
@@ -798,19 +1026,24 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Deckepithel, Stützepithel und Drüsenepithel", correct: false },
         { text: "Sinnesepithel, Stützepithel und Bindegewebe", correct: false },
         { text: "Drüsenepithel, Muskelepithel und Sinnesepithel", correct: false }
-      ], explanation: "Die drei Grundtypen des Epithelgewebes sind: Deckepithel (Oberflächenschutz und -auskleidung), Drüsenepithel (Sekretion) und Sinnesepithel (Reizaufnahme). Stützepithel ist kein anerkannter eigener Epitheltyp." },
+      ], explanation: "Die drei Grundtypen des Epithelgewebes sind: Deckepithel (Oberflächenschutz und -auskleidung), Drüsenepithel (Sekretion) und Sinnesepithel (Reizaufnahme). Stützepithel ist kein anerkannter eigener Epitheltyp.", learningCard: { type: "reconstruct", template: "Die drei Grundtypen des Epithelgewebes sind ___, ___ und ___.", blanks: ["Deckepithel", "Drüsenepithel", "Sinnesepithel"], distractors: ["Stützepithel", "Muskelepithel"] } },
       { id: "hi_ep_mc2", type: "mc", question: "Welche Aussage zur Ernährung von Epithelgewebe ist korrekt?", options: [
         { text: "Diffusion aus dem subepithelial gelegenen Bindegewebe durch die Basalmembran", correct: true },
         { text: "Eigene Kapillaren innerhalb des Epithelverbands", correct: false },
         { text: "Resorption direkt aus dem Organlumen", correct: false },
         { text: "Ernährung erfolgt ausschliesslich über Lymphgefässe", correct: false }
-      ], explanation: "Epithelgewebe ist gefäßlos und erhält Nährstoffe ausschließlich durch Diffusion aus dem darunter liegenden Bindegewebe durch die Basalmembran." },
+      ], explanation: "Epithelgewebe ist gefäßlos und erhält Nährstoffe ausschließlich durch Diffusion aus dem darunter liegenden Bindegewebe durch die Basalmembran.", learningCard: { type: "predict", statement: "Epithelgewebe wird durch Diffusion aus dem darunterliegenden Bindegewebe ernährt, da es avaskulär ist.", answer: true, reveal: "Epithelgewebe ist gefäßlos und erhält Nährstoffe ausschließlich durch Diffusion aus dem darunterliegenden Bindegewebe durch die Basalmembran." } },
       { id: "hi_ep_mc3", type: "mc", question: "Welche Aussagen zum Epithelgewebe sind korrekt?", options: [
         { text: "Epithelgewebe ist avaskular und wird durch Diffusion aus dem Bindegewebe ernährt", correct: true },
         { text: "Flimmerepithel transportiert durch Zilienarbeit Sekrete und Fremdkörper", correct: true },
         { text: "Tight Junctions ermöglichen freien parazellulären Durchtritt von Ionen", correct: false },
         { text: "Drüsenepithel ist der häufigste Epitheltyp in der Haut", correct: false }
-      ], explanation: "Epithelgewebe: avaskular, Ernährung durch Diffusion. Flimmerepithel: Zilien transportieren Mukus (Atemwege). Tight Junctions: verhindern parazellulären Durchtritt. Haut: Plattenepithel (Deckepithel), nicht Drüsenepithel."}
+      ], explanation: "Epithelgewebe: avaskular, Ernährung durch Diffusion. Flimmerepithel: Zilien transportieren Mukus (Atemwege). Tight Junctions: verhindern parazellulären Durchtritt. Haut: Plattenepithel (Deckepithel), nicht Drüsenepithel.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Epithelgewebe treffen zu?", checklist: [
+        { text: "Epithelgewebe ist avaskulär und wird durch Diffusion aus dem Bindegewebe ernährt", correct: true },
+        { text: "Flimmerepithel transportiert durch Zilienarbeit Mukus in den Atemwegen", correct: true },
+        { text: "Tight Junctions ermöglichen freien parazellulären Durchtritt von Ionen", correct: false },
+        { text: "Drüsenepithel ist der häufigste Epitheltyp in der Haut", correct: false }
+      ], reveal: "Epithelgewebe ist avaskulär und wird durch Diffusion aus dem Bindegewebe ernährt. Flimmerepithel transportiert Mukus durch Zilienarbeit; Tight Junctions verhindern dagegen den parazellulären Durchtritt, und die Haut besteht aus Plattenepithel, nicht Drüsenepithel." } }
     ]
   }),
   makeDetailedPlant({
@@ -822,22 +1055,37 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Mehrschichtiges verhorntes Plattenepithel", correct: false },
         { text: "Mehrreihiges Flimmerepithel", correct: false },
         { text: "Übergangsepithel (Urothel)", correct: false }
-      ], explanation: "Die Gefässinnenwand (Endothel) besteht aus einschichtigem Plattenepithel – dünn genug für Diffusion, glatt genug für laminäre Strömung. Einschichtig bedeutet: eine Zelllage, alle Zellen an der Basalmembran." },
-      { id: "hi_od_h2", type: "true_false", statement: "Das Übergangsepithel (Urothel) der Harnblase kann seine Schichtdicke je nach Füllungszustand verändern.", answer: true, explanation: "Urothel ist eine Sonderform: Bei leerer Harnblase erscheint es mehrschichtig (5-6 Lagen), bei voller Blase dehnt es sich und wirkt fast einschichtig. Die charakteristischen Deckzellen (Umbrella-Zellen) erlauben diese Verformbarkeit. Dies erklärt den Namen Übergangsepithel." },
-      { id: "hi_od_h3", type: "true_false", statement: "Mehrreihiges Epithel ist dasselbe wie mehrschichtiges Epithel.", answer: false, explanation: "Beim mehrreihigen Epithel berühren ALLE Zellen die Basalmembran – nur die Kerne liegen auf unterschiedlichen Höhen, was mehrschichtig wirkt (Pseudostratifizierung). Beim mehrschichtigen Epithel berührt nur die unterste Lage (Stratum basale) die Basalmembran. Klassisches mehrreihiges Beispiel: Flimmerepithel der Atemwege." },
+      ], explanation: "Die Gefässinnenwand (Endothel) besteht aus einschichtigem Plattenepithel – dünn genug für Diffusion, glatt genug für laminäre Strömung. Einschichtig bedeutet: eine Zelllage, alle Zellen an der Basalmembran.", learningCard: { type: "predict", statement: "Blut- und Lymphgefäße werden von einschichtigem Plattenepithel ausgekleidet.", answer: true, reveal: "Die Gefäßinnenwand (Endothel) besteht aus einschichtigem Plattenepithel – dünn genug für Diffusion, glatt genug für laminäre Strömung. Einschichtig bedeutet: eine Zelllage, alle Zellen sitzen an der Basalmembran." } },
+      { id: "hi_od_h2", type: "true_false", statement: "Das Übergangsepithel (Urothel) der Harnblase kann seine Schichtdicke je nach Füllungszustand verändern.", answer: true, explanation: "Urothel ist eine Sonderform: Bei leerer Harnblase erscheint es mehrschichtig (5-6 Lagen), bei voller Blase dehnt es sich und wirkt fast einschichtig. Die charakteristischen Deckzellen (Umbrella-Zellen) erlauben diese Verformbarkeit. Dies erklärt den Namen Übergangsepithel.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Urothel (Übergangsepithel) treffen zu?", checklist: [
+        { text: "Bei leerer Blase erscheint es mehrschichtig (5-6 Lagen)", correct: true },
+        { text: "Bei voller Blase dehnt es sich und wirkt fast einschichtig", correct: true },
+        { text: "Umbrella-Zellen (Deckzellen) erlauben diese Verformbarkeit", correct: true },
+        { text: "Es bleibt bei jedem Füllungszustand gleich dick", correct: false }
+      ], reveal: "Urothel ist eine Sonderform: Bei leerer Harnblase erscheint es mehrschichtig (5-6 Lagen), bei voller Blase dehnt es sich und wirkt fast einschichtig. Die charakteristischen Deckzellen (Umbrella-Zellen) erlauben diese Verformbarkeit." } },
+      { id: "hi_od_h3", type: "true_false", statement: "Mehrreihiges Epithel ist dasselbe wie mehrschichtiges Epithel.", answer: false, explanation: "Beim mehrreihigen Epithel berühren ALLE Zellen die Basalmembran – nur die Kerne liegen auf unterschiedlichen Höhen, was mehrschichtig wirkt (Pseudostratifizierung). Beim mehrschichtigen Epithel berührt nur die unterste Lage (Stratum basale) die Basalmembran. Klassisches mehrreihiges Beispiel: Flimmerepithel der Atemwege.", learningCard: { type: "oddoneout", statements: [
+        { text: "Beim mehrreihigen Epithel berühren alle Zellen die Basalmembran.", isWrong: false },
+        { text: "Beim mehrschichtigen Epithel berührt nur die unterste Lage die Basalmembran.", isWrong: false },
+        { text: "Das Flimmerepithel der Atemwege ist ein klassisches Beispiel für mehrreihiges Epithel.", isWrong: false },
+        { text: "Mehrreihiges Epithel ist dasselbe wie mehrschichtiges Epithel.", isWrong: true }
+      ], whyWrong: "Beim mehrreihigen Epithel berühren ALLE Zellen die Basalmembran – nur die Kerne liegen auf unterschiedlichen Höhen (Pseudostratifizierung). Beim mehrschichtigen Epithel berührt dagegen nur die unterste Lage die Basalmembran." } },
       { id: "hi_od_h4", type: "mc", question: "Welches Epithel kleidet Blut- und Lymphgefässe aus und wie heisst es spezifisch?", options: [
         { text: "Einschichtiges Plattenepithel = Endothel (bei Blut- und Lymphgefässen) / Mesothel (bei serösen Höhlen)", correct: true },
         { text: "Mehrschichtiges Plattenepithel", correct: false },
         { text: "Mehrreihiges Flimmerepithel", correct: false },
         { text: "Übergangsepithel (Urothel)", correct: false }
-      ], explanation: "Einschichtiges Plattenepithel hat besondere Namen je nach Lokalisation: Endothel (Blut- und Lymphgefässinnenwand), Mesothel (Pleura, Peritoneum, Perikard). Diese dünne Schicht ermöglicht Diffusion und Filtration." },
-      { id: "hi_od_h5", type: "true_false", image: "assets/diagrams/epidermis_schichten.png", statement: "Die Hautepidermis besteht aus mehrschichtigem verhorntem Plattenepithel.", answer: true, explanation: "Hautepidermis: mehrschichtiges verhorntes Plattenepithel (5 Schichten: Stratum basale → spinosum → granulosum → lucidum → corneum). Verhornung (Keratinisierung) macht die Oberfläche wasserdicht. Nicht verhornt: Mundhöhlen- und Vaginalschleimhaut (mechanischer Schutz ohne Wasserdichte)." },
+      ], explanation: "Einschichtiges Plattenepithel hat besondere Namen je nach Lokalisation: Endothel (Blut- und Lymphgefässinnenwand), Mesothel (Pleura, Peritoneum, Perikard). Diese dünne Schicht ermöglicht Diffusion und Filtration.", learningCard: { type: "reconstruct", template: "Einschichtiges Plattenepithel heißt an Blut- und Lymphgefäßen ___, an serösen Höhlen wie Pleura oder Peritoneum ___.", blanks: ["Endothel", "Mesothel"], distractors: ["Urothel", "Epidermis"] } },
+      { id: "hi_od_h5", type: "true_false", image: "assets/diagrams/epidermis_schichten.png", statement: "Die Hautepidermis besteht aus mehrschichtigem verhorntem Plattenepithel.", answer: true, explanation: "Hautepidermis: mehrschichtiges verhorntes Plattenepithel (5 Schichten: Stratum basale → spinosum → granulosum → lucidum → corneum). Verhornung (Keratinisierung) macht die Oberfläche wasserdicht. Nicht verhornt: Mundhöhlen- und Vaginalschleimhaut (mechanischer Schutz ohne Wasserdichte).", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Hautepidermis treffen zu?", checklist: [
+        { text: "Sie besteht aus mehrschichtigem verhorntem Plattenepithel mit fünf Schichten", correct: true },
+        { text: "Die Verhornung (Keratinisierung) macht die Oberfläche wasserdicht", correct: true },
+        { text: "Mundhöhlen- und Vaginalschleimhaut sind ebenfalls verhornt", correct: false },
+        { text: "Sie besteht aus einschichtigem Plattenepithel", correct: false }
+      ], reveal: "Die Hautepidermis besteht aus mehrschichtigem verhorntem Plattenepithel mit fünf Schichten (Stratum basale bis corneum). Die Verhornung macht die Oberfläche wasserdicht; Mund- und Vaginalschleimhaut sind dagegen nicht verhornt." } },
       { id: "hi_od_h6", type: "mc", image: "assets/diagrams/histologie_figure_5.png", question: "Was sind Mikrovilli und wo kommen sie vor?", options: [
         { text: "Zytoplasmaausstülpungen des apikalen Zellapex zur Oberflächenvergrösserung; typisch an Darmepithel und Nierentubuli", correct: true },
         { text: "Zellfortsätze für Fortbewegung (Flimmerepithel)", correct: false },
         { text: "Verbindungsstrukturen zwischen Nachbarzellen (Tight Junctions)", correct: false },
         { text: "Mikroporen in der Basalmembran für Diffusion", correct: false }
-      ], explanation: "Mikrovilli: apikale Ausstülpungen des Zytoplasmas ohne innere Beweglichkeit (anders als Zilien). Funktion: Oberflächenvergrösserung für Resorption. Klassisch: Bürstensaum (Saum aus Mikrovilli) im Dünndarmepithel und proximalen Nierentubuli." }
+      ], explanation: "Mikrovilli: apikale Ausstülpungen des Zytoplasmas ohne innere Beweglichkeit (anders als Zilien). Funktion: Oberflächenvergrösserung für Resorption. Klassisch: Bürstensaum (Saum aus Mikrovilli) im Dünndarmepithel und proximalen Nierentubuli.", learningCard: { type: "predict", statement: "Mikrovilli sind Zytoplasmaausstülpungen, die die Zelloberfläche zur Resorption vergrößern.", answer: true, reveal: "Mikrovilli sind apikale Zytoplasmaausstülpungen ohne innere Beweglichkeit, die die Oberfläche für Resorption vergrößern. Sie kommen typisch als Bürstensaum im Dünndarmepithel und in den proximalen Nierentubuli vor." } }
     ],
     phase4Questions: [
       { id: "hi_od_mc1", type: "mc", question: "Welche Aussagen zum mehrreihigen Epithel sind korrekt?", options: [
@@ -845,19 +1093,29 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Kerne liegen auf verschiedenen Höhen (Pseudostratifizierung)", correct: true },
         { text: "Nur die unterste Zellreihe berührt die Basalmembran", correct: false },
         { text: "Es kommt typischerweise in der Harnblase vor", correct: false }
-      ], explanation: "Beim mehrreihigen Epithel berühren alle Zellen die Basalmembran, ihre Kerne liegen aber auf verschiedenen Höhen (Pseudostratifizierung), weshalb es mehrstockig wirkt." },
+      ], explanation: "Beim mehrreihigen Epithel berühren alle Zellen die Basalmembran, ihre Kerne liegen aber auf verschiedenen Höhen (Pseudostratifizierung), weshalb es mehrstockig wirkt.", learningCard: { type: "teachback", prompt: "Was stimmt beim mehrreihigen Epithel?", checklist: [
+        { text: "Alle Zellen berühren die Basalmembran", correct: true },
+        { text: "Kerne liegen auf verschiedenen Höhen (Pseudostratifizierung)", correct: true },
+        { text: "Nur die unterste Zellreihe berührt die Basalmembran", correct: false },
+        { text: "Es kommt typischerweise in der Harnblase vor", correct: false }
+      ], reveal: "Beim mehrreihigen Epithel berühren alle Zellen die Basalmembran, ihre Kerne liegen aber auf verschiedenen Höhen (Pseudostratifizierung), weshalb es mehrstockig wirkt." } },
       { id: "hi_od_mc2", type: "mc", question: "Welcher Epitheltyp ist für mechanische Belastung (z.B. Haut, Mundhöhleschleimhaut) am besten geeignet?", options: [
         { text: "Mehrschichtiges Plattenepithel", correct: true },
         { text: "Einschichtiges Plattenepithel", correct: false },
         { text: "Mehrreihiges Flimmerepithel", correct: false },
         { text: "Einschichtiges Würfelepithel", correct: false }
-      ], explanation: "Mehrschichtiges Plattenepithel ist für mechanische Belastung am besten geeignet, da die vielen Zelllagen Druck und Reibung kompensieren können." },
+      ], explanation: "Mehrschichtiges Plattenepithel ist für mechanische Belastung am besten geeignet, da die vielen Zelllagen Druck und Reibung kompensieren können.", learningCard: { type: "predict", statement: "Mehrschichtiges Plattenepithel ist am besten für mechanische Belastung wie in Haut und Mundschleimhaut geeignet.", answer: true, reveal: "Mehrschichtiges Plattenepithel ist für mechanische Belastung am besten geeignet, da die vielen Zelllagen Druck und Reibung kompensieren können." } },
       { id: "hi_od_mc3", type: "mc", question: "Welche Aussagen zum Deckepithel sind korrekt?", options: [
         { text: "Mehrschichtiges verhorntes Plattenepithel bildet die Epidermis der Haut", correct: true },
         { text: "Übergangsepithel (Urothel) verändert seine Schichtdicke je nach Füllungszustand der Harnblase", correct: true },
         { text: "Mehrreihiges Epithel hat mehrere Zelllagen, die alle die Basalmembran berühren", correct: false },
         { text: "Endothel der Blutgefässe ist mehrschichtiges Plattenepithel", correct: false }
-      ], explanation: "Haut: mehrschichtiges verhorntes Plattenepithel. Urothel: dehnbar (5-6 Lagen → fast einschichtig). Mehrreihig: alle Zellen an Basalmembran, aber Kerne auf verschiedenen Höhen (nicht mehrere Zelllagen). Endothel: EINschichtiges Plattenepithel."}
+      ], explanation: "Haut: mehrschichtiges verhorntes Plattenepithel. Urothel: dehnbar (5-6 Lagen → fast einschichtig). Mehrreihig: alle Zellen an Basalmembran, aber Kerne auf verschiedenen Höhen (nicht mehrere Zelllagen). Endothel: EINschichtiges Plattenepithel.", learningCard: { type: "oddoneout", statements: [
+        { text: "Mehrschichtiges verhorntes Plattenepithel bildet die Epidermis der Haut.", isWrong: false },
+        { text: "Übergangsepithel (Urothel) verändert seine Schichtdicke je nach Füllungszustand der Harnblase.", isWrong: false },
+        { text: "Mehrreihiges Epithel hat eine einzige Zelllage, deren Zellen alle die Basalmembran berühren.", isWrong: false },
+        { text: "Endothel der Blutgefäße ist mehrschichtiges Plattenepithel.", isWrong: true }
+      ], whyWrong: "Endothel der Blutgefäße ist einschichtiges, nicht mehrschichtiges Plattenepithel. Haut ist mehrschichtig verhornt, Urothel ist dehnbar und mehrreihiges Epithel hat nur eine Zelllage mit versetzten Kernen." } }
     ]
   }),
   makeDetailedPlant({
@@ -869,27 +1127,42 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Apokrine Sekretion", correct: false },
         { text: "Holokrine Sekretion", correct: false },
         { text: "Endokrine Sekretion", correct: false }
-      ], explanation: "Merokrin (ekkrin) = Vesikel verschmelzen mit der Zellmembran, Sekret wird ausgeschüttet, Zelle bleibt intakt. Beispiel: Bauchspeicheldrüse, Schweissdrüsen. Apokrin: Abschnürung des Zellapex (z.B. Milchdrüse). Holokrin: gesamte Zelle wird zum Sekret (z.B. Talgdrüse)." },
-      { id: "hi_dr_h2", type: "true_false", statement: "Die Talgdrüse ist ein Beispiel für holokrine Sekretion.", answer: true, explanation: "Bei der holokrinen Sekretion wird die gesamte Drüsenzelle zum Sekret: Die Zelle füllt sich mit Lipiden, stirbt ab und wird komplett abgegeben (Talg). Die Regeneration erfolgt durch Proliferation von Basalzellen. Dies steht im Gegensatz zur merokrine Sekretion (Vesikelexozytose, Zelle intakt) und apokrinen Sekretion (nur Zellapex abgetrennt)." },
+      ], explanation: "Merokrin (ekkrin) = Vesikel verschmelzen mit der Zellmembran, Sekret wird ausgeschüttet, Zelle bleibt intakt. Beispiel: Bauchspeicheldrüse, Schweissdrüsen. Apokrin: Abschnürung des Zellapex (z.B. Milchdrüse). Holokrin: gesamte Zelle wird zum Sekret (z.B. Talgdrüse).", learningCard: { type: "predict", statement: "Merokrine (ekkrine) Sekretion erfolgt durch Vesikelexozytose, ohne dass die Zelle Material verliert.", answer: true, reveal: "Merokrin (ekkrin) bedeutet: Vesikel verschmelzen mit der Zellmembran, das Sekret wird ausgeschüttet, die Zelle bleibt intakt. Beispiele sind die Bauchspeicheldrüse und Schweißdrüsen." } },
+      { id: "hi_dr_h2", type: "true_false", statement: "Die Talgdrüse ist ein Beispiel für holokrine Sekretion.", answer: true, explanation: "Bei der holokrinen Sekretion wird die gesamte Drüsenzelle zum Sekret: Die Zelle füllt sich mit Lipiden, stirbt ab und wird komplett abgegeben (Talg). Die Regeneration erfolgt durch Proliferation von Basalzellen. Dies steht im Gegensatz zur merokrine Sekretion (Vesikelexozytose, Zelle intakt) und apokrinen Sekretion (nur Zellapex abgetrennt).", learningCard: { type: "oddoneout", statements: [
+        { text: "Bei der holokrinen Sekretion wird die gesamte Zelle zum Sekret.", isWrong: false },
+        { text: "Die Talgdrüse ist ein Beispiel für holokrine Sekretion.", isWrong: false },
+        { text: "Die Regeneration erfolgt durch Proliferation von Basalzellen.", isWrong: false },
+        { text: "Bei der holokrinen Sekretion bleibt die Zelle wie bei der merokrinen Sekretion intakt.", isWrong: true }
+      ], whyWrong: "Bei der holokrinen Sekretion stirbt die Zelle ab und wird komplett als Sekret abgegeben – anders als bei der merokrinen Sekretion, bei der die Zelle durch Vesikelexozytose intakt bleibt. Die Talgdrüse regeneriert sich durch Proliferation von Basalzellen." } },
       { id: "hi_dr_h3", type: "mc", question: "Welche Aussage zur Sekretion der Milchdrüse ist korrekt?", options: [
         { text: "Ausschliesslich merokrine Sekretion", correct: false },
         { text: "Ausschliesslich apokrine Sekretion", correct: false },
         { text: "Kombination: apokrin für den Fettanteil, merokrin für den Proteinanteil", correct: true },
         { text: "Holokrine Sekretion wie die Talgdrüse", correct: false }
-      ], explanation: "Die Milchdrüse verwendet beide Sekretionswege: Fette werden apokrin abgegeben (Abschnürung lipidgefüllter Zellvorsprünge), Proteine (Kasein, Lactalbumin) merokrin via Vesikelexozytose. Holokrin (gesamte Zelle = Sekret) nutzt die Milchdrüse nicht." },
-      { id: "hi_dr_h4", type: "true_false", statement: "Exokrine Drüsen geben ihr Sekret über einen Ausführungsgang an eine Körperoberfläche oder ein Hohlorgan ab.", answer: true, explanation: "Exokrine Drüsen: Ausführungsgang → Sekret nach aussen (Körperoberfläche, Lumen von Hohlorganen). Beispiele: Speicheldrüsen (Mundhöhle), Schweissdrüsen (Haut), Bauchspeicheldrüse (Dünndarm). Im Gegensatz dazu: Endokrine Drüsen haben keinen Ausführungsgang, geben Hormone direkt ins Blut." },
+      ], explanation: "Die Milchdrüse verwendet beide Sekretionswege: Fette werden apokrin abgegeben (Abschnürung lipidgefüllter Zellvorsprünge), Proteine (Kasein, Lactalbumin) merokrin via Vesikelexozytose. Holokrin (gesamte Zelle = Sekret) nutzt die Milchdrüse nicht.", learningCard: { type: "teachback", prompt: "Wie sekretiert die Milchdrüse?", checklist: [
+        { text: "Fette werden apokrin abgegeben (Abschnürung von Zellvorsprüngen)", correct: true },
+        { text: "Proteine wie Kasein werden merokrin über Vesikelexozytose abgegeben", correct: true },
+        { text: "Die Milchdrüse sekretiert ausschließlich holokrin", correct: false },
+        { text: "Die Milchdrüse sekretiert ausschließlich merokrin", correct: false }
+      ], reveal: "Die Milchdrüse verwendet zwei Sekretionswege: Fette werden apokrin abgegeben (Abschnürung lipidgefüllter Zellvorsprünge), Proteine wie Kasein merokrin über Vesikelexozytose. Holokrine Sekretion nutzt die Milchdrüse nicht." } },
+      { id: "hi_dr_h4", type: "true_false", statement: "Exokrine Drüsen geben ihr Sekret über einen Ausführungsgang an eine Körperoberfläche oder ein Hohlorgan ab.", answer: true, explanation: "Exokrine Drüsen: Ausführungsgang → Sekret nach aussen (Körperoberfläche, Lumen von Hohlorganen). Beispiele: Speicheldrüsen (Mundhöhle), Schweissdrüsen (Haut), Bauchspeicheldrüse (Dünndarm). Im Gegensatz dazu: Endokrine Drüsen haben keinen Ausführungsgang, geben Hormone direkt ins Blut.", learningCard: { type: "predict", statement: "Exokrine Drüsen geben ihr Sekret über einen Ausführungsgang an eine Körperoberfläche oder ein Hohlorgan ab.", answer: true, reveal: "Exokrine Drüsen besitzen einen Ausführungsgang, durch den das Sekret nach außen gelangt – zur Körperoberfläche oder in ein Hohlorganlumen. Endokrine Drüsen haben dagegen keinen Ausführungsgang und geben Hormone direkt ins Blut." } },
       { id: "hi_dr_h5", type: "mc", question: "Welche Drüsentypen nutzen welche Sekretionsmethode?", options: [
         { text: "Talgdrüse: holokrin; Schweissdrüse: merokrin; Milchdrüse: apokrin (Fett) + merokrin (Protein)", correct: true },
         { text: "Alle Drüsen sekretieren ausschliesslich merokrin", correct: false },
         { text: "Talgdrüse: merokrin; Schweissdrüse: holokrin", correct: false },
         { text: "Milchdrüse: ausschliesslich holokrin", correct: false }
-      ], explanation: "Holokrin (Zelle wird Sekret): Talgdrüse. Merokrin (Vesikelexozytose): Schweissdrüse, Bauchspeicheldrüse. Apokrin (Apex abschnürt): Milchdrüse (Fett). Milchdrüse: kombiniert apokrin + merokrin für unterschiedliche Sekretbestandteile." },
+      ], explanation: "Holokrin (Zelle wird Sekret): Talgdrüse. Merokrin (Vesikelexozytose): Schweissdrüse, Bauchspeicheldrüse. Apokrin (Apex abschnürt): Milchdrüse (Fett). Milchdrüse: kombiniert apokrin + merokrin für unterschiedliche Sekretbestandteile.", learningCard: { type: "reconstruct", template: "Talgdrüse: ___; Schweißdrüse: ___; Milchdrüse: apokrin (Fett) + merokrin (Protein).", blanks: ["holokrin", "merokrin"], distractors: ["apokrin", "endokrin"] } },
       { id: "hi_dr_h6", type: "mc", question: "Was ist ein tubuloazinöses Drüsensystem?", options: [
         { text: "Eine Drüse, die sowohl röhrenförmige (tubuläre) als auch bläschenförmige (azinöse) Endstücke besitzt", correct: true },
         { text: "Eine Drüse, die ausschliesslich endokrin sekretiert", correct: false },
         { text: "Eine Drüse mit nur einem einzigen Ausführungsgang (einfache Drüse)", correct: false },
         { text: "Eine Drüse, die Tubuli und Ductus ohne Azini besitzt", correct: false }
-      ], explanation: "Drüseneinteilung nach Form der Endstücke: Tubuläre Drüsen (röhrenförmig, z.B. Schweissdrüse), azinöse Drüsen (bläschenförmig/traubenförmig, z.B. Parotis), tubuloazinöse Drüsen (beides, z.B. Unterkieferspeicheldrüse). Die Form korreliert mit der Sekretmenge und -qualität." }
+      ], explanation: "Drüseneinteilung nach Form der Endstücke: Tubuläre Drüsen (röhrenförmig, z.B. Schweissdrüse), azinöse Drüsen (bläschenförmig/traubenförmig, z.B. Parotis), tubuloazinöse Drüsen (beides, z.B. Unterkieferspeicheldrüse). Die Form korreliert mit der Sekretmenge und -qualität.", learningCard: { type: "oddoneout", statements: [
+        { text: "Tubuläre Drüsen haben röhrenförmige Endstücke, z.B. die Schweißdrüse.", isWrong: false },
+        { text: "Azinöse Drüsen haben bläschenförmige Endstücke, z.B. die Parotis.", isWrong: false },
+        { text: "Tubuloazinöse Drüsen kombinieren beide Formen, z.B. die Unterkieferspeicheldrüse.", isWrong: false },
+        { text: "Ein tubuloazinöses Drüsensystem sekretiert ausschließlich endokrin.", isWrong: true }
+      ], whyWrong: "Tubulär/azinös/tubuloazinös beschreibt die Form der exokrinen Endstücke, nicht endokrine Sekretion. Tubuloazinöse Drüsen wie die Unterkieferspeicheldrüse besitzen weiterhin einen Ausführungsgang." } }
     ],
     phase4Questions: [
       { id: "hi_dr_mc1", type: "mc", question: "Welche Aussagen zum Unterschied exokrin vs. endokrin sind korrekt?", options: [
@@ -897,19 +1170,24 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Endokrine Drüsen geben Hormone direkt ins Blut ab", correct: true },
         { text: "Exokrine Drüsen geben Sekret direkt ins Blut ab", correct: false },
         { text: "Endokrine Drüsen haben immer Ausführungsgänge", correct: false }
-      ], explanation: "Exokrine Drüsen besitzen Ausführungsgänge, durch die sie Sekret auf Oberflächen abgeben; endokrine Drüsen sind ganglos und geben Hormone direkt ins Blut ab." },
+      ], explanation: "Exokrine Drüsen besitzen Ausführungsgänge, durch die sie Sekret auf Oberflächen abgeben; endokrine Drüsen sind ganglos und geben Hormone direkt ins Blut ab.", learningCard: { type: "predict", statement: "Exokrine Drüsen besitzen Ausführungsgänge, endokrine Drüsen geben ihre Produkte direkt ins Blut ab.", answer: true, reveal: "Exokrine Drüsen besitzen Ausführungsgänge, durch die sie Sekret auf Oberflächen abgeben; endokrine Drüsen sind ganglos und geben Hormone direkt ins Blut ab." } },
       { id: "hi_dr_mc2", type: "mc", question: "Welche Sekretionsart bezeichnet das vollständige Abtrennen des apikalen Zellpols mit Sekretinhalt?", options: [
         { text: "Apokrine Sekretion", correct: true },
         { text: "Holokrine Sekretion", correct: false },
         { text: "Merokrine (ekkrine) Sekretion", correct: false },
         { text: "Endokrine Sekretion", correct: false }
-      ], explanation: "Bei der apokrinen Sekretion wird der apikale Zellpol mit seinem Inhalt abgetrennt und abgegeben, wie es bei den apokrinen Schweißdrüsen der Achselhöhle der Fall ist." },
+      ], explanation: "Bei der apokrinen Sekretion wird der apikale Zellpol mit seinem Inhalt abgetrennt und abgegeben, wie es bei den apokrinen Schweißdrüsen der Achselhöhle der Fall ist.", learningCard: { type: "reconstruct", template: "Bei der ___ Sekretion wird der apikale ___ mit seinem Inhalt abgetrennt und abgegeben, wie bei den Schweißdrüsen der Achselhöhle.", blanks: ["apokrinen", "Zellpol"], distractors: ["merokrinen", "Zellkern"] } },
       { id: "hi_dr_mc3", type: "mc", question: "Welche Aussagen zum Drüsenepithel sind korrekt?", options: [
         { text: "Exokrine Drüsen besitzen Ausführungsgänge; endokrine Drüsen geben Hormone direkt ins Blut ab", correct: true },
         { text: "Holokrine Sekretion: die gesamte Drüsenzelle wird zum Sekret (z.B. Talgdrüse)", correct: true },
         { text: "Merokrine Sekretion bedeutet, dass der Zellkern mit abgegeben wird", correct: false },
         { text: "Aporine Sekretion lässt die Zelle vollständig intakt ohne jede Abgabe", correct: false }
-      ], explanation: "Exokrin: Ausführungsgang. Endokrin: Hormonabgabe ins Blut. Holokrin: gesamte Zelle = Sekret (Talgdrüse). Merokrin: Vesikelexozytose, Zelle intakt (kein Kernverlust). Apokrin: Apex abschnürt, Kern bleibt."}
+      ], explanation: "Exokrin: Ausführungsgang. Endokrin: Hormonabgabe ins Blut. Holokrin: gesamte Zelle = Sekret (Talgdrüse). Merokrin: Vesikelexozytose, Zelle intakt (kein Kernverlust). Apokrin: Apex abschnürt, Kern bleibt.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Drüsenepithel treffen zu?", checklist: [
+        { text: "Exokrine Drüsen besitzen Ausführungsgänge; endokrine Drüsen geben Hormone direkt ins Blut ab", correct: true },
+        { text: "Holokrine Sekretion: die gesamte Drüsenzelle wird zum Sekret (z.B. Talgdrüse)", correct: true },
+        { text: "Merokrine Sekretion bedeutet, dass der Zellkern mit abgegeben wird", correct: false },
+        { text: "Apokrine Sekretion lässt die Zelle vollständig intakt ohne jede Abgabe", correct: false }
+      ], reveal: "Exokrin: Ausführungsgang. Endokrin: Hormonabgabe ins Blut. Holokrin: gesamte Zelle wird Sekret (Talgdrüse). Merokrine Sekretion gibt nur Vesikelinhalt ab, der Kern bleibt in der Zelle; apokrine Sekretion trennt den Zellapex ab." } }
     ]
   }),
   makeDetailedPlant({
@@ -921,27 +1199,42 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Ausschliesslich in der Schilddrüse", correct: false },
         { text: "In der Bauchspeicheldrüse (endokriner Teil)", correct: false },
         { text: "Nur in Lymphknoten", correct: false }
-      ], explanation: "Myoepithelzellen kommen in Drüsen vor, wo aktives Auspressen des Sekrets nötig ist: Schweiss- und Speicheldrüsen, Milchdrüse (Laktation). Sie umschliessen die Azini wie ein Korb und pressen bei Kontraktion (durch Aktinfilamente) das Sekret in die Ausführungsgänge." },
+      ], explanation: "Myoepithelzellen kommen in Drüsen vor, wo aktives Auspressen des Sekrets nötig ist: Schweiss- und Speicheldrüsen, Milchdrüse (Laktation). Sie umschliessen die Azini wie ein Korb und pressen bei Kontraktion (durch Aktinfilamente) das Sekret in die Ausführungsgänge.", learningCard: { type: "predict", statement: "Myoepithelzellen kommen typischerweise in Schweiß-, Speicheldrüsen und der Milchdrüse vor.", answer: true, reveal: "Myoepithelzellen kommen in Drüsen vor, wo aktives Auspressen des Sekrets nötig ist: Schweiß- und Speicheldrüsen sowie die Milchdrüse (Laktation). Sie umschließen die Azini korbartig und pressen bei Kontraktion das Sekret in die Ausführungsgänge." } },
       { id: "hi_sm_h2", type: "mc", question: "Welches ist KEIN Beispiel für Sinnesepithel?", options: [
         { text: "Haarzellen im Innenohr", correct: false },
         { text: "Photorezeptoren in der Retina", correct: false },
         { text: "Riechzellen der Nasenschleimhaut", correct: false },
         { text: "Endothelzellen der Blutkapillaren", correct: true }
-      ], explanation: "Endothelzellen der Blutkapillaren sind einschichtiges Plattenepithel ohne Sinneszellenfunktion – kein Sinnesepithel. Sinnesepithel wandelt spezifische Reize in elektrische Signale um: Haarzellen im Innenohr (Schall/Gleichgewicht), Photorezeptoren der Retina (Licht), Riechzellen (chemische Reize)." },
-      { id: "hi_sm_h3", type: "true_false", statement: "Myoepithelzellen haben epithelialen Ursprung, besitzen aber kontraktile Filamente wie glatte Muskelzellen.", answer: true, explanation: "Myoepithelzellen stammen entwicklungsgeschichtlich aus dem Ekto- oder Entoderm (Epithelgewebe), haben aber kontraktile Aktinfilamente erworben. Sie verbinden zwei Gewebeeigenschaften: Lage im Epithelverband + Kontraktionsfähigkeit. Das macht sie zu einer Hybridform – klassisches Prüfungsthema." },
+      ], explanation: "Endothelzellen der Blutkapillaren sind einschichtiges Plattenepithel ohne Sinneszellenfunktion – kein Sinnesepithel. Sinnesepithel wandelt spezifische Reize in elektrische Signale um: Haarzellen im Innenohr (Schall/Gleichgewicht), Photorezeptoren der Retina (Licht), Riechzellen (chemische Reize).", learningCard: { type: "oddoneout", statements: [
+        { text: "Haarzellen im Innenohr nehmen Schall- und Gleichgewichtsreize wahr.", isWrong: false },
+        { text: "Photorezeptoren der Retina wandeln Lichtreize um.", isWrong: false },
+        { text: "Riechzellen der Nasenschleimhaut nehmen chemische Reize wahr.", isWrong: false },
+        { text: "Endothelzellen der Blutkapillaren sind Sinnesepithel.", isWrong: true }
+      ], whyWrong: "Endothelzellen der Blutkapillaren sind einschichtiges Plattenepithel ohne Sinneszellenfunktion – kein Sinnesepithel. Sinnesepithel wandelt dagegen spezifische Reize wie Schall, Licht oder chemische Signale in elektrische Signale um." } },
+      { id: "hi_sm_h3", type: "true_false", statement: "Myoepithelzellen haben epithelialen Ursprung, besitzen aber kontraktile Filamente wie glatte Muskelzellen.", answer: true, explanation: "Myoepithelzellen stammen entwicklungsgeschichtlich aus dem Ekto- oder Entoderm (Epithelgewebe), haben aber kontraktile Aktinfilamente erworben. Sie verbinden zwei Gewebeeigenschaften: Lage im Epithelverband + Kontraktionsfähigkeit. Das macht sie zu einer Hybridform – klassisches Prüfungsthema.", learningCard: { type: "teachback", prompt: "Was trifft auf Myoepithelzellen zu?", checklist: [
+        { text: "Sie stammen entwicklungsgeschichtlich aus dem Epithelgewebe", correct: true },
+        { text: "Sie besitzen kontraktile Aktinfilamente wie glatte Muskelzellen", correct: true },
+        { text: "Sie liegen im Epithelverband", correct: true },
+        { text: "Sie stammen aus dem Muskelgewebe", correct: false }
+      ], reveal: "Myoepithelzellen stammen entwicklungsgeschichtlich aus dem Epithelgewebe, haben aber kontraktile Aktinfilamente erworben. Sie verbinden so zwei Eigenschaften: Lage im Epithelverband und Kontraktionsfähigkeit." } },
       { id: "hi_sm_h4", type: "mc", question: "Was ist das spezifische Merkmal des Sinnesepithels?", options: [
         { text: "Transduktion von Reizen (mechanisch, chemisch, elektromagnetisch) in elektrische Signale (Aktionspotentiale)", correct: true },
         { text: "Bildung von Proteinen für die Matrixsynthese", correct: false },
         { text: "Aktiver Transport von Ionen durch die Basalmembran", correct: false },
         { text: "Phagozytose von Fremdkörpern im Sinnesbereich", correct: false }
-      ], explanation: "Sinnesepithel: spezialisiertes Deckepithel, das mechanische (Haarzellen), elektromagnetische (Photorezeptoren) oder chemische (Riechzellen, Geschmacksrezeptoren) Reize in elektrische Signale (Aktionspotentiale) umwandelt. Das ist der grundlegende Unterschied zu anderen Epitheltypen." },
-      { id: "hi_sm_h5", type: "true_false", statement: "Haarzellen des Innenohrs sind für sowohl Hören (Cochlea) als auch Gleichgewicht (Vestibularapparat) zuständig.", answer: true, explanation: "Im Innenohr gibt es zwei Typen von Haarzellen: Cochleäre Haarzellen (in der Cochlea, Organ of Corti) → Schallwahrnehmung. Vestibuläre Haarzellen (in Macula utriculi/sacculi und Cristae ampullares) → Gleichgewichtssinn und Lage im Raum." },
+      ], explanation: "Sinnesepithel: spezialisiertes Deckepithel, das mechanische (Haarzellen), elektromagnetische (Photorezeptoren) oder chemische (Riechzellen, Geschmacksrezeptoren) Reize in elektrische Signale (Aktionspotentiale) umwandelt. Das ist der grundlegende Unterschied zu anderen Epitheltypen.", learningCard: { type: "predict", statement: "Das spezifische Merkmal des Sinnesepithels ist die Umwandlung von Reizen in elektrische Signale.", answer: true, reveal: "Sinnesepithel wandelt mechanische, chemische oder elektromagnetische Reize in elektrische Signale (Aktionspotentiale) um. Das ist der grundlegende Unterschied zu anderen Epitheltypen." } },
+      { id: "hi_sm_h5", type: "true_false", statement: "Haarzellen des Innenohrs sind für sowohl Hören (Cochlea) als auch Gleichgewicht (Vestibularapparat) zuständig.", answer: true, explanation: "Im Innenohr gibt es zwei Typen von Haarzellen: Cochleäre Haarzellen (in der Cochlea, Organ of Corti) → Schallwahrnehmung. Vestibuläre Haarzellen (in Macula utriculi/sacculi und Cristae ampullares) → Gleichgewichtssinn und Lage im Raum.", learningCard: { type: "reconstruct", template: "Cochleäre Haarzellen (Organ of Corti) vermitteln ___, vestibuläre Haarzellen (Macula, Cristae ampullares) vermitteln ___.", blanks: ["Hören", "Gleichgewichtssinn"], distractors: ["Sehen", "Riechen"] } },
       { id: "hi_sm_h6", type: "mc", question: "Wie pressen Myoepithelzellen Drüsensekret aus?", options: [
         { text: "Durch Kontraktion ihrer Aktinfilamente (ähnlich glatter Muskulatur) pressen sie den Azinus zusammen", correct: true },
         { text: "Durch Sekretion von Enzymen, die das Sekret aktiv herauslösen", correct: false },
         { text: "Durch osmotischen Druck ohne aktive Kontraktion", correct: false },
         { text: "Sie haben keine direkte Funktion beim Sekretauspressen", correct: false }
-      ], explanation: "Myoepithelzellen umschliessen die Drüsenazini wie ein Korb und kontrahieren (Aktinfilamente aktiviert durch Ca2+/oxytocin/Parasympathikus) → Drüsensekret wird in Ausführungsgang gepresst. Wichtig bei Milchdrüse (Milchejektionsreflex, Oxytocinwirkung)." }
+      ], explanation: "Myoepithelzellen umschliessen die Drüsenazini wie ein Korb und kontrahieren (Aktinfilamente aktiviert durch Ca2+/oxytocin/Parasympathikus) → Drüsensekret wird in Ausführungsgang gepresst. Wichtig bei Milchdrüse (Milchejektionsreflex, Oxytocinwirkung).", learningCard: { type: "oddoneout", statements: [
+        { text: "Myoepithelzellen umschließen Drüsenazini korbartig.", isWrong: false },
+        { text: "Ihre Kontraktion wird durch Aktinfilamente vermittelt.", isWrong: false },
+        { text: "Der Milchejektionsreflex wird durch oxytocinvermittelte Myoepithelkontraktion ausgelöst.", isWrong: false },
+        { text: "Myoepithelzellen pressen Sekret durch Enzymsekretion aus, nicht durch Kontraktion.", isWrong: true }
+      ], whyWrong: "Myoepithelzellen pressen das Sekret durch aktive Kontraktion ihrer Aktinfilamente aus den Azini, nicht durch Enzymsekretion. Bei der Milchdrüse löst Oxytocin diese Kontraktion aus (Milchejektionsreflex)." } }
     ],
     phase4Questions: [
       { id: "hi_sm_mc1", type: "mc", question: "Was unterscheidet Myoepithelzellen von anderen Epithelzellen?", options: [
@@ -949,19 +1242,24 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Sie sind die einzigen Epithelzellen mit Basalmembrananbindung", correct: false },
         { text: "Sie sezernieren Hormone direkt ins Blut", correct: false },
         { text: "Sie sind kernlos wie Erythrozyten", correct: false }
-      ], explanation: "Myoepithelzellen besitzen kontraktile Aktinfilamente und können sich wie glatte Muskelzellen zusammenziehen, obwohl sie epithelialer Herkunft sind und der Basalmembran aufsitzen." },
+      ], explanation: "Myoepithelzellen besitzen kontraktile Aktinfilamente und können sich wie glatte Muskelzellen zusammenziehen, obwohl sie epithelialer Herkunft sind und der Basalmembran aufsitzen.", learningCard: { type: "predict", statement: "Myoepithelzellen besitzen kontraktile Aktinfilamente und können sich wie Muskelzellen zusammenziehen.", answer: true, reveal: "Myoepithelzellen besitzen kontraktile Aktinfilamente und können sich wie glatte Muskelzellen zusammenziehen, obwohl sie epithelialer Herkunft sind und der Basalmembran aufsitzen." } },
       { id: "hi_sm_mc2", type: "mc", question: "Welche Sinnesepithelien und ihre Reizqualitäten sind korrekt zugeordnet?", options: [
         { text: "Haarzellen Innenohr – Schall- und Gleichgewichtsreize", correct: true },
         { text: "Riechepithel Nasenschleimhaut – chemische Reize", correct: true },
         { text: "Photorezeptoren Retina – Lichtreize", correct: true },
         { text: "Makulazellen der Haut – Temperaturreize", correct: false }
-      ], explanation: "Haarzellen im Innenohr nehmen Schall- und Gleichgewichtsreize auf, Riechepithelzellen reagieren auf chemische Reize, und Photorezeptoren der Retina werden durch Licht aktiviert." },
+      ], explanation: "Haarzellen im Innenohr nehmen Schall- und Gleichgewichtsreize auf, Riechepithelzellen reagieren auf chemische Reize, und Photorezeptoren der Retina werden durch Licht aktiviert.", learningCard: { type: "reconstruct", template: "Haarzellen im Innenohr – Schall- und Gleichgewichtsreize; Riechepithel – ___ Reize; Photorezeptoren der Retina – ___.", blanks: ["chemische", "Lichtreize"], distractors: ["Temperaturreize", "Druckreize"] } },
       { id: "hi_sm_mc3", type: "mc", question: "Welche Aussagen zu Sinnesepithel und Myoepithelzellen sind korrekt?", options: [
         { text: "Sinnesepithel wandelt Reize in elektrische Signale um (Transduktion)", correct: true },
         { text: "Myoepithelzellen haben epithelialen Ursprung, aber kontraktile Aktinfilamente", correct: true },
         { text: "Endothelzellen der Blutgefässe sind Sinnesepithel", correct: false },
         { text: "Myoepithelzellen ersetzen glatte Muskelzellen im Herzmuskel", correct: false }
-      ], explanation: "Sinnesepithel: Transduktion (Haarzellen, Photorezeptoren, Riechzellen). Myoepithelzellen: epithelialer Ursprung + kontraktile Filamente → Drüsenauspressen. Endothel: Deckepithel, kein Sinnesepithel. Herzmuskel: eigene Herzmuskelzellen, keine Myoepithelzellen."}
+      ], explanation: "Sinnesepithel: Transduktion (Haarzellen, Photorezeptoren, Riechzellen). Myoepithelzellen: epithelialer Ursprung + kontraktile Filamente → Drüsenauspressen. Endothel: Deckepithel, kein Sinnesepithel. Herzmuskel: eigene Herzmuskelzellen, keine Myoepithelzellen.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Sinnesepithel und Myoepithelzellen treffen zu?", checklist: [
+        { text: "Sinnesepithel wandelt Reize in elektrische Signale um (Transduktion)", correct: true },
+        { text: "Myoepithelzellen haben epithelialen Ursprung, aber kontraktile Aktinfilamente", correct: true },
+        { text: "Endothelzellen der Blutgefäße sind Sinnesepithel", correct: false },
+        { text: "Myoepithelzellen ersetzen glatte Muskelzellen im Herzmuskel", correct: false }
+      ], reveal: "Sinnesepithel wandelt Reize in elektrische Signale um (Haarzellen, Photorezeptoren, Riechzellen). Myoepithelzellen haben epithelialen Ursprung mit kontraktilen Filamenten fürs Drüsenauspressen; Endothel ist Deckepithel ohne Sinnesfunktion, und der Herzmuskel hat eigene Herzmuskelzellen statt Myoepithelzellen." } }
     ]
   }),
   makeDetailedPlant({
@@ -973,27 +1271,37 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Elastische Fasern (Rückstellkraft)", correct: false },
         { text: "Retikuläre Fasern (Kollagen Typ III, feines Netzwerk)", correct: false },
         { text: "Myofibrillen (Aktin/Myosin)", correct: true }
-      ], explanation: "Myofibrillen (Aktin/Myosin) sind kontraktile Strukturen des Muskelgewebes – sie kommen NICHT in der Bindegewebsmatrix vor. Die ECM des Bindegewebes enthält: Kollagenfasern (Zugfestigkeit), elastische Fasern (Rückstellkraft in Lunge, Gefässen) und retikuläre Fasern (Kollagen Typ III, feines Netzwerk in Lymphknoten, Leber)." },
+      ], explanation: "Myofibrillen (Aktin/Myosin) sind kontraktile Strukturen des Muskelgewebes – sie kommen NICHT in der Bindegewebsmatrix vor. Die ECM des Bindegewebes enthält: Kollagenfasern (Zugfestigkeit), elastische Fasern (Rückstellkraft in Lunge, Gefässen) und retikuläre Fasern (Kollagen Typ III, feines Netzwerk in Lymphknoten, Leber).", learningCard: { type: "oddoneout", statements: [
+        { text: "Kollagenfasern verleihen dem Bindegewebe Zugfestigkeit.", isWrong: false },
+        { text: "Elastische Fasern verleihen dem Bindegewebe Rückstellkraft.", isWrong: false },
+        { text: "Retikuläre Fasern (Kollagen Typ III) bilden ein feines Netzwerk.", isWrong: false },
+        { text: "Myofibrillen (Aktin/Myosin) sind Bestandteil der Bindegewebsmatrix.", isWrong: true }
+      ], whyWrong: "Myofibrillen sind kontraktile Strukturen des Muskelgewebes und kommen nicht in der Bindegewebsmatrix vor. Die extrazelluläre Matrix des Bindegewebes enthält stattdessen Kollagenfasern, elastische Fasern und retikuläre Fasern." } },
       { id: "hi_bg_h2", type: "mc", question: "Welche Hauptfunktion haben Fibroblasten?", options: [
         { text: "Synthese von Kollagen und anderen extrazellulären Matrixkomponenten", correct: true },
         { text: "Phagozytose von Bakterien und Zelltrümmern", correct: false },
         { text: "Produktion von Histamin bei allergischen Reaktionen", correct: false },
         { text: "Antikörperproduktion", correct: false }
-      ], explanation: "Fibroblasten sind die ortsständigen Hauptzellen des Bindegewebes. Sie synthetisieren Kollagen, Elastin und Proteoglykane (Matrixkomponenten) und halten so die Bindegewebsstruktur aufrecht. Bei Verletzungen werden sie zu Fibroblasten stimuliert und bilden Narbengewebe. Makrophagen phagozytieren, Mastzellen produzieren Histamin, Plasmazellen produzieren Antikörper." },
-      { id: "hi_bg_h3", type: "true_false", statement: "Straffes geflechtartiges Bindegewebe unterscheidet sich von straffem parallelfaserigem Bindegewebe durch die Faseranordnung.", answer: true, explanation: "Straffes parallelfaseriges Bindegewebe (Sehnen, Bänder) hat Kollagenfasern in einer Hauptzugrichtung angeordnet – ideal für uniaxiale Zugkräfte. Straffes geflechtartiges Bindegewebe (Lederhaut der Haut, Periost) hat Fasern in mehrere Richtungen geflochten – widersteht Zug aus allen Richtungen." },
+      ], explanation: "Fibroblasten sind die ortsständigen Hauptzellen des Bindegewebes. Sie synthetisieren Kollagen, Elastin und Proteoglykane (Matrixkomponenten) und halten so die Bindegewebsstruktur aufrecht. Bei Verletzungen werden sie zu Fibroblasten stimuliert und bilden Narbengewebe. Makrophagen phagozytieren, Mastzellen produzieren Histamin, Plasmazellen produzieren Antikörper.", learningCard: { type: "predict", statement: "Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten.", answer: true, reveal: "Fibroblasten sind die ortsständigen Hauptzellen des Bindegewebes und synthetisieren Kollagen, Elastin und Proteoglykane. Bei Verletzungen werden sie aktiviert und bilden Narbengewebe." } },
+      { id: "hi_bg_h3", type: "true_false", statement: "Straffes geflechtartiges Bindegewebe unterscheidet sich von straffem parallelfaserigem Bindegewebe durch die Faseranordnung.", answer: true, explanation: "Straffes parallelfaseriges Bindegewebe (Sehnen, Bänder) hat Kollagenfasern in einer Hauptzugrichtung angeordnet – ideal für uniaxiale Zugkräfte. Straffes geflechtartiges Bindegewebe (Lederhaut der Haut, Periost) hat Fasern in mehrere Richtungen geflochten – widersteht Zug aus allen Richtungen.", learningCard: { type: "reconstruct", template: "Straffes ___ Bindegewebe (Sehnen, Bänder) hat Fasern in einer Hauptzugrichtung; straffes ___ Bindegewebe (Lederhaut, Periost) hat Fasern in mehrere Richtungen geflochten.", blanks: ["parallelfaseriges", "geflechtartiges"], distractors: ["lockeres", "retikuläres"] } },
       { id: "hi_bg_h4", type: "mc", question: "Was produzieren Mastzellen und welche klinische Bedeutung hat das?", options: [
         { text: "Histamin, Heparin und weitere Mediatoren → allergische Reaktionen und Entzündungen", correct: true },
         { text: "Kollagen und Elastin für die Matrixregeneration", correct: false },
         { text: "Antikörper gegen Fremdantigene", correct: false },
         { text: "Sauerstoffträger durch Hämoglobin", correct: false }
-      ], explanation: "Mastzellen (ortsständig in Bindegewebe): Degranulation bei Allergen-Antikörperkontakt → Histamin (Vasodilatation, Juckreiz), Heparin (Antikoagulation), Proteasen. Klinisch: Typ-I-Allergie (Soforttyp), anaphylaktischer Schock." },
-      { id: "hi_bg_h5", type: "true_false", statement: "Lockeres Bindegewebe hat wenig Fasern und viele Zellen, straffes Bindegewebe hat viele Fasern und wenig Zellen.", answer: true, explanation: "Lockeres Bindegewebe: viel Grundsubstanz, wenig Fasern, viele Zellen (Fibroblasten, Mastzellen, Makrophagen) → Füll- und Verschiebeschicht. Straffes Bindegewebe: viele Kollagenfasern, wenig Zellen → mechanische Belastung (Sehnen, Bänder, Faszien)." },
+      ], explanation: "Mastzellen (ortsständig in Bindegewebe): Degranulation bei Allergen-Antikörperkontakt → Histamin (Vasodilatation, Juckreiz), Heparin (Antikoagulation), Proteasen. Klinisch: Typ-I-Allergie (Soforttyp), anaphylaktischer Schock.", learningCard: { type: "teachback", prompt: "Was setzen Mastzellen bei Degranulation frei und wozu führt das?", checklist: [
+        { text: "Histamin (Vasodilatation, Juckreiz)", correct: true },
+        { text: "Heparin (Antikoagulation)", correct: true },
+        { text: "Beteiligung an Typ-I-Allergie und anaphylaktischem Schock", correct: true },
+        { text: "Kollagen für die Matrixregeneration", correct: false }
+      ], reveal: "Mastzellen degranulieren bei Allergen-Antikörperkontakt und setzen Histamin (Vasodilatation, Juckreiz) und Heparin (Antikoagulation) frei. Klinisch sind sie an der Typ-I-Allergie (Soforttyp) und dem anaphylaktischen Schock beteiligt." } },
+      { id: "hi_bg_h5", type: "true_false", statement: "Lockeres Bindegewebe hat wenig Fasern und viele Zellen, straffes Bindegewebe hat viele Fasern und wenig Zellen.", answer: true, explanation: "Lockeres Bindegewebe: viel Grundsubstanz, wenig Fasern, viele Zellen (Fibroblasten, Mastzellen, Makrophagen) → Füll- und Verschiebeschicht. Straffes Bindegewebe: viele Kollagenfasern, wenig Zellen → mechanische Belastung (Sehnen, Bänder, Faszien).", learningCard: { type: "predict", statement: "Lockeres Bindegewebe hat viele Zellen und wenig Fasern; straffes Bindegewebe hat viele Fasern und wenig Zellen.", answer: true, reveal: "Lockeres Bindegewebe hat viel Grundsubstanz, wenig Fasern und viele Zellen – eine Füll- und Verschiebeschicht. Straffes Bindegewebe hat viele Kollagenfasern und wenig Zellen für mechanische Belastung wie Sehnen und Bänder." } },
       { id: "hi_bg_h6", type: "mc", question: "Welche Funktion haben retikuläre Fasern (Kollagen Typ III)?", options: [
         { text: "Bildung feiner Stützgitter in lymphatischen Organen (Lymphknoten, Milz) und Leber", correct: true },
         { text: "Bereitstellung von Zugfestigkeit in Sehnen", correct: false },
         { text: "Rückstellkraft bei Verformung (Lunge, Arterienwand)", correct: false },
         { text: "Verbindung von Muskel und Knochen", correct: false }
-      ], explanation: "Retikuläre Fasern (Kollagen Typ III, 'Reticulum'): dünne, verzweigte Fasern die Stützgitter in Lymphknoten, Milz, Leber und Knochenmark bilden. Mit Silber-Impregnierung sichtbar. Zugfestigkeit: Kollagen Typ I. Rückstellkraft: Elastin." }
+      ], explanation: "Retikuläre Fasern (Kollagen Typ III, 'Reticulum'): dünne, verzweigte Fasern die Stützgitter in Lymphknoten, Milz, Leber und Knochenmark bilden. Mit Silber-Impregnierung sichtbar. Zugfestigkeit: Kollagen Typ I. Rückstellkraft: Elastin.", learningCard: { type: "reconstruct", template: "Retikuläre Fasern (Kollagen Typ III) bilden feine Stützgitter in ___, ___ und der Leber.", blanks: ["Lymphknoten", "Milz"], distractors: ["Sehnen", "Knochen"] } }
     ],
     phase4Questions: [
       { id: "hi_bg_mc1", type: "mc", question: "Welche Kollagentypen sind den genannten Strukturen korrekt zugeordnet?", options: [
@@ -1001,19 +1309,29 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Kollagen Typ II – hyaliner Knorpel", correct: true },
         { text: "Kollagen Typ IV – Basalmembran", correct: true },
         { text: "Kollagen Typ I – Basalmembran", correct: false }
-      ], explanation: "Kollagen Typ I dominiert in Sehnen und Knochen (Zugfestigkeit), Typ II in hyalinem Knorpel und Typ IV bildet Netzwerke in Basalmembranen." },
+      ], explanation: "Kollagen Typ I dominiert in Sehnen und Knochen (Zugfestigkeit), Typ II in hyalinem Knorpel und Typ IV bildet Netzwerke in Basalmembranen.", learningCard: { type: "reconstruct", template: "Kollagen Typ ___ – Sehnen, Knochen (Zugfestigkeit); Kollagen Typ ___ – hyaliner Knorpel; Kollagen Typ IV – Basalmembran.", blanks: ["I", "II"], distractors: ["III", "V"] } },
       { id: "hi_bg_mc2", type: "mc", question: "Was sind ortsständige (sessile) Bindegewebszellen (mehrere können korrekt sein)?", options: [
         { text: "Fibroblast (Matrixsynthese)", correct: true },
         { text: "Mastzelll (Histamin, Allergie)", correct: true },
         { text: "Neutrophiler Granulozyt (wandert ein, kurzlebig)", correct: false },
         { text: "Thrombozyt (Blutgerinnung)", correct: false }
-      ], explanation: "Fibroblasten (Matrixsynthese) und Mastzellen (Histaminfreisetzung) sind ortsständige sessile Bindegewebszellen; Neutrophile wandern nur temporär ein, Thrombozyten zirkulieren im Blut." },
+      ], explanation: "Fibroblasten (Matrixsynthese) und Mastzellen (Histaminfreisetzung) sind ortsständige sessile Bindegewebszellen; Neutrophile wandern nur temporär ein, Thrombozyten zirkulieren im Blut.", learningCard: { type: "teachback", prompt: "Welche Zellen sind ortsständige (sessile) Bindegewebszellen?", checklist: [
+        { text: "Fibroblast (Matrixsynthese)", correct: true },
+        { text: "Mastzelle (Histamin, Allergie)", correct: true },
+        { text: "Neutrophiler Granulozyt (wandert nur temporär ein)", correct: false },
+        { text: "Thrombozyt (zirkuliert im Blut)", correct: false }
+      ], reveal: "Fibroblasten (Matrixsynthese) und Mastzellen (Histaminfreisetzung) sind ortsständige, sesshafte Bindegewebszellen. Neutrophile wandern nur temporär ein, und Thrombozyten zirkulieren im Blut." } },
       { id: "hi_bg_mc3", type: "mc", question: "Welche Aussagen zum Bindegewebe sind korrekt?", options: [
         { text: "Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten", correct: true },
         { text: "Mastzellen sezernieren Histamin bei allergischen Reaktionen", correct: true },
         { text: "Straffes Bindegewebe hat viele Zellen und wenig Fasern", correct: false },
         { text: "Retikuläre Fasern bestehen aus Kollagen Typ I und bilden Sehnen", correct: false }
-      ], explanation: "Fibroblasten: Matrixsynthese. Mastzellen: Histamin, Allergie. Straffes Bindegewebe: viele Fasern, wenig Zellen (umgekehrt als lockeres). Retikuläre Fasern: Kollagen Typ III, Stützgitter in Lymphorganen (nicht Sehnen, die sind Typ I)."}
+      ], explanation: "Fibroblasten: Matrixsynthese. Mastzellen: Histamin, Allergie. Straffes Bindegewebe: viele Fasern, wenig Zellen (umgekehrt als lockeres). Retikuläre Fasern: Kollagen Typ III, Stützgitter in Lymphorganen (nicht Sehnen, die sind Typ I).", learningCard: { type: "oddoneout", statements: [
+        { text: "Fibroblasten synthetisieren Kollagen und andere extrazelluläre Matrixkomponenten.", isWrong: false },
+        { text: "Mastzellen sezernieren Histamin bei allergischen Reaktionen.", isWrong: false },
+        { text: "Retikuläre Fasern bestehen aus Kollagen Typ III und bilden Stützgitter in Lymphorganen.", isWrong: false },
+        { text: "Straffes Bindegewebe hat viele Zellen und wenig Fasern.", isWrong: true }
+      ], whyWrong: "Straffes Bindegewebe hat umgekehrt viele Fasern und wenig Zellen – das Gegenteil von lockerem Bindegewebe. Fibroblasten synthetisieren die Matrix, Mastzellen setzen Histamin frei, und retikuläre Fasern bilden Stützgitter in Lymphorganen." } }
     ]
   }),
   makeDetailedPlant({
@@ -1025,27 +1343,37 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Kollagen Typ I", correct: false },
         { text: "Kollagen Typ III", correct: false },
         { text: "Kollagen Typ IV", correct: false }
-      ], explanation: "Hyaliner Knorpel enthält primär Kollagen Typ II in einer gelartigen, glykosaminoglykanreichen Grundsubstanz (Aggrekan, Hyaluronsäure). Kollagen Typ I findet sich in Faserknorpel, Knochen und Sehnen. Kollagen Typ IV ist in der Basalmembran." },
+      ], explanation: "Hyaliner Knorpel enthält primär Kollagen Typ II in einer gelartigen, glykosaminoglykanreichen Grundsubstanz (Aggrekan, Hyaluronsäure). Kollagen Typ I findet sich in Faserknorpel, Knochen und Sehnen. Kollagen Typ IV ist in der Basalmembran.", learningCard: { type: "predict", statement: "Hyaliner Knorpel enthält hauptsächlich Kollagen Typ II.", answer: true, reveal: "Hyaliner Knorpel enthält primär Kollagen Typ II in einer gelartigen, glykosaminoglykanreichen Grundsubstanz. Kollagen Typ I findet sich dagegen in Faserknorpel, Knochen und Sehnen." } },
       { id: "hi_kg_h2", type: "mc", question: "Wo im Körper findet man Faserknorpel?", options: [
         { text: "Bandscheiben (Nucleus pulposus + Anulus fibrosus), Menisken und Symphysis pubica", correct: true },
         { text: "Ohrmuschel und Epiglottis", correct: false },
         { text: "Gelenkflächen grosser Gelenke (Knie, Hufte)", correct: false },
         { text: "Rippenknorpel und Nasenrücken", correct: false }
-      ], explanation: "Faserknorpel (viele dicke Kollagen-Typ-I-Bündel, wenig Grundsubstanz) kommt an Stellen vor, die hohe Druckbelastung und Zugkräfte aushalten müssen: Bandscheiben, Menisken, Symphysis pubica, Insertionstellen von Sehnen. Ohrmuschel und Epiglottis: elastischer Knorpel. Gelenkflächen: hyaliner Knorpel." },
-      { id: "hi_kg_h3", type: "true_false", statement: "Knorpelgewebe ist avaskular – die Ernährung der Chondrozyten erfolgt durch Diffusion.", answer: true, explanation: "Knorpelgewebe besitzt keine Blutgefässe (avaskular). Chondrozyten erhalten Nährstoffe und Sauerstoff durch Diffusion aus dem Perichondrium oder (bei Gelenkknorpel) aus der Synovialflüssigkeit. Diese avaskuläre Natur erklärt, warum Knorpeldefekte sehr schlecht heilen." },
+      ], explanation: "Faserknorpel (viele dicke Kollagen-Typ-I-Bündel, wenig Grundsubstanz) kommt an Stellen vor, die hohe Druckbelastung und Zugkräfte aushalten müssen: Bandscheiben, Menisken, Symphysis pubica, Insertionstellen von Sehnen. Ohrmuschel und Epiglottis: elastischer Knorpel. Gelenkflächen: hyaliner Knorpel.", learningCard: { type: "reconstruct", template: "Faserknorpel findet sich in ___, Menisken und der ___.", blanks: ["Bandscheiben", "Symphysis pubica"], distractors: ["Ohrmuschel", "Epiglottis"] } },
+      { id: "hi_kg_h3", type: "true_false", statement: "Knorpelgewebe ist avaskular – die Ernährung der Chondrozyten erfolgt durch Diffusion.", answer: true, explanation: "Knorpelgewebe besitzt keine Blutgefässe (avaskular). Chondrozyten erhalten Nährstoffe und Sauerstoff durch Diffusion aus dem Perichondrium oder (bei Gelenkknorpel) aus der Synovialflüssigkeit. Diese avaskuläre Natur erklärt, warum Knorpeldefekte sehr schlecht heilen.", learningCard: { type: "oddoneout", statements: [
+        { text: "Knorpelgewebe besitzt keine eigenen Blutgefäße.", isWrong: false },
+        { text: "Chondrozyten werden durch Diffusion aus dem Perichondrium oder der Synovialflüssigkeit ernährt.", isWrong: false },
+        { text: "Die avaskuläre Natur des Knorpels erklärt die schlechte Heilung von Knorpeldefekten.", isWrong: false },
+        { text: "Knorpelgewebe wird direkt durch eigene Blutgefäße versorgt.", isWrong: true }
+      ], whyWrong: "Knorpelgewebe ist avaskulär und besitzt keine eigenen Blutgefäße. Chondrozyten erhalten Nährstoffe stattdessen durch Diffusion aus dem Perichondrium oder der Synovialflüssigkeit." } },
       { id: "hi_kg_h4", type: "mc", question: "Was ist das Perichondrium und welche Funktion hat es?", options: [
         { text: "Bindegewebshülle um Knorpel (ausser Gelenkknorpel); enthält Progenitorzellen für Wachstum und Ernährung des Knorpels", correct: true },
         { text: "Eine innere Schicht des hyalinen Knorpels mit Chondrozyten", correct: false },
         { text: "Die Gelenkflüssigkeit um den Knorpel", correct: false },
         { text: "Das Endost des benachbarten Knochens", correct: false }
-      ], explanation: "Perichondrium: äussere Bindegewebshülle um Knorpel (fehlt an Gelenkknorpel!). Besteht aus zwei Schichten: Fibrosa (aussen) und Chondrogenica (innen, enthält undifferenzierte Progenitorzellen → Knorpelwachstum). Ernährung: Gefässe im Perichondrium versorgen den avaskulären Knorpel durch Diffusion." },
-      { id: "hi_kg_h5", type: "true_false", statement: "Elastischer Knorpel enthält neben Kollagen Typ II auch ein dichtes Netzwerk aus elastischen Fasern.", answer: true, explanation: "Elastischer Knorpel (z.B. Ohrmuschel, Epiglottis): Zusätzlich zu Kollagen Typ II enthält er ein dichtes Netzwerk aus Elastin-Fasern. Das gibt ihm Biegefähigkeit und Rückkehrvermögen nach Verformung. Histologisch: mit Orcein oder Resorcin-Fuchsin gefärbt sieht man das charakteristische Elastin-Netz." },
+      ], explanation: "Perichondrium: äussere Bindegewebshülle um Knorpel (fehlt an Gelenkknorpel!). Besteht aus zwei Schichten: Fibrosa (aussen) und Chondrogenica (innen, enthält undifferenzierte Progenitorzellen → Knorpelwachstum). Ernährung: Gefässe im Perichondrium versorgen den avaskulären Knorpel durch Diffusion.", learningCard: { type: "teachback", prompt: "Was trifft auf das Perichondrium zu?", checklist: [
+        { text: "Es ist eine Bindegewebshülle um den Knorpel", correct: true },
+        { text: "Es enthält Progenitorzellen für das Knorpelwachstum", correct: true },
+        { text: "Gefäße im Perichondrium ernähren den avaskulären Knorpel", correct: true },
+        { text: "Gelenkknorpel besitzt ein Perichondrium", correct: false }
+      ], reveal: "Perichondrium ist die äußere Bindegewebshülle um Knorpel (fehlt am Gelenkknorpel) mit einer Chondrogenica-Schicht, die Progenitorzellen für das Knorpelwachstum enthält. Gefäße im Perichondrium versorgen den avaskulären Knorpel durch Diffusion." } },
+      { id: "hi_kg_h5", type: "true_false", statement: "Elastischer Knorpel enthält neben Kollagen Typ II auch ein dichtes Netzwerk aus elastischen Fasern.", answer: true, explanation: "Elastischer Knorpel (z.B. Ohrmuschel, Epiglottis): Zusätzlich zu Kollagen Typ II enthält er ein dichtes Netzwerk aus Elastin-Fasern. Das gibt ihm Biegefähigkeit und Rückkehrvermögen nach Verformung. Histologisch: mit Orcein oder Resorcin-Fuchsin gefärbt sieht man das charakteristische Elastin-Netz.", learningCard: { type: "predict", statement: "Elastischer Knorpel enthält zusätzlich zu Kollagen Typ II ein dichtes Netzwerk aus elastischen Fasern.", answer: true, reveal: "Elastischer Knorpel (z.B. Ohrmuschel, Epiglottis) enthält zusätzlich zu Kollagen Typ II ein dichtes Netzwerk aus Elastin-Fasern. Das verleiht ihm Biegefähigkeit und Rückkehrvermögen nach Verformung." } },
       { id: "hi_kg_h6", type: "mc", question: "Warum ist Gelenkknorpel besonders verletzungsanfällig?", options: [
         { text: "Er hat kein Perichondrium und keine Blutgefässe – Regeneration erfolgt nur sehr eingeschränkt durch Diffusion aus der Synovia", correct: true },
         { text: "Weil Gelenkknorpel aus Faserknorpel besteht und daher wenig elastisch ist", correct: false },
         { text: "Weil Chondrozyten im Gelenkknorpel täglich absterben und nicht ersetzt werden", correct: false },
         { text: "Weil das Perichondrium des Gelenkknorpels keine Progenitorzellen enthält", correct: false }
-      ], explanation: "Gelenkknorpel (hyalin): kein Perichondrium, avaskular, ernährt durch Synovia-Diffusion. Regeneration sehr eingeschränkt: bei Defekten entsteht oft minderwertiger Faserknorpel statt hyalinem Knorpel. Klinisch: Arthrose = Knorpeldegeneration ohne echte Regeneration." }
+      ], explanation: "Gelenkknorpel (hyalin): kein Perichondrium, avaskular, ernährt durch Synovia-Diffusion. Regeneration sehr eingeschränkt: bei Defekten entsteht oft minderwertiger Faserknorpel statt hyalinem Knorpel. Klinisch: Arthrose = Knorpeldegeneration ohne echte Regeneration.", learningCard: { type: "reconstruct", template: "Gelenkknorpel besitzt kein ___ und ist ___ – die Ernährung erfolgt nur durch Diffusion aus der Synovia.", blanks: ["Perichondrium", "avaskulär"], distractors: ["Kollagen", "elastisch"] } }
     ],
     phase4Questions: [
       { id: "hi_kg_mc1", type: "mc", question: "Welche Knorpeltypen sind den genannten Lokalisationen korrekt zugeordnet?", options: [
@@ -1053,19 +1381,29 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Elastischer Knorpel – Ohrmuschel, Epiglottis", correct: true },
         { text: "Faserknorpel – Bandscheiben, Menisken, Symphysis pubica", correct: true },
         { text: "Faserknorpel – Gelenkflächen grosser Gelenke", correct: false }
-      ], explanation: "Hyaliner Knorpel bedeckt Gelenkflächen, elastischer Knorpel bildet Ohrmuschel und Epiglottis, und Faserknorpel gibt es in Bandscheiben, Menisken und Symphysis pubica." },
+      ], explanation: "Hyaliner Knorpel bedeckt Gelenkflächen, elastischer Knorpel bildet Ohrmuschel und Epiglottis, und Faserknorpel gibt es in Bandscheiben, Menisken und Symphysis pubica.", learningCard: { type: "teachback", prompt: "Welche Knorpeltypen und Lokalisationen sind korrekt zugeordnet?", checklist: [
+        { text: "Hyaliner Knorpel – Gelenkflächen, Rippenknorpel, Wachstumsplatte", correct: true },
+        { text: "Elastischer Knorpel – Ohrmuschel, Epiglottis", correct: true },
+        { text: "Faserknorpel – Bandscheiben, Menisken, Symphysis pubica", correct: true },
+        { text: "Faserknorpel – Gelenkflächen großer Gelenke", correct: false }
+      ], reveal: "Hyaliner Knorpel bedeckt Gelenkflächen, Rippenknorpel und Wachstumsplatten. Elastischer Knorpel bildet Ohrmuschel und Epiglottis, und Faserknorpel findet sich in Bandscheiben, Menisken und der Symphysis pubica." } },
       { id: "hi_kg_mc2", type: "mc", question: "Warum heilen Knorpelschäden schlecht?", options: [
         { text: "Weil Knorpelgewebe avaskular ist und Chondrozyten nur eingeschränkt proliferieren", correct: true },
         { text: "Weil Knorpelgewebe reichlich Blutgefässe hat, die die Regeneration stören", correct: false },
         { text: "Weil Chondrozyten keine Kollagensynthese betreiben können", correct: false },
         { text: "Weil Knorpelgewebe aus Prokaryoten besteht", correct: false }
-      ], explanation: "Knorpelgewebe ist avaskular und Chondrozyten proliferieren kaum, weshalb nach Knorpelschäden weder ausreichende Vaskularisierung noch Zellregeneration möglich ist." },
+      ], explanation: "Knorpelgewebe ist avaskular und Chondrozyten proliferieren kaum, weshalb nach Knorpelschäden weder ausreichende Vaskularisierung noch Zellregeneration möglich ist.", learningCard: { type: "predict", statement: "Knorpelschäden heilen schlecht, weil Knorpelgewebe avaskulär ist und Chondrozyten kaum proliferieren.", answer: true, reveal: "Knorpelgewebe ist avaskulär und Chondrozyten proliferieren kaum, weshalb nach Knorpelschäden weder ausreichende Vaskularisierung noch Zellregeneration möglich ist." } },
       { id: "hi_kg_mc3", type: "mc", question: "Welche Aussagen zu Knorpelgewebe sind korrekt?", options: [
         { text: "Knorpelgewebe ist avaskular und heilt deshalb schlecht", correct: true },
         { text: "Hyaliner Knorpel (Kollagen Typ II) findet sich an Gelenkflächen und im Rippenknorpel", correct: true },
         { text: "Faserknorpel enthält viel Elastin und ist deshalb biegefähig", correct: false },
         { text: "Das Perichondrium ist an Gelenkknorpelflächen vorhanden", correct: false }
-      ], explanation: "Avaskular → schlechte Heilung. Hyaliner Knorpel: Gelenkflächen, Rippenknorpel, Wachstumsplatten. Elastin: elastischer Knorpel (Ohrmuschel, Epiglottis), nicht Faserknorpel. Gelenkknorpel: kein Perichondrium."}
+      ], explanation: "Avaskular → schlechte Heilung. Hyaliner Knorpel: Gelenkflächen, Rippenknorpel, Wachstumsplatten. Elastin: elastischer Knorpel (Ohrmuschel, Epiglottis), nicht Faserknorpel. Gelenkknorpel: kein Perichondrium.", learningCard: { type: "oddoneout", statements: [
+        { text: "Knorpelgewebe ist avaskulär und heilt deshalb schlecht.", isWrong: false },
+        { text: "Hyaliner Knorpel (Kollagen Typ II) findet sich an Gelenkflächen und im Rippenknorpel.", isWrong: false },
+        { text: "Das Perichondrium fehlt am Gelenkknorpel.", isWrong: false },
+        { text: "Faserknorpel enthält viel Elastin und ist deshalb biegefähig.", isWrong: true }
+      ], whyWrong: "Elastinreich ist der elastische Knorpel (Ohrmuschel, Epiglottis), nicht der Faserknorpel. Faserknorpel enthält vor allem dicke Kollagen-Typ-I-Bündel für Druck- und Zugbelastung." } }
     ]
   }),
   makeDetailedPlant({
@@ -1077,27 +1415,42 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Osteoblasten bauen Knochen ab; Osteozyten bauen ihn auf", correct: false },
         { text: "Osteozyten haben keine Verbindung zu Nachbarzellen", correct: false },
         { text: "Beide Zelltypen sind identisch", correct: false }
-      ], explanation: "Osteoblasten (auf der Knochenoberfläche) synthetisieren Kollagen Typ I und Osteoid, das dann mineralisiert wird. Wenn sie von Knochenmatrix eingemauert werden, differenzieren sie zu Osteozyten – ruhenden Erhaltungszellen. Osteozyten kommunizieren über Kanälchen (Canaliculi) mit Gap Junctions untereinander." },
+      ], explanation: "Osteoblasten (auf der Knochenoberfläche) synthetisieren Kollagen Typ I und Osteoid, das dann mineralisiert wird. Wenn sie von Knochenmatrix eingemauert werden, differenzieren sie zu Osteozyten – ruhenden Erhaltungszellen. Osteozyten kommunizieren über Kanälchen (Canaliculi) mit Gap Junctions untereinander.", learningCard: { type: "teachback", prompt: "Was unterscheidet Osteoblasten von Osteozyten?", checklist: [
+        { text: "Osteoblasten sind aktiv knochenbildende Zellen", correct: true },
+        { text: "Osteozyten sind eingemauerte ehemalige Osteoblasten", correct: true },
+        { text: "Osteozyten kommunizieren über Canaliculi mit Gap Junctions", correct: true },
+        { text: "Osteoblasten bauen Knochen ab", correct: false }
+      ], reveal: "Osteoblasten synthetisieren auf der Knochenoberfläche Kollagen Typ I und Osteoid, das dann mineralisiert wird. Werden sie von Knochenmatrix eingemauert, differenzieren sie zu Osteozyten, die über Canaliculi mit Gap Junctions kommunizieren." } },
       { id: "hi_kn_h2", type: "mc", question: "Durch welchen Mechanismus bauen Osteoklasten Knochen ab?", options: [
         { text: "Sie sezernieren Salzsäure (HCl) und lysosomale Enzyme, die die Knochenmatrix lösen", correct: true },
         { text: "Sie absorbieren Knochenmatrix durch Phagozytose der gesamten Matrix", correct: false },
         { text: "Sie produzieren Kollagen Typ I für den Abbau", correct: false },
         { text: "Sie stimulieren Chondrozyten zur Knorpeldegeneration", correct: false }
-      ], explanation: "Osteoklasten sind mehrkernige Riesenzellen (aus Monozyten-Vorläufern). Sie bilden auf der Knochenoberfläche eine versiegelte 'Resorptionszone' (Howship-Lakunen) und sezernieren dort Protonen (HCl, pH ~4) durch die Ruffled Border und lysosomale Proteasen (Cathepsin K), die Hydroxylapatit und Kollagen abbauen." },
-      { id: "hi_kn_h3", type: "true_false", statement: "Lamellenknochen hat im Osteon konzentrisch um den Havers-Kanal angeordnete Lamellen aus mineralisierten Kollagenfasern.", answer: true, explanation: "Lamellenknochen (reifer Knochen) ist strukturell aus Osteonen (Havers-Systemen) aufgebaut: konzentrische Lamellen aus Kollagen Typ I mit Hydroxylapatit umringen einen zentralen Havers-Kanal (mit Blutgefässen und Nerven). Diese Struktur verleiht maximale Stabilität bei geringem Gewicht – eine geniale biomechanische Lösung." },
+      ], explanation: "Osteoklasten sind mehrkernige Riesenzellen (aus Monozyten-Vorläufern). Sie bilden auf der Knochenoberfläche eine versiegelte 'Resorptionszone' (Howship-Lakunen) und sezernieren dort Protonen (HCl, pH ~4) durch die Ruffled Border und lysosomale Proteasen (Cathepsin K), die Hydroxylapatit und Kollagen abbauen.", learningCard: { type: "predict", statement: "Osteoklasten bauen Knochen durch Sekretion von Salzsäure und lysosomalen Enzymen ab.", answer: true, reveal: "Osteoklasten sind mehrkernige Riesenzellen, die in einer versiegelten Resorptionszone Protonen (Salzsäure) und lysosomale Enzyme wie Cathepsin K sezernieren. Diese bauen Hydroxylapatit und Kollagen der Knochenmatrix ab." } },
+      { id: "hi_kn_h3", type: "true_false", statement: "Lamellenknochen hat im Osteon konzentrisch um den Havers-Kanal angeordnete Lamellen aus mineralisierten Kollagenfasern.", answer: true, explanation: "Lamellenknochen (reifer Knochen) ist strukturell aus Osteonen (Havers-Systemen) aufgebaut: konzentrische Lamellen aus Kollagen Typ I mit Hydroxylapatit umringen einen zentralen Havers-Kanal (mit Blutgefässen und Nerven). Diese Struktur verleiht maximale Stabilität bei geringem Gewicht – eine geniale biomechanische Lösung.", learningCard: { type: "reconstruct", template: "Im Lamellenknochen sind konzentrische ___ aus mineralisierten Kollagenfasern um den zentralen ___ angeordnet.", blanks: ["Lamellen", "Havers-Kanal"], distractors: ["Trabekel", "Volkmann-Kanal"] } },
       { id: "hi_kn_h4", type: "mc", question: "Was ist ein Havers-System (Osteon)?", options: [
         { text: "Konzentrische Knochenlamellen um einen zentralen Havers-Kanal (mit Blutgefässen) – die Grundeinheit des Lamellenknochen", correct: true },
         { text: "Ein Kanalsystem im Spongiosatrabekel", correct: false },
         { text: "Ein Tunnelsystem durch die Kortikalis für Lymphgefässe", correct: false },
         { text: "Die Verbindung zwischen Periost und Endost", correct: false }
-      ], explanation: "Osteon = Havers-System: 4–20 konzentrische Lamellen um den Havers-Kanal (enthält Blutgefäss + Nerv). Volkmann-Kanäle verbinden Havers-Kanäle untereinander. Osteozyten liegen in Lakunen in den Lamellen und kommunizieren über Canaliculi (Kanälchen) mit Nachbarosteozyten und Blutgefässen." },
-      { id: "hi_kn_h5", type: "true_false", statement: "Hydroxylapatit [Ca10(PO4)6(OH)2] ist die anorganische Hauptkomponente der Knochenmatrix und verleiht dem Knochen seine Druckfestigkeit.", answer: true, explanation: "Knochenmatrix: 70% anorganisch (Hydroxylapatit: Kalziumphosphat-Kristalle für Druckfestigkeit), 30% organisch (Kollagen Typ I für Zugfestigkeit, Elastizität). Die Kombination erklärt die einzigartige Eigenschaft: fest aber nicht spröde wie reines Mineral, und nicht schlaff wie reines Kollagen." },
+      ], explanation: "Osteon = Havers-System: 4–20 konzentrische Lamellen um den Havers-Kanal (enthält Blutgefäss + Nerv). Volkmann-Kanäle verbinden Havers-Kanäle untereinander. Osteozyten liegen in Lakunen in den Lamellen und kommunizieren über Canaliculi (Kanälchen) mit Nachbarosteozyten und Blutgefässen.", learningCard: { type: "oddoneout", statements: [
+        { text: "Ein Osteon besteht aus konzentrischen Lamellen um den Havers-Kanal.", isWrong: false },
+        { text: "Der Havers-Kanal enthält Blutgefäße und Nerven.", isWrong: false },
+        { text: "Volkmann-Kanäle verbinden benachbarte Havers-Kanäle.", isWrong: false },
+        { text: "Osteozyten liegen frei im Havers-Kanal ohne Kontakt zu Nachbarzellen.", isWrong: true }
+      ], whyWrong: "Osteozyten liegen in Lakunen innerhalb der Lamellen und kommunizieren über Canaliculi mit Nachbarosteozyten und Blutgefäßen – sie liegen nicht frei im Havers-Kanal. Das Osteon besteht aus konzentrischen Lamellen um den Havers-Kanal." } },
+      { id: "hi_kn_h5", type: "true_false", statement: "Hydroxylapatit [Ca10(PO4)6(OH)2] ist die anorganische Hauptkomponente der Knochenmatrix und verleiht dem Knochen seine Druckfestigkeit.", answer: true, explanation: "Knochenmatrix: 70% anorganisch (Hydroxylapatit: Kalziumphosphat-Kristalle für Druckfestigkeit), 30% organisch (Kollagen Typ I für Zugfestigkeit, Elastizität). Die Kombination erklärt die einzigartige Eigenschaft: fest aber nicht spröde wie reines Mineral, und nicht schlaff wie reines Kollagen.", learningCard: { type: "predict", statement: "Hydroxylapatit ist die anorganische Hauptkomponente der Knochenmatrix und verleiht Druckfestigkeit.", answer: true, reveal: "Die Knochenmatrix besteht zu 70% aus Hydroxylapatit (Kalziumphosphat-Kristalle) für die Druckfestigkeit und zu 30% aus Kollagen Typ I für Zugfestigkeit und Elastizität." } },
       { id: "hi_kn_h6", type: "mc", question: "Wie unterscheiden sich Geflechtknochen und Lamellenknochen histologisch?", options: [
         { text: "Geflechtknochen: ungeordnete Kollagenfasern (embryonal/reparativ); Lamellenknochen: konzentrisch geordnete Kollagenlamellen in Osteonen (reif)", correct: true },
         { text: "Geflechtknochen: mehr Hydroxylapatit als Lamellenknochen", correct: false },
         { text: "Lamellenknochen: keine Osteone, nur Trabekel", correct: false },
         { text: "Beide sind histologisch identisch", correct: false }
-      ], explanation: "Geflechtknochen (Wovenknochen): erst gebildet bei Fraktur oder Entwicklung, ungeordnete Kollagenfasern, wird später ersetzt. Lamellenknochen: geordnete Struktur (Osteone in Kortikalis, Trabekel in Spongiosa), biomechanisch optimiert." }
+      ], explanation: "Geflechtknochen (Wovenknochen): erst gebildet bei Fraktur oder Entwicklung, ungeordnete Kollagenfasern, wird später ersetzt. Lamellenknochen: geordnete Struktur (Osteone in Kortikalis, Trabekel in Spongiosa), biomechanisch optimiert.", learningCard: { type: "teachback", prompt: "Was unterscheidet Geflechtknochen von Lamellenknochen?", checklist: [
+        { text: "Geflechtknochen hat ungeordnete Kollagenfasern (embryonal/reparativ)", correct: true },
+        { text: "Lamellenknochen hat konzentrisch geordnete Kollagenlamellen in Osteonen", correct: true },
+        { text: "Geflechtknochen wird später durch Lamellenknochen ersetzt", correct: true },
+        { text: "Lamellenknochen hat mehr Hydroxylapatit als Geflechtknochen", correct: false }
+      ], reveal: "Geflechtknochen (Wovenknochen) entsteht zuerst bei Fraktur oder Entwicklung mit ungeordneten Kollagenfasern und wird später durch Lamellenknochen ersetzt. Lamellenknochen hat eine geordnete Struktur mit konzentrischen Lamellen in Osteonen." } }
     ],
     phase4Questions: [
       { id: "hi_kn_mc1", type: "mc", question: "Welche Aussagen zu den drei Knochenzellypen sind korrekt?", options: [
@@ -1105,19 +1458,24 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Osteozyten – eingemauerte ehemalige Osteoblasten, Erhalt des Knochens", correct: true },
         { text: "Osteoklasten – mehrkernige Riesenzellen, Knochenabbau durch Säuresekretion", correct: true },
         { text: "Osteoblasten – Knochenabbau durch Salzsäure-Sekretion", correct: false }
-      ], explanation: "Osteoblasten bauen Knochen auf (Osteoid-Synthese/Mineralisation), Osteozyten erhalten ihn als eingemauerte ehemalige Osteoblasten, und Osteoklasten bauen ihn durch Salzsäuresekretion ab." },
+      ], explanation: "Osteoblasten bauen Knochen auf (Osteoid-Synthese/Mineralisation), Osteozyten erhalten ihn als eingemauerte ehemalige Osteoblasten, und Osteoklasten bauen ihn durch Salzsäuresekretion ab.", learningCard: { type: "reconstruct", template: "___ – Knochenaufbau durch Osteoid-Synthese; ___ – eingemauerte ehemalige Osteoblasten; Osteoklasten – Knochenabbau durch Säuresekretion.", blanks: ["Osteoblasten", "Osteozyten"], distractors: ["Chondrozyten", "Fibroblasten"] } },
       { id: "hi_kn_mc2", type: "mc", question: "Was sind die Hauptbestandteile der mineralisierten Knochenmatrix?", options: [
         { text: "Kollagen Typ I (organisch) und Hydroxylapatit Ca10(PO4)6(OH)2 (anorganisch)", correct: true },
         { text: "Elastin und Hyaluronsäure", correct: false },
         { text: "Kollagen Typ II und Kalziumkarbonat", correct: false },
         { text: "Glykogen und Chondroitin", correct: false }
-      ], explanation: "Die mineralisierte Knochenmatrix besteht aus Kollagen Typ I (organisch, für Zugfestigkeit) und Hydroxylapatit (anorganisch, für Druckfestigkeit)." },
+      ], explanation: "Die mineralisierte Knochenmatrix besteht aus Kollagen Typ I (organisch, für Zugfestigkeit) und Hydroxylapatit (anorganisch, für Druckfestigkeit).", learningCard: { type: "predict", statement: "Die mineralisierte Knochenmatrix besteht aus Kollagen Typ I und Hydroxylapatit.", answer: true, reveal: "Die mineralisierte Knochenmatrix besteht aus Kollagen Typ I (organisch, für Zugfestigkeit) und Hydroxylapatit (anorganisch, für Druckfestigkeit)." } },
       { id: "hi_kn_mc3", type: "mc", question: "Welche Aussagen zur Knochenhistologie sind korrekt?", options: [
         { text: "Das Osteon (Havers-System) besteht aus konzentrischen Lamellen um einen Blutgefäss-führenden Havers-Kanal", correct: true },
         { text: "Osteoblasten bauen auf; Osteoklasten bauen ab; Osteozyten erhalten den Knochen", correct: true },
         { text: "Hydroxylapatit verleiht dem Knochen Flexibilität, Kollagen die Druckfestigkeit", correct: false },
         { text: "Geflechtknochen ist strukturell gereifter als Lamellenknochen", correct: false }
-      ], explanation: "Osteon: konzentrische Lamellen um Havers-Kanal. Zellen: Osteoblasten aufbau, Osteoklasten abbau, Osteozyten Erhalt. Hydroxylapatit: Druckfestigkeit; Kollagen: Zugfestigkeit/Elastizität. Geflechtknochen: unreif, wird zu Lamellenknochen umgebaut."}
+      ], explanation: "Osteon: konzentrische Lamellen um Havers-Kanal. Zellen: Osteoblasten aufbau, Osteoklasten abbau, Osteozyten Erhalt. Hydroxylapatit: Druckfestigkeit; Kollagen: Zugfestigkeit/Elastizität. Geflechtknochen: unreif, wird zu Lamellenknochen umgebaut.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Knochenhistologie treffen zu?", checklist: [
+        { text: "Das Osteon besteht aus konzentrischen Lamellen um einen Blutgefäß-führenden Havers-Kanal", correct: true },
+        { text: "Osteoblasten bauen auf; Osteoklasten bauen ab; Osteozyten erhalten den Knochen", correct: true },
+        { text: "Hydroxylapatit verleiht dem Knochen Flexibilität, Kollagen die Druckfestigkeit", correct: false },
+        { text: "Geflechtknochen ist strukturell gereifter als Lamellenknochen", correct: false }
+      ], reveal: "Das Osteon besteht aus konzentrischen Lamellen um den Havers-Kanal. Osteoblasten bauen auf, Osteoklasten bauen ab, Osteozyten erhalten den Knochen; Hydroxylapatit verleiht Druckfestigkeit, Kollagen Zugfestigkeit, und Geflechtknochen ist unreif und wird zu Lamellenknochen umgebaut." } }
     ]
   }),
   makeDetailedPlant({
@@ -1129,27 +1487,42 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Lymphozyten und Monozyten", correct: false },
         { text: "Erythrozyten und Thrombozyten", correct: false },
         { text: "Makrophagen und dendritische Zellen", correct: false }
-      ], explanation: "Leukozyten werden eingeteilt in: Granulozyten (körniges Zytoplasma) – neutrophile (55–70%, Phagozytose), eosinophile (2–4%, Parasitenabwehr, Allergie) und basophile (0,5–1%, Histaminfreisetzung); sowie agranuläre Leukozyten: Lymphozyten (25–35%, adaptive Immunantwort) und Monozyten (3–8%, Vorläuferzellen der Makrophagen)." },
+      ], explanation: "Leukozyten werden eingeteilt in: Granulozyten (körniges Zytoplasma) – neutrophile (55–70%, Phagozytose), eosinophile (2–4%, Parasitenabwehr, Allergie) und basophile (0,5–1%, Histaminfreisetzung); sowie agranuläre Leukozyten: Lymphozyten (25–35%, adaptive Immunantwort) und Monozyten (3–8%, Vorläuferzellen der Makrophagen).", learningCard: { type: "teachback", prompt: "Welche Zelltypen gehören zu den Granulozyten?", checklist: [
+        { text: "Neutrophile Granulozyten (55-70%, Phagozytose)", correct: true },
+        { text: "Eosinophile Granulozyten (2-4%, Parasitenabwehr, Allergie)", correct: true },
+        { text: "Basophile Granulozyten (0,5-1%, Histaminfreisetzung)", correct: true },
+        { text: "Lymphozyten", correct: false }
+      ], reveal: "Granulozyten haben körniges Zytoplasma: neutrophile (55–70%, Phagozytose), eosinophile (2–4%, Parasitenabwehr, Allergie) und basophile (0,5–1%, Histaminfreisetzung). Lymphozyten und Monozyten sind dagegen agranuläre Leukozyten." } },
       { id: "hi_bl_h2", type: "mc", question: "Was ist der Hämatokrit und welcher Normalwert gilt für Männer?", options: [
         { text: "Der Erythrozytenanteil am Gesamtblutvolumen; Männer: ca. 40–52%", correct: true },
         { text: "Die Anzahl der Leukozyten pro Mikroliter Blut; Männer: 4000–11000", correct: false },
         { text: "Der Hämoglobingehalt des Blutes; Männer: 14–18 g/dl", correct: false },
         { text: "Der Plasmaanteil am Blutvolumen; ca. 55–60%", correct: false }
-      ], explanation: "Hämatokrit (Hkt) = Volumenanteil der Erythrozyten am Gesamtblut (%). Männer: 40–52%, Frauen: 37–47%. Ein niedriger Hkt deutet auf Anämie hin, ein hoher auf Polyglobulie oder Dehydratation. Leukozyten und Thrombozyten machen nur <1% des Blutvolumens aus." },
-      { id: "hi_bl_h3", type: "true_false", statement: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten im Knochenmark und haben keine DNS.", answer: true, explanation: "Megakaryozyten (riesige polynukleäre Zellen im Knochenmark) schnüren Tausende von Thrombozyten ab. Diese sind kernlos (keine DNA) und ca. 2–4 µm gross. Sie initiieren die primäre Hämostase durch Adhäsion an Gefässläsionen und Aggregation. Lebensdauer: ca. 8–12 Tage." },
+      ], explanation: "Hämatokrit (Hkt) = Volumenanteil der Erythrozyten am Gesamtblut (%). Männer: 40–52%, Frauen: 37–47%. Ein niedriger Hkt deutet auf Anämie hin, ein hoher auf Polyglobulie oder Dehydratation. Leukozyten und Thrombozyten machen nur <1% des Blutvolumens aus.", learningCard: { type: "predict", statement: "Der Hämatokrit ist der Erythrozytenanteil am Gesamtblutvolumen und liegt bei Männern bei ca. 40-52%.", answer: true, reveal: "Der Hämatokrit (Hkt) ist der Volumenanteil der Erythrozyten am Gesamtblut. Bei Männern liegt er bei 40–52%, bei Frauen bei 37–47%." } },
+      { id: "hi_bl_h3", type: "true_false", statement: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten im Knochenmark und haben keine DNS.", answer: true, explanation: "Megakaryozyten (riesige polynukleäre Zellen im Knochenmark) schnüren Tausende von Thrombozyten ab. Diese sind kernlos (keine DNA) und ca. 2–4 µm gross. Sie initiieren die primäre Hämostase durch Adhäsion an Gefässläsionen und Aggregation. Lebensdauer: ca. 8–12 Tage.", learningCard: { type: "oddoneout", statements: [
+        { text: "Thrombozyten entstehen durch Abschnürung von Megakaryozyten im Knochenmark.", isWrong: false },
+        { text: "Thrombozyten sind kernlos und besitzen keine DNA.", isWrong: false },
+        { text: "Thrombozyten initiieren die primäre Hämostase durch Adhäsion und Aggregation.", isWrong: false },
+        { text: "Thrombozyten besitzen einen Zellkern wie andere Blutzellen.", isWrong: true }
+      ], whyWrong: "Thrombozyten sind kernlos – sie entstehen durch Abschnürung von Megakaryozyten im Knochenmark und enthalten keine DNA. Sie initiieren die primäre Hämostase durch Adhäsion und Aggregation an Gefäßläsionen." } },
       { id: "hi_bl_h4", type: "mc", question: "Welche Funktion hat Hämoglobin in den Erythrozyten?", options: [
         { text: "O2-Transport durch reversible Bindung an Fe2+ im Hämanteil", correct: true },
         { text: "Phagozytose von Bakterien", correct: false },
         { text: "Produktion von Antikörpern", correct: false },
         { text: "CO2 kann von Hämoglobin nicht transportiert werden", correct: false }
-      ], explanation: "Hämoglobin (Hb): 4 Untereinheiten, jede mit einem Häm-Cofaktor (Fe2+). O2 bindet reversibel an Fe2+. Reifes Hb: 4 O2 pro Molekül. Erythrozyten sind kernlos (bikonkav, grosse Oberfläche/Volumen-Ratio). CO2 wird auch an Hb gebunden (Carbaminoverbindungen) oder als HCO3- im Plasma transportiert." },
-      { id: "hi_bl_h5", type: "true_false", statement: "Monozyten im Blut sind die Vorläufer der Makrophagen im Gewebe.", answer: true, explanation: "Monozyten verlassen den Blutstrom und differenzieren im Gewebe zu Makrophagen (z.B. Kupffer-Zellen in der Leber, Alveolarmakrophagen in der Lunge, Mikroglia im ZNS). Sie phagozytieren Zelltrümmer, Pathogene und aktivieren adaptive Immunantworten." },
+      ], explanation: "Hämoglobin (Hb): 4 Untereinheiten, jede mit einem Häm-Cofaktor (Fe2+). O2 bindet reversibel an Fe2+. Reifes Hb: 4 O2 pro Molekül. Erythrozyten sind kernlos (bikonkav, grosse Oberfläche/Volumen-Ratio). CO2 wird auch an Hb gebunden (Carbaminoverbindungen) oder als HCO3- im Plasma transportiert.", learningCard: { type: "reconstruct", template: "Hämoglobin besteht aus vier Untereinheiten mit je einem ___-Cofaktor, an dessen ___ Sauerstoff reversibel bindet.", blanks: ["Häm", "Fe2+"], distractors: ["Globin", "Cu2+"] } },
+      { id: "hi_bl_h5", type: "true_false", statement: "Monozyten im Blut sind die Vorläufer der Makrophagen im Gewebe.", answer: true, explanation: "Monozyten verlassen den Blutstrom und differenzieren im Gewebe zu Makrophagen (z.B. Kupffer-Zellen in der Leber, Alveolarmakrophagen in der Lunge, Mikroglia im ZNS). Sie phagozytieren Zelltrümmer, Pathogene und aktivieren adaptive Immunantworten.", learningCard: { type: "predict", statement: "Monozyten im Blut sind die Vorläufer der Makrophagen im Gewebe.", answer: true, reveal: "Monozyten verlassen den Blutstrom und differenzieren im Gewebe zu Makrophagen, etwa Kupffer-Zellen in der Leber oder Alveolarmakrophagen in der Lunge. Sie phagozytieren Zelltrümmer und Pathogene." } },
       { id: "hi_bl_h6", type: "mc", question: "Was ist die primäre Hämostase?", options: [
         { text: "Thrombozytenaggregation und Gefässkonstriktion zur Bildung eines primären Plättchenpfropfs", correct: true },
         { text: "Aktivierung der plasmatischen Gerinnungskaskade (Faktoren I-XIII)", correct: false },
         { text: "Fibrinolyse zur Auflösung bestehender Thromben", correct: false },
         { text: "Leukozyteneinwanderung in das Wundgebiet", correct: false }
-      ], explanation: "Hämostase: 1) Primär = Thrombozytenaggregation + Vasokonstriktion → weicher Plättchenpfropf. 2) Sekundär = plasmatische Gerinnung (Gerinnungsfaktoren) → Fibrin-Pfropf. Thrombozyten: Adhäsion (via GPIb an Von-Willebrand-Faktor) → Aktivierung → Aggregation." }
+      ], explanation: "Hämostase: 1) Primär = Thrombozytenaggregation + Vasokonstriktion → weicher Plättchenpfropf. 2) Sekundär = plasmatische Gerinnung (Gerinnungsfaktoren) → Fibrin-Pfropf. Thrombozyten: Adhäsion (via GPIb an Von-Willebrand-Faktor) → Aktivierung → Aggregation.", learningCard: { type: "teachback", prompt: "Was gehört zur primären Hämostase?", checklist: [
+        { text: "Thrombozytenaggregation bildet einen Plättchenpfropf", correct: true },
+        { text: "Vasokonstriktion begrenzt den Blutverlust", correct: true },
+        { text: "Thrombozyten adhärieren via GPIb an den Von-Willebrand-Faktor", correct: true },
+        { text: "Aktivierung der plasmatischen Gerinnungskaskade (Faktoren I-XIII)", correct: false }
+      ], reveal: "Die primäre Hämostase besteht aus Thrombozytenaggregation und Vasokonstriktion zur Bildung eines weichen Plättchenpfropfs. Thrombozyten adhärieren dabei über GPIb an den Von-Willebrand-Faktor, bevor sie aktiviert werden und aggregieren." } }
     ],
     phase4Questions: [
       { id: "hi_bl_mc1", type: "mc", question: "Welche Zelltypen und ihre Funktionen sind korrekt zugeordnet?", options: [
@@ -1157,19 +1530,24 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Eosinophile Granulozyten – Abwehr von Parasiten und allergischen Reaktionen", correct: true },
         { text: "Lymphozyten (B-Zellen) – Antikörperproduktion", correct: true },
         { text: "Erythrozyten – Phagozytose von Bakterien", correct: false }
-      ], explanation: "Neutrophile phagozytieren Bakterien, Eosinophile bekämpfen Parasiten und vermitteln Allergien, und B-Lymphozyten produzieren Antikörper; Erythrozyten transportieren Sauerstoff." },
+      ], explanation: "Neutrophile phagozytieren Bakterien, Eosinophile bekämpfen Parasiten und vermitteln Allergien, und B-Lymphozyten produzieren Antikörper; Erythrozyten transportieren Sauerstoff.", learningCard: { type: "reconstruct", template: "___ Granulozyten – primäre Phagozytose von Bakterien; ___ Granulozyten – Abwehr von Parasiten und Allergien; B-Lymphozyten – Antikörperproduktion.", blanks: ["Neutrophile", "Eosinophile"], distractors: ["Basophile", "Monozyten"] } },
       { id: "hi_bl_mc2", type: "mc", question: "Was beschreibt der Begriff 'Differentialblutbild'?", options: [
         { text: "Die prozentuale Aufteilung der Leukozytentypen (Neutrophile, Lymphozyten, Monozyten, Eosinophile, Basophile)", correct: true },
         { text: "Die Messung des Hämatokrits", correct: false },
         { text: "Die Grösse und Form der Erythrozyten", correct: false },
         { text: "Den Fibrinogengehalt des Plasmas", correct: false }
-      ], explanation: "Das Differentialblutbild gibt die prozentuale Verteilung der Leukozytentypen (Neutrophile, Lymphozyten, Monozyten, Eosinophile, Basophile) an und dient der Diagnostik von Infektionen." },
+      ], explanation: "Das Differentialblutbild gibt die prozentuale Verteilung der Leukozytentypen (Neutrophile, Lymphozyten, Monozyten, Eosinophile, Basophile) an und dient der Diagnostik von Infektionen.", learningCard: { type: "predict", statement: "Das Differentialblutbild gibt die prozentuale Verteilung der Leukozytentypen an.", answer: true, reveal: "Das Differentialblutbild gibt die prozentuale Verteilung der Leukozytentypen (Neutrophile, Lymphozyten, Monozyten, Eosinophile, Basophile) an und dient der Diagnostik von Infektionen." } },
       { id: "hi_bl_mc3", type: "mc", question: "Welche Aussagen zu Blut und Blutbestandteilen sind korrekt?", options: [
         { text: "Erythrozyten transportieren O2 über Hämoglobin (Fe2+)", correct: true },
         { text: "Neutrophile Granulozyten sind die häufigsten Leukozyten und phagozytieren Bakterien", correct: true },
         { text: "Thrombozyten sind kernhaltige Zellen mit normaler Zellteilung", correct: false },
         { text: "Der Hämatokrit misst den Leukozytenanteil am Blutvolumen", correct: false }
-      ], explanation: "Erythrozyten: Hämoglobin-O2-Transport. Neutrophile: häufigste Leukozyten (55-70%), Phagozytose. Thrombozyten: kernlos, keine Teilung (Abschnürung von Megakaryozyten). Hämatokrit: Erythrozytenanteil (Männer 40-52%)."}
+      ], explanation: "Erythrozyten: Hämoglobin-O2-Transport. Neutrophile: häufigste Leukozyten (55-70%), Phagozytose. Thrombozyten: kernlos, keine Teilung (Abschnürung von Megakaryozyten). Hämatokrit: Erythrozytenanteil (Männer 40-52%).", learningCard: { type: "oddoneout", statements: [
+        { text: "Erythrozyten transportieren O2 über Hämoglobin (Fe2+).", isWrong: false },
+        { text: "Neutrophile Granulozyten sind die häufigsten Leukozyten und phagozytieren Bakterien.", isWrong: false },
+        { text: "Der Hämatokrit misst den Erythrozytenanteil am Blutvolumen.", isWrong: false },
+        { text: "Thrombozyten sind kernhaltige Zellen mit normaler Zellteilung.", isWrong: true }
+      ], whyWrong: "Thrombozyten sind kernlos und teilen sich nicht – sie entstehen durch Abschnürung von Megakaryozyten. Erythrozyten transportieren O2 über Hämoglobin, neutrophile Granulozyten phagozytieren Bakterien, und der Hämatokrit misst den Erythrozytenanteil." } }
     ]
   }),
   makeDetailedPlant({
@@ -1181,27 +1559,42 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Querstreifung, willkürliche Steuerung und randständige Kerne", correct: false },
         { text: "Keine Querstreifung, unwillkürliche Steuerung und Disci intercalares", correct: false },
         { text: "Querstreifung, unwillkürliche Steuerung, aber keine Disci intercalares", correct: false }
-      ], explanation: "Herzmuskulatur kombiniert: Querstreifung durch Sarkomere (wie Skelettmuskel) + unwillkürliche Steuerung (wie glatte Muskulatur) + Disci intercalares (Glanzstreifen: Adhärens-Junctions für mechanische Kopplung und Gap Junctions für elektrische Kopplung) + zentraler Kern." },
+      ], explanation: "Herzmuskulatur kombiniert: Querstreifung durch Sarkomere (wie Skelettmuskel) + unwillkürliche Steuerung (wie glatte Muskulatur) + Disci intercalares (Glanzstreifen: Adhärens-Junctions für mechanische Kopplung und Gap Junctions für elektrische Kopplung) + zentraler Kern.", learningCard: { type: "teachback", prompt: "Was ist typisch für die Herzmuskulatur?", checklist: [
+        { text: "Querstreifung durch Sarkomere", correct: true },
+        { text: "Unwillkürliche Steuerung", correct: true },
+        { text: "Disci intercalares mit Gap Junctions und Adhärens-Junctions", correct: true },
+        { text: "Randständige Kerne wie im Skelettmuskel", correct: false }
+      ], reveal: "Herzmuskulatur kombiniert Querstreifung durch Sarkomere mit unwillkürlicher Steuerung und Disci intercalares (Gap Junctions für elektrische, Adhärens-Junctions für mechanische Kopplung). Der Kern liegt zentral, nicht randständig wie im Skelettmuskel." } },
       { id: "hi_mg_h2", type: "mc", question: "Welches Protein bildet die dunklen A-Banden im Sarkomer der Skelettmuskulatur?", options: [
         { text: "Myosin (dicke Filamente)", correct: true },
         { text: "Aktin (dünne Filamente)", correct: false },
         { text: "Troponin", correct: false },
         { text: "Titin", correct: false }
-      ], explanation: "Im Sarkomer (strukturelle Einheit des Muskels): A-Banden (anisotrop = dunkel im Lichtmikroskop) = Myosin (dicke Filamente, 10–15 nm). I-Banden (isotrop = hell) = nur Aktin (dünne Filamente, 5–7 nm). Die Querstreifung entsteht durch die regelmässige Anordnung dieser Filamente im Sarkomer." },
-      { id: "hi_mg_h3", type: "true_false", statement: "Glatte Muskelzellen können sich langsam und ausdauernd ohne Ermüdung kontrahieren, was sie für Hohlorgane besonders geeignet macht.", answer: true, explanation: "Glatte Muskulatur nutzt einen anderen Kontraktionsmechanismus als Skelettmuskel: langsame Myosin-Querbrückenzyklen (Latchzustand) erlauben Dauerkontraktionen mit sehr wenig ATP-Verbrauch. Diese Eigenschaft ist ideal für Dauertonus in Gefässen, Blasenapex, Darmmotilität." },
-      { id: "hi_mg_h4", type: "true_false", statement: "Skelettmuskelfasern sind mehrkernig, weil sie aus der Fusion vieler Myoblasten entstehen.", answer: true, explanation: "Embryonale Myoblasten fusionieren zu langen Skelettmuskelfasern mit hunderten von Kernen. Die Kerne liegen randständig unter dem Sarkolemm. Herzmuskelzellen sind dagegen Einzelzellen mit einem zentralen Kern und verbinden sich über Disci intercalares." },
+      ], explanation: "Im Sarkomer (strukturelle Einheit des Muskels): A-Banden (anisotrop = dunkel im Lichtmikroskop) = Myosin (dicke Filamente, 10–15 nm). I-Banden (isotrop = hell) = nur Aktin (dünne Filamente, 5–7 nm). Die Querstreifung entsteht durch die regelmässige Anordnung dieser Filamente im Sarkomer.", learningCard: { type: "predict", statement: "Die dunklen A-Banden im Sarkomer bestehen aus Myosin (dicken Filamenten).", answer: true, reveal: "Im Sarkomer entstehen die dunklen A-Banden durch Myosin, die dicken Filamente. Die hellen I-Banden enthalten dagegen nur Aktin, die dünnen Filamente." } },
+      { id: "hi_mg_h3", type: "true_false", statement: "Glatte Muskelzellen können sich langsam und ausdauernd ohne Ermüdung kontrahieren, was sie für Hohlorgane besonders geeignet macht.", answer: true, explanation: "Glatte Muskulatur nutzt einen anderen Kontraktionsmechanismus als Skelettmuskel: langsame Myosin-Querbrückenzyklen (Latchzustand) erlauben Dauerkontraktionen mit sehr wenig ATP-Verbrauch. Diese Eigenschaft ist ideal für Dauertonus in Gefässen, Blasenapex, Darmmotilität.", learningCard: { type: "oddoneout", statements: [
+        { text: "Glatte Muskelzellen nutzen langsame Myosin-Querbrückenzyklen (Latchzustand).", isWrong: false },
+        { text: "Dieser Mechanismus erlaubt Dauerkontraktionen mit wenig ATP-Verbrauch.", isWrong: false },
+        { text: "Diese Eigenschaft ist ideal für Dauertonus in Gefäßen und bei der Darmmotilität.", isWrong: false },
+        { text: "Glatte Muskelzellen ermüden bei Dauerkontraktion genauso schnell wie Skelettmuskelfasern.", isWrong: true }
+      ], whyWrong: "Glatte Muskelzellen können sich dank langsamer Myosin-Querbrückenzyklen (Latchzustand) langsam und ausdauernd ohne Ermüdung kontrahieren – anders als schnell ermüdende Skelettmuskelfasern. Das macht sie ideal für Dauertonus in Hohlorganen." } },
+      { id: "hi_mg_h4", type: "true_false", statement: "Skelettmuskelfasern sind mehrkernig, weil sie aus der Fusion vieler Myoblasten entstehen.", answer: true, explanation: "Embryonale Myoblasten fusionieren zu langen Skelettmuskelfasern mit hunderten von Kernen. Die Kerne liegen randständig unter dem Sarkolemm. Herzmuskelzellen sind dagegen Einzelzellen mit einem zentralen Kern und verbinden sich über Disci intercalares.", learningCard: { type: "predict", statement: "Skelettmuskelfasern sind mehrkernig, weil sie aus der Fusion vieler Myoblasten entstehen.", answer: true, reveal: "Embryonale Myoblasten fusionieren zu langen Skelettmuskelfasern mit hunderten randständigen Kernen. Herzmuskelzellen sind dagegen Einzelzellen mit einem zentralen Kern." } },
       { id: "hi_mg_h5", type: "mc", question: "Wie unterscheidet sich glatte Muskulatur histologisch von Skelettmuskulatur?", options: [
         { text: "Glatt: kein Sarkomer, zentraler ovaler Kern, keine Querstreifung, Aktin+Myosin ungeordnet angeordnet", correct: true },
         { text: "Glatt: quergestreift, randständige Kerne, willkürlich", correct: false },
         { text: "Glatt: nur Aktinfilamente ohne Myosin", correct: false },
         { text: "Glatt und Skelett sind histologisch nicht unterscheidbar", correct: false }
-      ], explanation: "Glatte Muskulatur: spindelförmige Einzelzellen, ein zentraler Kern, keine Querstreifung (Filamente nicht in Sarkomeren angeordnet). Skelettmuskel: lange mehrkernige Fasern, randständige Kerne, deutliche Querstreifung (A/I-Banden)." },
+      ], explanation: "Glatte Muskulatur: spindelförmige Einzelzellen, ein zentraler Kern, keine Querstreifung (Filamente nicht in Sarkomeren angeordnet). Skelettmuskel: lange mehrkernige Fasern, randständige Kerne, deutliche Querstreifung (A/I-Banden).", learningCard: { type: "reconstruct", template: "Glatte Muskulatur hat einen ___ Kern und keine ___; Skelettmuskel hat randständige Kerne und deutliche Querstreifung.", blanks: ["zentralen", "Querstreifung"], distractors: ["randständigen", "Sarkomere"] } },
       { id: "hi_mg_h6", type: "mc", question: "Was sind Disci intercalares (Glanzstreifen)?", options: [
         { text: "Zell-Zell-Verbindungen zwischen Herzmuskelzellen: Gap Junctions (elektrische Kopplung) + Adhärens-Junctions (mechanische Kopplung)", correct: true },
         { text: "Die A-Banden im Sarkomer der Herzmuskulatur", correct: false },
         { text: "Myelinisierte Abschnitte der Herznerven", correct: false },
         { text: "Verbindungen zwischen Herzmuskel und Perikard", correct: false }
-      ], explanation: "Disci intercalares = Glanzstreifen: bei Herzmuskulatur transversal verlaufende Zell-Zell-Grenzen. Bestehen aus: Gap Junctions (elektrische Kopplung → funktionelles Synzytium) und Adhärens-Junctions/Desmosomen (mechanische Kopplung). Im Lichtmikroskop als dunkle Querstreifen sichtbar." }
+      ], explanation: "Disci intercalares = Glanzstreifen: bei Herzmuskulatur transversal verlaufende Zell-Zell-Grenzen. Bestehen aus: Gap Junctions (elektrische Kopplung → funktionelles Synzytium) und Adhärens-Junctions/Desmosomen (mechanische Kopplung). Im Lichtmikroskop als dunkle Querstreifen sichtbar.", learningCard: { type: "teachback", prompt: "Was gehört zu den Disci intercalares?", checklist: [
+        { text: "Gap Junctions für elektrische Kopplung", correct: true },
+        { text: "Adhärens-Junctions/Desmosomen für mechanische Kopplung", correct: true },
+        { text: "Vorkommen zwischen Herzmuskelzellen", correct: true },
+        { text: "A-Banden im Sarkomer", correct: false }
+      ], reveal: "Disci intercalares (Glanzstreifen) sind Zell-Zell-Verbindungen zwischen Herzmuskelzellen: Gap Junctions vermitteln elektrische Kopplung, Adhärens-Junctions/Desmosomen die mechanische Kopplung. Im Lichtmikroskop erscheinen sie als dunkle Querstreifen." } }
     ],
     phase4Questions: [
       { id: "hi_mg_mc1", type: "mc", question: "Welche histologischen Merkmale unterscheiden die drei Muskeltypen?", options: [
@@ -1209,19 +1602,29 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Herz: zentraler Kern, Querstreifung, Disci intercalares, unwillkürlich", correct: true },
         { text: "Glatt: zentraler ovaler Kern, keine Streifung, unwillkürlich", correct: true },
         { text: "Herz: randständige Kerne, keine Streifung, unwillkürlich", correct: false }
-      ], explanation: "Skelettmuskel hat randständige Kerne und Querstreifung (willkürlich), Herzmuskel hat zentralen Kern, Querstreifung und Disci intercalares (unwillkürlich), glatter Muskel hat ovalen Kern ohne Streifung (unwillkürlich)." },
+      ], explanation: "Skelettmuskel hat randständige Kerne und Querstreifung (willkürlich), Herzmuskel hat zentralen Kern, Querstreifung und Disci intercalares (unwillkürlich), glatter Muskel hat ovalen Kern ohne Streifung (unwillkürlich).", learningCard: { type: "teachback", prompt: "Welche histologischen Merkmale gehören zu welchem Muskeltyp?", checklist: [
+        { text: "Skelett: randständige Kerne, deutliche Querstreifung, willkürlich", correct: true },
+        { text: "Herz: zentraler Kern, Querstreifung, Disci intercalares, unwillkürlich", correct: true },
+        { text: "Glatt: zentraler ovaler Kern, keine Streifung, unwillkürlich", correct: true },
+        { text: "Herz: randständige Kerne, keine Streifung, unwillkürlich", correct: false }
+      ], reveal: "Skelettmuskel hat randständige Kerne und Querstreifung (willkürlich). Herzmuskel hat einen zentralen Kern, Querstreifung und Disci intercalares (unwillkürlich). Glatter Muskel hat einen ovalen Kern ohne Streifung (unwillkürlich)." } },
       { id: "hi_mg_mc2", type: "mc", question: "Was ermöglicht die elektrische Kopplung der Herzmuskelzellen?", options: [
         { text: "Gap Junctions in den Disci intercalares", correct: true },
         { text: "Motorische Endplatten wie bei Skelettmuskeln", correct: false },
         { text: "Spannungsgesteuerte Natriumkanäle ohne Zell-Zell-Kontakt", correct: false },
         { text: "Myelinisierte Nervenfasern", correct: false }
-      ], explanation: "Die elektrische Kopplung der Herzmuskelzellen erfolgt über Gap Junctions in den Disci intercalares, die Ionenströme direkt zwischen benachbarten Kardiomyozyten weiterleiten." },
+      ], explanation: "Die elektrische Kopplung der Herzmuskelzellen erfolgt über Gap Junctions in den Disci intercalares, die Ionenströme direkt zwischen benachbarten Kardiomyozyten weiterleiten.", learningCard: { type: "predict", statement: "Gap Junctions in den Disci intercalares ermöglichen die elektrische Kopplung der Herzmuskelzellen.", answer: true, reveal: "Die elektrische Kopplung der Herzmuskelzellen erfolgt über Gap Junctions in den Disci intercalares, die Ionenströme direkt zwischen benachbarten Kardiomyozyten weiterleiten." } },
       { id: "hi_mg_mc3", type: "mc", question: "Welche Aussagen zur Muskelhistologie sind korrekt?", options: [
         { text: "Herzmuskelzellen haben quergestreifte Sarkomere und Disci intercalares", correct: true },
         { text: "Glatte Muskelzellen haben keinen Sarkomeraufbau und sind nicht quergestreift", correct: true },
         { text: "Skelettmuskelfasern besitzen einen zentralen Kern und sind unwillkürlich", correct: false },
         { text: "Glatte Muskulatur ist an den randständigen Kernen erkennbar", correct: false }
-      ], explanation: "Herzmuskel: Querstreifung + Disci intercalares. Glatt: kein Sarkomer, keine Querstreifung. Skelettmuskel: randständige Kerne (nicht zentral), willkürlich gesteuert. Glatte Muskulatur: zentraler ovaler Kern (nicht randständig)."}
+      ], explanation: "Herzmuskel: Querstreifung + Disci intercalares. Glatt: kein Sarkomer, keine Querstreifung. Skelettmuskel: randständige Kerne (nicht zentral), willkürlich gesteuert. Glatte Muskulatur: zentraler ovaler Kern (nicht randständig).", learningCard: { type: "oddoneout", statements: [
+        { text: "Herzmuskelzellen haben quergestreifte Sarkomere und Disci intercalares.", isWrong: false },
+        { text: "Glatte Muskelzellen haben keinen Sarkomeraufbau und sind nicht quergestreift.", isWrong: false },
+        { text: "Skelettmuskelfasern besitzen randständige Kerne und sind willkürlich gesteuert.", isWrong: false },
+        { text: "Glatte Muskulatur ist an randständigen Kernen erkennbar.", isWrong: true }
+      ], whyWrong: "Glatte Muskulatur hat einen zentralen ovalen Kern, keine randständigen Kerne – randständige Kerne sind typisch für Skelettmuskelfasern. Herzmuskelzellen sind quergestreift mit Disci intercalares, glatte Muskelzellen dagegen nicht." } }
     ]
   }),
   makeDetailedPlant({
@@ -1233,27 +1636,42 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Schwann-Zellen und Satellitenzellen", correct: false },
         { text: "Nur Astrozyten", correct: false },
         { text: "Thrombozyten und Erythrozyten", correct: false }
-      ], explanation: "ZNS-Gliazellen: Astrozyten (Stütze, Blut-Hirn-Schranke, K+-Pufferung), Oligodendrozyten (Myelinisierung im ZNS – ein Oligodendrozyt kann bis zu 50 Axone myelinisieren), Mikroglia (immunaktive Makrophagen des ZNS). Schwann-Zellen myelinisieren dagegen nur im peripheren Nervensystem (PNS) – ein Schwann-Zell-Segment pro Axon." },
+      ], explanation: "ZNS-Gliazellen: Astrozyten (Stütze, Blut-Hirn-Schranke, K+-Pufferung), Oligodendrozyten (Myelinisierung im ZNS – ein Oligodendrozyt kann bis zu 50 Axone myelinisieren), Mikroglia (immunaktive Makrophagen des ZNS). Schwann-Zellen myelinisieren dagegen nur im peripheren Nervensystem (PNS) – ein Schwann-Zell-Segment pro Axon.", learningCard: { type: "teachback", prompt: "Welche Gliazellen kommen im ZNS vor?", checklist: [
+        { text: "Astrozyten (Stütze, Blut-Hirn-Schranke, K+-Pufferung)", correct: true },
+        { text: "Oligodendrozyten (Myelinisierung im ZNS)", correct: true },
+        { text: "Mikroglia (immunaktive Makrophagen des ZNS)", correct: true },
+        { text: "Schwann-Zellen (Myelinisierung im ZNS)", correct: false }
+      ], reveal: "ZNS-Gliazellen sind Astrozyten (Stütze, Blut-Hirn-Schranke, K+-Pufferung), Oligodendrozyten (Myelinisierung im ZNS) und Mikroglia (immunaktive Makrophagen des ZNS). Schwann-Zellen myelinisieren dagegen nur im peripheren Nervensystem." } },
       { id: "hi_ng_h2", type: "mc", question: "Was bezeichnet man als 'saltatorische Erregungsleitung'?", options: [
         { text: "Sprungartige Weiterleitung des Aktionspotentials von Ranvier-Schnürring zu Ranvier-Schnürring", correct: true },
         { text: "Kontinuierliche Ausbreitung des Aktionspotentials entlang dem gesamten Axon ohne Unterbrechung", correct: false },
         { text: "Erregungsleitung rückwärts vom Soma zum Dendriten", correct: false },
         { text: "Leitung durch elektrische Synapsen ohne Neurotransmitter", correct: false }
-      ], explanation: "Saltatorische Leitung (lat. saltare = springen): Aktionspotentiale entstehen nur an den nichtmyelinisierten Ranvier-Schnürringen (Lücken in der Myelinscheide), nicht unter der Myelinscheide. Dies beschleunigt die Leitung erheblich (bis 120 m/s) und spart Energie, da weniger Membranfläche depolarisiert werden muss." },
-      { id: "hi_ng_h3", type: "true_false", statement: "Das Ruhemembranpotential einer typischen Nervenzelle beträgt ca. -70 mV (innen negativ).", answer: true, explanation: "Das Ruhemembranpotential (-70 mV) entsteht durch: ungleiche Ionenverteilung (hohe K+ innen, hohe Na+ aussen), Kaliumleckkanäle (K+ strömt aus), und die Na+/K+-ATPase (hält den Gradienten aufrecht). Innen ist es negativ, weil K+-Ausstrom mehr negative Ladungen zurücklässt." },
+      ], explanation: "Saltatorische Leitung (lat. saltare = springen): Aktionspotentiale entstehen nur an den nichtmyelinisierten Ranvier-Schnürringen (Lücken in der Myelinscheide), nicht unter der Myelinscheide. Dies beschleunigt die Leitung erheblich (bis 120 m/s) und spart Energie, da weniger Membranfläche depolarisiert werden muss.", learningCard: { type: "predict", statement: "Bei der saltatorischen Erregungsleitung springt das Aktionspotential von Ranvier-Schnürring zu Ranvier-Schnürring.", answer: true, reveal: "Saltatorische Leitung bedeutet, dass Aktionspotentiale nur an den nichtmyelinisierten Ranvier-Schnürringen entstehen, nicht unter der Myelinscheide. Das beschleunigt die Leitung erheblich und spart Energie." } },
+      { id: "hi_ng_h3", type: "true_false", statement: "Das Ruhemembranpotential einer typischen Nervenzelle beträgt ca. -70 mV (innen negativ).", answer: true, explanation: "Das Ruhemembranpotential (-70 mV) entsteht durch: ungleiche Ionenverteilung (hohe K+ innen, hohe Na+ aussen), Kaliumleckkanäle (K+ strömt aus), und die Na+/K+-ATPase (hält den Gradienten aufrecht). Innen ist es negativ, weil K+-Ausstrom mehr negative Ladungen zurücklässt.", learningCard: { type: "reconstruct", template: "Das Ruhemembranpotential beträgt ca. ___ mV, weil ___-Ausstrom mehr negative Ladungen innen zurücklässt.", blanks: ["-70", "Kalium"], distractors: ["+70", "Natrium"] } },
       { id: "hi_ng_h4", type: "mc", question: "Was ist die Funktion der Astrozyten im ZNS?", options: [
         { text: "Stützfunktion, Blut-Hirn-Schranke und K+-Pufferung im extrazellulären Raum", correct: true },
         { text: "Myelinisierung der ZNS-Axone", correct: false },
         { text: "Phagozytose von Zelltrümmern (Immunfunktion)", correct: false },
         { text: "Ausschüttung von Neurotransmittern an Synapsen", correct: false }
-      ], explanation: "Astrozyten: Stützfunktion (structurelle Stabilität), Aufrechterhaltung der Blut-Hirn-Schranke (Endfüsschen um Kapillaren), K+-Pufferung (verhindern K+-Akkumulation nach Aktionspotentialen). Oligodendrozyten: Myelinisierung. Mikroglia: Phagozytose." },
-      { id: "hi_ng_h5", type: "true_false", statement: "Ein Oligodendrozyt kann bis zu 50 Axone im ZNS myelinisieren, während eine Schwann-Zelle nur ein Axonsegment im PNS myelinisiert.", answer: true, explanation: "Oligodendrozyt (ZNS): mehrere Axone myelinisierbar (bis 50). Schwann-Zelle (PNS): nur ein Segment eines Axons. Diese Unterschiede erklären die Reorganisierbarkeit nach Demyelinisierung im ZNS vs. PNS." },
+      ], explanation: "Astrozyten: Stützfunktion (structurelle Stabilität), Aufrechterhaltung der Blut-Hirn-Schranke (Endfüsschen um Kapillaren), K+-Pufferung (verhindern K+-Akkumulation nach Aktionspotentialen). Oligodendrozyten: Myelinisierung. Mikroglia: Phagozytose.", learningCard: { type: "oddoneout", statements: [
+        { text: "Astrozyten bieten Stützfunktion für Neurone.", isWrong: false },
+        { text: "Astrozyten bilden die Blut-Hirn-Schranke durch Endfüßchen um Kapillaren.", isWrong: false },
+        { text: "Astrozyten puffern überschüssiges K+ im extrazellulären Raum.", isWrong: false },
+        { text: "Astrozyten myelinisieren die Axone des ZNS.", isWrong: true }
+      ], whyWrong: "Nicht Astrozyten, sondern Oligodendrozyten myelinisieren Axone im ZNS. Astrozyten übernehmen Stützfunktion, bilden die Blut-Hirn-Schranke und puffern extrazelluläres K+." } },
+      { id: "hi_ng_h5", type: "true_false", statement: "Ein Oligodendrozyt kann bis zu 50 Axone im ZNS myelinisieren, während eine Schwann-Zelle nur ein Axonsegment im PNS myelinisiert.", answer: true, explanation: "Oligodendrozyt (ZNS): mehrere Axone myelinisierbar (bis 50). Schwann-Zelle (PNS): nur ein Segment eines Axons. Diese Unterschiede erklären die Reorganisierbarkeit nach Demyelinisierung im ZNS vs. PNS.", learningCard: { type: "predict", statement: "Ein Oligodendrozyt kann bis zu 50 Axone im ZNS myelinisieren, eine Schwann-Zelle nur ein Axonsegment im PNS.", answer: true, reveal: "Ein Oligodendrozyt im ZNS kann mehrere Axone myelinisieren, bis zu 50. Eine Schwann-Zelle im PNS myelinisiert dagegen nur ein einziges Segment eines Axons." } },
       { id: "hi_ng_h6", type: "mc", question: "Was passiert beim Aktionspotential unmittelbar nach der Depolarisation?", options: [
         { text: "Repolarisation durch K+-Ausstrom (spannungsgesteuerte K+-Kanäle öffnen, Na+-Kanäle inaktivieren)", correct: true },
         { text: "Sofortige Dauerdepolarisation des gesamten Axons", correct: false },
         { text: "Ca2+-Einstrom für die Rückführung zum Ruhepotential", correct: false },
         { text: "Die Na+/K+-ATPase repolarisiert die Membran innerhalb von Millisekunden", correct: false }
-      ], explanation: "Aktionspotential: Depolarisation durch Na+-Einstrom → Peak bei ~+35 mV → Repolarisation durch K+-Ausstrom (verzögert) + Na+-Kanal-Inaktivierung → Hyperpolarisation → Ruhepotential. Na+/K+-ATPase stellt Ionengradienten langsam wieder her (Energie für viele APs)." }
+      ], explanation: "Aktionspotential: Depolarisation durch Na+-Einstrom → Peak bei ~+35 mV → Repolarisation durch K+-Ausstrom (verzögert) + Na+-Kanal-Inaktivierung → Hyperpolarisation → Ruhepotential. Na+/K+-ATPase stellt Ionengradienten langsam wieder her (Energie für viele APs).", learningCard: { type: "teachback", prompt: "Was passiert bei der Repolarisation nach dem Aktionspotential?", checklist: [
+        { text: "K+-Ausstrom über spannungsgesteuerte K+-Kanäle", correct: true },
+        { text: "Inaktivierung der Na+-Kanäle", correct: true },
+        { text: "Die Na+/K+-ATPase stellt die Ionengradienten langsam wieder her", correct: true },
+        { text: "Es folgt sofort eine Dauerdepolarisation des gesamten Axons", correct: false }
+      ], reveal: "Nach der Depolarisation folgt die Repolarisation durch K+-Ausstrom über spannungsgesteuerte K+-Kanäle und Inaktivierung der Na+-Kanäle. Die Na+/K+-ATPase stellt danach langsam die Ionengradienten für weitere Aktionspotentiale wieder her." } }
     ],
     phase4Questions: [
       { id: "hi_ng_mc1", type: "mc", question: "Welche Gliazelltypen und ihre Funktionen sind korrekt zugeordnet?", options: [
@@ -1261,19 +1679,24 @@ const HISTOLOGIE_1032_PLANTS = [
         { text: "Schwann-Zellen – Myelinisierung im PNS", correct: true },
         { text: "Mikroglia – Immunzellen des ZNS (ZNS-Makrophagen)", correct: true },
         { text: "Astrozyten – Erregungsleitung durch Aktionspotentiale", correct: false }
-      ], explanation: "Oligodendrozyten myelinisieren ZNS-Axone, Schwann-Zellen PNS-Axone, und Mikroglia fungiert als Immunzelle des ZNS; Astrozyten stützen Neurone, leiten aber keine Aktionspotentiale." },
+      ], explanation: "Oligodendrozyten myelinisieren ZNS-Axone, Schwann-Zellen PNS-Axone, und Mikroglia fungiert als Immunzelle des ZNS; Astrozyten stützen Neurone, leiten aber keine Aktionspotentiale.", learningCard: { type: "reconstruct", template: "___ – Myelinisierung im ZNS; Schwann-Zellen – Myelinisierung im PNS; ___ – Immunzellen des ZNS.", blanks: ["Oligodendrozyten", "Mikroglia"], distractors: ["Astrozyten", "Neurone"] } },
       { id: "hi_ng_mc2", type: "mc", question: "Was unterscheidet myelinisierte von nicht-myelinisierten Axonen?", options: [
         { text: "Myelinisierte Axone leiten schneller durch saltatorische Erregungsleitung", correct: true },
         { text: "Myelinisierte Axone sind dünner und leiten langsamer", correct: false },
         { text: "Nicht-myelinisierte Axone leiten schneller als myelinisierte", correct: false },
         { text: "Myelinisierung kommt nur im PNS vor", correct: false }
-      ], explanation: "Myelinisierte Axone leiten Impulse schneller durch saltatorische Erregungsleitung (Sprünge zwischen Ranvier-Schnürringen), nicht durch kontinuierliche Depolarisation der gesamten Membran." },
+      ], explanation: "Myelinisierte Axone leiten Impulse schneller durch saltatorische Erregungsleitung (Sprünge zwischen Ranvier-Schnürringen), nicht durch kontinuierliche Depolarisation der gesamten Membran.", learningCard: { type: "predict", statement: "Myelinisierte Axone leiten schneller durch saltatorische Erregungsleitung.", answer: true, reveal: "Myelinisierte Axone leiten Impulse schneller durch saltatorische Erregungsleitung – Sprünge zwischen Ranvier-Schnürringen statt kontinuierlicher Depolarisation der gesamten Membran." } },
       { id: "hi_ng_mc3", type: "mc", question: "Welche Aussagen zum Nervengewebe sind korrekt?", options: [
         { text: "Astrozyten bilden die Blut-Hirn-Schranke durch Endfüsschen um Kapillaren", correct: true },
         { text: "Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring", correct: true },
         { text: "Oligodendrozyten myelinisieren Axone im peripheren Nervensystem", correct: false },
         { text: "Das Ruhemembranpotential beträgt +70 mV (innen positiv)", correct: false }
-      ], explanation: "Astrozyten: Blut-Hirn-Schranke. Saltatorische Leitung: Ranvier-Schnürringe. Oligodendrozyten: ZNS (nicht PNS – dort Schwann-Zellen). Ruhemembranpotential: -70 mV (innen negativ)."}
+      ], explanation: "Astrozyten: Blut-Hirn-Schranke. Saltatorische Leitung: Ranvier-Schnürringe. Oligodendrozyten: ZNS (nicht PNS – dort Schwann-Zellen). Ruhemembranpotential: -70 mV (innen negativ).", learningCard: { type: "oddoneout", statements: [
+        { text: "Astrozyten bilden die Blut-Hirn-Schranke durch Endfüßchen um Kapillaren.", isWrong: false },
+        { text: "Saltatorische Leitung springt von Ranvier-Schnürring zu Ranvier-Schnürring.", isWrong: false },
+        { text: "Oligodendrozyten myelinisieren Axone im ZNS.", isWrong: false },
+        { text: "Das Ruhemembranpotential beträgt +70 mV (innen positiv).", isWrong: true }
+      ], whyWrong: "Das Ruhemembranpotential beträgt ca. -70 mV, innen negativ – nicht +70 mV. Astrozyten bilden die Blut-Hirn-Schranke, saltatorische Leitung springt zwischen Ranvier-Schnürringen, und Oligodendrozyten myelinisieren im ZNS." } }
     ]
   }),
   makeDetailedPlant({
@@ -2318,32 +2741,53 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Weniger als 10% – Hauptwärmequelle ist die Leber", correct: false },
         { text: "Exakt 50% – Muskel und Leber teilen sich die Wärmeproduktion gleichmässig", correct: false },
         { text: "Muskeln produzieren keine Wärme, sondern nur Bewegung", correct: false }
-      ], explanation: "Skelettmuskeln sind der grösste Wärmeproduzent des Körpers: Bei Muskelkontraktion werden ca. 70-75% der freigesetzten chemischen Energie als Wärme abgegeben, nur 25-30% für mechanische Arbeit genutzt. Das erklärt, warum körperliche Aktivität bei Kälte wärmt und warum Fieber oft mit Muskelzittern einhergeht." },
+      ], explanation: "Skelettmuskeln sind der grösste Wärmeproduzent des Körpers: Bei Muskelkontraktion werden ca. 70-75% der freigesetzten chemischen Energie als Wärme abgegeben, nur 25-30% für mechanische Arbeit genutzt. Das erklärt, warum körperliche Aktivität bei Kälte wärmt und warum Fieber oft mit Muskelzittern einhergeht.",
+        learningCard: { type: "predict", statement: "Bei einer Muskelkontraktion wird der Großteil der eingesetzten chemischen Energie als Wärme frei, nicht als Bewegung.", answer: true, reveal: "Skelettmuskeln sind der größte Wärmeproduzent des Körpers: ca. 70-75% der freigesetzten Energie werden zu Wärme, nur 25-30% zu mechanischer Arbeit. Das erklärt, warum Bewegung bei Kälte wärmt und warum Fieber oft mit Muskelzittern einhergeht." } },
       { id: "mu_allg_h2", type: "mc", question: "Was bezeichnet man als 'aktiven' im Unterschied zum 'passiven' Bewegungsapparat?", options: [
         { text: "Aktiv = Muskeln (Kraft erzeugend); passiv = Knochen, Bänder, Gelenkkapseln (Kraft übertragend/begrenzend)", correct: true },
         { text: "Aktiv = alle willkürlichen Bewegungen; passiv = alle Reflexbewegungen", correct: false },
         { text: "Aktiv = obere Extremität; passiv = untere Extremität", correct: false },
         { text: "Aktiv und passiv sind nur unterschiedliche Bezeichnungen für dasselbe", correct: false }
-      ], explanation: "Passiver Bewegungsapparat: Knochen (Hebel), Bänder (Führung/Begrenzung), Gelenkkapseln (Sicherung) – können selbst keine Kraft erzeugen. Aktiver Bewegungsapparat: Skelettmuskulatur – kann durch Kontraktion aktiv Kräfte entwickeln und Gelenke bewegen. Beide Systeme arbeiten zusammen: Ohne passiven Apparat keine koordinierte Kraftübertragung." },
+      ], explanation: "Passiver Bewegungsapparat: Knochen (Hebel), Bänder (Führung/Begrenzung), Gelenkkapseln (Sicherung) – können selbst keine Kraft erzeugen. Aktiver Bewegungsapparat: Skelettmuskulatur – kann durch Kontraktion aktiv Kräfte entwickeln und Gelenke bewegen. Beide Systeme arbeiten zusammen: Ohne passiven Apparat keine koordinierte Kraftübertragung.",
+        learningCard: { type: "teachback", prompt: "Was gehört zum passiven Bewegungsapparat?", checklist: [
+          { text: "Knochen (Hebel)", correct: true },
+          { text: "Bänder (Führung/Begrenzung)", correct: true },
+          { text: "Gelenkkapseln (Sicherung)", correct: true },
+          { text: "Skelettmuskulatur (Krafterzeugung)", correct: false }
+        ], reveal: "Der passive Bewegungsapparat (Knochen, Bänder, Gelenkkapseln) übertragt und begrenzt Kraft, erzeugt sie aber nicht selbst. Der aktive Bewegungsapparat (die Muskulatur) erzeugt die Kraft durch Kontraktion." } },
       { id: "mu_allg_h3", type: "mc", question: "Welches molekulare Prinzip liegt allen Muskelkontraktionen (Skelett, Herz, glatt) zugrunde?", options: [
         { text: "Gleitfilamentmechanismus: ATP-getriebenes Gleiten von Aktin und Myosin", correct: true },
         { text: "Quellungsreaktion von Proteinen durch Wasseraufnahme", correct: false },
         { text: "Elektrostatische Anziehung der Zellmembranen", correct: false },
         { text: "Enzymatische Spaltung von Kollagenfasern durch Proteasen", correct: false }
-      ], explanation: "Der Gleitfilamentmechanismus (Huxley, 1954) ist das universelle Prinzip aller Muskulatur: Myosinköpfe binden ATP, hydrolysieren es, bewegen sich ('Power Stroke') und ziehen das Aktinfilament. Das Sarkomer verkürzt sich, ohne dass die Filamente selbst kürzer werden. Dieses Prinzip gilt für Skelett-, Herz- und glatte Muskulatur gleichermassen." },
-      { id: "mu_allg_h4", type: "true_false", statement: "Der aktive Bewegungsapparat besteht aus der Skelettmuskulatur, während Knochen und Bänder den passiven Bewegungsapparat bilden.", answer: true, explanation: "Aktiver Apparat: Muskeln erzeugen Kraft. Passiver Apparat: Knochen (Hebel), Bänder (Führung/Begrenzung), Gelenkkapseln (Sicherung) – können selbst keine Kraft erzeugen, übertragen und begrenzen sie nur." },
+      ], explanation: "Der Gleitfilamentmechanismus (Huxley, 1954) ist das universelle Prinzip aller Muskulatur: Myosinköpfe binden ATP, hydrolysieren es, bewegen sich ('Power Stroke') und ziehen das Aktinfilament. Das Sarkomer verkürzt sich, ohne dass die Filamente selbst kürzer werden. Dieses Prinzip gilt für Skelett-, Herz- und glatte Muskulatur gleichermassen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Myosinköpfe binden ATP, hydrolysieren es und bewegen sich ('Power Stroke').", isWrong: false },
+          { text: "Das Sarkomer verkürzt sich, ohne dass die Filamente selbst kürzer werden.", isWrong: false },
+          { text: "Der Gleitfilamentmechanismus gilt für Skelett-, Herz- und glatte Muskulatur gleichermassen.", isWrong: false },
+          { text: "Der Gleitfilamentmechanismus beruht auf Quellung der Muskelproteine durch Wasseraufnahme.", isWrong: true }
+        ], whyWrong: "Der Gleitfilamentmechanismus (Huxley, 1954) beruht auf ATP-getriebenem Gleiten von Aktin und Myosin, nicht auf Quellung. Myosinköpfe ziehen dabei das Aktinfilament, sodass sich das Sarkomer verkürzt, ohne dass die Filamente selbst kürzer werden." } },
+      { id: "mu_allg_h4", type: "true_false", statement: "Der aktive Bewegungsapparat besteht aus der Skelettmuskulatur, während Knochen und Bänder den passiven Bewegungsapparat bilden.", answer: true, explanation: "Aktiver Apparat: Muskeln erzeugen Kraft. Passiver Apparat: Knochen (Hebel), Bänder (Führung/Begrenzung), Gelenkkapseln (Sicherung) – können selbst keine Kraft erzeugen, übertragen und begrenzen sie nur.",
+        learningCard: { type: "reconstruct", template: "Der ___ Bewegungsapparat besteht aus der Skelettmuskulatur, während ___ und ___ den passiven Bewegungsapparat bilden.", blanks: ["aktive", "Knochen", "Bänder"], distractors: ["Nerven", "Gelenke"] } },
       { id: "mu_allg_h5", type: "mc", question: "Was wird beim Gleitfilamentmechanismus kürzer?", options: [
         { text: "Das Sarkomer (Z-Scheiben nähern sich), nicht die einzelnen Aktin- oder Myosinfilamente", correct: true },
         { text: "Die Myosinfilamente verkürzen sich durch Faltung", correct: false },
         { text: "Die Aktinfilamente werden chemisch gespalten und kürzer", correct: false },
         { text: "Weder Sarkomer noch Filamente ändern ihre Länge", correct: false }
-      ], explanation: "Beim Gleitfilamentmechanismus bleiben die Filamentlängen konstant. Die Sarkomerlänge verringert sich, weil Aktin über Myosin gleitet und die Z-Scheiben sich annähern. ATP treibt den Querbrückenzyklus der Myosinköpfe an." },
+      ], explanation: "Beim Gleitfilamentmechanismus bleiben die Filamentlängen konstant. Die Sarkomerlänge verringert sich, weil Aktin über Myosin gleitet und die Z-Scheiben sich annähern. ATP treibt den Querbrückenzyklus der Myosinköpfe an.",
+        learningCard: { type: "predict", statement: "Beim Gleitfilamentmechanismus werden die einzelnen Aktin- und Myosinfilamente selbst kürzer.", answer: false, reveal: "Beim Gleitfilamentmechanismus bleiben die Filamentlängen konstant. Die Sarkomerlänge verringert sich, weil Aktin über Myosin gleitet und die Z-Scheiben sich annähern; ATP treibt dabei den Querbrückenzyklus der Myosinköpfe an." } },
       { id: "mu_allg_h6", type: "mc", question: "Welche drei Funktionen hat die Skelettmuskulatur?", options: [
         { text: "Bewegungserzeugung, Gelenkstabilisierung und Wärmebildung", correct: true },
         { text: "Bewegung, Blutbildung und Hormonsynthese", correct: false },
         { text: "Stabilisierung, Gasaustausch und Immunabwehr", correct: false },
         { text: "Kontraktion, Filtration und Resorption", correct: false }
-      ], explanation: "Skelettmuskulatur: 1) Bewegungserzeugung (primäre Funktion), 2) Gelenkstabilisierung durch aktiven Muskeltonus, 3) Wärmeproduktion (bis 70% der Körpereigenwärme). Diese drei Funktionen sind prüfungsrelevant." }
+      ], explanation: "Skelettmuskulatur: 1) Bewegungserzeugung (primäre Funktion), 2) Gelenkstabilisierung durch aktiven Muskeltonus, 3) Wärmeproduktion (bis 70% der Körpereigenwärme). Diese drei Funktionen sind prüfungsrelevant.",
+        learningCard: { type: "teachback", prompt: "Welche drei Funktionen hat die Skelettmuskulatur?", checklist: [
+          { text: "Bewegungserzeugung", correct: true },
+          { text: "Gelenkstabilisierung", correct: true },
+          { text: "Wärmebildung", correct: true },
+          { text: "Blutbildung", correct: false }
+        ], reveal: "Die Skelettmuskulatur erzeugt Bewegung, stabilisiert Gelenke durch aktiven Muskeltonus und produziert bis zu 70% der Körpereigenwärme." } }
     ],
     phase4Questions: [
       { id: "mu_allg_mc1", type: "mc", question: "Welche Funktion hat die Skelettmuskulatur NEBEN der Bewegungserzeugung?", options: [
@@ -2351,19 +2795,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Filtration von Blut", correct: false },
         { text: "Produktion von Hormonen", correct: false },
         { text: "Gasaustausch in der Lunge", correct: false }
-      ], explanation: "Skelettmuskulatur erzeugt Bewegung, produziert Wärme (bis zu 85% der Körperwärme) und stabilisiert Gelenke durch aktive Muskelspannung." },
+      ], explanation: "Skelettmuskulatur erzeugt Bewegung, produziert Wärme (bis zu 85% der Körperwärme) und stabilisiert Gelenke durch aktive Muskelspannung.",
+        learningCard: { type: "predict", statement: "Neben der Bewegungserzeugung produziert die Skelettmuskulatur auch Wärme und stabilisiert Gelenke.", answer: true, reveal: "Skelettmuskulatur erzeugt Bewegung, produziert Wärme (bis zu 85% der Körperwärme) und stabilisiert Gelenke durch aktive Muskelspannung." } },
       { id: "mu_allg_mc2", type: "mc", question: "Womit kontrahiert der Skelettmuskel auf molekularer Ebene?", options: [
         { text: "Durch Verkürzung der Sarkomere über Aktin-Myosin-Wechselwirkung", correct: true },
         { text: "Durch Quellung von Bindegewebe im Muskel", correct: false },
         { text: "Durch elektrische Ladungsverschiebung ohne Strukturänderung", correct: false },
         { text: "Durch passive Dehnung der Muskelfasern", correct: false }
-      ], explanation: "Die Muskelkontraktion basiert auf dem Gleitfilamentmechanismus: ATP-abhängige Querbrückenzyklen zwischen Aktin und Myosin verkürzen die Sarkomere." },
+      ], explanation: "Die Muskelkontraktion basiert auf dem Gleitfilamentmechanismus: ATP-abhängige Querbrückenzyklen zwischen Aktin und Myosin verkürzen die Sarkomere.",
+        learningCard: { type: "reconstruct", template: "Die Muskelkontraktion basiert auf dem ___mechanismus: ATP-abhängige ___ zwischen Aktin und Myosin verkürzen die ___.", blanks: ["Gleitfilament", "Querbrückenzyklen", "Sarkomere"], distractors: ["Ionenkanäle", "Synapsen"] } },
       { id: "mu_allg_mc3", type: "mc", question: "Welche Aussagen zur Skelettmuskulatur sind korrekt?", options: [
         { text: "Muskulatur erzeugt bis zu 70% der Körpereigenwärme", correct: true },
         { text: "Aktiver Bewegungsapparat = Muskeln; passiver = Knochen, Bänder, Kapseln", correct: true },
         { text: "Die Filamentlängen (Aktin, Myosin) verkürzen sich während der Kontraktion", correct: false },
         { text: "Skelettmuskel kann ohne Innervation willkürlich kontrahieren", correct: false }
-      ], explanation: "Wärmeproduktion: bis 70%. Aktiv/passiv: Muskeln vs. Knochen/Bänder. Filamente bleiben gleich lang, Sarkomer verkürzt sich. Skelettmuskel benötigt für willkürliche Kontraktion immer neuronale Innervation."}
+      ], explanation: "Wärmeproduktion: bis 70%. Aktiv/passiv: Muskeln vs. Knochen/Bänder. Filamente bleiben gleich lang, Sarkomer verkürzt sich. Skelettmuskel benötigt für willkürliche Kontraktion immer neuronale Innervation.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Muskulatur erzeugt bis zu 70% der Körpereigenwärme.", isWrong: false },
+          { text: "Aktiver Bewegungsapparat = Muskeln; passiver = Knochen, Bänder, Kapseln.", isWrong: false },
+          { text: "Die Filamentlängen bleiben während der Kontraktion konstant, nur das Sarkomer verkürzt sich.", isWrong: false },
+          { text: "Skelettmuskel kann ohne neuronale Innervation willkürlich kontrahieren.", isWrong: true }
+        ], whyWrong: "Skelettmuskel benötigt für jede willkürliche Kontraktion neuronale Innervation, anders als der Herzmuskel mit seiner Automatie. Wärmeproduktion, die Einteilung in aktiven/passiven Bewegungsapparat und die konstante Filamentlänge beim Sarkomer sind dagegen korrekt." } }
     ]
   }),
   makeDetailedPlant({
@@ -2375,27 +2827,48 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Periost (aussen), Endost (innen) und Perichondrium (Mitte)", correct: false },
         { text: "Faszie (Muskel), Tendon (Faserbündel), Sarkolemm (Filamente)", correct: false },
         { text: "Epineurium, Perineurium und Endoneurium", correct: false }
-      ], explanation: "Die drei Bindegewebshüllen des Skelettmuskels: Epimysium – umhüllt den gesamten Muskel (entspricht der Faszie); Perimysium – umhüllt Muskelfaserbündel (Faszikel); Endomysium – umhüllt jede einzelne Muskelfaser und enthält Kapillaren und Nervenendigungen. Alle drei laufen in die Sehne zusammen und übertragen die Kontraktionskraft auf den Knochen." },
+      ], explanation: "Die drei Bindegewebshüllen des Skelettmuskels: Epimysium – umhüllt den gesamten Muskel (entspricht der Faszie); Perimysium – umhüllt Muskelfaserbündel (Faszikel); Endomysium – umhüllt jede einzelne Muskelfaser und enthält Kapillaren und Nervenendigungen. Alle drei laufen in die Sehne zusammen und übertragen die Kontraktionskraft auf den Knochen.",
+        learningCard: { type: "teachback", prompt: "Welche Bindegewebshüllen umgeben den Skelettmuskel?", checklist: [
+          { text: "Epimysium (gesamter Muskel)", correct: true },
+          { text: "Perimysium (Faserbündel)", correct: true },
+          { text: "Endomysium (Einzelfaser)", correct: true },
+          { text: "Periost (Knochenhülle)", correct: false }
+        ], reveal: "Epimysium umhüllt den gesamten Muskel, Perimysium die Faserbündel und Endomysium jede einzelne Muskelfaser. Alle drei laufen in der Sehne zusammen und übertragen die Kontraktionskraft auf den Knochen." } },
       { id: "mu_auf_h2", type: "mc", question: "Was ist ein Sarkomer und wo beginnt und endet es?", options: [
         { text: "Die kleinste kontraktile Einheit des Muskels; von Z-Scheibe zu Z-Scheibe", correct: true },
         { text: "Eine einzelne Myofibrille; von M-Linie zu M-Linie", correct: false },
         { text: "Ein Muskelfaserbündel; entspricht einer motorischen Einheit", correct: false },
         { text: "Das gesamte Sarkoplasmatische Retikulum einer Muskelfaser", correct: false }
-      ], explanation: "Das Sarkomer ist die Grundeinheit der Kontraktion und liegt zwischen zwei Z-Scheiben (Z = Zwischenscheibe). Aufbau: I-Bande (nur Aktin, hell), A-Bande (Myosin + Aktin überlappend, dunkel), H-Zone (nur Myosin, mittig), M-Linie (Verankerung der Myosinfilamente). Bei Kontraktion verschwindet die H-Zone und die Z-Scheiben nähern sich an." },
+      ], explanation: "Das Sarkomer ist die Grundeinheit der Kontraktion und liegt zwischen zwei Z-Scheiben (Z = Zwischenscheibe). Aufbau: I-Bande (nur Aktin, hell), A-Bande (Myosin + Aktin überlappend, dunkel), H-Zone (nur Myosin, mittig), M-Linie (Verankerung der Myosinfilamente). Bei Kontraktion verschwindet die H-Zone und die Z-Scheiben nähern sich an.",
+        learningCard: { type: "predict", statement: "Das Sarkomer ist die kleinste kontraktile Einheit des Muskels und liegt zwischen zwei Z-Scheiben.", answer: true, reveal: "Das Sarkomer liegt zwischen zwei Z-Scheiben und besteht aus I-Bande (nur Aktin), A-Bande (Aktin+Myosin überlappend) und H-Zone (nur Myosin) mit zentraler M-Linie. Bei Kontraktion verschwindet die H-Zone und die Z-Scheiben nähern sich an." } },
       { id: "mu_auf_h3", type: "mc", question: "Wie wird die Kontraktionskraft eines Muskels von der Muskelfaser auf den Knochen übertragen?", options: [
         { text: "Über Myofibrillen → Endomysium → Perimysium → Epimysium → Sehne → Knochen", correct: true },
         { text: "Direkt über die Zellmembran (Sarkolemm) in den Knochen ohne Bindegewebe", correct: false },
         { text: "Über Nerven, die die Kontraktion auf den Knochen übertragen", correct: false },
         { text: "Nur über das Periost des Ursprungsknochens ohne Sehne", correct: false }
-      ], explanation: "Die mechanische Kraftkette: Myofibrillen verkürzen das Sarkomer → Kraft wird auf Sarkolemm übertragen → Endomysium bündelt Einzelfaserkräfte → Perimysium bündelt Faserbündel → Epimysium leitet in Sehne → Sehne verankert am Periost des Knochens. Die Bindegewebshüllen sind nicht nur Schutz, sondern essenzielle Kraftübertragungsstrukturen." },
-      { id: "mu_auf_h4", type: "true_false", statement: "Die I-Bande enthält ausschliesslich Aktinfilamente und erscheint im Mikroskop hell.", answer: true, explanation: "I-Bande (isotrop): nur Aktin, hell. A-Bande (anisotrop): Aktin+Myosin überlappend, dunkel. H-Zone: nur Myosin, mittig. M-Linie: Verankerungspunkt der Myosinfilamente in der Mitte des Sarkomers." },
+      ], explanation: "Die mechanische Kraftkette: Myofibrillen verkürzen das Sarkomer → Kraft wird auf Sarkolemm übertragen → Endomysium bündelt Einzelfaserkräfte → Perimysium bündelt Faserbündel → Epimysium leitet in Sehne → Sehne verankert am Periost des Knochens. Die Bindegewebshüllen sind nicht nur Schutz, sondern essenzielle Kraftübertragungsstrukturen.",
+        learningCard: { type: "reconstruct", template: "Die Kraft wird übertragen von Myofibrillen über ___, ___ und ___ zur Sehne und zum Knochen.", blanks: ["Endomysium", "Perimysium", "Epimysium"], distractors: ["Periost", "Sarkolemm"] } },
+      { id: "mu_auf_h4", type: "true_false", statement: "Die I-Bande enthält ausschliesslich Aktinfilamente und erscheint im Mikroskop hell.", answer: true, explanation: "I-Bande (isotrop): nur Aktin, hell. A-Bande (anisotrop): Aktin+Myosin überlappend, dunkel. H-Zone: nur Myosin, mittig. M-Linie: Verankerungspunkt der Myosinfilamente in der Mitte des Sarkomers.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die I-Bande enthält ausschliesslich Aktinfilamente und ist hell.", isWrong: false },
+          { text: "Die A-Bande enthält Aktin und Myosin überlappend und ist dunkel.", isWrong: false },
+          { text: "Die M-Linie ist der Verankerungspunkt der Myosinfilamente in der Sarkomermitte.", isWrong: false },
+          { text: "Die H-Zone enthält ausschliesslich Aktinfilamente.", isWrong: true }
+        ], whyWrong: "Die H-Zone enthält nur Myosin, nicht Aktin - sie liegt mittig im Sarkomer und wird bei Kontraktion kleiner. Die I-Bande dagegen enthält ausschliesslich Aktin und erscheint hell." } },
       { id: "mu_auf_h5", type: "mc", question: "Was passiert mit der H-Zone bei Muskelkontraktion?", options: [
         { text: "Sie wird kleiner und verschwindet bei maximaler Kontraktion (Aktin- und Myosin-Überlappung nimmt zu)", correct: true },
         { text: "Sie wird grösser, weil Myosin sich ausdehnt", correct: false },
         { text: "Sie wandert zur Z-Scheibe", correct: false },
         { text: "Sie bleibt immer gleich, nur die I-Bande verändert sich", correct: false }
-      ], explanation: "Gleitfilamentmechanismus: Aktin gleitet über Myosin → Z-Scheiben nähern sich → Sarkomer verkürzt sich. H-Zone (reines Myosin) verschwindet, wenn Aktinfilamente maximal eingegleitet sind. I-Banden werden ebenfalls kleiner." },
-      { id: "mu_auf_h6", type: "true_false", statement: "Das Endomysium umhüllt einzelne Muskelfasern und enthält Kapillaren für die Versorgung.", answer: true, explanation: "Endomysium: innerste Bindegewebsschicht, umhüllt jede einzelne Muskelfaser, enthält Kapillaren für O2/Nährstoffversorgung. Perimysium: umhüllt Faserbündel. Epimysium: umhüllt den gesamten Muskel." }
+      ], explanation: "Gleitfilamentmechanismus: Aktin gleitet über Myosin → Z-Scheiben nähern sich → Sarkomer verkürzt sich. H-Zone (reines Myosin) verschwindet, wenn Aktinfilamente maximal eingegleitet sind. I-Banden werden ebenfalls kleiner.",
+        learningCard: { type: "predict", statement: "Die H-Zone wird bei Muskelkontraktion kleiner und kann bei maximaler Kontraktion verschwinden.", answer: true, reveal: "Beim Gleitfilamentmechanismus gleitet Aktin über Myosin, die Z-Scheiben nähern sich an und das Sarkomer verkürzt sich. Die H-Zone (reines Myosin) wird dabei kleiner und verschwindet bei maximaler Überlappung; auch die I-Banden werden kleiner." } },
+      { id: "mu_auf_h6", type: "true_false", statement: "Das Endomysium umhüllt einzelne Muskelfasern und enthält Kapillaren für die Versorgung.", answer: true, explanation: "Endomysium: innerste Bindegewebsschicht, umhüllt jede einzelne Muskelfaser, enthält Kapillaren für O2/Nährstoffversorgung. Perimysium: umhüllt Faserbündel. Epimysium: umhüllt den gesamten Muskel.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Endomysium treffen zu?", checklist: [
+          { text: "Umhüllt jede einzelne Muskelfaser", correct: true },
+          { text: "Enthält Kapillaren zur Versorgung", correct: true },
+          { text: "Ist die innerste Bindegewebsschicht", correct: true },
+          { text: "Umhüllt den gesamten Muskel", correct: false }
+        ], reveal: "Das Endomysium ist die innerste Bindegewebsschicht, umhüllt jede einzelne Muskelfaser und enthält Kapillaren für die Sauerstoff- und Nährstoffversorgung. Das Epimysium dagegen umhüllt den gesamten Muskel." } }
     ],
     phase4Questions: [
       { id: "mu_auf_mc1", type: "mc", question: "In welcher Reihenfolge ist der Skelettmuskel hierarchisch aufgebaut?", options: [
@@ -2403,19 +2876,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Myofibrille → Muskelfaser → Muskelfaserbündel → Muskel → Sarkomer", correct: false },
         { text: "Sarkomer → Muskel → Myofibrille → Muskelfaser", correct: false },
         { text: "Muskel → Myofibrille → Muskelfaserbündel → Sarkomer", correct: false }
-      ], explanation: "Der Skelettmuskel ist hierarchisch aufgebaut: Muskel, Muskelfaserbündel (Perimysium), Muskelfaser, Myofibrille, Sarkomer als kleinste kontraktile Einheit." },
+      ], explanation: "Der Skelettmuskel ist hierarchisch aufgebaut: Muskel, Muskelfaserbündel (Perimysium), Muskelfaser, Myofibrille, Sarkomer als kleinste kontraktile Einheit.",
+        learningCard: { type: "reconstruct", template: "Der Skelettmuskel ist hierarchisch aufgebaut: ___ → Muskelfaserbündel → ___ → Myofibrille → ___.", blanks: ["Muskel", "Muskelfaser", "Sarkomer"], distractors: ["Sehne", "Knochen"] } },
       { id: "mu_auf_mc2", type: "mc", question: "Wie heisst die Bindegewebshülle, die den gesamten Muskel umhüllt?", options: [
         { text: "Epimysium", correct: true },
         { text: "Perimysium", correct: false },
         { text: "Endomysium", correct: false },
         { text: "Epineurium", correct: false }
-      ], explanation: "Das Epimysium ist die äußerste Bindegewebshülle des gesamten Muskels und geht an den Enden in die Sehne über; Perimysium umhüllt Bündel, Endomysium einzelne Fasern." },
+      ], explanation: "Das Epimysium ist die äußerste Bindegewebshülle des gesamten Muskels und geht an den Enden in die Sehne über; Perimysium umhüllt Bündel, Endomysium einzelne Fasern.",
+        learningCard: { type: "predict", statement: "Das Epimysium ist die äußerste Bindegewebshülle des gesamten Muskels und geht an den Enden in die Sehne über.", answer: true, reveal: "Das Epimysium umhüllt den gesamten Muskel von außen und geht in die Sehne über; Perimysium umhüllt Faserbündel, Endomysium einzelne Fasern." } },
       { id: "mu_auf_mc3", type: "mc", question: "Welche Aussagen zum Muskelaufbau und Sarkomer sind korrekt?", options: [
         { text: "Das Sarkomer liegt zwischen zwei Z-Scheiben und ist die kleinste Kontraktionseinheit", correct: true },
         { text: "Epimysium → Perimysium → Endomysium ist die hierarchische Bindegewebsstruktur von aussen nach innen", correct: true },
         { text: "Die A-Bande enthält ausschliesslich Aktinfilamente und ist hell", correct: false },
         { text: "Muskelfasern sind Einzelzellen mit einem randständigen Zellkern", correct: false }
-      ], explanation: "Sarkomer: Z-Scheibe zu Z-Scheibe. Bindegewebe: Epimysium (Muskel), Perimysium (Bündel), Endomysium (Faser). A-Bande: Aktin+Myosin, dunkel. Skelettmuskelfasern: mehrkernige Synzytien aus Myoblastenfusion, nicht Einzelzellen."}
+      ], explanation: "Sarkomer: Z-Scheibe zu Z-Scheibe. Bindegewebe: Epimysium (Muskel), Perimysium (Bündel), Endomysium (Faser). A-Bande: Aktin+Myosin, dunkel. Skelettmuskelfasern: mehrkernige Synzytien aus Myoblastenfusion, nicht Einzelzellen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Sarkomer liegt zwischen zwei Z-Scheiben und ist die kleinste Kontraktionseinheit.", isWrong: false },
+          { text: "Epimysium → Perimysium → Endomysium ist die hierarchische Bindegewebsstruktur von außen nach innen.", isWrong: false },
+          { text: "Skelettmuskelfasern sind mehrkernige Synzytien aus Myoblastenfusion.", isWrong: false },
+          { text: "Die A-Bande enthält ausschliesslich Aktinfilamente und ist hell.", isWrong: true }
+        ], whyWrong: "Die A-Bande enthält Aktin UND Myosin überlappend und erscheint dunkel; nur die I-Bande enthält ausschliesslich Aktin und ist hell. Sarkomeraufbau, Bindegewebshierarchie und die mehrkernigen Muskelfasern sind dagegen korrekt beschrieben." } }
     ]
   }),
   makeDetailedPlant({
@@ -2427,27 +2908,48 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Konzentrisch = isometrisch; exzentrisch = isotonisch", correct: false },
         { text: "Exzentrisch bedeutet, der Muskel kontrahiert gegen Widerstand ohne Längenveränderung", correct: false },
         { text: "Konzentrisch und exzentrisch sind Synonyme für denselben Vorgang", correct: false }
-      ], explanation: "Konzentrische Arbeit: Muskel verkürzt sich, erzeugte Kraft übersteigt die Last (z.B. Arm heben = M. biceps konzentrisch). Exzentrische Arbeit: Muskel verlängert sich kontrolliert unter Spannung, Last übersteigt die Muskelkraft (z.B. Arm senken = M. biceps exzentrisch). Exzentrische Arbeit erzeugt mehr Mikrotraumen (Muskelkater!) und ist metabolisch effizienter." },
+      ], explanation: "Konzentrische Arbeit: Muskel verkürzt sich, erzeugte Kraft übersteigt die Last (z.B. Arm heben = M. biceps konzentrisch). Exzentrische Arbeit: Muskel verlängert sich kontrolliert unter Spannung, Last übersteigt die Muskelkraft (z.B. Arm senken = M. biceps exzentrisch). Exzentrische Arbeit erzeugt mehr Mikrotraumen (Muskelkater!) und ist metabolisch effizienter.",
+        learningCard: { type: "teachback", prompt: "Was trifft auf konzentrische und exzentrische Muskelarbeit zu?", checklist: [
+          { text: "Konzentrisch: Muskel verkürzt sich bei Kraftentwicklung", correct: true },
+          { text: "Exzentrisch: Muskel verlängert sich bei Kraftentwicklung", correct: true },
+          { text: "Exzentrische Arbeit erzeugt mehr Mikrotraumen (Muskelkater)", correct: true },
+          { text: "Konzentrisch und exzentrisch sind Synonyme für denselben Vorgang", correct: false }
+        ], reveal: "Konzentrisch: der Muskel verkürzt sich, weil die erzeugte Kraft die Last übersteigt. Exzentrisch: der Muskel verlängert sich kontrolliert unter Spannung, weil die Last die Muskelkraft übersteigt - das erzeugt mehr Mikrotraumen und damit mehr Muskelkater." } },
       { id: "mu_fk_h2", type: "mc", question: "Was ist das Kraft-Längen-Verhältnis des Muskels?", options: [
         { text: "Ein Muskel entwickelt die maximale Kraft bei optimaler Vordehnungslänge (Ruhelänge) – zu kurz oder zu lang reduziert die Kraft", correct: true },
         { text: "Je kürzer ein Muskel, desto mehr Kraft kann er entwickeln", correct: false },
         { text: "Die Kraft ist unabhängig von der aktüllen Muskellänge", correct: false },
         { text: "Je länger ein Muskel ist, desto stärker kontrahiert er", correct: false }
-      ], explanation: "Das Kraft-Längen-Diagramm zeigt: maximale Kraft bei Ruhelänge (optimale Aktin-Myosin-Überlappung im Sarkomer). Bei starker Verkürzung: Myosinfilamente stossen an Z-Scheiben, weniger effektive Querbrücken. Bei starker Dehnung: minimale Aktin-Myosin-Überlappung. Klinisch relevant: Kontraktur-Muskeln können keine Kraft bei normaler Gelenklage entwickeln." },
+      ], explanation: "Das Kraft-Längen-Diagramm zeigt: maximale Kraft bei Ruhelänge (optimale Aktin-Myosin-Überlappung im Sarkomer). Bei starker Verkürzung: Myosinfilamente stossen an Z-Scheiben, weniger effektive Querbrücken. Bei starker Dehnung: minimale Aktin-Myosin-Überlappung. Klinisch relevant: Kontraktur-Muskeln können keine Kraft bei normaler Gelenklage entwickeln.",
+        learningCard: { type: "predict", statement: "Ein Muskel entwickelt seine maximale Kraft bei einer optimalen Vordehnungslänge (Ruhelänge) - zu kurz oder zu lang reduziert die Kraft.", answer: true, reveal: "Bei Ruhelänge ist die Aktin-Myosin-Überlappung im Sarkomer optimal. Bei starker Verkürzung stossen Myosinfilamente an die Z-Scheiben, bei starker Dehnung ist die Überlappung minimal - beides reduziert die entwickelbare Kraft." } },
       { id: "mu_fk_h3", type: "mc", question: "Was beschreibt die Kraft-Frequenz-Beziehung bei Muskelkontraktion?", options: [
         { text: "Mit steigender Stimulationsfrequenz steigt die Muskelkraft: Einzelzuckung → Tetanus (vollständiger oder unvollständiger)", correct: true },
         { text: "Mit steigender Frequenz sinkt die Kraft durch Ermüdung sofort", correct: false },
         { text: "Frequenz hat keinen Einfluss auf die Muskelkraft – nur die Amplitude zählt", correct: false },
         { text: "Bei Tetanus ist die Kraft geringer als bei Einzelzuckungen", correct: false }
-      ], explanation: "Einzelzuckung: ein Aktionspotential → kurze Kontraktion. Bei schneller Folge (unvollständiger Tetanus): Kontraktionen summieren sich (Treppe). Bei hoher Frequenz (vollständiger Tetanus): die Einzelzuckungen verschmelzen zur glatten Dauerkontrak­tion mit maximaler Kraft. Tetanische Kontraktionen sind 3-4x stärker als Einzelzuckungen." },
-      { id: "mu_fk_h4", type: "true_false", statement: "Bei exzentrischer Muskelarbeit verlängert sich der Muskel während der Kraftentwicklung.", answer: true, explanation: "Exzentrisch = Muskel kontrahiert und verlängert sich gleichzeitig (abbremsendes Kontrahieren, z.B. Bergabgehen). Dies erzeugt grössere Kräfte als konzentrische Arbeit und verursacht mehr Muskelkater." },
+      ], explanation: "Einzelzuckung: ein Aktionspotential → kurze Kontraktion. Bei schneller Folge (unvollständiger Tetanus): Kontraktionen summieren sich (Treppe). Bei hoher Frequenz (vollständiger Tetanus): die Einzelzuckungen verschmelzen zur glatten Dauerkontrak­tion mit maximaler Kraft. Tetanische Kontraktionen sind 3-4x stärker als Einzelzuckungen.",
+        learningCard: { type: "reconstruct", template: "Mit steigender Stimulationsfrequenz steigt die Muskelkraft: von der ___ über den unvollständigen bis zum vollständigen ___, der etwa ___-mal stärker ist als eine Einzelzuckung.", blanks: ["Einzelzuckung", "Tetanus", "3-4"], distractors: ["Sarkomer", "2"] } },
+      { id: "mu_fk_h4", type: "true_false", statement: "Bei exzentrischer Muskelarbeit verlängert sich der Muskel während der Kraftentwicklung.", answer: true, explanation: "Exzentrisch = Muskel kontrahiert und verlängert sich gleichzeitig (abbremsendes Kontrahieren, z.B. Bergabgehen). Dies erzeugt grössere Kräfte als konzentrische Arbeit und verursacht mehr Muskelkater.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Bei exzentrischer Arbeit verlängert sich der Muskel während der Kraftentwicklung.", isWrong: false },
+          { text: "Exzentrische Arbeit erzeugt größere Kräfte als konzentrische Arbeit.", isWrong: false },
+          { text: "Exzentrische Arbeit verursacht mehr Muskelkater als konzentrische Arbeit.", isWrong: false },
+          { text: "Konzentrische Arbeit verlängert den Muskel während der Kraftentwicklung.", isWrong: true }
+        ], whyWrong: "Bei konzentrischer Arbeit verkürzt sich der Muskel, nicht verlängert - das ist die exzentrische Arbeit (abbremsendes Kontrahieren, z.B. Bergabgehen), die auch größere Kräfte erzeugt und mehr Muskelkater verursacht." } },
       { id: "mu_fk_h5", type: "mc", question: "Was ist isotonische Muskelarbeit?", options: [
         { text: "Kraftentfaltung bei gleichbleibender Muskelspannung (Tonus) mit Längenveränderung", correct: true },
         { text: "Kraftentfaltung ohne Längenveränderung des Muskels", correct: false },
         { text: "Passive Dehnung des Muskels von aussen", correct: false },
         { text: "Kontraktion ohne Kraftentwicklung", correct: false }
-      ], explanation: "Isotonisch = gleichbleibende Spannung, Länge verändert sich (z.B. Gewicht heben). Isometrisch = gleichbleibende Länge, Spannung verändert sich (z.B. gegen Wand drücken). Konzentrisch und exzentrisch sind Unterformen der isotonischen Arbeit." },
-      { id: "mu_fk_h6", type: "true_false", statement: "Tetanus (vollständige tetanische Kontraktion) entwickelt 3-4x mehr Kraft als eine Einzelzuckung.", answer: true, explanation: "Bei hoher Reizfrequenz verschmelzen Einzelzuckungen zur Dauerkontraktion (Tetanus). Ca2+ akkumuliert im Sarkoplasma → maximale Troponin C-Besetzung → maximale Querbrückenbildung. Tetanuskontraktionen sind im Alltag der Normalfall willkürlicher Muskelaktivität." }
+      ], explanation: "Isotonisch = gleichbleibende Spannung, Länge verändert sich (z.B. Gewicht heben). Isometrisch = gleichbleibende Länge, Spannung verändert sich (z.B. gegen Wand drücken). Konzentrisch und exzentrisch sind Unterformen der isotonischen Arbeit.",
+        learningCard: { type: "predict", statement: "Isotonische Muskelarbeit bedeutet Kraftentfaltung bei gleichbleibender Muskelspannung mit gleichzeitiger Längenveränderung.", answer: true, reveal: "Isotonisch = gleichbleibende Spannung, Länge verändert sich (z.B. Gewicht heben). Isometrisch dagegen = gleichbleibende Länge, Spannung verändert sich. Konzentrisch und exzentrisch sind Unterformen der isotonischen Arbeit." } },
+      { id: "mu_fk_h6", type: "true_false", statement: "Tetanus (vollständige tetanische Kontraktion) entwickelt 3-4x mehr Kraft als eine Einzelzuckung.", answer: true, explanation: "Bei hoher Reizfrequenz verschmelzen Einzelzuckungen zur Dauerkontraktion (Tetanus). Ca2+ akkumuliert im Sarkoplasma → maximale Troponin C-Besetzung → maximale Querbrückenbildung. Tetanuskontraktionen sind im Alltag der Normalfall willkürlicher Muskelaktivität.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Tetanus treffen zu?", checklist: [
+          { text: "Tetanus entwickelt 3-4x mehr Kraft als eine Einzelzuckung", correct: true },
+          { text: "Bei hoher Reizfrequenz verschmelzen Einzelzuckungen zur Dauerkontraktion", correct: true },
+          { text: "Ca2+ akkumuliert im Sarkoplasma und maximiert die Querbrückenbildung", correct: true },
+          { text: "Tetanus tritt nur bei krankhafter Übererregung auf", correct: false }
+        ], reveal: "Bei hoher Reizfrequenz verschmelzen Einzelzuckungen zur Dauerkontraktion (Tetanus); Ca2+ akkumuliert im Sarkoplasma und maximiert die Querbrückenbildung. Tetanuskontraktionen sind 3-4x stärker als Einzelzuckungen und im Alltag der Normalfall willkürlicher Muskelaktivität." } }
     ],
     phase4Questions: [
       { id: "mu_fk_mc1", type: "mc", question: "Was beschreibt isometrische Muskelarbeit?", options: [
@@ -2455,19 +2957,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Kraftentfaltung mit gleichbleibender Muskelspannung", correct: false },
         { text: "Erschlaffung des Muskels ohne Kraftentfaltung", correct: false },
         { text: "Passive Dehnung des Muskels durch äussere Kraft", correct: false }
-      ], explanation: "Bei isometrischer Arbeit entwickelt der Muskel Kraft ohne Längenänderung, z.B. beim Halten einer Last, weil sich die Länge konstant hält, die innere Spannung aber zunimmt." },
+      ], explanation: "Bei isometrischer Arbeit entwickelt der Muskel Kraft ohne Längenänderung, z.B. beim Halten einer Last, weil sich die Länge konstant hält, die innere Spannung aber zunimmt.",
+        learningCard: { type: "reconstruct", template: "Bei ___ Arbeit entwickelt der Muskel Kraft ohne ___, z.B. beim Halten einer Last, weil die Länge konstant bleibt, die innere ___ aber zunimmt.", blanks: ["isometrischer", "Längenänderung", "Spannung"], distractors: ["Wärme", "Kraft"] } },
       { id: "mu_fk_mc2", type: "mc", question: "Was versteht man unter Kontraktilität des Muskels?", options: [
         { text: "Die Fähigkeit, aktiv Kraft zu entwickeln und sich zu verkürzen", correct: true },
         { text: "Die Fähigkeit, passiv gedehnt zu werden", correct: false },
         { text: "Die Fähigkeit zur elektrischen Selbsterregung", correct: false },
         { text: "Die Fähigkeit zur schnellen Erschlaffung nach Kontraktion", correct: false }
-      ], explanation: "Kontraktilität bezeichnet die aktive Fähigkeit des Muskels, durch Aktin-Myosin-Interaktion Kraft zu entwickeln und sich zu verkürzen, im Gegensatz zur passiven Elastizität." },
+      ], explanation: "Kontraktilität bezeichnet die aktive Fähigkeit des Muskels, durch Aktin-Myosin-Interaktion Kraft zu entwickeln und sich zu verkürzen, im Gegensatz zur passiven Elastizität.",
+        learningCard: { type: "predict", statement: "Kontraktilität bezeichnet die aktive Fähigkeit des Muskels, durch Aktin-Myosin-Interaktion Kraft zu entwickeln und sich zu verkürzen.", answer: true, reveal: "Kontraktilität ist die aktive Fähigkeit des Muskels zur Kraftentwicklung und Verkürzung durch Aktin-Myosin-Interaktion, im Gegensatz zur passiven Elastizität (Dehnbarkeit ohne aktive Kraft)." } },
       { id: "mu_fk_mc3", type: "mc", question: "Welche Aussagen zu Kontraktionsformen sind korrekt?", options: [
         { text: "Konzentrisch: Muskel verkürzt sich unter Kraftentwicklung", correct: true },
         { text: "Vollständiger Tetanus erzeugt mehr Kraft als Einzelzuckungen", correct: true },
         { text: "Isometrisch bedeutet gleichbleibende Spannung bei Längenveränderung", correct: false },
         { text: "Exzentrische Arbeit erzeugt weniger Kraft als konzentrische", correct: false }
-      ], explanation: "Konzentrisch = Verkürzung. Tetanus = Summation → maximale Kraft. Isometrisch = gleichbleibende Länge (nicht Spannung). Exzentrisch erzeugt sogar mehr Kraft als konzentrisch und verursacht mehr Muskelkater."}
+      ], explanation: "Konzentrisch = Verkürzung. Tetanus = Summation → maximale Kraft. Isometrisch = gleichbleibende Länge (nicht Spannung). Exzentrisch erzeugt sogar mehr Kraft als konzentrisch und verursacht mehr Muskelkater.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Konzentrisch: Muskel verkürzt sich unter Kraftentwicklung.", isWrong: false },
+          { text: "Vollständiger Tetanus erzeugt mehr Kraft als Einzelzuckungen.", isWrong: false },
+          { text: "Exzentrische Arbeit erzeugt mehr Kraft als konzentrische Arbeit.", isWrong: false },
+          { text: "Isometrisch bedeutet gleichbleibende Spannung bei Längenveränderung.", isWrong: true }
+        ], whyWrong: "Isometrisch bedeutet gleichbleibende LÄNGE bei veränderlicher Spannung, nicht umgekehrt - das ist die Definition von isotonisch. Konzentrische Verkürzung, die höhere Kraft des Tetanus und die größere Kraft exzentrischer Arbeit sind dagegen korrekt." } }
     ]
   }),
   makeDetailedPlant({
@@ -2479,27 +2989,48 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Noradrenalin – bindet an adrenerge Rezeptoren", correct: false },
         { text: "Glutamat – bindet an NMDA-Rezeptoren", correct: false },
         { text: "GABA – bindet an GABA-A-Rezeptoren und hemmt die Kontraktion", correct: false }
-      ], explanation: "An der neuromuskulären Synapse (motorische Endplatte) wird Acetylcholin (ACh) aus prasynaptischen Vesikeln ausgeschüttet. ACh bindet an nikotinische ACh-Rezeptoren (nAChR) auf dem Sarkolemm → Na+-Einstrom → Endplattenpotential → Aktionspotential → Kontraktion. Curare blockiert nAChR (Pfeilgift/Anästhesie). Acetylcholinesterase spaltet ACh sofort nach der Bindung." },
+      ], explanation: "An der neuromuskulären Synapse (motorische Endplatte) wird Acetylcholin (ACh) aus prasynaptischen Vesikeln ausgeschüttet. ACh bindet an nikotinische ACh-Rezeptoren (nAChR) auf dem Sarkolemm → Na+-Einstrom → Endplattenpotential → Aktionspotential → Kontraktion. Curare blockiert nAChR (Pfeilgift/Anästhesie). Acetylcholinesterase spaltet ACh sofort nach der Bindung.",
+        learningCard: { type: "predict", statement: "An der motorischen Endplatte wird Acetylcholin ausgeschüttet, das an nikotinische Rezeptoren der Muskelfaser bindet.", answer: true, reveal: "Acetylcholin (ACh) wird aus präsynaptischen Vesikeln ausgeschüttet und bindet an nikotinische ACh-Rezeptoren auf dem Sarkolemm, was einen Na+-Einstrom und ein Endplattenpotential auslöst. Acetylcholinesterase spaltet ACh sofort wieder, curare blockiert die Rezeptoren." } },
       { id: "mu_in_h2", type: "mc", question: "Was ist Innervationsverhältnis und was sagt es über die Muskelpräzision aus?", options: [
         { text: "Anzahl der Muskelfasern pro Motoneuron: klein (z.B. 5:1 Augenmuskel) = präzise; gross (z.B. 1000:1 M. gastrocnemius) = kraftvoll aber grob", correct: true },
         { text: "Anzahl der Motoneuronen pro Muskel: mehr Neuronen = mehr Kraft", correct: false },
         { text: "Das Verhältnis von Agonist zu Antagonist in einem Gelenk", correct: false },
         { text: "Die Anzahl der Synapsen pro Nervenendigung an der Endplatte", correct: false }
-      ], explanation: "Innervationsverhältnis = Anzahl Muskelfasern / Motoneuron. Kleine Einheiten (Augenmuskel ~3-5 Fasern): maximale Feinmotorik. Grosse Einheiten (M. gastrocnemius bis 2000 Fasern): viel Kraft, wenig Präzision. Das Nervensystem dosiert Kraft durch 'Rekrutierung' (mehr Einheiten) und 'Feuerrate' (höhere Frequenz) – beide Mechanismen erhöhen die Muskelkraft." },
+      ], explanation: "Innervationsverhältnis = Anzahl Muskelfasern / Motoneuron. Kleine Einheiten (Augenmuskel ~3-5 Fasern): maximale Feinmotorik. Grosse Einheiten (M. gastrocnemius bis 2000 Fasern): viel Kraft, wenig Präzision. Das Nervensystem dosiert Kraft durch 'Rekrutierung' (mehr Einheiten) und 'Feuerrate' (höhere Frequenz) – beide Mechanismen erhöhen die Muskelkraft.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Innervationsverhältnis treffen zu?", checklist: [
+          { text: "Kleine Einheiten (z.B. Augenmuskel) ermöglichen maximale Präzision", correct: true },
+          { text: "Große Einheiten (z.B. M. gastrocnemius) liefern viel Kraft, wenig Präzision", correct: true },
+          { text: "Kraftdosierung erfolgt über Rekrutierung und Feuerrate", correct: true },
+          { text: "Mehr Motoneuronen pro Muskel bedeuten automatisch mehr Kraft", correct: false }
+        ], reveal: "Das Innervationsverhältnis (Muskelfasern pro Motoneuron) bestimmt die Präzision: kleine Einheiten wie im Augenmuskel erlauben Feinmotorik, große wie im M. gastrocnemius liefern viel Kraft bei wenig Präzision. Das Nervensystem dosiert Kraft über Rekrutierung und Feuerrate." } },
       { id: "mu_in_h3", type: "mc", question: "Was löst die Weiterleitung des Aktionspotentials in der Muskelfaser ins Innere aus?", options: [
         { text: "T-Tubuli leiten das AP in die Tiefe → Kalziumfreisetzung aus dem Sarkoplasmatischen Retikulum", correct: true },
         { text: "Das AP breitet sich nur auf der Zelloberflähe aus und erreicht nicht die Myofibrillen", correct: false },
         { text: "Direkte Nervenstimulation jeder einzelnen Myofibrille durch Nervenfasern", correct: false },
         { text: "Kalziumeinstrom aus dem extrazellulärem Raum durch spannungsgesteuerte Kanäle", correct: false }
-      ], explanation: "Die T-Tubuli (Einstülpungen des Sarkolemms) leiten das Aktionspotential tief in die Muskelfaser bis zu den Myofibrillen. An den Triaden (T-Tubulus + zwei SR-Terminals) löst das AP die Ca2+-Freisetzung aus dem Sarkoplasmatischen Retikulum (SR) aus. Ca2+ bindet an Troponin C → Tropomyosin verschiebt sich → Aktinbindungsstellen frei → Querbrückenzyklus startet." },
-      { id: "mu_in_h4", type: "true_false", statement: "Acetylcholin bindet an nikotinische Acetylcholinrezeptoren an der motorischen Endplatte.", answer: true, explanation: "An der neuromuskulären Synapse wird ACh ausgeschüttet und bindet an nikotinische Rezeptoren (ionotrop). Dies unterscheidet sich von muskarinischen Rezeptoren des autonomen Nervensystems. Die Folge ist ein Endplattenpotential, das ein Aktionspotential auslöst." },
+      ], explanation: "Die T-Tubuli (Einstülpungen des Sarkolemms) leiten das Aktionspotential tief in die Muskelfaser bis zu den Myofibrillen. An den Triaden (T-Tubulus + zwei SR-Terminals) löst das AP die Ca2+-Freisetzung aus dem Sarkoplasmatischen Retikulum (SR) aus. Ca2+ bindet an Troponin C → Tropomyosin verschiebt sich → Aktinbindungsstellen frei → Querbrückenzyklus startet.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "T-Tubuli leiten das Aktionspotential in die Tiefe der Muskelfaser.", isWrong: false },
+          { text: "An den Triaden löst das AP die Ca2+-Freisetzung aus dem Sarkoplasmatischen Retikulum aus.", isWrong: false },
+          { text: "Ca2+ bindet an Troponin C, wodurch Aktinbindungsstellen freigelegt werden.", isWrong: false },
+          { text: "Das Aktionspotential breitet sich nur auf der Zelloberfläche aus und erreicht die Myofibrillen nicht.", isWrong: true }
+        ], whyWrong: "Die T-Tubuli leiten das Aktionspotential gerade bis tief zu den Myofibrillen, wo es an den Triaden die Ca2+-Freisetzung aus dem Sarkoplasmatischen Retikulum auslöst - das Aktionspotential bleibt also nicht an der Oberfläche." } },
+      { id: "mu_in_h4", type: "true_false", statement: "Acetylcholin bindet an nikotinische Acetylcholinrezeptoren an der motorischen Endplatte.", answer: true, explanation: "An der neuromuskulären Synapse wird ACh ausgeschüttet und bindet an nikotinische Rezeptoren (ionotrop). Dies unterscheidet sich von muskarinischen Rezeptoren des autonomen Nervensystems. Die Folge ist ein Endplattenpotential, das ein Aktionspotential auslöst.",
+        learningCard: { type: "reconstruct", template: "An der neuromuskulären Synapse wird ___ ausgeschüttet und bindet an ___ Rezeptoren; die Folge ist ein ___, das ein Aktionspotential auslöst.", blanks: ["Acetylcholin", "nikotinische", "Endplattenpotential"], distractors: ["Dopamin", "muskarinische"] } },
       { id: "mu_in_h5", type: "mc", question: "Was bestimmt die Kraftdosierung der Skelettmuskulatur beim Nervensystem?", options: [
         { text: "Rekrutierung (Anzahl aktiver motorischer Einheiten) und Feuerrate (Impulsfrequenz)", correct: true },
         { text: "Ausschliesslich die Menge des freigesetzten Acetylcholins", correct: false },
         { text: "Die Dicke des Myelins um die Motoneuronen", correct: false },
         { text: "Ausschliesslich die Anzahl der Ranvierschen Schnürringe", correct: false }
-      ], explanation: "Zwei Mechanismen der Kraftdosierung: 1) Rekrutierung = mehr motorische Einheiten aktivieren. 2) Frequenzierung (Feuerrate) = höhere Impulsfrequenz → Tetanus → mehr Kraft pro Einheit. Beide Mechanismen arbeiten zusammen." },
-      { id: "mu_in_h6", type: "true_false", statement: "Ein kleines Innervationsverhältnis (wenige Muskelfasern pro Motoneuron) ermöglicht feinmotorische Präzision.", answer: true, explanation: "Augenmuskel: ca. 3–5 Fasern/Motoneuron → maximale Präzision. M. gastrocnemius: bis 2000 Fasern/Motoneuron → viel Kraft, wenig Feingefühl. Je kleiner die motorische Einheit, desto feiner die Kraftabstufung." }
+      ], explanation: "Zwei Mechanismen der Kraftdosierung: 1) Rekrutierung = mehr motorische Einheiten aktivieren. 2) Frequenzierung (Feuerrate) = höhere Impulsfrequenz → Tetanus → mehr Kraft pro Einheit. Beide Mechanismen arbeiten zusammen.",
+        learningCard: { type: "predict", statement: "Die Kraftdosierung der Skelettmuskulatur erfolgt über Rekrutierung motorischer Einheiten und über die Feuerrate (Impulsfrequenz).", answer: true, reveal: "Zwei Mechanismen dosieren die Kraft: Rekrutierung aktiviert mehr motorische Einheiten, und eine höhere Feuerrate führt über Tetanus zu mehr Kraft pro Einheit. Beide Mechanismen arbeiten zusammen." } },
+      { id: "mu_in_h6", type: "true_false", statement: "Ein kleines Innervationsverhältnis (wenige Muskelfasern pro Motoneuron) ermöglicht feinmotorische Präzision.", answer: true, explanation: "Augenmuskel: ca. 3–5 Fasern/Motoneuron → maximale Präzision. M. gastrocnemius: bis 2000 Fasern/Motoneuron → viel Kraft, wenig Feingefühl. Je kleiner die motorische Einheit, desto feiner die Kraftabstufung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Innervationsverhältnis von Augenmuskel und M. gastrocnemius treffen zu?", checklist: [
+          { text: "Augenmuskel: ca. 3-5 Fasern pro Motoneuron, maximale Präzision", correct: true },
+          { text: "M. gastrocnemius: bis 2000 Fasern pro Motoneuron, viel Kraft, wenig Feingefühl", correct: true },
+          { text: "Je kleiner die motorische Einheit, desto feiner die Kraftabstufung", correct: true },
+          { text: "Ein großes Innervationsverhältnis ermöglicht die feinste Kraftabstufung", correct: false }
+        ], reveal: "Augenmuskel: ca. 3-5 Fasern pro Motoneuron, maximale Präzision. M. gastrocnemius: bis 2000 Fasern pro Motoneuron, viel Kraft, wenig Feingefühl. Je kleiner die motorische Einheit, desto feiner die Kraftabstufung." } }
     ],
     phase4Questions: [
       { id: "mu_in_mc1", type: "mc", question: "Was versteht man unter einer motorischen Einheit?", options: [
@@ -2507,19 +3038,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Ein Muskel mit all seinen Nerven und Gefässen", correct: false },
         { text: "Die Gesamtheit aller Motoneuronen im Rückenmark", correct: false },
         { text: "Eine einzelne Muskelfaser mit ihrem Zellkern", correct: false }
-      ], explanation: "Eine motorische Einheit besteht aus einem alpha-Motoneuron und allen von ihm innervierten Muskelfasern; die Anzahl der Fasern pro Einheit bestimmt die Kraftabstufung." },
+      ], explanation: "Eine motorische Einheit besteht aus einem alpha-Motoneuron und allen von ihm innervierten Muskelfasern; die Anzahl der Fasern pro Einheit bestimmt die Kraftabstufung.",
+        learningCard: { type: "reconstruct", template: "Eine ___ besteht aus einem ___ und allen von ihm versorgten ___.", blanks: ["motorische Einheit", "Motoneuron", "Muskelfasern"], distractors: ["Synapse", "Sarkomer"] } },
       { id: "mu_in_mc2", type: "mc", question: "An welcher Struktur wird die nervale Erregung auf die Muskelfaser übertragen?", options: [
         { text: "An der motorischen Endplatte (neuromuskuläre Synapse)", correct: true },
         { text: "Im Spinalganglion", correct: false },
         { text: "An der Ranvierschen Schnürring", correct: false },
         { text: "Im Muskelspindel", correct: false }
-      ], explanation: "Die motorische Endplatte (neuromuskuläre Synapse) ist die Kontaktstelle zwischen Nervenfaserende und Muskelfaser, wo Acetylcholin die Kontraktion auslöst." },
+      ], explanation: "Die motorische Endplatte (neuromuskuläre Synapse) ist die Kontaktstelle zwischen Nervenfaserende und Muskelfaser, wo Acetylcholin die Kontraktion auslöst.",
+        learningCard: { type: "predict", statement: "Die motorische Endplatte ist die Kontaktstelle zwischen Nervenfaserende und Muskelfaser, an der Acetylcholin die Kontraktion auslöst.", answer: true, reveal: "Die motorische Endplatte (neuromuskuläre Synapse) ist die Kontaktstelle zwischen Nervenende und Muskelfaser, an der Acetylcholin die Kontraktion auslöst." } },
       { id: "mu_in_mc3", type: "mc", question: "Welche Aussagen zur neuromuskulären Innervation sind korrekt?", options: [
         { text: "ACh bindet an nikotinische Rezeptoren an der motorischen Endplatte", correct: true },
         { text: "T-Tubuli leiten das AP ins Innere der Muskelfaser und lösen Ca2+-Freisetzung aus dem SR aus", correct: true },
         { text: "Jede Muskelfaser wird von mehreren Motoneuronen gleichzeitig versorgt", correct: false },
         { text: "Die Kraftdosierung erfolgt ausschliesslich durch Veränderung der ACh-Konzentration", correct: false }
-      ], explanation: "ACh: nikotinische Rezeptoren. T-Tubuli: AP-Leitung → Ca2+-Freisetzung aus SR → Troponin C. Jede Muskelfaser wird nur von einem Motoneuron innerviert. Kraftdosierung: Rekrutierung + Feuerrate, nicht nur ACh-Menge."}
+      ], explanation: "ACh: nikotinische Rezeptoren. T-Tubuli: AP-Leitung → Ca2+-Freisetzung aus SR → Troponin C. Jede Muskelfaser wird nur von einem Motoneuron innerviert. Kraftdosierung: Rekrutierung + Feuerrate, nicht nur ACh-Menge.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "ACh bindet an nikotinische Rezeptoren an der motorischen Endplatte.", isWrong: false },
+          { text: "T-Tubuli leiten das AP ins Innere der Muskelfaser und lösen Ca2+-Freisetzung aus dem SR aus.", isWrong: false },
+          { text: "Die Kraftdosierung erfolgt durch Rekrutierung und Feuerrate.", isWrong: false },
+          { text: "Jede Muskelfaser wird von mehreren Motoneuronen gleichzeitig versorgt.", isWrong: true }
+        ], whyWrong: "Jede Muskelfaser wird nur von einem einzigen Motoneuron innerviert, nicht von mehreren gleichzeitig - erst die Gesamtheit der Fasern eines Motoneurons bildet die motorische Einheit. ACh-Bindung, T-Tubuli-Funktion und die Kraftdosierung sind dagegen korrekt." } }
     ]
   }),
   makeDetailedPlant({
@@ -2531,32 +3070,53 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Ca. 2–4 Minuten (für mittlere Belastungen)", correct: false },
         { text: "Unbegrenzt, solange Fettsäuren verfügbar sind", correct: false },
         { text: "30–90 Sekunden (entspricht der Glykolyse-Dauer)", correct: false }
-      ], explanation: "Das Kreatinphosphatsystem (Phosphagensystem): Kreatinphosphat (KP) überträgt sofort Phosphatgruppe auf ADP → ATP. Reaktion: KP + ADP → Kreatin + ATP. Kapazität: 6–10 Sekunden maximaler Intensität. Kein Laktat (alaktazid). Nach dem Sprint wird KP in der Erholungsphase durch aerobe Oxidation nachgeladen (Sauerstoffschuld)." },
+      ], explanation: "Das Kreatinphosphatsystem (Phosphagensystem): Kreatinphosphat (KP) überträgt sofort Phosphatgruppe auf ADP → ATP. Reaktion: KP + ADP → Kreatin + ATP. Kapazität: 6–10 Sekunden maximaler Intensität. Kein Laktat (alaktazid). Nach dem Sprint wird KP in der Erholungsphase durch aerobe Oxidation nachgeladen (Sauerstoffschuld).",
+        learningCard: { type: "predict", statement: "Das Kreatinphosphatsystem liefert Energie für maximale Kraftstösse über ca. 6-10 Sekunden, ohne dabei Laktat zu produzieren.", answer: true, reveal: "Kreatinphosphat überträgt sofort eine Phosphatgruppe auf ADP zu ATP (KP + ADP → Kreatin + ATP) und deckt so 6-10 Sekunden maximaler Intensität ab, ohne Laktat zu bilden (alaktazid). In der Erholungsphase wird das Kreatinphosphat durch aerobe Oxidation nachgeladen." } },
       { id: "mu_er_h2", type: "mc", question: "Welche Substrate werden vorrangig bei Ausdauerbelastungen (>30 Minuten, niedriger Intensität) verbrannt?", options: [
         { text: "Fettsäuren (Betaoxidation) – liefern mehr ATP pro Mol, aber langsamer als Kohlenhydrate", correct: true },
         { text: "Ausschliesslich Glukose aus Blutglukose", correct: false },
         { text: "Kreatinphosphat – unbegrenzte Reserve im Muskel", correct: false },
         { text: "Proteine (Aminosäuren) als Hauptenergiequelle", correct: false }
-      ], explanation: "Bei langen, moderaten Belastungen: Fettsäuren dominieren. Fettsäuren liefern mehr ATP pro Mol (z.B. Palmitinsäure: 129 ATP) als Glukose (38 ATP), aber langsamer (benötigter O2-Verbrauch höher pro ATP). Bei intensiver Belastung wird auf Kohlenhydrate umgeschaltet (glykolytisch). Dieses Substrat-Umschalten erklärt den 'Fettverbrennungspuls' im Ausdauertraining." },
+      ], explanation: "Bei langen, moderaten Belastungen: Fettsäuren dominieren. Fettsäuren liefern mehr ATP pro Mol (z.B. Palmitinsäure: 129 ATP) als Glukose (38 ATP), aber langsamer (benötigter O2-Verbrauch höher pro ATP). Bei intensiver Belastung wird auf Kohlenhydrate umgeschaltet (glykolytisch). Dieses Substrat-Umschalten erklärt den 'Fettverbrennungspuls' im Ausdauertraining.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Substratverbrennung bei Ausdauerbelastung treffen zu?", checklist: [
+          { text: "Fettsäuren dominieren bei langen, moderaten Belastungen", correct: true },
+          { text: "Fettsäuren liefern mehr ATP pro Mol als Glukose", correct: true },
+          { text: "Bei intensiver Belastung wird auf Kohlenhydrate umgeschaltet", correct: true },
+          { text: "Proteine sind die Hauptenergiequelle bei Ausdauerbelastung", correct: false }
+        ], reveal: "Bei langen, moderaten Belastungen dominieren Fettsäuren, die mehr ATP pro Mol liefern als Glukose, aber langsamer verfügbar sind. Bei intensiver Belastung wird auf die schnellere glykolytische Verbrennung von Kohlenhydraten umgeschaltet." } },
       { id: "mu_er_h3", type: "mc", question: "Was ist der Laktat-Schwellenwert (anaerobe Schwelle) und welche physiologische Bedeutung hat er?", options: [
         { text: "Die Intensität, bei der die Laktatproduktion die -elimination übersteigt: oberhalb steigt der Laktatgehalt schnell an", correct: true },
         { text: "Die maximale Sauerstoffaufnahme (VO2max) des Athleten", correct: false },
         { text: "Die minimale Belastung, bei der der Muskel beginnt ATP zu verbrauchen", correct: false },
         { text: "Der Punkt, an dem Glukose vollständig durch Fette ersetzt wird", correct: false }
-      ], explanation: "Anaerobe Schwelle: Unterhalb → Laktat wird produziert und abgebaut (Gleichgewicht). Oberhalb → Laktat steigt exponentiell an (pH sinkt, Enzymhemmung, Ermüdung). Trainierte Ausdauersportler haben eine höhere Schwelle, weil ihre Muskeln mehr Typ-I-Fasern (aerob) und mehr Mitochondrien haben. Klinische Relevanz: Laktatmessung bei Belastungstests." },
-      { id: "mu_er_h4", type: "true_false", statement: "Bei langen aeroben Belastungen (>30 min) liefern Fettsäuren (Betaoxidation) mehr ATP pro Mol als Glukose.", answer: true, explanation: "Palmitinsäure liefert ca. 129 ATP, Glukose ca. 38 ATP pro Mol. Fettsäuren sind die effizientere Langzeitenergiequelle, aber langsamer verfügbar und O2-aufwändiger." },
+      ], explanation: "Anaerobe Schwelle: Unterhalb → Laktat wird produziert und abgebaut (Gleichgewicht). Oberhalb → Laktat steigt exponentiell an (pH sinkt, Enzymhemmung, Ermüdung). Trainierte Ausdauersportler haben eine höhere Schwelle, weil ihre Muskeln mehr Typ-I-Fasern (aerob) und mehr Mitochondrien haben. Klinische Relevanz: Laktatmessung bei Belastungstests.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Unterhalb der anaeroben Schwelle halten sich Laktatproduktion und -elimination die Waage.", isWrong: false },
+          { text: "Oberhalb der Schwelle steigt der Laktatgehalt exponentiell an.", isWrong: false },
+          { text: "Trainierte Ausdauersportler haben durch mehr Typ-I-Fasern und Mitochondrien eine höhere Schwelle.", isWrong: false },
+          { text: "Die anaerobe Schwelle entspricht der maximalen Sauerstoffaufnahme (VO2max).", isWrong: true }
+        ], whyWrong: "Die anaerobe Schwelle ist die Belastungsintensität, ab der die Laktatproduktion die -elimination übersteigt - sie ist nicht mit der VO2max identisch. Unterhalb bleibt Laktat im Gleichgewicht, oberhalb steigt es exponentiell, und trainierte Sportler verschieben die Schwelle durch mehr Typ-I-Fasern und Mitochondrien nach oben." } },
+      { id: "mu_er_h4", type: "true_false", statement: "Bei langen aeroben Belastungen (>30 min) liefern Fettsäuren (Betaoxidation) mehr ATP pro Mol als Glukose.", answer: true, explanation: "Palmitinsäure liefert ca. 129 ATP, Glukose ca. 38 ATP pro Mol. Fettsäuren sind die effizientere Langzeitenergiequelle, aber langsamer verfügbar und O2-aufwändiger.",
+        learningCard: { type: "reconstruct", template: "Palmitinsäure liefert ca. ___ ATP, Glukose liefert ca. ___ ATP pro Mol - Fettsäuren sind die effizientere ___-Energiequelle, aber langsamer verfügbar.", blanks: ["129", "38", "Langzeit"], distractors: ["70", "Kurzzeit"] } },
       { id: "mu_er_h5", type: "mc", question: "Welches Energiesystem dominiert bei einem 100-m-Sprint (maximale Intensität, <10 s)?", options: [
         { text: "Anaerob-alaktazides System (Kreatinphosphat)", correct: true },
         { text: "Anaerob-laktazides System (Milchsäureglykolyse)", correct: false },
         { text: "Aerobe Fettverbrennung (Betaoxidation)", correct: false },
         { text: "Aerobe Kohlenhydratverbrennung (Krebszyklus)", correct: false }
-      ], explanation: "Sprint <10 s: Kreatinphosphat liefert sofort ATP ohne O2 und ohne Laktatproduktion. Anaerob-laktazid (Glykolyse) dominiert bei 30 s–2 min, aerobes System bei >2–3 min." },
+      ], explanation: "Sprint <10 s: Kreatinphosphat liefert sofort ATP ohne O2 und ohne Laktatproduktion. Anaerob-laktazid (Glykolyse) dominiert bei 30 s–2 min, aerobes System bei >2–3 min.",
+        learningCard: { type: "predict", statement: "Bei einem 100-Meter-Sprint (unter 10 Sekunden) dominiert das anaerob-alaktazide Kreatinphosphatsystem.", answer: true, reveal: "Bei unter 10 Sekunden liefert Kreatinphosphat sofort ATP ohne Sauerstoff und ohne Laktatbildung. Das anaerob-laktazide System (Glykolyse) dominiert erst bei 30 Sekunden bis 2 Minuten, das aerobe System bei über 2-3 Minuten." } },
       { id: "mu_er_h6", type: "mc", question: "Warum führt Laktatanstieg oberhalb der anaeroben Schwelle zur Muskelermüdung?", options: [
         { text: "pH-Abfall hemmt glykolytische Enzyme und stört die Myosin-Aktin-Interaktion", correct: true },
         { text: "Laktat verbraucht das gesamte verfügbare ATP", correct: false },
         { text: "Laktat verhindert die Ca2+-Freisetzung aus dem SR vollständig", correct: false },
         { text: "Laktat blockiert die Motorendplatte", correct: false }
-      ], explanation: "Laktatanstieg → pH sinkt → Enzymhemmung (Phosphofructokinase, Myosin-ATPase) → reduzierte Kraftentwicklung. Zudem führt Kreatinphosphat-Erschöpfung zum Energiemangel. Laktat selbst kann von Herz und anderen Muskeln als Substrat genutzt werden." }
+      ], explanation: "Laktatanstieg → pH sinkt → Enzymhemmung (Phosphofructokinase, Myosin-ATPase) → reduzierte Kraftentwicklung. Zudem führt Kreatinphosphat-Erschöpfung zum Energiemangel. Laktat selbst kann von Herz und anderen Muskeln als Substrat genutzt werden.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Muskelermüdung durch Laktatanstieg treffen zu?", checklist: [
+          { text: "pH-Abfall hemmt glykolytische Enzyme wie die Phosphofructokinase", correct: true },
+          { text: "pH-Abfall stört die Myosin-ATPase und damit die Kraftentwicklung", correct: true },
+          { text: "Kreatinphosphat-Erschöpfung trägt zum Energiemangel bei", correct: true },
+          { text: "Laktat verbraucht das gesamte verfügbare ATP", correct: false }
+        ], reveal: "Laktatanstieg senkt den pH-Wert, was glykolytische Enzyme wie die Phosphofructokinase und die Myosin-ATPase hemmt und so die Kraftentwicklung reduziert. Zusätzlich trägt die Erschöpfung des Kreatinphosphats zum Energiemangel bei." } }
     ],
     phase4Questions: [
       { id: "mu_er_mc1", type: "mc", question: "Was ist die direkte Energiequelle der Muskelkontraktion?", options: [
@@ -2564,19 +3124,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Glukose", correct: false },
         { text: "Fettsäuren", correct: false },
         { text: "Laktat", correct: false }
-      ], explanation: "ATP ist die einzige direkt nutzbare Energiequelle der Muskelkontraktion; Glukose, Fettsäuren und Kreatinphosphat müssen erst in ATP umgewandelt werden." },
+      ], explanation: "ATP ist die einzige direkt nutzbare Energiequelle der Muskelkontraktion; Glukose, Fettsäuren und Kreatinphosphat müssen erst in ATP umgewandelt werden.",
+        learningCard: { type: "predict", statement: "ATP ist die einzige direkt nutzbare Energiequelle der Muskelkontraktion.", answer: true, reveal: "ATP ist die einzige direkt nutzbare Energiequelle der Muskelkontraktion; Glukose, Fettsäuren und Kreatinphosphat müssen erst in ATP umgewandelt werden." } },
       { id: "mu_er_mc2", type: "mc", question: "Was entsteht bei intensiver anaerober Belastung als Stoffwechselprodukt?", options: [
         { text: "Laktat (Milchsäure)", correct: true },
         { text: "Harnstoff", correct: false },
         { text: "Glukose als Endprodukt", correct: false },
         { text: "Sauerstoff", correct: false }
-      ], explanation: "Bei intensiver anaerober Belastung entsteht Laktat (Milchsäure) durch Reduktion von Pyruvat, wenn zu wenig Sauerstoff für den Zitratzyklus vorhanden ist." },
+      ], explanation: "Bei intensiver anaerober Belastung entsteht Laktat (Milchsäure) durch Reduktion von Pyruvat, wenn zu wenig Sauerstoff für den Zitratzyklus vorhanden ist.",
+        learningCard: { type: "reconstruct", template: "Bei intensiver anaerober Belastung entsteht ___ durch Reduktion von ___, wenn zu wenig ___ für den Zitratzyklus vorhanden ist.", blanks: ["Laktat", "Pyruvat", "Sauerstoff"], distractors: ["Glukose", "ATP"] } },
       { id: "mu_er_mc3", type: "mc", question: "Welche Aussagen zur Muskelenergetik sind korrekt?", options: [
         { text: "Kreatinphosphat liefert Energie für ca. 6–10 Sekunden maximaler Intensität", correct: true },
         { text: "Fettsäuren dominieren bei langen aeroben Belastungen (>30 min)", correct: true },
         { text: "Laktat entsteht ausschliesslich bei Muskelkrankheiten", correct: false },
         { text: "ATP wird direkt aus Glukose durch passive Diffusion gewonnen", correct: false }
-      ], explanation: "Kreatinphosphat: 6-10 s. Fettsäuren (Betaoxidation): >30 min. Laktat entsteht physiologisch bei jeder anaeroben Belastung. ATP wird aktiv durch enzymatische Prozesse (Glykolyse, Krebszyklus, Atmungskette) synthetisiert."}
+      ], explanation: "Kreatinphosphat: 6-10 s. Fettsäuren (Betaoxidation): >30 min. Laktat entsteht physiologisch bei jeder anaeroben Belastung. ATP wird aktiv durch enzymatische Prozesse (Glykolyse, Krebszyklus, Atmungskette) synthetisiert.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Kreatinphosphat liefert Energie für ca. 6-10 Sekunden maximaler Intensität.", isWrong: false },
+          { text: "Fettsäuren dominieren bei langen aeroben Belastungen (>30 min).", isWrong: false },
+          { text: "Laktat entsteht physiologisch bei jeder anaeroben Belastung.", isWrong: false },
+          { text: "ATP wird direkt aus Glukose durch passive Diffusion gewonnen.", isWrong: true }
+        ], whyWrong: "ATP wird aktiv durch enzymatische Prozesse (Glykolyse, Krebszyklus, Atmungskette) synthetisiert, nicht durch passive Diffusion. Die Dauer des Kreatinphosphatsystems, die Dominanz der Fettsäuren bei langer Belastung und die physiologische Laktatbildung sind dagegen korrekt." } }
     ]
   }),
   makeDetailedPlant({
@@ -2588,32 +3156,53 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Querstreifung – fehlt bei glatter Muskulatur und Herz", correct: false },
         { text: "Willkürliche Steuerung durch somatische Motoneuronen", correct: false },
         { text: "Kernlage peripher – wie in Skelettmuskel, nicht wie glatte Muskulatur", correct: false }
-      ], explanation: "Herzmuskel-spezifische Eigenschaft: Automatismus (Autorhythmizität). Spezialisierte Herzmuskelzellen (Sinusknoten, AV-Knoten) generieren autonom Aktionspotentiale ohne externe Nerveninnervation. Skelettmuskel: kein Automatismus (braucht Motoneuron). Glatte Muskulatur: teils autonom (Darmnervensystem), aber nicht so ausgeprägt. Disci intercalares + Gap Junctions ermöglichen die synchrone Erregungsausbreitung." },
+      ], explanation: "Herzmuskel-spezifische Eigenschaft: Automatismus (Autorhythmizität). Spezialisierte Herzmuskelzellen (Sinusknoten, AV-Knoten) generieren autonom Aktionspotentiale ohne externe Nerveninnervation. Skelettmuskel: kein Automatismus (braucht Motoneuron). Glatte Muskulatur: teils autonom (Darmnervensystem), aber nicht so ausgeprägt. Disci intercalares + Gap Junctions ermöglichen die synchrone Erregungsausbreitung.",
+        learningCard: { type: "predict", statement: "Automatismus (Autorhythmizität) ist eine Eigenschaft, die spezifisch den Herzmuskel von Skelett- und glatter Muskulatur unterscheidet.", answer: true, reveal: "Spezialisierte Herzmuskelzellen (Sinusknoten, AV-Knoten) generieren autonom Aktionspotentiale ohne externe Nerveninnervation. Skelettmuskel braucht dafür immer ein Motoneuron, glatte Muskulatur ist nur teilweise autonom." } },
       { id: "mu_art_h2", type: "mc", question: "Warum verlauft die Kontraktion glatter Muskulatur langsamer als Skelettmuskulatur?", options: [
         { text: "Glatte Muskulatur hat langsamere Myosin-Isoformen (MLCK-Regulation statt Troponin-Regulation)", correct: true },
         { text: "Glatte Muskulatur hat weniger ATP als Skelettmuskulatur", correct: false },
         { text: "Glatte Muskulatur hat keine Myosinfilamente und kontrahiert anders", correct: false },
         { text: "Die Querstreifung fehlt, daher keine Sarkomerverkürzung möglich", correct: false }
-      ], explanation: "Regulationsunterschied: Skelettmuskel → Troponin-Tropomyosin-System (schnell, Ca2+-empfindlich). Glatte Muskulatur → Myosin-Leichtketten-Kinase (MLCK) phosphoryliert Myosin nach Ca2+-Calmodulin-Aktivierung (langsamer). Glatte Muskulatur nutzt den 'Latchzustand' für Dauerkontraktionen mit sehr wenig ATP – ideal für Gefässtonus und Darmperistaltik." },
+      ], explanation: "Regulationsunterschied: Skelettmuskel → Troponin-Tropomyosin-System (schnell, Ca2+-empfindlich). Glatte Muskulatur → Myosin-Leichtketten-Kinase (MLCK) phosphoryliert Myosin nach Ca2+-Calmodulin-Aktivierung (langsamer). Glatte Muskulatur nutzt den 'Latchzustand' für Dauerkontraktionen mit sehr wenig ATP – ideal für Gefässtonus und Darmperistaltik.",
+        learningCard: { type: "teachback", prompt: "Was unterscheidet die Kontraktionsregulation von glatter Muskulatur und Skelettmuskel?", checklist: [
+          { text: "Skelettmuskel: Troponin-Tropomyosin-System, schnell", correct: true },
+          { text: "Glatte Muskulatur: Myosin-Leichtketten-Kinase (MLCK), langsamer", correct: true },
+          { text: "Glatte Muskulatur kann im Latchzustand mit wenig ATP dauerkontrahieren", correct: true },
+          { text: "Glatte Muskulatur hat keine Myosinfilamente", correct: false }
+        ], reveal: "Skelettmuskel reguliert die Kontraktion schnell über das Troponin-Tropomyosin-System, glatte Muskulatur langsamer über die MLCK nach Ca2+-Calmodulin-Aktivierung. Der Latchzustand erlaubt glatter Muskulatur energiesparende Dauerkontraktionen, ideal für Gefässtonus und Darmperistaltik." } },
       { id: "mu_art_h3", type: "mc", question: "Warum haben Skelettmuskelfasern randständige Kerne, Herzmuskelzellen aber nur einen zentralen Kern?", options: [
         { text: "Skelettmuskelfasern sind mehrkernige Synzytien (aus Myoblastenfusion), Herzmuskelzellen sind echte Einzelzellen mit einem Kern", correct: true },
         { text: "Beides sind Synzytien, nur die Kernlage ist eine Zufälligkeit der Entwicklung", correct: false },
         { text: "Herzmuskelzellen sind kernlos wie Erythrozyten", correct: false },
         { text: "Skelettmuskeln haben zentrale Kerne, Herzmuskelzellen haben randständige", correct: false }
-      ], explanation: "Skelettmuskelfasern entstehen durch Fusion vieler Myoblasten → mehrkernige Synzytien (Faserlänge bis 30 cm, hunderte Kerne randständig unter dem Sarkolemm). Herzmuskelzellen sind Einzelzellen (ca. 100 µm), verbunden durch Disci intercalares. Dieser Unterschied in der Zellentwicklung erklärt auch die unterschiedliche Regenerationsfähigkeit: Skelettmuskel kann repariert werden (aus Satellitenzellen), Herzmuskel kaum." },
-      { id: "mu_art_h4", type: "true_false", statement: "Der Herzmuskel besitzt eine automatische Erregungsbildung (Automatie) durch den Sinusknoten.", answer: true, explanation: "Der Sinusknoten im rechten Vorhof generiert spontan elektrische Impulse. Diese Automatie macht den Herzmuskel unwillkürlich und vom autonomen Nervensystem nur modulierbar, nicht steuerbar." },
+      ], explanation: "Skelettmuskelfasern entstehen durch Fusion vieler Myoblasten → mehrkernige Synzytien (Faserlänge bis 30 cm, hunderte Kerne randständig unter dem Sarkolemm). Herzmuskelzellen sind Einzelzellen (ca. 100 µm), verbunden durch Disci intercalares. Dieser Unterschied in der Zellentwicklung erklärt auch die unterschiedliche Regenerationsfähigkeit: Skelettmuskel kann repariert werden (aus Satellitenzellen), Herzmuskel kaum.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Skelettmuskelfasern sind mehrkernige Synzytien aus Myoblastenfusion.", isWrong: false },
+          { text: "Herzmuskelzellen sind echte Einzelzellen mit einem zentralen Kern.", isWrong: false },
+          { text: "Skelettmuskel kann durch Satellitenzellen regeneriert werden, Herzmuskel kaum.", isWrong: false },
+          { text: "Herzmuskelzellen sind wie Skelettmuskelfasern mehrkernige Synzytien.", isWrong: true }
+        ], whyWrong: "Herzmuskelzellen sind echte Einzelzellen mit nur einem zentralen Kern, verbunden durch Disci intercalares - nur die Skelettmuskelfasern sind mehrkernige Synzytien aus Myoblastenfusion. Das erklärt auch die bessere Regenerationsfähigkeit des Skelettmuskels über Satellitenzellen." } },
+      { id: "mu_art_h4", type: "true_false", statement: "Der Herzmuskel besitzt eine automatische Erregungsbildung (Automatie) durch den Sinusknoten.", answer: true, explanation: "Der Sinusknoten im rechten Vorhof generiert spontan elektrische Impulse. Diese Automatie macht den Herzmuskel unwillkürlich und vom autonomen Nervensystem nur modulierbar, nicht steuerbar.",
+        learningCard: { type: "reconstruct", template: "Der ___ im rechten Vorhof generiert spontan elektrische Impulse; diese ___ macht den Herzmuskel unwillkürlich und vom ___ Nervensystem nur modulierbar, nicht steuerbar.", blanks: ["Sinusknoten", "Automatie", "autonomen"], distractors: ["AV-Knoten", "somatischen"] } },
       { id: "mu_art_h5", type: "mc", question: "Was ist ein Disci intercalares (Glanzstreifen) beim Herzmuskel?", options: [
         { text: "Spezielle Zell-Zell-Verbindungen (Gap junctions + Desmosomen) zwischen Herzmuskelzellen für elektrische Kopplung und mechanischen Zusammenhalt", correct: true },
         { text: "Eine Schicht glatten Muskels um den Herzmuskel herum", correct: false },
         { text: "Die Verbindung von Herzmuskel an das Skelett (Sternum)", correct: false },
         { text: "Strukturen zur Regulation der Herzfrequenz im Sinusknoten", correct: false }
-      ], explanation: "Disci intercalares verbinden benachbarte Herzmuskelzellen: Gap junctions (Nexus) ermöglichen die direkte elektrische Erregungsweiterleitung, Desmosomen sorgen für mechanischen Zusammenhalt bei der Kontraktion." },
+      ], explanation: "Disci intercalares verbinden benachbarte Herzmuskelzellen: Gap junctions (Nexus) ermöglichen die direkte elektrische Erregungsweiterleitung, Desmosomen sorgen für mechanischen Zusammenhalt bei der Kontraktion.",
+        learningCard: { type: "predict", statement: "Disci intercalares verbinden Herzmuskelzellen durch Gap Junctions für die elektrische Kopplung und durch Desmosomen für den mechanischen Zusammenhalt.", answer: true, reveal: "Gap Junctions (Nexus) ermöglichen die direkte elektrische Erregungsweiterleitung zwischen benachbarten Herzmuskelzellen, Desmosomen sorgen für den mechanischen Zusammenhalt bei der Kontraktion." } },
       { id: "mu_art_h6", type: "mc", question: "Glatte Muskulatur unterscheidet sich von Skelettmuskulatur hauptsächlich durch:", options: [
         { text: "Fehlende Querstreifung, unwillkürliche Steuerung und MLCK-Regulation statt Troponinsystem", correct: true },
         { text: "Fehlende Myosinfilamente und keine Sarkomerstruktur", correct: false },
         { text: "Ausschliessliche Vorkommen im Herzen", correct: false },
         { text: "Mehrkernigkeit und randständige Kerne", correct: false }
-      ], explanation: "Glatte Muskulatur: keine Querstreifung (Filamente nicht parallel angeordnet), unwillkürlich, Regulation via MLCK (Myosin-Leichtketten-Kinase) statt Troponin. Vorkommen: Hohlorgane (Darm, Blutgefässe, Blase)." }
+      ], explanation: "Glatte Muskulatur: keine Querstreifung (Filamente nicht parallel angeordnet), unwillkürlich, Regulation via MLCK (Myosin-Leichtketten-Kinase) statt Troponin. Vorkommen: Hohlorgane (Darm, Blutgefässe, Blase).",
+        learningCard: { type: "teachback", prompt: "Was unterscheidet glatte Muskulatur von Skelettmuskulatur?", checklist: [
+          { text: "Keine Querstreifung", correct: true },
+          { text: "Unwillkürliche Steuerung", correct: true },
+          { text: "Regulation über MLCK statt Troponin", correct: true },
+          { text: "Vorkommen nur im Herzen", correct: false }
+        ], reveal: "Glatte Muskulatur hat keine Querstreifung, wird unwillkürlich gesteuert und reguliert die Kontraktion über die Myosin-Leichtketten-Kinase statt über Troponin. Sie kommt in Hohlorganen wie Darm, Blutgefässen und Blase vor." } }
     ],
     phase4Questions: [
       { id: "mu_art_mc1", type: "mc", question: "Welche Muskelart ist histologisch quergestreift UND unwillkürlich gesteuert?", options: [
@@ -2621,19 +3210,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Skelettmuskulatur", correct: false },
         { text: "Glatte Muskulatur", correct: false },
         { text: "Alle drei Muskelarten gleichermassen", correct: false }
-      ], explanation: "Die Herzmuskulatur ist histologisch quergestreift wie Skelettmuskel, wird aber unwillkürlich durch das Erregungsleitungssystem gesteuert, im Gegensatz zum willkürlichen Skelettmuskel." },
+      ], explanation: "Die Herzmuskulatur ist histologisch quergestreift wie Skelettmuskel, wird aber unwillkürlich durch das Erregungsleitungssystem gesteuert, im Gegensatz zum willkürlichen Skelettmuskel.",
+        learningCard: { type: "reconstruct", template: "Die ___ ist histologisch quergestreift wie Skelettmuskel, wird aber ___ durch das ___ gesteuert.", blanks: ["Herzmuskulatur", "unwillkürlich", "Erregungsleitungssystem"], distractors: ["glatte Muskulatur", "willkürlich"] } },
       { id: "mu_art_mc2", type: "mc", question: "Wo kommt glatte Muskulatur vor?", options: [
         { text: "In Hohlorganen wie Darm, Blutgefässen und Harnblase", correct: true },
         { text: "Ausschliesslich im Herzmuskel", correct: false },
         { text: "In Skelettmuskeln als Teil der Muskelfasern", correct: false },
         { text: "Nur in der Haut (Arrector pili)", correct: false }
-      ], explanation: "Glatte Muskulatur kommt in Hohlorganen (Darm, Blutgefässe, Harnblase, Gebärmutter) vor und wird unwillkürlich durch das vegetative Nervensystem gesteuert." },
+      ], explanation: "Glatte Muskulatur kommt in Hohlorganen (Darm, Blutgefässe, Harnblase, Gebärmutter) vor und wird unwillkürlich durch das vegetative Nervensystem gesteuert.",
+        learningCard: { type: "predict", statement: "Glatte Muskulatur kommt in Hohlorganen wie Darm, Blutgefässen und Harnblase vor.", answer: true, reveal: "Glatte Muskulatur kommt in Hohlorganen (Darm, Blutgefässe, Harnblase, Gebärmutter) vor und wird unwillkürlich durch das vegetative Nervensystem gesteuert." } },
       { id: "mu_art_mc3", type: "mc", question: "Welche Aussagen zum Herzmuskel sind korrekt?", options: [
         { text: "Herzmuskelzellen sind quergestreift und unwillkürlich gesteuert", correct: true },
         { text: "Disci intercalares ermöglichen elektrische Kopplung benachbarter Herzmuskelzellen", correct: true },
         { text: "Der Herzmuskel hat kein automatisches Erregungsbildungssystem", correct: false },
         { text: "Herzmuskelzellen sind mehrkernige Synzytien wie Skelettmuskelfasern", correct: false }
-      ], explanation: "Herzmuskel: quergestreift, unwillkürlich, Automatie durch Sinusknoten. Disci intercalares: Gap junctions + Desmosomen. Herzmuskelzellen sind Einzelzellen mit einem Kern – keine Synzytien."}
+      ], explanation: "Herzmuskel: quergestreift, unwillkürlich, Automatie durch Sinusknoten. Disci intercalares: Gap junctions + Desmosomen. Herzmuskelzellen sind Einzelzellen mit einem Kern – keine Synzytien.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Herzmuskelzellen sind quergestreift und unwillkürlich gesteuert.", isWrong: false },
+          { text: "Disci intercalares ermöglichen elektrische Kopplung benachbarter Herzmuskelzellen.", isWrong: false },
+          { text: "Der Herzmuskel besitzt ein automatisches Erregungsbildungssystem (Sinusknoten).", isWrong: false },
+          { text: "Herzmuskelzellen sind mehrkernige Synzytien wie Skelettmuskelfasern.", isWrong: true }
+        ], whyWrong: "Herzmuskelzellen sind Einzelzellen mit einem Kern, keine Synzytien - nur Skelettmuskelfasern entstehen durch Myoblastenfusion zu mehrkernigen Synzytien. Quergestreiftheit, Disci intercalares und die Automatie durch den Sinusknoten sind dagegen korrekt." } }
     ]
   }),
   makeDetailedPlant({
@@ -2645,32 +3242,58 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Supination = Plantarflexion; Pronation = Dorsalextension am Fuss", correct: false },
         { text: "Supination = Adduktion des Daumens; Pronation = Abduktion", correct: false },
         { text: "Beide Begriffe bezeichnen Kniebewegungen in der Transversalebene", correct: false }
-      ], explanation: "Supination (lat. supinus = rückwärtsgelehnt): Unterarm dreht nach aussen, Handflähe zeigt nach oben/vorne. Pronation (lat. pronus = nach vorne gebeugt): Unterarm dreht nach innen, Handfläche zeigt nach unten. Beide Bewegungen erfolgen im proximalen und distalen Radioulnargelenk durch Rotation der Speiche (Radius) um die Elle (Ulna). M. supinator und M. biceps (Supination), M. pronator teres und M. pronator quadratus (Pronation)." },
+      ], explanation: "Supination (lat. supinus = rückwärtsgelehnt): Unterarm dreht nach aussen, Handflähe zeigt nach oben/vorne. Pronation (lat. pronus = nach vorne gebeugt): Unterarm dreht nach innen, Handfläche zeigt nach unten. Beide Bewegungen erfolgen im proximalen und distalen Radioulnargelenk durch Rotation der Speiche (Radius) um die Elle (Ulna). M. supinator und M. biceps (Supination), M. pronator teres und M. pronator quadratus (Pronation).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Supination und Pronation treffen zu?", checklist: [
+          { text: "Supination: Unterarm dreht nach aussen, Handfläche zeigt nach oben", correct: true },
+          { text: "Pronation: Unterarm dreht nach innen, Handfläche zeigt nach unten", correct: true },
+          { text: "Beide Bewegungen erfolgen im Radioulnargelenk", correct: true },
+          { text: "Supination und Pronation sind Kniebewegungen", correct: false }
+        ], reveal: "Supination dreht den Unterarm nach aussen (Handfläche nach oben), Pronation nach innen (Handfläche nach unten). Beide Bewegungen erfolgen im proximalen und distalen Radioulnargelenk durch Rotation des Radius um die Ulna." } },
       { id: "mu_bew_h2", type: "mc", question: "Was bedeutet Dorsalextension und Plantarflexion am Fuss?", options: [
         { text: "Dorsalextension = Fuss zieht nach oben (Richtung Schienbein); Plantarflexion = Fuss drückt nach unten (Zehenspitze nach unten)", correct: true },
         { text: "Dorsalextension = Fuss dreht nach innen (Inversion); Plantarflexion = nach aussen", correct: false },
         { text: "Beide Begriffe bezeichnen Rotationsbewegungen im Kniegelenk", correct: false },
         { text: "Dorsalextension = Kniebeugung; Plantarflexion = Kniestreckung", correct: false }
-      ], explanation: "Dorsalextension (Dorsiflexion): Fuss hebt hoch (Zehenspitzen heben, Ferse bleibt). M. tibialis anterior. Plantarflexion: Fuss drückt nach unten (Zehenststand, Treten). M. gastrocnemius + M. soleus (Wadenmuskulatur). Klinisch: Plantarflexion bei Schlaganfall (Spitzfuss) oder Peronäuslahmung (= fehlende Dorsalextension → Steppergang)." },
+      ], explanation: "Dorsalextension (Dorsiflexion): Fuss hebt hoch (Zehenspitzen heben, Ferse bleibt). M. tibialis anterior. Plantarflexion: Fuss drückt nach unten (Zehenststand, Treten). M. gastrocnemius + M. soleus (Wadenmuskulatur). Klinisch: Plantarflexion bei Schlaganfall (Spitzfuss) oder Peronäuslahmung (= fehlende Dorsalextension → Steppergang).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Dorsalextension zieht den Fuss nach oben Richtung Schienbein.", isWrong: false },
+          { text: "Plantarflexion drückt den Fuss nach unten (Zehenspitze nach unten).", isWrong: false },
+          { text: "M. tibialis anterior führt die Dorsalextension aus.", isWrong: false },
+          { text: "Dorsalextension ist eine Drehbewegung nach innen (Inversion).", isWrong: true }
+        ], whyWrong: "Dorsalextension ist keine Drehbewegung, sondern hebt den Fuss Richtung Schienbein (durch den M. tibialis anterior); Plantarflexion drückt den Fuss nach unten. Inversion ist eine eigenständige Drehbewegung des Fusses, nicht identisch mit Dorsalextension." } },
       { id: "mu_bew_h3", type: "mc", question: "Was ist Zirkumduktion und bei welchem Gelenktyp ist sie möglich?", options: [
         { text: "Kreisbewegung eines Körperteils durch Kombination von Flex./Extension + Ab-/Adduktion – möglich bei Kugelgelenken und Sattelgelenken", correct: true },
         { text: "Rotation um die Längsachse eines Knochens – nur bei Zapfengelenken", correct: false },
         { text: "Gleichzeitige Beugung beider Extremitäten – kein spezifischer Gelenktyp", correct: false },
         { text: "Seitliche Neigung der Wirbelsäule – möglich bei Bandscheiben", correct: false }
-      ], explanation: "Zirkumduktion = kegelförmige Kreisbewegung eines Gliedmassensegments: entsteht durch sequenzielle Kombination Flexion → Abduktion → Extension → Adduktion. Voraussetzung: mindestens 2 Bewegungsachsen = Kugelgelenk (Schulter, Hüft) oder Sattelgelenk (Daumensattelgelenk). Im Scharniergelenk (Knie) ist Zirkumduktion nicht möglich." },
-      { id: "mu_bew_h4", type: "true_false", statement: "Abduktion und Adduktion verlaufen in der Frontalebene.", answer: true, explanation: "Abduktion (von der Körpermitte weg) und Adduktion (zur Körpermitte hin) finden in der Frontalebene um eine sagittale Achse statt. Flexion/Extension dagegen verlaufen in der Sagittalebene." },
+      ], explanation: "Zirkumduktion = kegelförmige Kreisbewegung eines Gliedmassensegments: entsteht durch sequenzielle Kombination Flexion → Abduktion → Extension → Adduktion. Voraussetzung: mindestens 2 Bewegungsachsen = Kugelgelenk (Schulter, Hüft) oder Sattelgelenk (Daumensattelgelenk). Im Scharniergelenk (Knie) ist Zirkumduktion nicht möglich.",
+        learningCard: { type: "reconstruct", template: "Zirkumduktion ist eine Kreisbewegung durch Kombination von Flexion/Extension und Ab-/Adduktion, möglich bei ___ (z.B. Schulter, Hüfte) und ___ (z.B. Daumen).", blanks: ["Kugelgelenken", "Sattelgelenken"], distractors: ["Scharniergelenken"] } },
+      { id: "mu_bew_h4", type: "true_false", statement: "Abduktion und Adduktion verlaufen in der Frontalebene.", answer: true, explanation: "Abduktion (von der Körpermitte weg) und Adduktion (zur Körpermitte hin) finden in der Frontalebene um eine sagittale Achse statt. Flexion/Extension dagegen verlaufen in der Sagittalebene.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Abduktion und Adduktion verlaufen in der Frontalebene.", isWrong: false },
+          { text: "Flexion und Extension verlaufen in der Sagittalebene.", isWrong: false },
+          { text: "Abduktion bewegt einen Körperteil von der Körpermitte weg.", isWrong: false },
+          { text: "Abduktion und Adduktion verlaufen in der Sagittalebene.", isWrong: true }
+        ], whyWrong: "Abduktion und Adduktion finden in der Frontalebene statt, nicht in der Sagittalebene - dort verlaufen Flexion und Extension. Abduktion bewegt einen Körperteil von der Körpermitte weg, Adduktion zur Mitte hin." } },
       { id: "mu_bew_h5", type: "mc", question: "Welche Bewegung vergrössert den Gelenkwinkel?", options: [
         { text: "Extension (Streckung)", correct: true },
         { text: "Flexion (Beugung)", correct: false },
         { text: "Adduktion", correct: false },
         { text: "Pronation", correct: false }
-      ], explanation: "Extension = Streckung = Vergrösserung des Gelenkwinkels. Flexion = Beugung = Verkleinerung des Gelenkwinkels. Beide Bewegungen verlaufen in der Sagittalebene." },
+      ], explanation: "Extension = Streckung = Vergrösserung des Gelenkwinkels. Flexion = Beugung = Verkleinerung des Gelenkwinkels. Beide Bewegungen verlaufen in der Sagittalebene.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Flexion und Extension treffen zu?", checklist: [
+          { text: "Extension vergrössert den Gelenkwinkel", correct: true },
+          { text: "Flexion verkleinert den Gelenkwinkel", correct: true },
+          { text: "Beide verlaufen in der Sagittalebene", correct: true },
+          { text: "Adduktion vergrössert den Gelenkwinkel", correct: false }
+        ], reveal: "Extension (Streckung) vergrössert den Gelenkwinkel, Flexion (Beugung) verkleinert ihn - beide Bewegungen verlaufen in der Sagittalebene." } },
       { id: "mu_bew_h6", type: "mc", question: "Welche Muskeln führen Pronation des Unterarms aus?", options: [
         { text: "M. pronator teres und M. pronator quadratus", correct: true },
         { text: "M. supinator und M. biceps brachii", correct: false },
         { text: "M. brachioradialis und M. triceps", correct: false },
         { text: "Mm. interossei dorsales", correct: false }
-      ], explanation: "Pronation (Handteller nach unten) wird durch M. pronator teres und M. pronator quadratus ausgeführt. Supination (Handteller nach oben) durch M. supinator und M. biceps brachii." }
+      ], explanation: "Pronation (Handteller nach unten) wird durch M. pronator teres und M. pronator quadratus ausgeführt. Supination (Handteller nach oben) durch M. supinator und M. biceps brachii.",
+        learningCard: { type: "predict", statement: "M. pronator teres und M. pronator quadratus führen die Pronation des Unterarms aus.", answer: true, reveal: "Pronation (Handteller nach unten) wird durch M. pronator teres und M. pronator quadratus ausgeführt; Supination (Handteller nach oben) dagegen durch M. supinator und M. biceps brachii." } }
     ],
     phase4Questions: [
       { id: "mu_bew_mc1", type: "mc", question: "Was bezeichnet Abduktion?", options: [
@@ -2678,19 +3301,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Bewegung eines Körperteils zur Körpermitte hin", correct: false },
         { text: "Beugung (Verkleinerung des Gelenkwinkels)", correct: false },
         { text: "Streckung (Vergrösserung des Gelenkwinkels)", correct: false }
-      ], explanation: "Abduktion ist die Bewegung eines Körperteils von der Körperlängsachse weg, z.B. das Heben des Arms seitlich nach oben, im Gegensatz zur Adduktion zur Mitte hin." },
+      ], explanation: "Abduktion ist die Bewegung eines Körperteils von der Körperlängsachse weg, z.B. das Heben des Arms seitlich nach oben, im Gegensatz zur Adduktion zur Mitte hin.",
+        learningCard: { type: "reconstruct", template: "Abduktion ist die Bewegung eines Körperteils von der ___ weg, z.B. das seitliche Heben des Arms - das Gegenteil ist die ___ zur Mitte hin.", blanks: ["Körpermitte", "Adduktion"], distractors: ["Sagittalebene"] } },
       { id: "mu_bew_mc2", type: "mc", question: "Was beschreibt der Begriff Pronation?", options: [
         { text: "Einwärtsdrehung des Unterarms (Handteller zeigt nach unten)", correct: true },
         { text: "Auswärtsdrehung des Unterarms (Supination)", correct: false },
         { text: "Plantarflexion des Fusses", correct: false },
         { text: "Seitwärtsneigung der Wirbelsäule", correct: false }
-      ], explanation: "Pronation ist die Einwärtsdrehung des Unterarms, bei der sich die Handinnenfläche nach unten dreht, durch Überkreuzung von Radius und Ulna." },
+      ], explanation: "Pronation ist die Einwärtsdrehung des Unterarms, bei der sich die Handinnenfläche nach unten dreht, durch Überkreuzung von Radius und Ulna.",
+        learningCard: { type: "predict", statement: "Pronation ist die Einwärtsdrehung des Unterarms, bei der die Handinnenfläche nach unten dreht.", answer: true, reveal: "Pronation ist die Einwärtsdrehung des Unterarms, bei der sich die Handinnenfläche nach unten dreht, durch Überkreuzung von Radius und Ulna." } },
       { id: "mu_bew_mc3", type: "mc", question: "Welche Aussagen zu Bewegungsarten sind korrekt?", options: [
         { text: "Supination dreht den Unterarm so, dass die Handfläche nach oben zeigt", correct: true },
         { text: "Zirkumduktion erfordert mindestens ein Zweiachsengelenk (z.B. Kugelgelenk)", correct: true },
         { text: "Flexion vergrössert den Gelenkwinkel", correct: false },
         { text: "Dorsalextension des Fusses drückt den Fuss nach unten (Zehenspitzenstand)", correct: false }
-      ], explanation: "Supination = Handfläche nach oben (Gegenteil: Pronation). Zirkumduktion: nur bei 2+ Achsen (Kugel-, Sattelgelenk). Flexion = Verkleinerung des Winkels. Dorsalextension = Fuss hebt hoch, Plantarflexion = Fuss nach unten."}
+      ], explanation: "Supination = Handfläche nach oben (Gegenteil: Pronation). Zirkumduktion: nur bei 2+ Achsen (Kugel-, Sattelgelenk). Flexion = Verkleinerung des Winkels. Dorsalextension = Fuss hebt hoch, Plantarflexion = Fuss nach unten.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Supination dreht den Unterarm so, dass die Handfläche nach oben zeigt.", isWrong: false },
+          { text: "Zirkumduktion erfordert mindestens ein Zweiachsengelenk (z.B. Kugelgelenk).", isWrong: false },
+          { text: "Dorsalextension des Fusses hebt den Fuss Richtung Schienbein.", isWrong: false },
+          { text: "Flexion vergrössert den Gelenkwinkel.", isWrong: true }
+        ], whyWrong: "Flexion (Beugung) VERKLEINERT den Gelenkwinkel - vergrössert wird er durch die Extension (Streckung). Supination, die Voraussetzung der Zirkumduktion in Zweiachsengelenken und die Dorsalextension sind dagegen korrekt beschrieben." } }
     ]
   }),
   makeDetailedPlant({
@@ -2702,27 +3333,48 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Sie ist aus glattem Muskelgewebe aufgebaut, nicht aus quergestreiftem", correct: false },
         { text: "Sie wird vom N. trigeminus innerviert, nicht vom N. facialis", correct: false },
         { text: "Sie hat keine Motorische Endplatte, sondern arbeitet autonom", correct: false }
-      ], explanation: "Mimische Muskeln (M. orbicularis oculi, M. zygomaticus, M. buccinator etc.) haben ihren Ursprung am Knochen oder Gesichtsschädel, ihren Ansatz aber in der Gesichtshaut. Kontraktion bewegt die Haut – das erzeugt Ausdruck. Alle sind vom N. facialis (CN VII) innerviert. Fazialisparese → ipsilateral: kein Lidschluss, Stirnrunzeln nicht möglich, Mundwinkel hängt herab." },
+      ], explanation: "Mimische Muskeln (M. orbicularis oculi, M. zygomaticus, M. buccinator etc.) haben ihren Ursprung am Knochen oder Gesichtsschädel, ihren Ansatz aber in der Gesichtshaut. Kontraktion bewegt die Haut – das erzeugt Ausdruck. Alle sind vom N. facialis (CN VII) innerviert. Fazialisparese → ipsilateral: kein Lidschluss, Stirnrunzeln nicht möglich, Mundwinkel hängt herab.",
+        learningCard: { type: "predict", statement: "Die mimische Muskulatur inseriert direkt in der Gesichtshaut statt Knochen-zu-Knochen, was direkte Hautbewegung ermöglicht.", answer: true, reveal: "Mimische Muskeln haben ihren Ursprung am Knochen, ihren Ansatz aber in der Gesichtshaut - ihre Kontraktion bewegt die Haut und erzeugt Mimik. Alle sind vom N. facialis (VII) innerviert." } },
       { id: "mu_kopf_h2", type: "mc", question: "Welche vier Muskeln bilden die Kaumuskulatur und welchem Hirnnerv unterliegen sie?", options: [
         { text: "M. masseter, M. temporalis, M. pterygoideus medialis, M. pterygoideus lateralis – alle N. trigeminus (V3, Pars mandibularis)", correct: true },
         { text: "M. masseter, M. buccinator, M. temporalis – alle N. facialis (VII)", correct: false },
         { text: "M. geniohyoideus, M. mylohyoideus, M. digastricus – alle N. trigeminus (V3)", correct: false },
         { text: "M. masseter, M. sternocleidomastoideus, M. trapezius – alle N. accessorius (XI)", correct: false }
-      ], explanation: "Kaumuskulatur = vier Muskeln, alle motorisch durch N. mandibularis (V3) versorgt: M. masseter (Kieferschluss, stärkster Kaumuskel), M. temporalis (Kieferschluss + Retraktion), M. pterygoideus medialis (Kieferschluss, Protraktion), M. pterygoideus lateralis (Mundöffnung, Mahlbewegung). Klinisch: Trigeminusneuralgie (V3) → starke Kieferschmerzen; Bruxismus (Knirschen)." },
+      ], explanation: "Kaumuskulatur = vier Muskeln, alle motorisch durch N. mandibularis (V3) versorgt: M. masseter (Kieferschluss, stärkster Kaumuskel), M. temporalis (Kieferschluss + Retraktion), M. pterygoideus medialis (Kieferschluss, Protraktion), M. pterygoideus lateralis (Mundöffnung, Mahlbewegung). Klinisch: Trigeminusneuralgie (V3) → starke Kieferschmerzen; Bruxismus (Knirschen).",
+        learningCard: { type: "teachback", prompt: "Welche Muskeln gehören zur Kaumuskulatur?", checklist: [
+          { text: "M. masseter", correct: true },
+          { text: "M. temporalis", correct: true },
+          { text: "M. pterygoideus medialis und lateralis", correct: true },
+          { text: "M. buccinator", correct: false }
+        ], reveal: "Die vier Kaumuskeln (M. masseter, M. temporalis, M. pterygoideus medialis und lateralis) werden alle motorisch durch den N. mandibularis (V3) versorgt. M. buccinator gehört dagegen zur mimischen Muskulatur (N. facialis)." } },
       { id: "mu_kopf_h3", type: "mc", question: "Ein Patient kann nach einem Schlaganfall die Stirn auf der betroffenen Seite nicht mehr runzeln. Welcher Hirnnerv ist geschädigt?", options: [
         { text: "N. facialis (VII) – periphere Läsion oder zentrale Läsion mit Stirnbeteiligung", correct: true },
         { text: "N. trigeminus (V) – sensibel für Gesicht, motorisch für Kaumuskulatur", correct: false },
         { text: "N. hypoglossus (XII) – motorisch für Zunge", correct: false },
         { text: "N. glossopharyngeus (IX) – Schluck- und Gaumenmuskulatur", correct: false }
-      ], explanation: "Der N. facialis (VII) innerviert die gesamte mimische Muskulatur inkl. M. frontalis (Stirnrunzeln). Periphere Fazialisparese: komplett ipsilaterale Lahmung (Stirn, Auge, Mund). Zentrale Fazialisparese (z.B. Schlaganfall): nur untere Gesichtshälfte betroffen, Stirn gespart (bilaterale kortikale Versorgung des M. frontalis). Diese Unterscheidung ist klinisch entscheidend für die Lokalisation der Schädigung." },
-      { id: "mu_kopf_h4", type: "true_false", statement: "Eine periphere Fazialisparese führt zur vollständigen Lähmung der ipsilateralen Gesichtshälfte einschliesslich der Stirn.", answer: true, explanation: "Bei peripherer Fazialisläsion (z.B. Bell-Parese) sind alle mimischen Muskeln einer Seite betroffen – Stirnrunzeln, Lidschluss und Mundwinkel. Dies unterscheidet sie von der zentralen Parese, bei der die Stirn gespart bleibt." },
+      ], explanation: "Der N. facialis (VII) innerviert die gesamte mimische Muskulatur inkl. M. frontalis (Stirnrunzeln). Periphere Fazialisparese: komplett ipsilaterale Lahmung (Stirn, Auge, Mund). Zentrale Fazialisparese (z.B. Schlaganfall): nur untere Gesichtshälfte betroffen, Stirn gespart (bilaterale kortikale Versorgung des M. frontalis). Diese Unterscheidung ist klinisch entscheidend für die Lokalisation der Schädigung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der N. facialis (VII) innerviert die gesamte mimische Muskulatur inkl. M. frontalis.", isWrong: false },
+          { text: "Bei peripherer Fazialisparese ist die gesamte ipsilaterale Gesichtshälfte gelähmt, inklusive Stirn.", isWrong: false },
+          { text: "Bei zentraler Fazialisparese bleibt die Stirn wegen bilateraler kortikaler Versorgung ausgespart.", isWrong: false },
+          { text: "Der N. trigeminus innerviert die mimische Muskulatur.", isWrong: true }
+        ], whyWrong: "Der N. trigeminus (V) versorgt sensibel das Gesicht und motorisch die Kaumuskulatur - die mimische Muskulatur wird ausschliesslich vom N. facialis (VII) innerviert. Die Unterscheidung zwischen peripherer (komplett) und zentraler (Stirn ausgespart) Fazialisparese ist klinisch entscheidend." } },
+      { id: "mu_kopf_h4", type: "true_false", statement: "Eine periphere Fazialisparese führt zur vollständigen Lähmung der ipsilateralen Gesichtshälfte einschliesslich der Stirn.", answer: true, explanation: "Bei peripherer Fazialisläsion (z.B. Bell-Parese) sind alle mimischen Muskeln einer Seite betroffen – Stirnrunzeln, Lidschluss und Mundwinkel. Dies unterscheidet sie von der zentralen Parese, bei der die Stirn gespart bleibt.",
+        learningCard: { type: "reconstruct", template: "Bei ___ Fazialisläsion sind alle mimischen Muskeln einer Seite betroffen - Stirnrunzeln, Lidschluss und Mundwinkel; bei der ___ Parese bleibt die ___ dagegen ausgespart.", blanks: ["peripherer", "zentralen", "Stirn"], distractors: ["trigeminalen", "Kaumuskulatur"] } },
       { id: "mu_kopf_h5", type: "mc", question: "Welche Funktion übernimmt der M. pterygoideus lateralis primär?", options: [
         { text: "Mundöffnung (Unterkieferdepression) und Mahlbewegungen des Unterkiefers", correct: true },
         { text: "Kieferschluss (Elevation des Unterkiefers)", correct: false },
         { text: "Retraktion des Unterkiefers", correct: false },
         { text: "Protraktion der Lippen", correct: false }
-      ], explanation: "M. pterygoideus lateralis öffnet den Mund und ermöglicht die Mahlbewegung. Kieferschluss leisten M. masseter, M. temporalis und M. pterygoideus medialis." },
-      { id: "mu_kopf_h6", type: "true_false", statement: "Die mimische Muskulatur wird wie die Kaumuskulatur durch den N. trigeminus (V) innerviert.", answer: false, explanation: "Mimische Muskulatur = N. facialis (VII). Kaumuskulatur = N. trigeminus, Pars mandibularis (V3). Diese Trennung ist klinisch wichtig: Trigeminusneuralgie betrifft Kauschmerz, Fazialisparese betrifft mimische Funktion." }
+      ], explanation: "M. pterygoideus lateralis öffnet den Mund und ermöglicht die Mahlbewegung. Kieferschluss leisten M. masseter, M. temporalis und M. pterygoideus medialis.",
+        learningCard: { type: "predict", statement: "M. pterygoideus lateralis öffnet den Mund und ermöglicht die Mahlbewegung, während die übrigen Kaumuskeln den Kiefer schliessen.", answer: true, reveal: "M. pterygoideus lateralis öffnet den Mund und ermöglicht die Mahlbewegung; Kieferschluss leisten dagegen M. masseter, M. temporalis und M. pterygoideus medialis." } },
+      { id: "mu_kopf_h6", type: "true_false", statement: "Die mimische Muskulatur wird wie die Kaumuskulatur durch den N. trigeminus (V) innerviert.", answer: false, explanation: "Mimische Muskulatur = N. facialis (VII). Kaumuskulatur = N. trigeminus, Pars mandibularis (V3). Diese Trennung ist klinisch wichtig: Trigeminusneuralgie betrifft Kauschmerz, Fazialisparese betrifft mimische Funktion.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Innervation von mimischer Muskulatur und Kaumuskulatur treffen zu?", checklist: [
+          { text: "Mimische Muskulatur: N. facialis (VII)", correct: true },
+          { text: "Kaumuskulatur: N. trigeminus, Pars mandibularis (V3)", correct: true },
+          { text: "Trigeminusneuralgie betrifft vor allem Kauschmerz", correct: true },
+          { text: "Beide Muskelgruppen werden vom selben Hirnnerv innerviert", correct: false }
+        ], reveal: "Mimische Muskulatur wird vom N. facialis (VII) innerviert, die Kaumuskulatur vom N. trigeminus, Pars mandibularis (V3) - zwei getrennte Hirnnerven. Diese Trennung ist klinisch wichtig: Trigeminusneuralgie betrifft den Kauschmerz, Fazialisparese die mimische Funktion." } }
     ],
     phase4Questions: [
       { id: "mu_kopf_mc1", type: "mc", question: "Welchem Hirnnerv unterliegt die mimische Muskulatur?", options: [
@@ -2730,19 +3382,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Nervus trigeminus (V)", correct: false },
         { text: "Nervus hypoglossus (XII)", correct: false },
         { text: "Nervus vagus (X)", correct: false }
-      ], explanation: "Der N. facialis (VII. Hirnnerv) versorgt die mimische Muskulatur motorisch; der N. trigeminus (V) innerviert die Kaumuskulatur und vermittelt die Gesichtssensibilität." },
+      ], explanation: "Der N. facialis (VII. Hirnnerv) versorgt die mimische Muskulatur motorisch; der N. trigeminus (V) innerviert die Kaumuskulatur und vermittelt die Gesichtssensibilität.",
+        learningCard: { type: "predict", statement: "Die mimische Muskulatur wird ausschliesslich vom Nervus facialis (VII) innerviert.", answer: true, reveal: "Der N. facialis (VII. Hirnnerv) versorgt die mimische Muskulatur motorisch; der N. trigeminus (V) innerviert die Kaumuskulatur und vermittelt die Gesichtssensibilität." } },
       { id: "mu_kopf_mc2", type: "mc", question: "Welcher Muskel gilt als stärkster Kaumuskel?", options: [
         { text: "Musculus masseter", correct: true },
         { text: "Musculus temporalis", correct: false },
         { text: "Musculus pterygoideus medialis", correct: false },
         { text: "Musculus buccinator", correct: false }
-      ], explanation: "Der M. masseter gilt als stärkster Kaumuskel, da er einen grossen Querschnitt hat und über einen günstigen Hebelarm vom Unterkieferast zum Jochbogen wirkt." },
+      ], explanation: "Der M. masseter gilt als stärkster Kaumuskel, da er einen grossen Querschnitt hat und über einen günstigen Hebelarm vom Unterkieferast zum Jochbogen wirkt.",
+        learningCard: { type: "reconstruct", template: "Der ___ gilt als stärkster Kaumuskel, da er einen grossen Querschnitt hat und über einen günstigen Hebelarm vom ___ zum ___ wirkt.", blanks: ["M. masseter", "Unterkieferast", "Jochbogen"], distractors: ["M. temporalis", "Schläfenbein"] } },
       { id: "mu_kopf_mc3", type: "mc", question: "Welche Aussagen zu Kopfmuskeln und ihrer Innervation sind korrekt?", options: [
         { text: "Mimische Muskulatur wird durch N. facialis (VII) innerviert", correct: true },
         { text: "Bei peripherer Fazialisparese ist die Stirn auf der betroffenen Seite mitgelähmt", correct: true },
         { text: "Kaumuskulatur wird durch N. facialis (VII) innerviert", correct: false },
         { text: "M. buccinator zählt zur Kaumuskulatur", correct: false }
-      ], explanation: "Mimische Muskeln: N. facialis VII. Kaumuskeln (masseter, temporalis, pterygoidei): N. trigeminus V3. M. buccinator ist mimisch, nicht Kaumuskel. Periphere Fazialisparese: Stirn ipsilateral betroffen."}
+      ], explanation: "Mimische Muskeln: N. facialis VII. Kaumuskeln (masseter, temporalis, pterygoidei): N. trigeminus V3. M. buccinator ist mimisch, nicht Kaumuskel. Periphere Fazialisparese: Stirn ipsilateral betroffen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Mimische Muskulatur wird durch N. facialis (VII) innerviert.", isWrong: false },
+          { text: "Bei peripherer Fazialisparese ist die Stirn auf der betroffenen Seite mitgelähmt.", isWrong: false },
+          { text: "M. buccinator zählt zur mimischen Muskulatur, nicht zur Kaumuskulatur.", isWrong: false },
+          { text: "Kaumuskulatur wird durch N. facialis (VII) innerviert.", isWrong: true }
+        ], whyWrong: "Die Kaumuskulatur wird durch den N. trigeminus (V3), nicht durch den N. facialis (VII) innerviert - dieser versorgt nur die mimische Muskulatur. Die mimische Innervation, die Beteiligung der Stirn bei peripherer Fazialisparese und die Zuordnung des M. buccinator sind dagegen korrekt." } }
     ]
   }),
   makeDetailedPlant({
@@ -2754,32 +3414,53 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "Die oberflächennahen Muskeln wie M. trapezius, die von der Schulter auf den Rücken ziehen", correct: false },
         { text: "Alle Muskeln des Thorax einschliesslich der Interkostalmuskeln", correct: false },
         { text: "Nur die Bauchmuskeln als Antagonisten der Rückenstrecker", correct: false }
-      ], explanation: "Autochthone Rückenmuskulatur (= 'eigenständige' Rückenmuskeln): stammen aus den Myotomen der Wirbelsegmente und werden durch dorsale Rami der Spinalnerven innerviert. Tiefer Anteil (M. multifidus, Mm. rotatores): segmentale Stabilisierung einzelner Wirbelgelenke. Oberfläche (M. erector spinä, M. longissimus): Aufrichtung der Wirbelsäule. Klinisch: Chronischer Rückenschmerz oft durch Schwäche dieser Muskeln." },
+      ], explanation: "Autochthone Rückenmuskulatur (= 'eigenständige' Rückenmuskeln): stammen aus den Myotomen der Wirbelsegmente und werden durch dorsale Rami der Spinalnerven innerviert. Tiefer Anteil (M. multifidus, Mm. rotatores): segmentale Stabilisierung einzelner Wirbelgelenke. Oberfläche (M. erector spinä, M. longissimus): Aufrichtung der Wirbelsäule. Klinisch: Chronischer Rückenschmerz oft durch Schwäche dieser Muskeln.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur autochthonen Rückenmuskulatur treffen zu?", checklist: [
+          { text: "Entstammt den Myotomen der Wirbelsegmente", correct: true },
+          { text: "Wird durch dorsale Rami der Spinalnerven innerviert", correct: true },
+          { text: "Tiefer Anteil stabilisiert segmental einzelne Wirbelgelenke", correct: true },
+          { text: "Gehört zu den Bauchmuskeln", correct: false }
+        ], reveal: "Die autochthone Rückenmuskulatur entstammt den Myotomen der Wirbelsegmente und wird durch dorsale Rami der Spinalnerven innerviert. Der tiefe Anteil (M. multifidus, Mm. rotatores) stabilisiert segmental, der oberflächliche (M. erector spinae) richtet die Wirbelsäule auf." } },
       { id: "mu_rumpf_h2", type: "mc", question: "Welche Funktion hat der M. transversus abdominis, der tiefste Bauchmuskel?", options: [
         { text: "Stabilisierung der Lendenwirbelsäule durch Druckerhöhung im Bauchraum (Bauchpresse) – kein Beugeeffekt auf den Rumpf", correct: true },
         { text: "Rumpfbeugung (Flexion) als stärkster Bauchmuskel", correct: false },
         { text: "Rumpfrotation ipsilateral wie M. obliquus externus", correct: false },
         { text: "Anheben des Zwerchfells während der Inspiration", correct: false }
-      ], explanation: "M. transversus abdominis: tief liegend, verläuft quer (transversal). Beim Anspannen erzeugt er eine 'korsettartige' Kompression des Bauchraums → erhöht intraabdominellen Druck → stabilisiert die LWS von ventral. Er hat praktisch keinen Beugeeffekt auf den Rumpf. Klinisch: Wichtigster Stabilisierungsmuskel bei Rückenschmerz; Kinesiotaping, Physiotherapie zielen oft auf diesen Muskel ab." },
+      ], explanation: "M. transversus abdominis: tief liegend, verläuft quer (transversal). Beim Anspannen erzeugt er eine 'korsettartige' Kompression des Bauchraums → erhöht intraabdominellen Druck → stabilisiert die LWS von ventral. Er hat praktisch keinen Beugeeffekt auf den Rumpf. Klinisch: Wichtigster Stabilisierungsmuskel bei Rückenschmerz; Kinesiotaping, Physiotherapie zielen oft auf diesen Muskel ab.",
+        learningCard: { type: "predict", statement: "M. transversus abdominis stabilisiert die Lendenwirbelsäule durch Druckerhöhung im Bauchraum, hat aber kaum Beugeeffekt auf den Rumpf.", answer: true, reveal: "M. transversus abdominis liegt am tiefsten und verläuft quer; seine Anspannung erhöht den intraabdominellen Druck und stabilisiert die Lendenwirbelsäule 'korsettartig' von ventral, ohne den Rumpf nennenswert zu beugen." } },
       { id: "mu_rumpf_h3", type: "mc", question: "Welche Bauchmuskeln führen Rumpfrotation aus und wie?", options: [
         { text: "M. obliquus externus abdominis ipsilateral + M. obliquus internus kontralateral = Rotation zur Gegenseite", correct: true },
         { text: "M. rectus abdominis (beidseitig) führt Rotation aus", correct: false },
         { text: "Ausschliesslich M. transversus abdominis rotiert den Rumpf", correct: false },
         { text: "M. obliquus externus und internus wirken immer gleichseitig = Rotation zur gleichen Seite", correct: false }
-      ], explanation: "Rumpfrotation: M. obliquus externus abdominis einer Seite + M. obliquus internus der GEGENSEITE kontrahieren gemeinsam → Rotation zur Gegenseite des externus (oder zur gleichen Seite des internus). Beispiel: Drehung nach rechts = rechts externus + links internus. Diese diagonale Muskelpaare erklären, warum Rumpfrotation eine koordinierte bilaterale Muskelaktivität ist." },
-      { id: "mu_rumpf_h4", type: "true_false", statement: "Die autochthone Rückenmuskulatur liegt tief, ist segmental angeordnet und wird durch dorsale Äste der Spinalnerven innerviert.", answer: true, explanation: "Autochthone (= eigenständige, aus Myotomen stammende) Rückenmuskulatur: tiefer Teil (M. multifidus, Mm. rotatores) stabilisiert segmental einzelne Wirbelgelenke; oberflächlicher Teil (M. erector spinae, M. longissimus) richtet die Wirbelsäule auf. Innervation durch dorsale Rami der Spinalnerven. Klinisch wichtig bei Rückenschmerz." },
+      ], explanation: "Rumpfrotation: M. obliquus externus abdominis einer Seite + M. obliquus internus der GEGENSEITE kontrahieren gemeinsam → Rotation zur Gegenseite des externus (oder zur gleichen Seite des internus). Beispiel: Drehung nach rechts = rechts externus + links internus. Diese diagonale Muskelpaare erklären, warum Rumpfrotation eine koordinierte bilaterale Muskelaktivität ist.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "M. obliquus externus einer Seite und M. obliquus internus der Gegenseite kontrahieren gemeinsam bei Rotation.", isWrong: false },
+          { text: "Diese diagonalen Muskelpaare erklären die koordinierte bilaterale Aktivität bei Rumpfrotation.", isWrong: false },
+          { text: "M. rectus abdominis ist an der Rumpfrotation nicht primär beteiligt.", isWrong: false },
+          { text: "M. rectus abdominis (beidseitig) führt die Rumpfrotation aus.", isWrong: true }
+        ], whyWrong: "Der M. rectus abdominis beugt den Rumpf, führt aber keine Rotation aus - Rumpfrotation entsteht durch das diagonale Zusammenspiel von M. obliquus externus einer Seite und M. obliquus internus der Gegenseite." } },
+      { id: "mu_rumpf_h4", type: "true_false", statement: "Die autochthone Rückenmuskulatur liegt tief, ist segmental angeordnet und wird durch dorsale Äste der Spinalnerven innerviert.", answer: true, explanation: "Autochthone (= eigenständige, aus Myotomen stammende) Rückenmuskulatur: tiefer Teil (M. multifidus, Mm. rotatores) stabilisiert segmental einzelne Wirbelgelenke; oberflächlicher Teil (M. erector spinae, M. longissimus) richtet die Wirbelsäule auf. Innervation durch dorsale Rami der Spinalnerven. Klinisch wichtig bei Rückenschmerz.",
+        learningCard: { type: "reconstruct", template: "Die autochthone Rückenmuskulatur liegt ___, ist ___ angeordnet und wird durch ___ Äste der Spinalnerven innerviert.", blanks: ["tief", "segmental", "dorsale"], distractors: ["oberflächlich", "ventrale"] } },
       { id: "mu_rumpf_h5", type: "mc", question: "Welche Wirkung hat M. intercostalis internus bei forcierter Exspiration?", options: [
         { text: "Exspiratorisch: Senkt die Rippen und verkleinert den Thoraxquerschnitt", correct: true },
         { text: "Inspiratorisch: Hebt die Rippen und erweitert den Thorax", correct: false },
         { text: "Keine Atemfunktion – nur Stabilisierung der Rippenzwischenräume", correct: false },
         { text: "Gleichsinnig wie M. intercostalis externus bei der Inspiration", correct: false }
-      ], explanation: "Mm. intercostales interni verlaufen von anterior-superior nach posterior-inferior – entgegengesetzt zu den externi. Bei Kontraktion ziehen sie die Rippen nach unten → exspiratorisch. Sie werden bei forcierter Exspiration (Sport, Husten) aktiviert. Merke: externi = Einatmen, interni = Ausatmen." },
+      ], explanation: "Mm. intercostales interni verlaufen von anterior-superior nach posterior-inferior – entgegengesetzt zu den externi. Bei Kontraktion ziehen sie die Rippen nach unten → exspiratorisch. Sie werden bei forcierter Exspiration (Sport, Husten) aktiviert. Merke: externi = Einatmen, interni = Ausatmen.",
+        learningCard: { type: "predict", statement: "Mm. intercostales interni senken die Rippen und wirken damit exspiratorisch, entgegengesetzt zu den Mm. intercostales externi.", answer: true, reveal: "Mm. intercostales interni verlaufen entgegengesetzt zu den externi und ziehen die Rippen bei Kontraktion nach unten - das wirkt exspiratorisch und wird bei forcierter Ausatmung wie Husten aktiviert. Merke: externi = Einatmen, interni = Ausatmen." } },
       { id: "mu_rumpf_h6", type: "mc", question: "Was ist die primäre Funktion der Bauchmuskeln im Alltag?", options: [
         { text: "Rumpfstabilisierung, Bauchpresse (Erhöhung intraabdominalen Drucks) und Rumpfbeugung/-rotation", correct: true },
         { text: "Ausschliesslich Atemfunktion (inspiratorisch)", correct: false },
         { text: "Stabilisierung des Hüftgelenks ohne Rumpfwirkung", correct: false },
         { text: "Streckung der Wirbelsäule wie autochthone Rückenmuskulatur", correct: false }
-      ], explanation: "Bauchmuskeln (rectus, obliquus ext./int., transversus): Hauptfunktionen sind Rumpfbeugung (rectus), Rotation (obliqui), Seitneigung und intraabdominaler Druck (transversus = Bauchpresse). Bauchpresse wichtig bei Miktion, Defäkation, Geburt, Husten, Niesen." }
+      ], explanation: "Bauchmuskeln (rectus, obliquus ext./int., transversus): Hauptfunktionen sind Rumpfbeugung (rectus), Rotation (obliqui), Seitneigung und intraabdominaler Druck (transversus = Bauchpresse). Bauchpresse wichtig bei Miktion, Defäkation, Geburt, Husten, Niesen.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen haben die Bauchmuskeln?", checklist: [
+          { text: "Rumpfbeugung (M. rectus abdominis)", correct: true },
+          { text: "Rotation (Mm. obliqui)", correct: true },
+          { text: "Bauchpresse / Erhöhung des intraabdominalen Drucks", correct: true },
+          { text: "Ausschliesslich Atemfunktion", correct: false }
+        ], reveal: "Die Bauchmuskeln beugen den Rumpf (rectus), rotieren ihn (obliqui) und erhöhen den intraabdominellen Druck (transversus, Bauchpresse) - wichtig bei Miktion, Defäkation, Geburt, Husten und Niesen." } }
     ],
     phase4Questions: [
       { id: "mu_rumpf_mc1", type: "mc", question: "Welche Muskeln gehören zur primären inspiratorischen Atemhilfsmuskulatur?", options: [
@@ -2787,19 +3468,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "M. rectus abdominis und M. obliquus externus", correct: false },
         { text: "Mm. intercostales interni", correct: false },
         { text: "M. erector spinä", correct: false }
-      ], explanation: "M. sternocleidomastoideus und Mm. scaleni sind primäre Atemhilfsmuskeln bei der Inspiration, da sie den oberen Brustkorb anheben und das Atemvolumen vergrössern." },
+      ], explanation: "M. sternocleidomastoideus und Mm. scaleni sind primäre Atemhilfsmuskeln bei der Inspiration, da sie den oberen Brustkorb anheben und das Atemvolumen vergrössern.",
+        learningCard: { type: "predict", statement: "M. sternocleidomastoideus und Mm. scaleni sind primäre inspiratorische Atemhilfsmuskeln.", answer: true, reveal: "M. sternocleidomastoideus und Mm. scaleni sind primäre Atemhilfsmuskeln bei der Inspiration, da sie den oberen Brustkorb anheben und das Atemvolumen vergrössern." } },
       { id: "mu_rumpf_mc2", type: "mc", question: "Welche Funktion hat der M. rectus abdominis?", options: [
         { text: "Rumpfbeugung (Flexion) und Erhöhung des Bauchdrucks", correct: true },
         { text: "Rumpfstreckung und Unterstützung der Inspiration", correct: false },
         { text: "Ausschliesslich seitliche Rumpfneigung zur rechten Seite", correct: false },
         { text: "Passive Bauchdeckenstabilisierung ohne Kraftentfaltung", correct: false }
-      ], explanation: "Der M. rectus abdominis beugt den Rumpf (Flexion der Wirbelsäule) und erhöht den intraabdominellen Druck, z.B. beim Husten, Pressen und Defäkation." },
+      ], explanation: "Der M. rectus abdominis beugt den Rumpf (Flexion der Wirbelsäule) und erhöht den intraabdominellen Druck, z.B. beim Husten, Pressen und Defäkation.",
+        learningCard: { type: "reconstruct", template: "Der M. rectus abdominis beugt den Rumpf (___) und erhöht den ___ Druck, z.B. beim Husten und ___.", blanks: ["Flexion", "intraabdominellen", "Defäkation"], distractors: ["Extension", "thorakalen"] } },
       { id: "mu_rumpf_mc3", type: "mc", question: "Welche Aussagen zur Rumpfmuskulatur sind korrekt?", options: [
         { text: "Die autochthone Rückenmuskulatur wird durch dorsale Äste der Spinalnerven innerviert", correct: true },
         { text: "Mm. intercostales interni unterstützen die forcierte Exspiration", correct: true },
         { text: "Die Bauchmuskeln haben ausschliesslich exspiratorische Funktionen", correct: false },
         { text: "Zwerchfell und M. erector spinae sind funktionell identisch", correct: false }
-      ], explanation: "Autochthone Rückenmuskulatur: dorsale Spinalnervenäste. Mm. intercostales interni: forcierte Exspiration. Bauchmuskeln: auch Bauchdruckerhöhung, Flexion, Lateralflexion."}
+      ], explanation: "Autochthone Rückenmuskulatur: dorsale Spinalnervenäste. Mm. intercostales interni: forcierte Exspiration. Bauchmuskeln: auch Bauchdruckerhöhung, Flexion, Lateralflexion.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die autochthone Rückenmuskulatur wird durch dorsale Äste der Spinalnerven innerviert.", isWrong: false },
+          { text: "Mm. intercostales interni unterstützen die forcierte Exspiration.", isWrong: false },
+          { text: "Die Bauchmuskeln erhöhen den intraabdominalen Druck (Bauchpresse).", isWrong: false },
+          { text: "Die Bauchmuskeln haben ausschliesslich exspiratorische Funktionen.", isWrong: true }
+        ], whyWrong: "Die Bauchmuskeln haben neben ihrer exspiratorischen Rolle auch Beuge-, Rotations- und Druckerhöhungsfunktionen (Bauchpresse) - sie sind also nicht ausschliesslich exspiratorisch. Die Innervation der autochthonen Rückenmuskulatur und die exspiratorische Wirkung der Mm. intercostales interni sind dagegen korrekt." } }
     ]
   }),
   makeDetailedPlant({
@@ -2811,32 +3500,53 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "M. deltoideus, M. biceps brachii, M. triceps brachii, M. pectoralis major", correct: false },
         { text: "M. trapezius, M. serratus anterior, M. latissimus dorsi, M. rhomboideus", correct: false },
         { text: "M. supraspinatus, M. teres major, M. coracobrachialis, M. deltoideus", correct: false }
-      ], explanation: "Die Rotatorenmanschette (SITS-Muskeln): Supraspinatus (Abduktion), Infraspinatus (Aussenrotation), Teres minor (Aussenrotation), Subscapularis (Innenrotation). Gemeinsame Funktion: Kompression des Humeruskopfs in die Glenoidpfanne – Sicherung des instabilen Schultergelenks. Klinisch: Rotatorenmanschettenriss (häufig M. supraspinatus) → schmerzhafter Bogenstreckentest positiv." },
+      ], explanation: "Die Rotatorenmanschette (SITS-Muskeln): Supraspinatus (Abduktion), Infraspinatus (Aussenrotation), Teres minor (Aussenrotation), Subscapularis (Innenrotation). Gemeinsame Funktion: Kompression des Humeruskopfs in die Glenoidpfanne – Sicherung des instabilen Schultergelenks. Klinisch: Rotatorenmanschettenriss (häufig M. supraspinatus) → schmerzhafter Bogenstreckentest positiv.",
+        learningCard: { type: "teachback", prompt: "Welche Muskeln bilden die Rotatorenmanschette (SITS)?", checklist: [
+          { text: "M. supraspinatus", correct: true },
+          { text: "M. infraspinatus", correct: true },
+          { text: "M. teres minor und M. subscapularis", correct: true },
+          { text: "M. deltoideus", correct: false }
+        ], reveal: "Die Rotatorenmanschette (SITS: Supraspinatus, Infraspinatus, Teres minor, Subscapularis) stabilisiert den Humeruskopf durch Kompression in die Glenoidpfanne - der M. deltoideus gehört nicht dazu." } },
       { id: "mu_ext_h2", type: "mc", question: "Was ist die Hauptfunktion des M. gluteus maximus?", options: [
         { text: "Extension und Aussenrotation im Hüftgelenk – wichtig beim Treppensteigen, Aufstehen und Laufen", correct: true },
         { text: "Abduktion im Hüftgelenk – Seitstabilisierung beim Gehen", correct: false },
         { text: "Innenrotation des Oberschenkels – Gangbild-Kontrolle", correct: false },
         { text: "Kniebeugung als Hintermuskel des Oberschenkels", correct: false }
-      ], explanation: "M. gluteus maximus ist der grösste und kraftvollste Gesässmuskel. Hauptfunktion: Hüftextension (vom Boden aufstehen, Treppen steigen, bergauf gehen) + Aussenrotation. Innervation: N. gluteus inferior. M. gluteus medius und minimus: Abduktion und Innenrotation (Seitstabilisierung beim Einbeinstand – Trendelenburg-Hinken bei Läsion). Klinisch: M. gluteus maximus ist nach Knieoperation oft der schwäche Wiederherstellungsmuskel." },
+      ], explanation: "M. gluteus maximus ist der grösste und kraftvollste Gesässmuskel. Hauptfunktion: Hüftextension (vom Boden aufstehen, Treppen steigen, bergauf gehen) + Aussenrotation. Innervation: N. gluteus inferior. M. gluteus medius und minimus: Abduktion und Innenrotation (Seitstabilisierung beim Einbeinstand – Trendelenburg-Hinken bei Läsion). Klinisch: M. gluteus maximus ist nach Knieoperation oft der schwäche Wiederherstellungsmuskel.",
+        learningCard: { type: "predict", statement: "M. gluteus maximus führt vor allem Hüftextension und Aussenrotation aus, wichtig beim Treppensteigen und Aufstehen.", answer: true, reveal: "M. gluteus maximus ist der grösste Gesässmuskel mit Hauptfunktion Hüftextension und Aussenrotation, innerviert vom N. gluteus inferior. Abduktion und Innenrotation übernehmen dagegen M. gluteus medius und minimus." } },
       { id: "mu_ext_h3", type: "mc", question: "Welcher Nerv innerviert den M. biceps brachii und welche Bewegungen führt dieser Muskel aus?", options: [
         { text: "N. musculocutaneus – Ellenbogenflexion UND Supination des Unterarms", correct: true },
         { text: "N. radialis – Ellenbogenextension", correct: false },
         { text: "N. medianus – Fingerflexion und Unterarmflexion", correct: false },
         { text: "N. ulnaris – Handgelenkflexion und Ulnardeviation", correct: false }
-      ], explanation: "M. biceps brachii: Ursprung am Schulterblatt (Caput longum: Tuberculum supraglenoidale; Caput breve: Processus coracoideus), Ansatz an Tuberositas radii. Funktion: Ellenbogenflexion (Hauptfunktion) + Unterarmsupination (weil Ansatz an Radius: dreht den Radius nach aussen). Innervation: N. musculocutaneus (C5-C6). N. radialis: Triceps (Extension). N. medianus: Flexoren volar." },
-      { id: "mu_ext_h4", type: "true_false", statement: "Der M. quadriceps femoris ist der stärkste Kniestrecker und setzt über das Lig. patellae an der Tuberositas tibiae an.", answer: true, explanation: "M. quadriceps femoris besteht aus 4 Köpfen (rectus femoris, vastus lateralis/medialis/intermedius) und ist der stärkste Kniestrecker. Innervation: N. femoralis. Der M. rectus femoris überspannt auch das Hüftgelenk (Hüftflexion). Klinisch: Atrophie nach Knieproblemen tastbar an der medialen Patellafacette (Vastus medialis obliquus)." },
+      ], explanation: "M. biceps brachii: Ursprung am Schulterblatt (Caput longum: Tuberculum supraglenoidale; Caput breve: Processus coracoideus), Ansatz an Tuberositas radii. Funktion: Ellenbogenflexion (Hauptfunktion) + Unterarmsupination (weil Ansatz an Radius: dreht den Radius nach aussen). Innervation: N. musculocutaneus (C5-C6). N. radialis: Triceps (Extension). N. medianus: Flexoren volar.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "M. biceps brachii führt Ellenbogenflexion aus.", isWrong: false },
+          { text: "M. biceps brachii führt zusätzlich Unterarmsupination aus.", isWrong: false },
+          { text: "M. biceps brachii wird vom N. musculocutaneus innerviert.", isWrong: false },
+          { text: "M. biceps brachii wird vom N. radialis innerviert.", isWrong: true }
+        ], whyWrong: "Der M. biceps brachii wird vom N. musculocutaneus innerviert, nicht vom N. radialis - dieser versorgt den M. triceps (Extension). Ellenbogenflexion und Unterarmsupination sind seine korrekten Funktionen." } },
+      { id: "mu_ext_h4", type: "true_false", statement: "Der M. quadriceps femoris ist der stärkste Kniestrecker und setzt über das Lig. patellae an der Tuberositas tibiae an.", answer: true, explanation: "M. quadriceps femoris besteht aus 4 Köpfen (rectus femoris, vastus lateralis/medialis/intermedius) und ist der stärkste Kniestrecker. Innervation: N. femoralis. Der M. rectus femoris überspannt auch das Hüftgelenk (Hüftflexion). Klinisch: Atrophie nach Knieproblemen tastbar an der medialen Patellafacette (Vastus medialis obliquus).",
+        learningCard: { type: "reconstruct", template: "Der M. quadriceps femoris besteht aus ___ Köpfen, ist der stärkste ___ und setzt über das Lig. patellae an der ___ an.", blanks: ["4", "Kniestrecker", "Tuberositas tibiae"], distractors: ["2", "Kniebeuger"] } },
       { id: "mu_ext_h5", type: "mc", question: "Warum führt M. biceps brachii neben der Ellenbogenflexion auch die Supination aus?", options: [
         { text: "Weil er an der Tuberositas radii ansetzt und die Kontraktion den Radius nach aussen dreht", correct: true },
         { text: "Weil er an der Ulna ansetzt und dadurch beide Knochen beeinflusst", correct: false },
         { text: "Weil er durch das Radioulnargelenk verläuft und dieses mechanisch dreht", correct: false },
         { text: "Weil er am Humerus entspringt und daher auf beide Unterarmknochen wirkt", correct: false }
-      ], explanation: "Funktionelle Anatomie: M. biceps setzt an der Tuberositas radii an. Bei Kontraktion zieht er den Radius zu sich – da der Radius um die Ulna rotiert, führt dies zur Supination (Handfläche nach oben). Diese Doppelfunktion macht den M. biceps zum wichtigsten Supinator bei gebeugtem Ellenbogen." },
+      ], explanation: "Funktionelle Anatomie: M. biceps setzt an der Tuberositas radii an. Bei Kontraktion zieht er den Radius zu sich – da der Radius um die Ulna rotiert, führt dies zur Supination (Handfläche nach oben). Diese Doppelfunktion macht den M. biceps zum wichtigsten Supinator bei gebeugtem Ellenbogen.",
+        learningCard: { type: "predict", statement: "M. biceps brachii bewirkt die Supination, weil er an der Tuberositas radii ansetzt und den Radius bei Kontraktion nach aussen dreht.", answer: true, reveal: "Der M. biceps brachii setzt an der Tuberositas radii an; bei Kontraktion zieht er den Radius zu sich, der um die Ulna rotiert - dadurch entsteht die Supination. Das macht ihn zum wichtigsten Supinator bei gebeugtem Ellenbogen." } },
       { id: "mu_ext_h6", type: "mc", question: "Welcher Nerv innerviert den M. gluteus maximus?", options: [
         { text: "N. gluteus inferior", correct: true },
         { text: "N. gluteus superior", correct: false },
         { text: "N. ischiadicus", correct: false },
         { text: "N. femoralis", correct: false }
-      ], explanation: "N. gluteus inferior (L5-S2) innerviert M. gluteus maximus. N. gluteus superior innerviert M. gluteus medius und minimus sowie M. tensor fasciae latae. Bei Läsion des N. gluteus superior: Trendelenburg-Hinken (Becken kippt zur Gegenseite beim Einbeinstand, weil Abduktoren fehlen)." }
+      ], explanation: "N. gluteus inferior (L5-S2) innerviert M. gluteus maximus. N. gluteus superior innerviert M. gluteus medius und minimus sowie M. tensor fasciae latae. Bei Läsion des N. gluteus superior: Trendelenburg-Hinken (Becken kippt zur Gegenseite beim Einbeinstand, weil Abduktoren fehlen).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Innervation der Glutealmuskulatur treffen zu?", checklist: [
+          { text: "N. gluteus inferior innerviert M. gluteus maximus", correct: true },
+          { text: "N. gluteus superior innerviert M. gluteus medius und minimus", correct: true },
+          { text: "Läsion des N. gluteus superior führt zum Trendelenburg-Hinken", correct: true },
+          { text: "N. femoralis innerviert den M. gluteus maximus", correct: false }
+        ], reveal: "N. gluteus inferior versorgt M. gluteus maximus; N. gluteus superior versorgt M. gluteus medius, minimus und M. tensor fasciae latae. Bei Läsion des N. gluteus superior entsteht ein Trendelenburg-Hinken, weil die Abduktoren fehlen." } }
     ],
     phase4Questions: [
       { id: "mu_ext_mc1", type: "mc", question: "Welcher Muskel ist der stärkste Kniestrecker?", options: [
@@ -3136,32 +3846,47 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Ca. 10.000 Alveolen mit ca. 2 m² Austauschfläche", correct: false },
         { text: "Ca. 3 Millionen Alveolen mit ca. 10 m² Austauschfläche", correct: false },
         { text: "Unbegrenzt viele Alveolen – die Fläche variiert stark nach Lungenfüllung", correct: false }
-      ], explanation: "Ca. 300 Millionen Alveolen ergeben durch ihre winzige Grösse (Durchmesser 200–300 µm) eine Gesamtfläche von 50–100 m² – dem Quadratmeterwert eines Tennisplatzes. Diese enorme Fläche bei minimaler Diffusionsstrecke (<0,5 µm Membrandicke) ist der physikalische Schlüssel zum effizienten Gasaustausch." },
+      ], explanation: "Ca. 300 Millionen Alveolen ergeben durch ihre winzige Grösse (Durchmesser 200–300 µm) eine Gesamtfläche von 50–100 m² – dem Quadratmeterwert eines Tennisplatzes. Diese enorme Fläche bei minimaler Diffusionsstrecke (<0,5 µm Membrandicke) ist der physikalische Schlüssel zum effizienten Gasaustausch.", learningCard: { type: "predict", statement: "Die ca. 300 Millionen Alveolen der Lunge bieten zusammen eine Austauschfläche von 50–100 m² – etwa die Fläche eines Tennisplatzes.", answer: true, reveal: "Ca. 300 Millionen Alveolen ergeben durch ihre winzige Grösse eine Gesamtfläche von 50–100 m². Diese enorme Fläche bei minimaler Diffusionsstrecke (<0,5 µm) ist der Schlüssel zum effizienten Gasaustausch." } },
       { id: "at_ü_h2", type: "mc", question: "Was bezeichnet der Begriff 'anatomischer Totraum' beim Atmungssystem?", options: [
         { text: "Die luftleitenden Atemwege (Nase bis Bronchiolen), in denen kein Gasaustausch stattfindet – ca. 150 ml", correct: true },
         { text: "Die nicht belüfteten Alveolen in der Lunge (alveolärer Totraum)", correct: false },
         { text: "Das Residualvolumen, das nach maximaler Ausatmung verbleibt", correct: false },
         { text: "Der Raum zwischen Pleura visceralis und parietalis", correct: false }
-      ], explanation: "Anatomischer Totraum (ca. 150 ml): Luftvolumen in Nase, Rachen, Kehlkopf, Trachea und Bronchiolen – hier findet kein Gasaustausch statt. Beim normalen Atemzug (500 ml) gelangen daher nur ca. 350 ml Frischluft in die Alveolen. Klinisch: Flache Atmung erhöht den relativen Totraumanteil → weniger effektiver Gasaustausch." },
+      ], explanation: "Anatomischer Totraum (ca. 150 ml): Luftvolumen in Nase, Rachen, Kehlkopf, Trachea und Bronchiolen – hier findet kein Gasaustausch statt. Beim normalen Atemzug (500 ml) gelangen daher nur ca. 350 ml Frischluft in die Alveolen. Klinisch: Flache Atmung erhöht den relativen Totraumanteil → weniger effektiver Gasaustausch.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum anatomischen Totraum treffen zu?", checklist: [
+        { text: "Der anatomische Totraum umfasst die luftleitenden Atemwege von Nase bis Bronchiolen.", correct: true },
+        { text: "Im anatomischen Totraum findet kein Gasaustausch statt.", correct: true },
+        { text: "Der anatomische Totraum beträgt ca. 150 ml.", correct: true },
+        { text: "Flache Atmung verringert den relativen Anteil des Totraums am Atemzug.", correct: false }
+      ], reveal: "Der anatomische Totraum (~150 ml) umfasst Nase, Rachen, Kehlkopf, Trachea und Bronchiolen, wo kein Gasaustausch stattfindet. Bei einem Atemzug von 500 ml erreichen deshalb nur ~350 ml Frischluft die Alveolen. Flache Atmung erhöht den relativen Totraumanteil und verschlechtert den Gasaustausch." } },
       { id: "at_ü_h3", type: "mc", question: "Welche drei Hauptfunktionen hat das Atmungssystem ausser dem Gasaustausch?", options: [
         { text: "Wärme- und Feuchtigkeitsregulierung der Atemluft, Schutzfunktion (Filterung/Reinigung), Phonation (Stimmbildung)", correct: true },
         { text: "Blutdruckregulation, Hormonproduktion und Verdauungsunterstützung", correct: false },
         { text: "Hämatopöse (Blutbildung), Lymphproduktion und Immunglobulinsekretion", correct: false },
         { text: "Osmolaritätsregulation, Elektrolytbalance und Nierenunterstützung", correct: false }
-      ], explanation: "Das Atmungssystem hat neben dem Gasaustausch weitere Funktionen: Konditionierung der Atemluft (Wärmung auf 37°C, Befeuchtung auf 100% rel. Feuchte, Filtration durch Nasenhaare/Schleimhaut), Schutzfunktion (mukoziliäre Clearance, Husten/Niesen-Reflex) und Phonation (Stimmbänder im Kehlkopf). Ausserdem ist die Lunge am Säure-Basen-Haushalt beteiligt (CO2-Abgabe)." },
-      { id: "at_ü_h4", type: "true_false", statement: "Der anatomische Totraum beträgt ca. 150 ml und bezeichnet die luftleitenden Atemwege, in denen kein Gasaustausch stattfindet.", answer: true, explanation: "Anatomischer Totraum: Atemwege von Nase bis Bronchiolen (ca. 150 ml). Beim normalen Atemzug von ~500 ml gelangen nur ~350 ml Frischluft in die Alveolen. Bei flacher Atmung (z.B. nur 200 ml AZV) bleibt kaum Frischluft für den Alveolarbereich – Hypoventilation." },
+      ], explanation: "Das Atmungssystem hat neben dem Gasaustausch weitere Funktionen: Konditionierung der Atemluft (Wärmung auf 37°C, Befeuchtung auf 100% rel. Feuchte, Filtration durch Nasenhaare/Schleimhaut), Schutzfunktion (mukoziliäre Clearance, Husten/Niesen-Reflex) und Phonation (Stimmbänder im Kehlkopf). Ausserdem ist die Lunge am Säure-Basen-Haushalt beteiligt (CO2-Abgabe).", learningCard: { type: "reconstruct", template: "Neben dem Gasaustausch hat das Atmungssystem drei weitere Hauptfunktionen: ___ der Atemluft (Wärmung, Befeuchtung, Filterung), ___ (mukoziliäre Clearance, Husten/Niesen) und ___ (Stimmbildung im Kehlkopf).", blanks: ["Konditionierung", "Schutzfunktion", "Phonation"], distractors: ["Verdauung", "Blutbildung"], reveal: "Neben dem Gasaustausch konditioniert das Atmungssystem die Atemluft (Wärmung, Befeuchtung, Filterung), schützt vor Keimen (mukoziliäre Clearance, Husten/Niesen) und ermöglicht Phonation im Kehlkopf." } },
+      { id: "at_ü_h4", type: "true_false", statement: "Der anatomische Totraum beträgt ca. 150 ml und bezeichnet die luftleitenden Atemwege, in denen kein Gasaustausch stattfindet.", answer: true, explanation: "Anatomischer Totraum: Atemwege von Nase bis Bronchiolen (ca. 150 ml). Beim normalen Atemzug von ~500 ml gelangen nur ~350 ml Frischluft in die Alveolen. Bei flacher Atmung (z.B. nur 200 ml AZV) bleibt kaum Frischluft für den Alveolarbereich – Hypoventilation.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der anatomische Totraum liegt in den luftleitenden Atemwegen von Nase bis Bronchiolen.", isWrong: false },
+        { text: "Bei einem Atemzug von 500 ml erreichen nur ca. 350 ml die Alveolen.", isWrong: false },
+        { text: "Bei flacher Atmung bleibt kaum Frischluft für den Alveolarbereich übrig.", isWrong: false },
+        { text: "Der anatomische Totraum liegt in den Alveolen selbst.", isWrong: true }
+      ], whyWrong: "Der anatomische Totraum liegt in den luftleitenden Atemwegen (Nase bis Bronchiolen), nicht in den Alveolen. Dort findet kein Gasaustausch statt, sodass bei 500 ml Atemzugvolumen nur ~350 ml die Alveolen erreichen. Bei flacher Atmung bleibt dieser Anteil noch geringer." } },
       { id: "at_ü_h5", type: "mc", question: "Welches Organ und welche Struktur ist für die Stimmbildung (Phonation) verantwortlich?", options: [
         { text: "Kehlkopf (Larynx) mit seinen Stimmbändern (Plicae vocales)", correct: true },
         { text: "Trachea durch Vibration der Knorpelspangen", correct: false },
         { text: "Lunge durch Luftdruckschwankungen beim Ausatmen", correct: false },
         { text: "Mundhöhle allein durch Zungen- und Lippenbewegung", correct: false }
-      ], explanation: "Phonation findet im Kehlkopf statt: Die Aryknorpel (Stellknorpel) nähern die echten Stimmbänder aneinander, Ausatemluft bringt sie zum Schwingen. Die erzeugte Grundschwingung wird in Rachen, Mund und Nasenhöhle als Resonanzraum geformt und zu Sprache moduliert." },
+      ], explanation: "Phonation findet im Kehlkopf statt: Die Aryknorpel (Stellknorpel) nähern die echten Stimmbänder aneinander, Ausatemluft bringt sie zum Schwingen. Die erzeugte Grundschwingung wird in Rachen, Mund und Nasenhöhle als Resonanzraum geformt und zu Sprache moduliert.", learningCard: { type: "predict", statement: "Die Stimmbildung (Phonation) findet im Kehlkopf statt, wo die Ausatemluft die Stimmbänder zum Schwingen bringt.", answer: true, reveal: "Im Kehlkopf nähern die Stellknorpel die echten Stimmbänder aneinander, und die Ausatemluft bringt sie zum Schwingen. Die entstehende Grundschwingung wird in Rachen, Mund und Nasenhöhle als Resonanzraum zu Sprache geformt." } },
       { id: "at_ü_h6", type: "mc", question: "Was ist der Unterschied zwischen oberen und unteren Atemwegen?", options: [
         { text: "Obere: Nase, NNH, Rachen; untere: Kehlkopf, Trachea, Bronchien, Lunge", correct: true },
         { text: "Obere: Trachea und Kehlkopf; untere: Nase und Rachen", correct: false },
         { text: "Obere: Alveolen und Bronchiolen; untere: Rachen und Nase", correct: false },
         { text: "Keine Unterscheidung – alle Atemwege sind physiologisch gleichwertig", correct: false }
-      ], explanation: "Obere Atemwege: Nase, Nasennebenhöhlen, Rachenraum (Pharynx). Untere Atemwege: Kehlkopf (Larynx), Luftröhre (Trachea), Bronchialbaum, Lunge. Diese Einteilung ist klinisch wichtig: Infektionen der oberen vs. unteren Atemwege haben unterschiedliche Erreger und Therapien." }
+      ], explanation: "Obere Atemwege: Nase, Nasennebenhöhlen, Rachenraum (Pharynx). Untere Atemwege: Kehlkopf (Larynx), Luftröhre (Trachea), Bronchialbaum, Lunge. Diese Einteilung ist klinisch wichtig: Infektionen der oberen vs. unteren Atemwege haben unterschiedliche Erreger und Therapien.", learningCard: { type: "teachback", prompt: "Welche Strukturen gehören zu den oberen Atemwegen?", checklist: [
+        { text: "Nase", correct: true },
+        { text: "Nasennebenhöhlen", correct: true },
+        { text: "Rachenraum (Pharynx)", correct: true },
+        { text: "Kehlkopf (Larynx)", correct: false }
+      ], reveal: "Die oberen Atemwege umfassen Nase, Nasennebenhöhlen und Rachenraum. Kehlkopf, Trachea, Bronchialbaum und Lunge gehören zu den unteren Atemwegen. Diese Einteilung ist klinisch wichtig, da Infektionen oben und unten unterschiedliche Erreger und Therapien haben." } }
     ],
     phase4Questions: [
       { id: "at_ü_mc1", type: "mc", question: "Welche Strukturen gehören zu den OBEREN Atemwegen?", options: [
@@ -3169,41 +3894,61 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Trachea und Hauptbronchien", correct: false },
         { text: "Lunge und Bronchiolen", correct: false },
         { text: "Kehlkopf und Trachea", correct: false }
-      ], explanation: "Die oberen Atemwege umfassen Nase, Nasennebenhöhlen und Rachenraum; Kehlkopf, Trachea und Bronchien gehören zu den unteren Atemwegen." },
+      ], explanation: "Die oberen Atemwege umfassen Nase, Nasennebenhöhlen und Rachenraum; Kehlkopf, Trachea und Bronchien gehören zu den unteren Atemwegen.", learningCard: { type: "reconstruct", template: "Die oberen Atemwege umfassen ___, ___ und ___; Kehlkopf, Trachea und Bronchien zählen zu den unteren Atemwegen.", blanks: ["Nase", "Nasennebenhöhlen", "Rachenraum"], distractors: ["Kehlkopf", "Lunge"], reveal: "Die oberen Atemwege sind Nase, Nasennebenhöhlen und Rachenraum. Kehlkopf, Trachea und Bronchien gehören dagegen zu den unteren Atemwegen." } },
       { id: "at_ü_mc2", type: "mc", image: "assets/diagrams/atmungssystem_figure_11.png", question: "Wo findet der eigentliche Gasaustausch statt?", options: [
         { text: "In den Alveolen der Lunge", correct: true },
         { text: "In der Trachea", correct: false },
         { text: "In den Hauptbronchien", correct: false },
         { text: "In den Nasenmuscheln", correct: false }
-      ], explanation: "Der eigentliche Gasaustausch findet in den Alveolen statt, wo die Blut-Luft-Schranke nur ca. 0,5 µm dünn ist und die Diffusion von O2 und CO2 ermöglicht." },
+      ], explanation: "Der eigentliche Gasaustausch findet in den Alveolen statt, wo die Blut-Luft-Schranke nur ca. 0,5 µm dünn ist und die Diffusion von O2 und CO2 ermöglicht.", learningCard: { type: "predict", statement: "Der eigentliche Gasaustausch findet in den Alveolen statt, wo die Blut-Luft-Schranke nur ca. 0,5 µm dünn ist.", answer: true, reveal: "Der Gasaustausch findet in den Alveolen statt. Die dort nur ca. 0,5 µm dünne Blut-Luft-Schranke ermöglicht die rasche Diffusion von O2 und CO2." } },
       { id: "at_ü_mc3", type: "mc", question: "Welche Aussagen zum Überblick des Atmungssystems sind korrekt?", options: [
         { text: "300 Mio. Alveolen bieten 50–100 m² Austauschfläche für Gasaustausch", correct: true },
         { text: "Anatomischer Totraum (~150 ml) nimmt nicht am Gasaustausch teil", correct: true },
         { text: "Die Trachea gehört zu den oberen Atemwegen", correct: false },
         { text: "Phonation findet in der Lunge statt", correct: false }
-      ], explanation: "Alveolen: ~300 Mio., Fläche 50–100 m², Membrandicke <0,5 µm. Totraum: ~150 ml (Nase bis Bronchiolen), kein Gasaustausch. Trachea = untere Atemwege. Phonation = Kehlkopf (Stimmbänder)." }
+      ], explanation: "Alveolen: ~300 Mio., Fläche 50–100 m², Membrandicke <0,5 µm. Totraum: ~150 ml (Nase bis Bronchiolen), kein Gasaustausch. Trachea = untere Atemwege. Phonation = Kehlkopf (Stimmbänder).", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Lunge hat ca. 300 Millionen Alveolen mit 50–100 m² Austauschfläche.", isWrong: false },
+        { text: "Der anatomische Totraum (~150 ml) nimmt nicht am Gasaustausch teil.", isWrong: false },
+        { text: "Phonation findet im Kehlkopf statt.", isWrong: false },
+        { text: "Die Trachea gehört zu den oberen Atemwegen.", isWrong: true }
+      ], whyWrong: "Die Trachea gehört zu den unteren, nicht den oberen Atemwegen. Die oberen Atemwege enden am Rachenraum; Kehlkopf, Trachea, Bronchien und Lunge folgen als untere Atemwege." } }
     ]
   }),
   makeDetailedPlant({
     id: "nase_und_nnh",
     title: "Nase und Nasennebenhöhlen",
     harvestQuestions: [
-      { id: "at_nnh_h1", type: "true_false", statement: "Es gibt vier Nasennebenhöhllen: Stirnhöhle, Keilbeinhöhlel, Siebbeinzellen und Kieferhöhlel.", answer: true, explanation: "Die vier paarigen Nasennebenhöhllen entstehen durch Ausbuchtungen der Nasenhöhlenschleimhaut in die umgebenden Schädelknochen: Stirnhöhlel, Keilbeinhöhlel, Siebbeinzellen und Kieferhöhlel. Alle münden in die Nasenhöhle und können sich bei Schleimhautschwellung entzuenden (Sinusitis)." },
-      { id: "at_nnh_h2", type: "true_false", statement: "Die Nasenmuscheln (Conchä) unterteilen jede Nasenhöhlhälfte in zwei Gänge.", answer: false, explanation: "Drei Nasenmuscheln (Concha nasalis inferior, media, superior) teilen jede Nasenhöhlhälfte in vier Gänge: Unteren, mittleren, oberen und den gemeinsamen Nasengang. Nicht zwei, sondern vier Gänge entstehen durch die drei Muschelplatten." },
-      { id: "at_nnh_h3", type: "true_false", statement: "Die inneren Öffnungen der Nase in den Rachenraum werden als Choanä bezeichnet.", answer: true, explanation: "Die Choanä sind die hinteren Öffnungen der Nasenhöhle in den Nasopharynx (Epipharynx). Im Gegensatz dazu sind die Nares die äusseren Nasenöfffnungen. Eine angeborene Choanalatresie führt beim Neugeborenen zu Atembehinderung, da Neugeborene obligate Nasenatmer sind." },
-      { id: "at_nnh_h4", type: "true_false", statement: "Neugeborene sind auf Nasenatmung angewiesen (obligate Nasenatmer) und können nicht reflexartig durch den Mund atmen.", answer: true, explanation: "Neugeborene atmen obligat durch die Nase, weil Kehlkopf und Epiglottis beim Schlucken und Atmen koordiniert werden müssen. Eine angeborene Choanalatresie führt deshalb zu sofortiger Atembehinderung und muss als Notfall behandelt werden. Erst ab etwa 2–3 Monaten können Säuglinge durch den Mund atmen." },
+      { id: "at_nnh_h1", type: "true_false", statement: "Es gibt vier Nasennebenhöhllen: Stirnhöhle, Keilbeinhöhlel, Siebbeinzellen und Kieferhöhlel.", answer: true, explanation: "Die vier paarigen Nasennebenhöhllen entstehen durch Ausbuchtungen der Nasenhöhlenschleimhaut in die umgebenden Schädelknochen: Stirnhöhlel, Keilbeinhöhlel, Siebbeinzellen und Kieferhöhlel. Alle münden in die Nasenhöhle und können sich bei Schleimhautschwellung entzuenden (Sinusitis).", learningCard: { type: "reconstruct", template: "Die vier Nasennebenhöhlen sind ___, ___, ___ und ___.", blanks: ["Stirnhöhle", "Keilbeinhöhle", "Siebbeinzellen", "Kieferhöhle"], distractors: ["Schläfenhöhle", "Jochbeinhöhle"], reveal: "Die vier paarigen Nasennebenhöhlen sind Stirnhöhle, Keilbeinhöhle, Siebbeinzellen und Kieferhöhle. Sie münden alle in die Nasenhöhle und können sich bei Schleimhautschwellung entzünden (Sinusitis)." } },
+      { id: "at_nnh_h2", type: "true_false", statement: "Die Nasenmuscheln (Conchä) unterteilen jede Nasenhöhlhälfte in zwei Gänge.", answer: false, explanation: "Drei Nasenmuscheln (Concha nasalis inferior, media, superior) teilen jede Nasenhöhlhälfte in vier Gänge: Unteren, mittleren, oberen und den gemeinsamen Nasengang. Nicht zwei, sondern vier Gänge entstehen durch die drei Muschelplatten.", learningCard: { type: "oddoneout", statements: [
+        { text: "Es gibt drei Nasenmuscheln pro Nasenhöhlhälfte.", isWrong: false },
+        { text: "Die drei Nasenmuscheln teilen jede Nasenhöhlhälfte in vier Gänge.", isWrong: false },
+        { text: "Zu den vier Gängen zählt auch der gemeinsame Nasengang.", isWrong: false },
+        { text: "Die Nasenmuscheln teilen jede Nasenhöhlhälfte in nur zwei Gänge.", isWrong: true }
+      ], whyWrong: "Drei Nasenmuscheln erzeugen vier, nicht zwei Gänge: den unteren, mittleren, oberen und den gemeinsamen Nasengang. Jede zusätzliche Muschelplatte fügt eine weitere Trennung hinzu." } },
+      { id: "at_nnh_h3", type: "true_false", statement: "Die inneren Öffnungen der Nase in den Rachenraum werden als Choanä bezeichnet.", answer: true, explanation: "Die Choanä sind die hinteren Öffnungen der Nasenhöhle in den Nasopharynx (Epipharynx). Im Gegensatz dazu sind die Nares die äusseren Nasenöfffnungen. Eine angeborene Choanalatresie führt beim Neugeborenen zu Atembehinderung, da Neugeborene obligate Nasenatmer sind.", learningCard: { type: "predict", statement: "Die Choanä sind die hinteren Öffnungen der Nasenhöhle in den Rachenraum (Nasopharynx).", answer: true, reveal: "Die Choanä sind die hinteren Öffnungen der Nasenhöhle in den Nasopharynx. Die äusseren Nasenöffnungen heissen dagegen Nares. Eine angeborene Choanalatresie behindert beim Neugeborenen die Atmung, da Neugeborene obligate Nasenatmer sind." } },
+      { id: "at_nnh_h4", type: "true_false", statement: "Neugeborene sind auf Nasenatmung angewiesen (obligate Nasenatmer) und können nicht reflexartig durch den Mund atmen.", answer: true, explanation: "Neugeborene atmen obligat durch die Nase, weil Kehlkopf und Epiglottis beim Schlucken und Atmen koordiniert werden müssen. Eine angeborene Choanalatresie führt deshalb zu sofortiger Atembehinderung und muss als Notfall behandelt werden. Erst ab etwa 2–3 Monaten können Säuglinge durch den Mund atmen.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Nasenatmung von Neugeborenen treffen zu?", checklist: [
+        { text: "Neugeborene sind obligate Nasenatmer.", correct: true },
+        { text: "Eine Choanalatresie ist bei Neugeborenen ein Notfall.", correct: true },
+        { text: "Erst ab etwa 2–3 Monaten können Säuglinge durch den Mund atmen.", correct: true },
+        { text: "Neugeborene können jederzeit reflexartig durch den Mund atmen.", correct: false }
+      ], reveal: "Neugeborene atmen obligat durch die Nase, weil Kehlkopf und Epiglottis beim Schlucken und Atmen koordiniert werden müssen. Eine Choanalatresie führt deshalb zu sofortiger Atembehinderung und ist ein Notfall. Erst ab etwa 2–3 Monaten können Säuglinge auch durch den Mund atmen." } },
       { id: "at_nnh_h5", type: "mc", question: "Welche Funktion haben die Nasenmuscheln (Conchae nasales)?", options: [
         { text: "Vergrösserung der Schleimhautoberfläche für bessere Filterung, Erwärmung und Befeuchtung", correct: true },
         { text: "Stützung der Nasenscheidewand", correct: false },
         { text: "Produktion von Nasensekret für die Verdauung", correct: false },
         { text: "Weiterleitung von Geruchsreizen ans Gehirn", correct: false }
-      ], explanation: "Drei Nasenmuscheln (untere, mittlere, obere) unterteilen die Nasenhöhle in vier Gänge und vergrössern enorm die Schleimhautoberfläche. Diese grosse Oberfläche mit gut durchblutetem Schleimhautgewebe ermöglicht effektive Erwärmung, Befeuchtung und Filterung der Einatemluft." },
+      ], explanation: "Drei Nasenmuscheln (untere, mittlere, obere) unterteilen die Nasenhöhle in vier Gänge und vergrössern enorm die Schleimhautoberfläche. Diese grosse Oberfläche mit gut durchblutetem Schleimhautgewebe ermöglicht effektive Erwärmung, Befeuchtung und Filterung der Einatemluft.", learningCard: { type: "predict", statement: "Die Nasenmuscheln vergrössern die Schleimhautoberfläche der Nase und verbessern dadurch Erwärmung, Befeuchtung und Filterung der Atemluft.", answer: true, reveal: "Drei Nasenmuscheln unterteilen die Nasenhöhle in vier Gänge und vergrössern dadurch enorm die Schleimhautoberfläche. Diese grosse, gut durchblutete Fläche ermöglicht effektive Erwärmung, Befeuchtung und Filterung der Einatemluft." } },
       { id: "at_nnh_h6", type: "mc", question: "Was passiert bei einer Sinusitis (Nasennebenhöhlenentzündung)?", options: [
         { text: "Entzündung der Schleimhaut in den Nasennebenhöhlen, die mit der Nasenhöhle verbunden sind", correct: true },
         { text: "Verschluss der Choanae durch Polypen", correct: false },
         { text: "Entzündung der Tonsillae (Mandeln) im Rachenraum", correct: false },
         { text: "Verengung der Trachea durch Schwellung", correct: false }
-      ], explanation: "Alle vier Nasennebenhöhlen münden in die Nasenhöhle und ihre Schleimhäute sind kontinuierlich mit der Nasenschleimhaut. Bei Erkältung kann die Schleimhautschwellung die Öffnungen verlegen → Sekretstau → Sinusitis (Stirn-, Kiefer-, Siebbein- oder Keilbeinhöhle). Schmerzen typischerweise bei Druck und Bücken." }
+      ], explanation: "Alle vier Nasennebenhöhlen münden in die Nasenhöhle und ihre Schleimhäute sind kontinuierlich mit der Nasenschleimhaut. Bei Erkältung kann die Schleimhautschwellung die Öffnungen verlegen → Sekretstau → Sinusitis (Stirn-, Kiefer-, Siebbein- oder Keilbeinhöhle). Schmerzen typischerweise bei Druck und Bücken.", learningCard: { type: "oddoneout", statements: [
+        { text: "Alle vier Nasennebenhöhlen münden in die Nasenhöhle.", isWrong: false },
+        { text: "Eine Schleimhautschwellung kann die Öffnungen der Nebenhöhlen verlegen und einen Sekretstau verursachen.", isWrong: false },
+        { text: "Sinusitis-Schmerzen treten typischerweise bei Druck und Bücken auf.", isWrong: false },
+        { text: "Die Nebenhöhlen sind von der Nasenschleimhaut vollständig getrennt.", isWrong: true }
+      ], whyWrong: "Die Schleimhäute der Nebenhöhlen sind kontinuierlich mit der Nasenschleimhaut verbunden, nicht getrennt. Deshalb kann eine Erkältung über die Schwellung die Öffnungen verlegen, Sekret stauen und eine Sinusitis auslösen." } }
     ],
     phase4Questions: [
       { id: "at_nnh_mc1", type: "mc", question: "Welche vier Nasennebenhöhllen werden unterschieden?", options: [
@@ -3211,41 +3956,56 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Stirnhöhlel, Schläfenhöhlel, Kieferhöhlel und Wangenhöhlel", correct: false },
         { text: "Vordere, mittlere, hintere und tiefe Nasennebenhöhlel", correct: false },
         { text: "Siebbein-, Keilbein-, Stirn- und Jochbeinhöhlel", correct: false }
-      ], explanation: "Die vier Nasennebenhöhlen sind Sinus frontalis (Stirnhöhle), Sinus sphenoidalis (Keilbeinhöhle), Cellulae ethmoidales (Siebbeinzellen) und Sinus maxillaris (Kieferhöhle)." },
+      ], explanation: "Die vier Nasennebenhöhlen sind Sinus frontalis (Stirnhöhle), Sinus sphenoidalis (Keilbeinhöhle), Cellulae ethmoidales (Siebbeinzellen) und Sinus maxillaris (Kieferhöhle).", learningCard: { type: "reconstruct", template: "Die vier Nasennebenhöhlen sind Sinus frontalis (___), Sinus sphenoidalis (___), Cellulae ethmoidales (___) und Sinus maxillaris (___).", blanks: ["Stirnhöhle", "Keilbeinhöhle", "Siebbeinzellen", "Kieferhöhle"], distractors: ["Schläfenhöhle", "Wangenhöhle"], reveal: "Die vier Nasennebenhöhlen sind Sinus frontalis (Stirnhöhle), Sinus sphenoidalis (Keilbeinhöhle), Cellulae ethmoidales (Siebbeinzellen) und Sinus maxillaris (Kieferhöhle)." } },
       { id: "at_nnh_mc2", type: "mc", question: "Was bezeichnen die Choanä?", options: [
         { text: "Die inneren Öffnungen der Nasenhöhlele in den Rachenraum", correct: true },
         { text: "Die Nasenmuscheln (Conchä nasales)", correct: false },
         { text: "Die äusseren Nasenöfffnungen (Nares)", correct: false },
         { text: "Die Ausführungsganege der Nasennebenhöhllen", correct: false }
-      ], explanation: "Die Choanae sind die inneren Öffnungen der Nasenhöhle in den Epipharynx, durch die die gereinigte und erwärmte Luft den Rachenraum erreicht." },
+      ], explanation: "Die Choanae sind die inneren Öffnungen der Nasenhöhle in den Epipharynx, durch die die gereinigte und erwärmte Luft den Rachenraum erreicht.", learningCard: { type: "predict", statement: "Die Choanae sind die inneren Öffnungen der Nasenhöhle in den Rachenraum, durch die die gereinigte und erwärmte Luft weiterströmt.", answer: true, reveal: "Die Choanae sind die inneren Öffnungen der Nasenhöhle in den Epipharynx (Nasenrachen). Durch sie erreicht die in der Nase gereinigte und erwärmte Luft den Rachenraum." } },
       { id: "at_nnh_mc3", type: "mc", question: "Welche Aussagen zur Nase und ihren Nebenhöhlen sind korrekt?", options: [
         { text: "3 Nasenmuscheln teilen die Nasenhöhle in 4 Gänge und vergrössern die Schleimhautfläche", correct: true },
         { text: "Choanalatresie beim Neugeborenen führt zu Atemnot (obligate Nasenatmer)", correct: true },
         { text: "Die Nasennebenhöhlen sind nicht mit der Nasenhöhle verbunden", correct: false },
         { text: "Nasenmuscheln stützen das Nasenskelett", correct: false }
-      ], explanation: "Zusammenfassung: 4 NNH (Stirn, Keilbein, Siebbein, Kiefer), alle mit Nase verbunden → Sinusitis möglich. 3 Muscheln → 4 Gänge. Choanae = innere Öffnungen. Neugeborene = obligate Nasenatmer → Choanalatresie = Notfall." }
+      ], explanation: "Zusammenfassung: 4 NNH (Stirn, Keilbein, Siebbein, Kiefer), alle mit Nase verbunden → Sinusitis möglich. 3 Muscheln → 4 Gänge. Choanae = innere Öffnungen. Neugeborene = obligate Nasenatmer → Choanalatresie = Notfall.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Nase und Nasennebenhöhlen treffen zu?", checklist: [
+        { text: "3 Nasenmuscheln teilen die Nasenhöhle in 4 Gänge.", correct: true },
+        { text: "Choanalatresie ist bei Neugeborenen ein Notfall, weil sie obligate Nasenatmer sind.", correct: true },
+        { text: "Alle 4 Nasennebenhöhlen sind mit der Nasenhöhle verbunden.", correct: true },
+        { text: "Die Nasenmuscheln stützen ausschliesslich das Nasenskelett.", correct: false }
+      ], reveal: "3 Nasenmuscheln teilen die Nasenhöhle in 4 Gänge und vergrössern die Schleimhautfläche. Alle 4 Nasennebenhöhlen sind mit der Nase verbunden, daher ist eine Sinusitis möglich. Neugeborene sind obligate Nasenatmer, weshalb eine Choanalatresie ein Notfall ist." } }
     ]
   }),
   makeDetailedPlant({
     id: "rachenraum",
     title: "Rachenraum",
     harvestQuestions: [
-      { id: "at_ra_h1", type: "true_false", statement: "Der Epipharynx (Pars nasalis) steht über die Choanä mit der Nase in Verbindung.", answer: true, explanation: "Der Epipharynx nimmt Luft aus den Choanä auf und steht seitlich mit der Tuba auditiva (Eustachische Röhre) in Verbindung, die zum Mittelohr führt. Bei Rachenentzuendungen kann daher gleichzeitig eine Mittelohrbeteiligung auftreten." },
-      { id: "at_ra_h2", type: "true_false", statement: "Der Hypopharynx gehört ausschliesslich zu den Atemwegen und hat keinerlei Verbindung zum Speiseweg.", answer: false, explanation: "Der Hypopharynx (Pars laryngea) ist die Kreuzungsstelle von Atemweg und Speiseweg: Anterior liegt der Kehlkopfeingang, posterior die Speiseröhre. Beim Schlucken muss die Epiglottis den Kehlkopfeingang sichern, um Aspiration zu verhindern." },
-      { id: "at_ra_h3", type: "true_false", statement: "Tonsilla pharyngea, Tonsilla palatina und Tonsilla lingualis gehören zum Waldeyer-Rachenring.", answer: true, explanation: "Der Waldeyer-Rachenring bildet eine ringförmige Immunbarriere: Rachenmandel (adenoide Vegetationen im Dach des Epipharynx), Gaumenmandeln (seitlich im Mesopharynx) und Zungenmandel (Zungenbasis). Sie filtern Keime aus Atemluft und Nahrung und gehören zum lymphatischen System." },
-      { id: "at_ra_h4", type: "true_false", statement: "Die Tuba auditiva (Eustachische Röhre) verbindet den Epipharynx mit dem Mittelohr und dient dem Druckausgleich.", answer: true, explanation: "Die Tuba auditiva ermöglicht den Druckausgleich zwischen Nasenrachen und Mittelohr (z.B. beim Gähnen, Schlucken, Tauchen). Entzündungen des Rachens können über die Tuba auditiva das Mittelohr befallen (Tubenkatarrh, Otitis media), da Keime direkt aufsteigen können." },
+      { id: "at_ra_h1", type: "true_false", statement: "Der Epipharynx (Pars nasalis) steht über die Choanä mit der Nase in Verbindung.", answer: true, explanation: "Der Epipharynx nimmt Luft aus den Choanä auf und steht seitlich mit der Tuba auditiva (Eustachische Röhre) in Verbindung, die zum Mittelohr führt. Bei Rachenentzuendungen kann daher gleichzeitig eine Mittelohrbeteiligung auftreten.", learningCard: { type: "predict", statement: "Der Epipharynx steht über die Choanä mit der Nase und über die Tuba auditiva mit dem Mittelohr in Verbindung.", answer: true, reveal: "Der Epipharynx nimmt Luft aus den Choanä auf und steht seitlich über die Tuba auditiva mit dem Mittelohr in Verbindung. Bei Rachenentzündungen kann deshalb gleichzeitig das Mittelohr betroffen sein." } },
+      { id: "at_ra_h2", type: "true_false", statement: "Der Hypopharynx gehört ausschliesslich zu den Atemwegen und hat keinerlei Verbindung zum Speiseweg.", answer: false, explanation: "Der Hypopharynx (Pars laryngea) ist die Kreuzungsstelle von Atemweg und Speiseweg: Anterior liegt der Kehlkopfeingang, posterior die Speiseröhre. Beim Schlucken muss die Epiglottis den Kehlkopfeingang sichern, um Aspiration zu verhindern.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der Hypopharynx ist die Kreuzungsstelle von Atemweg und Speiseweg.", isWrong: false },
+        { text: "Anterior im Hypopharynx liegt der Kehlkopfeingang, posterior die Speiseröhre.", isWrong: false },
+        { text: "Die Epiglottis muss beim Schlucken den Kehlkopfeingang sichern.", isWrong: false },
+        { text: "Der Hypopharynx gehört ausschliesslich zu den Atemwegen.", isWrong: true }
+      ], whyWrong: "Der Hypopharynx gehört nicht ausschliesslich zu den Atemwegen, sondern ist die Kreuzungsstelle von Atem- und Speiseweg. Anterior liegt der Kehlkopfeingang, posterior die Speiseröhre; die Epiglottis sichert beim Schlucken vor Aspiration." } },
+      { id: "at_ra_h3", type: "true_false", statement: "Tonsilla pharyngea, Tonsilla palatina und Tonsilla lingualis gehören zum Waldeyer-Rachenring.", answer: true, explanation: "Der Waldeyer-Rachenring bildet eine ringförmige Immunbarriere: Rachenmandel (adenoide Vegetationen im Dach des Epipharynx), Gaumenmandeln (seitlich im Mesopharynx) und Zungenmandel (Zungenbasis). Sie filtern Keime aus Atemluft und Nahrung und gehören zum lymphatischen System.", learningCard: { type: "reconstruct", template: "Der Waldeyer-Rachenring besteht aus ___ (im Epipharynx), ___ (im Mesopharynx) und ___ (an der Zungenbasis) und filtert Keime aus Atemluft und Nahrung.", blanks: ["Tonsilla pharyngea", "Tonsilla palatina", "Tonsilla lingualis"], distractors: ["Tonsilla tubaria", "Epiglottis"], reveal: "Der Waldeyer-Rachenring besteht aus Tonsilla pharyngea (Rachenmandel, Epipharynx), Tonsilla palatina (Gaumenmandeln, Mesopharynx) und Tonsilla lingualis (Zungenmandel). Als lymphatisches Gewebe filtern sie Keime aus Atemluft und Nahrung." } },
+      { id: "at_ra_h4", type: "true_false", statement: "Die Tuba auditiva (Eustachische Röhre) verbindet den Epipharynx mit dem Mittelohr und dient dem Druckausgleich.", answer: true, explanation: "Die Tuba auditiva ermöglicht den Druckausgleich zwischen Nasenrachen und Mittelohr (z.B. beim Gähnen, Schlucken, Tauchen). Entzündungen des Rachens können über die Tuba auditiva das Mittelohr befallen (Tubenkatarrh, Otitis media), da Keime direkt aufsteigen können.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Tuba auditiva treffen zu?", checklist: [
+        { text: "Sie verbindet den Epipharynx mit dem Mittelohr.", correct: true },
+        { text: "Sie ermöglicht den Druckausgleich, z.B. beim Gähnen oder Schlucken.", correct: true },
+        { text: "Über sie können Rachenentzündungen zum Mittelohr aufsteigen (Otitis media).", correct: true },
+        { text: "Sie verbindet die Nase direkt mit der Speiseröhre.", correct: false }
+      ], reveal: "Die Tuba auditiva verbindet den Epipharynx mit dem Mittelohr und ermöglicht den Druckausgleich, z.B. beim Gähnen, Schlucken oder Tauchen. Über sie können Rachenentzündungen als Tubenkatarrh oder Otitis media auf das Mittelohr übergreifen." } },
       { id: "at_ra_h5", type: "mc", question: "In welchem Rachenteil liegt die Tonsilla pharyngea (Rachenmandel)?", options: [
         { text: "Im Epipharynx (Pars nasalis) im Dach und an den Wänden", correct: true },
         { text: "Im Mesopharynx, seitlich neben der Uvula", correct: false },
         { text: "Im Hypopharynx, über dem Kehlkopfeingang", correct: false },
         { text: "Im Larynx, über den Stimmbändern", correct: false }
-      ], explanation: "Die Tonsilla pharyngea (Rachenmandel) sitzt im Dach und den hinteren Wänden des Epipharynx. Bei Hypertrophie spricht man von Adenoiden (Polypen), die die Nasenatmung behindern, Schlafapnoe verursachen und die Tuba auditiva verlegen können." },
+      ], explanation: "Die Tonsilla pharyngea (Rachenmandel) sitzt im Dach und den hinteren Wänden des Epipharynx. Bei Hypertrophie spricht man von Adenoiden (Polypen), die die Nasenatmung behindern, Schlafapnoe verursachen und die Tuba auditiva verlegen können.", learningCard: { type: "predict", statement: "Die Tonsilla pharyngea (Rachenmandel) liegt im Dach und den hinteren Wänden des Epipharynx.", answer: true, reveal: "Die Rachenmandel sitzt im Dach und an den hinteren Wänden des Epipharynx. Bei Hypertrophie (Adenoide/Polypen) kann sie die Nasenatmung behindern, Schlafapnoe verursachen und die Tuba auditiva verlegen." } },
       { id: "at_ra_h6", type: "mc", question: "Was ist der Hypopharynx und welche Strukturen liegen anterior und posterior zu ihm?", options: [
         { text: "Kehlkopfetage des Rachens: anterior Kehlkopfeingang, posterior Ösophagus", correct: true },
         { text: "Nasenrachenetage: anterior Nasenmuscheln, posterior Sinus sphenoidalis", correct: false },
         { text: "Mundbodenetage: anterior Zunge, posterior Tonsilla palatina", correct: false },
         { text: "Epipharynx: anterior Choanae, posterior Wirbelkörper", correct: false }
-      ], explanation: "Der Hypopharynx (Pars laryngea pharyngis) ist die kaudalste Etage des Rachens. Anterior liegt der Larynxeingang (Aditus laryngis), den die Epiglottis beim Schlucken verschliesst. Posterior geht der Hypopharynx in die Speiseröhre über. Hier kreuzen sich Luft- und Speiseweg." }
+      ], explanation: "Der Hypopharynx (Pars laryngea pharyngis) ist die kaudalste Etage des Rachens. Anterior liegt der Larynxeingang (Aditus laryngis), den die Epiglottis beim Schlucken verschliesst. Posterior geht der Hypopharynx in die Speiseröhre über. Hier kreuzen sich Luft- und Speiseweg.", learningCard: { type: "reconstruct", template: "Im Hypopharynx liegt anterior der ___, den die ___ beim Schlucken verschliesst; posterior geht der Hypopharynx in die ___ über.", blanks: ["Larynxeingang", "Epiglottis", "Speiseröhre"], distractors: ["Trachea", "Tuba auditiva"], reveal: "Im Hypopharynx liegt anterior der Larynxeingang (Aditus laryngis), den die Epiglottis beim Schlucken verschliesst. Posterior geht der Hypopharynx in die Speiseröhre über — hier kreuzen sich Luft- und Speiseweg." } }
     ],
     phase4Questions: [
       { id: "at_ra_mc1", type: "mc", question: "Welcher Abschnitt des Rachens ist die Kreuzungsstelle von Luft- und Speiseweg?", options: [
@@ -3253,41 +4013,66 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Epipharynx (Pars nasalis)", correct: false },
         { text: "Hypopharynx (Pars laryngea)", correct: false },
         { text: "Nasopharynx (Pars inferior)", correct: false }
-      ], explanation: "Der Mesopharynx (Pars oralis) ist die Kreuzungsstelle von Luft- und Speiseweg, weshalb Schlucken und Atmen nicht gleichzeitig möglich sind." },
+      ], explanation: "Der Mesopharynx (Pars oralis) ist die Kreuzungsstelle von Luft- und Speiseweg, weshalb Schlucken und Atmen nicht gleichzeitig möglich sind.", learningCard: { type: "predict", statement: "Der Mesopharynx (Pars oralis) ist die Kreuzungsstelle von Luft- und Speiseweg.", answer: true, reveal: "Der Mesopharynx (Pars oralis) ist die Kreuzungsstelle von Luft- und Speiseweg. Deshalb können Schlucken und Atmen nicht gleichzeitig stattfinden." } },
       { id: "at_ra_mc2", type: "mc", question: "Welche Strukturen bilden den Waldeyer-Rachenring?", options: [
         { text: "Pharyngealtonsille, Gaumenmandeln und Zungenmandel", correct: true },
         { text: "Schildknorpel, Ringknorpel und Stellknorpel", correct: false },
         { text: "Nasenmuscheln und Nasenscheidewand", correct: false },
         { text: "Choanä, Fauces und Epiglottis", correct: false }
-      ], explanation: "Der Waldeyer-Rachenring besteht aus Pharyngealtonsille, Gaumenmandeln und Zungenmandel und bildet eine immunologische Abwehrzone am Atemwegseingang." },
+      ], explanation: "Der Waldeyer-Rachenring besteht aus Pharyngealtonsille, Gaumenmandeln und Zungenmandel und bildet eine immunologische Abwehrzone am Atemwegseingang.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der Waldeyer-Rachenring besteht aus Pharyngealtonsille, Gaumenmandeln und Zungenmandel.", isWrong: false },
+        { text: "Der Waldeyer-Rachenring bildet eine immunologische Abwehrzone.", isWrong: false },
+        { text: "Der Waldeyer-Rachenring liegt am Eingang der Atemwege.", isWrong: false },
+        { text: "Der Waldeyer-Rachenring besteht aus Knorpelstrukturen des Kehlkopfes.", isWrong: true }
+      ], whyWrong: "Der Waldeyer-Rachenring besteht aus lymphatischem Gewebe (Pharyngealtonsille, Gaumenmandeln, Zungenmandel), nicht aus Knorpel. Er bildet eine immunologische Abwehrzone am Eingang der Atemwege." } },
       { id: "at_ra_mc3", type: "mc", question: "Welche Aussagen zum Rachenraum (Pharynx) sind korrekt?", options: [
         { text: "Epipharynx: Verbindung zur Nase (Choanae) und Mittelohr (Tuba auditiva)", correct: true },
         { text: "Hypopharynx: Kreuzung Atemweg–Speiseweg; Epiglottis schützt vor Aspiration", correct: true },
         { text: "Der Mesopharynx führt ausschliesslich Atemluft, kein Speiseweg", correct: false },
         { text: "Die Tonsilla pharyngea liegt im Hypopharynx", correct: false }
-      ], explanation: "Epipharynx (hinter Nase): Rachenmandel + Tuba auditiva → Mittelohr. Mesopharynx (hinter Mund): Kreuzungspunkt Luft/Speise. Hypopharynx (vor Kehlkopf): Epiglottis schützt, posterior Ösophagus. Rachenmandel im Epipharynx, nicht Hypopharynx." }
+      ], explanation: "Epipharynx (hinter Nase): Rachenmandel + Tuba auditiva → Mittelohr. Mesopharynx (hinter Mund): Kreuzungspunkt Luft/Speise. Hypopharynx (vor Kehlkopf): Epiglottis schützt, posterior Ösophagus. Rachenmandel im Epipharynx, nicht Hypopharynx.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu den drei Rachenetagen treffen zu?", checklist: [
+        { text: "Der Epipharynx verbindet sich über die Tuba auditiva mit dem Mittelohr.", correct: true },
+        { text: "Im Hypopharynx sichert die Epiglottis den Kehlkopfeingang beim Schlucken.", correct: true },
+        { text: "Der Mesopharynx ist die Kreuzungsstelle von Luft- und Speiseweg.", correct: true },
+        { text: "Die Rachenmandel (Tonsilla pharyngea) liegt im Hypopharynx.", correct: false }
+      ], reveal: "Epipharynx: Rachenmandel und Verbindung über die Tuba auditiva zum Mittelohr. Mesopharynx: Kreuzungspunkt von Luft- und Speiseweg. Hypopharynx: Epiglottis schützt vor Aspiration, posterior liegt der Ösophagus. Die Rachenmandel sitzt im Epipharynx, nicht im Hypopharynx." } }
     ]
   }),
   makeDetailedPlant({
     id: "kehlkopf",
     title: "Kehlkopf (Larynx)",
     harvestQuestions: [
-      { id: "at_kk_h1", type: "true_false", statement: "Der Schildknorpel (Cartilago thyroidea) ist der grösste Knorpel des Kehlkopfes.", answer: true, explanation: "Der Schildknorpel bildet den vorderen und seitlichen Knorpelmantel des Kehlkopfes. Sein prominenter Vordervorsprung ist beim Mann gut tastbar (Adamsapfel, Prominentia laryngea). Er bildet den vorderen Verankerungspunkt der Stimmbänder." },
-      { id: "at_kk_h2", type: "true_false", statement: "Der Ringknorpel (Cartilago cricoidea) bildet die Basis, auf der alle anderen Kehlkopfknorpel ruhen.", answer: true, explanation: "Der Ringknorpel ist der einzige Kehlkopfknorpel mit einem vollständig geschlossenen Knorpelring. Als unterste Struktur des Kehlkopfes bildet er die Basis für Schildknorpel und Stellknorpel und geht kaudal direkt in die erste Trachealspange über." },
-      { id: "at_kk_h3", type: "true_false", statement: "Die Stimmritze (Rima glottidis) befindet sich zwischen den falschen Stimmbändern.", answer: false, explanation: "Die Stimmritze (Rima glottidis) liegt zwischen den echten Stimmbändern (Plicä vocales), nicht zwischen den falschen Stimmbändern (Plicä vestibulares). Die falschen Stimmbänder befinden sich kranial der echten und bilden das Vestibulum laryngis." },
+      { id: "at_kk_h1", type: "true_false", statement: "Der Schildknorpel (Cartilago thyroidea) ist der grösste Knorpel des Kehlkopfes.", answer: true, explanation: "Der Schildknorpel bildet den vorderen und seitlichen Knorpelmantel des Kehlkopfes. Sein prominenter Vordervorsprung ist beim Mann gut tastbar (Adamsapfel, Prominentia laryngea). Er bildet den vorderen Verankerungspunkt der Stimmbänder.", learningCard: { type: "predict", statement: "Der Schildknorpel (Cartilago thyroidea) ist der grösste Knorpel des Kehlkopfes und bildet beim Mann den tastbaren Adamsapfel.", answer: true, reveal: "Der Schildknorpel bildet den vorderen und seitlichen Knorpelmantel des Kehlkopfes. Sein Vordervorsprung ist beim Mann als Adamsapfel (Prominentia laryngea) gut tastbar. Er ist zudem der vordere Verankerungspunkt der Stimmbänder." } },
+      { id: "at_kk_h2", type: "true_false", statement: "Der Ringknorpel (Cartilago cricoidea) bildet die Basis, auf der alle anderen Kehlkopfknorpel ruhen.", answer: true, explanation: "Der Ringknorpel ist der einzige Kehlkopfknorpel mit einem vollständig geschlossenen Knorpelring. Als unterste Struktur des Kehlkopfes bildet er die Basis für Schildknorpel und Stellknorpel und geht kaudal direkt in die erste Trachealspange über.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Ringknorpel (Cartilago cricoidea) treffen zu?", checklist: [
+        { text: "Er ist der einzige vollständig geschlossene Knorpelring des Kehlkopfes.", correct: true },
+        { text: "Er bildet die Basis für Schildknorpel und Stellknorpel.", correct: true },
+        { text: "Er geht kaudal direkt in die erste Trachealspange über.", correct: true },
+        { text: "Er ist der grösste Knorpel des Kehlkopfes.", correct: false }
+      ], reveal: "Der Ringknorpel ist der einzige vollständig geschlossene Knorpelring des Kehlkopfes. Als unterste Struktur bildet er die Basis für Schildknorpel und Stellknorpel und geht kaudal direkt in die erste Trachealspange über. Der grösste Knorpel ist dagegen der Schildknorpel." } },
+      { id: "at_kk_h3", type: "true_false", statement: "Die Stimmritze (Rima glottidis) befindet sich zwischen den falschen Stimmbändern.", answer: false, explanation: "Die Stimmritze (Rima glottidis) liegt zwischen den echten Stimmbändern (Plicä vocales), nicht zwischen den falschen Stimmbändern (Plicä vestibulares). Die falschen Stimmbänder befinden sich kranial der echten und bilden das Vestibulum laryngis.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Stimmritze (Rima glottidis) liegt zwischen den echten Stimmbändern.", isWrong: false },
+        { text: "Die falschen Stimmbänder liegen kranial der echten Stimmbänder.", isWrong: false },
+        { text: "Die falschen Stimmbänder bilden das Vestibulum laryngis.", isWrong: false },
+        { text: "Die Stimmritze liegt zwischen den falschen Stimmbändern.", isWrong: true }
+      ], whyWrong: "Die Stimmritze (Rima glottidis) liegt zwischen den echten, nicht den falschen Stimmbändern. Die falschen Stimmbänder liegen kranial davon und bilden das Vestibulum laryngis." } },
       { id: "at_kk_h4", type: "mc", question: "Was passiert beim Schlucken mit dem Kehlkopf, um Aspiration zu verhindern?", options: [
         { text: "Der Kehlkopf wird angehoben, die Epiglottis kippt herab und verschliesst den Kehlkopfeingang", correct: true },
         { text: "Die echten Stimmbänder spreizen sich weit und saugen Luft an", correct: false },
         { text: "Der Ringknorpel rotiert und verschliesst die Trachea", correct: false },
         { text: "Die falschen Stimmbänder verschliessen den Ösophagus", correct: false }
-      ], explanation: "Beim Schlucken werden gleichzeitig die Atmung angehalten, der Kehlkopf nach oben-vorne angehoben und die Epiglottis nach hinten-unten gedrückt (durch die Zunge und Mm. aryepiglottici). Diese Dreifachsicherung verhindert Aspiration. Wenn dieser Mechanismus versagt (z.B. bei Schlaganfall) entstehen Aspirationspneumonien." },
-      { id: "at_kk_h5", type: "true_false", statement: "Der Ringknorpel (Cartilago cricoidea) ist der einzige vollständig geschlossene Knorpelring im Kehlkopf.", answer: true, explanation: "Alle anderen Kehlkopfknorpel (Schildknorpel, Stellknorpel, Epiglottis) sind offen oder nicht ringförmig. Der Ringknorpel bildet die Basis des Kehlkopfes und hat dorsal einen breiten Plattenanteil (Lamina). Klinisch wichtig: Bei der Notfallkoniotomie durchtrennt man das Ligamentum conicum zwischen Ring- und Schildknorpel." },
+      ], explanation: "Beim Schlucken werden gleichzeitig die Atmung angehalten, der Kehlkopf nach oben-vorne angehoben und die Epiglottis nach hinten-unten gedrückt (durch die Zunge und Mm. aryepiglottici). Diese Dreifachsicherung verhindert Aspiration. Wenn dieser Mechanismus versagt (z.B. bei Schlaganfall) entstehen Aspirationspneumonien.", learningCard: { type: "reconstruct", template: "Beim Schlucken wird die ___ angehalten, der ___ nach oben-vorne angehoben und die ___ nach hinten-unten gedrückt, um Aspiration zu verhindern.", blanks: ["Atmung", "Kehlkopf", "Epiglottis"], distractors: ["Trachea", "Speiseröhre"], reveal: "Beim Schlucken wird die Atmung angehalten, der Kehlkopf nach oben-vorne angehoben und die Epiglottis nach hinten-unten gedrückt. Diese Dreifachsicherung verhindert Aspiration; versagt sie (z.B. bei Schlaganfall), drohen Aspirationspneumonien." } },
+      { id: "at_kk_h5", type: "true_false", statement: "Der Ringknorpel (Cartilago cricoidea) ist der einzige vollständig geschlossene Knorpelring im Kehlkopf.", answer: true, explanation: "Alle anderen Kehlkopfknorpel (Schildknorpel, Stellknorpel, Epiglottis) sind offen oder nicht ringförmig. Der Ringknorpel bildet die Basis des Kehlkopfes und hat dorsal einen breiten Plattenanteil (Lamina). Klinisch wichtig: Bei der Notfallkoniotomie durchtrennt man das Ligamentum conicum zwischen Ring- und Schildknorpel.", learningCard: { type: "predict", statement: "Der Ringknorpel ist der einzige Kehlkopfknorpel, der einen vollständig geschlossenen Ring bildet.", answer: true, reveal: "Alle anderen Kehlkopfknorpel (Schildknorpel, Stellknorpel, Epiglottis) sind offen oder nicht ringförmig. Der Ringknorpel bildet die Basis des Kehlkopfes mit einem breiten dorsalen Plattenanteil. Bei der Notfallkoniotomie wird das Ligamentum conicum zwischen Ring- und Schildknorpel durchtrennt." } },
       { id: "at_kk_h6", type: "mc", question: "Welche Funktion haben die echten Stimmbänder bei der Phonation?", options: [
         { text: "Sie schwingen im Luftstrom und erzeugen durch ihre Schwingungsfrequenz den Stimmklang", correct: true },
         { text: "Sie saugen aktiv Luft an und erzeugen Schall durch Luftkompression", correct: false },
         { text: "Sie verschliessen beim Schlucken die Trachea vollständig", correct: false },
         { text: "Sie produzieren Schleim, der Stimmklang durch Resonanz erzeugt", correct: false }
-      ], explanation: "Phonation: Die Aryknorpel (Stellknorpel) nähern die echten Stimmbänder aneinander (Glottisschluss). Ausströmende Luft bringt die Stimmbänder in Schwingung. Die Schwingungsfrequenz bestimmt die Tonhöhe, die Stärke des Luftstroms die Lautstärke. Höhere Spannung der Stimmbänder = höhere Frequenz = höherer Ton." }
+      ], explanation: "Phonation: Die Aryknorpel (Stellknorpel) nähern die echten Stimmbänder aneinander (Glottisschluss). Ausströmende Luft bringt die Stimmbänder in Schwingung. Die Schwingungsfrequenz bestimmt die Tonhöhe, die Stärke des Luftstroms die Lautstärke. Höhere Spannung der Stimmbänder = höhere Frequenz = höherer Ton.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Phonation durch die echten Stimmbänder treffen zu?", checklist: [
+        { text: "Die Stellknorpel nähern die Stimmbänder für den Glottisschluss aneinander.", correct: true },
+        { text: "Die Schwingungsfrequenz der Stimmbänder bestimmt die Tonhöhe.", correct: true },
+        { text: "Die Stärke des Luftstroms bestimmt die Lautstärke.", correct: true },
+        { text: "Die Stimmbänder produzieren aktiv Schleim, der den Klang erzeugt.", correct: false }
+      ], reveal: "Die Stellknorpel nähern die echten Stimmbänder für den Glottisschluss aneinander, und die Ausatemluft bringt sie zum Schwingen. Die Schwingungsfrequenz bestimmt die Tonhöhe, die Stärke des Luftstroms die Lautstärke." } }
     ],
     phase4Questions: [
       { id: "at_kk_mc1", type: "mc", question: "Welcher Knorpel des Kehlkopfes ist der grösste?", options: [
@@ -3295,41 +4080,61 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Ringknorpel (Cartilago cricoidea)", correct: false },
         { text: "Stellknorpel (Arytenoidknorpel)", correct: false },
         { text: "Kehldeckelknorpel (Epiglottis)", correct: false }
-      ], explanation: "Der Schildknorpel (Cartilago thyroidea) ist der grösste Kehlkopfknorpel und bildet beim Mann den Adamsapfel; er schützt die Stimmlippen." },
+      ], explanation: "Der Schildknorpel (Cartilago thyroidea) ist der grösste Kehlkopfknorpel und bildet beim Mann den Adamsapfel; er schützt die Stimmlippen.", learningCard: { type: "predict", statement: "Der Schildknorpel (Cartilago thyroidea) ist der grösste Knorpel des Kehlkopfes.", answer: true, reveal: "Der Schildknorpel ist der grösste Kehlkopfknorpel und bildet beim Mann den Adamsapfel. Er schützt die dahinterliegenden Stimmlippen." } },
       { id: "at_kk_mc2", type: "mc", question: "Wo liegen die echten Stimmbänder (Plicä vocales)?", options: [
         { text: "Zwischen den Stellknorpeln und dem Schildknorpel", correct: true },
         { text: "Zwischen Epiglottis und Ringknorpel", correct: false },
         { text: "Unterhalb des Ringknorpels", correct: false },
         { text: "Im Mesopharynx zwischen den Gaumenmandeln", correct: false }
-      ], explanation: "Die echten Stimmlippen (Plicae vocales) verlaufen von den Stellknorpeln hinten zum Schildknorpel vorne und erzeugen durch Schwingung die Stimme." },
+      ], explanation: "Die echten Stimmlippen (Plicae vocales) verlaufen von den Stellknorpeln hinten zum Schildknorpel vorne und erzeugen durch Schwingung die Stimme.", learningCard: { type: "reconstruct", template: "Die echten Stimmlippen verlaufen von den ___ hinten zum ___ vorne.", blanks: ["Stellknorpeln", "Schildknorpel"], distractors: ["Ringknorpel", "Epiglottisknorpel"], reveal: "Die echten Stimmlippen (Plicae vocales) verlaufen von den Stellknorpeln hinten zum Schildknorpel vorne und erzeugen durch Schwingung die Stimme." } },
       { id: "at_kk_mc3", type: "mc", question: "Welche Aussagen zum Kehlkopf sind korrekt?", options: [
         { text: "Schildknorpel ist der grösste Kehlkopfknorpel", correct: true },
         { text: "Ringknorpel ist einziger vollständig geschlossener Ring, bildet die Kehlkopfbasis", correct: true },
         { text: "Die Stimmritze liegt zwischen den falschen Stimmbändern", correct: false },
         { text: "Die Epiglottis besteht aus hyalinem Knorpel", correct: false }
-      ], explanation: "Kehlkopf-Knorpel: Schildknorpel (grösster, Adamsapfel), Ringknorpel (einziger vollständiger Ring, Basis), Stellknorpel (bewegen Stimmbänder), Epiglottis (elastischer Knorpel, kein Hyalin). Stimmritze liegt zwischen ECHTEN, nicht falschen Stimmbändern." }
+      ], explanation: "Kehlkopf-Knorpel: Schildknorpel (grösster, Adamsapfel), Ringknorpel (einziger vollständiger Ring, Basis), Stellknorpel (bewegen Stimmbänder), Epiglottis (elastischer Knorpel, kein Hyalin). Stimmritze liegt zwischen ECHTEN, nicht falschen Stimmbändern.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der Schildknorpel ist der grösste Kehlkopfknorpel.", isWrong: false },
+        { text: "Der Ringknorpel ist der einzige vollständig geschlossene Knorpelring.", isWrong: false },
+        { text: "Die Stimmritze liegt zwischen den echten Stimmbändern.", isWrong: false },
+        { text: "Die Stimmritze liegt zwischen den falschen Stimmbändern.", isWrong: true }
+      ], whyWrong: "Die Stimmritze (Rima glottidis) liegt zwischen den echten, nicht den falschen Stimmbändern. Der Schildknorpel bleibt der grösste Kehlkopfknorpel, der Ringknorpel der einzige vollständig geschlossene Ring." } }
     ]
   }),
   makeDetailedPlant({
     id: "trachea",
     title: "Luftröhre (Trachea)",
     harvestQuestions: [
-      { id: "at_tr_h1", type: "true_false", statement: "Die Luftröhre besteht aus 16 bis 20 hufeisenförmigen Knorpelspangen aus hyalinem Knorpel.", answer: true, explanation: "Die C-förmigen Knorpelspangen verhindern das Kollabieren der Trachea bei Unterdruck während der Inspiration. Die hintere Öffnung wird durch den Paries membranaceus (Bandstruktur mit glattem Muskel) geschlossen, der beim Schlucken der direkt anliegenden Speiseröhre Platz lässt." },
-      { id: "at_tr_h2", type: "true_false", statement: "Die Bifurcatio tracheä bezeichnet die Teilung der Trachea in linken und rechten Hauptbronchus.", answer: true, explanation: "Die Bifurcatio tracheä liegt auf Höhe des 5. Brustwirbels und teilt die Trachea in rechten und linken Hauptbronchus. Der rechte ist steiler angewinkelt (ca. 25°) als der linke (ca. 45°) – deshalb gelangen aspirierte Fremdkörper häufiger in die rechte Lunge." },
-      { id: "at_tr_h3", type: "true_false", image: "assets/diagrams/atmungssystem_figure_9.png", statement: "Aspirierte Fremdkörper gelangen häufiger in den rechten Hauptbronchus als in den linken.", answer: true, explanation: "Der rechte Hauptbronchus ist steiler (ca. 25° zur Trachea) und breiter als der linke (ca. 45°). Diese anatomische Asymmetrie erklärt, warum Fremdkörper und Magensekret bei Aspiration typischerweise in die rechte Lunge gelangen – wichtig für klinische Diagnose und Bronchoskopie." },
+      { id: "at_tr_h1", type: "true_false", statement: "Die Luftröhre besteht aus 16 bis 20 hufeisenförmigen Knorpelspangen aus hyalinem Knorpel.", answer: true, explanation: "Die C-förmigen Knorpelspangen verhindern das Kollabieren der Trachea bei Unterdruck während der Inspiration. Die hintere Öffnung wird durch den Paries membranaceus (Bandstruktur mit glattem Muskel) geschlossen, der beim Schlucken der direkt anliegenden Speiseröhre Platz lässt.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Trachea treffen zu?", checklist: [
+        { text: "Die Trachea hat 16–20 hufeisenförmige Knorpelspangen aus hyalinem Knorpel.", correct: true },
+        { text: "Die Knorpelspangen verhindern das Kollabieren der Trachea bei Unterdruck.", correct: true },
+        { text: "Die hintere Öffnung wird durch den Paries membranaceus geschlossen.", correct: true },
+        { text: "Die Trachea besteht aus vollständig geschlossenen Knorpelringen.", correct: false }
+      ], reveal: "Die Trachea besitzt 16–20 hufeisenförmige (C-förmige) Knorpelspangen aus hyalinem Knorpel, die das Kollabieren bei Unterdruck verhindern. Die hintere Öffnung schliesst der Paries membranaceus, der beim Schlucken der direkt anliegenden Speiseröhre Platz lässt." } },
+      { id: "at_tr_h2", type: "true_false", statement: "Die Bifurcatio tracheä bezeichnet die Teilung der Trachea in linken und rechten Hauptbronchus.", answer: true, explanation: "Die Bifurcatio tracheä liegt auf Höhe des 5. Brustwirbels und teilt die Trachea in rechten und linken Hauptbronchus. Der rechte ist steiler angewinkelt (ca. 25°) als der linke (ca. 45°) – deshalb gelangen aspirierte Fremdkörper häufiger in die rechte Lunge.", learningCard: { type: "predict", statement: "Die Bifurcatio tracheae teilt die Trachea in den rechten und linken Hauptbronchus.", answer: true, reveal: "Die Bifurcatio tracheae liegt etwa auf Höhe des 4.–5. Brustwirbels und teilt die Trachea in den rechten und linken Hauptbronchus. Der rechte ist steiler angewinkelt (ca. 25°) als der linke (ca. 45°), weshalb Fremdkörper häufiger rechts landen." } },
+      { id: "at_tr_h3", type: "true_false", image: "assets/diagrams/atmungssystem_figure_9.png", statement: "Aspirierte Fremdkörper gelangen häufiger in den rechten Hauptbronchus als in den linken.", answer: true, explanation: "Der rechte Hauptbronchus ist steiler (ca. 25° zur Trachea) und breiter als der linke (ca. 45°). Diese anatomische Asymmetrie erklärt, warum Fremdkörper und Magensekret bei Aspiration typischerweise in die rechte Lunge gelangen – wichtig für klinische Diagnose und Bronchoskopie.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der rechte Hauptbronchus ist steiler angewinkelt als der linke.", isWrong: false },
+        { text: "Der rechte Hauptbronchus ist breiter als der linke.", isWrong: false },
+        { text: "Aspirierte Fremdkörper landen häufiger in der rechten Lunge.", isWrong: false },
+        { text: "Aspirierte Fremdkörper landen wegen der Anatomie häufiger in der linken Lunge.", isWrong: true }
+      ], whyWrong: "Aspirierte Fremdkörper landen häufiger rechts, nicht links, weil der rechte Hauptbronchus steiler (ca. 25°) und breiter ist als der linke (ca. 45°). Diese Asymmetrie ist klinisch wichtig für Diagnose und Bronchoskopie." } },
       { id: "at_tr_h4", type: "mc", question: "Auf welcher anatomischen Höhe liegt die Bifurcatio tracheae?", options: [
         { text: "Höhe des 4.–5. Brustwirbels (BWK 4–5)", correct: true },
         { text: "Höhe des Kehlkopfes (HWK 4–6)", correct: false },
         { text: "Höhe des 10. Brustwirbels (BWK 10)", correct: false },
         { text: "Höhe des Zwerchfells (BWK 12)", correct: false }
-      ], explanation: "Die Bifurcatio tracheae liegt auf Höhe des 4.–5. Brustwirbels, was in der Brusthöhle dem sogenannten Angulus Ludovici (Louis-Winkel) auf Sternalebene entspricht. Diese Höhenangabe ist klinisch relevant bei Bronchoskopie und Intubation." },
+      ], explanation: "Die Bifurcatio tracheae liegt auf Höhe des 4.–5. Brustwirbels, was in der Brusthöhle dem sogenannten Angulus Ludovici (Louis-Winkel) auf Sternalebene entspricht. Diese Höhenangabe ist klinisch relevant bei Bronchoskopie und Intubation.", learningCard: { type: "reconstruct", template: "Die Bifurcatio tracheae liegt auf Höhe des ___. Brustwirbels, was dem ___ auf Sternalebene entspricht – relevant bei Bronchoskopie und ___.", blanks: ["4.–5.", "Angulus Ludovici", "Intubation"], distractors: ["10.", "Sinus venosus"], reveal: "Die Bifurcatio tracheae liegt auf Höhe des 4.–5. Brustwirbels, was dem Angulus Ludovici (Louis-Winkel) auf Sternalebene entspricht. Diese Höhenangabe ist klinisch relevant bei Bronchoskopie und Intubation." } },
       { id: "at_tr_h5", type: "mc", question: "Wie viele Knorpelspangen besitzt die Trachea und welche Form haben sie?", options: [
         { text: "16–20 hufeisenförmige (C-förmige) Knorpelspangen aus hyalinem Knorpel", correct: true },
         { text: "5–8 geschlossene Ringe aus Faserknorpel", correct: false },
         { text: "30–40 elastische Fasern ohne Knorpelstruktur", correct: false },
         { text: "Keine Knorpelanteile – die Trachea wird nur durch Muskulatur stabilisiert", correct: false }
-      ], explanation: "Die Trachea hat 16–20 C-förmige (hufeisenförmige) Knorpelspangen aus hyalinem Knorpel. Die offene Seite liegt hinten (posterior) und wird durch den Paries membranaceus (Bandstruktur mit glattem Muskel, M. trachealis) geschlossen. Die Speiseröhre liegt direkt hinter dieser membranösen Wand." },
-      { id: "at_tr_h6", type: "true_false", statement: "Der Paries membranaceus (hintere Wand der Trachea) liegt direkt der vorderen Ösophaguswand an.", answer: true, explanation: "Die Trachea und der Ösophagus verlaufen im Mediastinum direkt benachbart. Der Paries membranaceus (hintere, weiche Wand der Trachea) liegt der vorderen Ösophaguswand direkt an. Das erklärt, warum Ösophagustumore oder grosse Schilddrüsenstruma die Trachea komprimieren können." }
+      ], explanation: "Die Trachea hat 16–20 C-förmige (hufeisenförmige) Knorpelspangen aus hyalinem Knorpel. Die offene Seite liegt hinten (posterior) und wird durch den Paries membranaceus (Bandstruktur mit glattem Muskel, M. trachealis) geschlossen. Die Speiseröhre liegt direkt hinter dieser membranösen Wand.", learningCard: { type: "predict", statement: "Die Trachea hat 16–20 hufeisenförmige Knorpelspangen aus hyalinem Knorpel, deren offene Seite nach hinten zeigt.", answer: true, reveal: "Die Trachea hat 16–20 C-förmige Knorpelspangen aus hyalinem Knorpel. Die hintere offene Seite schliesst der Paries membranaceus (Bandstruktur mit glattem Muskel). Die Speiseröhre liegt direkt hinter dieser membranösen Wand." } },
+      { id: "at_tr_h6", type: "true_false", statement: "Der Paries membranaceus (hintere Wand der Trachea) liegt direkt der vorderen Ösophaguswand an.", answer: true, explanation: "Die Trachea und der Ösophagus verlaufen im Mediastinum direkt benachbart. Der Paries membranaceus (hintere, weiche Wand der Trachea) liegt der vorderen Ösophaguswand direkt an. Das erklärt, warum Ösophagustumore oder grosse Schilddrüsenstruma die Trachea komprimieren können.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Paries membranaceus der Trachea treffen zu?", checklist: [
+        { text: "Er bildet die hintere, weiche Wand der Trachea.", correct: true },
+        { text: "Er liegt direkt der vorderen Ösophaguswand an.", correct: true },
+        { text: "Ösophagustumore oder eine grosse Struma können ihn komprimieren.", correct: true },
+        { text: "Er besteht aus hyalinem Knorpel wie die Knorpelspangen.", correct: false }
+      ], reveal: "Der Paries membranaceus ist die hintere, weiche Wand der Trachea und liegt direkt der vorderen Ösophaguswand an. Er besteht aus Bindegewebe und glatter Muskulatur, nicht aus Knorpel. Ösophagustumore oder eine grosse Schilddrüsenstruma können ihn komprimieren." } }
     ],
     phase4Questions: [
       { id: "at_tr_mc1", type: "mc", question: "Aus welchem Knorpeltyp bestehen die Knorpelspangen der Trachea?", options: [
@@ -3337,41 +4142,61 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Elastischem Knorpel", correct: false },
         { text: "Faserknorpel", correct: false },
         { text: "Knochengewebe", correct: false }
-      ], explanation: "Die Knorpelspangen der Trachea bestehen aus hyalinem Knorpel, der dem Atemweg Stabilität verleiht und gleichzeitig Flexibilität beim Schlucken erlaubt." },
+      ], explanation: "Die Knorpelspangen der Trachea bestehen aus hyalinem Knorpel, der dem Atemweg Stabilität verleiht und gleichzeitig Flexibilität beim Schlucken erlaubt.", learningCard: { type: "predict", statement: "Die Knorpelspangen der Trachea bestehen aus hyalinem Knorpel.", answer: true, reveal: "Die Knorpelspangen der Trachea bestehen aus hyalinem Knorpel. Er verleiht dem Atemweg Stabilität und erlaubt gleichzeitig Flexibilität beim Schlucken." } },
       { id: "at_tr_mc2", type: "mc", question: "Was bezeichnet die Bifurcatio tracheä?", options: [
         { text: "Die Aufzweigung der Trachea in linken und rechten Hauptbronchus", correct: true },
         { text: "Den Übergang vom Kehlkopf zur Trachea", correct: false },
         { text: "Die Teilung der Hauptbronchien in Lappenbronchien", correct: false },
         { text: "Den hufeisenförmigen Querschnitt der Knorpelspangen", correct: false }
-      ], explanation: "Die Bifurcatio tracheae ist die Aufzweigung der Trachea in linken und rechten Hauptbronchus auf Höhe des Brustwirbels Th4/5 (Carina tracheae)." },
+      ], explanation: "Die Bifurcatio tracheae ist die Aufzweigung der Trachea in linken und rechten Hauptbronchus auf Höhe des Brustwirbels Th4/5 (Carina tracheae).", learningCard: { type: "reconstruct", template: "Die Bifurcatio tracheae ist die Aufzweigung der Trachea in ___ und ___ Hauptbronchus auf Höhe Th4/5 (___).", blanks: ["linken", "rechten", "Carina tracheae"], distractors: ["mittleren", "Hilus pulmonis"], reveal: "Die Bifurcatio tracheae ist die Aufzweigung der Trachea in linken und rechten Hauptbronchus auf Höhe des Brustwirbels Th4/5, dort liegt die Carina tracheae." } },
       { id: "at_tr_mc3", type: "mc", question: "Welche Aussagen zur Trachea sind korrekt?", options: [
         { text: "16–20 C-förmige Knorpelspangen aus hyalinem Knorpel verhindern Kollaps", correct: true },
         { text: "Fremdkörper gelangen häufiger rechts, da der rechte Hauptbronchus steiler ist", correct: true },
         { text: "Die Bifurcatio tracheae liegt auf Höhe des 10. Brustwirbels", correct: false },
         { text: "Die Trachea besteht aus vollständig geschlossenen Knorpelringen", correct: false }
-      ], explanation: "Trachea: 16–20 C-förmige Spangen aus Hyalinknorpel; Paries membranaceus hinten (an Ösophagus); Bifurcatio auf BWK 4–5. Rechter Hauptbronchus steiler (25°) und breiter → Fremdkörper häufiger rechts. Geschlossene Ringe gibt es nur beim Ringknorpel des Kehlkopfs." }
+      ], explanation: "Trachea: 16–20 C-förmige Spangen aus Hyalinknorpel; Paries membranaceus hinten (an Ösophagus); Bifurcatio auf BWK 4–5. Rechter Hauptbronchus steiler (25°) und breiter → Fremdkörper häufiger rechts. Geschlossene Ringe gibt es nur beim Ringknorpel des Kehlkopfs.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Trachea hat 16–20 C-förmige Knorpelspangen aus hyalinem Knorpel.", isWrong: false },
+        { text: "Fremdkörper gelangen häufiger rechts, da der rechte Hauptbronchus steiler und breiter ist.", isWrong: false },
+        { text: "Die Bifurcatio tracheae liegt auf Höhe BWK 4–5.", isWrong: false },
+        { text: "Die Trachea besteht aus vollständig geschlossenen Knorpelringen.", isWrong: true }
+      ], whyWrong: "Die Trachea besteht aus C-förmigen, nach hinten offenen Knorpelspangen, nicht aus geschlossenen Ringen — vollständig geschlossen ist nur der Ringknorpel des Kehlkopfs. Die übrigen Aussagen zu Hyalinknorpel, Fremdkörperlage und Bifurcatio-Höhe stimmen." } }
     ]
   }),
   makeDetailedPlant({
     id: "bronchialsystem",
     title: "Bronchialsystem",
     harvestQuestions: [
-      { id: "at_br_h1", type: "true_false", statement: "Die rechte Lunge besitzt drei Lappenbronchien, die linke nur zwei.", answer: true, explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen), die linke nur zwei (Ober- und Unterlappen), weil links der Herzraum (Impressio cardiaca) Platz beansprucht. Der Mittellappen ist daher ein rein rechtes anatomisches Merkmal." },
-      { id: "at_br_h2", type: "true_false", statement: "Die Bronchioli respiratorii enthalten keine Knorpelanteile und werden durch glatte Muskulatur reguliert.", answer: true, explanation: "Ab den Bronchiolen fehlen Knorpelspangen vollständig – die Wandstabilität wird ausschliesslich durch glatte Muskulatur aufrechterhalten. Diese Muskulatur kann durch das autonome Nervensystem reguliert werden (Adrenalin → Bronchodilatation; Parasympathikus → Bronchokonstriktion), was bei Asthma bronchiale pathologisch relevant ist." },
-      { id: "at_br_h3", type: "true_false", statement: "Die Alveolarwand besteht aus mehrschichtigem Plattenepithel.", answer: false, explanation: "Die Alveolarwand besteht aus einschichtigem Plattenepithel (Pneumozyten Typ I für Gasaustausch, Typ II für Surfactant-Produktion), nicht mehrschichtigem. Ein mehrschichtiges Epithel würde die Diffusionsstrecke für O2 und CO2 erheblich verlängern und den Gasaustausch behindern." },
-      { id: "at_br_h4", type: "true_false", statement: "Adrenalin führt zur Bronchodilatation (Erweiterung der Atemwege).", answer: true, explanation: "Adrenalin (Epinephrin) stimuliert β2-Adrenorezeptoren der glatten Muskulatur in den Bronchiolen → Relaxation der glatten Muskulatur → Bronchodilatation. Das ermöglicht mehr Luftzufuhr in Stresssituationen. Der Parasympathikus (Acetylcholin) wirkt umgekehrt: Bronchokonstriktion. Dieses Prinzip wird in der Asthmabehandlung genutzt (β2-Agonisten)." },
+      { id: "at_br_h1", type: "true_false", statement: "Die rechte Lunge besitzt drei Lappenbronchien, die linke nur zwei.", answer: true, explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen), die linke nur zwei (Ober- und Unterlappen), weil links der Herzraum (Impressio cardiaca) Platz beansprucht. Der Mittellappen ist daher ein rein rechtes anatomisches Merkmal.", learningCard: { type: "predict", statement: "Die rechte Lunge hat drei Lappenbronchien, die linke nur zwei, weil links der Herzraum Platz beansprucht.", answer: true, reveal: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen), die linke nur zwei, weil die Impressio cardiaca links Platz beansprucht. Der Mittellappen ist deshalb ein rein rechtes anatomisches Merkmal." } },
+      { id: "at_br_h2", type: "true_false", statement: "Die Bronchioli respiratorii enthalten keine Knorpelanteile und werden durch glatte Muskulatur reguliert.", answer: true, explanation: "Ab den Bronchiolen fehlen Knorpelspangen vollständig – die Wandstabilität wird ausschliesslich durch glatte Muskulatur aufrechterhalten. Diese Muskulatur kann durch das autonome Nervensystem reguliert werden (Adrenalin → Bronchodilatation; Parasympathikus → Bronchokonstriktion), was bei Asthma bronchiale pathologisch relevant ist.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Bronchioli respiratorii treffen zu?", checklist: [
+        { text: "Sie enthalten keine Knorpelanteile.", correct: true },
+        { text: "Ihre Wandstabilität wird durch glatte Muskulatur aufrechterhalten.", correct: true },
+        { text: "Die glatte Muskulatur wird durch das autonome Nervensystem reguliert.", correct: true },
+        { text: "Sie besitzen dieselben Knorpelspangen wie die Trachea.", correct: false }
+      ], reveal: "Ab den Bronchiolen fehlen Knorpelspangen vollständig; die Wandstabilität hängt allein von glatter Muskulatur ab. Diese wird vom autonomen Nervensystem reguliert (Adrenalin → Bronchodilatation, Parasympathikus → Bronchokonstriktion), was bei Asthma bronchiale relevant ist." } },
+      { id: "at_br_h3", type: "true_false", statement: "Die Alveolarwand besteht aus mehrschichtigem Plattenepithel.", answer: false, explanation: "Die Alveolarwand besteht aus einschichtigem Plattenepithel (Pneumozyten Typ I für Gasaustausch, Typ II für Surfactant-Produktion), nicht mehrschichtigem. Ein mehrschichtiges Epithel würde die Diffusionsstrecke für O2 und CO2 erheblich verlängern und den Gasaustausch behindern.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Alveolarwand besteht aus einschichtigem Plattenepithel.", isWrong: false },
+        { text: "Pneumozyten Typ I sind für den Gasaustausch zuständig.", isWrong: false },
+        { text: "Pneumozyten Typ II produzieren Surfactant.", isWrong: false },
+        { text: "Die Alveolarwand besteht aus mehrschichtigem Plattenepithel.", isWrong: true }
+      ], whyWrong: "Die Alveolarwand besteht aus einschichtigem, nicht mehrschichtigem Plattenepithel. Ein mehrschichtiges Epithel würde die Diffusionsstrecke für O2 und CO2 verlängern und den Gasaustausch behindern." } },
+      { id: "at_br_h4", type: "true_false", statement: "Adrenalin führt zur Bronchodilatation (Erweiterung der Atemwege).", answer: true, explanation: "Adrenalin (Epinephrin) stimuliert β2-Adrenorezeptoren der glatten Muskulatur in den Bronchiolen → Relaxation der glatten Muskulatur → Bronchodilatation. Das ermöglicht mehr Luftzufuhr in Stresssituationen. Der Parasympathikus (Acetylcholin) wirkt umgekehrt: Bronchokonstriktion. Dieses Prinzip wird in der Asthmabehandlung genutzt (β2-Agonisten).", learningCard: { type: "reconstruct", template: "Adrenalin stimuliert ___-Rezeptoren der Bronchialmuskulatur und führt zur ___. Der ___ wirkt umgekehrt und verengt die Bronchien.", blanks: ["β2", "Bronchodilatation", "Parasympathikus"], distractors: ["α1", "Sympathikus"], reveal: "Adrenalin stimuliert β2-Adrenorezeptoren der glatten Bronchialmuskulatur und bewirkt Bronchodilatation. Der Parasympathikus (Acetylcholin) wirkt umgekehrt und verengt die Bronchien (Bronchokonstriktion) — dieses Prinzip nutzt die Asthmabehandlung mit β2-Agonisten." } },
       { id: "at_br_h5", type: "mc", question: "Was produzieren Pneumozyten Typ II und welche Funktion hat diese Substanz?", options: [
         { text: "Surfactant: senkt die Oberflächenspannung und verhindert Alveolenkollaps", correct: true },
         { text: "Kollagen: stabilisiert die Alveolarwand mechanisch", correct: false },
         { text: "IgA: schützt die Alveolen vor Keimen", correct: false },
         { text: "Schleim: befeuchtet die Alveolarluft", correct: false }
-      ], explanation: "Surfactant (Surface-active agent) ist ein Phospholipid-Protein-Gemisch, das die Oberflächenspannung in den Alveolen senkt. Ohne Surfactant würden die Alveolen bei jeder Ausatmung kollabieren. Beim Atemnotsyndrom des Frühgeborenen (IRDS) fehlt Surfactant → Kollaps der Alveolen." },
+      ], explanation: "Surfactant (Surface-active agent) ist ein Phospholipid-Protein-Gemisch, das die Oberflächenspannung in den Alveolen senkt. Ohne Surfactant würden die Alveolen bei jeder Ausatmung kollabieren. Beim Atemnotsyndrom des Frühgeborenen (IRDS) fehlt Surfactant → Kollaps der Alveolen.", learningCard: { type: "predict", statement: "Pneumozyten Typ II produzieren Surfactant, der die Oberflächenspannung in den Alveolen senkt und ihren Kollaps verhindert.", answer: true, reveal: "Surfactant ist ein Phospholipid-Protein-Gemisch, das die Oberflächenspannung in den Alveolen senkt. Ohne Surfactant würden die Alveolen bei jeder Ausatmung kollabieren. Beim Atemnotsyndrom des Frühgeborenen (IRDS) fehlt Surfactant, wodurch die Alveolen kollabieren." } },
       { id: "at_br_h6", type: "mc", question: "Was unterscheidet die Bronchiolen von den grösseren Bronchien?", options: [
         { text: "Bronchiolen haben keinen Knorpel in der Wand, nur glatte Muskulatur", correct: true },
         { text: "Bronchiolen besitzen Knorpelspangen wie die Trachea", correct: false },
         { text: "Bronchiolen sind der Ort des Gasaustauschs", correct: false },
         { text: "Bronchiolen sind grösser als Stammbronchien", correct: false }
-      ], explanation: "Das Kennzeichen der Bronchiolen: kein Knorpel mehr. Die Wandstabilität hängt ausschliesslich von glatter Muskulatur und der Zugspannung des umgebenden Lungengewebes ab. Das erklärt, warum Asthma (Krampf der glatten Bronchiolmuskulatur) und Emphysem (Verlust des Gewebezugs) zu Atemwegsobstruktion führen." }
+      ], explanation: "Das Kennzeichen der Bronchiolen: kein Knorpel mehr. Die Wandstabilität hängt ausschliesslich von glatter Muskulatur und der Zugspannung des umgebenden Lungengewebes ab. Das erklärt, warum Asthma (Krampf der glatten Bronchiolmuskulatur) und Emphysem (Verlust des Gewebezugs) zu Atemwegsobstruktion führen.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Bronchiolen treffen zu?", checklist: [
+        { text: "Bronchiolen enthalten keinen Knorpel in der Wand.", correct: true },
+        { text: "Ihre Wandstabilität hängt von glatter Muskulatur und der Zugspannung des Lungengewebes ab.", correct: true },
+        { text: "Asthma-Krämpfe und Emphysem-Gewebeverlust können zur Atemwegsobstruktion führen.", correct: true },
+        { text: "Bronchiolen sind grösser als die Hauptbronchien.", correct: false }
+      ], reveal: "Bronchiolen besitzen keinen Knorpel mehr; ihre Wandstabilität hängt allein von glatter Muskulatur und der Zugspannung des umgebenden Lungengewebes ab. Deshalb führen Asthma (Muskelkrampf) und Emphysem (Verlust des Gewebezugs) zur Atemwegsobstruktion." } }
     ],
     phase4Questions: [
       { id: "at_br_mc1", type: "mc", question: "Wie viele Lappenbronchien hat die rechte Lunge?", options: [
@@ -3379,41 +4204,56 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Zwei (für Ober- und Unterlappen)", correct: false },
         { text: "Vier", correct: false },
         { text: "Fünf Lappenbronchien", correct: false }
-      ], explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen) und entsprechend drei Lappenbronchien; die linke Lunge hat nur zwei Lappen und zwei Lappenbronchien." },
+      ], explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen) und entsprechend drei Lappenbronchien; die linke Lunge hat nur zwei Lappen und zwei Lappenbronchien.", learningCard: { type: "predict", statement: "Die rechte Lunge hat drei Lappenbronchien (Ober-, Mittel-, Unterlappen).", answer: true, reveal: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen) und entsprechend drei Lappenbronchien. Die linke Lunge hat wegen des Herzraums nur zwei Lappen und zwei Lappenbronchien." } },
       { id: "at_br_mc2", type: "mc", question: "Was ist korrekt bezueglich der Bronchiolen?", options: [
         { text: "Sie enthalten keinen Knorpel mehr in ihrer Wand", correct: true },
         { text: "Sie besitzen noch Knorpelspangen wie die Trachea", correct: false },
         { text: "Sie sind der Hauptort des Gasaustauschs", correct: false },
         { text: "Sie sind ausschliesslich mit mehrschichtigem Plattenepithel ausgekleidet", correct: false }
-      ], explanation: "Bronchiolen (<1 mm) haben keine Knorpelspangen mehr und werden nur durch glatten Muskel offen gehalten; daher kollabieren sie bei Asthma bronchiale." },
+      ], explanation: "Bronchiolen (<1 mm) haben keine Knorpelspangen mehr und werden nur durch glatten Muskel offen gehalten; daher kollabieren sie bei Asthma bronchiale.", learningCard: { type: "oddoneout", statements: [
+        { text: "Bronchiolen enthalten keinen Knorpel mehr in ihrer Wand.", isWrong: false },
+        { text: "Bronchiolen werden nur durch glatte Muskulatur offen gehalten.", isWrong: false },
+        { text: "Bronchiolen können bei Asthma bronchiale kollabieren.", isWrong: false },
+        { text: "Bronchiolen besitzen noch Knorpelspangen wie die Trachea.", isWrong: true }
+      ], whyWrong: "Bronchiolen besitzen keine Knorpelspangen mehr, anders als die Trachea. Ihre Wand wird ausschliesslich durch glatte Muskulatur offen gehalten, weshalb sie bei Asthma bronchiale kollabieren können." } },
       { id: "at_br_mc3", type: "mc", question: "Welche Aussagen zu Bronchialsystem und Alveolen sind korrekt?", options: [
         { text: "Pneumozyten Typ I bilden die Gastauschmembran, Typ II produzieren Surfactant", correct: true },
         { text: "Adrenalin führt zur Bronchodilatation über β2-Rezeptoren", correct: true },
         { text: "Bronchiolen besitzen Knorpelspangen zur Wandstabilisierung", correct: false },
         { text: "Surfactant erhöht die Oberflächenspannung in den Alveolen", correct: false }
-      ], explanation: "Alveolarsystem: Pneumozyt I (Gasaustausch, einschichtiges PE), Typ II (Surfactant, senkt Oberflächenspannung). Bronchiolen: kein Knorpel, nur glatte Muskulatur. Adrenalin = Bronchodilatation (β2), Parasympathikus = Bronchokonstriktion." }
+      ], explanation: "Alveolarsystem: Pneumozyt I (Gasaustausch, einschichtiges PE), Typ II (Surfactant, senkt Oberflächenspannung). Bronchiolen: kein Knorpel, nur glatte Muskulatur. Adrenalin = Bronchodilatation (β2), Parasympathikus = Bronchokonstriktion.", learningCard: { type: "reconstruct", template: "Pneumozyten Typ I dienen dem ___, Typ II produzieren ___. Adrenalin bewirkt über ___-Rezeptoren eine Bronchodilatation.", blanks: ["Gasaustausch", "Surfactant", "β2"], distractors: ["Schleim", "α1"], reveal: "Pneumozyten Typ I bilden die Gasaustauschmembran, Typ II produzieren Surfactant, der die Oberflächenspannung senkt. Adrenalin wirkt über β2-Rezeptoren bronchodilatatorisch, der Parasympathikus dagegen bronchokonstriktorisch." } }
     ]
   }),
   makeDetailedPlant({
     id: "lunge_makroskopie",
     title: "Makroskopie der Lunge",
     harvestQuestions: [
-      { id: "at_lu_h1", type: "true_false", statement: "Das Verhältnis des Lungenvolumens zwischen rechter und linker Lunge beträgt 4:3.", answer: true, explanation: "Die rechte Lunge ist grösser als die linke, weil links der Herzraum (Impressio cardiaca) Platz beansprucht. Das Gewicht beträgt rechts ca. 600 g, links ca. 500 g. Das grössere Volumen rechts erklärt auch, warum aspirierte Fremdkörper häufiger in der rechten Lunge landen." },
-      { id: "at_lu_h2", type: "true_false", statement: "Die Pleura visceralis (Lungenfell) liegt direkt der Lunge an, während die Pleura parietalis das Rippenfell bildet.", answer: true, explanation: "Die Pleura visceralis ist eng mit der Lungenoberfläche verwachsen; die Pleura parietalis kleidet den inneren Thoraxraum aus (Rippenfell, Zwerchfellplatte, Mediastinalpleura). Zwischen beiden liegt der kapilläre Pleuraspalt mit seröser Flüssigkeit." },
-      { id: "at_lu_h3", type: "true_false", statement: "Am Lungenhilus treten sowohl Arterien als auch Venen in die Lunge ein.", answer: false, explanation: "Am Lungenhilus treten ein: Hauptbronchus, A. pulmonalis (sauerstoffarmes Blut) und Lymphgefässe. Die Pulmonalvenen (sauerstoffreiches Blut) verlassen die Lunge am Hilus – sie treten aus, nicht ein. Alle vier Pulmonalvenen münden in den linken Herzvorhof." },
-      { id: "at_lu_h4", type: "true_false", statement: "Die rechte Lunge ist grösser als die linke, weil das Herz links liegt und dort Platz beansprucht.", answer: true, explanation: "Das Herz liegt links der Mittellinie – die Impressio cardiaca (Herzfläche) nimmt Raum von der linken Lunge weg. Rechts:links Volumenverhältnis ca. 4:3 (rechts ~600 g, links ~500 g). Deshalb hat die rechte Lunge 3 Lappen, die linke nur 2." },
+      { id: "at_lu_h1", type: "true_false", statement: "Das Verhältnis des Lungenvolumens zwischen rechter und linker Lunge beträgt 4:3.", answer: true, explanation: "Die rechte Lunge ist grösser als die linke, weil links der Herzraum (Impressio cardiaca) Platz beansprucht. Das Gewicht beträgt rechts ca. 600 g, links ca. 500 g. Das grössere Volumen rechts erklärt auch, warum aspirierte Fremdkörper häufiger in der rechten Lunge landen.", learningCard: { type: "predict", statement: "Das Volumenverhältnis zwischen rechter und linker Lunge beträgt etwa 4:3, weil die rechte Lunge grösser ist.", answer: true, reveal: "Die rechte Lunge ist grösser als die linke (ca. 600 g vs. 500 g), weil die Impressio cardiaca links Platz beansprucht. Das grössere Volumen rechts erklärt mit, warum Fremdkörper häufiger dort landen." } },
+      { id: "at_lu_h2", type: "true_false", statement: "Die Pleura visceralis (Lungenfell) liegt direkt der Lunge an, während die Pleura parietalis das Rippenfell bildet.", answer: true, explanation: "Die Pleura visceralis ist eng mit der Lungenoberfläche verwachsen; die Pleura parietalis kleidet den inneren Thoraxraum aus (Rippenfell, Zwerchfellplatte, Mediastinalpleura). Zwischen beiden liegt der kapilläre Pleuraspalt mit seröser Flüssigkeit.", learningCard: { type: "reconstruct", template: "Die ___ liegt direkt der Lunge an; die ___ kleidet den inneren Thoraxraum aus. Zwischen beiden liegt der ___ mit seröser Flüssigkeit.", blanks: ["Pleura visceralis", "Pleura parietalis", "Pleuraspalt"], distractors: ["Pleura mediastinalis", "Perikard"], reveal: "Die Pleura visceralis (Lungenfell) liegt direkt der Lunge an; die Pleura parietalis (Rippenfell) kleidet den inneren Thoraxraum aus. Zwischen beiden liegt der kapilläre Pleuraspalt mit seröser Flüssigkeit." } },
+      { id: "at_lu_h3", type: "true_false", statement: "Am Lungenhilus treten sowohl Arterien als auch Venen in die Lunge ein.", answer: false, explanation: "Am Lungenhilus treten ein: Hauptbronchus, A. pulmonalis (sauerstoffarmes Blut) und Lymphgefässe. Die Pulmonalvenen (sauerstoffreiches Blut) verlassen die Lunge am Hilus – sie treten aus, nicht ein. Alle vier Pulmonalvenen münden in den linken Herzvorhof.", learningCard: { type: "oddoneout", statements: [
+        { text: "Am Lungenhilus treten Hauptbronchus und A. pulmonalis in die Lunge ein.", isWrong: false },
+        { text: "Die Pulmonalvenen verlassen die Lunge am Hilus.", isWrong: false },
+        { text: "Alle vier Pulmonalvenen münden in den linken Herzvorhof.", isWrong: false },
+        { text: "Am Lungenhilus treten sowohl Arterien als auch Venen in die Lunge ein.", isWrong: true }
+      ], whyWrong: "Am Lungenhilus tritt nur die A. pulmonalis ein; die Pulmonalvenen treten aus und führen sauerstoffreiches Blut zum linken Herzvorhof. Arterien und Venen bewegen sich hier also in entgegengesetzte Richtungen." } },
+      { id: "at_lu_h4", type: "true_false", statement: "Die rechte Lunge ist grösser als die linke, weil das Herz links liegt und dort Platz beansprucht.", answer: true, explanation: "Das Herz liegt links der Mittellinie – die Impressio cardiaca (Herzfläche) nimmt Raum von der linken Lunge weg. Rechts:links Volumenverhältnis ca. 4:3 (rechts ~600 g, links ~500 g). Deshalb hat die rechte Lunge 3 Lappen, die linke nur 2.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Grösse der Lungenflügel treffen zu?", checklist: [
+        { text: "Die rechte Lunge ist grösser als die linke.", correct: true },
+        { text: "Die Impressio cardiaca nimmt der linken Lunge Raum weg.", correct: true },
+        { text: "Das Rechts-Links-Volumenverhältnis beträgt ca. 4:3.", correct: true },
+        { text: "Die linke Lunge hat drei Lappen wie die rechte.", correct: false }
+      ], reveal: "Die rechte Lunge ist grösser, weil das links liegende Herz (Impressio cardiaca) der linken Lunge Raum wegnimmt (Verhältnis ca. 4:3, ~600 g vs. ~500 g). Deshalb hat die rechte Lunge drei Lappen, die linke nur zwei." } },
       { id: "at_lu_h5", type: "mc", question: "Was ist ein Pneumothorax und was passiert dabei mit der Lunge?", options: [
         { text: "Luft gelangt in den Pleuraspalt → Unterdruck aufgehoben → Lunge kollabiert", correct: true },
         { text: "Wasser füllt den Pleuraspalt → Lunge vergrössert sich", correct: false },
         { text: "Der Pleuraspalt verliert Flüssigkeit → Lunge wird starrer", correct: false },
         { text: "Das Zwerchfell reisst ein → Abdomen expandiert in den Thorax", correct: false }
-      ], explanation: "Im Pleuraspalt herrscht normaler Unterdruck (negativer Druck relativ zur Atmosphäre). Gelangt Luft hinein (Trauma, Lungenriss), wird dieser Unterdruck aufgehoben → elastische Rückstellkräfte der Lunge lassen sie kollabieren (Atelektase). Ein Spannungspneumothorax ist ein lebensbedrohlicher Notfall." },
+      ], explanation: "Im Pleuraspalt herrscht normaler Unterdruck (negativer Druck relativ zur Atmosphäre). Gelangt Luft hinein (Trauma, Lungenriss), wird dieser Unterdruck aufgehoben → elastische Rückstellkräfte der Lunge lassen sie kollabieren (Atelektase). Ein Spannungspneumothorax ist ein lebensbedrohlicher Notfall.", learningCard: { type: "predict", statement: "Beim Pneumothorax gelangt Luft in den Pleuraspalt, hebt den Unterdruck auf und die Lunge kollabiert.", answer: true, reveal: "Im Pleuraspalt herrscht normalerweise Unterdruck. Gelangt Luft hinein, wird dieser aufgehoben und die elastischen Rückstellkräfte lassen die Lunge kollabieren (Atelektase). Ein Spannungspneumothorax ist ein lebensbedrohlicher Notfall." } },
       { id: "at_lu_h6", type: "mc", question: "Welche Struktur tritt am Lungenhilus in die Lunge EIN (nicht aus)?", options: [
         { text: "A. pulmonalis (sauerstoffarmes Blut vom rechten Herzen)", correct: true },
         { text: "V. pulmonalis (sauerstoffreiches Blut zum linken Herzen)", correct: false },
         { text: "Aorta pulmonalis", correct: false },
         { text: "Ductus arteriosus", correct: false }
-      ], explanation: "Am Lungenhilus treten EIN: Hauptbronchus, A. pulmonalis (sauerstoffarmes Blut), Bronchialarterien, Lymphgefässe, Nerven. Die Vv. pulmonales (4 Stück, sauerstoffreiches Blut nach Gasaustausch) treten aus dem Hilus AUS und münden in den linken Vorhof." }
+      ], explanation: "Am Lungenhilus treten EIN: Hauptbronchus, A. pulmonalis (sauerstoffarmes Blut), Bronchialarterien, Lymphgefässe, Nerven. Die Vv. pulmonales (4 Stück, sauerstoffreiches Blut nach Gasaustausch) treten aus dem Hilus AUS und münden in den linken Vorhof.", learningCard: { type: "reconstruct", template: "Am Lungenhilus tritt die ___ (sauerstoffarmes Blut) in die Lunge ein; die vier ___ (sauerstoffreiches Blut) treten aus und münden in den linken ___.", blanks: ["A. pulmonalis", "Vv. pulmonales", "Vorhof"], distractors: ["Aorta", "Ventrikel"], reveal: "Am Lungenhilus tritt die A. pulmonalis (sauerstoffarmes Blut) in die Lunge ein. Die vier Vv. pulmonales (sauerstoffreiches Blut) treten aus dem Hilus aus und münden in den linken Vorhof." } }
     ],
     phase4Questions: [
       { id: "at_lu_mc1", type: "mc", question: "Wie viele Lappen hat die rechte Lunge?", options: [
@@ -3421,46 +4261,71 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Zwei (Ober- und Unterlappen)", correct: false },
         { text: "Vier Lappen", correct: false },
         { text: "Einen ungegliederten Lappen", correct: false }
-      ], explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen), die linke nur zwei, da der Herzspitze auf der linken Seite Platz gelassen wird." },
+      ], explanation: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen), die linke nur zwei, da der Herzspitze auf der linken Seite Platz gelassen wird.", learningCard: { type: "predict", statement: "Die rechte Lunge hat drei Lappen, weil auf der linken Seite der Herzspitze Platz gelassen wird.", answer: true, reveal: "Die rechte Lunge hat drei Lappen (Ober-, Mittel-, Unterlappen). Die linke hat nur zwei, weil der Herzspitze links Platz gelassen wird." } },
       { id: "at_lu_mc2", type: "mc", question: "Was befindet sich im Pleuraspalt?", options: [
         { text: "Seröse Flüssigkeit, die Reibung vermindert und Adhäsionskräfte erzeugt", correct: true },
         { text: "Luft, die den Unterdruck ausgleicht", correct: false },
         { text: "Lymphflüssigkeit zur Immunabwehr", correct: false },
         { text: "Blut aus den Pleuragefässen", correct: false }
-      ], explanation: "Der Pleuraspalt enthält seröse Flüssigkeit, die Reibung vermindert und durch Adhäsionskräfte die Lunge an der Thoraxwand hält." },
+      ], explanation: "Der Pleuraspalt enthält seröse Flüssigkeit, die Reibung vermindert und durch Adhäsionskräfte die Lunge an der Thoraxwand hält.", learningCard: { type: "oddoneout", statements: [
+        { text: "Der Pleuraspalt enthält seröse Flüssigkeit.", isWrong: false },
+        { text: "Die Flüssigkeit im Pleuraspalt vermindert Reibung.", isWrong: false },
+        { text: "Adhäsionskräfte der Flüssigkeit halten die Lunge an der Thoraxwand.", isWrong: false },
+        { text: "Der Pleuraspalt ist normalerweise mit Luft gefüllt.", isWrong: true }
+      ], whyWrong: "Der Pleuraspalt enthält normalerweise seröse Flüssigkeit, keine Luft. Sie vermindert Reibung und hält die Lunge durch Adhäsionskräfte an der Thoraxwand — Luft gelangt nur pathologisch hinein (Pneumothorax)." } },
       { id: "at_lu_mc3", type: "mc", question: "Welche Aussagen zur Lunge und Pleura sind korrekt?", options: [
         { text: "Rechte Lunge: 3 Lappen; linke Lunge: 2 Lappen (Herzraum beansprucht Platz)", correct: true },
         { text: "Am Hilus tritt die A. pulmonalis ein und die Vv. pulmonales treten aus", correct: true },
         { text: "Im Pleuraspalt herrscht Überdruck, der die Lunge nach aussen drückt", correct: false },
         { text: "Beide Lungen sind gleich gross (Verhältnis 1:1)", correct: false }
-      ], explanation: "Rechts 3 Lappen (re > li = 4:3), weil links Herzimpressio. Am Hilus: A.pulmonalis (sauerstoffarm) und Bronchus ein, Vv.pulmonales (sauerstoffreich) aus. Pleuraspalt = Unterdruck + seröse Flüssigkeit." }
+      ], explanation: "Rechts 3 Lappen (re > li = 4:3), weil links Herzimpressio. Am Hilus: A.pulmonalis (sauerstoffarm) und Bronchus ein, Vv.pulmonales (sauerstoffreich) aus. Pleuraspalt = Unterdruck + seröse Flüssigkeit.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu Lunge und Pleura treffen zu?", checklist: [
+        { text: "Die rechte Lunge hat drei Lappen, die linke zwei.", correct: true },
+        { text: "Am Hilus treten A. pulmonalis und Hauptbronchus ein, die Vv. pulmonales aus.", correct: true },
+        { text: "Im Pleuraspalt herrscht Unterdruck mit seröser Flüssigkeit.", correct: true },
+        { text: "Beide Lungenflügel sind exakt gleich gross.", correct: false }
+      ], reveal: "Die rechte Lunge (3 Lappen) ist grösser als die linke (2 Lappen), weil links die Herzimpressio Platz beansprucht (Verhältnis 4:3). Am Hilus treten A. pulmonalis und Bronchus ein, die Vv. pulmonales aus. Der Pleuraspalt enthält Unterdruck und seröse Flüssigkeit." } }
     ]
   }),
   makeDetailedPlant({
     id: "atmungsprozess",
     title: "Atmungsprozess",
     harvestQuestions: [
-      { id: "at_ap_h1", type: "true_false", statement: "Während der Exspiration entspannt sich das Diaphragma und wölbt sich in thorakaler Richtung nach oben.", answer: true, explanation: "In Ruhe ist die Ausatmung passiv: Das Diaphragma entspannt sich und wölbt sich durch elastische Retraktionskräfte nach oben zurück. Dadurch verkleinert sich das Thoraxvolumen, der Druck steigt und Luft strömt passiv aus der Lunge heraus." },
-      { id: "at_ap_h2", type: "true_false", statement: "Die ausgeatmete Luft enthält denselben Sauerstoffgehalt wie die eingeatmete Luft von ca. 21%.", answer: false, explanation: "Eingeatmete Luft enthält ca. 21% O2, ausgeatmete nur noch ca. 16%. Ca. 5% des eingeatmeten Sauerstoffs wird vom Körper verbraucht. Umgekehrt steigt der CO2-Gehalt von 0,04% (Aussenluft) auf ca. 4% in der ausgeatmeten Luft." },
+      { id: "at_ap_h1", type: "true_false", statement: "Während der Exspiration entspannt sich das Diaphragma und wölbt sich in thorakaler Richtung nach oben.", answer: true, explanation: "In Ruhe ist die Ausatmung passiv: Das Diaphragma entspannt sich und wölbt sich durch elastische Retraktionskräfte nach oben zurück. Dadurch verkleinert sich das Thoraxvolumen, der Druck steigt und Luft strömt passiv aus der Lunge heraus.", learningCard: { type: "predict", statement: "Bei der ruhigen Exspiration entspannt sich das Diaphragma und wölbt sich nach oben, wodurch Luft passiv aus der Lunge strömt.", answer: true, reveal: "In Ruhe ist die Ausatmung passiv: Das Diaphragma entspannt sich und wölbt sich durch elastische Rückstellkräfte nach oben. Das Thoraxvolumen sinkt, der Druck steigt, und Luft strömt passiv aus der Lunge." } },
+      { id: "at_ap_h2", type: "true_false", statement: "Die ausgeatmete Luft enthält denselben Sauerstoffgehalt wie die eingeatmete Luft von ca. 21%.", answer: false, explanation: "Eingeatmete Luft enthält ca. 21% O2, ausgeatmete nur noch ca. 16%. Ca. 5% des eingeatmeten Sauerstoffs wird vom Körper verbraucht. Umgekehrt steigt der CO2-Gehalt von 0,04% (Aussenluft) auf ca. 4% in der ausgeatmeten Luft.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Gaszusammensetzung von Ein- und Ausatemluft treffen zu?", checklist: [
+        { text: "Eingeatmete Luft enthält ca. 21% O2.", correct: true },
+        { text: "Ausgeatmete Luft enthält nur noch ca. 16% O2.", correct: true },
+        { text: "Der CO2-Gehalt steigt beim Ausatmen auf ca. 4%.", correct: true },
+        { text: "Ein- und Ausatemluft haben denselben O2-Gehalt.", correct: false }
+      ], reveal: "Eingeatmete Luft enthält ca. 21% O2, ausgeatmete nur noch ca. 16% – der Körper verbraucht ca. 5%. Gleichzeitig steigt der CO2-Gehalt von 0,04% in der Aussenluft auf ca. 4% in der Ausatemluft." } },
       { id: "at_ap_h3", type: "mc", question: "Was ist der 'Boyle-Mariotte-Effekt' beim Atemvorgang: wie verändert sich der Alveolardruck bei Inspiration?", options: [
         { text: "Der Alveolardruck sinkt unter den Atmosphärendruck (ca. -1 bis -3 cmH2O) → Luft strömt ein", correct: true },
         { text: "Der Alveolardruck steigt bei Inspiration, damit Luft hineingepresst werden kann", correct: false },
         { text: "Der Alveolardruck bleibt konstant – Luftstrom entsteht durch Saugwirkung der Lunge", correct: false },
         { text: "Der Alveolardruck entspricht immer exakt dem Atmosphärendruck", correct: false }
-      ], explanation: "Nach Boyle-Mariotte (p1V1 = p2V2): Wenn das Thoraxvolumen durch Kontraktion von Diaphragma und Interkostalmuskeln zunimmt, sinkt der Druck in der Lunge unter den Atmosphärendruck (ca. -1 bis -3 cmH2O bei normaler Inspiration). Dieser Druckgradient treibt Luft von aussen passiv in die Alveolen. Bei Exspiration: Volumen sinkt → Druck steigt → Luft strömt heraus." },
-      { id: "at_ap_h4", type: "true_false", statement: "Eingeatmete Luft enthält ca. 21% O2; ausgeatmete Luft enthält nur noch ca. 16% O2.", answer: true, explanation: "Der Körper entnimmt ca. 5% des O2 aus der Atemluft: 21% (Einatmung) → 16% (Ausatmung). Gleichzeitig steigt CO2 von ~0,04% in der Aussenluft auf ~4% in der Ausatemluft, da der Körper CO2 als Stoffwechselprodukt produziert und abgibt." },
+      ], explanation: "Nach Boyle-Mariotte (p1V1 = p2V2): Wenn das Thoraxvolumen durch Kontraktion von Diaphragma und Interkostalmuskeln zunimmt, sinkt der Druck in der Lunge unter den Atmosphärendruck (ca. -1 bis -3 cmH2O bei normaler Inspiration). Dieser Druckgradient treibt Luft von aussen passiv in die Alveolen. Bei Exspiration: Volumen sinkt → Druck steigt → Luft strömt heraus.", learningCard: { type: "reconstruct", template: "Nach Boyle-Mariotte sinkt bei Volumenzunahme des Thorax der ___ unter den Atmosphärendruck (ca. -1 bis -3 cmH2O), und Luft strömt ___. Bei Exspiration steigt der Druck wieder, und Luft strömt ___.", blanks: ["Alveolardruck", "ein", "aus"], distractors: ["Pleuradruck", "seitlich"], reveal: "Nach Boyle-Mariotte sinkt bei Thoraxvolumenzunahme der Alveolardruck unter den Atmosphärendruck, wodurch Luft einströmt. Bei der Exspiration sinkt das Volumen, der Druck steigt, und Luft strömt aus." } },
+      { id: "at_ap_h4", type: "true_false", statement: "Eingeatmete Luft enthält ca. 21% O2; ausgeatmete Luft enthält nur noch ca. 16% O2.", answer: true, explanation: "Der Körper entnimmt ca. 5% des O2 aus der Atemluft: 21% (Einatmung) → 16% (Ausatmung). Gleichzeitig steigt CO2 von ~0,04% in der Aussenluft auf ~4% in der Ausatemluft, da der Körper CO2 als Stoffwechselprodukt produziert und abgibt.", learningCard: { type: "oddoneout", statements: [
+        { text: "Eingeatmete Luft enthält ca. 21% O2.", isWrong: false },
+        { text: "Ausgeatmete Luft enthält ca. 16% O2.", isWrong: false },
+        { text: "Der Körper entnimmt ca. 5% des eingeatmeten Sauerstoffs.", isWrong: false },
+        { text: "Der O2-Gehalt der Ausatemluft ist höher als der der Einatemluft.", isWrong: true }
+      ], whyWrong: "Der O2-Gehalt sinkt beim Atmen, er steigt nicht: von ca. 21% eingeatmet auf ca. 16% ausgeatmet, weil der Körper ca. 5% des Sauerstoffs verbraucht." } },
       { id: "at_ap_h5", type: "mc", question: "Warum strömt bei der Inspiration Luft passiv in die Lunge?", options: [
         { text: "Weil der Alveolardruck durch Thoraxvolumenzunahme unter den Atmosphärendruck sinkt", correct: true },
         { text: "Weil die Lunge aktiv Luft ansaugt durch kontraktile Alveolarzellen", correct: false },
         { text: "Weil der Unterdruck im Pleuraspalt aktiv aufgebaut wird durch Muskeln", correct: false },
         { text: "Weil bei der Exspiration ein Überdruck entsteht, der beim nächsten Atemzug Luft drückt", correct: false }
-      ], explanation: "Physikmechanismus: Diaphragma und Atemmuskulatur vergrössern den Thorax → nach Boyle-Mariotte sinkt der Alveolardruck unter Atmosphärendruck → Luft strömt von aussen (Hochdruck) in die Lunge (Niederdruck). Die Lunge selbst hat keine eigene Kontraktionskraft." },
+      ], explanation: "Physikmechanismus: Diaphragma und Atemmuskulatur vergrössern den Thorax → nach Boyle-Mariotte sinkt der Alveolardruck unter Atmosphärendruck → Luft strömt von aussen (Hochdruck) in die Lunge (Niederdruck). Die Lunge selbst hat keine eigene Kontraktionskraft.", learningCard: { type: "predict", statement: "Bei der Inspiration strömt Luft passiv in die Lunge, weil der Alveolardruck durch die Thoraxvergrösserung unter den Atmosphärendruck sinkt.", answer: true, reveal: "Diaphragma und Atemmuskulatur vergrössern den Thorax, wodurch der Alveolardruck nach Boyle-Mariotte unter den Atmosphärendruck sinkt. Luft strömt daher passiv von aussen in die Lunge. Die Lunge selbst hat keine eigene Kontraktionskraft." } },
       { id: "at_ap_h6", type: "mc", question: "Was ist der CO2-Anteil der Aussenluft und wie verändert er sich in der ausgeatmeten Luft?", options: [
         { text: "Aussenluft: ~0,04% CO2 → Ausatemluft: ~4% CO2 (100-facher Anstieg)", correct: true },
         { text: "Aussenluft: ~4% CO2 → Ausatemluft: ~0,04% CO2", correct: false },
         { text: "Aussenluft: ~21% CO2 → Ausatemluft: ~16% CO2", correct: false },
         { text: "CO2-Gehalt bleibt in Ein- und Ausatemluft identisch", correct: false }
-      ], explanation: "CO2 steigt beim Ausatmen massiv: von ~0,04% in der Umgebungsluft auf ~4% in der Ausatemluft (100-facher Anstieg). O2 sinkt von ~21% auf ~16%. Diese Werte erklären, warum Mund-zu-Mund-Beatmung funktioniert – ausgeatmete Luft enthält noch genug O2." }
+      ], explanation: "CO2 steigt beim Ausatmen massiv: von ~0,04% in der Umgebungsluft auf ~4% in der Ausatemluft (100-facher Anstieg). O2 sinkt von ~21% auf ~16%. Diese Werte erklären, warum Mund-zu-Mund-Beatmung funktioniert – ausgeatmete Luft enthält noch genug O2.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Gaszusammensetzung der Ausatemluft treffen zu?", checklist: [
+        { text: "Der CO2-Gehalt steigt von ca. 0,04% auf ca. 4%.", correct: true },
+        { text: "Der O2-Gehalt sinkt von ca. 21% auf ca. 16%.", correct: true },
+        { text: "Ausgeatmete Luft enthält noch genug O2 für die Mund-zu-Mund-Beatmung.", correct: true },
+        { text: "CO2 und O2 bleiben beim Ausatmen unverändert.", correct: false }
+      ], reveal: "CO2 steigt beim Ausatmen von ca. 0,04% auf ca. 4% (100-facher Anstieg), O2 sinkt von ca. 21% auf ca. 16%. Weil noch genug O2 übrig ist, funktioniert die Mund-zu-Mund-Beatmung." } }
     ],
     phase4Questions: [
       { id: "at_ap_mc1", type: "mc", question: "Was geschieht während der Inspiration (Einatmung)?", options: [
@@ -3468,41 +4333,61 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Das Diaphragma entspannt sich und wölbt sich nach oben", correct: false },
         { text: "Der Thorax verkleinert sich passiv durch Muskelerschlaffung", correct: false },
         { text: "Nur die Rippenmuskeln arbeiten, das Diaphragma bleibt passiv", correct: false }
-      ], explanation: "Bei der Inspiration kontrahiert das Zwerchfell und flacht ab, wodurch der Thoraxraum und der Unterdruck in der Pleurahöhle vergrössern werden und Luft einströmt." },
+      ], explanation: "Bei der Inspiration kontrahiert das Zwerchfell und flacht ab, wodurch der Thoraxraum und der Unterdruck in der Pleurahöhle vergrössern werden und Luft einströmt.", learningCard: { type: "predict", statement: "Bei der Inspiration kontrahiert das Zwerchfell und flacht ab, wodurch der Thoraxraum sich vergrössert.", answer: true, reveal: "Bei der Inspiration kontrahiert das Zwerchfell und flacht ab. Dadurch vergrössern sich Thoraxraum und Unterdruck in der Pleurahöhle, und Luft strömt ein." } },
       { id: "at_ap_mc2", type: "mc", question: "Wie hoch ist der CO2-Anteil der ausgeatmeten Luft ungefähr?", options: [
         { text: "Ca. 4 %", correct: true },
         { text: "Ca. 0,04 % (wie in der Aussenluft)", correct: false },
         { text: "Ca. 21 %", correct: false },
         { text: "Ca. 16 % (entspricht dem O2-Gehalt der Ausatemluft)", correct: false }
-      ], explanation: "Die ausgeatmete Luft enthält ca. 4% CO2 (gegenüber 0,04% Aussenluft), da CO2 als Stoffwechselprodukt der Zellatmung ins Blut und dann in die Alveolen diffundiert." },
+      ], explanation: "Die ausgeatmete Luft enthält ca. 4% CO2 (gegenüber 0,04% Aussenluft), da CO2 als Stoffwechselprodukt der Zellatmung ins Blut und dann in die Alveolen diffundiert.", learningCard: { type: "oddoneout", statements: [
+        { text: "Ausgeatmete Luft enthält ca. 4% CO2.", isWrong: false },
+        { text: "Aussenluft enthält nur ca. 0,04% CO2.", isWrong: false },
+        { text: "CO2 entsteht als Stoffwechselprodukt der Zellatmung.", isWrong: false },
+        { text: "Der CO2-Gehalt ist in Ein- und Ausatemluft identisch.", isWrong: true }
+      ], whyWrong: "Der CO2-Gehalt ist nicht identisch: Aussenluft enthält nur ca. 0,04% CO2, Ausatemluft dagegen ca. 4%, weil CO2 als Stoffwechselprodukt der Zellatmung ins Blut und dann in die Alveolen diffundiert." } },
       { id: "at_ap_mc3", type: "mc", question: "Welche Aussagen zum Atmungsprozess sind korrekt?", options: [
         { text: "Inspiration ist aktiv (Diaphragma kontrahiert), Exspiration in Ruhe ist passiv", correct: true },
         { text: "Thoraxvolumenzunahme senkt den Alveolardruck unter Atmosphärendruck → Luft strömt ein", correct: true },
         { text: "Ausgeatmete Luft hat denselben O2-Gehalt wie eingeatmete (~21%)", correct: false },
         { text: "Die Lunge selbst kontrahiert aktiv, um Luft einzusaugen", correct: false }
-      ], explanation: "Inspiration = aktiv (Muskelarbeit); Exspiration in Ruhe = passiv (elastische Rückstellung). Boyle-Mariotte: Volumen↑ → Druck↓ → Lufteinströmen. O2 sinkt von 21% auf ~16%, CO2 steigt von 0,04% auf ~4%. Die Lunge folgt nur passiv den Thoraxbewegungen." }
+      ], explanation: "Inspiration = aktiv (Muskelarbeit); Exspiration in Ruhe = passiv (elastische Rückstellung). Boyle-Mariotte: Volumen↑ → Druck↓ → Lufteinströmen. O2 sinkt von 21% auf ~16%, CO2 steigt von 0,04% auf ~4%. Die Lunge folgt nur passiv den Thoraxbewegungen.", learningCard: { type: "reconstruct", template: "Die Inspiration ist ___ (Muskelarbeit), die ruhige Exspiration ist ___ (elastische Rückstellung). Der O2-Gehalt sinkt beim Ausatmen von 21% auf ca. ___%.", blanks: ["aktiv", "passiv", "16"], distractors: ["reflektorisch", "4"], reveal: "Die Inspiration ist aktiv (Muskelarbeit von Zwerchfell und Interkostalmuskeln), die ruhige Exspiration ist passiv (elastische Rückstellung). Der O2-Gehalt sinkt beim Ausatmen von 21% auf ca. 16%, der CO2-Gehalt steigt von 0,04% auf ca. 4%." } }
     ]
   }),
   makeDetailedPlant({
     id: "atemmuskulatur",
     title: "Atemmuskulatur und Atemhilfsmuskulatur",
     harvestQuestions: [
-      { id: "at_am_h1", type: "true_false", statement: "Der M. intercostales externus (äusserer Zwischenrippenmuskel) ist ein inspiratorisch wirkender Atemmuskel.", answer: true, explanation: "Die Mm. intercostales externi verlaufen von posterior-superior nach anterior-inferior. Bei Kontraktion heben sie die Rippen und erweitern den Thoraxdurchmesser seitlich – ein inspiratorischer Effekt. Die Mm. intercostales interni verlaufen umgekehrt und wirken daher exspiratorisch." },
-      { id: "at_am_h2", type: "true_false", statement: "Das Diaphragma wirkt ausschliesslich inspiratorisch und hat keine Funktion bei der Ausatmung.", answer: false, explanation: "Das Diaphragma ist der Hauptatemmuskel für die Inspiration, hat aber auch passiven Anteil bei der Ausatmung: Es entspannt sich und gibt durch seine Rückstellkraft Energie frei, die den Thorax verkleinert. Aktiv exspiratorisch wird es nur bei forcierter Ausatmung (Pressen, Husten, Niesen)." },
-      { id: "at_am_h3", type: "true_false", statement: "Die ruhige Exspiration ist ein passiver Vorgang, der keine aktive Muskelarbeit erfordert.", answer: true, explanation: "In Ruhe ist die Exspiration passiv: Das Diaphragma entspannt sich, die Lunge zieht sich durch ihre elastischen Rückstellkräfte zusammen, Thoraxvolumen sinkt, Druck steigt → Luft strömt aus. Erst bei forcierter Exspiration (Husten, Sport) werden Mm. intercostales interni und Bauchmuskeln aktiv eingesetzt." },
+      { id: "at_am_h1", type: "true_false", statement: "Der M. intercostales externus (äusserer Zwischenrippenmuskel) ist ein inspiratorisch wirkender Atemmuskel.", answer: true, explanation: "Die Mm. intercostales externi verlaufen von posterior-superior nach anterior-inferior. Bei Kontraktion heben sie die Rippen und erweitern den Thoraxdurchmesser seitlich – ein inspiratorischer Effekt. Die Mm. intercostales interni verlaufen umgekehrt und wirken daher exspiratorisch.", learningCard: { type: "predict", statement: "Der M. intercostalis externus wirkt inspiratorisch, weil er beim Anspannen die Rippen hebt.", answer: true, reveal: "Die Mm. intercostales externi heben bei Kontraktion die Rippen und erweitern den Thorax seitlich – ein inspiratorischer Effekt. Die Mm. intercostales interni verlaufen umgekehrt und wirken exspiratorisch." } },
+      { id: "at_am_h2", type: "true_false", statement: "Das Diaphragma wirkt ausschliesslich inspiratorisch und hat keine Funktion bei der Ausatmung.", answer: false, explanation: "Das Diaphragma ist der Hauptatemmuskel für die Inspiration, hat aber auch passiven Anteil bei der Ausatmung: Es entspannt sich und gibt durch seine Rückstellkraft Energie frei, die den Thorax verkleinert. Aktiv exspiratorisch wird es nur bei forcierter Ausatmung (Pressen, Husten, Niesen).", learningCard: { type: "oddoneout", statements: [
+        { text: "Das Diaphragma ist der Hauptatemmuskel der Inspiration.", isWrong: false },
+        { text: "Bei ruhiger Ausatmung entspannt sich das Diaphragma passiv.", isWrong: false },
+        { text: "Bei forcierter Ausatmung kann das Diaphragma aktiv beteiligt sein.", isWrong: false },
+        { text: "Das Diaphragma hat keinerlei Funktion bei der Ausatmung.", isWrong: true }
+      ], whyWrong: "Das Diaphragma spielt bei der Ausatmung sehr wohl eine Rolle: Es entspannt sich passiv bei Ruheatmung und kann bei forcierter Exspiration (Husten, Pressen) auch aktiv beteiligt sein." } },
+      { id: "at_am_h3", type: "true_false", statement: "Die ruhige Exspiration ist ein passiver Vorgang, der keine aktive Muskelarbeit erfordert.", answer: true, explanation: "In Ruhe ist die Exspiration passiv: Das Diaphragma entspannt sich, die Lunge zieht sich durch ihre elastischen Rückstellkräfte zusammen, Thoraxvolumen sinkt, Druck steigt → Luft strömt aus. Erst bei forcierter Exspiration (Husten, Sport) werden Mm. intercostales interni und Bauchmuskeln aktiv eingesetzt.", learningCard: { type: "reconstruct", template: "Die ruhige Exspiration ist ___, während das Diaphragma sich entspannt. Erst bei ___ Exspiration (Husten, Sport) werden Mm. ___ interni und Bauchmuskeln aktiv eingesetzt.", blanks: ["passiv", "forcierter", "intercostales"], distractors: ["aktiv", "sternocleidomastoidei"], reveal: "Die ruhige Exspiration ist passiv: Das Diaphragma entspannt sich, das Thoraxvolumen sinkt, Luft strömt aus. Erst bei forcierter Exspiration (Husten, Sport) werden Mm. intercostales interni und Bauchmuskeln aktiv eingesetzt." } },
       { id: "at_am_h4", type: "mc", question: "Welche Muskeln gehören zur inspiratorischen Atemhilfsmuskulatur?", options: [
         { text: "M. sternocleidomastoideus und Mm. scaleni", correct: true },
         { text: "Mm. intercostales interni und M. rectus abdominis", correct: false },
         { text: "M. transversus abdominis und M. obliquus internus", correct: false },
         { text: "M. gluteus maximus und M. iliopsoas", correct: false }
-      ], explanation: "Inspiratorische Atemhilfsmuskulatur: M. sternocleidomastoideus (hebt Sternum), Mm. scaleni (heben obere Rippen), auch M. pectoralis minor. Diese werden bei erhöhtem Atembedarf (Belastung, Atemnot, COPD) aktiviert. Ein sichtbar angespannter SCM ist klinisches Zeichen für Atemnot." },
+      ], explanation: "Inspiratorische Atemhilfsmuskulatur: M. sternocleidomastoideus (hebt Sternum), Mm. scaleni (heben obere Rippen), auch M. pectoralis minor. Diese werden bei erhöhtem Atembedarf (Belastung, Atemnot, COPD) aktiviert. Ein sichtbar angespannter SCM ist klinisches Zeichen für Atemnot.", learningCard: { type: "predict", statement: "M. sternocleidomastoideus und Mm. scaleni gehören zur inspiratorischen Atemhilfsmuskulatur, die bei erhöhtem Atembedarf aktiviert wird.", answer: true, reveal: "Zur inspiratorischen Atemhilfsmuskulatur gehören M. sternocleidomastoideus (hebt das Sternum) und Mm. scaleni (heben die oberen Rippen). Sie werden bei erhöhtem Atembedarf aktiviert, etwa bei Belastung, Atemnot oder COPD." } },
       { id: "at_am_h5", type: "mc", question: "Welche Muskeln wirken bei forcierter Exspiration (z.B. Husten, Pressen)?", options: [
         { text: "Mm. intercostales interni und Bauchmuskeln (M. rectus, M. obliquus)", correct: true },
         { text: "Diaphragma und Mm. intercostales externi", correct: false },
         { text: "M. sternocleidomastoideus und Mm. scaleni", correct: false },
         { text: "Mm. erector spinae und M. latissimus dorsi", correct: false }
-      ], explanation: "Forcierte Exspiration (Niesen, Husten, Pressen) erfordert aktive Muskelarbeit: Mm. intercostales interni ziehen Rippen nach unten, Bauchmuskeln erhöhen intraabdominalen Druck und drücken das Zwerchfell nach oben → Lungenvolumen sinkt schnell." },
-      { id: "at_am_h6", type: "true_false", statement: "Die Mm. intercostales externi (äussere Zwischenrippenmuskeln) haben inspiratorische Wirkung.", answer: true, explanation: "Die Mm. intercostales externi verlaufen von posterior-superior nach anterior-inferior. Bei Kontraktion heben sie die Rippen und erweitern den Thoraxdurchmesser seitlich – ein inspiratorischer Effekt. Die Mm. intercostales interni verlaufen senkrecht dazu und wirken exspiratorisch." }
+      ], explanation: "Forcierte Exspiration (Niesen, Husten, Pressen) erfordert aktive Muskelarbeit: Mm. intercostales interni ziehen Rippen nach unten, Bauchmuskeln erhöhen intraabdominalen Druck und drücken das Zwerchfell nach oben → Lungenvolumen sinkt schnell.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur forcierten Exspiration (Husten, Pressen) treffen zu?", checklist: [
+        { text: "Mm. intercostales interni ziehen die Rippen nach unten.", correct: true },
+        { text: "Bauchmuskeln erhöhen den intraabdominalen Druck und drücken das Zwerchfell nach oben.", correct: true },
+        { text: "Forcierte Exspiration erfordert aktive Muskelarbeit.", correct: true },
+        { text: "Forcierte Exspiration läuft rein passiv durch elastische Rückstellung ab.", correct: false }
+      ], reveal: "Bei forcierter Exspiration (Husten, Pressen) ziehen die Mm. intercostales interni die Rippen nach unten, während die Bauchmuskeln den intraabdominalen Druck erhöhen und das Zwerchfell nach oben drücken. Das erfordert aktive Muskelarbeit, keinen passiven Vorgang." } },
+      { id: "at_am_h6", type: "true_false", statement: "Die Mm. intercostales externi (äussere Zwischenrippenmuskeln) haben inspiratorische Wirkung.", answer: true, explanation: "Die Mm. intercostales externi verlaufen von posterior-superior nach anterior-inferior. Bei Kontraktion heben sie die Rippen und erweitern den Thoraxdurchmesser seitlich – ein inspiratorischer Effekt. Die Mm. intercostales interni verlaufen senkrecht dazu und wirken exspiratorisch.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Mm. intercostales externi heben bei Kontraktion die Rippen.", isWrong: false },
+        { text: "Die Mm. intercostales externi wirken inspiratorisch.", isWrong: false },
+        { text: "Die Mm. intercostales interni wirken exspiratorisch.", isWrong: false },
+        { text: "Die Mm. intercostales externi wirken exspiratorisch.", isWrong: true }
+      ], whyWrong: "Die Mm. intercostales externi wirken inspiratorisch, nicht exspiratorisch: Sie heben die Rippen und erweitern den Thorax. Die Mm. intercostales interni verlaufen entgegengesetzt und wirken exspiratorisch." } }
     ],
     phase4Questions: [
       { id: "at_am_mc1", type: "mc", question: "Welche Muskeln wirken primär inspiratorisch?", options: [
@@ -3510,46 +4395,66 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Mm. intercostales interni und M. rectus abdominis", correct: false },
         { text: "M. transversus abdominis und M. obliquus internus", correct: false },
         { text: "Nur das Diaphragma, Interkostalmuskeln sind exspiratorisch", correct: false }
-      ], explanation: "Zwerchfell und äussere Interkostalmuskeln sind die primären inspiratorischen Muskeln, da sie den Thoraxraum vergrössern und damit den intrapleuralen Druck senken." },
+      ], explanation: "Zwerchfell und äussere Interkostalmuskeln sind die primären inspiratorischen Muskeln, da sie den Thoraxraum vergrössern und damit den intrapleuralen Druck senken.", learningCard: { type: "predict", statement: "Diaphragma und Mm. intercostales externi sind die primären inspiratorischen Muskeln.", answer: true, reveal: "Zwerchfell und Mm. intercostales externi sind die primären inspiratorischen Muskeln: Sie vergrössern den Thoraxraum und senken dadurch den intrapleuralen Druck." } },
       { id: "at_am_mc2", type: "mc", question: "Was ist die Atemhilfsmuskulatur?", options: [
         { text: "Zusatzliche Muskeln, die bei erhöhtem Atembedarf aktiviert werden", correct: true },
         { text: "Muskeln, die ausschliesslich bei der Exspiration eingesetzt werden", correct: false },
         { text: "Eine Bezeichnung für die Herzmuskulatur im Atembezug", correct: false },
         { text: "Die Rückenmuskulatur als dauerhafter Atemantagonist", correct: false }
-      ], explanation: "Atemhilfsmuskeln (z.B. M. sternocleidomastoideus, Mm. scaleni) werden bei erhöhtem Atembedarf zusätzlich zur Vergrösserung des Thoraxraums aktiviert." },
+      ], explanation: "Atemhilfsmuskeln (z.B. M. sternocleidomastoideus, Mm. scaleni) werden bei erhöhtem Atembedarf zusätzlich zur Vergrösserung des Thoraxraums aktiviert.", learningCard: { type: "reconstruct", template: "Die Atemhilfsmuskulatur (z.B. M. sternocleidomastoideus, Mm. scaleni) wird bei ___ Atembedarf zusätzlich zur ___ des Thoraxraums aktiviert.", blanks: ["erhöhtem", "Vergrösserung"], distractors: ["normalem", "Verkleinerung"], reveal: "Die Atemhilfsmuskulatur (z.B. M. sternocleidomastoideus, Mm. scaleni) wird bei erhöhtem Atembedarf zusätzlich zur Vergrösserung des Thoraxraums aktiviert." } },
       { id: "at_am_mc3", type: "mc", question: "Welche Aussagen zur Atemmuskulatur sind korrekt?", options: [
         { text: "Diaphragma und Mm. intercostales externi wirken inspiratorisch", correct: true },
         { text: "Ruhige Exspiration ist passiv (elastische Rückstellkraft der Lunge)", correct: true },
         { text: "Mm. intercostales externi wirken exspiratorisch", correct: false },
         { text: "Das Diaphragma ist nur bei forcierter Atmung aktiv", correct: false }
-      ], explanation: "Merkhilfe: Externi = Einatmen (Inspiration); Interni = ausatmen (bei forcierter Exspiration). Das Diaphragma ist der Hauptatemmuskel und bei jeder Inspiration aktiv; Ruhe-Exspiration ist passiv durch elastische Rückstellung." }
+      ], explanation: "Merkhilfe: Externi = Einatmen (Inspiration); Interni = ausatmen (bei forcierter Exspiration). Das Diaphragma ist der Hauptatemmuskel und bei jeder Inspiration aktiv; Ruhe-Exspiration ist passiv durch elastische Rückstellung.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur Atemmuskulatur treffen zu?", checklist: [
+        { text: "Mm. intercostales externi wirken inspiratorisch.", correct: true },
+        { text: "Mm. intercostales interni wirken bei forcierter Exspiration.", correct: true },
+        { text: "Das Diaphragma ist bei jeder Inspiration aktiv.", correct: true },
+        { text: "Die ruhige Exspiration erfordert aktive Muskelarbeit.", correct: false }
+      ], reveal: "Merkhilfe: Externi = einatmen (Inspiration), Interni = ausatmen (bei forcierter Exspiration). Das Diaphragma ist der Hauptatemmuskel und bei jeder Inspiration aktiv. Die ruhige Exspiration ist dagegen passiv durch elastische Rückstellung." } }
     ]
   }),
   makeDetailedPlant({
     id: "gasaustausch",
     title: "Gasaustausch",
     harvestQuestions: [
-      { id: "at_ga_h1", type: "true_false", statement: "Der Gasaustausch findet durch Diffusion statt, also ohne Energieverbrauch.", answer: true, explanation: "O2 diffundiert entlang seines Partialdruckgefälles aus der Alveolarluft (pO2 ca. 100 mmHg) ins Blut (pO2 ca. 40 mmHg). CO2 diffundiert in umgekehrter Richtung. Diffusion ist passiv – kein ATP erforderlich. Voraussetzung ist eine sehr dünne Diffusionsstrecke (Alveolarmembran <0,5 μm)." },
-      { id: "at_ga_h3", type: "true_false", statement: "Die Diffusionskapazität beschreibt die Fähigkeit der Lunge zur Aufnahme von Kohlendioxid aus der Luft.", answer: false, explanation: "Die Diffusionskapazität (DLCO) beschreibt die Fähigkeit der Lunge, Gase (v.a. O2) aus der Alveolarluft ins Blut aufzunehmen. CO2 wird im Gegenteil aus dem Blut in die Alveolarluft abgegeben. Die DLCO ist klinisch relevant, z.B. vermindert bei Lungenfibrose oder Lungenemphysem." },
+      { id: "at_ga_h1", type: "true_false", statement: "Der Gasaustausch findet durch Diffusion statt, also ohne Energieverbrauch.", answer: true, explanation: "O2 diffundiert entlang seines Partialdruckgefälles aus der Alveolarluft (pO2 ca. 100 mmHg) ins Blut (pO2 ca. 40 mmHg). CO2 diffundiert in umgekehrter Richtung. Diffusion ist passiv – kein ATP erforderlich. Voraussetzung ist eine sehr dünne Diffusionsstrecke (Alveolarmembran <0,5 μm).", learningCard: { type: "predict", statement: "Der Gasaustausch in der Lunge erfolgt durch passive Diffusion entlang des Partialdruckgefälles, ohne Energieverbrauch.", answer: true, reveal: "O2 diffundiert entlang seines Partialdruckgefälles aus der Alveolarluft (~100 mmHg) ins Blut (~40 mmHg), CO2 umgekehrt. Diffusion ist passiv und benötigt kein ATP, vorausgesetzt die Diffusionsstrecke bleibt dünn (<0,5 μm)." } },
+      { id: "at_ga_h3", type: "true_false", statement: "Die Diffusionskapazität beschreibt die Fähigkeit der Lunge zur Aufnahme von Kohlendioxid aus der Luft.", answer: false, explanation: "Die Diffusionskapazität (DLCO) beschreibt die Fähigkeit der Lunge, Gase (v.a. O2) aus der Alveolarluft ins Blut aufzunehmen. CO2 wird im Gegenteil aus dem Blut in die Alveolarluft abgegeben. Die DLCO ist klinisch relevant, z.B. vermindert bei Lungenfibrose oder Lungenemphysem.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Diffusionskapazität (DLCO) beschreibt die O2-Aufnahme aus der Alveolarluft ins Blut.", isWrong: false },
+        { text: "CO2 wird aus dem Blut in die Alveolarluft abgegeben.", isWrong: false },
+        { text: "Die DLCO ist bei Lungenfibrose vermindert.", isWrong: false },
+        { text: "Die Diffusionskapazität beschreibt die CO2-Aufnahme aus der Luft.", isWrong: true }
+      ], whyWrong: "Die Diffusionskapazität (DLCO) beschreibt die O2-Aufnahme, nicht die CO2-Aufnahme aus der Luft — CO2 wird umgekehrt aus dem Blut abgegeben. Die DLCO ist bei Lungenfibrose oder -emphysem klinisch vermindert." } },
       { id: "at_ga_h2", type: "mc", question: "Was bezeichnet man als 'äussere Atmung'?", options: [
         { text: "Gasaustausch zwischen Alveolarluft und Blut in der Lunge", correct: true },
         { text: "Gasaustausch zwischen Blut und Körperzellen im Gewebe", correct: false },
         { text: "Aufnahme von O2 durch die Nase", correct: false },
         { text: "Zellatmung (Verbrennung von Glukose mit O2)", correct: false }
-      ], explanation: "Äussere Atmung = Gasaustausch Lunge–Blut: O2 tritt aus Alveolarluft ins Kapillarblut, CO2 umgekehrt. Innere Atmung = Gasaustausch Blut–Körperzellen im Gewebe: O2 geht in die Zellen, CO2 ins Blut." },
-      { id: "at_ga_h4", type: "true_false", statement: "O2 diffundiert von den Alveolen (pO2 ~100 mmHg) ins Blut (pO2 ~40 mmHg) – also entlang des Partialdruckgefälles ohne Energieverbrauch.", answer: true, explanation: "Der pO2 in der Alveolarluft (~100 mmHg) ist deutlich höher als im venösen Blut (~40 mmHg). Dieser Partialdruckgradient treibt die Diffusion an – passiv, kein ATP nötig. CO2 diffundiert in entgegengesetzter Richtung (Blut pCO2 ~46 mmHg → Alveole pCO2 ~40 mmHg)." },
+      ], explanation: "Äussere Atmung = Gasaustausch Lunge–Blut: O2 tritt aus Alveolarluft ins Kapillarblut, CO2 umgekehrt. Innere Atmung = Gasaustausch Blut–Körperzellen im Gewebe: O2 geht in die Zellen, CO2 ins Blut.", learningCard: { type: "reconstruct", template: "Die äussere Atmung ist der Gasaustausch zwischen ___ und Blut in der Lunge; die ___ ist der Gasaustausch zwischen Blut und ___ im Gewebe.", blanks: ["Alveolarluft", "innere Atmung", "Körperzellen"], distractors: ["Zellatmung", "Nasenschleimhaut"], reveal: "Die äussere Atmung ist der Gasaustausch zwischen Alveolarluft und Blut in der Lunge. Die innere Atmung ist der Gasaustausch zwischen Blut und Körperzellen im Gewebe." } },
+      { id: "at_ga_h4", type: "true_false", statement: "O2 diffundiert von den Alveolen (pO2 ~100 mmHg) ins Blut (pO2 ~40 mmHg) – also entlang des Partialdruckgefälles ohne Energieverbrauch.", answer: true, explanation: "Der pO2 in der Alveolarluft (~100 mmHg) ist deutlich höher als im venösen Blut (~40 mmHg). Dieser Partialdruckgradient treibt die Diffusion an – passiv, kein ATP nötig. CO2 diffundiert in entgegengesetzter Richtung (Blut pCO2 ~46 mmHg → Alveole pCO2 ~40 mmHg).", learningCard: { type: "teachback", prompt: "Welche Aussagen zur O2-Diffusion in der Lunge treffen zu?", checklist: [
+        { text: "Der pO2 der Alveolarluft (~100 mmHg) ist höher als im venösen Blut (~40 mmHg).", correct: true },
+        { text: "O2 diffundiert entlang des Partialdruckgefälles ohne Energieverbrauch.", correct: true },
+        { text: "CO2 diffundiert in die entgegengesetzte Richtung wie O2.", correct: true },
+        { text: "O2-Diffusion benötigt aktiven, ATP-abhängigen Transport.", correct: false }
+      ], reveal: "Der pO2 der Alveolarluft (~100 mmHg) übersteigt den im venösen Blut (~40 mmHg) deutlich; dieser Gradient treibt die passive Diffusion ohne ATP-Verbrauch an. CO2 diffundiert in entgegengesetzter Richtung, vom Blut in die Alveole." } },
       { id: "at_ga_h5", type: "mc", question: "Bei welchen Erkrankungen ist die Diffusionskapazität (DLCO) typischerweise erniedrigt?", options: [
         { text: "Lungenfibrose und Lungenemphysem", correct: true },
         { text: "Asthma bronchiale (akuter Anfall)", correct: false },
         { text: "Pneumonie (Lungenentzündung)", correct: false },
         { text: "Hyperventilation", correct: false }
-      ], explanation: "Bei Lungenfibrose ist die Alveolarmembran verdickt (längere Diffusionsstrecke), beim Emphysem sind Alveolarsepten zerstört (kleinere Diffusionsfläche) – beides erniedrigt die DLCO. Asthma ist primär ein Obstruktionsproblem, nicht ein Diffusionsproblem." },
+      ], explanation: "Bei Lungenfibrose ist die Alveolarmembran verdickt (längere Diffusionsstrecke), beim Emphysem sind Alveolarsepten zerstört (kleinere Diffusionsfläche) – beides erniedrigt die DLCO. Asthma ist primär ein Obstruktionsproblem, nicht ein Diffusionsproblem.", learningCard: { type: "predict", statement: "Bei Lungenfibrose und Lungenemphysem ist die Diffusionskapazität (DLCO) typischerweise erniedrigt.", answer: true, reveal: "Bei Lungenfibrose ist die Alveolarmembran verdickt (längere Diffusionsstrecke), beim Emphysem sind Alveolarsepten zerstört (kleinere Diffusionsfläche) — beides senkt die DLCO. Asthma ist dagegen primär ein Obstruktions-, kein Diffusionsproblem." } },
       { id: "at_ga_h6", type: "mc", question: "Was beschreibt die 'innere Atmung' im physiologischen Sinn?", options: [
         { text: "Gasaustausch zwischen Blut und Körperzellen im Gewebe", correct: true },
         { text: "Gasaustausch in der Lunge zwischen Alveolarluft und Blut", correct: false },
         { text: "Zellatmung (Glykolyse + Citratzyklus)", correct: false },
         { text: "Die Steuerung des Atemrhythmus durch das Atemzentrum", correct: false }
-      ], explanation: "Innere Atmung = Gasaustausch Blut–Gewebe: Im Körpergewebe übersteigt der pO2 im Blut jenen in den Zellen (~20 mmHg) → O2 diffundiert in die Zellen. CO2 diffundiert in umgekehrter Richtung. Beide Prozesse (äussere und innere Atmung) laufen durch Diffusion ohne Energieverbrauch." }
+      ], explanation: "Innere Atmung = Gasaustausch Blut–Gewebe: Im Körpergewebe übersteigt der pO2 im Blut jenen in den Zellen (~20 mmHg) → O2 diffundiert in die Zellen. CO2 diffundiert in umgekehrter Richtung. Beide Prozesse (äussere und innere Atmung) laufen durch Diffusion ohne Energieverbrauch.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die innere Atmung ist der Gasaustausch zwischen Blut und Körperzellen.", isWrong: false },
+        { text: "Im Gewebe diffundiert O2 vom Blut in die Zellen.", isWrong: false },
+        { text: "Sowohl äussere als auch innere Atmung laufen durch passive Diffusion ab.", isWrong: false },
+        { text: "Die innere Atmung findet in der Lunge zwischen Alveolarluft und Blut statt.", isWrong: true }
+      ], whyWrong: "Die innere Atmung findet im Gewebe zwischen Blut und Körperzellen statt, nicht in der Lunge — das beschreibt die äussere Atmung. Beide Prozesse laufen jedoch gleichermassen durch passive Diffusion ab." } }
     ],
     phase4Questions: [
       { id: "at_ga_mc1", type: "mc", question: "Durch welchen Mechanismus findet der Gasaustausch in der Lunge statt?", options: [
@@ -3557,41 +4462,61 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Durch aktiven Transport mit Energieverbrauch", correct: false },
         { text: "Durch Osmose über die Alveolarmembran", correct: false },
         { text: "Durch Pinozytose der Alveolarzellen", correct: false }
-      ], explanation: "Der Gasaustausch in der Lunge (äussere Atmung) erfolgt durch Diffusion: O2 diffundiert vom höheren Partialdruck in den Alveolen zum niedrigeren im venösen Blut." },
+      ], explanation: "Der Gasaustausch in der Lunge (äussere Atmung) erfolgt durch Diffusion: O2 diffundiert vom höheren Partialdruck in den Alveolen zum niedrigeren im venösen Blut.", learningCard: { type: "predict", statement: "Der Gasaustausch in der Lunge findet durch Diffusion entlang von Partialdruckunterschieden statt.", answer: true, reveal: "Der Gasaustausch in der Lunge (äussere Atmung) erfolgt durch Diffusion: O2 wandert vom höheren Partialdruck in den Alveolen zum niedrigeren im venösen Blut." } },
       { id: "at_ga_mc2", type: "mc", question: "Was bezeichnet man als 'innere Atmung'?", options: [
         { text: "Den Gasaustausch zwischen Blut und Körperzellen", correct: true },
         { text: "Den Gasaustausch in den Alveolen der Lunge", correct: false },
         { text: "Die Steuerung der Atmung durch das Atemzentrum", correct: false },
         { text: "Die Atemmuskelaktivität bei der Inspiration", correct: false }
-      ], explanation: "Die innere Atmung bezeichnet den Gasaustausch zwischen dem Kapillarblut und den Körperzellen im Gewebe, wo O2 aufgenommen und CO2 abgegeben wird." },
+      ], explanation: "Die innere Atmung bezeichnet den Gasaustausch zwischen dem Kapillarblut und den Körperzellen im Gewebe, wo O2 aufgenommen und CO2 abgegeben wird.", learningCard: { type: "reconstruct", template: "Die innere Atmung bezeichnet den Gasaustausch zwischen dem ___ und den ___ im Gewebe, wo O2 aufgenommen und ___ abgegeben wird.", blanks: ["Kapillarblut", "Körperzellen", "CO2"], distractors: ["Alveolarluft", "O2"], reveal: "Die innere Atmung bezeichnet den Gasaustausch zwischen Kapillarblut und Körperzellen im Gewebe: O2 wird aufgenommen, CO2 abgegeben." } },
       { id: "at_ga_mc3", type: "mc", question: "Welche Aussagen zum Gasaustausch sind korrekt?", options: [
         { text: "O2 diffundiert aus den Alveolen (pO2 ~100 mmHg) ins Blut (pO2 ~40 mmHg)", correct: true },
         { text: "Äussere Atmung = Gasaustausch Lunge–Blut; innere Atmung = Gasaustausch Blut–Gewebe", correct: true },
         { text: "Der Gasaustausch erfordert ATP-abhängigen aktiven Transport", correct: false },
         { text: "Die DLCO ist bei Lungenfibrose erhöht", correct: false }
-      ], explanation: "Gasaustausch erfolgt passiv durch Diffusion: O2 von Alveole ins Blut (pO2: 100→40 mmHg), CO2 umgekehrt. Äussere Atmung = Lunge, innere = Gewebe. DLCO ist bei Fibrose und Emphysem vermindert." }
+      ], explanation: "Gasaustausch erfolgt passiv durch Diffusion: O2 von Alveole ins Blut (pO2: 100→40 mmHg), CO2 umgekehrt. Äussere Atmung = Lunge, innere = Gewebe. DLCO ist bei Fibrose und Emphysem vermindert.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Gasaustausch insgesamt treffen zu?", checklist: [
+        { text: "O2 diffundiert von den Alveolen (pO2 ~100 mmHg) ins Blut (pO2 ~40 mmHg).", correct: true },
+        { text: "Äussere Atmung findet in der Lunge statt, innere Atmung im Gewebe.", correct: true },
+        { text: "Die DLCO ist bei Lungenfibrose und -emphysem vermindert.", correct: true },
+        { text: "Der Gasaustausch benötigt aktiven, ATP-abhängigen Transport.", correct: false }
+      ], reveal: "O2 diffundiert passiv von den Alveolen (~100 mmHg) ins Blut (~40 mmHg). Äussere Atmung findet in der Lunge statt, innere im Gewebe. Die DLCO ist bei Lungenfibrose und Lungenemphysem vermindert." } }
     ]
   }),
   makeDetailedPlant({
     id: "lungenvolumina_kapazitäten",
     title: "Lungenvolumina und Lungenkapazitäten",
     harvestQuestions: [
-      { id: "at_lv_h1", type: "true_false", statement: "Das Residualvolumen ist die Luftmenge, die auch nach maximaler Exspiration in der Lunge verbleibt.", answer: true, explanation: "Das Residualvolumen (ca. 1,5 l) kann nicht ausgeatmet werden, weil die Atemwege bei starker Exspiration kollabieren würden. Es verdünnt den Alveolarsauerstoff zwischen Atemzuegen und verhindert, dass die Alveolen vollständig zusammenfallen (Atelektase)." },
-      { id: "at_lv_h2", type: "true_false", statement: "Die Totalkapazität entspricht der Summe aus Vitalkapazität und Residualvolumen.", answer: true, explanation: "Totalkapazität (ca. 6 l) = Vitalkapazität (ca. 4,5 l) + Residualvolumen (ca. 1,5 l). Die Vitalkapazität umfasst Atemzugvolumen + inspiratorisches + exspiratorisches Reservevolumen und ist spirometrisch direkt messbar. Das Residualvolumen kann nur indirekt bestimmt werden." },
-      { id: "at_lv_h3", type: "true_false", statement: "Das inspiratorische Reservevolumen (2-3 l) und das exspiratorische Reservevolumen (1,5 l) sind gleich gross.", answer: false, explanation: "Das inspiratorische Reservevolumen (IRV, ca. 2,5 l) ist deutlich grösser als das exspiratorische Reservevolumen (ERV, ca. 1,5 l). Der Thorax kann durch Muskelkraft weiter eingeatmet als ausgeatmet werden, weshalb mehr Inspirationsreserve als Exspirationsreserve besteht." },
+      { id: "at_lv_h1", type: "true_false", statement: "Das Residualvolumen ist die Luftmenge, die auch nach maximaler Exspiration in der Lunge verbleibt.", answer: true, explanation: "Das Residualvolumen (ca. 1,5 l) kann nicht ausgeatmet werden, weil die Atemwege bei starker Exspiration kollabieren würden. Es verdünnt den Alveolarsauerstoff zwischen Atemzuegen und verhindert, dass die Alveolen vollständig zusammenfallen (Atelektase).", learningCard: { type: "predict", statement: "Das Residualvolumen (ca. 1,5 l) verbleibt auch nach maximaler Exspiration in der Lunge und kann nicht ausgeatmet werden.", answer: true, reveal: "Das Residualvolumen (ca. 1,5 l) kann nicht ausgeatmet werden, weil die Atemwege bei starker Exspiration sonst kollabieren würden. Es verhindert, dass die Alveolen vollständig zusammenfallen (Atelektase)." } },
+      { id: "at_lv_h2", type: "true_false", statement: "Die Totalkapazität entspricht der Summe aus Vitalkapazität und Residualvolumen.", answer: true, explanation: "Totalkapazität (ca. 6 l) = Vitalkapazität (ca. 4,5 l) + Residualvolumen (ca. 1,5 l). Die Vitalkapazität umfasst Atemzugvolumen + inspiratorisches + exspiratorisches Reservevolumen und ist spirometrisch direkt messbar. Das Residualvolumen kann nur indirekt bestimmt werden.", learningCard: { type: "reconstruct", template: "Die Totalkapazität (ca. 6 l) = ___ (ca. 4,5 l) + ___ (ca. 1,5 l). Die Vitalkapazität ist spirometrisch direkt ___, das Residualvolumen nur indirekt.", blanks: ["Vitalkapazität", "Residualvolumen", "messbar"], distractors: ["Atemzugvolumen", "hörbar"], reveal: "Die Totalkapazität (ca. 6 l) setzt sich aus Vitalkapazität (ca. 4,5 l) und Residualvolumen (ca. 1,5 l) zusammen. Die Vitalkapazität ist spirometrisch direkt messbar, das Residualvolumen nur indirekt bestimmbar." } },
+      { id: "at_lv_h3", type: "true_false", statement: "Das inspiratorische Reservevolumen (2-3 l) und das exspiratorische Reservevolumen (1,5 l) sind gleich gross.", answer: false, explanation: "Das inspiratorische Reservevolumen (IRV, ca. 2,5 l) ist deutlich grösser als das exspiratorische Reservevolumen (ERV, ca. 1,5 l). Der Thorax kann durch Muskelkraft weiter eingeatmet als ausgeatmet werden, weshalb mehr Inspirationsreserve als Exspirationsreserve besteht.", learningCard: { type: "oddoneout", statements: [
+        { text: "Das inspiratorische Reservevolumen beträgt ca. 2,5 l.", isWrong: false },
+        { text: "Das exspiratorische Reservevolumen beträgt ca. 1,5 l.", isWrong: false },
+        { text: "Der Thorax kann durch Muskelkraft weiter eingeatmet als ausgeatmet werden.", isWrong: false },
+        { text: "IRV und ERV sind etwa gleich gross.", isWrong: true }
+      ], whyWrong: "IRV (~2,5 l) und ERV (~1,5 l) sind nicht gleich gross — das IRV ist deutlich grösser. Der Thorax kann durch Muskelkraft weiter eingeatmet als ausgeatmet werden." } },
       { id: "at_lv_h4", type: "mc", question: "Was ist die Vitalkapazität und wie gross ist sie ungefähr?", options: [
         { text: "Maximale aus- und einatembare Luftmenge: ca. 4,5 l (= AZV + IRV + ERV)", correct: true },
         { text: "Die gesamte Lungenfüllmenge einschliesslich Residualvolumen: ca. 6 l", correct: false },
         { text: "Das normale Atemzugvolumen in Ruhe: ca. 500 ml", correct: false },
         { text: "Luftmenge nach normaler Ausatmung, die noch ausgeatmet werden kann: ca. 1,5 l", correct: false }
-      ], explanation: "Vitalkapazität (VK) = AZV (500 ml) + IRV (2,5 l) + ERV (1,5 l) ≈ 4,5 l. Sie ist die grösste messbare Luftmenge und kann mit einem Spirometer direkt bestimmt werden. Das Residualvolumen ist in der VK NICHT enthalten; VK + RV = Totalkapazität (~6 l)." },
-      { id: "at_lv_h5", type: "true_false", statement: "Das Atemzugvolumen (AZV) beträgt in Ruhe ca. 500 ml.", answer: true, explanation: "Das Atemzugvolumen ist die normale, ruhige Atemluftmenge pro Atemzug (~500 ml). Davon erreichen nur ca. 350 ml die Alveolen – die übrigen ~150 ml füllen den anatomischen Totraum (Trachea, Bronchien), wo kein Gasaustausch stattfindet." },
+      ], explanation: "Vitalkapazität (VK) = AZV (500 ml) + IRV (2,5 l) + ERV (1,5 l) ≈ 4,5 l. Sie ist die grösste messbare Luftmenge und kann mit einem Spirometer direkt bestimmt werden. Das Residualvolumen ist in der VK NICHT enthalten; VK + RV = Totalkapazität (~6 l).", learningCard: { type: "predict", statement: "Die Vitalkapazität setzt sich aus Atemzugvolumen, inspiratorischem und exspiratorischem Reservevolumen zusammen und beträgt ca. 4,5 l.", answer: true, reveal: "Die Vitalkapazität (VK) = AZV + IRV + ERV ≈ 4,5 l und ist mit einem Spirometer direkt messbar. Das Residualvolumen ist darin NICHT enthalten; VK + RV ergibt die Totalkapazität (~6 l)." } },
+      { id: "at_lv_h5", type: "true_false", statement: "Das Atemzugvolumen (AZV) beträgt in Ruhe ca. 500 ml.", answer: true, explanation: "Das Atemzugvolumen ist die normale, ruhige Atemluftmenge pro Atemzug (~500 ml). Davon erreichen nur ca. 350 ml die Alveolen – die übrigen ~150 ml füllen den anatomischen Totraum (Trachea, Bronchien), wo kein Gasaustausch stattfindet.", learningCard: { type: "teachback", prompt: "Welche Aussagen zum Atemzugvolumen (AZV) treffen zu?", checklist: [
+        { text: "Das AZV beträgt in Ruhe ca. 500 ml.", correct: true },
+        { text: "Davon erreichen nur ca. 350 ml die Alveolen.", correct: true },
+        { text: "Ca. 150 ml füllen den anatomischen Totraum ohne Gasaustausch.", correct: true },
+        { text: "Das gesamte AZV erreicht immer vollständig die Alveolen.", correct: false }
+      ], reveal: "Das Atemzugvolumen beträgt in Ruhe ca. 500 ml, wovon nur ca. 350 ml die Alveolen erreichen. Die restlichen ca. 150 ml füllen den anatomischen Totraum, wo kein Gasaustausch stattfindet." } },
       { id: "at_lv_h6", type: "mc", question: "Welche der folgenden Aussagen zur Totalkapazität ist korrekt?", options: [
         { text: "Totalkapazität = Vitalkapazität (ca. 4,5 l) + Residualvolumen (ca. 1,5 l) = ca. 6 l", correct: true },
         { text: "Totalkapazität = nur Vitalkapazität, ohne Residualvolumen", correct: false },
         { text: "Totalkapazität ist kleiner als die Vitalkapazität", correct: false },
         { text: "Totalkapazität beträgt ca. 3 l beim gesunden Erwachsenen", correct: false }
-      ], explanation: "Die Totalkapazität (TK, ca. 6 l) ist das maximale Fassungsvermögen der Lunge: TK = VK + RV. Da das Residualvolumen nicht ausgeatmet werden kann, übersteigt die TK die VK immer um das RV." }
+      ], explanation: "Die Totalkapazität (TK, ca. 6 l) ist das maximale Fassungsvermögen der Lunge: TK = VK + RV. Da das Residualvolumen nicht ausgeatmet werden kann, übersteigt die TK die VK immer um das RV.", learningCard: { type: "oddoneout", statements: [
+        { text: "Die Totalkapazität ist das maximale Fassungsvermögen der Lunge.", isWrong: false },
+        { text: "Totalkapazität = Vitalkapazität + Residualvolumen.", isWrong: false },
+        { text: "Die Totalkapazität übersteigt die Vitalkapazität immer um das Residualvolumen.", isWrong: false },
+        { text: "Die Totalkapazität besteht nur aus der Vitalkapazität ohne Residualvolumen.", isWrong: true }
+      ], whyWrong: "Die Totalkapazität besteht nicht nur aus der Vitalkapazität, sondern aus Vitalkapazität PLUS Residualvolumen (TK = VK + RV). Sie ist deshalb immer grösser als die Vitalkapazität allein." } }
     ],
     phase4Questions: [
       { id: "at_lv_mc1", type: "mc", question: "Wie gross ist das normale Atemzugvolumen eines Erwachsenen in Ruhe?", options: [
@@ -3599,46 +4524,66 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Ca. 1500 ml", correct: false },
         { text: "Ca. 3000 ml", correct: false },
         { text: "Ca. 6000 ml", correct: false }
-      ], explanation: "Das Atemzugvolumen in Ruhe beträgt ca. 500 ml, wobei ca. 150 ml im anatomischen Totraum verbleiben und nicht am Gasaustausch teilnehmen." },
+      ], explanation: "Das Atemzugvolumen in Ruhe beträgt ca. 500 ml, wobei ca. 150 ml im anatomischen Totraum verbleiben und nicht am Gasaustausch teilnehmen.", learningCard: { type: "predict", statement: "Das normale Atemzugvolumen eines Erwachsenen in Ruhe beträgt ca. 500 ml.", answer: true, reveal: "Das Atemzugvolumen in Ruhe beträgt ca. 500 ml, wovon ca. 150 ml im anatomischen Totraum verbleiben und nicht am Gasaustausch teilnehmen." } },
       { id: "at_lv_mc2", type: "mc", question: "Welches Lungenvolumen kann auch nach maximaler Ausatmung NICHT ausgeatmet werden?", options: [
         { text: "Das Residualvolumen", correct: true },
         { text: "Das exspiratorische Reservevolumen", correct: false },
         { text: "Das Atemzugvolumen", correct: false },
         { text: "Das inspiratorische Reservevolumen", correct: false }
-      ], explanation: "Das Residualvolumen verbleibt auch nach maximaler Ausatmung in der Lunge und verhindert deren Kollaps; es ist nicht willkürlich ausatembar." },
+      ], explanation: "Das Residualvolumen verbleibt auch nach maximaler Ausatmung in der Lunge und verhindert deren Kollaps; es ist nicht willkürlich ausatembar.", learningCard: { type: "reconstruct", template: "Das ___ verbleibt auch nach maximaler Ausatmung in der Lunge und verhindert deren ___; es ist nicht willkürlich ___.", blanks: ["Residualvolumen", "Kollaps", "ausatembar"], distractors: ["Atemzugvolumen", "messbar"], reveal: "Das Residualvolumen verbleibt auch nach maximaler Ausatmung in der Lunge und verhindert deren Kollaps. Es ist nicht willkürlich ausatembar, da die Atemwege sonst kollabieren würden." } },
       { id: "at_lv_mc3", type: "mc", question: "Welche Aussagen zu Lungenvolumina sind korrekt?", options: [
         { text: "Vitalkapazität = AZV + IRV + ERV ≈ 4,5 l", correct: true },
         { text: "Totalkapazität = Vitalkapazität + Residualvolumen ≈ 6 l", correct: true },
         { text: "Das Residualvolumen kann durch maximale Ausatmung vollständig entleert werden", correct: false },
         { text: "Das IRV und ERV sind gleich gross (je ca. 1,5 l)", correct: false }
-      ], explanation: "Die Volumina im Überblick: AZV ~500 ml, IRV ~2,5 l, ERV ~1,5 l, RV ~1,5 l; VK = AZV+IRV+ERV ~4,5 l; TK = VK+RV ~6 l. Das RV bleibt immer in der Lunge; IRV (~2,5 l) ist grösser als ERV (~1,5 l)." }
+      ], explanation: "Die Volumina im Überblick: AZV ~500 ml, IRV ~2,5 l, ERV ~1,5 l, RV ~1,5 l; VK = AZV+IRV+ERV ~4,5 l; TK = VK+RV ~6 l. Das RV bleibt immer in der Lunge; IRV (~2,5 l) ist grösser als ERV (~1,5 l).", learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Lungenvolumina treffen zu?", checklist: [
+        { text: "Vitalkapazität = AZV + IRV + ERV ≈ 4,5 l.", correct: true },
+        { text: "Totalkapazität = Vitalkapazität + Residualvolumen ≈ 6 l.", correct: true },
+        { text: "Das IRV (~2,5 l) ist grösser als das ERV (~1,5 l).", correct: true },
+        { text: "Das Residualvolumen kann durch maximale Ausatmung vollständig entleert werden.", correct: false }
+      ], reveal: "Vitalkapazität = AZV + IRV + ERV ≈ 4,5 l; Totalkapazität = Vitalkapazität + Residualvolumen ≈ 6 l. Das IRV (~2,5 l) ist grösser als das ERV (~1,5 l). Das Residualvolumen bleibt immer in der Lunge und kann nicht ausgeatmet werden." } }
     ]
   }),
   makeDetailedPlant({
     id: "atemsteuerung",
     title: "Atemsteuerung",
     harvestQuestions: [
-      { id: "at_as_h1", type: "true_false", statement: "Ein erhöhter CO2-Gehalt im Blut (Hyperkapnie) führt zu einer Steigerung der Atemfrequenz.", answer: true, explanation: "CO2 ist der stärkste Atemantrieb: Hyperkapnie senkt den pH-Wert (durch H2CO3-Bildung), was zentrale Chemorezeptoren in der Medulla oblongata stimuliert und die Atemfrequenz sowie -tiefe steigert. Hypoxie wirkt ebenfalls atemsteigernd, aber mit schwacherem Effekt über periphere Chemorezeptoren." },
-      { id: "at_as_h3", type: "true_false", statement: "Eine Abnahme der Sauerstoffkonzentration im Blut führt zu einer Verlangsamung der Atemfrequenz.", answer: false, explanation: "Eine Abnahme der Sauerstoffkonzentration (Hypoxämie) führt zu einer Steigerung, nicht Verlangsamung der Atemfrequenz. Periphere Chemorezeptoren in den Karotis- und Aortakörperchen reagieren auf sinkenden O2-Partialdruck und signalisieren dem Atemzentrum, mehr Atemarbeit zu leisten." },
+      { id: "at_as_h1", type: "true_false", statement: "Ein erhöhter CO2-Gehalt im Blut (Hyperkapnie) führt zu einer Steigerung der Atemfrequenz.", answer: true, explanation: "CO2 ist der stärkste Atemantrieb: Hyperkapnie senkt den pH-Wert (durch H2CO3-Bildung), was zentrale Chemorezeptoren in der Medulla oblongata stimuliert und die Atemfrequenz sowie -tiefe steigert. Hypoxie wirkt ebenfalls atemsteigernd, aber mit schwacherem Effekt über periphere Chemorezeptoren.", learningCard: { type: "predict", statement: "Ein erhöhter CO2-Gehalt im Blut (Hyperkapnie) steigert die Atemfrequenz, da CO2 der stärkste Atemantrieb ist.", answer: true, reveal: "CO2 ist der stärkste Atemantrieb: Hyperkapnie senkt den pH-Wert, was zentrale Chemorezeptoren in der Medulla oblongata stimuliert und Atemfrequenz sowie -tiefe steigert. Hypoxie wirkt ebenfalls atemsteigernd, aber schwächer über periphere Chemorezeptoren." } },
+      { id: "at_as_h3", type: "true_false", statement: "Eine Abnahme der Sauerstoffkonzentration im Blut führt zu einer Verlangsamung der Atemfrequenz.", answer: false, explanation: "Eine Abnahme der Sauerstoffkonzentration (Hypoxämie) führt zu einer Steigerung, nicht Verlangsamung der Atemfrequenz. Periphere Chemorezeptoren in den Karotis- und Aortakörperchen reagieren auf sinkenden O2-Partialdruck und signalisieren dem Atemzentrum, mehr Atemarbeit zu leisten.", learningCard: { type: "oddoneout", statements: [
+        { text: "Periphere Chemorezeptoren liegen in Karotis- und Aortakörperchen.", isWrong: false },
+        { text: "Sinkender O2-Partialdruck steigert die Atemfrequenz.", isWrong: false },
+        { text: "Periphere Chemorezeptoren signalisieren dem Atemzentrum, mehr Atemarbeit zu leisten.", isWrong: false },
+        { text: "Eine Abnahme der Sauerstoffkonzentration verlangsamt die Atemfrequenz.", isWrong: true }
+      ], whyWrong: "Eine Abnahme der Sauerstoffkonzentration (Hypoxämie) steigert die Atemfrequenz, sie verlangsamt sie nicht. Periphere Chemorezeptoren in Karotis- und Aortakörperchen registrieren den O2-Abfall und fordern mehr Atemarbeit." } },
       { id: "at_as_h2", type: "mc", question: "Welcher chemische Reiz löst beim Menschen den stärksten Atemantrieb aus?", options: [
         { text: "CO2-Anstieg im Blut (Hyperkapnie)", correct: true },
         { text: "O2-Abfall im Blut (Hypoxämie)", correct: false },
         { text: "Anstieg des Blut-pH-Werts (Alkalose)", correct: false },
         { text: "Temperaturabfall des Atemzentrums", correct: false }
-      ], explanation: "CO2 ist der stärkste Atemreiz: Hyperkapnie senkt den pH (CO2+H2O→H2CO3→H++HCO3-), was zentrale Chemorezeptoren sofort stimuliert. O2-Mangel wirkt ebenfalls atemsteigernd, aber über periphere Chemorezeptoren mit schwächerem Effekt." },
-      { id: "at_as_h4", type: "true_false", statement: "Zentrale Chemorezeptoren in der Medulla oblongata reagieren primär auf CO2-Änderungen und pH-Schwankungen im Liquor cerebrospinalis.", answer: true, explanation: "Zentrale Chemorezeptoren in der Medulla oblongata messen H+-Konzentration im Liquor, die CO2-abhängig ist: CO2 diffundiert durch die Blut-Hirn-Schranke und bildet im Liquor H+. Periphere Chemorezeptoren (Karotis- und Aortakörperchen) reagieren dagegen direkt auf O2-Partialdruck im Blut." },
+      ], explanation: "CO2 ist der stärkste Atemreiz: Hyperkapnie senkt den pH (CO2+H2O→H2CO3→H++HCO3-), was zentrale Chemorezeptoren sofort stimuliert. O2-Mangel wirkt ebenfalls atemsteigernd, aber über periphere Chemorezeptoren mit schwächerem Effekt.", learningCard: { type: "reconstruct", template: "Der stärkste Atemantrieb beim Menschen ist ein Anstieg von ___ im Blut, der über ___ Chemorezeptoren wirkt. O2-Mangel wirkt schwächer über ___ Chemorezeptoren.", blanks: ["CO2", "zentrale", "periphere"], distractors: ["Glukose", "olfaktorische"], reveal: "CO2 ist der stärkste Atemreiz und wirkt über zentrale Chemorezeptoren in der Medulla oblongata. O2-Mangel wirkt ebenfalls atemsteigernd, aber schwächer über periphere Chemorezeptoren." } },
+      { id: "at_as_h4", type: "true_false", statement: "Zentrale Chemorezeptoren in der Medulla oblongata reagieren primär auf CO2-Änderungen und pH-Schwankungen im Liquor cerebrospinalis.", answer: true, explanation: "Zentrale Chemorezeptoren in der Medulla oblongata messen H+-Konzentration im Liquor, die CO2-abhängig ist: CO2 diffundiert durch die Blut-Hirn-Schranke und bildet im Liquor H+. Periphere Chemorezeptoren (Karotis- und Aortakörperchen) reagieren dagegen direkt auf O2-Partialdruck im Blut.", learningCard: { type: "predict", statement: "Zentrale Chemorezeptoren in der Medulla oblongata reagieren primär auf CO2- und pH-Schwankungen im Liquor.", answer: true, reveal: "Zentrale Chemorezeptoren in der Medulla oblongata messen die CO2-abhängige H+-Konzentration im Liquor: CO2 diffundiert durch die Blut-Hirn-Schranke und bildet dort H+. Periphere Chemorezeptoren reagieren dagegen direkt auf den O2-Partialdruck im Blut." } },
       { id: "at_as_h5", type: "mc", question: "Wo befinden sich die peripheren Chemorezeptoren, die auf sinkenden O2-Partialdruck reagieren?", options: [
         { text: "In den Karotis- und Aortakörperchen", correct: true },
         { text: "In der Medulla oblongata", correct: false },
         { text: "In der Lunge (Dehnungsrezeptoren)", correct: false },
         { text: "Im Hypothalamus", correct: false }
-      ], explanation: "Periphere Chemorezeptoren: Glomus caroticum (Karotiskörperchen) an der Karotisbifurkation und Glomus aorticum (Aortakörperchen) am Aortenbogen. Sie reagieren auf pO2-Abfall, pCO2-Anstieg und pH-Senkung und senden Signale über N. glossopharyngeus (IX) und N. vagus (X) an das Atemzentrum." },
+      ], explanation: "Periphere Chemorezeptoren: Glomus caroticum (Karotiskörperchen) an der Karotisbifurkation und Glomus aorticum (Aortakörperchen) am Aortenbogen. Sie reagieren auf pO2-Abfall, pCO2-Anstieg und pH-Senkung und senden Signale über N. glossopharyngeus (IX) und N. vagus (X) an das Atemzentrum.", learningCard: { type: "teachback", prompt: "Welche Aussagen zu den peripheren Chemorezeptoren treffen zu?", checklist: [
+        { text: "Sie liegen im Glomus caroticum und Glomus aorticum.", correct: true },
+        { text: "Sie reagieren auf pO2-Abfall, pCO2-Anstieg und pH-Senkung.", correct: true },
+        { text: "Sie senden Signale über N. glossopharyngeus und N. vagus an das Atemzentrum.", correct: true },
+        { text: "Sie liegen in der Medulla oblongata selbst.", correct: false }
+      ], reveal: "Periphere Chemorezeptoren liegen im Glomus caroticum (Karotisbifurkation) und Glomus aorticum (Aortenbogen). Sie reagieren auf pO2-Abfall, pCO2-Anstieg und pH-Senkung und senden Signale über N. glossopharyngeus und N. vagus an das Atemzentrum." } },
       { id: "at_as_h6", type: "mc", question: "In welchem Hirnabschnitt liegt das Atemzentrum, das den Atemrhythmus erzeugt?", options: [
         { text: "Medulla oblongata (verlängertes Mark)", correct: true },
         { text: "Grosshirn (Cortex cerebri)", correct: false },
         { text: "Kleinhirn (Cerebellum)", correct: false },
         { text: "Hypothalamus", correct: false }
-      ], explanation: "Das Atemzentrum in der Medulla oblongata erzeugt autonom den Atemrhythmus und kann nicht dauerhaft bewusst übersteuert werden – nach kurzer Zeit erzwingt der steigende CO2-Antrieb die Atmung wieder. Der präBötzinger-Komplex gilt als zentraler Rhythmusgenerator." }
+      ], explanation: "Das Atemzentrum in der Medulla oblongata erzeugt autonom den Atemrhythmus und kann nicht dauerhaft bewusst übersteuert werden – nach kurzer Zeit erzwingt der steigende CO2-Antrieb die Atmung wieder. Der präBötzinger-Komplex gilt als zentraler Rhythmusgenerator.", learningCard: { type: "oddoneout", statements: [
+        { text: "Das Atemzentrum liegt in der Medulla oblongata.", isWrong: false },
+        { text: "Der präBötzinger-Komplex gilt als zentraler Rhythmusgenerator.", isWrong: false },
+        { text: "Steigender CO2-Antrieb erzwingt die Atmung nach kurzem Anhalten wieder.", isWrong: false },
+        { text: "Das Atemzentrum kann beliebig lange bewusst übersteuert werden.", isWrong: true }
+      ], whyWrong: "Das Atemzentrum in der Medulla oblongata kann nicht dauerhaft bewusst übersteuert werden — nach kurzer Zeit erzwingt der steigende CO2-Antrieb die Atmung wieder. Der präBötzinger-Komplex ist der zentrale Rhythmusgenerator." } }
     ],
     phase4Questions: [
       { id: "at_as_mc1", type: "mc", question: "Welche drei Regelgrössen steuern das Atemzentrum chemisch?", options: [
@@ -3646,19 +4591,24 @@ const ATMUNGSSYSTEM_1035_PLANTS = [
         { text: "Temperatur, Osmolarität und Glukosegehalt des Blutes", correct: false },
         { text: "Ausschliesslich der CO2-Gehalt als einzige Regelgrösse", correct: false },
         { text: "Sauerstoff, Stickstoff und Wasserdampfgehalt der Atemluft", correct: false }
-      ], explanation: "Das Atemzentrum in der Medulla oblongata wird chemisch durch O2-Partialdruck, CO2-Partialdruck und pH des Blutes reguliert, wobei CO2/pH die stärksten Reize sind." },
+      ], explanation: "Das Atemzentrum in der Medulla oblongata wird chemisch durch O2-Partialdruck, CO2-Partialdruck und pH des Blutes reguliert, wobei CO2/pH die stärksten Reize sind.", learningCard: { type: "predict", statement: "Das Atemzentrum wird chemisch durch O2-Partialdruck, CO2-Partialdruck und den pH-Wert des Blutes reguliert.", answer: true, reveal: "Das Atemzentrum in der Medulla oblongata wird chemisch durch O2-Partialdruck, CO2-Partialdruck und pH-Wert des Blutes reguliert. CO2 und pH sind dabei die stärksten Reize." } },
       { id: "at_as_mc2", type: "mc", question: "Was bewirkt eine Hyperkapnie (erhöhter CO2-Gehalt im Blut)?", options: [
         { text: "Steigerung der Atemfrequenz und -tiefe", correct: true },
         { text: "Verlangsamung der Atmung", correct: false },
         { text: "Atemstillstand", correct: false },
         { text: "Keine Veränderung der Atemfrequenz", correct: false }
-      ], explanation: "Hyperkapnie senkt den Blut-pH, was über Chemorezeptoren das Atemzentrum stimuliert und Atemfrequenz sowie -tiefe steigert." },
+      ], explanation: "Hyperkapnie senkt den Blut-pH, was über Chemorezeptoren das Atemzentrum stimuliert und Atemfrequenz sowie -tiefe steigert.", learningCard: { type: "reconstruct", template: "Hyperkapnie senkt den ___-Wert des Blutes, was über Chemorezeptoren das Atemzentrum stimuliert und Atemfrequenz sowie ___ steigert.", blanks: ["pH", "-tiefe"], distractors: ["Sauerstoff", "-lautstärke"], reveal: "Hyperkapnie senkt den pH-Wert des Blutes, was über Chemorezeptoren das Atemzentrum stimuliert und Atemfrequenz sowie -tiefe steigert." } },
       { id: "at_as_mc3", type: "mc", question: "Welche Aussagen zur chemischen Atemsteuerung sind korrekt?", options: [
         { text: "Zentrale Chemorezeptoren in der Medulla reagieren auf CO2 und pH im Liquor", correct: true },
         { text: "Periphere Chemorezeptoren in Karotis- und Aortakörperchen reagieren auf O2-Mangel", correct: true },
         { text: "Das Atemzentrum liegt im Grosshirn und kann dauerhaft bewusst übersteuert werden", correct: false },
         { text: "CO2-Anstieg hemmt das Atemzentrum", correct: false }
-      ], explanation: "Zusammenfassung: Zentrale Chemorezeptoren (Medulla) → CO2/pH; periphere Chemorezeptoren (Karotis-/Aortakörperchen) → O2. Das Atemzentrum liegt in der Medulla oblongata und erzeugt autonom den Atemrhythmus. Hyperkapnie steigert – nicht hemmt – den Atemantrieb." }
+      ], explanation: "Zusammenfassung: Zentrale Chemorezeptoren (Medulla) → CO2/pH; periphere Chemorezeptoren (Karotis-/Aortakörperchen) → O2. Das Atemzentrum liegt in der Medulla oblongata und erzeugt autonom den Atemrhythmus. Hyperkapnie steigert – nicht hemmt – den Atemantrieb.", learningCard: { type: "teachback", prompt: "Welche Aussagen zur chemischen Atemsteuerung treffen zu?", checklist: [
+        { text: "Zentrale Chemorezeptoren in der Medulla reagieren auf CO2 und pH im Liquor.", correct: true },
+        { text: "Periphere Chemorezeptoren in Karotis- und Aortakörperchen reagieren auf O2-Mangel.", correct: true },
+        { text: "Hyperkapnie steigert den Atemantrieb.", correct: true },
+        { text: "Das Atemzentrum liegt im Grosshirn und kann dauerhaft bewusst übersteuert werden.", correct: false }
+      ], reveal: "Zentrale Chemorezeptoren (Medulla) reagieren auf CO2/pH, periphere Chemorezeptoren (Karotis-/Aortakörperchen) auf O2-Mangel. Das Atemzentrum liegt in der Medulla oblongata, nicht im Grosshirn, und erzeugt autonom den Atemrhythmus. Hyperkapnie steigert den Atemantrieb." } }
     ]
   }),
   makeDetailedPlant({
@@ -4336,14 +5286,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "5. ICR rechts der Medioklavikularlinie", correct: false },
           { text: "4. ICR in der Medioklavikularlinie", correct: false }
         ],
-        explanation: "Der Herzspitzenstoß ist im 5. Interkostalraum (ICR) links der Medioklavikularlinie tastbar, da das Herz leicht nach links verlagert ist."
+        explanation: "Der Herzspitzenstoß ist im 5. Interkostalraum (ICR) links der Medioklavikularlinie tastbar, da das Herz leicht nach links verlagert ist.",
+        learningCard: { type: "predict", statement: "Der Herzspitzenstoß ist im 5. ICR links der Medioklavikularlinie tastbar.", answer: true, reveal: "Der Herzspitzenstoß ist im 5. Interkostalraum (ICR) links der Medioklavikularlinie tastbar, da das Herz leicht nach links verlagert ist." }
       },
       {
         id: "herz_aufbau_h2",
         type: "true_false",
         statement: "Glanzstreifen (Disci intercalares) verbinden Herzmuskelzellen elektrisch und ermöglichen so koordinierte Kontraktion.",
         answer: true,
-        explanation: "Glanzstreifen sind Zell-Zell-Verbindungen zwischen Herzmuskelzellen, die eine schnelle elektrische Kopplung ermöglichen und das Herz funktionell wie ein Syncytium arbeiten lassen."
+        explanation: "Glanzstreifen sind Zell-Zell-Verbindungen zwischen Herzmuskelzellen, die eine schnelle elektrische Kopplung ermöglichen und das Herz funktionell wie ein Syncytium arbeiten lassen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Glanzstreifen (Disci intercalares) treffen zu?", checklist: [
+          { text: "Glanzstreifen sind Zell-Zell-Verbindungen zwischen Herzmuskelzellen.", correct: true },
+          { text: "Glanzstreifen ermöglichen eine schnelle elektrische Kopplung der Zellen.", correct: true },
+          { text: "Glanzstreifen lassen das Herz funktionell wie ein Syncytium arbeiten.", correct: true },
+          { text: "Glanzstreifen verlangsamen die Erregungsausbreitung im Herzen.", correct: false }
+        ], reveal: "Glanzstreifen sind Zell-Zell-Verbindungen zwischen Herzmuskelzellen, die eine schnelle elektrische Kopplung ermöglichen. Dadurch arbeitet das Herz funktionell wie ein Syncytium." }
       },
       {
         id: "herz_aufbau_h3",
@@ -4355,7 +5312,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Epikard", correct: false },
           { text: "Perikard", correct: false }
         ],
-        explanation: "Das Endokard ist die innerste Herzschicht und kleidet alle Hohlräume (Vorhöfe und Kammern) von innen aus."
+        explanation: "Das Endokard ist die innerste Herzschicht und kleidet alle Hohlräume (Vorhöfe und Kammern) von innen aus.",
+        learningCard: { type: "predict", statement: "Das Endokard kleidet die Hohlräume des Herzens von innen aus.", answer: true, reveal: "Das Endokard ist die innerste Herzschicht und kleidet alle Hohlräume (Vorhöfe und Kammern) von innen aus." }
       },
       {
         id: "herz_aufbau_h4",
@@ -4367,14 +5325,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Aminosäuren", correct: false },
           { text: "Ketonkörper", correct: false }
         ],
-        explanation: "Das Herz ist ein Organ mit sehr hohem Energiebedarf und gewinnt bevorzugt (ca. 60–70 %) Energie durch Oxidation von Fettsäuren."
+        explanation: "Das Herz ist ein Organ mit sehr hohem Energiebedarf und gewinnt bevorzugt (ca. 60–70 %) Energie durch Oxidation von Fettsäuren.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Herz hat einen sehr hohen Energiebedarf.", isWrong: false },
+          { text: "Das Herz gewinnt seine Energie bevorzugt aus Fettsäuren.", isWrong: false },
+          { text: "Etwa 60–70 % der Herzenergie stammen aus der Fettsäureoxidation.", isWrong: false },
+          { text: "Das Herz deckt seinen Energiebedarf bevorzugt aus Glukose.", isWrong: true }
+        ], whyWrong: "Das Herz hat einen sehr hohen Energiebedarf und deckt ihn bevorzugt (ca. 60–70 %) durch Oxidation von Fettsäuren, nicht Glukose." }
       },
       {
         id: "herz_aufbau_h5",
         type: "true_false",
         statement: "Das Perikard enthält einen Spaltraum mit Flüssigkeit, der Reibung bei der Herzaktion vermindert.",
         answer: true,
-        explanation: "Im Perikardspalt zwischen Epikard und Perikard befinden sich ca. 20–50 ml seröse Flüssigkeit als Gleitfilm."
+        explanation: "Im Perikardspalt zwischen Epikard und Perikard befinden sich ca. 20–50 ml seröse Flüssigkeit als Gleitfilm.",
+        learningCard: { type: "reconstruct", template: "Im Perikardspalt zwischen Epikard und Perikard befinden sich ca. ___–___ ml seröse Flüssigkeit als Gleitfilm.", blanks: ["20", "50"], distractors: ["5", "100"], reveal: "Im Perikardspalt zwischen Epikard und Perikard befinden sich ca. 20–50 ml seröse Flüssigkeit, die als Gleitfilm Reibung bei der Herzaktion vermindert." }
       }
     ],
     phase4Questions: [
@@ -4389,6 +5354,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Das Herz liegt vollständig in der rechten Brusthälfte", correct: false }
         ],
         explanation: "Das Herzmuskelgewebe ist als einziges Muskelgewebe quergestreift und unwillkürlich gesteuert, wobei Glanzstreifen (Disci intercalares) über Gap Junctions die elektrische Erregung von Zelle zu Zelle weiterleiten.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Aufbau und Eigenschaften des Herzmuskelgewebes treffen zu?", checklist: [
+          { text: "Das Myokard ist quergestreift, obwohl es unwillkürlich gesteuert wird.", correct: true },
+          { text: "Glanzstreifen leiten die elektrische Erregung über Gap Junctions von Zelle zu Zelle weiter.", correct: true },
+          { text: "Das Epikard kleidet die Hohlräume des Herzens aus.", correct: false },
+          { text: "Das Herz liegt vollständig in der rechten Brusthälfte.", correct: false }
+        ], reveal: "Das Herzmuskelgewebe ist als einziges Muskelgewebe quergestreift, obwohl es unwillkürlich gesteuert wird. Glanzstreifen leiten dabei über Gap Junctions die elektrische Erregung von Zelle zu Zelle weiter." },
       },
       {
         id: "herz_aufbau_mc2",
@@ -4401,6 +5372,7 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Das Myokard ist die äußerste Herzschicht", correct: false }
         ],
         explanation: "Das Herz hat vier Schichten von innen nach außen: Endokard, Myokard, Epikard und Perikard, wobei zwischen Epi- und Perikard ein flüssigkeitsgefüllter Spaltraum (Cavum pericardii) reibungsarme Bewegungen ermöglicht.",
+        learningCard: { type: "reconstruct", template: "Die vier Herzschichten von innen nach außen sind: ___ → ___ → ___ → ___.", blanks: ["Endokard", "Myokard", "Epikard", "Perikard"], distractors: ["Adventitia", "Intima"], reveal: "Das Herz hat vier Schichten von innen nach außen: Endokard, Myokard, Epikard und Perikard. Zwischen Epi- und Perikard liegt ein flüssigkeitsgefüllter Spaltraum, der reibungsarme Bewegungen ermöglicht." },
       }
     ]
   }),
@@ -4419,14 +5391,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Pulmonalklappe", correct: false },
           { text: "Aortenklappe", correct: false }
         ],
-        explanation: "Die Trikuspidalklappe (3 Segel) ist die AV-Klappe auf der rechten Herzseite, zwischen rechtem Vorhof und rechter Kammer."
+        explanation: "Die Trikuspidalklappe (3 Segel) ist die AV-Klappe auf der rechten Herzseite, zwischen rechtem Vorhof und rechter Kammer.",
+        learningCard: { type: "predict", statement: "Die Trikuspidalklappe liegt zwischen rechtem Vorhof und rechter Kammer.", answer: true, reveal: "Die Trikuspidalklappe (3 Segel) ist die AV-Klappe auf der rechten Herzseite, zwischen rechtem Vorhof und rechter Kammer." }
       },
       {
         id: "herzklappen_h2",
         type: "true_false",
         statement: "Der 1. Herzton entsteht beim Schluss der Taschenklappen zu Beginn der Diastole.",
         answer: false,
-        explanation: "Der 1. Herzton entsteht beim Schluss der AV-Klappen zu Beginn der Systole. Der 2. Herzton entsteht beim Schluss der Taschenklappen (Aorten- und Pulmonalklappe) zu Beginn der Diastole."
+        explanation: "Der 1. Herzton entsteht beim Schluss der AV-Klappen zu Beginn der Systole. Der 2. Herzton entsteht beim Schluss der Taschenklappen (Aorten- und Pulmonalklappe) zu Beginn der Diastole.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der 1. Herzton entsteht beim Schluss der AV-Klappen zu Beginn der Systole.", isWrong: false },
+          { text: "Der 2. Herzton entsteht beim Schluss der Taschenklappen zu Beginn der Diastole.", isWrong: false },
+          { text: "Taschenklappen sind Aorten- und Pulmonalklappe.", isWrong: false },
+          { text: "Der 1. Herzton entsteht beim Schluss der Taschenklappen zu Beginn der Diastole.", isWrong: true }
+        ], whyWrong: "Der 1. Herzton entsteht beim Schluss der AV-Klappen zu Beginn der Systole, nicht beim Schluss der Taschenklappen. Der 2. Herzton entsteht beim Schluss der Taschenklappen (Aorten- und Pulmonalklappe) zu Beginn der Diastole." }
       },
       {
         id: "herzklappen_h3",
@@ -4438,7 +5417,13 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Leitungsstrukturen des Erregungsleitsystems", correct: false },
           { text: "Fasern, die Taschenklappen befestigen", correct: false }
         ],
-        explanation: "Chordae tendineae (Sehnenfäden) verbinden die Segelklappen mit den Papillarmuskeln der Kammerwand und verhindern so das Umstülpen der AV-Klappen in die Vorhöfe während der Systole."
+        explanation: "Chordae tendineae (Sehnenfäden) verbinden die Segelklappen mit den Papillarmuskeln der Kammerwand und verhindern so das Umstülpen der AV-Klappen in die Vorhöfe während der Systole.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Chordae tendineae treffen zu?", checklist: [
+          { text: "Chordae tendineae sind Sehnenfäden.", correct: true },
+          { text: "Sie verbinden die Segelklappen mit den Papillarmuskeln der Kammerwand.", correct: true },
+          { text: "Sie verhindern das Umstülpen der AV-Klappen während der Systole.", correct: true },
+          { text: "Sie befestigen die Taschenklappen.", correct: false }
+        ], reveal: "Chordae tendineae (Sehnenfäden) verbinden die Segelklappen mit den Papillarmuskeln der Kammerwand. So verhindern sie das Umstülpen der AV-Klappen in die Vorhöfe während der Systole." }
       },
       {
         id: "herzklappen_h4",
@@ -4450,14 +5435,16 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Ca. 10 l/min", correct: false },
           { text: "Ca. 7 l/min", correct: false }
         ],
-        explanation: "HMV = Schlagvolumen × Herzfrequenz = 70 ml × 70/min ≈ 5 l/min in Ruhe."
+        explanation: "HMV = Schlagvolumen × Herzfrequenz = 70 ml × 70/min ≈ 5 l/min in Ruhe.",
+        learningCard: { type: "predict", statement: "Das Herzminutenvolumen liegt in Ruhe bei etwa 5 l/min.", answer: true, reveal: "Das Herzminutenvolumen (HMV) errechnet sich aus Schlagvolumen × Herzfrequenz = 70 ml × 70/min ≈ 5 l/min in Ruhe." }
       },
       {
         id: "herzklappen_h5",
         type: "true_false",
         statement: "Die Pulmonalklappe ist eine Taschenklappe und verhindert den Rückfluss von Blut aus dem Truncus pulmonalis in die rechte Kammer.",
         answer: true,
-        explanation: "Pulmonalklappe und Aortenklappe sind Taschenklappen (Semilunarklappen). Sie öffnen sich bei Druckanstieg in der Kammer und schließen sich bei Druckabfall, um Rückfluss in die Diastole zu verhindern."
+        explanation: "Pulmonalklappe und Aortenklappe sind Taschenklappen (Semilunarklappen). Sie öffnen sich bei Druckanstieg in der Kammer und schließen sich bei Druckabfall, um Rückfluss in die Diastole zu verhindern.",
+        learningCard: { type: "reconstruct", template: "Die ___ ist eine Taschenklappe und verhindert den Rückfluss von Blut aus dem Truncus pulmonalis in die rechte ___.", blanks: ["Pulmonalklappe", "Kammer"], distractors: ["Trikuspidalklappe", "Vorhof"], reveal: "Pulmonalklappe und Aortenklappe sind Taschenklappen (Semilunarklappen), die sich bei Druckanstieg in der Kammer öffnen und bei Druckabfall schließen. So verhindern sie den Rückfluss von Blut in die Diastole." }
       }
     ],
     phase4Questions: [
@@ -4472,6 +5459,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Chordae tendineae verhindern das Umstülpen der Taschenklappen", correct: false }
         ],
         explanation: "AV-Klappen (Segel) trennen Vorhöfe von Kammern — die Mitralklappe hat zwei (nicht drei) Segel — während Taschenklappen (Semilunarklappen) den Ausfluss aus den Kammern sichern; Chordae tendineae verhindern das Umstülpen der Segelklappen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Herzklappen treffen zu?", checklist: [
+          { text: "Trikuspidal- und Mitralklappe sind AV-Klappen (Segelklappen).", correct: true },
+          { text: "Aorten- und Pulmonalklappe sind Taschenklappen.", correct: true },
+          { text: "Die Mitralklappe hat drei Segel.", correct: false },
+          { text: "Chordae tendineae verhindern das Umstülpen der Taschenklappen.", correct: false }
+        ], reveal: "AV-Klappen (Trikuspidal- und Mitralklappe) trennen Vorhöfe von Kammern, wobei die Mitralklappe zwei (nicht drei) Segel hat. Taschenklappen (Aorten- und Pulmonalklappe) sichern den Ausfluss aus den Kammern, und Chordae tendineae verhindern das Umstülpen der Segelklappen, nicht der Taschenklappen." },
       },
       {
         id: "herzklappen_mc2",
@@ -4484,6 +5477,7 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Der 1. Herzton entsteht beim Schluss der Taschenklappen", correct: false }
         ],
         explanation: "In der Systole (Kontraktionsphase, Schlagvolumen ~70 ml in Ruhe) wird Blut ausgeworfen; der 2. Herzton entsteht beim Schluss der Taschenklappen und markiert den Beginn der Diastole.",
+        learningCard: { type: "reconstruct", template: "In der ___ wird Blut ausgeworfen. Der ___. Herzton entsteht beim Schluss der Taschenklappen und markiert den Beginn der ___.", blanks: ["Systole", "2", "Diastole"], distractors: ["Diastole", "1"], reveal: "In der Systole (Kontraktionsphase, Schlagvolumen ~70 ml in Ruhe) wird Blut ausgeworfen. Der 2. Herzton entsteht beim Schluss der Taschenklappen und markiert den Beginn der Diastole." },
       }
     ]
   }),
@@ -4502,14 +5496,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "20–40/min", correct: false },
           { text: "100–120/min", correct: false }
         ],
-        explanation: "Der AV-Knoten ist sekundärer Schrittmacher mit 40–50/min. Primär: Sinusknoten 60–80/min. Tertiär: Kammermuskulatur 20–40/min."
+        explanation: "Der AV-Knoten ist sekundärer Schrittmacher mit 40–50/min. Primär: Sinusknoten 60–80/min. Tertiär: Kammermuskulatur 20–40/min.",
+        learningCard: { type: "predict", statement: "Der AV-Knoten hat als sekundärer Schrittmacher eine Eigenfrequenz von 40–50/min.", answer: true, reveal: "Der AV-Knoten ist sekundärer Schrittmacher mit 40–50/min. Primär ist der Sinusknoten mit 60–80/min, tertiär die Kammermuskulatur mit 20–40/min." }
       },
       {
         id: "erregung_h2",
         type: "true_false",
         statement: "Der Sinusknoten liegt im linken Vorhof.",
         answer: false,
-        explanation: "Der Sinusknoten liegt im rechten Vorhof, nahe der Einmündung der V. cava superior."
+        explanation: "Der Sinusknoten liegt im rechten Vorhof, nahe der Einmündung der V. cava superior.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Sinusknoten liegt im rechten Vorhof.", isWrong: false },
+          { text: "Der Sinusknoten liegt nahe der Einmündung der V. cava superior.", isWrong: false },
+          { text: "Der Sinusknoten ist der primäre Schrittmacher des Herzens.", isWrong: false },
+          { text: "Der Sinusknoten liegt im linken Vorhof.", isWrong: true }
+        ], whyWrong: "Der Sinusknoten liegt im rechten (nicht linken) Vorhof, nahe der Einmündung der V. cava superior." }
       },
       {
         id: "erregung_h3",
@@ -4521,7 +5522,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Um den Sinusknoten vor Überlastung zu schützen", correct: false },
           { text: "Um die Purkinje-Fasern zu synchronisieren", correct: false }
         ],
-        explanation: "Die AV-Verzögerung stellt sicher, dass die Vorhöfe ihr Blut vollständig in die Kammern gepumpt haben, bevor die Kammern kontrahieren."
+        explanation: "Die AV-Verzögerung stellt sicher, dass die Vorhöfe ihr Blut vollständig in die Kammern gepumpt haben, bevor die Kammern kontrahieren.",
+        learningCard: { type: "predict", statement: "Der AV-Knoten verzögert die Erregungsleitung, damit sich die Vorhöfe vollständig kontrahieren können, bevor die Kammern aktiviert werden.", answer: true, reveal: "Die AV-Verzögerung stellt sicher, dass die Vorhöfe ihr Blut vollständig in die Kammern gepumpt haben, bevor die Kammern kontrahieren." }
       },
       {
         id: "erregung_h4",
@@ -4533,14 +5535,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Sinusknoten → His-Bündel → AV-Knoten → Tawara-Schenkel", correct: false },
           { text: "Purkinje-Fasern → Tawara-Schenkel → His-Bündel → AV-Knoten → Sinusknoten", correct: false }
         ],
-        explanation: "Die Erregung läuft vom Sinusknoten über AV-Knoten, His-Bündel, Tawara-Schenkel bis zu den Purkinje-Fasern."
+        explanation: "Die Erregung läuft vom Sinusknoten über AV-Knoten, His-Bündel, Tawara-Schenkel bis zu den Purkinje-Fasern.",
+        learningCard: { type: "reconstruct", template: "Die Erregung läuft in dieser Reihenfolge: ___ → ___ → His-Bündel → ___ → Purkinje-Fasern.", blanks: ["Sinusknoten", "AV-Knoten", "Tawara-Schenkel"], distractors: ["Kammermuskulatur", "Vorhofmuskulatur"], reveal: "Die Erregung läuft vom Sinusknoten über den AV-Knoten, das His-Bündel und die Tawara-Schenkel bis zu den Purkinje-Fasern." }
       },
       {
         id: "erregung_h5",
         type: "true_false",
         statement: "Bei Ausfall des Sinusknotens und des AV-Knotens kann die Kammermuskulatur mit einer Eigenfrequenz von 20–40/min als Schrittmacher fungieren.",
         answer: true,
-        explanation: "Die Kammermuskulatur (tertiärer Schrittmacher) übernimmt mit 20–40/min, wenn primärer und sekundärer Schrittmacher ausfallen — eine Notfallfunktion."
+        explanation: "Die Kammermuskulatur (tertiärer Schrittmacher) übernimmt mit 20–40/min, wenn primärer und sekundärer Schrittmacher ausfallen — eine Notfallfunktion.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Ersatzschrittmachersystem des Herzens treffen zu?", checklist: [
+          { text: "Bei Ausfall von Sinus- und AV-Knoten kann die Kammermuskulatur als Schrittmacher einspringen.", correct: true },
+          { text: "Die Kammermuskulatur hat als tertiärer Schrittmacher eine Eigenfrequenz von 20–40/min.", correct: true },
+          { text: "Diese Notfallfunktion sichert das Überleben, auch wenn die höheren Schrittmacher ausfallen.", correct: true },
+          { text: "Ohne Sinus- und AV-Knoten bleibt das Herz vollständig stehen.", correct: false }
+        ], reveal: "Die Kammermuskulatur (tertiärer Schrittmacher) übernimmt mit 20–40/min, wenn primärer und sekundärer Schrittmacher ausfallen. Diese Notfallfunktion verhindert einen kompletten Herzstillstand." }
       }
     ],
     phase4Questions: [
@@ -4555,6 +5564,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Der Kammereigenrhythmus liegt bei 60–80/min", correct: false }
         ],
         explanation: "Der Sinusknoten ist primärer Schrittmacher mit 60-80/min, der AV-Knoten verzögert die Überleitung auf die Kammern um ~0,1 s (kein sofortiger Transfer), und Purkinje-Fasern verteilen die Erregung schnell im Arbeitsmyokard.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Sinusknoten = primärer Schrittmacher mit 60–80/min.", isWrong: false },
+          { text: "Purkinje-Fasern verteilen die Erregung im Arbeitsmyokard.", isWrong: false },
+          { text: "Der AV-Knoten verzögert die Überleitung auf die Kammern um ca. 0,1 s.", isWrong: false },
+          { text: "Der AV-Knoten überträgt Erregung ohne Verzögerung auf die Kammern.", isWrong: true }
+        ], whyWrong: "Der AV-Knoten verzögert die Überleitung auf die Kammern um ca. 0,1 s, überträgt sie also nicht sofort. Der Sinusknoten ist primärer Schrittmacher mit 60–80/min, und Purkinje-Fasern verteilen die Erregung im Arbeitsmyokard." },
       },
       {
         id: "erregung_mc2",
@@ -4567,6 +5582,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die Purkinje-Fasern werden zum primären Schrittmacher", correct: false }
         ],
         explanation: "Das Herz hat ein hierarchisches Ersatzschrittmachersystem: AV-Knoten übernimmt bei Sinusknotenausfall mit 40-50/min, und fällt auch dieser aus, springt der Kammereigenrhythmus mit 20-40/min ein.",
+        learningCard: { type: "teachback", prompt: "Was passiert, wenn der Sinusknoten ausfällt?", checklist: [
+          { text: "Der AV-Knoten übernimmt die Schrittmacherfunktion mit 40–50/min.", correct: true },
+          { text: "Fällt zusätzlich der AV-Knoten aus, übernimmt die Kammermuskulatur mit 20–40/min.", correct: true },
+          { text: "Das Herz hört sofort auf zu schlagen.", correct: false },
+          { text: "Die Purkinje-Fasern werden zum primären Schrittmacher.", correct: false }
+        ], reveal: "Das Herz hat ein hierarchisches Ersatzschrittmachersystem: Bei Sinusknotenausfall übernimmt der AV-Knoten mit 40–50/min. Fällt auch dieser aus, springt die Kammermuskulatur mit 20–40/min ein." },
       }
     ]
   }),
@@ -4585,14 +5606,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Weil die Koronarklappen in der Systole schließen", correct: false },
           { text: "Weil das Blut in der Systole zur Lunge umgeleitet wird", correct: false }
         ],
-        explanation: "Die Koronardurchblutung findet fast ausschließlich in der Diastole statt, da das kontrahierende Myokard in der Systole die intramuskulären Gefäße komprimiert."
+        explanation: "Die Koronardurchblutung findet fast ausschließlich in der Diastole statt, da das kontrahierende Myokard in der Systole die intramuskulären Gefäße komprimiert.",
+        learningCard: { type: "predict", statement: "Die Herzkranzgefäße werden nur in der Diastole durchblutet, weil das kontrahierende Myokard sie in der Systole zusammendrückt.", answer: true, reveal: "Die Koronardurchblutung findet fast ausschließlich in der Diastole statt, da das kontrahierende Myokard in der Systole die intramuskulären Gefäße komprimiert." }
       },
       {
         id: "koronar_h2",
         type: "true_false",
         statement: "Zwischen den Koronararterien bestehen keine funktionellen Anastomosen, weshalb ein Verschluss zum Herzinfarkt führt.",
         answer: true,
-        explanation: "Fehlende Anastomosen machen das Koronarsystem zum Endarteriengebiet — ein Verschluss führt sofort zu Ischämie im nachgeschalteten Myokard (Herzinfarkt)."
+        explanation: "Fehlende Anastomosen machen das Koronarsystem zum Endarteriengebiet — ein Verschluss führt sofort zu Ischämie im nachgeschalteten Myokard (Herzinfarkt).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Zwischen den Koronararterien bestehen keine funktionellen Anastomosen.", isWrong: false },
+          { text: "Das Koronarsystem ist ein Endarteriengebiet.", isWrong: false },
+          { text: "Ein Verschluss einer Koronararterie führt sofort zu Ischämie im nachgeschalteten Myokard.", isWrong: false },
+          { text: "Bei Verschluss einer Koronararterie übernehmen benachbarte Arterien sofort über Anastomosen die Versorgung.", isWrong: true }
+        ], whyWrong: "Zwischen den Koronararterien bestehen keine funktionellen Anastomosen — das Koronarsystem ist ein Endarteriengebiet. Ein Verschluss führt daher sofort zu Ischämie im nachgeschalteten Myokard (Herzinfarkt)." }
       },
       {
         id: "koronar_h3",
@@ -4604,7 +5632,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Ramus circumflexus", correct: false },
           { text: "V. cava superior", correct: false }
         ],
-        explanation: "Der RIVA (Ramus interventricularis anterior) ist ein Ast der linken Koronararterie und versorgt Vorderwand und Septum des linken Ventrikels."
+        explanation: "Der RIVA (Ramus interventricularis anterior) ist ein Ast der linken Koronararterie und versorgt Vorderwand und Septum des linken Ventrikels.",
+        learningCard: { type: "predict", statement: "Der Ramus interventricularis anterior (RIVA) versorgt die Vorderwand des linken Ventrikels und das Ventrikelseptum.", answer: true, reveal: "Der RIVA (Ramus interventricularis anterior) ist ein Ast der linken Koronararterie und versorgt Vorderwand und Septum des linken Ventrikels." }
       },
       {
         id: "koronar_h4",
@@ -4616,7 +5645,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Rechtes Herz → V. cava → Lunge → Aorta → Linkes Herz", correct: false },
           { text: "Linkes Herz → Vv. pulmonales → Lunge → Truncus pulmonalis → Rechtes Herz", correct: false }
         ],
-        explanation: "Der kleine (Lungen-)Kreislauf: Rechtes Herz pumpt sauerstoffarmes Blut über den Truncus pulmonalis zur Lunge; oxygeniertes Blut kehrt über die Vv. pulmonales zum linken Herzen zurück."
+        explanation: "Der kleine (Lungen-)Kreislauf: Rechtes Herz pumpt sauerstoffarmes Blut über den Truncus pulmonalis zur Lunge; oxygeniertes Blut kehrt über die Vv. pulmonales zum linken Herzen zurück.",
+        learningCard: { type: "reconstruct", template: "Im kleinen Kreislauf fließt Blut: ___ Herz → Truncus pulmonalis → Lunge → ___ → linkes Herz.", blanks: ["Rechtes", "Vv. pulmonales"], distractors: ["Linkes", "Aorta"], reveal: "Der kleine (Lungen-)Kreislauf: Das rechte Herz pumpt sauerstoffarmes Blut über den Truncus pulmonalis zur Lunge. Oxygeniertes Blut kehrt über die Vv. pulmonales zum linken Herzen zurück." }
       }
     ],
     phase4Questions: [
@@ -4631,6 +5661,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die A. coronaria dextra versorgt hauptsächlich den linken Ventrikel", correct: false }
         ],
         explanation: "Die Koronararterien werden hauptsächlich in der Diastole durchblutet, da der Herzmuskel in der Systole die Gefäße komprimiert; der RIVA ist ein Hauptast der linken Koronararterie und versorgt den linken Ventrikel und das Septum.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Koronargefäßen treffen zu?", checklist: [
+          { text: "Die Koronardurchblutung erfolgt hauptsächlich in der Diastole.", correct: true },
+          { text: "Der RIVA ist ein Ast der linken Koronararterie.", correct: true },
+          { text: "Zwischen den Koronararterien bestehen gut ausgebildete Anastomosen.", correct: false },
+          { text: "Die A. coronaria dextra versorgt hauptsächlich den linken Ventrikel.", correct: false }
+        ], reveal: "Die Koronararterien werden hauptsächlich in der Diastole durchblutet, da der Herzmuskel sie in der Systole komprimiert. Der RIVA ist ein Hauptast der linken Koronararterie und versorgt den linken Ventrikel und das Septum." },
       },
       {
         id: "koronar_mc2",
@@ -4643,6 +5679,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Im Lungenkreislauf fließt sauerstoffreiches Blut von rechts zur Lunge", correct: false }
         ],
         explanation: "Im großen Kreislauf pumpt das linke Herz sauerstoffreiches Blut durch die Aorta; die Vv. pulmonales bringen sauerstoffreiches Blut von der Lunge zum linken Herzen; der kleine Kreislauf beginnt im rechten (nicht linken) Herzen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Im großen Kreislauf pumpt das linke Herz sauerstoffreiches Blut in die Aorta.", isWrong: false },
+          { text: "Die Vv. pulmonales führen sauerstoffreiches Blut zum linken Herzen.", isWrong: false },
+          { text: "Der kleine Kreislauf beginnt im rechten Herzen.", isWrong: false },
+          { text: "Der kleine Kreislauf beginnt im linken Herzen.", isWrong: true }
+        ], whyWrong: "Der kleine (Lungen-)Kreislauf beginnt im rechten Herzen, nicht im linken. Das linke Herz pumpt sauerstoffreiches Blut in den großen Kreislauf, und die Vv. pulmonales bringen sauerstoffreiches Blut von der Lunge zurück zum linken Herzen." },
       }
     ]
   }),
@@ -4661,14 +5703,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Sie verhindert Rückfluss durch Klappenbildung", correct: false },
           { text: "Sie reguliert die Herzfrequenz", correct: false }
         ],
-        explanation: "Die Aorta dehnt sich systolisch aus und gibt die gespeicherte Energie diastolisch ab — so fließt das Blut kontinuierlich weiter, obwohl das Herz intermittierend pumpt."
+        explanation: "Die Aorta dehnt sich systolisch aus und gibt die gespeicherte Energie diastolisch ab — so fließt das Blut kontinuierlich weiter, obwohl das Herz intermittierend pumpt.",
+        learningCard: { type: "predict", statement: "Die Windkesselfunktion der Aorta wandelt den pulsatilen Blutfluss in einen gleichmäßigeren Fluss um.", answer: true, reveal: "Die Aorta dehnt sich systolisch aus und gibt die gespeicherte Energie diastolisch wieder ab. So fließt das Blut kontinuierlich weiter, obwohl das Herz intermittierend pumpt." }
       },
       {
         id: "gefaess_h2",
         type: "true_false",
         statement: "Der muskuläre Arterientyp (z. B. A. femoralis) hat in der Tunica media überwiegend elastische Fasern.",
         answer: false,
-        explanation: "Der muskuläre Typ hat viel glatte Muskulatur in der Media; elastische Fasern überwiegen beim elastischen Typ (Aorta, große Stammarterien)."
+        explanation: "Der muskuläre Typ hat viel glatte Muskulatur in der Media; elastische Fasern überwiegen beim elastischen Typ (Aorta, große Stammarterien).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der muskuläre Arterientyp (z. B. A. femoralis) hat viel glatte Muskulatur in der Tunica media.", isWrong: false },
+          { text: "Der elastische Arterientyp (z. B. Aorta) hat überwiegend elastische Fasern in der Tunica media.", isWrong: false },
+          { text: "Elastischer und muskulärer Arterientyp unterscheiden sich im Aufbau der Tunica media.", isWrong: false },
+          { text: "Der muskuläre Arterientyp hat in der Tunica media überwiegend elastische Fasern.", isWrong: true }
+        ], whyWrong: "Der muskuläre Typ hat viel glatte Muskulatur in der Media; elastische Fasern überwiegen dagegen beim elastischen Typ (Aorta, große Stammarterien)." }
       },
       {
         id: "gefaess_h3",
@@ -4680,7 +5729,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Allen drei Schichten wie Arterien", correct: false },
           { text: "Endothel + Tunica adventitia", correct: false }
         ],
-        explanation: "Kapillaren bestehen ausschließlich aus einer einschichtigen Endothelschicht — das ermöglicht den direkten Stoffaustausch mit dem Gewebe."
+        explanation: "Kapillaren bestehen ausschließlich aus einer einschichtigen Endothelschicht — das ermöglicht den direkten Stoffaustausch mit dem Gewebe.",
+        learningCard: { type: "reconstruct", template: "Kapillaren bestehen ausschließlich aus einer ___ — das ermöglicht den direkten ___ mit dem Gewebe.", blanks: ["Endothelschicht", "Stoffaustausch"], distractors: ["Tunica media", "Blutfluss"], reveal: "Kapillaren bestehen ausschließlich aus einer einschichtigen Endothelschicht ohne Media oder Adventitia. Das ermöglicht den direkten Stoffaustausch mit dem Gewebe." }
       },
       {
         id: "gefaess_h4",
@@ -4692,7 +5742,13 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "AV-Klappen und Taschenklappen", correct: false },
           { text: "Lymphkapillaren und Venenklappen", correct: false }
         ],
-        explanation: "Blut-Hirn-Schranke (tight junctions), glomeruläre Filtrationsmembran und Plazentaschranke sind wichtige selektive Barrieren an Kapillaren."
+        explanation: "Blut-Hirn-Schranke (tight junctions), glomeruläre Filtrationsmembran und Plazentaschranke sind wichtige selektive Barrieren an Kapillaren.",
+        learningCard: { type: "teachback", prompt: "Welche Strukturen zählen zu den selektiven Kapillarbarrieren?", checklist: [
+          { text: "Blut-Hirn-Schranke", correct: true },
+          { text: "Plazentaschranke", correct: true },
+          { text: "Glomeruläre Filtrationsmembran", correct: true },
+          { text: "Tunica media", correct: false }
+        ], reveal: "Blut-Hirn-Schranke (tight junctions), glomeruläre Filtrationsmembran und Plazentaschranke sind wichtige selektive Barrieren an Kapillaren." }
       }
     ],
     phase4Questions: [
@@ -4707,6 +5763,7 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Arteriolen haben eine schwach ausgeprägte Tunica media", correct: false }
         ],
         explanation: "Alle Blutgefäße haben drei Wandschichten (Intima, Media, Adventitia), die von der Arterie zur Vene abnehmen; Kapillaren bestehen nur aus Endothel und ermöglichen so den direkten Stoffaustausch.",
+        learningCard: { type: "reconstruct", template: "Die drei Gefäßwandschichten von innen nach außen sind: ___ (Endothel) → ___ (Muskel/elastische Fasern) → ___ (Bindegewebe).", blanks: ["Tunica intima", "Tunica media", "Tunica adventitia"], distractors: ["Tunica serosa", "Tunica mucosa"], reveal: "Alle Blutgefäße haben drei Wandschichten (Intima, Media, Adventitia), die von der Arterie zur Vene abnehmen. Kapillaren bestehen nur aus Endothel und ermöglichen so den direkten Stoffaustausch." },
       },
       {
         id: "gefaess_mc2",
@@ -4719,6 +5776,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Viel glatte Muskulatur, wenig elastische Fasern", correct: false }
         ],
         explanation: "Elastische Arterien wie die Aorta haben eine stark elastische Tunica media (nicht viel glatte Muskulatur), die den systolischen Druckstoß puffert (Windkesselfunktion) und den Blutfluss gleichmäßiger macht.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Elastische Arterien haben einen hohen Anteil elastischer Fasern in der Tunica media.", isWrong: false },
+          { text: "Elastische Arterien üben eine Windkesselfunktion aus, die den pulsatilen Blutfluss dämpft.", isWrong: false },
+          { text: "Die Aorta ist ein typischer Vertreter des elastischen Arterientyps.", isWrong: false },
+          { text: "Der typische Vertreter des elastischen Arterientyps ist die A. femoralis.", isWrong: true }
+        ], whyWrong: "Die A. femoralis gehört zum muskulären, nicht zum elastischen Arterientyp — typischer Vertreter des elastischen Typs ist die Aorta. Elastische Arterien haben eine stark elastische Tunica media, die den systolischen Druckstoß puffert (Windkesselfunktion)." },
       }
     ]
   }),
@@ -4737,14 +5800,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Atemsog bei Einatmung", correct: false },
           { text: "Arteriovenöse Kopplung", correct: false }
         ],
-        explanation: "Die Windkesselfunktion dient der Dämpfung des arteriellen Pulsdrucks, nicht dem venösen Rücktransport. Venöser Rücktransport: Muskelpumpe, Atemsog, arteriovenöse Kopplung, Herzunterdruck."
+        explanation: "Die Windkesselfunktion dient der Dämpfung des arteriellen Pulsdrucks, nicht dem venösen Rücktransport. Venöser Rücktransport: Muskelpumpe, Atemsog, arteriovenöse Kopplung, Herzunterdruck.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Muskelpumpe der Skelettmuskulatur unterstützt den venösen Rücktransport.", isWrong: false },
+          { text: "Der Atemsog bei Einatmung unterstützt den venösen Rücktransport.", isWrong: false },
+          { text: "Die arteriovenöse Kopplung unterstützt den venösen Rücktransport.", isWrong: false },
+          { text: "Die Windkesselfunktion der Aorta ist Teil des venösen Rücktransports.", isWrong: true }
+        ], whyWrong: "Die Windkesselfunktion dient der Dämpfung des arteriellen Pulsdrucks, nicht dem venösen Rücktransport. Diesen fördern stattdessen Muskelpumpe, Atemsog und arteriovenöse Kopplung." }
       },
       {
         id: "venen_h2",
         type: "true_false",
         statement: "Insuffiziente Venenklappen können zur Entstehung von Varizen (Krampfadern) führen.",
         answer: true,
-        explanation: "Funktionsuntüchtige Venenklappen erlauben Rückfluss und führen zu Venenerweiterung und Schlängelung — das Bild der Varikosis."
+        explanation: "Funktionsuntüchtige Venenklappen erlauben Rückfluss und führen zu Venenerweiterung und Schlängelung — das Bild der Varikosis.",
+        learningCard: { type: "predict", statement: "Insuffiziente Venenklappen können zur Entstehung von Varizen (Krampfadern) führen.", answer: true, reveal: "Funktionsuntüchtige Venenklappen erlauben Rückfluss und führen zu Venenerweiterung und Schlängelung — dem Bild der Varikosis." }
       },
       {
         id: "venen_h3",
@@ -4757,7 +5827,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "In die rechte Kammer", correct: false },
           { text: "In den Truncus pulmonalis", correct: false }
         ],
-        explanation: "Die obere und untere Hohlvene (Vv. cavae superior/inferior) leiten das sauerstoffarme Blut aus dem Körperkreislauf in den rechten Vorhof."
+        explanation: "Die obere und untere Hohlvene (Vv. cavae superior/inferior) leiten das sauerstoffarme Blut aus dem Körperkreislauf in den rechten Vorhof.",
+        learningCard: { type: "predict", statement: "Die Vv. cavae superior und inferior münden in den rechten Vorhof.", answer: true, reveal: "Die obere und untere Hohlvene (Vv. cavae superior/inferior) leiten das sauerstoffarme Blut aus dem Körperkreislauf in den rechten Vorhof." }
       },
       {
         id: "venen_h4",
@@ -4769,7 +5840,13 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "A. femoralis", correct: false },
           { text: "A. iliaca communis", correct: false }
         ],
-        explanation: "Die A. carotis communis (links direkt aus Aorta, rechts aus Truncus brachiocephalicus) versorgt Hals und Kopf."
+        explanation: "Die A. carotis communis (links direkt aus Aorta, rechts aus Truncus brachiocephalicus) versorgt Hals und Kopf.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur A. carotis communis treffen zu?", checklist: [
+          { text: "Die A. carotis communis versorgt Hals und Kopf.", correct: true },
+          { text: "Links entspringt sie direkt aus der Aorta.", correct: true },
+          { text: "Rechts entspringt sie aus dem Truncus brachiocephalicus.", correct: true },
+          { text: "Sie versorgt ausschließlich die obere Extremität.", correct: false }
+        ], reveal: "Die A. carotis communis versorgt Hals und Kopf. Links entspringt sie direkt aus der Aorta, rechts aus dem Truncus brachiocephalicus." }
       }
     ],
     phase4Questions: [
@@ -4784,6 +5861,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Arteriovenöse Kopplung", correct: true }
         ],
         explanation: "Der venöse Rückstrom wird durch Skelettmuskelpumpe, Atemsog bei Inspiration und arteriovenöse Kopplung gefördert; die Windkesselfunktion betrifft dagegen nur den arteriellen Kreislauf.",
+        learningCard: { type: "teachback", prompt: "Welche Mechanismen fördern den venösen Rücktransport?", checklist: [
+          { text: "Muskelpumpe der Skelettmuskulatur", correct: true },
+          { text: "Atemsog bei Inspiration", correct: true },
+          { text: "Arteriovenöse Kopplung", correct: true },
+          { text: "Windkesselfunktion der Aorta", correct: false }
+        ], reveal: "Der venöse Rückstrom wird durch Skelettmuskelpumpe, Atemsog bei Inspiration und arteriovenöse Kopplung gefördert. Die Windkesselfunktion betrifft dagegen nur den arteriellen Kreislauf." },
       },
       {
         id: "venen_mc2",
@@ -4796,6 +5879,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die Aorta entspringt aus dem rechten Ventrikel", correct: false }
         ],
         explanation: "Venenklappen verhindern in den Extremitätenvenen den Rückfluss gegen die Schwerkraft; die V. saphena magna ist eine häufig von Varizen betroffene oberflächliche Beinvene; die Aorta entspringt aus dem linken (nicht rechten) Ventrikel.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Venenklappen verhindern den Rückfluss besonders in den Extremitäten.", isWrong: false },
+          { text: "Die V. saphena magna ist eine oberflächliche Beinvene, die variköse Veränderungen zeigen kann.", isWrong: false },
+          { text: "Die Aorta entspringt aus dem linken Ventrikel.", isWrong: false },
+          { text: "Die Aorta entspringt aus dem rechten Ventrikel.", isWrong: true }
+        ], whyWrong: "Die Aorta entspringt aus dem linken (nicht rechten) Ventrikel. Venenklappen verhindern in den Extremitätenvenen den Rückfluss gegen die Schwerkraft, und die V. saphena magna ist eine häufig von Varizen betroffene oberflächliche Beinvene." },
       }
     ]
   }),
@@ -4814,14 +5903,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Ductus venosus, Ductus choledochus, Foramen ovale", correct: false },
           { text: "Ductus arteriosus, V. umbilicalis, Ductus thoracicus", correct: false }
         ],
-        explanation: "Die drei fetalen Shunts sind: Ductus venosus (Nabelvene → V. cava), Foramen ovale (rechter → linker Vorhof), Ductus arteriosus Botalli (Truncus pulmonalis → Aorta)."
+        explanation: "Die drei fetalen Shunts sind: Ductus venosus (Nabelvene → V. cava), Foramen ovale (rechter → linker Vorhof), Ductus arteriosus Botalli (Truncus pulmonalis → Aorta).",
+        learningCard: { type: "reconstruct", template: "Die drei fetalen Shunts sind: ___, ___ und ___.", blanks: ["Ductus venosus", "Foramen ovale", "Ductus arteriosus Botalli"], distractors: ["Ductus thoracicus", "Ductus choledochus"], reveal: "Die drei fetalen Shunts sind: Ductus venosus (Nabelvene → V. cava), Foramen ovale (rechter → linker Vorhof) und Ductus arteriosus Botalli (Truncus pulmonalis → Aorta)." }
       },
       {
         id: "fetal_h2",
         type: "true_false",
         statement: "Die Nabelvene führt sauerstoffarmes Blut von der Plazenta zum Fetus.",
         answer: false,
-        explanation: "Die Nabelvene führt sauerstoffreiches Blut von der Plazenta zum Fetus. Die Nabelarterien (2) führen sauerstoffarmes Blut zurück zur Plazenta."
+        explanation: "Die Nabelvene führt sauerstoffreiches Blut von der Plazenta zum Fetus. Die Nabelarterien (2) führen sauerstoffarmes Blut zurück zur Plazenta.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Nabelvene führt sauerstoffreiches Blut von der Plazenta zum Fetus.", isWrong: false },
+          { text: "Die Nabelarterien führen sauerstoffarmes Blut zurück zur Plazenta.", isWrong: false },
+          { text: "Es gibt zwei Nabelarterien.", isWrong: false },
+          { text: "Die Nabelvene führt sauerstoffarmes Blut von der Plazenta zum Fetus.", isWrong: true }
+        ], whyWrong: "Die Nabelvene führt sauerstoffreiches (nicht sauerstoffarmes) Blut von der Plazenta zum Fetus. Die beiden Nabelarterien führen dagegen sauerstoffarmes Blut zurück zur Plazenta." }
       },
       {
         id: "fetal_h3",
@@ -4833,14 +5929,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Durch Vasokonstriktion der Lungenarterien", correct: false },
           { text: "Durch Bradykinin-Einfluss", correct: false }
         ],
-        explanation: "Die erste Einatmung senkt den Lungenwiderstand, erhöht den Lungenblutfluss, steigert den linksatrialen Druck und drückt die Foramen-ovale-Klappe zu."
+        explanation: "Die erste Einatmung senkt den Lungenwiderstand, erhöht den Lungenblutfluss, steigert den linksatrialen Druck und drückt die Foramen-ovale-Klappe zu.",
+        learningCard: { type: "predict", statement: "Nach der Geburt schließt sich das Foramen ovale durch einen Anstieg des linksatrialen Drucks.", answer: true, reveal: "Die erste Einatmung senkt den Lungenwiderstand, erhöht den Lungenblutfluss und steigert den linksatrialen Druck. Dieser Druckanstieg drückt die Foramen-ovale-Klappe zu." }
       },
       {
         id: "fetal_h4",
         type: "true_false",
         statement: "Mutter- und Kindesblut mischen sich in der Plazenta nicht direkt; die Plazentaschranke ist jedoch für Alkohol und Viren durchlässig.",
         answer: true,
-        explanation: "Mutter- und Kindesblut zirkulieren in getrennten Kreisläufen. Die Plazentaschranke lässt aber Gase, Nährstoffe, viele Medikamente, Alkohol, Viren und IgG-Antikörper passieren."
+        explanation: "Mutter- und Kindesblut zirkulieren in getrennten Kreisläufen. Die Plazentaschranke lässt aber Gase, Nährstoffe, viele Medikamente, Alkohol, Viren und IgG-Antikörper passieren.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Plazentaschranke treffen zu?", checklist: [
+          { text: "Mutter- und Kindesblut zirkulieren in getrennten Kreisläufen.", correct: true },
+          { text: "Die Plazentaschranke lässt Gase und Nährstoffe passieren.", correct: true },
+          { text: "Die Plazentaschranke ist für Alkohol und Viren durchlässig.", correct: true },
+          { text: "Mutter- und Kindesblut mischen sich direkt in der Plazenta.", correct: false }
+        ], reveal: "Mutter- und Kindesblut zirkulieren in getrennten Kreisläufen und mischen sich nicht direkt. Die Plazentaschranke lässt aber Gase, Nährstoffe, viele Medikamente, Alkohol, Viren und IgG-Antikörper passieren." }
       }
     ],
     phase4Questions: [
@@ -4855,6 +5958,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die Nabelvene führt sauerstoffarmes Blut", correct: false }
         ],
         explanation: "Im fetalen Kreislauf übernimmt die Plazenta den Gasaustausch; das Foramen ovale verbindet die Vorhöfe und leitet Blut am nicht belüfteten Lungenkreislauf vorbei; der Ductus arteriosus verbindet Truncus pulmonalis und Aorta (nicht Ductus venosus).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum fetalen Kreislauf treffen zu?", checklist: [
+          { text: "Der Gasaustausch erfolgt über die Plazenta, nicht über die Lunge.", correct: true },
+          { text: "Das Foramen ovale verbindet rechten und linken Vorhof und umgeht so den Lungenkreislauf.", correct: true },
+          { text: "Der Ductus venosus verbindet Truncus pulmonalis und Aorta.", correct: false },
+          { text: "Die Nabelvene führt sauerstoffarmes Blut.", correct: false }
+        ], reveal: "Im fetalen Kreislauf übernimmt die Plazenta den Gasaustausch, und das Foramen ovale verbindet die Vorhöfe und leitet Blut am nicht belüfteten Lungenkreislauf vorbei. Der Ductus arteriosus (nicht der Ductus venosus) verbindet Truncus pulmonalis und Aorta." },
       },
       {
         id: "fetal_mc2",
@@ -4867,6 +5976,7 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Das Foramen ovale öffnet sich weiter, um die Lunge zu entlasten", correct: false }
         ],
         explanation: "Nach der Geburt verschließt der O2-Anstieg funktionell den Ductus arteriosus, der Anstieg des linksatrialen Drucks schließt das Foramen ovale, und der Ductus venosus obliteriert ebenfalls — alle fetalen Shunts werden somit verschlossen.",
+        learningCard: { type: "reconstruct", template: "Nach der Geburt schließt sich das ___ durch den Anstieg des linksatrialen Drucks, und der ___ verschließt sich funktionell durch den O₂-Anstieg.", blanks: ["Foramen ovale", "Ductus arteriosus"], distractors: ["Ductus venosus", "Truncus pulmonalis"], reveal: "Nach der Geburt verschließt der O₂-Anstieg funktionell den Ductus arteriosus, und der Anstieg des linksatrialen Drucks schließt das Foramen ovale. Der Ductus venosus obliteriert ebenfalls, sodass alle fetalen Shunts verschlossen werden." },
       }
     ]
   }),
@@ -4885,14 +5995,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Chorionzottenbiopsie", correct: false },
           { text: "Triple-Test", correct: false }
         ],
-        explanation: "Der NIPT analysiert zellfreie fetale DNA aus dem mütterlichen Blut und kann Chromosomenstörungen (z. B. Trisomie 21) nicht-invasiv detektieren."
+        explanation: "Der NIPT analysiert zellfreie fetale DNA aus dem mütterlichen Blut und kann Chromosomenstörungen (z. B. Trisomie 21) nicht-invasiv detektieren.",
+        learningCard: { type: "predict", statement: "Der NIPT analysiert freie fetale DNA im mütterlichen Blut.", answer: true, reveal: "Der NIPT (nicht-invasiver Pränataltest) analysiert zellfreie fetale DNA aus dem mütterlichen Blut und kann Chromosomenstörungen wie die Trisomie 21 nicht-invasiv detektieren." }
       },
       {
         id: "prae_h2",
         type: "true_false",
         statement: "Die Chorionzottenbiopsie kann ab der 10. SSW durchgeführt werden und hat ein höheres Fehlgeburtsrisiko als die Amniozentese.",
         answer: true,
-        explanation: "Chorionzottenbiopsie ab 10. SSW mit ~1–2 % Fehlgeburtsrisiko; Amniozentese ab 15. SSW mit ~0,5–1 % Risiko."
+        explanation: "Chorionzottenbiopsie ab 10. SSW mit ~1–2 % Fehlgeburtsrisiko; Amniozentese ab 15. SSW mit ~0,5–1 % Risiko.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Chorionzottenbiopsie kann ab der 10. SSW durchgeführt werden.", isWrong: false },
+          { text: "Die Chorionzottenbiopsie hat ein Fehlgeburtsrisiko von ca. 1–2 %.", isWrong: false },
+          { text: "Die Amniozentese hat mit ca. 0,5–1 % ein niedrigeres Fehlgeburtsrisiko als die Chorionzottenbiopsie.", isWrong: false },
+          { text: "Die Amniozentese hat ein höheres Fehlgeburtsrisiko als die Chorionzottenbiopsie.", isWrong: true }
+        ], whyWrong: "Die Chorionzottenbiopsie (ab 10. SSW, ~1–2 % Risiko) hat ein höheres Fehlgeburtsrisiko als die Amniozentese (ab 15. SSW, ~0,5–1 % Risiko), nicht umgekehrt." }
       },
       {
         id: "prae_h3",
@@ -4904,7 +6021,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Reflexe, Körpertemperatur, Blutzucker, Sauerstoffsättigung, Atemfrequenz", correct: false },
           { text: "Gestationsalter, Muskelmasse, Atemtiefe, Spontanbewegungen, Hautfarbe", correct: false }
         ],
-        explanation: "APGAR: A = Aussehen (Hautfarbe), P = Puls, G = Grimassieren, A = Aktivität (Tonus), R = Respiration (Atmung)."
+        explanation: "APGAR: A = Aussehen (Hautfarbe), P = Puls, G = Grimassieren, A = Aktivität (Tonus), R = Respiration (Atmung).",
+        learningCard: { type: "reconstruct", template: "APGAR steht für: A = ___, P = Puls, G = Grimassieren, A = ___ (Tonus), R = ___ (Atmung).", blanks: ["Aussehen", "Aktivität", "Respiration"], distractors: ["Alter", "Reflexe"], reveal: "APGAR: A = Aussehen (Hautfarbe), P = Puls, G = Grimassieren, A = Aktivität (Muskeltonus), R = Respiration (Atmung)." }
       },
       {
         id: "prae_h4",
@@ -4916,14 +6034,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Herzfehler", correct: false },
           { text: "Hüftdysplasie", correct: false }
         ],
-        explanation: "Das Neugeborenenscreening erfasst angeborene Stoffwechselkrankheiten (PKU, Hypothyreose, Galaktosämie etc.), nicht strukturelle Anomalien."
+        explanation: "Das Neugeborenenscreening erfasst angeborene Stoffwechselkrankheiten (PKU, Hypothyreose, Galaktosämie etc.), nicht strukturelle Anomalien.",
+        learningCard: { type: "predict", statement: "Das erweiterte Neugeborenenscreening erfasst die Phenylketonurie (PKU).", answer: true, reveal: "Das Neugeborenenscreening erfasst angeborene Stoffwechselkrankheiten wie PKU, Hypothyreose und Galaktosämie, nicht strukturelle Anomalien wie das Down-Syndrom." }
       },
       {
         id: "prae_h5",
         type: "true_false",
         statement: "Ein APGAR-Score unter 4 Punkten gilt als kritisch und erfordert sofortige Reanimationsmaßnahmen.",
         answer: true,
-        explanation: "Unter 4 Punkten ist das Neugeborene in kritischem Zustand. 4–6: mäßige Anpassungsstörung mit Unterstützungsbedarf. 7–10: normale postnatale Adaptation."
+        explanation: "Unter 4 Punkten ist das Neugeborene in kritischem Zustand. 4–6: mäßige Anpassungsstörung mit Unterstützungsbedarf. 7–10: normale postnatale Adaptation.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Bewertung des APGAR-Scores treffen zu?", checklist: [
+          { text: "Ein Score unter 4 Punkten gilt als kritisch und erfordert sofortige Reanimation.", correct: true },
+          { text: "Ein Score von 4–6 Punkten zeigt eine mäßige Anpassungsstörung mit Unterstützungsbedarf.", correct: true },
+          { text: "Ein Score von 7–10 Punkten zeigt eine normale postnatale Adaptation.", correct: true },
+          { text: "Ein Score unter 4 Punkten gilt als unbedenklich.", correct: false }
+        ], reveal: "Unter 4 Punkten ist das Neugeborene in kritischem Zustand und benötigt sofortige Reanimationsmaßnahmen. 4–6 Punkte zeigen eine mäßige Anpassungsstörung, 7–10 Punkte eine normale postnatale Adaptation." }
       }
     ],
     phase4Questions: [
@@ -4938,6 +6063,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Die Cordozentese wird ab der 5. SSW durchgeführt", correct: false }
         ],
         explanation: "NIPT analysiert zellfreie fetale DNA im mütterlichen Blut nicht-invasiv; die Chorionzottenbiopsie hat ein höheres Fehlgeburtsrisiko als die Amniozentese (nicht umgekehrt); alle invasiven Methoden erlauben eine vollständige Karyotypisierung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "NIPT ist nicht-invasiv und analysiert fetale DNA im mütterlichen Blut.", isWrong: false },
+          { text: "Alle invasiven Methoden ermöglichen eine Karyotypisierung.", isWrong: false },
+          { text: "Die Chorionzottenbiopsie hat ein höheres Fehlgeburtsrisiko als die Amniozentese.", isWrong: false },
+          { text: "Die Amniozentese hat ein höheres Fehlgeburtsrisiko als die Chorionzottenbiopsie.", isWrong: true }
+        ], whyWrong: "Die Chorionzottenbiopsie hat ein höheres Fehlgeburtsrisiko als die Amniozentese, nicht umgekehrt. NIPT analysiert zellfreie fetale DNA im mütterlichen Blut nicht-invasiv, und alle invasiven Methoden erlauben eine vollständige Karyotypisierung." },
       },
       {
         id: "prae_mc2",
@@ -4950,6 +6081,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "7–10 APGAR-Punkte gelten als kritisch", correct: false }
         ],
         explanation: "Der APGAR-Score bewertet 5 Vitalparameter (nicht das Gestationsalter) bei 1, 5 und 10 Minuten nach der Geburt; 7-10 Punkte gelten als gut; das Neugeborenenscreening erfolgt durch Fersenblut am 3. Lebenstag.",
+        learningCard: { type: "teachback", prompt: "Was trifft auf den APGAR-Score und das Neugeborenenscreening zu?", checklist: [
+          { text: "APGAR wird bei 1, 5 und 10 Minuten nach Geburt erhoben.", correct: true },
+          { text: "Das Neugeborenenscreening erfolgt durch einen Fersenbluttropfen am 3. Lebenstag.", correct: true },
+          { text: "Der APGAR-Score bewertet das Gestationsalter des Neugeborenen.", correct: false },
+          { text: "7–10 APGAR-Punkte gelten als kritisch.", correct: false }
+        ], reveal: "Der APGAR-Score bewertet 5 Vitalparameter (nicht das Gestationsalter) bei 1, 5 und 10 Minuten nach der Geburt, wobei 7–10 Punkte als gut gelten. Das Neugeborenenscreening erfolgt durch Fersenblut am 3. Lebenstag." },
       }
     ]
   }),
@@ -4968,14 +6105,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Reflex, bei dem die Großzehe bei Bestreichen der Fußsohle dorsalflektiert", correct: false },
           { text: "Schreitbewegungen bei aufrechtem Halten des Neugeborenen", correct: false }
         ],
-        explanation: "Der Moro-Reflex (Umklammerungsreflex) zeigt sich als symmetrisches Ausbreiten der Arme mit anschließendem Zusammenführen bei plötzlichem Kopffall oder lautem Geräusch."
+        explanation: "Der Moro-Reflex (Umklammerungsreflex) zeigt sich als symmetrisches Ausbreiten der Arme mit anschließendem Zusammenführen bei plötzlichem Kopffall oder lautem Geräusch.",
+        learningCard: { type: "predict", statement: "Der Moro-Reflex zeigt sich als Ausbreiten der Arme mit anschließendem Zusammenführen zur Mitte.", answer: true, reveal: "Der Moro-Reflex (Umklammerungsreflex) zeigt sich als symmetrisches Ausbreiten der Arme mit anschließendem Zusammenführen bei plötzlichem Kopffall oder lautem Geräusch." }
       },
       {
         id: "neugeb_h2",
         type: "true_false",
         statement: "Persistierende archaische Reflexe jenseits des erwarteten Erlöschenszeitpunkts können auf neurologische Störungen hinweisen.",
         answer: true,
-        explanation: "Frühkindliche Reflexe erlöschen im 1.–2. Lebensjahr durch zunehmende kortikale Kontrolle. Persistieren sie länger als erwartet, kann das auf neurologische Reifungsstörungen hinweisen."
+        explanation: "Frühkindliche Reflexe erlöschen im 1.–2. Lebensjahr durch zunehmende kortikale Kontrolle. Persistieren sie länger als erwartet, kann das auf neurologische Reifungsstörungen hinweisen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu frühkindlichen Reflexen treffen zu?", checklist: [
+          { text: "Frühkindliche Reflexe erlöschen im 1.–2. Lebensjahr durch zunehmende kortikale Kontrolle.", correct: true },
+          { text: "Persistieren sie länger als erwartet, kann das auf neurologische Reifungsstörungen hinweisen.", correct: true },
+          { text: "Frühkindliche Reflexe sind beim Neugeborenen physiologisch.", correct: true },
+          { text: "Frühkindliche Reflexe bleiben ein Leben lang unverändert bestehen.", correct: false }
+        ], reveal: "Frühkindliche Reflexe sind beim Neugeborenen physiologisch und erlöschen im 1.–2. Lebensjahr durch zunehmende kortikale Kontrolle. Persistieren sie länger als erwartet, kann das auf neurologische Reifungsstörungen hinweisen." }
       },
       {
         id: "neugeb_h3",
@@ -4987,7 +6131,13 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Innerhalb der ersten 10 Minuten nach Geburt", correct: false },
           { text: "Erst nach dem ersten Stillen", correct: false }
         ],
-        explanation: "Mekonium sollte innerhalb von 24–48 Stunden nach Geburt abgehen. Ausbleibendes Mekonium kann auf Erkrankungen wie Mekoniumileus (z. B. bei Mukoviszidose) hinweisen."
+        explanation: "Mekonium sollte innerhalb von 24–48 Stunden nach Geburt abgehen. Ausbleibendes Mekonium kann auf Erkrankungen wie Mekoniumileus (z. B. bei Mukoviszidose) hinweisen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Mekonium sollte innerhalb der ersten 24–48 Stunden abgehen.", isWrong: false },
+          { text: "Ausbleibendes Mekonium kann auf einen Mekoniumileus hinweisen.", isWrong: false },
+          { text: "Ein Mekoniumileus kann z. B. bei Mukoviszidose auftreten.", isWrong: false },
+          { text: "Mekonium sollte erst am 5.–7. Lebenstag abgehen.", isWrong: true }
+        ], whyWrong: "Mekonium sollte innerhalb von 24–48 Stunden nach Geburt abgehen, nicht erst am 5.–7. Lebenstag. Ausbleibendes Mekonium kann auf Erkrankungen wie Mekoniumileus (z. B. bei Mukoviszidose) hinweisen." }
       },
       {
         id: "neugeb_h4",
@@ -4999,14 +6149,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "18–24 Monate", correct: false },
           { text: "9–10 Monate", correct: false }
         ],
-        explanation: "Laufen ohne Festhalten: ca. 12–15 Monate. Abweichungen nach oben (bis 18 Monate) können noch normal sein."
+        explanation: "Laufen ohne Festhalten: ca. 12–15 Monate. Abweichungen nach oben (bis 18 Monate) können noch normal sein.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das erste selbstständige Gehen wird typischerweise mit 12–15 Monaten erwartet.", isWrong: false },
+          { text: "Abweichungen bis 18 Monate können noch normal sein.", isWrong: false },
+          { text: "Vor dem freien Laufen entwickeln sich meist Krabbeln und Stehen mit Festhalten.", isWrong: false },
+          { text: "Freies Laufen wird bereits mit 6–8 Monaten erwartet.", isWrong: true }
+        ], whyWrong: "Freies Laufen ohne Festhalten wird typischerweise erst mit 12–15 Monaten erwartet, nicht schon mit 6–8 Monaten. Abweichungen nach oben (bis 18 Monate) können noch normal sein." }
       },
       {
         id: "neugeb_h5",
         type: "true_false",
         statement: "Muttermilch enthält sekretorisches IgA, das dem Säugling passiven Infektionsschutz (Nestschutz) bietet.",
         answer: true,
-        explanation: "Sekretorisches IgA in der Muttermilch schützt die Schleimhäute des Säuglings vor Infektionen — ein wichtiger Teil des frühen Immunschutzes."
+        explanation: "Sekretorisches IgA in der Muttermilch schützt die Schleimhäute des Säuglings vor Infektionen — ein wichtiger Teil des frühen Immunschutzes.",
+        learningCard: { type: "reconstruct", template: "Muttermilch enthält sekretorisches ___, das dem Säugling passiven Infektionsschutz — den sogenannten ___ — bietet.", blanks: ["IgA", "Nestschutz"], distractors: ["IgG", "Impfschutz"], reveal: "Sekretorisches IgA in der Muttermilch schützt die Schleimhäute des Säuglings vor Infektionen. Dieser passive Schutz wird als Nestschutz bezeichnet." }
       },
       {
         id: "neugeb_h6",
@@ -5018,7 +6175,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "80–100/min", correct: false },
           { text: "160–200/min", correct: false }
         ],
-        explanation: "Neugeborene haben eine höhere Herzfrequenz als Erwachsene: 120–160/min, Atemfrequenz 40–60/min."
+        explanation: "Neugeborene haben eine höhere Herzfrequenz als Erwachsene: 120–160/min, Atemfrequenz 40–60/min.",
+        learningCard: { type: "predict", statement: "Neugeborene haben eine normale Herzfrequenz von 120–160/min.", answer: true, reveal: "Neugeborene haben eine höhere Herzfrequenz als Erwachsene: 120–160/min bei einer Atemfrequenz von 40–60/min." }
       }
     ],
     phase4Questions: [
@@ -5033,6 +6191,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Der Babinski-Reflex ist beim Neugeborenen pathologisch", correct: false }
         ],
         explanation: "Archaische Reflexe (Moro, Saug, Greifen) sind physiologisch beim Neugeborenen und sollten in den ersten Lebensmonaten verschwinden; der Babinski-Reflex ist beim Neugeborenen normal und persistierende Reflexe nach dem 2. Lebensjahr deuten auf neurologische Störungen hin.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu frühkindlichen Reflexen treffen zu?", checklist: [
+          { text: "Moro-, Saug- und Greifreflex sind normale Befunde beim Neugeborenen.", correct: true },
+          { text: "Persistierende archaische Reflexe nach dem 2. Lebensjahr können neurologische Störungen anzeigen.", correct: true },
+          { text: "Der Babinski-Reflex ist beim Neugeborenen normal, nicht pathologisch.", correct: true },
+          { text: "Frühkindliche Reflexe persistieren ein Leben lang.", correct: false }
+        ], reveal: "Archaische Reflexe (Moro, Saug, Greifen) sind physiologisch beim Neugeborenen, und der Babinski-Reflex ist dabei normal (nicht pathologisch). Sie sollten in den ersten Lebensmonaten verschwinden — persistieren sie nach dem 2. Lebensjahr, deutet das auf neurologische Störungen hin." },
       },
       {
         id: "neugeb_mc2",
@@ -5045,6 +6209,7 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Erste sinnvolle Einzelworte ab ca. 12 Monaten", correct: true }
         ],
         explanation: "Entwicklungseckpunkte: soziales Lächeln ab ~6 Wochen, Kopfkontrolle ab ~3 Monaten, freies Laufen typischerweise erst ab 12-15 Monaten (nicht 6 Monaten), erste sinnvolle Einzelworte ab ~12 Monaten.",
+        learningCard: { type: "reconstruct", template: "Entwicklungseckpunkte: soziales Lächeln ab ca. ___, Kopfkontrolle ab ca. ___, freies Laufen typischerweise erst ab ___.", blanks: ["6 Wochen", "3 Monaten", "12–15 Monaten"], distractors: ["6 Monaten", "2 Monaten"], reveal: "Entwicklungseckpunkte: soziales Lächeln ab ca. 6 Wochen, Kopfkontrolle ab ca. 3 Monaten, freies Laufen typischerweise erst ab 12–15 Monaten (nicht 6 Monaten). Erste sinnvolle Einzelworte werden ab ca. 12 Monaten erwartet." },
       }
     ]
   }),
@@ -5063,14 +6228,16 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Über 70 %", correct: false },
           { text: "Über 80 %", correct: false }
         ],
-        explanation: "Masern haben eine sehr hohe Kontagiosität (R₀ ~12–18), daher ist eine Herdenimmunität erst bei >95 % Durchimpfungsrate erreicht."
+        explanation: "Masern haben eine sehr hohe Kontagiosität (R₀ ~12–18), daher ist eine Herdenimmunität erst bei >95 % Durchimpfungsrate erreicht.",
+        learningCard: { type: "predict", statement: "Für Masern ist eine Durchimpfungsrate von über 95 % nötig, um Herdenimmunität zu erreichen.", answer: true, reveal: "Masern haben eine sehr hohe Kontagiosität (R₀ ca. 12–18), daher ist eine Herdenimmunität erst bei über 95 % Durchimpfungsrate erreicht." }
       },
       {
         id: "impf_h2",
         type: "true_false",
         statement: "Das Masernschutzgesetz (2020) verpflichtet Kinder in Kitas und Schulen sowie Personal zu einer Masernimpfung.",
         answer: true,
-        explanation: "Das Masernschutzgesetz schreibt seit März 2020 eine Masernimpfpflicht für Kinder in Gemeinschaftseinrichtungen und deren Personal vor."
+        explanation: "Das Masernschutzgesetz schreibt seit März 2020 eine Masernimpfpflicht für Kinder in Gemeinschaftseinrichtungen und deren Personal vor.",
+        learningCard: { type: "reconstruct", template: "Das ___ schreibt seit ___ eine Masernimpfpflicht für Kinder in Gemeinschaftseinrichtungen und deren Personal vor.", blanks: ["Masernschutzgesetz", "März 2020"], distractors: ["Infektionsschutzgesetz", "Januar 2019"], reveal: "Das Masernschutzgesetz schreibt seit März 2020 eine Masernimpfpflicht für Kinder in Kitas und Schulen sowie deren Personal vor." }
       },
       {
         id: "impf_h3",
@@ -5082,14 +6249,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Leichte Erkältung ohne Fieber", correct: false },
           { text: "Allergien gegen Nahrungsmittel (ohne Impfstoffinhaltsstoffe)", correct: false }
         ],
-        explanation: "Lebendimpfstoffe enthalten abgeschwächte Erreger, die bei immunsupprimierten Personen eine echte Infektion auslösen können — daher kontraindiziert."
+        explanation: "Lebendimpfstoffe enthalten abgeschwächte Erreger, die bei immunsupprimierten Personen eine echte Infektion auslösen können — daher kontraindiziert.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Immunsuppression (z. B. unter Chemotherapie oder HIV) ist eine Kontraindikation für Lebendimpfstoffe.", isWrong: false },
+          { text: "Lebendimpfstoffe enthalten abgeschwächte Erreger.", isWrong: false },
+          { text: "Bei immunsupprimierten Personen können abgeschwächte Erreger eine echte Infektion auslösen.", isWrong: false },
+          { text: "Eine leichte Erkältung ohne Fieber ist eine Kontraindikation für Lebendimpfstoffe.", isWrong: true }
+        ], whyWrong: "Eine leichte Erkältung ohne Fieber ist keine Kontraindikation. Lebendimpfstoffe enthalten abgeschwächte Erreger, die bei immunsupprimierten Personen (z. B. unter Chemotherapie oder HIV) eine echte Infektion auslösen können — deshalb sind sie dort kontraindiziert." }
       },
       {
         id: "impf_h4",
         type: "true_false",
         statement: "Impfreaktionen wie Rötung, Schwellung und leichtes Fieber nach einer Impfung sind normale Immunantworten und kein Impfschaden.",
         answer: true,
-        explanation: "Lokale Reaktionen und leichtes Fieber sind erwartete, normale Reaktionen des Immunsystems auf die Impfung und kein Impfschaden."
+        explanation: "Lokale Reaktionen und leichtes Fieber sind erwartete, normale Reaktionen des Immunsystems auf die Impfung und kein Impfschaden.",
+        learningCard: { type: "predict", statement: "Rötung, Schwellung und leichtes Fieber nach einer Impfung sind normale Immunantworten und kein Impfschaden.", answer: true, reveal: "Lokale Reaktionen und leichtes Fieber sind erwartete, normale Reaktionen des Immunsystems auf die Impfung und kein Impfschaden." }
       },
       {
         id: "impf_h5",
@@ -5101,7 +6275,13 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Ausschließlich die Kontraindikationen", correct: false },
           { text: "Nur den Nutzen der Impfung", correct: false }
         ],
-        explanation: "Die Impfaufklärung muss umfassend sein: Nutzen, Impfstofftyp, Neben- und Impfwirkungen, Kontraindikationen, Verhalten danach."
+        explanation: "Die Impfaufklärung muss umfassend sein: Nutzen, Impfstofftyp, Neben- und Impfwirkungen, Kontraindikationen, Verhalten danach.",
+        learningCard: { type: "teachback", prompt: "Was muss die Impfaufklärung beinhalten?", checklist: [
+          { text: "Den Nutzen der Impfung", correct: true },
+          { text: "Den Impfstofftyp", correct: true },
+          { text: "Neben- und Impfwirkungen sowie Kontraindikationen", correct: true },
+          { text: "Ausschließlich die häufigsten Nebenwirkungen", correct: false }
+        ], reveal: "Die Impfaufklärung muss umfassend sein: Nutzen, Impfstofftyp, Neben- und Impfwirkungen, Kontraindikationen sowie Verhaltenshinweise danach." }
       }
     ],
     phase4Questions: [
@@ -5116,6 +6296,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Lebendimpfstoffe sind für immunsupprimierte Personen sicher", correct: false }
         ],
         explanation: "STIKO gibt Impfempfehlungen heraus; für Masern-Herdenimmunität sind >95% (nicht 70%) Durchimpfung nötig; Lebendimpfstoffe sind für Immunsupprimierte kontraindiziert, da abgeschwächte Erreger noch replizieren können.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die STIKO gibt Impfempfehlungen für Deutschland heraus.", isWrong: false },
+          { text: "Herdenimmunität schützt auch Ungeimpfte, wenn der Anteil Immuner hoch genug ist.", isWrong: false },
+          { text: "Lebendimpfstoffe sind für immunsupprimierte Personen kontraindiziert.", isWrong: false },
+          { text: "Für Masern reicht eine Durchimpfungsrate von 70 % für Herdenimmunität.", isWrong: true }
+        ], whyWrong: "Für Masern sind über 95 % (nicht 70 %) Durchimpfung für Herdenimmunität nötig. Die STIKO gibt die Impfempfehlungen für Deutschland heraus, und Lebendimpfstoffe sind für Immunsupprimierte kontraindiziert, da sich die abgeschwächten Erreger noch vermehren können." },
       },
       {
         id: "impf_mc2",
@@ -5128,6 +6314,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Eine Aufklärung ist nur bei Erstimpfungen notwendig", correct: false }
         ],
         explanation: "Impfaufklärung muss rechtzeitig vor jeder Impfung (nicht nur Erstimpfungen) erfolgen und das Einverständnis ist immer einzuholen; normale Impfreaktionen (Rötung, Schwellung) sind keine meldepflichtigen Impfschäden.",
+        learningCard: { type: "teachback", prompt: "Was ist bei der Impfaufklärung und Dokumentation zu beachten?", checklist: [
+          { text: "Die Aufklärung muss rechtzeitig vor jeder Impfung erfolgen.", correct: true },
+          { text: "Das Einverständnis des Patienten/Erziehungsberechtigten ist erforderlich.", correct: true },
+          { text: "Normale Impfreaktionen wie Rötung und Schwellung sind meldepflichtige Impfschäden.", correct: false },
+          { text: "Eine Aufklärung ist nur bei Erstimpfungen notwendig.", correct: false }
+        ], reveal: "Impfaufklärung muss rechtzeitig vor jeder Impfung (nicht nur Erstimpfungen) erfolgen, und das Einverständnis ist immer einzuholen. Normale Impfreaktionen wie Rötung und Schwellung sind dagegen keine meldepflichtigen Impfschäden." },
       }
     ]
   }),
@@ -5146,14 +6338,16 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Taubheit, Blindheit, Kleinwuchs", correct: false },
           { text: "Herzfehler, Nierenmissbildung, Gaumenspalte", correct: false }
         ],
-        explanation: "Die Gregg-Trias bei Rötelnembryopathie: Herzfehler + Katarakt + Innenohrschwerhörigkeit. Sie tritt bei Rötelninfektion in der Frühschwangerschaft auf."
+        explanation: "Die Gregg-Trias bei Rötelnembryopathie: Herzfehler + Katarakt + Innenohrschwerhörigkeit. Sie tritt bei Rötelninfektion in der Frühschwangerschaft auf.",
+        learningCard: { type: "reconstruct", template: "Die Gregg-Trias bei Rötelnembryopathie umfasst: ___, ___ und ___.", blanks: ["Herzfehler", "Katarakt", "Innenohrschwerhörigkeit"], distractors: ["Mikrozephalie", "Gaumenspalte"], reveal: "Die Gregg-Trias bei Rötelnembryopathie umfasst Herzfehler, Katarakt und Innenohrschwerhörigkeit. Sie tritt bei einer Rötelninfektion in der Frühschwangerschaft auf." }
       },
       {
         id: "chromosom_h2",
         type: "true_false",
         statement: "Das embryofetale Alkoholsyndrom ist die häufigste nicht-genetische Ursache geistiger Behinderung.",
         answer: true,
-        explanation: "Das fetale Alkoholsyndrom (FAS) durch Alkohol in der Schwangerschaft ist die häufigste vermeidbare, nicht-genetische Ursache geistiger Behinderung."
+        explanation: "Das fetale Alkoholsyndrom (FAS) durch Alkohol in der Schwangerschaft ist die häufigste vermeidbare, nicht-genetische Ursache geistiger Behinderung.",
+        learningCard: { type: "predict", statement: "Das embryofetale Alkoholsyndrom (FAS) ist die häufigste nicht-genetische Ursache geistiger Behinderung.", answer: true, reveal: "Das fetale Alkoholsyndrom (FAS) durch Alkohol in der Schwangerschaft ist die häufigste vermeidbare, nicht-genetische Ursache geistiger Behinderung." }
       },
       {
         id: "chromosom_h3",
@@ -5165,7 +6359,13 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Mosaikform", correct: false },
           { text: "Partielle Trisomie", correct: false }
         ],
-        explanation: "Ca. 95 % der Down-Syndrom-Fälle sind freie Trisomien durch Nondisjunction in der Meiose; das Risiko steigt mit dem mütterlichen Alter."
+        explanation: "Ca. 95 % der Down-Syndrom-Fälle sind freie Trisomien durch Nondisjunction in der Meiose; das Risiko steigt mit dem mütterlichen Alter.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur freien Trisomie 21 treffen zu?", checklist: [
+          { text: "Sie macht etwa 95 % der Down-Syndrom-Fälle aus.", correct: true },
+          { text: "Sie entsteht durch Nondisjunction in der Meiose.", correct: true },
+          { text: "Das Risiko steigt mit dem mütterlichen Alter.", correct: true },
+          { text: "Sie wird typischerweise von einem Elternteil vererbt.", correct: false }
+        ], reveal: "Ca. 95 % der Down-Syndrom-Fälle sind freie Trisomien durch Nondisjunction in der Meiose, deren Risiko mit dem mütterlichen Alter steigt." }
       },
       {
         id: "chromosom_h4",
@@ -5177,7 +6377,13 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Erhöhte Raumtemperatur und enge Bettumrandung", correct: false },
           { text: "Schlafen im Elternbett mit Decken", correct: false }
         ],
-        explanation: "SIDS-Prävention: Rückenlage (nicht Bauch), rauchfrei, keine Überwärmung, hartes Liegefläche, keine Bettumrandung."
+        explanation: "SIDS-Prävention: Rückenlage (nicht Bauch), rauchfrei, keine Überwärmung, hartes Liegefläche, keine Bettumrandung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Rückenlage senkt das SIDS-Risiko.", isWrong: false },
+          { text: "Eine rauchfreie Umgebung senkt das SIDS-Risiko.", isWrong: false },
+          { text: "Überwärmung erhöht das SIDS-Risiko.", isWrong: false },
+          { text: "Bauchlage und weiches Bettzeug senken das SIDS-Risiko.", isWrong: true }
+        ], whyWrong: "Bauchlage und weiches Bettzeug erhöhen das SIDS-Risiko, sie senken es nicht. Zur Prävention gehören stattdessen Rückenlage, eine rauchfreie Umgebung und das Vermeiden von Überwärmung." }
       },
       {
         id: "chromosom_h5",
@@ -5189,14 +6395,21 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "45,X0", correct: false },
           { text: "47,+21", correct: false }
         ],
-        explanation: "Das Klinefelter-Syndrom (47,XXY) betrifft nur männliche Personen: Hodenunterfunktion, Infertilität, Hochwuchs, Gynäkomastie; Therapie mit Testosteron."
+        explanation: "Das Klinefelter-Syndrom (47,XXY) betrifft nur männliche Personen: Hodenunterfunktion, Infertilität, Hochwuchs, Gynäkomastie; Therapie mit Testosteron.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Klinefelter-Syndrom hat den Karyotyp 47,XXY.", isWrong: false },
+          { text: "Das Klinefelter-Syndrom betrifft nur männliche Personen.", isWrong: false },
+          { text: "Typische Merkmale sind Hodenunterfunktion, Infertilität, Hochwuchs und Gynäkomastie.", isWrong: false },
+          { text: "Das Klinefelter-Syndrom hat den Karyotyp 47,XYY.", isWrong: true }
+        ], whyWrong: "Das Klinefelter-Syndrom hat den Karyotyp 47,XXY, nicht 47,XYY. Es betrifft nur männliche Personen mit Hodenunterfunktion, Infertilität, Hochwuchs und Gynäkomastie." }
       },
       {
         id: "chromosom_h6",
         type: "true_false",
         statement: "Beim Klinefelter-Syndrom ist eine Therapie mit Testosteron-Substitution indiziert.",
         answer: true,
-        explanation: "Da beim Klinefelter-Syndrom (47,XXY) eine Hodenunterfunktion mit Testosteronmangel vorliegt, ist eine Testosteron-Substitution die Standardtherapie."
+        explanation: "Da beim Klinefelter-Syndrom (47,XXY) eine Hodenunterfunktion mit Testosteronmangel vorliegt, ist eine Testosteron-Substitution die Standardtherapie.",
+        learningCard: { type: "reconstruct", template: "Beim Klinefelter-Syndrom liegt eine ___ mit Testosteronmangel vor, weshalb eine ___ die Standardtherapie ist.", blanks: ["Hodenunterfunktion", "Testosteron-Substitution"], distractors: ["Östrogen-Substitution", "Nierenunterfunktion"], reveal: "Da beim Klinefelter-Syndrom (47,XXY) eine Hodenunterfunktion mit Testosteronmangel vorliegt, ist eine Testosteron-Substitution die Standardtherapie." }
       }
     ],
     phase4Questions: [
@@ -5211,6 +6424,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Alle drei Formen (freie Trisomie, Translokation, Mosaik) haben identischen klinischen Verlauf", correct: false }
         ],
         explanation: "Beim Down-Syndrom macht die freie Trisomie 21 (durch Nondisjunction) ca. 95% der Fälle aus; das Risiko steigt mit zunehmendem mütterlichem Alter; die Translokationstrisomie kann familiär vererbt werden und hat kein altersabhängiges Risiko.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Down-Syndrom treffen zu?", checklist: [
+          { text: "Freie Trisomie 21 macht ca. 95 % der Fälle aus.", correct: true },
+          { text: "Translokationstrisomie kann familiär vererbt werden.", correct: true },
+          { text: "Das Risiko steigt mit zunehmendem mütterlichem Alter.", correct: true },
+          { text: "Alle drei Formen haben einen identischen klinischen Verlauf.", correct: false }
+        ], reveal: "Die freie Trisomie 21 (durch Nondisjunction) macht ca. 95 % der Fälle aus, deren Risiko mit zunehmendem mütterlichem Alter steigt. Die Translokationstrisomie kann dagegen familiär vererbt werden und hat kein altersabhängiges Risiko." },
       },
       {
         id: "chromosom_mc2",
@@ -5223,6 +6442,7 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Rauchen → ausschließlich Herzfehler ohne Wachstumsfolgen", correct: false }
         ],
         explanation: "Zu den wichtigsten pränatalen Noxen gehören Rauchen (Wachstumsretardierung + SIDS-Risiko), Alkohol (fetales Alkoholsyndrom, häufigste nicht-genetische geistige Behinderung) und Röteln (Gregg-Trias: Herzfehler, Katarakt, Schwerhörigkeit).",
+        learningCard: { type: "reconstruct", template: "Wichtige pränatale Noxen: Rauchen → Wachstumsretardierung und erhöhtes ___-Risiko; Alkohol → ___ (häufigste nicht-genetische geistige Behinderung); Röteln → ___ (Herzfehler, Katarakt, Schwerhörigkeit).", blanks: ["SIDS", "fetales Alkoholsyndrom", "Gregg-Trias"], distractors: ["Klinefelter-Syndrom", "Down-Syndrom"], reveal: "Zu den wichtigsten pränatalen Noxen gehören Rauchen (Wachstumsretardierung + erhöhtes SIDS-Risiko), Alkohol (fetales Alkoholsyndrom, häufigste nicht-genetische geistige Behinderung) und Röteln (Gregg-Trias: Herzfehler, Katarakt, Schwerhörigkeit)." },
       }
     ]
   }),
@@ -5241,14 +6461,16 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "5. ICR in der Medioklavikularlinie links", correct: false },
           { text: "3. ICR links neben dem Sternum", correct: false }
         ],
-        explanation: "Die Aortenklappe wird im 2. ICR rechts gehört. Links im 2. ICR liegt der Auskultationspunkt der Pulmonalklappe. Beide liegen im 2. ICR, aber auf verschiedenen Seiten des Sternums."
+        explanation: "Die Aortenklappe wird im 2. ICR rechts gehört. Links im 2. ICR liegt der Auskultationspunkt der Pulmonalklappe. Beide liegen im 2. ICR, aber auf verschiedenen Seiten des Sternums.",
+        learningCard: { type: "predict", statement: "Die Aortenklappe wird im 2. ICR rechts neben dem Sternum auskultiert.", answer: true, reveal: "Die Aortenklappe wird im 2. ICR rechts gehört. Links im 2. ICR liegt dagegen der Auskultationspunkt der Pulmonalklappe." }
       },
       {
         id: "auskultation_h2",
         type: "true_false",
         statement: "Der Erb-Punkt liegt im 3. Interkostalraum links neben dem Sternum und ermöglicht die Auskultation aller vier Herzklappen.",
         answer: true,
-        explanation: "Am Erb-Punkt (3. ICR links neben dem Sternum) sind alle vier Herzklappen, besonders Aorten- und Pulmonalklappe, gut hörbar."
+        explanation: "Am Erb-Punkt (3. ICR links neben dem Sternum) sind alle vier Herzklappen, besonders Aorten- und Pulmonalklappe, gut hörbar.",
+        learningCard: { type: "reconstruct", template: "Der Erb-Punkt liegt im ___. ICR ___ neben dem Sternum und ermöglicht die Auskultation aller vier Herzklappen.", blanks: ["3", "links"], distractors: ["2", "rechts"], reveal: "Am Erb-Punkt (3. ICR links neben dem Sternum) sind alle vier Herzklappen, besonders Aorten- und Pulmonalklappe, gut hörbar." }
       },
       {
         id: "auskultation_h3",
@@ -5260,14 +6482,26 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "3. ICR links neben dem Sternum", correct: false },
           { text: "2. ICR rechts neben dem Sternum", correct: false }
         ],
-        explanation: "Trikuspidalklappe: 4. ICR rechts. Mitralklappe: 5. ICR MCL links. Aorta: 2. ICR rechts. Pulmonal: 2. ICR links. Erb: 3. ICR links neben dem Sternum."
+        explanation: "Trikuspidalklappe: 4. ICR rechts. Mitralklappe: 5. ICR MCL links. Aorta: 2. ICR rechts. Pulmonal: 2. ICR links. Erb: 3. ICR links neben dem Sternum.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Trikuspidalklappe wird im 4. ICR rechts am besten gehört.", isWrong: false },
+          { text: "Die Mitralklappe wird im 5. ICR MCL links am besten gehört.", isWrong: false },
+          { text: "Die Aortenklappe wird im 2. ICR rechts am besten gehört.", isWrong: false },
+          { text: "Die Trikuspidalklappe wird im 5. ICR in der Medioklavikularlinie links am besten gehört.", isWrong: true }
+        ], whyWrong: "Die Trikuspidalklappe wird im 4. ICR rechts am besten gehört, nicht im 5. ICR MCL links — dort liegt der Auskultationspunkt der Mitralklappe." }
       },
       {
         id: "auskultation_h4",
         type: "true_false",
         statement: "Der venöse Abfluss des Herzmuskels erfolgt hauptsächlich über die Vena cordis magna in den Sinus coronarius, der in den rechten Vorhof mündet.",
         answer: true,
-        explanation: "Das sauerstoffarme Blut aus dem Myokard sammelt sich über die Vena cordis magna im Sinus coronarius und fließt in den rechten Vorhof – parallel zum venösen Rückfluss aus dem Körper."
+        explanation: "Das sauerstoffarme Blut aus dem Myokard sammelt sich über die Vena cordis magna im Sinus coronarius und fließt in den rechten Vorhof – parallel zum venösen Rückfluss aus dem Körper.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum venösen Abfluss des Herzmuskels treffen zu?", checklist: [
+          { text: "Der Abfluss erfolgt hauptsächlich über die Vena cordis magna.", correct: true },
+          { text: "Das Blut sammelt sich im Sinus coronarius.", correct: true },
+          { text: "Der Sinus coronarius mündet in den rechten Vorhof.", correct: true },
+          { text: "Der venöse Abfluss erfolgt unabhängig vom venösen Rückfluss aus dem Körper.", correct: false }
+        ], reveal: "Das sauerstoffarme Blut aus dem Myokard sammelt sich über die Vena cordis magna im Sinus coronarius und fließt in den rechten Vorhof — parallel zum venösen Rückfluss aus dem Körper." }
       },
       {
         id: "auskultation_h5",
@@ -5279,7 +6513,8 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Sehnenfäden, die Segelklappen halten", correct: false },
           { text: "Fasern des Erregungsleitsystems in den Kammern", correct: false }
         ],
-        explanation: "Trabeculae carneae sind die unregelmäßigen Muskelstränge/-balken im Inneren der Herzkammern. Die Vorhöfe haben Mm. pectinati (kammartig). Sehnenfäden der Papillarmuskeln sind Chordae tendineae."
+        explanation: "Trabeculae carneae sind die unregelmäßigen Muskelstränge/-balken im Inneren der Herzkammern. Die Vorhöfe haben Mm. pectinati (kammartig). Sehnenfäden der Papillarmuskeln sind Chordae tendineae.",
+        learningCard: { type: "predict", statement: "Trabeculae carneae sind unregelmäßige Muskelstränge und -balken an der Innenwand der Herzkammern.", answer: true, reveal: "Trabeculae carneae sind die unregelmäßigen Muskelstränge/-balken im Inneren der Herzkammern. Die Vorhöfe haben dagegen die kammartigen Mm. pectinati, und Sehnenfäden der Papillarmuskeln heißen Chordae tendineae." }
       }
     ],
     phase4Questions: [
@@ -5294,6 +6529,7 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Erb-Punkt: 3. ICR links neben dem Sternum", correct: true }
         ],
         explanation: "Auskultationspunkte: Mitralklappe im 5. ICR links (Herzspitze), Aortenklappe im 2. ICR rechts, Pulmonalklappe im 2. ICR links (nicht rechts), Erb-Punkt im 3. ICR links — die Punkte liegen dort, wo die Klangübertragung am besten ist.",
+        learningCard: { type: "reconstruct", template: "Auskultationspunkte: Mitralklappe ___. ICR links (Herzspitze), Aortenklappe ___. ICR rechts, Pulmonalklappe ___. ICR links.", blanks: ["5", "2", "2"], distractors: ["4", "3"], reveal: "Auskultationspunkte: Mitralklappe im 5. ICR links (Herzspitze), Aortenklappe im 2. ICR rechts, Pulmonalklappe im 2. ICR links (nicht rechts). Der Erb-Punkt liegt im 3. ICR links, wo die Klangübertragung aller Klappen gut gelingt." },
       },
       {
         id: "auskultation_mc2",
@@ -5306,6 +6542,12 @@ const HERZKREISLAUF_1036_PLANTS = [
           { text: "Trabeculae carneae sind unregelmäßige Muskelstränge in den Herzkammern", correct: true }
         ],
         explanation: "Im Herzinnenraum dienen Mm. pectinati (Vorhöfe) und Trabeculae carneae (Kammern) der Wandstruktur; Mm. papillares halten über Chordae tendineae die Segelklappen; der Sinus coronarius mündet in den rechten (nicht linken) Vorhof.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Mm. pectinati sind kammartige Muskelleisten in den Herzvorhöfen.", isWrong: false },
+          { text: "Mm. papillares halten über Chordae tendineae die Segelklappen in den Kammern.", isWrong: false },
+          { text: "Trabeculae carneae sind unregelmäßige Muskelstränge in den Herzkammern.", isWrong: false },
+          { text: "Der Sinus coronarius mündet in den linken Vorhof.", isWrong: true }
+        ], whyWrong: "Der Sinus coronarius mündet in den rechten (nicht linken) Vorhof. Im Herzinnenraum dienen Mm. pectinati (Vorhöfe) und Trabeculae carneae (Kammern) der Wandstruktur, während Mm. papillares über Chordae tendineae die Segelklappen halten." },
       }
     ]
   })
