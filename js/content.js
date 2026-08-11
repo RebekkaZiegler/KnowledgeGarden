@@ -12593,6 +12593,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Endokrine Drüsen besitzen keinen Ausführungsgang", correct: true }
         ],
         explanation: "Hormone sind chemische Botenstoffe ohne Eigenenergie, werden in endokrinen Drüsen (ohne Ausführungsgang) gebildet, über das Blut transportiert und in Leber/Niere abgebaut; Hormone wirken nicht artspezifisch (Insulin z.B. wirkt bei vielen Tierarten).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen über Hormone und das endokrine System sind korrekt?", checklist: [
+          { text: "Hormone sind biochemische Botenstoffe und reine Informationsträger", correct: true },
+          { text: "Hormone werden in Leber und Niere abgebaut", correct: true },
+          { text: "Endokrine Drüsen besitzen keinen Ausführungsgang", correct: true },
+          { text: "Alle Hormone wirken artspezifisch", correct: false }
+        ], reveal: "Hormone wirken nicht artspezifisch — Insulin wirkt z. B. bei vielen Tierarten. Nur das Wachstumshormon (STH) ist eine Ausnahme." }
       },
       {
         id: "hormonsystem_einleitung_mc2",
@@ -12605,6 +12611,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Das endokrine System ersetzt das Nervensystem bei schnellen Reaktionen", correct: false }
         ],
         explanation: "Nervensystem (schnell, elektrisch, ms) und endokrines System (langsam, chemisch, h-d) sind komplementäre Steuersysteme; STH (Wachstumshormon) ist artspezifisch; das endokrine System ersetzt das Nervensystem nicht bei Schnellreaktionen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen über die zwei Körpersteuersysteme stimmen?", checklist: [
+          { text: "Das Nervensystem wirkt schnell elektrisch", correct: true },
+          { text: "Das endokrine System wirkt langsam chemisch über das Blut", correct: true },
+          { text: "Das Wachstumshormon (STH) ist artspezifisch", correct: true },
+          { text: "Das endokrine System ersetzt das Nervensystem bei schnellen Reaktionen", correct: false }
+        ], reveal: "Nervensystem und endokrines System sind komplementäre Steuersysteme — das endokrine System übernimmt nicht die Rolle des Nervensystems bei Schnellreaktionen." }
       }
     ]
   }),
@@ -12623,7 +12635,13 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Er produziert Wachstumshormon und Prolaktin", correct: false },
           { text: "Er hemmt alle Releasing-Hormone des Hypothalamus", correct: false }
         ],
-        explanation: "Der HHL (Neurohypophyse) produziert keine eigenen Hormone — er speichert nur die vom Hypothalamus gebildeten Hormone Oxytocin und ADH (Adiuretin/Vasopressin) und setzt sie bei Bedarf ins Blut frei."
+        explanation: "Der HHL (Neurohypophyse) produziert keine eigenen Hormone — er speichert nur die vom Hypothalamus gebildeten Hormone Oxytocin und ADH (Adiuretin/Vasopressin) und setzt sie bei Bedarf ins Blut frei.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der HHL speichert und gibt Oxytocin und ADH ab, die im Hypothalamus gebildet wurden.", isWrong: false },
+          { text: "Der HHL produziert selbst keine eigenen Hormone.", isWrong: false },
+          { text: "ADH wird auch als Adiuretin oder Vasopressin bezeichnet.", isWrong: false },
+          { text: "Der HHL produziert TSH und ACTH zur Steuerung peripherer Drüsen.", isWrong: true }
+        ], whyWrong: "TSH und ACTH werden vom Hypophysenvorderlappen (HVL) produziert, nicht vom HHL." }
       },
       {
         id: "hypothalamus_hypophyse_h2",
@@ -12635,14 +12653,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Somatostatin (GIH = Growth-Inhibiting-Hormon)", correct: true },
           { text: "CRH (Corticotropin-Releasing-Hormon)", correct: false }
         ],
-        explanation: "GIH (Growth-Inhibiting-Hormon) = Somatostatin ist das Inhibiting-Hormon (IH), das die STH-Ausschüttung hemmt. Es wirkt als Gegenspieler zu GRH. GRH stimuliert STH, Somatostatin bremst es — gemeinsam regulieren sie den Wachstumshormon-Spiegel."
+        explanation: "GIH (Growth-Inhibiting-Hormon) = Somatostatin ist das Inhibiting-Hormon (IH), das die STH-Ausschüttung hemmt. Es wirkt als Gegenspieler zu GRH. GRH stimuliert STH, Somatostatin bremst es — gemeinsam regulieren sie den Wachstumshormon-Spiegel.",
+        learningCard: { type: "predict", statement: "Somatostatin (GIH) hemmt die Ausschüttung des Wachstumshormons STH und wirkt damit als Gegenspieler zu GRH.", answer: true, reveal: "GRH stimuliert STH, Somatostatin (GIH) bremst es — gemeinsam regulieren beide den Wachstumshormonspiegel." }
       },
       {
         id: "hypothalamus_hypophyse_h3",
         type: "true_false",
         statement: "Der Hypophysenvorderlappen (HVL / Adenohypophyse) ist für Hormonbildung, Hormonspeicherung und Hormonfreisetzung zuständig.",
         answer: true,
-        explanation: "Der HVL (Adenohypophyse) ist eine echte Drüse: er produziert, speichert und setzt selbst Hormone frei — sowohl glandotrope Hormone (TSH, ACTH, FSH, LH) als auch direkt wirkende (STH, MSH, Prolaktin). Der HHL speichert dagegen nur die Hypothalamus-Hormone."
+        explanation: "Der HVL (Adenohypophyse) ist eine echte Drüse: er produziert, speichert und setzt selbst Hormone frei — sowohl glandotrope Hormone (TSH, ACTH, FSH, LH) als auch direkt wirkende (STH, MSH, Prolaktin). Der HHL speichert dagegen nur die Hypothalamus-Hormone.",
+        learningCard: { type: "predict", statement: "Der Hypophysenvorderlappen (HVL) ist für Hormonbildung, -speicherung und -freisetzung zuständig.", answer: true, reveal: "Der HVL produziert selbst glandotrope Hormone (TSH, ACTH, FSH, LH) sowie direkt wirkende Hormone (STH, MSH, Prolaktin). Der HHL dagegen speichert nur Hypothalamus-Hormone." }
       },
       {
         id: "hypothalamus_hypophyse_h4",
@@ -12654,7 +12674,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "ADH, Oxytocin und CRH", correct: false },
           { text: "FSH, LH und GnRH", correct: false }
         ],
-        explanation: "Direkt (effektorisch) wirkende HVL-Hormone: STH (wirkt auf Wachstum/Knochen), MSH (Hautpigmentierung) und Prolaktin/LTH (Milchproduktion). Sie brauchen keine weitere Drüse als Zwischenstation. Glandotrope HVL-Hormone (TSH, ACTH, FSH, LH) hingegen stimulieren nachgeordnete Hormondrüsen."
+        explanation: "Direkt (effektorisch) wirkende HVL-Hormone: STH (wirkt auf Wachstum/Knochen), MSH (Hautpigmentierung) und Prolaktin/LTH (Milchproduktion). Sie brauchen keine weitere Drüse als Zwischenstation. Glandotrope HVL-Hormone (TSH, ACTH, FSH, LH) hingegen stimulieren nachgeordnete Hormondrüsen.",
+        learningCard: { type: "reconstruct", template: "Direkt wirkende HVL-Hormone sind ___, ___ und Prolaktin (LTH).", blanks: ["STH", "MSH"], distractors: ["TSH", "ACTH"], reveal: "Sie wirken direkt auf ihr Zielorgan, ohne eine nachgeordnete Drüse zu benötigen. Glandotrope HVL-Hormone (TSH, ACTH, FSH, LH) stimulieren dagegen nachgeordnete Hormondrüsen." }
       },
       {
         id: "hypothalamus_hypophyse_h5",
@@ -12666,7 +12687,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "GnRH (Gonadotropin-Releasing-Hormon)", correct: true },
           { text: "PRH", correct: false }
         ],
-        explanation: "GnRH (Gonadotropin-Releasing-Hormon) stimuliert die Ausschüttung von FSH (Follikel-stimulierendes Hormon) und LH (Luteinisierendes Hormon) / ICSH aus dem HVL. FSH und LH steuern die Gonaden (Ovarien beim Mann/Hoden) und werden daher Gonadotropine genannt."
+        explanation: "GnRH (Gonadotropin-Releasing-Hormon) stimuliert die Ausschüttung von FSH (Follikel-stimulierendes Hormon) und LH (Luteinisierendes Hormon) / ICSH aus dem HVL. FSH und LH steuern die Gonaden (Ovarien beim Mann/Hoden) und werden daher Gonadotropine genannt.",
+        learningCard: { type: "predict", statement: "GnRH (Gonadotropin-Releasing-Hormon) aus dem Hypothalamus stimuliert die Ausschüttung von FSH und LH aus dem HVL.", answer: true, reveal: "FSH und LH werden daher als Gonadotropine bezeichnet, da sie die Gonaden (Eierstöcke bzw. Hoden) steuern." }
       }
     ],
     phase4Questions: [
@@ -12681,6 +12703,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Er speichert ADH und Oxytocin im Hypophysenvorderlappen (HVL)", correct: false }
         ],
         explanation: "Hypothalamus liegt im Zwischenhirn, wandelt nervöse in hormonelle Signale um und produziert RH + IH; ADH und Oxytocin werden im Hypothalamus produziert und im Hypophysenhinterlappen (nicht HVL) gespeichert und freigesetzt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen über den Hypothalamus stimmen?", checklist: [
+          { text: "Er liegt unterhalb des Thalamus im Zwischenhirn", correct: true },
+          { text: "Er wandelt nervöse Reize in chemische (hormonelle) Signale um", correct: true },
+          { text: "Er produziert Releasing-Hormone (RH) und Inhibiting-Hormone (IH)", correct: true },
+          { text: "Er speichert ADH und Oxytocin im Hypophysenvorderlappen (HVL)", correct: false }
+        ], reveal: "ADH und Oxytocin werden zwar im Hypothalamus gebildet, aber im Hypophysenhinterlappen (nicht im HVL) gespeichert und freigesetzt." }
       },
       {
         id: "hypothalamus_hypophyse_mc2",
@@ -12693,6 +12721,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Der HHL produziert ADH und Oxytocin selbst", correct: false }
         ],
         explanation: "Hypophyse (~0,6 g, Sella turcica): HVL (Adenohypophyse) produziert eigene Hormone (TSH, ACTH, FSH, LH, GH, Prolaktin); HHL (Neurohypophyse) speichert und setzt ADH und Oxytocin frei — produziert sie aber nicht selbst.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen über die Hypophyse sind korrekt?", checklist: [
+          { text: "Die Hypophyse wiegt ca. 0,6 g und liegt in der Sella turcica", correct: true },
+          { text: "Der HVL (Adenohypophyse) produziert, speichert und setzt eigene Hormone frei", correct: true },
+          { text: "Glandotrope HVL-Hormone sind TSH, ACTH, FSH und LH", correct: true },
+          { text: "Der HHL produziert ADH und Oxytocin selbst", correct: false }
+        ], reveal: "Der HHL speichert und gibt ADH und Oxytocin nur frei — produziert werden sie im Hypothalamus." }
       }
     ]
   }),
@@ -12711,7 +12745,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Zink", correct: false },
           { text: "Calcium", correct: false }
         ],
-        explanation: "Die Schilddrüse benötigt Jod für die Produktion von T3 und T4. Jodmangel kann zur Schilddrüsenvergrößerung (Struma/Kropf) führen, da die Drüse kompensatorisch wächst. Die Zahl der Jodatome ist namensgebend: Trijodthyronin (T3) = 3 Jodatome, Tetrajodthyronin (T4) = 4 Jodatome."
+        explanation: "Die Schilddrüse benötigt Jod für die Produktion von T3 und T4. Jodmangel kann zur Schilddrüsenvergrößerung (Struma/Kropf) führen, da die Drüse kompensatorisch wächst. Die Zahl der Jodatome ist namensgebend: Trijodthyronin (T3) = 3 Jodatome, Tetrajodthyronin (T4) = 4 Jodatome.",
+        learningCard: { type: "predict", statement: "Die Schilddrüse benötigt Jod für die Produktion von T3 und T4.", answer: true, reveal: "Jodmangel kann zur Schilddrüsenvergrößerung (Struma) führen; T3 (Trijodthyronin) hat 3, T4 (Tetrajodthyronin) 4 Jodatome." }
       },
       {
         id: "schilddrüse_epiphyse_h2",
@@ -12723,14 +12758,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "T4 hemmt T3 und reguliert so den Schilddrüsenspiegel", correct: false },
           { text: "T4 wirkt ausschließlich auf die Gehirnreifung, T3 nur auf das Herz", correct: false }
         ],
-        explanation: "T4 (Tetrajodthyronin) wirkt wie T3, aber weniger aktiv (T3 ist ca. 5x stärker). T4 kann jedoch in peripheren Geweben in T3 umgewandelt werden — dadurch fungiert T4 als eine Art Depot- oder Transportform. Im Blut zirkuliert hauptsächlich T4; an den Zielzellen wird es in das wirksamere T3 konvertiert."
+        explanation: "T4 (Tetrajodthyronin) wirkt wie T3, aber weniger aktiv (T3 ist ca. 5x stärker). T4 kann jedoch in peripheren Geweben in T3 umgewandelt werden — dadurch fungiert T4 als eine Art Depot- oder Transportform. Im Blut zirkuliert hauptsächlich T4; an den Zielzellen wird es in das wirksamere T3 konvertiert.",
+        learningCard: { type: "predict", statement: "T4 ist zwar weniger aktiv als T3, kann aber peripher in das stärkere T3 umgewandelt werden.", answer: true, reveal: "Im Blut zirkuliert hauptsächlich T4, das an den Zielzellen in das wirksamere T3 konvertiert wird — T4 dient so als Depot-/Transportform." }
       },
       {
         id: "schilddrüse_epiphyse_h3",
         type: "true_false",
         statement: "Bei Ausfall der Epiphyse (Zirbeldrüse) kann es zu einer Pubertas praecox (vorzeitiger Pubertät) kommen.",
         answer: true,
-        explanation: "Melatonin der Epiphyse hemmt normalerweise die Gonadotropin-Produktion (GnRH-Hemmung) und verzögert so den Pubertätseintritt. Fällt die Epiphyse aus, fehlt diese Hemmung, und die Pubertät kann deutlich zu früh einsetzen (Pubertas praecox)."
+        explanation: "Melatonin der Epiphyse hemmt normalerweise die Gonadotropin-Produktion (GnRH-Hemmung) und verzögert so den Pubertätseintritt. Fällt die Epiphyse aus, fehlt diese Hemmung, und die Pubertät kann deutlich zu früh einsetzen (Pubertas praecox).",
+        learningCard: { type: "predict", statement: "Bei Ausfall der Epiphyse (Zirbeldrüse) kann es zu einer Pubertas praecox (vorzeitiger Pubertät) kommen.", answer: true, reveal: "Melatonin hemmt normalerweise die Gonadotropin-Produktion (GnRH-Hemmung) und verzögert so den Pubertätseintritt; fehlt diese Hemmung, kann die Pubertät zu früh einsetzen." }
       },
       {
         id: "schilddrüse_epiphyse_h4",
@@ -12742,7 +12779,13 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Parathormon (PTH)", correct: true },
           { text: "Adrenalin", correct: false }
         ],
-        explanation: "Calcitonin (Schilddrüse, C-Zellen) und Parathormon PTH (Nebenschilddrüsen) sind Gegenspieler im Kalzium-Phosphat-Haushalt: Calcitonin SENKT den Ca²⁺-Spiegel, PTH ERHÖHT ihn. Beide gemeinsam halten den Calciumspiegel im Gleichgewicht."
+        explanation: "Calcitonin (Schilddrüse, C-Zellen) und Parathormon PTH (Nebenschilddrüsen) sind Gegenspieler im Kalzium-Phosphat-Haushalt: Calcitonin SENKT den Ca²⁺-Spiegel, PTH ERHÖHT ihn. Beide gemeinsam halten den Calciumspiegel im Gleichgewicht.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Calcitonin ist der Gegenspieler von Parathormon (PTH).", isWrong: false },
+          { text: "Calcitonin senkt den Calciumspiegel, PTH erhöht ihn.", isWrong: false },
+          { text: "Calcitonin wird in den C-Zellen der Schilddrüse gebildet.", isWrong: false },
+          { text: "Calcitonin ist der Gegenspieler von Aldosteron.", isWrong: true }
+        ], whyWrong: "Calcitonin und PTH bilden das Gegenspielerpaar im Calcium-Phosphat-Haushalt, nicht Calcitonin und Aldosteron." }
       },
       {
         id: "schilddrüse_epiphyse_h5",
@@ -12754,7 +12797,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Gehirn", correct: false },
           { text: "Schilddrüse (ca. 5 Liter Blut/Stunde)", correct: true }
         ],
-        explanation: "Die Schilddrüse (Glandula thyroidea) ist das am stärksten durchblutete Organ des menschlichen Körpers mit ca. 5 Liter Blut pro Stunde. Diese intensive Durchblutung ist notwendig, um die Jodaufnahme aus dem Blut und die Hormonabgabe ins Blut zu gewährleisten."
+        explanation: "Die Schilddrüse (Glandula thyroidea) ist das am stärksten durchblutete Organ des menschlichen Körpers mit ca. 5 Liter Blut pro Stunde. Diese intensive Durchblutung ist notwendig, um die Jodaufnahme aus dem Blut und die Hormonabgabe ins Blut zu gewährleisten.",
+        learningCard: { type: "predict", statement: "Die Schilddrüse ist mit ca. 5 Litern Blut pro Stunde das am stärksten durchblutete Organ des menschlichen Körpers.", answer: true, reveal: "Diese starke Durchblutung ist nötig, um die Jodaufnahme aus dem Blut und die Hormonabgabe ins Blut zu gewährleisten." }
       }
     ],
     phase4Questions: [
@@ -12769,6 +12813,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Senkung der Körpertemperatur", correct: false }
         ],
         explanation: "Schilddrüsenhormone (T3 stärker als T4) steigern Grundumsatz, Herzfrequenz, Schlagkraft und wirken anabol auf die Skelettmuskulatur; sie erhöhen (nicht senken) die Körpertemperatur durch gesteigerten Energieumsatz.",
+        learningCard: { type: "teachback", prompt: "Welche Wirkungen haben T3 und T4?", checklist: [
+          { text: "Steigerung des Grundumsatzes", correct: true },
+          { text: "Erhöhung von Herzfrequenz und Schlagkraft", correct: true },
+          { text: "Anabole Wirkung auf die Skelettmuskulatur", correct: true },
+          { text: "Senkung der Körpertemperatur", correct: false }
+        ], reveal: "Schilddrüsenhormone erhöhen die Körpertemperatur durch gesteigerten Energieumsatz, sie senken sie nicht." }
       },
       {
         id: "schilddrüse_epiphyse_mc2",
@@ -12781,6 +12831,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "T4 ist 5-mal stärker als T3", correct: false }
         ],
         explanation: "Schilddrüse benötigt Jod für T3/T4; Calcitonin (C-Zellen) senkt den Kalziumspiegel; Epiphyse produziert Melatonin aus Tryptophan bei Dunkelheit; T3 ist 5-mal stärker als T4 (nicht umgekehrt).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Schilddrüse und Epiphyse stimmen?", checklist: [
+          { text: "Die Schilddrüse benötigt Jod für T3 und T4", correct: true },
+          { text: "Calcitonin (C-Zellen) senkt den Kalziumspiegel im Blut", correct: true },
+          { text: "Die Epiphyse produziert lichtabhängig Melatonin aus Tryptophan", correct: true },
+          { text: "T4 ist 5-mal stärker als T3", correct: false }
+        ], reveal: "Tatsächlich ist T3 etwa 5-mal stärker als T4, nicht umgekehrt." }
       }
     ]
   }),
@@ -12799,7 +12855,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "'Parathormon senkt Kalzium sofort'", correct: false },
           { text: "'Parathormon schützt Proteinsynthese'", correct: false }
         ],
-        explanation: "Die offizielle Eselsbrücke lautet: 'Parathormon stellt Kalzium parat.' PTH erhöht den Kalziumspiegel — durch Förderung der Darmaufnahme, Hemmung der Nierenausscheidung und Mobilisierung aus Knochen. Es ist der direkte Gegenspieler von Calcitonin."
+        explanation: "Die offizielle Eselsbrücke lautet: 'Parathormon stellt Kalzium parat.' PTH erhöht den Kalziumspiegel — durch Förderung der Darmaufnahme, Hemmung der Nierenausscheidung und Mobilisierung aus Knochen. Es ist der direkte Gegenspieler von Calcitonin.",
+        learningCard: { type: "reconstruct", template: "Die Eselsbrücke lautet: 'Parathormon stellt ___ ___.'", blanks: ["Kalzium", "parat"], distractors: ["Phosphat", "bereit"], reveal: "PTH erhöht den Kalziumspiegel durch Förderung der Darmaufnahme, Hemmung der Nierenausscheidung und Mobilisierung aus Knochen. Es ist der direkte Gegenspieler von Calcitonin." }
       },
       {
         id: "nebenschilddrüsen_thymus_h2",
@@ -12811,14 +12868,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Er wird vollständig durch Lymphknoten ersetzt", correct: false },
           { text: "Er beginnt Cortisol zu produzieren", correct: false }
         ],
-        explanation: "Der Thymus erfährt nach der Pubertät eine Involution (Rückbildung): er wird zu ca. 90% in funktionsloses braunes Fettgewebe umgewandelt. Deshalb ist die Thymusfunktion (T-Lymphozyten-Reifung) im Kindes- und Jugendalter besonders wichtig — zu dieser Zeit wird das Immungedächtnis aufgebaut."
+        explanation: "Der Thymus erfährt nach der Pubertät eine Involution (Rückbildung): er wird zu ca. 90% in funktionsloses braunes Fettgewebe umgewandelt. Deshalb ist die Thymusfunktion (T-Lymphozyten-Reifung) im Kindes- und Jugendalter besonders wichtig — zu dieser Zeit wird das Immungedächtnis aufgebaut.",
+        learningCard: { type: "predict", statement: "Nach der Pubertät wird der Thymus zu ca. 90% in funktionsloses braunes Fettgewebe umgewandelt (Involution).", answer: true, reveal: "Deshalb ist die Thymusfunktion (T-Lymphozyten-Reifung) im Kindes- und Jugendalter besonders wichtig — zu dieser Zeit wird das Immungedächtnis aufgebaut." }
       },
       {
         id: "nebenschilddrüsen_thymus_h3",
         type: "true_false",
         statement: "Bei einem Ausfall des Parathormons (PTH) kommt es zur Muskelverkrampfung (Tetanie), da der Kalziumspiegel zu stark absinkt.",
         answer: true,
-        explanation: "Kalzium ist entscheidend für die Muskel- und Nervensteuerung. Fällt PTH aus, sinkt der Ca²⁺-Spiegel unkontrolliert (Hypokalzämie). Die neuromuskuläre Erregbarkeit steigt stark an, was zu Muskelkrämpfen und Tetanie führt. Im Extremfall sind Herz- und Atemmuskulatur betroffen."
+        explanation: "Kalzium ist entscheidend für die Muskel- und Nervensteuerung. Fällt PTH aus, sinkt der Ca²⁺-Spiegel unkontrolliert (Hypokalzämie). Die neuromuskuläre Erregbarkeit steigt stark an, was zu Muskelkrämpfen und Tetanie führt. Im Extremfall sind Herz- und Atemmuskulatur betroffen.",
+        learningCard: { type: "predict", statement: "Bei einem Ausfall des Parathormons (PTH) kommt es zur Muskelverkrampfung (Tetanie), da der Kalziumspiegel zu stark absinkt.", answer: true, reveal: "Die neuromuskuläre Erregbarkeit steigt bei Hypokalzämie stark an; im Extremfall sind Herz- und Atemmuskulatur betroffen." }
       },
       {
         id: "nebenschilddrüsen_thymus_h4",
@@ -12830,7 +12889,13 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "An der Rückseite der Schilddrüse, innerhalb der Organkapsel", correct: true },
           { text: "Hinter dem Sternum im Mediastinum (wie der Thymus)", correct: false }
         ],
-        explanation: "Die Nebenschilddrüsen (Glandulae parathyreoideae) liegen an der RÜCKSEITE der Schilddrüse innerhalb der Organkapsel — sie sind also anatomisch mit der Schilddrüse assoziiert, aber funktionell völlig unabhängig. Jeder Mensch hat durchschnittlich 4 Stück (Bandbreite 2–12)."
+        explanation: "Die Nebenschilddrüsen (Glandulae parathyreoideae) liegen an der RÜCKSEITE der Schilddrüse innerhalb der Organkapsel — sie sind also anatomisch mit der Schilddrüse assoziiert, aber funktionell völlig unabhängig. Jeder Mensch hat durchschnittlich 4 Stück (Bandbreite 2–12).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Nebenschilddrüsen liegen an der Rückseite der Schilddrüse, innerhalb der Organkapsel.", isWrong: false },
+          { text: "Sie sind funktionell völlig unabhängig von der Schilddrüse.", isWrong: false },
+          { text: "Jeder Mensch hat durchschnittlich 4 Nebenschilddrüsen.", isWrong: false },
+          { text: "Die Nebenschilddrüsen liegen hinter dem Sternum im Mediastinum wie der Thymus.", isWrong: true }
+        ], whyWrong: "Das ist die Lage des Thymus, nicht der Nebenschilddrüsen — diese liegen an der Schilddrüsenrückseite." }
       },
       {
         id: "nebenschilddrüsen_thymus_h5",
@@ -12842,7 +12907,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Regulation des Blutzuckers wie Insulin", correct: false },
           { text: "Steuerung der Kalziumausscheidung über die Niere", correct: false }
         ],
-        explanation: "Thymopoetin und Thymosin sind die endokrinen Produkte des Thymus (Thymusfaktoren). Sie fördern die Reifung und Differenzierung von T-Lymphozyten zu immunkompetenten Immunzellen und wirken hemmend auf Immunreaktionen im Extrazellulärraum (suppressiv bei Autoimmunreaktionen und Transplantationsabstoßung)."
+        explanation: "Thymopoetin und Thymosin sind die endokrinen Produkte des Thymus (Thymusfaktoren). Sie fördern die Reifung und Differenzierung von T-Lymphozyten zu immunkompetenten Immunzellen und wirken hemmend auf Immunreaktionen im Extrazellulärraum (suppressiv bei Autoimmunreaktionen und Transplantationsabstoßung).",
+        learningCard: { type: "predict", statement: "Thymopoetin und Thymosin fördern die Reifung und Aktivierung von T-Lymphozyten.", answer: true, reveal: "Diese Thymusfaktoren wirken zusätzlich hemmend auf Immunreaktionen im Extrazellulärraum, etwa bei Autoimmunreaktionen und Transplantatabstoßung." }
       }
     ],
     phase4Questions: [
@@ -12857,6 +12923,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Senkung des Kalziumspiegels (wie Calcitonin)", correct: false }
         ],
         explanation: "PTH erhöht den Kalziumspiegel durch Osteoklastenaktivierung, gesteigerte intestinale Ca-Aufnahme und verminderte renale Ca-Ausscheidung; PTH wirkt antagonistisch zu Calcitonin (nicht gleichsinnig).",
+        learningCard: { type: "teachback", prompt: "Welche Wirkungen hat Parathormon (PTH)?", checklist: [
+          { text: "Erhöhung des Kalziumspiegels im Blut", correct: true },
+          { text: "Steigerung der Ca-Aufnahme aus dem Darm", correct: true },
+          { text: "Hemmung der renalen Ca-Ausscheidung (gesteigerte Rückresorption)", correct: true },
+          { text: "Senkung des Kalziumspiegels (wie Calcitonin)", correct: false }
+        ], reveal: "PTH wirkt antagonistisch zu Calcitonin, nicht gleichsinnig." }
       },
       {
         id: "nebenschilddrüsen_thymus_mc2",
@@ -12869,6 +12941,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Nach der Pubertät wächst er weiter an", correct: false }
         ],
         explanation: "Thymus liegt im vorderen Mediastinum hinter dem Sternum, ist beim Neugeborenen relativ am größten und produziert Thymopoetin und Thymosin; nach der Pubertät involiert er zu einem Fettkörper (wächst nicht weiter).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Thymus stimmen?", checklist: [
+          { text: "Er liegt im Mediastinum hinter dem Sternum", correct: true },
+          { text: "Er produziert Thymopoetin und Thymosin", correct: true },
+          { text: "Er ist beim Neugeborenen noch voll entfaltet", correct: true },
+          { text: "Nach der Pubertät wächst er weiter an", correct: false }
+        ], reveal: "Nach der Pubertät involiert der Thymus zu einem Fettkörper, er wächst nicht weiter." }
       }
     ]
   }),
@@ -12887,7 +12965,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Zona glomerulosa (äußerste Schicht)", correct: true },
           { text: "Zona medullaris (Nebennierenmark)", correct: false }
         ],
-        explanation: "Merkhilfe Zonen (von außen nach innen): Glomerulosa (Mineralkortikoide/Aldosteron) → Fasciculata (Glukokortikoide/Cortisol) → Reticularis (Androgene/Testosteron). Die Zona glomerulosa liegt außen und produziert Aldosteron, das den Elektrolyt- und Wasserhaushalt reguliert."
+        explanation: "Merkhilfe Zonen (von außen nach innen): Glomerulosa (Mineralkortikoide/Aldosteron) → Fasciculata (Glukokortikoide/Cortisol) → Reticularis (Androgene/Testosteron). Die Zona glomerulosa liegt außen und produziert Aldosteron, das den Elektrolyt- und Wasserhaushalt reguliert.",
+        learningCard: { type: "predict", statement: "Die Zona glomerulosa, die äußerste Schicht der Nebennierenrinde, produziert Aldosteron.", answer: true, reveal: "Merkhilfe von außen nach innen: Glomerulosa (Aldosteron) → Fasciculata (Cortisol) → Reticularis (Androgene)." }
       },
       {
         id: "nebenniere_nnr_h2",
@@ -12899,14 +12978,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Es hat keinen Einfluss auf den Blutzuckerspiegel", correct: false },
           { text: "Es fördert die Glucoseaufnahme in die Zellen wie Insulin", correct: false }
         ],
-        explanation: "Cortisol ist der klassische Gegenspieler von Insulin im Blutzuckerstoffwechsel: Es steigert die Gluconeogenese (Zuckeraufbau aus Nicht-Zuckerstoffen), hemmt die Glykolyse (Zuckerabbau) und lässt so den Blutzuckerspiegel steigen. Gleichzeitig senkt es den Zuckerverbrauch der Zellen."
+        explanation: "Cortisol ist der klassische Gegenspieler von Insulin im Blutzuckerstoffwechsel: Es steigert die Gluconeogenese (Zuckeraufbau aus Nicht-Zuckerstoffen), hemmt die Glykolyse (Zuckerabbau) und lässt so den Blutzuckerspiegel steigen. Gleichzeitig senkt es den Zuckerverbrauch der Zellen.",
+        learningCard: { type: "predict", statement: "Cortisol erhöht den Blutzucker durch Steigerung der Gluconeogenese.", answer: true, reveal: "Cortisol ist der Gegenspieler von Insulin: es hemmt zusätzlich die Glykolyse und senkt den Zuckerverbrauch der Zellen." }
       },
       {
         id: "nebenniere_nnr_h3",
         type: "true_false",
         statement: "Aldosteron fördert die Natriumretention und Kaliumausscheidung, was durch das RAAS-System reguliert wird.",
         answer: true,
-        explanation: "Aldosteron wirkt im distalen Tubulus und Sammelrohr der Niere: Na⁺ wird zurückgehalten (Retention), K⁺ ausgeschieden. Da Na⁺ Wasser nachzieht, steigt das Blutvolumen und damit der Blutdruck. Das RAAS (Renin-Angiotensin-Aldosteron-System) ist der wichtigste Regelkreis für Aldosteron."
+        explanation: "Aldosteron wirkt im distalen Tubulus und Sammelrohr der Niere: Na⁺ wird zurückgehalten (Retention), K⁺ ausgeschieden. Da Na⁺ Wasser nachzieht, steigt das Blutvolumen und damit der Blutdruck. Das RAAS (Renin-Angiotensin-Aldosteron-System) ist der wichtigste Regelkreis für Aldosteron.",
+        learningCard: { type: "predict", statement: "Aldosteron fördert die Natriumretention und Kaliumausscheidung, was durch das RAAS-System reguliert wird.", answer: true, reveal: "Aldosteron wirkt im distalen Tubulus und Sammelrohr: Na⁺ wird zurückgehalten, K⁺ ausgeschieden — das erhöht Blutvolumen und Blutdruck." }
       },
       {
         id: "nebenniere_nnr_h4",
@@ -12918,7 +12999,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Proteohormone, Steroidhormone und Neurohormone", correct: false },
           { text: "Insulin, Glukagon und Cortisol", correct: false }
         ],
-        explanation: "Die NNR produziert ausschließlich Steroidhormone (Cholesterin als Muttersubstanz): Mineralkortikoide (v.a. Aldosteron, Zona glomerulosa), Glukokortikoide (v.a. Cortisol, Zona fasciculata) und Androgene (v.a. Testosteron, Zona reticularis). Katecholamine werden im Nebennierenmark (NNM) gebildet."
+        explanation: "Die NNR produziert ausschließlich Steroidhormone (Cholesterin als Muttersubstanz): Mineralkortikoide (v.a. Aldosteron, Zona glomerulosa), Glukokortikoide (v.a. Cortisol, Zona fasciculata) und Androgene (v.a. Testosteron, Zona reticularis). Katecholamine werden im Nebennierenmark (NNM) gebildet.",
+        learningCard: { type: "reconstruct", template: "Die Nebennierenrinde produziert ___, Glukokortikoide und ___.", blanks: ["Mineralkortikoide", "Androgene"], distractors: ["Katecholamine", "Peptidhormone"], reveal: "Alle drei Gruppen sind Steroidhormone mit Cholesterin als Muttersubstanz — Katecholamine dagegen werden im Nebennierenmark gebildet." }
       },
       {
         id: "nebenniere_nnr_h5",
@@ -12930,7 +13012,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Reflux durch Erschlaffung des unteren Ösophagussphinkters", correct: false },
           { text: "Pankreatitis durch Stimulation der Lipaseausschüttung", correct: false }
         ],
-        explanation: "Cortisol führt zu vermehrter Säureproduktion und Pepsinsekretion im Magen. Ein Überschuss (z.B. bei Langzeit-Kortisontherapie oder chronischem Stress) kann daher ein Magenulcus (Magengeschwür) verursachen. Deshalb werden bei Kortisongabe oft Magenschutz-Medikamente (Protonenpumpenhemmer) mitgegeben."
+        explanation: "Cortisol führt zu vermehrter Säureproduktion und Pepsinsekretion im Magen. Ein Überschuss (z.B. bei Langzeit-Kortisontherapie oder chronischem Stress) kann daher ein Magenulcus (Magengeschwür) verursachen. Deshalb werden bei Kortisongabe oft Magenschutz-Medikamente (Protonenpumpenhemmer) mitgegeben.",
+        learningCard: { type: "predict", statement: "Ein länger andauernder Cortisol-Überschuss kann durch vermehrte Magensäure- und Pepsinsekretion ein Magenulcus verursachen.", answer: true, reveal: "Deshalb werden bei Kortisontherapie oft Magenschutz-Medikamente (Protonenpumpenhemmer) mitgegeben." }
       }
     ],
     phase4Questions: [
@@ -12945,6 +13028,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Senkt den Blutzucker wie Insulin", correct: false }
         ],
         explanation: "Cortisol ist das Hauptstresshormon: entzündungshemmend (hemmt Phospholipase A2), immunsuppressiv, katabol (Glukoneogenese hoch, Lipolyse hoch) — es erhöht den Blutzucker (gegenteilig zu Insulin, nicht gleichsinnig).",
+        learningCard: { type: "teachback", prompt: "Welche Wirkungen hat Cortisol?", checklist: [
+          { text: "Entzündungshemmend und immunsuppressiv", correct: true },
+          { text: "Steigert Gluconeogenese → Blutzucker↑", correct: true },
+          { text: "Fördert Lipolyse (Fettsäurenfreisetzung)", correct: true },
+          { text: "Senkt den Blutzucker wie Insulin", correct: false }
+        ], reveal: "Cortisol erhöht den Blutzucker, es wirkt also gegenteilig zu Insulin, nicht gleichsinnig." }
       },
       {
         id: "nebenniere_nnr_mc2",
@@ -12957,6 +13046,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Cortisol wird in der Zona glomerulosa gebildet", correct: false }
         ],
         explanation: "Alle NNR-Hormone sind Steroidhormone mit Cholesterin; Zona glomerulosa → Aldosteron, Zona fasciculata → Cortisol, Zona reticularis → Androgene; Testosteron ist das wichtigste Androgen der NNR; Cortisol wird in der Zona fasciculata (nicht glomerulosa) gebildet.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen über die Nebennierenrinde (NNR) stimmen?", checklist: [
+          { text: "Die NNR-Hormone sind Steroidhormone mit Cholesterin als Muttersubstanz", correct: true },
+          { text: "Aldosteron reguliert den Elektrolyt- und Wasserhaushalt (RAAS)", correct: true },
+          { text: "Testosteron ist das wichtigste Androgen der NNR", correct: true },
+          { text: "Cortisol wird in der Zona glomerulosa gebildet", correct: false }
+        ], reveal: "Cortisol wird in der Zona fasciculata gebildet, nicht in der Zona glomerulosa (die produziert Aldosteron)." }
       }
     ]
   }),
@@ -12975,14 +13070,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Proteohormone", correct: false },
           { text: "Gewebshormone", correct: false }
         ],
-        explanation: "Adrenalin, Noradrenalin, Dopamin und Serotonin gehören zur Gruppe der Katecholamine — sie leiten sich von der Aminosäure Tyrosin ab. Im Nebennierenmark werden hauptsächlich Adrenalin und Noradrenalin gebildet und als Stresshormone ins Blut abgegeben."
+        explanation: "Adrenalin, Noradrenalin, Dopamin und Serotonin gehören zur Gruppe der Katecholamine — sie leiten sich von der Aminosäure Tyrosin ab. Im Nebennierenmark werden hauptsächlich Adrenalin und Noradrenalin gebildet und als Stresshormone ins Blut abgegeben.",
+        learningCard: { type: "predict", statement: "Adrenalin, Noradrenalin und Dopamin gehören zur Gruppe der Katecholamine.", answer: true, reveal: "Sie leiten sich von der Aminosäure Tyrosin ab; im Nebennierenmark werden vor allem Adrenalin und Noradrenalin als Stresshormone gebildet." }
       },
       {
         id: "nebenniere_nnm_h2",
         type: "true_false",
         statement: "Noradrenalin wirkt hemmend auf die Herzfrequenz, während Adrenalin sie steigert.",
         answer: true,
-        explanation: "Adrenalin steigert Herzfrequenz und Herzzeit-Volumen (positiv chronotrop und inotrop). Noradrenalin hat den gegenteiligen Effekt auf die Herzfrequenz (negativ chronotrop) — dies ist eine kompensatorische Reaktion auf den stark erhöhten Blutdruck durch starke Vasokonstriktion. Beide erhöhen jedoch den systolischen Blutdruck."
+        explanation: "Adrenalin steigert Herzfrequenz und Herzzeit-Volumen (positiv chronotrop und inotrop). Noradrenalin hat den gegenteiligen Effekt auf die Herzfrequenz (negativ chronotrop) — dies ist eine kompensatorische Reaktion auf den stark erhöhten Blutdruck durch starke Vasokonstriktion. Beide erhöhen jedoch den systolischen Blutdruck.",
+        learningCard: { type: "predict", statement: "Noradrenalin wirkt hemmend auf die Herzfrequenz, während Adrenalin sie steigert.", answer: true, reveal: "Das ist eine kompensatorische Reaktion auf den durch Noradrenalin stark erhöhten Blutdruck (Vasokonstriktion) — beide erhöhen aber den systolischen Blutdruck." }
       },
       {
         id: "nebenniere_nnm_h3",
@@ -12994,7 +13091,13 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Beide, NNR und NNM, stammen vom Ektoderm des Sympathikus", correct: false },
           { text: "Vom Mesoderm, wie die Niere selbst", correct: false }
         ],
-        explanation: "NNR und NNM sind entwicklungsgeschichtlich völlig verschieden: NNR stammt vom Peritoneum (Bauchfell, Mesoderm) und ist eine echte endokrine Drüse. NNM stammt vom Ektoderm (Sympathikus) und ist ein neurales Organ — vergleichbar mit einem sympathischen Ganglion, das Katecholamine ins Blut abgibt statt elektrisch weiterzuleiten."
+        explanation: "NNR und NNM sind entwicklungsgeschichtlich völlig verschieden: NNR stammt vom Peritoneum (Bauchfell, Mesoderm) und ist eine echte endokrine Drüse. NNM stammt vom Ektoderm (Sympathikus) und ist ein neurales Organ — vergleichbar mit einem sympathischen Ganglion, das Katecholamine ins Blut abgibt statt elektrisch weiterzuleiten.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das NNM stammt vom Ektoderm (Sympathikus) ab.", isWrong: false },
+          { text: "Die NNR stammt vom Peritoneum (Mesoderm) ab.", isWrong: false },
+          { text: "Das NNM ist ein neurales Organ, vergleichbar mit einem sympathischen Ganglion.", isWrong: false },
+          { text: "NNR und NNM stammen beide vom Ektoderm des Sympathikus ab.", isWrong: true }
+        ], whyWrong: "NNR und NNM haben unterschiedliche embryonale Ursprünge — nur das NNM stammt vom Ektoderm/Sympathikus, die NNR vom Peritoneum." }
       },
       {
         id: "nebenniere_nnm_h4",
@@ -13006,7 +13109,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Adrenalin", correct: true },
           { text: "Aldosteron", correct: false }
         ],
-        explanation: "Adrenalin wirkt anregend auf das ZNS (ZNS-stimulierend) — typische Stressreaktion: Aufmerksamkeit steigt, Reaktionsfähigkeit erhöht sich. Noradrenalin hat keine oder kaum eine ZNS-stimulierende Wirkung laut Tabelle. Cortisol und Aldosteron sind keine Katecholamine und wirken nicht direkt als ZNS-Stimulans."
+        explanation: "Adrenalin wirkt anregend auf das ZNS (ZNS-stimulierend) — typische Stressreaktion: Aufmerksamkeit steigt, Reaktionsfähigkeit erhöht sich. Noradrenalin hat keine oder kaum eine ZNS-stimulierende Wirkung laut Tabelle. Cortisol und Aldosteron sind keine Katecholamine und wirken nicht direkt als ZNS-Stimulans.",
+        learningCard: { type: "predict", statement: "Adrenalin wirkt anregend auf das zentrale Nervensystem (ZNS).", answer: true, reveal: "Noradrenalin hat dagegen kaum eine ZNS-stimulierende Wirkung; Cortisol und Aldosteron sind keine Katecholamine." }
       },
       {
         id: "nebenniere_nnm_h5",
@@ -13018,7 +13122,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Adrenalin weitet die Bronchien (weit), Noradrenalin verengt sie (eng)", correct: true },
           { text: "Weder Adrenalin noch Noradrenalin wirken auf die Bronchien", correct: false }
         ],
-        explanation: "Adrenalin → Bronchien WEIT (Bronchodilatation) — wichtig für schnellere Sauerstoffaufnahme in der Stresssituation. Noradrenalin → Bronchien ENG (Bronchokonstriktion). Dies ist ein wichtiger klinischer Unterschied: Adrenalin wird z.B. beim anaphylaktischen Schock eingesetzt, um die Bronchien zu weiten."
+        explanation: "Adrenalin → Bronchien WEIT (Bronchodilatation) — wichtig für schnellere Sauerstoffaufnahme in der Stresssituation. Noradrenalin → Bronchien ENG (Bronchokonstriktion). Dies ist ein wichtiger klinischer Unterschied: Adrenalin wird z.B. beim anaphylaktischen Schock eingesetzt, um die Bronchien zu weiten.",
+        learningCard: { type: "reconstruct", template: "Adrenalin wirkt auf die Bronchien ___ (Bronchodilatation), Noradrenalin dagegen ___ (Bronchokonstriktion).", blanks: ["weitend", "verengend"], distractors: ["reizend", "lähmend"], reveal: "Adrenalin wird deshalb z. B. beim anaphylaktischen Schock eingesetzt, um die Bronchien zu weiten." }
       }
     ],
     phase4Questions: [
@@ -13033,6 +13138,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Erhöht den diastolischen Blutdruck wie Noradrenalin", correct: false }
         ],
         explanation: "Adrenalin steigert Herzminutenvolumen und -frequenz, erweitert die Bronchien und aktiviert das ZNS; im Gegensatz zu Noradrenalin erhöht Adrenalin vor allem den systolischen Blutdruck und senkt den peripheren Widerstand.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen über Adrenalin stimmen?", checklist: [
+          { text: "Steigert Herzzeit-Volumen und Herzfrequenz", correct: true },
+          { text: "Weitet die Bronchien (Bronchodilatation)", correct: true },
+          { text: "Regt das ZNS an", correct: true },
+          { text: "Erhöht den diastolischen Blutdruck wie Noradrenalin", correct: false }
+        ], reveal: "Adrenalin erhöht vor allem den systolischen Blutdruck und senkt den peripheren Widerstand, im Gegensatz zu Noradrenalin." }
       },
       {
         id: "nebenniere_nnm_mc2",
@@ -13045,6 +13156,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Das NNM ist eine klassische Hormondrüse ohne Nervenverbindung", correct: false }
         ],
         explanation: "Das Nebennierenmark entstand aus Neuralleistenzellen (Ektoderm) und entspricht einem modifizierten Sympathikusganglion, das direkt durch sympathische Nerven stimuliert wird und Katecholamine (Adrenalin, Noradrenalin) freisetzt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen über das Nebennierenmark (NNM) treffen zu?", checklist: [
+          { text: "Das NNM ist entwicklungsgeschichtlich dem Sympathikus (Ektoderm) zuzuordnen", correct: true },
+          { text: "Es bildet Adrenalin und Noradrenalin als Katecholamine", correct: true },
+          { text: "Adrenalin und Noradrenalin sind Stresshormone (Fight-or-Flight)", correct: true },
+          { text: "Das NNM ist eine klassische Hormondrüse ohne Nervenverbindung", correct: false }
+        ], reveal: "Das NNM entspricht einem modifizierten Sympathikusganglion, das direkt durch sympathische Nerven stimuliert wird." }
       }
     ]
   }),
@@ -13063,7 +13180,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Die Hypophyse produziert mehr glandotrope Hormone als Reaktion", correct: false },
           { text: "Das Zielorgan wird dauerhaft und ohne Unterbrechung aktiviert", correct: false }
         ],
-        explanation: "Negative Rückkopplung: Wenn die Konzentration peripherer Hormone im Blut hoch genug ist, hemmt dies Hypothalamus und Hypophyse — sie reduzieren oder stoppen die Produktion stimulierender Hormone. Sinkt die Konzentration wieder, nehmen sie ihre Tätigkeit auf. So wird ein stabiler Hormonspiegel aufrechterhalten."
+        explanation: "Negative Rückkopplung: Wenn die Konzentration peripherer Hormone im Blut hoch genug ist, hemmt dies Hypothalamus und Hypophyse — sie reduzieren oder stoppen die Produktion stimulierender Hormone. Sinkt die Konzentration wieder, nehmen sie ihre Tätigkeit auf. So wird ein stabiler Hormonspiegel aufrechterhalten.",
+        learningCard: { type: "predict", statement: "Bei ausreichender Hormonkonzentration im Blut stoppt die negative Rückkopplung die Stimulation durch Hypothalamus und Hypophyse.", answer: true, reveal: "Sinkt die Konzentration wieder, nehmen Hypothalamus und Hypophyse ihre Tätigkeit erneut auf — so bleibt der Hormonspiegel stabil." }
       },
       {
         id: "hormon_regelkreis_h2",
@@ -13075,14 +13193,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Der Druck-/Saugreiz des Neugeborenen an der Brustdrüse", correct: true },
           { text: "Temperaturabfall des Körpers nach der Geburt", correct: false }
         ],
-        explanation: "Druckrezeptoren in der Brustdrüse reagieren auf den Saugvorgang des Neugeborenen → afferente Nervenbahn → Hypothalamus → PRH → HVL → Prolaktin (Milchproduktion) und Oxytocin (Milchauspressung). Dies ist ein klassisches Beispiel für einen neuroendokrinen Reflexbogen: nervöser Reiz → hormonelle Antwort."
+        explanation: "Druckrezeptoren in der Brustdrüse reagieren auf den Saugvorgang des Neugeborenen → afferente Nervenbahn → Hypothalamus → PRH → HVL → Prolaktin (Milchproduktion) und Oxytocin (Milchauspressung). Dies ist ein klassisches Beispiel für einen neuroendokrinen Reflexbogen: nervöser Reiz → hormonelle Antwort.",
+        learningCard: { type: "predict", statement: "Der Druck-/Saugreiz des Neugeborenen an der Brustdrüse löst die Prolaktinausschüttung beim Stillen aus.", answer: true, reveal: "Druckrezeptoren leiten den Reiz afferent zum Hypothalamus weiter → PRH → HVL → Prolaktin (Milchproduktion) und Oxytocin (Milchauspressung)." }
       },
       {
         id: "hormon_regelkreis_h3",
         type: "true_false",
         statement: "Niere, Pankreas und Nebennierenmark können Hormone ohne zentrale Steuerung durch den Hypothalamus ausschütten.",
         answer: true,
-        explanation: "Diese Organe reagieren direkt auf periphere Reize: Niere → EPO bei O₂-Mangel; Pankreas → Insulin bei Blutzucker↑ / Glukagon bei Blutzucker↓; NNM → Katecholamine bei Nervenreizen (Stress). Auch Schilddrüse und Nebenschilddrüsen reagieren direkt auf den Calciumspiegel. Gewebshormone (Gastrin, Histamin, Sekretin usw.) wirken ebenfalls ohne zentrale Steuerung."
+        explanation: "Diese Organe reagieren direkt auf periphere Reize: Niere → EPO bei O₂-Mangel; Pankreas → Insulin bei Blutzucker↑ / Glukagon bei Blutzucker↓; NNM → Katecholamine bei Nervenreizen (Stress). Auch Schilddrüse und Nebenschilddrüsen reagieren direkt auf den Calciumspiegel. Gewebshormone (Gastrin, Histamin, Sekretin usw.) wirken ebenfalls ohne zentrale Steuerung.",
+        learningCard: { type: "predict", statement: "Niere, Pankreas und Nebennierenmark können Hormone ohne zentrale Steuerung durch den Hypothalamus ausschütten.", answer: true, reveal: "Diese Organe reagieren direkt auf periphere Reize, z. B. Niere → EPO bei O₂-Mangel, Pankreas → Insulin/Glukagon bei Blutzuckerschwankungen, NNM → Katecholamine bei Stress." }
       },
       {
         id: "hormon_regelkreis_h4",
@@ -13094,7 +13214,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Es stimuliert direkt die Prolaktinproduktion im HVL", correct: false },
           { text: "Es erhöht den Blutzucker der Mutter während des Stillens", correct: false }
         ],
-        explanation: "Beim Stillen werden gleichzeitig zwei Hormone freigesetzt: 1. Prolaktin (durch PRH) → stimuliert die Milchproduktion in den Drüsenzellen. 2. Oxytocin (aus dem HHL) → bewirkt Kontraktion des Myoepithels der Brustdrüse → Milch wird ausgepresst (Milchejektionsreflex). Oxytocin ist auch für die Uteruskontraktionen nach der Geburt zuständig."
+        explanation: "Beim Stillen werden gleichzeitig zwei Hormone freigesetzt: 1. Prolaktin (durch PRH) → stimuliert die Milchproduktion in den Drüsenzellen. 2. Oxytocin (aus dem HHL) → bewirkt Kontraktion des Myoepithels der Brustdrüse → Milch wird ausgepresst (Milchejektionsreflex). Oxytocin ist auch für die Uteruskontraktionen nach der Geburt zuständig.",
+        learningCard: { type: "predict", statement: "Oxytocin bewirkt beim Stillen die Kontraktion des Myoepithels der Brustdrüse und damit die Milchauspressung.", answer: true, reveal: "Gleichzeitig stimuliert Prolaktin (via PRH) die Milchproduktion — beide Hormone wirken beim Stillreflex zusammen. Oxytocin ist zudem für die Uteruskontraktionen nach der Geburt zuständig." }
       },
       {
         id: "hormon_regelkreis_h5",
@@ -13106,7 +13227,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Cortisol = identisch mit CRH", correct: false },
           { text: "Adrenalin = identisch mit GIH (Somatostatin)", correct: false }
         ],
-        explanation: "Bei erhöhtem Prolaktinspiegel wird vermehrt Dopamin ausgeschüttet, welches die Prolaktinsekretion hemmt. Dopamin ist identisch mit dem Prolaktin-Inhibiting-Hormon (PIH) des Hypothalamus. Dies ist die negative Rückkopplung des neuroendokrinen Reflexbogens beim Stillen."
+        explanation: "Bei erhöhtem Prolaktinspiegel wird vermehrt Dopamin ausgeschüttet, welches die Prolaktinsekretion hemmt. Dopamin ist identisch mit dem Prolaktin-Inhibiting-Hormon (PIH) des Hypothalamus. Dies ist die negative Rückkopplung des neuroendokrinen Reflexbogens beim Stillen.",
+        learningCard: { type: "reconstruct", template: "___ hemmt die Prolaktinsekretion und ist identisch mit dem ___ (PIH) des Hypothalamus.", blanks: ["Dopamin", "Prolaktin-Inhibiting-Hormon"], distractors: ["Somatostatin", "Oxytocin"], reveal: "Bei erhöhtem Prolaktinspiegel wird vermehrt Dopamin ausgeschüttet — das ist die negative Rückkopplung des neuroendokrinen Reflexbogens beim Stillen." }
       }
     ],
     phase4Questions: [
@@ -13121,6 +13243,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Gewebshormone (Gastrin, Histamin) unterliegen der zentralen Hypothalamus-Steuerung", correct: false }
         ],
         explanation: "Hypothalamus (Hierarchiespitze) ist mit dem HVL durch ein Portalgefäßsystem verbunden; negative Rückkopplung hemmt bei ausreichender Hormonkonzentration die Produktion; Gewebshormone (Gastrin, Histamin) wirken lokal ohne Hypothalamus-Steuerung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum hormonellen Regelkreis stimmen?", checklist: [
+          { text: "Der Hypothalamus steht an oberster Stelle der hormonellen Steuerung", correct: true },
+          { text: "Rückkopplung hemmt bei ausreichender Hormonkonzentration die Produktion", correct: true },
+          { text: "Hypothalamus und HVL sind direkt durch ein Blutgefäßsystem verbunden", correct: true },
+          { text: "Gewebshormone (Gastrin, Histamin) unterliegen der zentralen Hypothalamus-Steuerung", correct: false }
+        ], reveal: "Gewebshormone wie Gastrin und Histamin wirken lokal, ohne zentrale Hypothalamus-Steuerung." }
       },
       {
         id: "hormon_regelkreis_mc2",
@@ -13133,6 +13261,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Dopamin (= PIH) fördert die Prolaktinsekretion (positive Rückkopplung)", correct: false }
         ],
         explanation: "Beim Stillen: Saugreiz → Hypothalamus → PRH → Prolaktin (Milchproduktion) + Oxytocin → Myoepithel-Kontraktion (Milchauspressung); Dopamin (= PIH) hemmt (nicht fördert) die Prolaktinsekretion.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum neuroendokrinen Reflexbogen beim Stillen stimmen?", checklist: [
+          { text: "Druckrezeptoren leiten den Saugreiz afferent zum Hypothalamus weiter", correct: true },
+          { text: "PRH bewirkt Prolaktinausschüttung aus dem HVL → Milchproduktion", correct: true },
+          { text: "Oxytocin bewirkt Milchauspressung durch Myoepithel-Kontraktion", correct: true },
+          { text: "Dopamin (= PIH) fördert die Prolaktinsekretion (positive Rückkopplung)", correct: false }
+        ], reveal: "Dopamin (PIH) hemmt die Prolaktinsekretion, es fördert sie nicht." }
       }
     ]
   }),
@@ -13151,14 +13285,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Szintigramm mit radioaktivem Jod (nuklearmedizinisch)", correct: true },
           { text: "Palpation von hinten", correct: false }
         ],
-        explanation: "Das Szintigramm nutzt radioaktives Jod: die Schilddrüse nimmt es aktiv auf. Bereiche mit hoher Aktivität = 'heiße Knoten' (meist gutartig, funktionell autonom); Bereiche ohne Aktivität = 'kalte Knoten' (kein Jod-Uptake; erhöhter CA-Verdacht). Warme Knoten liegen dazwischen. Es handelt sich um eine nuklearmedizinische Untersuchung."
+        explanation: "Das Szintigramm nutzt radioaktives Jod: die Schilddrüse nimmt es aktiv auf. Bereiche mit hoher Aktivität = 'heiße Knoten' (meist gutartig, funktionell autonom); Bereiche ohne Aktivität = 'kalte Knoten' (kein Jod-Uptake; erhöhter CA-Verdacht). Warme Knoten liegen dazwischen. Es handelt sich um eine nuklearmedizinische Untersuchung.",
+        learningCard: { type: "predict", statement: "Ein Szintigramm mit radioaktivem Jod unterscheidet kalte, warme und heiße Knoten der Schilddrüse.", answer: true, reveal: "Heiße Knoten = hohe Jod-Aufnahme (meist gutartig), kalte Knoten = keine Aufnahme (erhöhter Krebsverdacht), warme Knoten liegen dazwischen." }
       },
       {
         id: "diagnostik_endokrinium_h2",
         type: "true_false",
         statement: "Bei der Schilddrüsenpalpation deutet eine schlechte Schluckverschieblichkeit auf ein mögliches Karzinom hin.",
         answer: true,
-        explanation: "Eine gesunde Schilddrüse ist schluckverschieblich (bewegt sich beim Schlucken mit der Luftröhre), glatt und nicht höckrig. Ist sie schlecht verschieblich, deutet das auf eine Infiltration des umgebenden Gewebes hin — wichtigstes Warnsignal für ein Schilddrüsenkarzinom (CA). Knoten und Schwirren (Überfunktion) sind weitere Palpationsbefunde."
+        explanation: "Eine gesunde Schilddrüse ist schluckverschieblich (bewegt sich beim Schlucken mit der Luftröhre), glatt und nicht höckrig. Ist sie schlecht verschieblich, deutet das auf eine Infiltration des umgebenden Gewebes hin — wichtigstes Warnsignal für ein Schilddrüsenkarzinom (CA). Knoten und Schwirren (Überfunktion) sind weitere Palpationsbefunde.",
+        learningCard: { type: "predict", statement: "Bei der Schilddrüsenpalpation deutet eine schlechte Schluckverschieblichkeit auf ein mögliches Karzinom hin.", answer: true, reveal: "Eine gesunde Schilddrüse ist gut schluckverschieblich; schlechte Verschieblichkeit deutet auf eine Infiltration des umgebenden Gewebes hin — wichtigstes Warnsignal für ein Schilddrüsenkarzinom." }
       },
       {
         id: "diagnostik_endokrinium_h3",
@@ -13170,7 +13306,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Den Durchschnitts-Blutzuckerspiegel der letzten 8–10 Wochen", correct: true },
           { text: "Die Glucosemenge im Urin (Glucosurie)", correct: false }
         ],
-        explanation: "HbA1c = glykiertes Hämoglobin. Bei dauerhaft hohem Blutzucker lagert sich Glucose irreversibel ans Hämoglobin. Da Erythrozyten ca. 8–12 Wochen leben, spiegelt HbA1c den Langzeit-Blutezuckerspiegel wider — das 'Blutzuckergedächtnis'. Ein Wert unter 6,5% gilt als gut eingestellt."
+        explanation: "HbA1c = glykiertes Hämoglobin. Bei dauerhaft hohem Blutzucker lagert sich Glucose irreversibel ans Hämoglobin. Da Erythrozyten ca. 8–12 Wochen leben, spiegelt HbA1c den Langzeit-Blutezuckerspiegel wider — das 'Blutzuckergedächtnis'. Ein Wert unter 6,5% gilt als gut eingestellt.",
+        learningCard: { type: "predict", statement: "Der HbA1c-Wert spiegelt den Durchschnitts-Blutzuckerspiegel der letzten 8–10 Wochen wider.", answer: true, reveal: "Bei dauerhaft hohem Blutzucker lagert sich Glucose irreversibel ans Hämoglobin — daher gilt HbA1c als 'Blutzuckergedächtnis'. Ein Wert unter 6,5% gilt als gut eingestellt." }
       },
       {
         id: "diagnostik_endokrinium_h4",
@@ -13182,7 +13319,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Einmal nüchtern über 140 mg/dl", correct: false },
           { text: "Postprandial über 140 mg/dl", correct: false }
         ],
-        explanation: "Diagnose-Kriterium laut Studienbrief: Wird zweimal nüchtern ein Blutzucker über 120 mg/dl gemessen → manifester Diabetes mellitus. Normwert: 60–100 mg/dl. 100–120 mg/dl = pathologische Glukosetoleranz (Graubereich). Postprandial: normal <140 mg/dl, manifester Diabetes >200 mg/dl."
+        explanation: "Diagnose-Kriterium laut Studienbrief: Wird zweimal nüchtern ein Blutzucker über 120 mg/dl gemessen → manifester Diabetes mellitus. Normwert: 60–100 mg/dl. 100–120 mg/dl = pathologische Glukosetoleranz (Graubereich). Postprandial: normal <140 mg/dl, manifester Diabetes >200 mg/dl.",
+        learningCard: { type: "reconstruct", template: "Ein manifester Diabetes liegt vor, wenn ___ nüchtern ein Blutzucker über ___ mg/dl gemessen wird.", blanks: ["zweimal", "120"], distractors: ["einmal", "140"], reveal: "Der Normwert liegt bei 60–100 mg/dl; 100–120 mg/dl gilt als Graubereich (pathologische Glukosetoleranz)." }
       },
       {
         id: "diagnostik_endokrinium_h5",
@@ -13194,7 +13332,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Durch Ultraschall der Schilddrüse", correct: false },
           { text: "Über Körpergewicht und Körpergröße (BMI-Formel)", correct: false }
         ],
-        explanation: "Der Grundumsatz wird über den Sauerstoffverbrauch gemessen: mittels Spirometrie und Gasanalyse. Bei der Umsetzung von 1 Liter Sauerstoff werden ca. 4,8 kcal freigesetzt. Da Schilddrüsenhormone (T3/T4) den Grundumsatz steigern, gibt die Grundumsatzmessung indirekte Hinweise auf die Schilddrüsenfunktion."
+        explanation: "Der Grundumsatz wird über den Sauerstoffverbrauch gemessen: mittels Spirometrie und Gasanalyse. Bei der Umsetzung von 1 Liter Sauerstoff werden ca. 4,8 kcal freigesetzt. Da Schilddrüsenhormone (T3/T4) den Grundumsatz steigern, gibt die Grundumsatzmessung indirekte Hinweise auf die Schilddrüsenfunktion.",
+        learningCard: { type: "predict", statement: "Der Grundumsatz wird im Rahmen der Schilddrüsendiagnostik über den Sauerstoffverbrauch (Spirometrie und Gasanalyse) bestimmt.", answer: true, reveal: "Da Schilddrüsenhormone (T3/T4) den Grundumsatz steigern, gibt die Grundumsatzmessung indirekte Hinweise auf die Schilddrüsenfunktion." }
       }
     ],
     phase4Questions: [
@@ -13209,6 +13348,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Es ersetzt vollständig die Bluthormonbestimmung", correct: false }
         ],
         explanation: "Schilddrüsenszintigramm mit radioaktivem Jod zeigt die Aktivitätsverteilung und unterscheidet kalte (potenziell maligne), warme und heiße (meist funktionelle Adenome) Knoten; es ergänzt die Bluthormonbestimmung und ersetzt sie nicht.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Szintigramm der Schilddrüse stimmen?", checklist: [
+          { text: "Es verwendet radioaktives Jod", correct: true },
+          { text: "Es dient der Beurteilung der Aktivitätsverteilung in der Schilddrüse", correct: true },
+          { text: "Es kann kalte, warme und heiße Knoten unterscheiden", correct: true },
+          { text: "Es ersetzt vollständig die Bluthormonbestimmung", correct: false }
+        ], reveal: "Das Szintigramm ergänzt die Bluthormonbestimmung, ersetzt sie aber nicht vollständig." }
       },
       {
         id: "diagnostik_endokrinium_mc2",
@@ -13221,6 +13366,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Postprandial gilt bereits ein Wert über 140 mg/dl als manifester Diabetes", correct: false }
         ],
         explanation: "Glukosurie bei Überschreitung der Nierenschwelle (~160-180 mg/dl); HbA1c < 6,5% gilt als gute Langzeiteinstellung; manifester Diabetes: zweimal nüchtern > 126 mg/dl (WHO) oder postprandial > 200 mg/dl.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Diabetesdiagnostik stimmen?", checklist: [
+          { text: "Glucosurie entsteht bei Überschreitung der Nierenschwelle von 160–180 mg/dl", correct: true },
+          { text: "HbA1c unter 6,5% gilt als gute Einstellung", correct: true },
+          { text: "Manifester Diabetes: zweimal nüchtern über 120 mg/dl", correct: true },
+          { text: "Postprandial gilt bereits ein Wert über 140 mg/dl als manifester Diabetes", correct: false }
+        ], reveal: "Postprandial gilt erst ein Wert über 200 mg/dl als manifester Diabetes; bis 140 mg/dl ist normal." }
       }
     ]
   }),
@@ -13239,14 +13390,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Gewebshormone", correct: false },
           { text: "Steroidhormone", correct: false }
         ],
-        explanation: "Neurohormone werden primär in spezialisierten Nervenzellen (Neuronen) hergestellt. Das wichtigste Beispiel ist der Hypothalamus: seine Neuronen sezernieren Releasing- und Inhibiting-Hormone (Neurosekretion). Drüsenhormone kommen aus endokrinen Drüsen; Gewebshormone aus lokalen Zellgruppen ohne zentralen Steuerungsbedarf."
+        explanation: "Neurohormone werden primär in spezialisierten Nervenzellen (Neuronen) hergestellt. Das wichtigste Beispiel ist der Hypothalamus: seine Neuronen sezernieren Releasing- und Inhibiting-Hormone (Neurosekretion). Drüsenhormone kommen aus endokrinen Drüsen; Gewebshormone aus lokalen Zellgruppen ohne zentralen Steuerungsbedarf.",
+        learningCard: { type: "predict", statement: "Neurohormone werden von spezialisierten Nervenzellen produziert, z. B. im Hypothalamus.", answer: true, reveal: "Diese Neuronen sezernieren Releasing- und Inhibiting-Hormone (Neurosekretion) — im Gegensatz zu Drüsenhormonen aus endokrinen Drüsen und Gewebshormonen aus lokalen Zellgruppen." }
       },
       {
         id: "hormondiff_h2",
         type: "true_false",
         statement: "Gewebshormone wie Gastrin, Sekretin und Östrogen kommen ohne zentrale Steuerung durch den Hypothalamus zum Einsatz und reagieren direkt auf lokale Reize.",
         answer: true,
-        explanation: "Gewebshormone werden von einzelnen Zellen in einem Gewebekomplex gebildet (z. B. G-Zellen im Magenantrum → Gastrin; I-Zellen im Dünndarm → Sekretin, CCK; Ovar → Östrogen, Progesteron; Niere → Renin). Sie benötigen keine übergeordnete Hypothalamus-Steuerung und reagieren direkt auf Umgebungsreize (z. B. Nahrungsangebot, Blutzucker, O₂-Gehalt)."
+        explanation: "Gewebshormone werden von einzelnen Zellen in einem Gewebekomplex gebildet (z. B. G-Zellen im Magenantrum → Gastrin; I-Zellen im Dünndarm → Sekretin, CCK; Ovar → Östrogen, Progesteron; Niere → Renin). Sie benötigen keine übergeordnete Hypothalamus-Steuerung und reagieren direkt auf Umgebungsreize (z. B. Nahrungsangebot, Blutzucker, O₂-Gehalt).",
+        learningCard: { type: "predict", statement: "Gewebshormone wie Gastrin, Sekretin und Östrogen kommen ohne zentrale Steuerung durch den Hypothalamus zum Einsatz und reagieren direkt auf lokale Reize.", answer: true, reveal: "Sie werden von einzelnen Zellen in einem Gewebekomplex gebildet und reagieren direkt auf Umgebungsreize wie Nahrungsangebot, Blutzucker oder O₂-Gehalt." }
       },
       {
         id: "hormondiff_h3",
@@ -13258,14 +13411,16 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Cholesterin (Gonan-Ringsystem)", correct: true },
           { text: "Glukose (Kohlenhydrat)", correct: false }
         ],
-        explanation: "Steroidhormone besitzen als Grundgerüst das Gonan-System: ein tetrazyklisches Ringsystem aus drei Sechser-Ringen und einem Fünfer-Ring. Das Grundskelett des Cholesterins besteht ebenfalls aus Gonan. Aus diesem Cholesterin-Grundgerüst wird die gesamte Palette der Steroidhormone aufgebaut: Kortikosteroide (Cortisol, Aldosteron), Sexualhormone (Testosteron, Östrogen, Progesteron)."
+        explanation: "Steroidhormone besitzen als Grundgerüst das Gonan-System: ein tetrazyklisches Ringsystem aus drei Sechser-Ringen und einem Fünfer-Ring. Das Grundskelett des Cholesterins besteht ebenfalls aus Gonan. Aus diesem Cholesterin-Grundgerüst wird die gesamte Palette der Steroidhormone aufgebaut: Kortikosteroide (Cortisol, Aldosteron), Sexualhormone (Testosteron, Östrogen, Progesteron).",
+        learningCard: { type: "predict", statement: "Steroidhormone wie Cortisol, Testosteron und Östrogen basieren auf dem Grundgerüst des Cholesterins (Gonan-Ringsystem).", answer: true, reveal: "Aus diesem Cholesterin-Grundgerüst werden alle Steroidhormone aufgebaut: Kortikosteroide (Cortisol, Aldosteron) und Sexualhormone (Testosteron, Östrogen, Progesteron)." }
       },
       {
         id: "hormondiff_h4",
         type: "true_false",
         statement: "Proteohormone (wie Insulin oder Glukagon) bestehen aus Aminosäureketten (Polypeptide) und sind damit biochemisch völlig verschieden von Steroidhormonen.",
         answer: true,
-        explanation: "Proteohormone (Polypeptide): aufgebaut aus Aminosäureketten — z. B. Insulin, Glukagon, alle Hypophysenhormone (TSH, ACTH, FSH, LH, STH, Prolaktin), PTH, ADH, Oxytocin. Steroidhormone: Cholesterin-Grundstruktur (Gonan). Die biochemische Klasse bestimmt den Wirkmechanismus: Proteohormone binden an Oberflächenrezeptoren; Steroidhormone können direkt in die Zelle eintreten und an DNA-Rezeptoren wirken."
+        explanation: "Proteohormone (Polypeptide): aufgebaut aus Aminosäureketten — z. B. Insulin, Glukagon, alle Hypophysenhormone (TSH, ACTH, FSH, LH, STH, Prolaktin), PTH, ADH, Oxytocin. Steroidhormone: Cholesterin-Grundstruktur (Gonan). Die biochemische Klasse bestimmt den Wirkmechanismus: Proteohormone binden an Oberflächenrezeptoren; Steroidhormone können direkt in die Zelle eintreten und an DNA-Rezeptoren wirken.",
+        learningCard: { type: "predict", statement: "Proteohormone (wie Insulin oder Glukagon) bestehen aus Aminosäureketten (Polypeptide) und sind damit biochemisch völlig verschieden von Steroidhormonen.", answer: true, reveal: "Proteohormone binden an Oberflächenrezeptoren, während Steroidhormone direkt in die Zelle eintreten und an DNA-Rezeptoren wirken." }
       },
       {
         id: "hormondiff_h5",
@@ -13277,7 +13432,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Phenylalanin", correct: false },
           { text: "Methionin", correct: false }
         ],
-        explanation: "Aminosäurederivate: Tyrosin ist Ausgangsstoff für Dopamin, Serotonin und Noradrenalin (alle Katecholamine des NNM) — sie entstehen durch schrittweise chemische Umbildung der Aminosäure. Tryptophan ist dagegen der Ausgangsstoff für Melatonin (Epiphyse). Schilddrüsenhormone T3/T4 sind ebenfalls Tyrosin-Derivate, benötigen aber zusätzlich Jod von außen."
+        explanation: "Aminosäurederivate: Tyrosin ist Ausgangsstoff für Dopamin, Serotonin und Noradrenalin (alle Katecholamine des NNM) — sie entstehen durch schrittweise chemische Umbildung der Aminosäure. Tryptophan ist dagegen der Ausgangsstoff für Melatonin (Epiphyse). Schilddrüsenhormone T3/T4 sind ebenfalls Tyrosin-Derivate, benötigen aber zusätzlich Jod von außen.",
+        learningCard: { type: "reconstruct", template: "___ ist der gemeinsame Ausgangsstoff für die Katecholamine Dopamin, Serotonin und ___.", blanks: ["Tyrosin", "Noradrenalin"], distractors: ["Tryptophan", "Adrenalin"], reveal: "Tryptophan ist dagegen Ausgangsstoff für Melatonin; auch die Schilddrüsenhormone T3/T4 sind Tyrosin-Derivate, benötigen aber zusätzlich Jod." }
       }
     ],
     phase4Questions: [
@@ -13292,6 +13448,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Gewebshormone sind z. B. Gastrin, Sekretin, Östrogen und Renin", correct: true }
         ],
         explanation: "Drüsenhormone (endokrine Drüsen ohne Ausführungsgang), Neurohormone (Hypothalamus) und Gewebshormone (lokale Produktion: Gastrin, Sekretin, Östrogen, Renin) sind die drei Bildungsortkategorien; Gewebshormone unterliegen nicht der Hypothalamus-Steuerung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Hormondifferenzierung nach dem Bildungsort stimmen?", checklist: [
+          { text: "Drüsenhormone werden von endokrinen Drüsen ohne Ausführungsgang produziert", correct: true },
+          { text: "Neurohormone entstehen in spezialisierten Nervenzellen (z. B. Hypothalamus)", correct: true },
+          { text: "Gewebshormone sind z. B. Gastrin, Sekretin, Östrogen und Renin", correct: true },
+          { text: "Gewebshormone unterliegen der zentralen Steuerung des Hypothalamus", correct: false }
+        ], reveal: "Gewebshormone wirken lokal und unterliegen nicht der Hypothalamus-Steuerung." }
       },
       {
         id: "hormondiff_mc2",
@@ -13304,6 +13466,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Steroidhormone sind Polypeptide mit zusätzlichem Jodanteil", correct: false }
         ],
         explanation: "Biochemische Klassen: Proteohormone (Polypeptide, z.B. Insulin), Steroidhormone (Cholesterin als Grundsubstanz, z.B. Cortisol, Östrogen) und Aminosäurederivate (Tyrosin → Dopamin/Noradrenalin); Schilddrüsenhormone sind Iodaminosäuren, keine Steroidhormone.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur biochemischen Klassifizierung der Hormone stimmen?", checklist: [
+          { text: "Proteohormone bestehen aus Polypeptiden (Aminosäureketten)", correct: true },
+          { text: "Steroidhormone haben Cholesterin (Gonan-Ringsystem) als Grundsubstanz", correct: true },
+          { text: "Aminosäurederivate: Tyrosin ist Ausgangsstoff für Dopamin und Noradrenalin", correct: true },
+          { text: "Steroidhormone sind Polypeptide mit zusätzlichem Jodanteil", correct: false }
+        ], reveal: "Schilddrüsenhormone sind Jodaminosäuren, keine Steroidhormone — Steroidhormone basieren auf Cholesterin, nicht auf Polypeptiden." }
       }
     ]
   }),
@@ -13322,14 +13490,21 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "D-Zellen (produzieren Somatostatin)", correct: false },
           { text: "G-Zellen (produzieren Gastrin)", correct: false }
         ],
-        explanation: "Im Pankreas-Inselorgan (Langerhans-Inseln): B-Zellen → Insulin (Blutzuckersenkung durch Glucoseaufnahme + Glykogenaufbau). A-Zellen → Glukagon (Blutzuckererhöhung durch Glykogenolyse + Gluconeogenese). G-Zellen sind im Magenantrum/Dünndarm und produzieren Gastrin, nicht im Pankreas."
+        explanation: "Im Pankreas-Inselorgan (Langerhans-Inseln): B-Zellen → Insulin (Blutzuckersenkung durch Glucoseaufnahme + Glykogenaufbau). A-Zellen → Glukagon (Blutzuckererhöhung durch Glykogenolyse + Gluconeogenese). G-Zellen sind im Magenantrum/Dünndarm und produzieren Gastrin, nicht im Pankreas.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "B-Zellen produzieren Insulin im Pankreas-Inselorgan.", isWrong: false },
+          { text: "A-Zellen produzieren Glukagon.", isWrong: false },
+          { text: "D-Zellen produzieren Somatostatin.", isWrong: false },
+          { text: "G-Zellen produzieren Gastrin im Pankreas.", isWrong: true }
+        ], whyWrong: "G-Zellen liegen im Magenantrum und Dünndarm, nicht im Pankreas." }
       },
       {
         id: "periph_horm_h2",
         type: "true_false",
         statement: "Der Atriale Natriuretische Faktor (ANF) wird von den Vorhöfen des Herzens produziert und bewirkt verstärkte Diurese sowie Natriurese.",
         answer: true,
-        explanation: "ANF (Atrialer Natriuretischer Faktor) ist ein Hormon der Herzvorhöfe. Bei erhöhtem Blutdruck/Volumen wird ANF freigesetzt → bewirkt gesteigerte Diurese (mehr Urin) + Natriurese (Na⁺-Ausscheidung↑) → senkt Blutvolumen und Blutdruck. ANF ist der natürliche Gegenspieler des Aldosterons (das Na⁺ zurückhält und den Blutdruck erhöht)."
+        explanation: "ANF (Atrialer Natriuretischer Faktor) ist ein Hormon der Herzvorhöfe. Bei erhöhtem Blutdruck/Volumen wird ANF freigesetzt → bewirkt gesteigerte Diurese (mehr Urin) + Natriurese (Na⁺-Ausscheidung↑) → senkt Blutvolumen und Blutdruck. ANF ist der natürliche Gegenspieler des Aldosterons (das Na⁺ zurückhält und den Blutdruck erhöht).",
+        learningCard: { type: "predict", statement: "Der Atriale Natriuretische Faktor (ANF) wird von den Vorhöfen des Herzens produziert und bewirkt verstärkte Diurese sowie Natriurese.", answer: true, reveal: "ANF ist der natürliche Gegenspieler des Aldosterons — es senkt Blutvolumen und Blutdruck, während Aldosteron Na⁺ zurückhält und den Blutdruck erhöht." }
       },
       {
         id: "periph_horm_h3",
@@ -13341,7 +13516,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Blutdrucksteigerung durch Vasokonstriktion — produziert vom Herz", correct: false },
           { text: "Natriumretention — produziert von der Nebennierenrinde", correct: false }
         ],
-        explanation: "EPO (Erythropoetin) wird von der Niere bei Sauerstoffmangel freigesetzt → stimuliert im Knochenmark die Bildung roter Blutkörperchen (Erythrozyten) → verbessert den O₂-Transport im Blut. Diese direkte Reaktion auf O₂-Mangel erfolgt ohne Hypothalamus-Steuerung. EPO ist bekannt als Dopingmittel im Ausdauersport."
+        explanation: "EPO (Erythropoetin) wird von der Niere bei Sauerstoffmangel freigesetzt → stimuliert im Knochenmark die Bildung roter Blutkörperchen (Erythrozyten) → verbessert den O₂-Transport im Blut. Diese direkte Reaktion auf O₂-Mangel erfolgt ohne Hypothalamus-Steuerung. EPO ist bekannt als Dopingmittel im Ausdauersport.",
+        learningCard: { type: "predict", statement: "Erythropoetin (EPO) wird von der Niere bei Sauerstoffmangel freigesetzt und stimuliert die Erythrozytenbildung im Knochenmark.", answer: true, reveal: "Diese Reaktion erfolgt direkt auf O₂-Mangel, ohne Hypothalamus-Steuerung. EPO ist als Dopingmittel im Ausdauersport bekannt." }
       },
       {
         id: "periph_horm_h4",
@@ -13353,7 +13529,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Hemmung der Follikelreifung durch FSH-Blockade im HVL", correct: false },
           { text: "Stimulation der Milchproduktion (wie Prolaktin)", correct: false }
         ],
-        explanation: "Progesteron/Gestagen (Ovar → Gelbkörper nach Eisprung): wandelt die durch Östrogen aufgebaute Uterusschleimhaut in die Sekretionsphase um (Vorbereitung für Einnistung) + erhöht die Basaltemperatur um ca. 0,4°C — Grundlage der Temperaturmethode zur Zyklusüberwachung. Proliferation (Aufbau) der Schleimhaut = Aufgabe der Östrogene."
+        explanation: "Progesteron/Gestagen (Ovar → Gelbkörper nach Eisprung): wandelt die durch Östrogen aufgebaute Uterusschleimhaut in die Sekretionsphase um (Vorbereitung für Einnistung) + erhöht die Basaltemperatur um ca. 0,4°C — Grundlage der Temperaturmethode zur Zyklusüberwachung. Proliferation (Aufbau) der Schleimhaut = Aufgabe der Östrogene.",
+        learningCard: { type: "reconstruct", template: "Progesteron wandelt die Uterusschleimhaut in die ___ um und erhöht die Basaltemperatur um ca. ___ °C.", blanks: ["Sekretionsphase", "0,4"], distractors: ["Proliferationsphase", "1,0"], reveal: "Die Proliferation (Aufbau) der Schleimhaut ist dagegen Aufgabe der Östrogene." }
       },
       {
         id: "periph_horm_h5",
@@ -13365,7 +13542,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Gastrin — aus G-Zellen des Magenantrum/Dünndarms", correct: true },
           { text: "Insulin — aus B-Zellen des Pankreas", correct: false }
         ],
-        explanation: "Gastrin wird von G-Zellen des Magenantrum und des oberen Dünndarms produziert → stimuliert die Salzsäuresekretion im Magen (Belegzellen). Es ist ein Gewebshormon ohne zentrale Steuerung. Cholecystokinin (CCK, I-Zellen): stimuliert Pankreasenzymsekretion + Gallenblasenkontraktion. Sekretin: stimuliert Pankreasbikarbonat-Sekretion (neutralisiert Magensäure im Dünndarm)."
+        explanation: "Gastrin wird von G-Zellen des Magenantrum und des oberen Dünndarms produziert → stimuliert die Salzsäuresekretion im Magen (Belegzellen). Es ist ein Gewebshormon ohne zentrale Steuerung. Cholecystokinin (CCK, I-Zellen): stimuliert Pankreasenzymsekretion + Gallenblasenkontraktion. Sekretin: stimuliert Pankreasbikarbonat-Sekretion (neutralisiert Magensäure im Dünndarm).",
+        learningCard: { type: "predict", statement: "Gastrin aus den G-Zellen des Magenantrums stimuliert die Salzsäuresekretion im Magen.", answer: true, reveal: "Cholecystokinin (CCK) stimuliert dagegen die Pankreasenzymsekretion und Gallenblasenkontraktion, Sekretin die Pankreasbikarbonat-Sekretion." }
       }
     ],
     phase4Questions: [
@@ -13380,6 +13558,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Insulin fördert die Glykogenolyse und erhöht damit den Blutzucker", correct: false }
         ],
         explanation: "Das endokrine Pankreas reagiert direkt auf Blutzuckeränderungen: B-Zellen sezernieren Insulin (senkt Blutzucker), A-Zellen Glukagon (erhöht Blutzucker durch Glykogenolyse) — Insulin fördert Glykogensynthese (hemmt nicht Glykogenolyse durch direkte Förderung).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Pankreas als Hormonorgan stimmen?", checklist: [
+          { text: "B-Zellen produzieren Insulin (→ Blutzuckersenkung)", correct: true },
+          { text: "A-Zellen produzieren Glukagon (→ Blutzuckererhöhung)", correct: true },
+          { text: "Das Pankreas reagiert ohne zentrale Hypothalamus-Steuerung direkt auf Blutzuckeränderungen", correct: true },
+          { text: "Insulin fördert die Glykogenolyse und erhöht damit den Blutzucker", correct: false }
+        ], reveal: "Insulin fördert die Glykogensynthese und senkt den Blutzucker, nicht umgekehrt." }
       },
       {
         id: "periph_horm_mc2",
@@ -13392,6 +13576,12 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Östrogene wandeln die Uterusschleimhaut in die Sekretionsphase um (wie Progesteron)", correct: false }
         ],
         explanation: "EPO (Niere) stimuliert Erythropoese bei Sauerstoffmangel; ANF (Herzvorhöfe) senkt Blutdruck durch Diurese/Natriurese; Testosteron fördert Spermatogenese; Progesteron (nicht Östrogen) wandelt die Uterusschleimhaut in die Sekretionsphase um.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Hormonen peripherer Organe stimmen?", checklist: [
+          { text: "EPO (Niere) stimuliert bei Sauerstoffmangel die Erythrozytenbildung", correct: true },
+          { text: "ANF (Herzvorhöfe) bewirkt Diurese und Natriurese (Blutdrucksenkung)", correct: true },
+          { text: "Testosteron (Testes) fördert Spermatogenese und Proteinsynthese", correct: true },
+          { text: "Östrogene wandeln die Uterusschleimhaut in die Sekretionsphase um (wie Progesteron)", correct: false }
+        ], reveal: "Das ist Aufgabe des Progesterons — Östrogene bewirken die Proliferation der Schleimhaut." }
       }
     ]
   })
@@ -13414,14 +13604,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "-20 mV", correct: false },
           { text: "+80 mV", correct: false }
         ],
-        explanation: "Das Ruhepotential beträgt ca. -80 mV. Es entsteht durch die ungleiche Verteilung von K⁺ (innen) und Na⁺ (außen)."
+        explanation: "Das Ruhepotential beträgt ca. -80 mV. Es entsteht durch die ungleiche Verteilung von K⁺ (innen) und Na⁺ (außen).",
+        learningCard: { type: "predict", statement: "Das Ruhepotential einer Nervenzelle beträgt ca. -80 mV.", answer: true, reveal: "Das Ruhepotential entsteht durch die ungleiche Verteilung von K⁺ (innen) und Na⁺ (außen) an der Zellmembran." }
       },
       {
         type: "true_false",
         id: "1043_01_h2",
         statement: "Die Myelinscheide wird von Schwann-Zellen gebildet und besteht aus Lipoprotein.",
         answer: true,
-        explanation: "Schwann-Zellen bilden die Myelinscheide aus Lipoprotein, die das Axon isoliert und die saltatorische Erregungsleitung ermöglicht."
+        explanation: "Schwann-Zellen bilden die Myelinscheide aus Lipoprotein, die das Axon isoliert und die saltatorische Erregungsleitung ermöglicht.",
+        learningCard: { type: "reconstruct", template: "Die Myelinscheide wird von ___ aus ___ gebildet und ermöglicht die saltatorische Erregungsleitung.", blanks: ["Schwann-Zellen", "Lipoprotein"], distractors: ["Oligodendrozyten", "Kollagen"] }
       },
       {
         type: "mc",
@@ -13433,14 +13625,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Cl⁻ strömt aus der Zelle aus", correct: false },
           { text: "Ca²⁺ strömt aus der Zelle aus", correct: false }
         ],
-        explanation: "Bei der Depolarisation öffnen sich Na⁺-Kanäle, Na⁺ strömt ein und das Membranpotential steigt von ca. -80 mV auf bis zu +60 mV."
+        explanation: "Bei der Depolarisation öffnen sich Na⁺-Kanäle, Na⁺ strömt ein und das Membranpotential steigt von ca. -80 mV auf bis zu +60 mV.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Bei der Depolarisation öffnen sich Na⁺-Kanäle.", isWrong: false },
+          { text: "Na⁺ strömt bei Depolarisation in die Zelle ein.", isWrong: false },
+          { text: "Das Membranpotential steigt bei Depolarisation bis auf ca. +60 mV.", isWrong: false },
+          { text: "Bei der Depolarisation strömt K⁺ in die Zelle ein.", isWrong: true }
+        ], whyWrong: "Bei der Depolarisation öffnen sich Na⁺-Kanäle und Na⁺ strömt ein, nicht K⁺ — das Membranpotential steigt dadurch von -80 mV auf bis zu +60 mV." }
       },
       {
         type: "true_false",
         id: "1043_01_h4",
         statement: "Ranvier-Schnürringe liegen alle ca. 15 mm voneinander entfernt.",
         answer: false,
-        explanation: "Ranvier-Schnürringe liegen ca. alle 1,5 mm entlang des Axons – nicht 15 mm."
+        explanation: "Ranvier-Schnürringe liegen ca. alle 1,5 mm entlang des Axons – nicht 15 mm.",
+        learningCard: { type: "predict", statement: "Ranvier-Schnürringe liegen ca. alle 15 mm entlang des Axons.", answer: false, reveal: "Ranvier-Schnürringe liegen tatsächlich ca. alle 1,5 mm entlang des Axons – nicht alle 15 mm." }
       },
       {
         type: "mc",
@@ -13452,7 +13651,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Bis zu 1,2 m/s", correct: false },
           { text: "Bis zu 1200 m/s", correct: false }
         ],
-        explanation: "Die saltatorische Erregungsleitung myelinisierter Axone kann bis zu 120 m/s erreichen – deutlich schneller als die kontinuierliche Leitung unmyelinisierter Fasern."
+        explanation: "Die saltatorische Erregungsleitung myelinisierter Axone kann bis zu 120 m/s erreichen – deutlich schneller als die kontinuierliche Leitung unmyelinisierter Fasern.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur saltatorischen Erregungsleitung treffen zu?", checklist: [
+          { text: "Sie kann bis zu 120 m/s erreichen.", correct: true },
+          { text: "Sie tritt an myelinisierten Axonen auf.", correct: true },
+          { text: "Sie ist schneller als die kontinuierliche Leitung unmyelinisierter Fasern.", correct: true },
+          { text: "Sie ist langsamer als die Leitung unmyelinisierter Fasern.", correct: false }
+        ], reveal: "Die saltatorische Erregungsleitung myelinisierter Axone erreicht bis zu 120 m/s und ist damit deutlich schneller als die kontinuierliche Leitung unmyelinisierter Fasern." }
       }
     ],
     phase4Questions: [
@@ -13467,7 +13672,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Astrozyt", correct: false },
           { text: "Oligodendrozyt", correct: false }
         ],
-        explanation: "Astrozyten und Oligodendroyten sind Gliazellen (Neuroglia), keine Bestandteile der Nervenzelle selbst. Die Nervenzelle besteht aus Zellleib, Dendriten und Axon."
+        explanation: "Astrozyten und Oligodendroyten sind Gliazellen (Neuroglia), keine Bestandteile der Nervenzelle selbst. Die Nervenzelle besteht aus Zellleib, Dendriten und Axon.",
+        learningCard: { type: "teachback", prompt: "Welche Strukturen gehören zur Nervenzelle selbst?", checklist: [
+          { text: "Zellleib mit Zellkern", correct: true },
+          { text: "Dendriten", correct: true },
+          { text: "Axon (Neurit)", correct: true },
+          { text: "Astrozyten (Gliazellen)", correct: false }
+        ], reveal: "Die Nervenzelle besteht aus Zellleib, Dendriten und Axon. Astrozyten und Oligodendrozyten sind Gliazellen (Neuroglia), keine Bestandteile der Nervenzelle selbst." }
       },
       {
         type: "mc",
@@ -13480,7 +13691,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Während der Refraktärzeit kann sofort ein neues AP ausgelöst werden", correct: false },
           { text: "Das Membranpotential kann bei Depolarisation bis +60 mV erreichen", correct: true }
         ],
-        explanation: "Während der Refraktärzeit ist die Auslösung eines neuen Aktionspotentials nicht möglich – die Na-K-ATPase-Pumpe stellt erst den Ruhezustand wieder her."
+        explanation: "Während der Refraktärzeit ist die Auslösung eines neuen Aktionspotentials nicht möglich – die Na-K-ATPase-Pumpe stellt erst den Ruhezustand wieder her.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Während der Refraktärzeit kann kein neues Aktionspotential ausgelöst werden.", isWrong: false },
+          { text: "Die Na-K-ATPase-Pumpe stellt den Ruhezustand nach dem Aktionspotential wieder her.", isWrong: false },
+          { text: "Na⁺-Einstrom führt zur Depolarisation.", isWrong: false },
+          { text: "Während der Refraktärzeit kann sofort ein neues Aktionspotential ausgelöst werden.", isWrong: true }
+        ], whyWrong: "Während der Refraktärzeit ist kein neues Aktionspotential möglich — erst wenn die Na-K-ATPase-Pumpe den Ruhezustand wiederhergestellt hat, kann die Zelle erneut erregt werden." }
       }
     ]
   }),
@@ -13500,14 +13717,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "K⁺", correct: false },
           { text: "Cl⁻", correct: false }
         ],
-        explanation: "Ca²⁺-Einstrom ins Endknöpfchen bewirkt die Fusion der Vesikel mit der präsynaptischen Membran und die Freisetzung der Neurotransmitter in den synaptischen Spalt."
+        explanation: "Ca²⁺-Einstrom ins Endknöpfchen bewirkt die Fusion der Vesikel mit der präsynaptischen Membran und die Freisetzung der Neurotransmitter in den synaptischen Spalt.",
+        learningCard: { type: "predict", statement: "Ca²⁺-Einstrom ins Endknöpfchen löst die Freisetzung von Neurotransmittern aus.", answer: true, reveal: "Der Ca²⁺-Einstrom bewirkt die Fusion der Vesikel mit der präsynaptischen Membran, wodurch die Neurotransmitter in den synaptischen Spalt freigesetzt werden." }
       },
       {
         type: "true_false",
         id: "1043_02_h2",
         statement: "Curare blockiert die Acetylcholin-Rezeptoren und führt zu einer generalisierten Muskellähmung.",
         answer: true,
-        explanation: "Curare besetzt kompetitiv die ACh-Rezeptoren an der motorischen Endplatte und verhindert so die Muskelkontraktion – es kommt zur Lähmung."
+        explanation: "Curare besetzt kompetitiv die ACh-Rezeptoren an der motorischen Endplatte und verhindert so die Muskelkontraktion – es kommt zur Lähmung.",
+        learningCard: { type: "reconstruct", template: "Curare besetzt kompetitiv die ___-Rezeptoren an der motorischen Endplatte und verhindert die ___.", blanks: ["Acetylcholin", "Muskelkontraktion"], distractors: ["Dopamin", "Erregungsleitung"] }
       },
       {
         type: "mc",
@@ -13519,14 +13738,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Dopamindecarboxylase", correct: false },
           { text: "Lipase", correct: false }
         ],
-        explanation: "Die Acetylcholinesterase spaltet ACh in Acetat und Cholin im synaptischen Spalt. Acetylcholinesterase-Hemmer werden therapeutisch bei Myasthenia gravis eingesetzt."
+        explanation: "Die Acetylcholinesterase spaltet ACh in Acetat und Cholin im synaptischen Spalt. Acetylcholinesterase-Hemmer werden therapeutisch bei Myasthenia gravis eingesetzt.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Acetylcholinesterase spaltet ACh in Acetat und Cholin.", isWrong: false },
+          { text: "Die Spaltung von ACh erfolgt im synaptischen Spalt.", isWrong: false },
+          { text: "Acetylcholinesterase-Hemmer werden bei Myasthenia gravis eingesetzt.", isWrong: false },
+          { text: "Die Monoaminooxidase (MAO) spaltet Acetylcholin.", isWrong: true }
+        ], whyWrong: "Acetylcholin wird von der Acetylcholinesterase gespalten, nicht von der Monoaminooxidase (MAO) — diese baut andere Transmitter wie Noradrenalin ab." }
       },
       {
         type: "true_false",
         id: "1043_02_h4",
         statement: "Serotonin gehört zu den cholinergen Neurotransmittern.",
         answer: false,
-        explanation: "Cholinerge Synapsen nutzen Acetylcholin. Serotonin gehört zu einer anderen Transmittergruppe, ebenso wie Dopamin und Noradrenalin (adrenerge Synapsen)."
+        explanation: "Cholinerge Synapsen nutzen Acetylcholin. Serotonin gehört zu einer anderen Transmittergruppe, ebenso wie Dopamin und Noradrenalin (adrenerge Synapsen).",
+        learningCard: { type: "predict", statement: "Serotonin gehört zu den cholinergen Neurotransmittern.", answer: false, reveal: "Cholinerge Synapsen nutzen Acetylcholin. Serotonin gehört wie Dopamin und Noradrenalin zu einer anderen Transmittergruppe." }
       },
       {
         type: "mc",
@@ -13538,7 +13764,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Überproduktion von Noradrenalin", correct: false },
           { text: "Blockade der Ca²⁺-Kanäle", correct: false }
         ],
-        explanation: "Bei Myasthenia gravis zerstören Autoantikörper die ACh-Rezeptoren an der motorischen Endplatte. Therapie: Acetylcholinesterase-Hemmer erhöhen die verfügbare ACh-Menge."
+        explanation: "Bei Myasthenia gravis zerstören Autoantikörper die ACh-Rezeptoren an der motorischen Endplatte. Therapie: Acetylcholinesterase-Hemmer erhöhen die verfügbare ACh-Menge.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Myasthenia gravis treffen zu?", checklist: [
+          { text: "Autoantikörper zerstören die ACh-Rezeptoren an der motorischen Endplatte.", correct: true },
+          { text: "Acetylcholinesterase-Hemmer erhöhen die verfügbare ACh-Menge zur Therapie.", correct: true },
+          { text: "Es handelt sich um eine Autoimmunerkrankung.", correct: true },
+          { text: "Ein Mangel an Acetylcholinesterase verursacht die Erkrankung.", correct: false }
+        ], reveal: "Bei Myasthenia gravis zerstören Autoantikörper die ACh-Rezeptoren; Acetylcholinesterase-Hemmer erhöhen therapeutisch die verfügbare ACh-Menge." }
       }
     ],
     phase4Questions: [
@@ -13553,7 +13785,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Acetylcholin", correct: false },
           { text: "GABA", correct: false }
         ],
-        explanation: "Noradrenalin, Adrenalin und Dopamin sind adrenerge Neurotransmitter. Acetylcholin ist cholinerger Neurotransmitter, GABA ist ein hemmender Transmitter."
+        explanation: "Noradrenalin, Adrenalin und Dopamin sind adrenerge Neurotransmitter. Acetylcholin ist cholinerger Neurotransmitter, GABA ist ein hemmender Transmitter.",
+        learningCard: { type: "teachback", prompt: "Welche Substanzen gehören zu den adrenergen Neurotransmittern?", checklist: [
+          { text: "Noradrenalin", correct: true },
+          { text: "Adrenalin", correct: true },
+          { text: "Dopamin", correct: true },
+          { text: "Acetylcholin (cholinerger Transmitter)", correct: false }
+        ], reveal: "Noradrenalin, Adrenalin und Dopamin sind adrenerge Neurotransmitter. Acetylcholin ist cholinerg, GABA ist ein hemmender Transmitter." }
       },
       {
         type: "mc",
@@ -13566,7 +13804,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Synapsen können Erregungen in beide Richtungen leiten", correct: false },
           { text: "Substance P ist an der Schmerzübertragung beteiligt", correct: true }
         ],
-        explanation: "Die Synapse leitet ausschließlich unidirektional. Substance P ist als Schmerzmediator bekannt. Ca²⁺ ist der entscheidende Trigger für die Vesikelfreisetzung."
+        explanation: "Die Synapse leitet ausschließlich unidirektional. Substance P ist als Schmerzmediator bekannt. Ca²⁺ ist der entscheidende Trigger für die Vesikelfreisetzung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Erregungsleitung an der Synapse ist unidirektional.", isWrong: false },
+          { text: "Ca²⁺ ist der entscheidende Trigger für die Vesikelfreisetzung.", isWrong: false },
+          { text: "Substance P ist an der Schmerzübertragung beteiligt.", isWrong: false },
+          { text: "Synapsen können Erregungen in beide Richtungen leiten.", isWrong: true }
+        ], whyWrong: "Die synaptische Übertragung ist ausschließlich unidirektional (Ventilfunktion) — Synapsen leiten Erregungen nicht in beide Richtungen." }
       }
     ]
   }),
@@ -13585,14 +13829,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Die 12 Hirnnerven", correct: false },
           { text: "Sympathikus und Parasympathikus", correct: false }
         ],
-        explanation: "Das ZNS umfasst Gehirn und Rückenmark. Hirnnerven und Spinalnerven gehören zum PNS. Sympathikus und Parasympathikus sind Teile des vegetativen NS."
+        explanation: "Das ZNS umfasst Gehirn und Rückenmark. Hirnnerven und Spinalnerven gehören zum PNS. Sympathikus und Parasympathikus sind Teile des vegetativen NS.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Gliederung des Nervensystems treffen zu?", checklist: [
+          { text: "Das ZNS umfasst Gehirn und Rückenmark.", correct: true },
+          { text: "Hirnnerven und Spinalnerven gehören zum PNS.", correct: true },
+          { text: "Sympathikus und Parasympathikus sind Teile des vegetativen NS.", correct: true },
+          { text: "Das ZNS umfasst zusätzlich alle Spinalnerven.", correct: false }
+        ], reveal: "Das ZNS besteht aus Gehirn und Rückenmark; Hirn- und Spinalnerven gehören zum PNS; Sympathikus und Parasympathikus sind Teile des vegetativen NS." }
       },
       {
         type: "true_false",
         id: "1043_03_h2",
         statement: "Die Formatio reticularis beeinflusst die Bewusstseinshelligkeit und den Wachzustand.",
         answer: true,
-        explanation: "Die Formatio reticularis im Stammhirn reguliert Wachheit und Bewusstseinszustand. Schäden können zur Bewusstlosigkeit führen."
+        explanation: "Die Formatio reticularis im Stammhirn reguliert Wachheit und Bewusstseinszustand. Schäden können zur Bewusstlosigkeit führen.",
+        learningCard: { type: "predict", statement: "Die Formatio reticularis im Stammhirn beeinflusst die Bewusstseinshelligkeit und den Wachzustand.", answer: true, reveal: "Die Formatio reticularis reguliert Wachheit und Bewusstseinszustand — Schäden an ihr können zur Bewusstlosigkeit führen." }
       },
       {
         type: "mc",
@@ -13604,14 +13855,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Gleichmäßig verteilt", correct: false },
           { text: "Nur in der Halsregion außen", correct: false }
         ],
-        explanation: "Im Rückenmark liegt die graue Substanz innen (Schmetterlingsform), weiße Substanz außen. Im Gehirn ist es genau umgekehrt: grau außen (Kortex), weiß innen."
+        explanation: "Im Rückenmark liegt die graue Substanz innen (Schmetterlingsform), weiße Substanz außen. Im Gehirn ist es genau umgekehrt: grau außen (Kortex), weiß innen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Im Rückenmark liegt die graue Substanz innen in Schmetterlingsform.", isWrong: false },
+          { text: "Im Rückenmark liegt die weiße Substanz außen.", isWrong: false },
+          { text: "Im Gehirn liegt die graue Substanz außen als Kortex.", isWrong: false },
+          { text: "Im Gehirn liegt die graue Substanz wie im Rückenmark innen.", isWrong: true }
+        ], whyWrong: "Im Gehirn liegt die graue Substanz außen als Kortex, weiß innen — im Rückenmark ist es genau umgekehrt: grau innen, weiß außen." }
       },
       {
         type: "true_false",
         id: "1043_03_h4",
         statement: "Das vegetative Nervensystem kann willentlich gesteuert werden.",
         answer: false,
-        explanation: "Das vegetative (autonome) Nervensystem reguliert unwillkürliche Körperfunktionen wie Herzschlag, Atmung und Verdauung – es entzieht sich dem Willen."
+        explanation: "Das vegetative (autonome) Nervensystem reguliert unwillkürliche Körperfunktionen wie Herzschlag, Atmung und Verdauung – es entzieht sich dem Willen.",
+        learningCard: { type: "predict", statement: "Das vegetative Nervensystem kann willentlich gesteuert werden.", answer: false, reveal: "Das vegetative (autonome) Nervensystem reguliert unwillkürliche Körperfunktionen wie Herzschlag, Atmung und Verdauung — es entzieht sich dem Willen." }
       },
       {
         type: "mc",
@@ -13623,7 +13881,8 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Das somatische NS ist unwillkürlich; das vegetative NS ist willkürlich", correct: false },
           { text: "Das vegetative NS umfasst Gehirn und Rückenmark", correct: false }
         ],
-        explanation: "Das somatische Nervensystem steuert willkürliche Bewegungen und Empfindungen; das vegetative (autonome) NS steuert unwillkürliche Funktionen wie Herzschlag, Atmung und Verdauung."
+        explanation: "Das somatische Nervensystem steuert willkürliche Bewegungen und Empfindungen; das vegetative (autonome) NS steuert unwillkürliche Funktionen wie Herzschlag, Atmung und Verdauung.",
+        learningCard: { type: "reconstruct", template: "Das ___ Nervensystem steuert willkürliche Bewegungen, das ___ Nervensystem steuert unwillkürliche Funktionen.", blanks: ["somatische", "vegetative"], distractors: ["zentrale", "periphere"] }
       }
     ],
     phase4Questions: [
@@ -13639,7 +13898,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Cerebellum", correct: false },
           { text: "Diencephalon", correct: false }
         ],
-        explanation: "Das Stammhirn besteht aus Medulla oblongata, Pons und Mesencephalon. Cerebellum und Diencephalon gehören nicht zum Stammhirn im engeren Sinne."
+        explanation: "Das Stammhirn besteht aus Medulla oblongata, Pons und Mesencephalon. Cerebellum und Diencephalon gehören nicht zum Stammhirn im engeren Sinne.",
+        learningCard: { type: "teachback", prompt: "Welche Strukturen gehören zum Stammhirn?", checklist: [
+          { text: "Medulla oblongata", correct: true },
+          { text: "Pons (Brücke)", correct: true },
+          { text: "Mesencephalon", correct: true },
+          { text: "Cerebellum", correct: false }
+        ], reveal: "Das Stammhirn besteht aus Medulla oblongata, Pons und Mesencephalon. Cerebellum und Diencephalon gehören nicht dazu." }
       },
       {
         type: "mc",
@@ -13652,7 +13917,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Das somatische NS ist unwillkürlich", correct: false },
           { text: "Im Gehirn liegt die Substantia grisea außen", correct: true }
         ],
-        explanation: "Das somatische NS ist willkürlich (nicht unwillkürlich). Das vegetative NS ist unwillkürlich und in Sympathikus und Parasympathikus unterteilt."
+        explanation: "Das somatische NS ist willkürlich (nicht unwillkürlich). Das vegetative NS ist unwillkürlich und in Sympathikus und Parasympathikus unterteilt.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das vegetative NS ist in Sympathikus und Parasympathikus unterteilt.", isWrong: false },
+          { text: "Im Gehirn liegt die Substantia grisea außen.", isWrong: false },
+          { text: "Das PNS umfasst Hirn- und Rückenmarksnerven.", isWrong: false },
+          { text: "Das somatische Nervensystem ist unwillkürlich.", isWrong: true }
+        ], whyWrong: "Das somatische Nervensystem ist willkürlich steuerbar — unwillkürlich ist das vegetative Nervensystem." }
       }
     ]
   }),
@@ -13671,14 +13942,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "N. hypoglossus (XII)", correct: false },
           { text: "N. trigeminus (V)", correct: false }
         ],
-        explanation: "Der VII. Hirnnerv (N. facialis) übermittelt den Geschmack der vorderen 2/3 der Zunge. Der IX. Hirnnerv (N. glossopharyngeus) ist für das hintere Drittel zuständig."
+        explanation: "Der VII. Hirnnerv (N. facialis) übermittelt den Geschmack der vorderen 2/3 der Zunge. Der IX. Hirnnerv (N. glossopharyngeus) ist für das hintere Drittel zuständig.",
+        learningCard: { type: "reconstruct", template: "Der ___. Hirnnerv (N. facialis) übermittelt den Geschmack der vorderen zwei Drittel der Zunge, der ___. Hirnnerv (N. glossopharyngeus) das hintere Drittel.", blanks: ["VII.", "IX."], distractors: ["V.", "XII."] }
       },
       {
         type: "true_false",
         id: "1043_04_h2",
         statement: "Der N. hypoglossus (XII. Hirnnerv) steuert die Zungenbewegung und ist rein efferent.",
         answer: true,
-        explanation: "Der N. hypoglossus ist der einzige rein efferente (motorische) Hirnnerv. Bei seiner Lähmung weicht die Zunge zur kranken Seite ab und es kommt zu Sprachstörungen."
+        explanation: "Der N. hypoglossus ist der einzige rein efferente (motorische) Hirnnerv. Bei seiner Lähmung weicht die Zunge zur kranken Seite ab und es kommt zu Sprachstörungen.",
+        learningCard: { type: "predict", statement: "Der N. hypoglossus (XII. Hirnnerv) ist rein efferent (motorisch).", answer: true, reveal: "Der N. hypoglossus ist der einzige rein efferente Hirnnerv — bei Lähmung weicht die Zunge zur kranken Seite ab, es kommt zu Sprachstörungen." }
       },
       {
         type: "mc",
@@ -13690,14 +13963,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Nur den äußeren geraden Augenmuskel", correct: false },
           { text: "Ausschließlich die Pupillenreaktion, keine Augenmotilität", correct: false }
         ],
-        explanation: "N. oculomotorius (III) innerviert alle Augenmuskeln außer dem oberen schrägen (IV) und dem äußeren geraden (VI), und steuert zusätzlich Akkommodation und Pupillenverengung (vegetative Funktion)."
+        explanation: "N. oculomotorius (III) innerviert alle Augenmuskeln außer dem oberen schrägen (IV) und dem äußeren geraden (VI), und steuert zusätzlich Akkommodation und Pupillenverengung (vegetative Funktion).",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen übernimmt der N. oculomotorius (III)?", checklist: [
+          { text: "Innervation der meisten Augenmuskeln (außer IV und VI)", correct: true },
+          { text: "Steuerung der Akkommodation", correct: true },
+          { text: "Pupillenverengung", correct: true },
+          { text: "Innervation des oberen schrägen Augenmuskels", correct: false }
+        ], reveal: "Der N. oculomotorius innerviert alle Augenmuskeln außer dem oberen schrägen (IV) und dem äußeren geraden (VI) und steuert zusätzlich Akkommodation und Pupillenverengung." }
       },
       {
         type: "true_false",
         id: "1043_04_h4",
         statement: "Bei einer Lähmung des N. vagus weicht das Gaumenzäpfchen zur kranken Seite ab.",
         answer: false,
-        explanation: "Bei N. vagus-Lähmung weicht das Zäpfchen zur GESUNDEN Seite (es wird von der intakten Gegenseite weggezogen). Bei N. hypoglossus-Lähmung zeigt die Zunge zur KRANKEN Seite."
+        explanation: "Bei N. vagus-Lähmung weicht das Zäpfchen zur GESUNDEN Seite (es wird von der intakten Gegenseite weggezogen). Bei N. hypoglossus-Lähmung zeigt die Zunge zur KRANKEN Seite.",
+        learningCard: { type: "predict", statement: "Bei einer Lähmung des N. vagus weicht das Gaumenzäpfchen zur kranken Seite ab.", answer: false, reveal: "Das Zäpfchen weicht bei N.-vagus-Lähmung zur GESUNDEN Seite ab, weil es von der intakten Gegenseite weggezogen wird — anders als bei N.-hypoglossus-Lähmung, wo die Zunge zur kranken Seite zeigt." }
       },
       {
         type: "mc",
@@ -13709,7 +13989,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Sie weicht nicht ab, sondern bleibt mittig", correct: false },
           { text: "Zur gesunden Seite, weil die intakte Gegenseite zieht", correct: false }
         ],
-        explanation: "Bei N. hypoglossus-Lähmung weicht die Zunge zur KRANKEN Seite ab (die gelähmte Seite zieht nicht mehr). Im Gegensatz dazu weicht das Gaumenzäpfchen bei Vagus-Lähmung zur GESUNDEN Seite."
+        explanation: "Bei N. hypoglossus-Lähmung weicht die Zunge zur KRANKEN Seite ab (die gelähmte Seite zieht nicht mehr). Im Gegensatz dazu weicht das Gaumenzäpfchen bei Vagus-Lähmung zur GESUNDEN Seite.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Bei N.-hypoglossus-Lähmung weicht die Zunge zur kranken Seite ab.", isWrong: false },
+          { text: "Die gelähmte Seite der Zunge zieht nicht mehr mit.", isWrong: false },
+          { text: "Das Gaumenzäpfchen weicht bei Vagus-Lähmung zur gesunden Seite ab.", isWrong: false },
+          { text: "Bei N.-hypoglossus-Lähmung weicht die Zunge zur gesunden Seite ab.", isWrong: true }
+        ], whyWrong: "Bei N.-hypoglossus-Lähmung weicht die Zunge zur KRANKEN Seite ab, weil die gelähmte Seite nicht mehr zieht — das ist umgekehrt wie beim Gaumenzäpfchen bei Vagus-Lähmung." }
       }
     ],
     phase4Questions: [
@@ -13724,7 +14010,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "N. opticus (II)", correct: false },
           { text: "N. abducens (VI)", correct: false }
         ],
-        explanation: "III, VII und X haben parasympathische Anteile. N. opticus (II) ist rein sensorisch, N. abducens (VI) ist rein motorisch (Augenbewegung)."
+        explanation: "III, VII und X haben parasympathische Anteile. N. opticus (II) ist rein sensorisch, N. abducens (VI) ist rein motorisch (Augenbewegung).",
+        learningCard: { type: "teachback", prompt: "Welche Hirnnerven haben eine parasympathische Komponente?", checklist: [
+          { text: "N. oculomotorius (III)", correct: true },
+          { text: "N. facialis (VII)", correct: true },
+          { text: "N. vagus (X)", correct: true },
+          { text: "N. opticus (II) — rein sensorisch", correct: false }
+        ], reveal: "III, VII und X haben parasympathische Anteile. N. opticus (II) ist rein sensorisch, N. abducens (VI) rein motorisch." }
       },
       {
         type: "mc",
@@ -13737,7 +14029,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "N. trochlearis (IV) innerviert den äußeren geraden Augenmuskel", correct: false },
           { text: "Bei N. glossopharyngeus-Ausfall ist der Würgereflex gestört", correct: true }
         ],
-        explanation: "N. trochlearis (IV) innerviert den oberen SCHRÄGEN Augenmuskel, nicht den äußeren geraden (das ist N. abducens VI). Alle anderen Aussagen sind korrekt."
+        explanation: "N. trochlearis (IV) innerviert den oberen SCHRÄGEN Augenmuskel, nicht den äußeren geraden (das ist N. abducens VI). Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "N. olfactorius (I), N. opticus (II) und N. vestibulocochlearis (VIII) sind rein afferent.", isWrong: false },
+          { text: "N. hypoglossus (XII) ist rein efferent.", isWrong: false },
+          { text: "Der N. vagus zieht als einziger Hirnnerv bis in den Bauchbereich.", isWrong: false },
+          { text: "N. trochlearis (IV) innerviert den äußeren geraden Augenmuskel.", isWrong: true }
+        ], whyWrong: "N. trochlearis (IV) innerviert den oberen SCHRÄGEN Augenmuskel — den äußeren geraden Augenmuskel innerviert N. abducens (VI)." }
       }
     ]
   }),
@@ -13756,14 +14054,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Cortisol", correct: false },
           { text: "Serotonin", correct: false }
         ],
-        explanation: "Die Epiphyse produziert Melatonin, das den Tag-Nacht-Rhythmus reguliert und in der Pubertät eine hemmende Wirkung hat."
+        explanation: "Die Epiphyse produziert Melatonin, das den Tag-Nacht-Rhythmus reguliert und in der Pubertät eine hemmende Wirkung hat.",
+        learningCard: { type: "predict", statement: "Die Epiphyse (Zirbeldrüse) produziert Melatonin.", answer: true, reveal: "Melatonin reguliert den Tag-Nacht-Rhythmus und hat in der Pubertät eine hemmende Wirkung." }
       },
       {
         type: "true_false",
         id: "1043_05_h2",
         statement: "Der Thalamus wird als ‚Tor zum Bewusstsein' bezeichnet, weil er Informationen filtert, bevor sie ins Bewusstsein gelangen.",
         answer: true,
-        explanation: "Der Thalamus fungiert als Aufmerksamkeitsfilter und Schaltzentrale – er entscheidet, welche sensorischen Informationen weitergeleitet und bewusst wahrgenommen werden."
+        explanation: "Der Thalamus fungiert als Aufmerksamkeitsfilter und Schaltzentrale – er entscheidet, welche sensorischen Informationen weitergeleitet und bewusst wahrgenommen werden.",
+        learningCard: { type: "reconstruct", template: "Der Thalamus wird als '___ zum Bewusstsein' bezeichnet, weil er als ___ entscheidet, welche Informationen bewusst wahrgenommen werden.", blanks: ["Tor", "Aufmerksamkeitsfilter"], distractors: ["Speicher", "Verstärker"] }
       },
       {
         type: "mc",
@@ -13775,14 +14075,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Metathalamus", correct: false },
           { text: "Archicerebellum", correct: false }
         ],
-        explanation: "Die Substantia nigra im Mesencephalon produziert Dopamin für das extrapyramidale System. Ihre Degeneration führt zu Dopaminmangel und den klassischen Parkinson-Symptomen."
+        explanation: "Die Substantia nigra im Mesencephalon produziert Dopamin für das extrapyramidale System. Ihre Degeneration führt zu Dopaminmangel und den klassischen Parkinson-Symptomen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Substantia nigra und Parkinson treffen zu?", checklist: [
+          { text: "Die Substantia nigra liegt im Mesencephalon.", correct: true },
+          { text: "Die Substantia nigra produziert Dopamin für das extrapyramidale System.", correct: true },
+          { text: "Ihre Degeneration führt zu Dopaminmangel und Parkinson-Symptomen.", correct: true },
+          { text: "Die Substantia nigra produziert Melatonin.", correct: false }
+        ], reveal: "Die Substantia nigra im Mesencephalon produziert Dopamin für das extrapyramidale System; ihre Degeneration führt zu Dopaminmangel und Parkinson." }
       },
       {
         type: "true_false",
         id: "1043_05_h4",
         statement: "Das Neocerebellum ist für das Gleichgewicht im Ruhezustand zuständig.",
         answer: false,
-        explanation: "Das Gleichgewicht im Ruhezustand ist Aufgabe des Archicerebellums. Das Neocerebellum ist für Feinmotorik sowie Tast- und Tiefensensibilität zuständig."
+        explanation: "Das Gleichgewicht im Ruhezustand ist Aufgabe des Archicerebellums. Das Neocerebellum ist für Feinmotorik sowie Tast- und Tiefensensibilität zuständig.",
+        learningCard: { type: "predict", statement: "Das Neocerebellum ist für das Gleichgewicht im Ruhezustand zuständig.", answer: false, reveal: "Das Gleichgewicht im Ruhezustand ist Aufgabe des Archicerebellums. Das Neocerebellum ist für Feinmotorik sowie Tast- und Tiefensensibilität zuständig." }
       },
       {
         type: "mc",
@@ -13794,7 +14101,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Epithalamus", correct: false },
           { text: "Subthalamus", correct: false }
         ],
-        explanation: "Der Hypothalamus ist das vegetative Steuerungszentrum: Er reguliert Schlaf/Wach, Temperatur, Wasser-/Nahrungshaushalt und Fortpflanzung."
+        explanation: "Der Hypothalamus ist das vegetative Steuerungszentrum: Er reguliert Schlaf/Wach, Temperatur, Wasser-/Nahrungshaushalt und Fortpflanzung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Hypothalamus reguliert den Schlaf-Wach-Rhythmus.", isWrong: false },
+          { text: "Der Hypothalamus reguliert die Körpertemperatur.", isWrong: false },
+          { text: "Der Hypothalamus reguliert den Wasser- und Nahrungshaushalt sowie die Fortpflanzung.", isWrong: false },
+          { text: "Der Thalamus (nicht der Hypothalamus) ist das vegetative Steuerungszentrum.", isWrong: true }
+        ], whyWrong: "Der HYPOTHALAMUS ist das vegetative Steuerungszentrum für Schlaf-Wach-Rhythmus, Temperatur, Wasser-/Nahrungshaushalt und Fortpflanzung — der Thalamus filtert dagegen sensorische Informationen." }
       }
     ],
     phase4Questions: [
@@ -13809,7 +14122,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Speicherung von Langzeiterinnerungen", correct: false },
           { text: "Regulation der Fortpflanzung", correct: true }
         ],
-        explanation: "Langzeiterinnerungen werden mit Beteiligung von Hippocampus und Thalamus gebildet – nicht im Hypothalamus. Der Hypothalamus steuert vegetative Grundfunktionen."
+        explanation: "Langzeiterinnerungen werden mit Beteiligung von Hippocampus und Thalamus gebildet – nicht im Hypothalamus. Der Hypothalamus steuert vegetative Grundfunktionen.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen hat der Hypothalamus?", checklist: [
+          { text: "Regulierung des Schlaf-Wach-Rhythmus", correct: true },
+          { text: "Kontrolle der Körpertemperatur", correct: true },
+          { text: "Steuerung des Wasserhaushalts und der Fortpflanzung", correct: true },
+          { text: "Speicherung von Langzeiterinnerungen", correct: false }
+        ], reveal: "Der Hypothalamus steuert vegetative Grundfunktionen wie Schlaf-Wach-Rhythmus, Temperatur, Wasserhaushalt und Fortpflanzung. Langzeiterinnerungen werden mit Beteiligung von Hippocampus und Thalamus gebildet, nicht im Hypothalamus." }
       },
       {
         type: "mc",
@@ -13822,7 +14141,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Der Metathalamus ist für den Geruchssinn zuständig", correct: false },
           { text: "Das Diencephalon hat 5 Etagen", correct: true }
         ],
-        explanation: "Der Metathalamus (Kniehöcker) ist für Sehen und Hören zuständig, nicht für den Geruchssinn. Geruch ist im Epithalamus (Habenulae) und limbischen System verankert."
+        explanation: "Der Metathalamus (Kniehöcker) ist für Sehen und Hören zuständig, nicht für den Geruchssinn. Geruch ist im Epithalamus (Habenulae) und limbischen System verankert.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Thalamus filtert als Aufmerksamkeitszentrum eingehende Informationen.", isWrong: false },
+          { text: "Der Epithalamus enthält die Epiphyse, die Melatonin bildet.", isWrong: false },
+          { text: "Das Diencephalon hat 5 Etagen.", isWrong: false },
+          { text: "Der Metathalamus ist für den Geruchssinn zuständig.", isWrong: true }
+        ], whyWrong: "Der Metathalamus (Kniehöcker) ist für Sehen und Hören zuständig, nicht für den Geruchssinn — dieser ist im Epithalamus und limbischen System verankert." }
       }
     ]
   }),
@@ -13841,14 +14166,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Im Occipitallappen", correct: false },
           { text: "Im Parietallappen", correct: false }
         ],
-        explanation: "Das Wernicke-Feld (sensorisches Sprachzentrum) liegt im Temporallappen. Das Broca-Areal (motorisches Sprachzentrum) liegt im Frontallappen."
+        explanation: "Das Wernicke-Feld (sensorisches Sprachzentrum) liegt im Temporallappen. Das Broca-Areal (motorisches Sprachzentrum) liegt im Frontallappen.",
+        learningCard: { type: "reconstruct", template: "Das Wernicke-Feld (sensorisches Sprachzentrum) liegt im ___, das Broca-Areal (motorisches Sprachzentrum) im ___.", blanks: ["Temporallappen", "Frontallappen"], distractors: ["Occipitallappen", "Parietallappen"] }
       },
       {
         type: "true_false",
         id: "1043_06_h2",
         statement: "Das Broca-Areal im Frontallappen ist für die Sprachproduktion zuständig.",
         answer: true,
-        explanation: "Das Broca-Areal im Frontallappen steuert die motorische Sprachproduktion. Eine Schädigung führt zur motorischen Aphasie: Sprechen ist schwer, Verstehen aber möglich."
+        explanation: "Das Broca-Areal im Frontallappen steuert die motorische Sprachproduktion. Eine Schädigung führt zur motorischen Aphasie: Sprechen ist schwer, Verstehen aber möglich.",
+        learningCard: { type: "predict", statement: "Das Broca-Areal im Frontallappen ist für die Sprachproduktion zuständig.", answer: true, reveal: "Eine Schädigung des Broca-Areals führt zur motorischen Aphasie: Sprechen fällt schwer, das Verstehen bleibt aber möglich." }
       },
       {
         type: "mc",
@@ -13860,14 +14187,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Lobus parietalis (Parietallappen)", correct: false },
           { text: "Lobus temporalis (Temporallappen)", correct: false }
         ],
-        explanation: "Der Occipitallappen beherbergt das primäre Sehzentrum. Schäden hier führen zu Sehausfällen oder Blindheit, auch ohne Schädigung der Augen selbst."
+        explanation: "Der Occipitallappen beherbergt das primäre Sehzentrum. Schäden hier führen zu Sehausfällen oder Blindheit, auch ohne Schädigung der Augen selbst.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Occipitallappen beherbergt das primäre Sehzentrum.", isWrong: false },
+          { text: "Schäden am Occipitallappen können zu Sehausfällen führen, auch ohne Augenschädigung.", isWrong: false },
+          { text: "Das Wernicke-Feld liegt im Temporallappen.", isWrong: false },
+          { text: "Das primäre Sehzentrum liegt im Frontallappen.", isWrong: true }
+        ], whyWrong: "Das primäre Sehzentrum liegt im Occipitallappen, nicht im Frontallappen — Schäden dort können auch ohne Augenschädigung zu Sehausfällen führen." }
       },
       {
         type: "true_false",
         id: "1043_06_h4",
         statement: "Das limbische System hat keinen Bezug zur Gedächtnisbildung.",
         answer: false,
-        explanation: "Das limbische System ist entscheidend für die affektive Bewertung von Erlebnissen und deren Überführung in das Langzeitgedächtnis."
+        explanation: "Das limbische System ist entscheidend für die affektive Bewertung von Erlebnissen und deren Überführung in das Langzeitgedächtnis.",
+        learningCard: { type: "predict", statement: "Das limbische System spielt eine wichtige Rolle bei der Gedächtnisbildung.", answer: true, reveal: "Das limbische System ist entscheidend für die affektive Bewertung von Erlebnissen und deren Überführung ins Langzeitgedächtnis." }
       },
       {
         type: "mc",
@@ -13879,7 +14213,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Thalamus und Hypothalamus", correct: false },
           { text: "Amygdala und Hippocampus", correct: false }
         ],
-        explanation: "Das Corpus striatum besteht aus Nucleus caudatus und Putamen. Globus pallidus und Substantia nigra sind weitere Basalganglien, aber nicht Teil des Corpus striatum."
+        explanation: "Das Corpus striatum besteht aus Nucleus caudatus und Putamen. Globus pallidus und Substantia nigra sind weitere Basalganglien, aber nicht Teil des Corpus striatum.",
+        learningCard: { type: "teachback", prompt: "Welche Strukturen gehören zum Corpus striatum?", checklist: [
+          { text: "Nucleus caudatus", correct: true },
+          { text: "Putamen", correct: true },
+          { text: "Globus pallidus (eigene Basalganglien-Struktur, nicht Teil des Striatum)", correct: false },
+          { text: "Substantia nigra (eigene Basalganglien-Struktur, nicht Teil des Striatum)", correct: false }
+        ], reveal: "Das Corpus striatum besteht aus Nucleus caudatus und Putamen. Globus pallidus und Substantia nigra sind weitere Basalganglien, aber nicht Teil des Corpus striatum." }
       }
     ],
     phase4Questions: [
@@ -13894,7 +14234,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Nucleus subthalamicus", correct: true },
           { text: "Hippocampus", correct: false }
         ],
-        explanation: "Der Hippocampus gehört zum limbischen System, nicht zu den Basalganglien. Die Basalganglien bilden das extrapyramidale System (EPS)."
+        explanation: "Der Hippocampus gehört zum limbischen System, nicht zu den Basalganglien. Die Basalganglien bilden das extrapyramidale System (EPS).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Corpus striatum gehört zu den Basalganglien.", isWrong: false },
+          { text: "Globus pallidus und Substantia nigra gehören zu den Basalganglien.", isWrong: false },
+          { text: "Die Basalganglien bilden das extrapyramidale System (EPS).", isWrong: false },
+          { text: "Der Hippocampus gehört zu den Basalganglien.", isWrong: true }
+        ], whyWrong: "Der Hippocampus gehört zum limbischen System, nicht zu den Basalganglien — die Basalganglien bilden das extrapyramidale System (EPS)." }
       },
       {
         type: "mc",
@@ -13907,7 +14253,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Steuerung der willkürlichen Motorik", correct: false },
           { text: "Geruchsempfindung", correct: true }
         ],
-        explanation: "Die willkürliche Motorik wird vom motorischen Kortex (Frontallappen) und den Pyramidenbahnen gesteuert, nicht vom limbischen System."
+        explanation: "Die willkürliche Motorik wird vom motorischen Kortex (Frontallappen) und den Pyramidenbahnen gesteuert, nicht vom limbischen System.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen hat das limbische System?", checklist: [
+          { text: "Affektive Bewertung von Erlebnissen", correct: true },
+          { text: "Überführung in das Langzeitgedächtnis", correct: true },
+          { text: "Trieb- und Instinktverhalten sowie Geruchsempfindung", correct: true },
+          { text: "Steuerung der willkürlichen Motorik", correct: false }
+        ], reveal: "Die willkürliche Motorik wird vom motorischen Kortex (Frontallappen) und den Pyramidenbahnen gesteuert, nicht vom limbischen System." }
       }
     ]
   }),
@@ -13926,14 +14278,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Im Arachnoidalraum", correct: false },
           { text: "In der Substantia nigra", correct: false }
         ],
-        explanation: "Liquor wird im Plexus choroideus (spezialisierte Gefäßzotten) hauptsächlich der Seitenventrikel produziert, sowie am Dach des III. Ventrikels und vor der Kleinhirnunterfläche."
+        explanation: "Liquor wird im Plexus choroideus (spezialisierte Gefäßzotten) hauptsächlich der Seitenventrikel produziert, sowie am Dach des III. Ventrikels und vor der Kleinhirnunterfläche.",
+        learningCard: { type: "predict", statement: "Der Liquor cerebrospinalis wird hauptsächlich im Plexus choroideus der Seitenventrikel produziert.", answer: true, reveal: "Der Plexus choroideus besteht aus spezialisierten Gefäßzotten; Liquor entsteht zusätzlich am Dach des III. Ventrikels und vor der Kleinhirnunterfläche." }
       },
       {
         type: "true_false",
         id: "1043_07_h2",
         statement: "Die Dura mater ist die innerste (weichste) der drei Hirnhäute.",
         answer: false,
-        explanation: "Reihenfolge von außen nach innen: 1. Dura mater (harte Hirnhaut, liegt am Knochen), 2. Arachnoidea (Spinngewebshaut), 3. Pia mater (weiche Hirnhaut, liegt direkt am Gehirn)."
+        explanation: "Reihenfolge von außen nach innen: 1. Dura mater (harte Hirnhaut, liegt am Knochen), 2. Arachnoidea (Spinngewebshaut), 3. Pia mater (weiche Hirnhaut, liegt direkt am Gehirn).",
+        learningCard: { type: "reconstruct", template: "Von außen nach innen: ___ (harte Hirnhaut) → ___ (Spinngewebshaut) → ___ (weiche Hirnhaut, liegt direkt am Gehirn).", blanks: ["Dura mater", "Arachnoidea", "Pia mater"], distractors: ["Periost", "Leptomeninx"] }
       },
       {
         type: "mc",
@@ -13945,14 +14299,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Ca. 1500 ml", correct: false },
           { text: "Ca. 50 ml", correct: false }
         ],
-        explanation: "Obwohl täglich ca. 500–700 ml produziert werden, beträgt die zirkulierende Menge durch kontinuierliche Resorption nur ca. 150 ml."
+        explanation: "Obwohl täglich ca. 500–700 ml produziert werden, beträgt die zirkulierende Menge durch kontinuierliche Resorption nur ca. 150 ml.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Täglich werden ca. 500–700 ml Liquor produziert.", isWrong: false },
+          { text: "Die zirkulierende Liquormenge beträgt durch kontinuierliche Resorption nur ca. 150 ml.", isWrong: false },
+          { text: "Liquor wird kontinuierlich resorbiert.", isWrong: false },
+          { text: "Die zirkulierende Liquormenge beträgt ca. 500–700 ml.", isWrong: true }
+        ], whyWrong: "Zirkulierend sind trotz täglicher Produktion von 500–700 ml nur ca. 150 ml Liquor vorhanden — der Rest wird kontinuierlich resorbiert." }
       },
       {
         type: "true_false",
         id: "1043_07_h4",
         statement: "Der IV. Ventrikel liegt im Rautenhirn (Rhombencephalon).",
         answer: true,
-        explanation: "Der IV. Ventrikel liegt im Rautenhirn (Rhombencephalon). Er ist über den Aquaeductus cerebri mit dem III. Ventrikel verbunden."
+        explanation: "Der IV. Ventrikel liegt im Rautenhirn (Rhombencephalon). Er ist über den Aquaeductus cerebri mit dem III. Ventrikel verbunden.",
+        learningCard: { type: "predict", statement: "Der IV. Ventrikel liegt im Rautenhirn (Rhombencephalon).", answer: true, reveal: "Er ist über den Aquaeductus cerebri mit dem III. Ventrikel verbunden." }
       },
       {
         type: "mc",
@@ -13964,7 +14325,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Produktion von Neurotransmittern", correct: false },
           { text: "Immunabwehr im Gehirn", correct: false }
         ],
-        explanation: "Liquor hat zwei Hauptfunktionen: 1. Wasserkissenfunktion – mechanischer Schutz vor Erschütterungen. 2. Ernährung der Hirnzellen. Er hält außerdem einen konstanten Innendruck aufrecht."
+        explanation: "Liquor hat zwei Hauptfunktionen: 1. Wasserkissenfunktion – mechanischer Schutz vor Erschütterungen. 2. Ernährung der Hirnzellen. Er hält außerdem einen konstanten Innendruck aufrecht.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen hat der Liquor cerebrospinalis?", checklist: [
+          { text: "Mechanischer Schutz vor Erschütterungen (Wasserkissenfunktion)", correct: true },
+          { text: "Ernährung der Hirnzellen", correct: true },
+          { text: "Aufrechterhaltung eines konstanten Innendrucks", correct: true },
+          { text: "Produktion von Neurotransmittern", correct: false }
+        ], reveal: "Der Liquor hat zwei Hauptfunktionen: Wasserkissenfunktion (mechanischer Schutz) und Ernährung der Hirnzellen; zusätzlich hält er einen konstanten Innendruck aufrecht." }
       }
     ],
     phase4Questions: [
@@ -13979,7 +14346,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Liquor wird vollständig im III. Ventrikel produziert", correct: false },
           { text: "Glucosegehalt des Liquors beträgt ca. 60–85 mg/dl", correct: true }
         ],
-        explanation: "Liquor wird hauptsächlich im Plexus choroideus der Seitenventrikel (I. und II.) produziert, nicht allein im III. Ventrikel."
+        explanation: "Liquor wird hauptsächlich im Plexus choroideus der Seitenventrikel (I. und II.) produziert, nicht allein im III. Ventrikel.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der pH-Wert des Liquors beträgt ca. 7,31.", isWrong: false },
+          { text: "Der Eiweißgehalt beträgt ca. 15–25 mg/dl.", isWrong: false },
+          { text: "Der Glucosegehalt beträgt ca. 60–85 mg/dl.", isWrong: false },
+          { text: "Liquor wird ausschließlich im III. Ventrikel produziert.", isWrong: true }
+        ], whyWrong: "Liquor wird hauptsächlich im Plexus choroideus der Seitenventrikel (I. und II.) produziert, nicht allein im III. Ventrikel." }
       },
       {
         type: "mc",
@@ -13992,7 +14365,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Das Gehirn verträgt bis zu 10 Minuten Sauerstoffmangel", correct: false },
           { text: "Der Circulus arteriosus cerebri liegt an der Gehirnbasis", correct: true }
         ],
-        explanation: "Das Gehirn verträgt maximal ca. 3 Minuten Sauerstoffmangel – danach entstehen irreparable Schäden."
+        explanation: "Das Gehirn verträgt maximal ca. 3 Minuten Sauerstoffmangel – danach entstehen irreparable Schäden.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Blutversorgung des Gehirns treffen zu?", checklist: [
+          { text: "Vier große Arterien versorgen das Gehirn: A. carotis interna und A. vertebralis (beidseitig).", correct: true },
+          { text: "Der Circulus Willisi sichert die Versorgung auch bei Arterienverschluss.", correct: true },
+          { text: "Die beiden A. vertebrales vereinigen sich zur A. basilaris.", correct: true },
+          { text: "Das Gehirn verträgt bis zu 10 Minuten Sauerstoffmangel.", correct: false }
+        ], reveal: "Vier Arterien (A. carotis interna und A. vertebralis, beidseitig) versorgen das Gehirn, gesichert durch den Circulus Willisi; das Gehirn verträgt aber maximal ca. 3 Minuten Sauerstoffmangel." }
       }
     ]
   }),
@@ -14011,14 +14390,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "24", correct: false },
           { text: "42", correct: false }
         ],
-        explanation: "Es gibt 31 Spinalnervenpaare: 8 Halsnerven (C1–C8), 12 Brustnerven (Th1–Th12), 5 Lendennerven (L1–L5), 5 Sakralnerven (S1–S5) und 1 Steißnerv (Co1)."
+        explanation: "Es gibt 31 Spinalnervenpaare: 8 Halsnerven (C1–C8), 12 Brustnerven (Th1–Th12), 5 Lendennerven (L1–L5), 5 Sakralnerven (S1–S5) und 1 Steißnerv (Co1).",
+        learningCard: { type: "reconstruct", template: "Es gibt insgesamt ___ Spinalnervenpaare: 8 Hals-, 12 Brust-, 5 Lenden-, 5 Sakral- und ___ Steißnerv(en).", blanks: ["31", "1"], distractors: ["33", "2"] }
       },
       {
         type: "true_false",
         id: "1043_08_h2",
         statement: "Der Sympathikus hat seinen Ursprung im Thorakal- und oberen Lumbalmark (thorako-lumbales System).",
         answer: true,
-        explanation: "Der Sympathikus entspringt dem Thorakalmark und den ersten 2–3 Segmenten des Lumbalmarks (thorako-lumbales System). Der Parasympathikus hat seinen Ursprung cranio-sakral."
+        explanation: "Der Sympathikus entspringt dem Thorakalmark und den ersten 2–3 Segmenten des Lumbalmarks (thorako-lumbales System). Der Parasympathikus hat seinen Ursprung cranio-sakral.",
+        learningCard: { type: "predict", statement: "Der Sympathikus hat seinen Ursprung im Thorakal- und oberen Lumbalmark (thorako-lumbales System).", answer: true, reveal: "Der Sympathikus entspringt dem Thorakalmark und den ersten 2–3 Segmenten des Lumbalmarks. Der Parasympathikus hat dagegen seinen Ursprung cranio-sakral." }
       },
       {
         type: "mc",
@@ -14030,14 +14411,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Ein Reflex, der durch Hautreiz ausgelöst wird", correct: false },
           { text: "Eine der drei Hirnhäute (Meningen)", correct: false }
         ],
-        explanation: "Ein Dermatom ist ein Hautareal, das sensibel von einem Spinalnerv innerviert wird. Sensibilitätsstörungen in einem Dermatom ermöglichen die Höhendiagnostik bei Rückenmarksschäden. Myotome entsprechen Muskelgruppen."
+        explanation: "Ein Dermatom ist ein Hautareal, das sensibel von einem Spinalnerv innerviert wird. Sensibilitätsstörungen in einem Dermatom ermöglichen die Höhendiagnostik bei Rückenmarksschäden. Myotome entsprechen Muskelgruppen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Ein Dermatom ist ein von einem Spinalnerv sensibel innerviertes Hautgebiet.", isWrong: false },
+          { text: "Sensibilitätsstörungen in einem Dermatom ermöglichen die Höhendiagnostik bei Rückenmarksschäden.", isWrong: false },
+          { text: "Myotome entsprechen Muskelgruppen.", isWrong: false },
+          { text: "Ein Dermatom ist eine von einem Spinalnerv motorisch versorgte Muskelgruppe.", isWrong: true }
+        ], whyWrong: "Ein Dermatom ist ein sensibel innerviertes Hautgebiet — die motorisch versorgte Muskelgruppe eines Spinalnervs heißt Myotom." }
       },
       {
         type: "true_false",
         id: "1043_08_h4",
         statement: "Der Parasympathikus erhöht Herzfrequenz, Schlagkraft und Schlagvolumen des Herzens.",
         answer: false,
-        explanation: "Der SYMPATHIKUS erhöht Herzfrequenz, Schlagkraft und Schlagvolumen (‚fight or flight'). Der Parasympathikus erniedrigt diese Parameter (trophotrope/erholende Wirkung)."
+        explanation: "Der SYMPATHIKUS erhöht Herzfrequenz, Schlagkraft und Schlagvolumen (‚fight or flight'). Der Parasympathikus erniedrigt diese Parameter (trophotrope/erholende Wirkung).",
+        learningCard: { type: "predict", statement: "Der Parasympathikus erhöht Herzfrequenz, Schlagkraft und Schlagvolumen des Herzens.", answer: false, reveal: "Der SYMPATHIKUS erhöht diese Parameter ('fight or flight'); der Parasympathikus erniedrigt sie im Rahmen seiner trophotropen, erholenden Wirkung." }
       },
       {
         type: "mc",
@@ -14049,7 +14437,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Die vorderen Wurzeln aller Thorakalnerven", correct: false },
           { text: "Ein Nervengeflecht im Plexus brachialis", correct: false }
         ],
-        explanation: "Die Cauda equina (Pferdeschwanz) besteht aus den Nervenwurzeln L3–S5 und Co1, die kaudal im Wirbelkanal verlaufen, da das Rückenmark bereits bei LWK 1/2 endet."
+        explanation: "Die Cauda equina (Pferdeschwanz) besteht aus den Nervenwurzeln L3–S5 und Co1, die kaudal im Wirbelkanal verlaufen, da das Rückenmark bereits bei LWK 1/2 endet.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Cauda equina treffen zu?", checklist: [
+          { text: "Sie besteht aus den Nervenwurzeln L3–S5 und Co1.", correct: true },
+          { text: "Sie verläuft kaudal im Wirbelkanal.", correct: true },
+          { text: "Das Rückenmark selbst endet bereits bei LWK 1/2.", correct: true },
+          { text: "Sie besteht aus den vorderen Wurzeln der Thorakalnerven.", correct: false }
+        ], reveal: "Die Cauda equina besteht aus den Nervenwurzeln L3–S5 und Co1, die kaudal im Wirbelkanal verlaufen, da das Rückenmark bereits bei LWK 1/2 endet." }
       }
     ],
     phase4Questions: [
@@ -14064,7 +14458,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Schließmuskulatur wird erschlafft", correct: false },
           { text: "Schlagkraft des Herzens wird erhöht", correct: true }
         ],
-        explanation: "Der Sympathikus KONTRAHIERT (nicht erschlafft) die Schließmuskulatur. Das Erschlaffen der Schließmuskulatur ist eine parasympathische Wirkung (ermöglicht Entleerung)."
+        explanation: "Der Sympathikus KONTRAHIERT (nicht erschlafft) die Schließmuskulatur. Das Erschlaffen der Schließmuskulatur ist eine parasympathische Wirkung (ermöglicht Entleerung).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Sympathikus erhöht die Herzfrequenz.", isWrong: false },
+          { text: "Der Sympathikus dilatiert die Bronchien.", isWrong: false },
+          { text: "Der Sympathikus erniedrigt die Darmbewegung.", isWrong: false },
+          { text: "Der Sympathikus erschlafft die Schließmuskulatur.", isWrong: true }
+        ], whyWrong: "Der Sympathikus KONTRAHIERT die Schließmuskulatur — das Erschlaffen (zur Entleerung) ist eine parasympathische Wirkung." }
       },
       {
         type: "mc",
@@ -14077,7 +14477,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Der Patellarsehnenreflex ist ein polysynaptischer Fremdreflex", correct: false },
           { text: "Graue Substanz liegt im Rückenmark innen", correct: true }
         ],
-        explanation: "Der Patellarsehnenreflex ist ein monosynaptischer Eigenreflex (nicht polysynaptisch) – Rezeptor und Effektor liegen beide im Quadrizepsmuskel."
+        explanation: "Der Patellarsehnenreflex ist ein monosynaptischer Eigenreflex (nicht polysynaptisch) – Rezeptor und Effektor liegen beide im Quadrizepsmuskel.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Rückenmark und Reflexbogen treffen zu?", checklist: [
+          { text: "Das Hinterhorn enthält afferente (sensible) Neurone.", correct: true },
+          { text: "Das Vorderhorn enthält motorische Neurone.", correct: true },
+          { text: "Der Patellarsehnenreflex ist ein monosynaptischer Eigenreflex.", correct: true },
+          { text: "Der Patellarsehnenreflex ist ein polysynaptischer Fremdreflex.", correct: false }
+        ], reveal: "Das Hinterhorn enthält afferente, das Vorderhorn motorische Neurone. Der Patellarsehnenreflex ist ein monosynaptischer Eigenreflex — Rezeptor und Effektor liegen beide im Quadrizepsmuskel." }
       }
     ]
   }),
@@ -14096,14 +14502,16 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Sie haben eine amöboide Makrophagenfunktion", correct: false },
           { text: "Sie bilden Aktionspotenziale", correct: false }
         ],
-        explanation: "Oligodendrozyten bilden die Markscheide (Myelinscheide) im ZNS – das Analogon zu den Schwann-Zellen im PNS. Astrozyten dienen der Ernährung und dem Stoffaustausch; Mikroglia hat die Makrophagenfunktion."
+        explanation: "Oligodendrozyten bilden die Markscheide (Myelinscheide) im ZNS – das Analogon zu den Schwann-Zellen im PNS. Astrozyten dienen der Ernährung und dem Stoffaustausch; Mikroglia hat die Makrophagenfunktion.",
+        learningCard: { type: "reconstruct", template: "___ bilden die Myelinscheide im ZNS — das Analogon zu den ___ im PNS.", blanks: ["Oligodendrozyten", "Schwann-Zellen"], distractors: ["Astrozyten", "Mikroglia"] }
       },
       {
         id: "1043_09_h2",
         type: "true_false",
         statement: "Mikroglia sind amöboid beweglich und haben eine ähnliche Funktion wie Makrophagen im Immunsystem.",
         answer: true,
-        explanation: "Korrekt. Mikroglia sind der 'Immuntyp' der Gliazellen: amöboid beweglich, phagozytieren Zelltrümmer und Erreger – damit erfüllen sie eine vergleichbare Funktion wie Makrophagen im peripheren Immunsystem."
+        explanation: "Korrekt. Mikroglia sind der 'Immuntyp' der Gliazellen: amöboid beweglich, phagozytieren Zelltrümmer und Erreger – damit erfüllen sie eine vergleichbare Funktion wie Makrophagen im peripheren Immunsystem.",
+        learningCard: { type: "predict", statement: "Mikroglia sind amöboid beweglich und haben eine ähnliche Funktion wie Makrophagen im Immunsystem.", answer: true, reveal: "Mikroglia sind der 'Immuntyp' der Gliazellen: amöboid beweglich, sie phagozytieren Zelltrümmer und Erreger." }
       },
       {
         id: "1043_09_h3",
@@ -14115,14 +14523,21 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Gleichmäßig verteilt", correct: false },
           { text: "Nur im Bereich des Corpus callosum", correct: false }
         ],
-        explanation: "Im Großhirn liegt die Substantia grisea außen als Kortex (Hirnrinde). Im Rückenmark ist es umgekehrt: grau liegt innen in Schmetterlingsform. Dieser Unterschied ist prüfungsrelevant."
+        explanation: "Im Großhirn liegt die Substantia grisea außen als Kortex (Hirnrinde). Im Rückenmark ist es umgekehrt: grau liegt innen in Schmetterlingsform. Dieser Unterschied ist prüfungsrelevant.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Im Großhirn liegt die Substantia grisea außen als Kortex.", isWrong: false },
+          { text: "Im Rückenmark liegt die graue Substanz innen in Schmetterlingsform.", isWrong: false },
+          { text: "Die Lage der grauen Substanz unterscheidet sich zwischen Großhirn und Rückenmark.", isWrong: false },
+          { text: "Im Großhirn liegt die Substantia grisea wie im Rückenmark innen.", isWrong: true }
+        ], whyWrong: "Im Großhirn liegt die graue Substanz außen als Kortex — im Rückenmark liegt sie dagegen innen in Schmetterlingsform." }
       },
       {
         id: "1043_09_h4",
         type: "true_false",
         statement: "Die Lamina pyramidalis (3. Schicht der Großhirnrinde) ist hauptsächlich für motorische Funktionen und Willkürbewegungen zuständig.",
         answer: true,
-        explanation: "Korrekt. Die Lamina pyramidalis (Schicht III) enthält pyramidenförmig angeordnete Neurone und ist für motorische Bereiche zuständig. Die Lamina ganglionaris (Schicht V) enthält ähnliche, aber größere Pyramidenzellen."
+        explanation: "Korrekt. Die Lamina pyramidalis (Schicht III) enthält pyramidenförmig angeordnete Neurone und ist für motorische Bereiche zuständig. Die Lamina ganglionaris (Schicht V) enthält ähnliche, aber größere Pyramidenzellen.",
+        learningCard: { type: "predict", statement: "Die Lamina pyramidalis (3. Schicht der Großhirnrinde) ist hauptsächlich für motorische Funktionen und Willkürbewegungen zuständig.", answer: true, reveal: "Die Lamina pyramidalis (Schicht III) enthält pyramidenförmig angeordnete Neurone für motorische Bereiche. Die Lamina ganglionaris (Schicht V) enthält ähnliche, aber größere Pyramidenzellen." }
       },
       {
         id: "1043_09_h5",
@@ -14134,7 +14549,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Monozyten, Astrozyten und Oligodendrozyten", correct: false },
           { text: "Astrozyten, Makrophagen und Fibroblasten", correct: false }
         ],
-        explanation: "Die drei ZNS-Gliatypen: Astrozyten (Ernährung/Stoffaustausch), Oligodendrozyten (Myelinscheide), Mikroglia (Immunabwehr). Schwann-Zellen bilden die Myelinscheide im PNS, nicht im ZNS."
+        explanation: "Die drei ZNS-Gliatypen: Astrozyten (Ernährung/Stoffaustausch), Oligodendrozyten (Myelinscheide), Mikroglia (Immunabwehr). Schwann-Zellen bilden die Myelinscheide im PNS, nicht im ZNS.",
+        learningCard: { type: "teachback", prompt: "Welche Zelltypen gehören zu den Gliazellen (Neuroglia) des ZNS?", checklist: [
+          { text: "Astrozyten", correct: true },
+          { text: "Oligodendrozyten", correct: true },
+          { text: "Mikroglia", correct: true },
+          { text: "Schwann-Zellen (bilden die Myelinscheide im PNS, nicht im ZNS)", correct: false }
+        ], reveal: "Die drei ZNS-Gliatypen sind Astrozyten (Ernährung/Stoffaustausch), Oligodendrozyten (Myelinscheide) und Mikroglia (Immunabwehr). Schwann-Zellen bilden die Myelinscheide im PNS, nicht im ZNS." }
       }
     ],
     phase4Questions: [
@@ -14149,7 +14570,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Schwann-Zellen bilden die Myelinscheide im PNS (nicht im ZNS)", correct: true },
           { text: "Astrozyten bilden Aktionspotenziale wie Nervenzellen", correct: false }
         ],
-        explanation: "Astrozyten sind Stütz- und Ernährungszellen, keine elektrisch erregbaren Zellen. Alle anderen Aussagen sind korrekt. Die Unterscheidung Oligodendrozyten (ZNS) vs. Schwann-Zellen (PNS) ist prüfungsrelevant."
+        explanation: "Astrozyten sind Stütz- und Ernährungszellen, keine elektrisch erregbaren Zellen. Alle anderen Aussagen sind korrekt. Die Unterscheidung Oligodendrozyten (ZNS) vs. Schwann-Zellen (PNS) ist prüfungsrelevant.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Astrozyten dienen der Ernährung und dem Stoffaustausch der Nervenzellen.", isWrong: false },
+          { text: "Oligodendrozyten bilden die Myelinscheide im ZNS.", isWrong: false },
+          { text: "Mikroglia sind amöboid beweglich und haben Makrophagenfunktion.", isWrong: false },
+          { text: "Astrozyten bilden Aktionspotenziale wie Nervenzellen.", isWrong: true }
+        ], whyWrong: "Astrozyten sind Stütz- und Ernährungszellen, keine elektrisch erregbaren Zellen — Aktionspotenziale bilden nur Nervenzellen." }
       },
       {
         id: "1043_09_p4_2",
@@ -14162,7 +14589,13 @@ const NERVENSYSTEM_1043_PLANTS = [
           { text: "Im Rückenmark liegt die graue Substanz außen", correct: false },
           { text: "Die weiße Farbe der Substantia alba kommt vom Lipoprotein der Myelinscheide", correct: true }
         ],
-        explanation: "Im Rückenmark liegt die graue Substanz INNEN (Schmetterlingsform: Hinterhorn, Vorderhorn, Seitenhorn), nicht außen. Im Großhirn ist es umgekehrt: grau außen."
+        explanation: "Im Rückenmark liegt die graue Substanz INNEN (Schmetterlingsform: Hinterhorn, Vorderhorn, Seitenhorn), nicht außen. Im Großhirn ist es umgekehrt: grau außen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Substantia alba und grisea treffen zu?", checklist: [
+          { text: "Substantia alba besteht aus markhaltigen Axonen (Faserbahnen).", correct: true },
+          { text: "Substantia grisea besteht aus Nervenzellkörpern und ist marklos.", correct: true },
+          { text: "Im Großhirn liegt die graue Substanz außen als Kortex.", correct: true },
+          { text: "Im Rückenmark liegt die graue Substanz außen.", correct: false }
+        ], reveal: "Im Rückenmark liegt die graue Substanz INNEN (Schmetterlingsform), im Großhirn dagegen außen als Kortex." }
       }
     ]
   })
