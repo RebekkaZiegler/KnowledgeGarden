@@ -3895,19 +3895,27 @@ const MUSKELLEHRE_1034_PLANTS = [
         { text: "M. biceps femoris", correct: false },
         { text: "M. gastrocnemius", correct: false },
         { text: "M. gracilis", correct: false }
-      ], explanation: "Der M. quadriceps femoris ist der stärkste Kniestrecker mit vier Köpfen, die alle an der Patellasehne zusammenlaufen." },
+      ], explanation: "Der M. quadriceps femoris ist der stärkste Kniestrecker mit vier Köpfen, die alle an der Patellasehne zusammenlaufen.",
+        learningCard: { type: "predict", statement: "Der M. quadriceps femoris ist der stärkste Kniestrecker.", answer: true, reveal: "Er hat vier Köpfe, die alle an der Patellasehne zusammenlaufen." } },
       { id: "mu_ext_mc2", type: "mc", question: "Welche Muskeln bilden die Rotatorenmanschette der Schulter?", options: [
         { text: "M. supraspinatus, infraspinatus, teres minor und subscapularis", correct: true },
         { text: "M. deltoideus, biceps brachii und triceps brachii", correct: false },
         { text: "M. pectoralis major und serratus anterior", correct: false },
         { text: "M. trapezius und latissimus dorsi", correct: false }
-      ], explanation: "Die Rotatorenmanschette (SITS: Supraspinatus, Infraspinatus, Teres minor, Subscapularis) zentriert den Humeruskopf in der Schultergelenkpfanne." },
+      ], explanation: "Die Rotatorenmanschette (SITS: Supraspinatus, Infraspinatus, Teres minor, Subscapularis) zentriert den Humeruskopf in der Schultergelenkpfanne.",
+        learningCard: { type: "reconstruct", template: "Die Rotatorenmanschette (SITS) besteht aus M. supraspinatus, infraspinatus, ___ und ___.", blanks: ["teres minor", "subscapularis"], distractors: ["deltoideus", "trapezius"], reveal: "Sie zentriert den Humeruskopf in der Schultergelenkpfanne." } },
       { id: "mu_ext_mc3", type: "mc", question: "Welche Aussagen zur Extremitätenmuskulatur sind korrekt?", options: [
         { text: "Rotatorenmanschette (SITS) stabilisiert den Humeruskopf in der Glenoidpfanne", correct: true },
         { text: "M. biceps brachii führt Ellenbogenflexion und Supination aus (N. musculocutaneus)", correct: true },
         { text: "M. gluteus maximus ist der Hauptabduktor der Hüfte", correct: false },
         { text: "M. quadriceps femoris ist der stärkste Kniebeuger", correct: false }
-      ], explanation: "M. gluteus maximus = Extension + Aussenrotation (kein Abduktor; das ist gluteus medius/minimus). M. quadriceps = Kniestrecker (kein Beuger). SITS stabilisieren Schulter. Biceps: N. musculocutaneus, C5-C6, Ansatz Tuberositas radii → Flexion + Supination." }
+      ], explanation: "M. gluteus maximus = Extension + Aussenrotation (kein Abduktor; das ist gluteus medius/minimus). M. quadriceps = Kniestrecker (kein Beuger). SITS stabilisieren Schulter. Biceps: N. musculocutaneus, C5-C6, Ansatz Tuberositas radii → Flexion + Supination.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Extremitätenmuskulatur treffen zu?", checklist: [
+          { text: "Die Rotatorenmanschette (SITS) stabilisiert den Humeruskopf in der Glenoidpfanne.", correct: true },
+          { text: "M. biceps brachii führt Ellenbogenflexion und Supination aus.", correct: true },
+          { text: "M. gluteus maximus ist der Hauptabduktor der Hüfte.", correct: false },
+          { text: "M. quadriceps femoris ist der stärkste Kniebeuger.", correct: false }
+        ], reveal: "M. gluteus maximus ist Hüftstrecker und Außenrotator, nicht Abduktor; der M. quadriceps ist Kniestrecker, kein Beuger." } }
     ]
   }),
 
@@ -3926,6 +3934,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Beugung der Halswirbelsäule und Atemhilfe; N. phrenicus", correct: false },
         ],
         explanation: "M. trapezius (Kapuzenmuskel): Ursprung Hinterhauptbein/HWS C7/BWS Th1-12, Ansatz Clavicula/Akromion/Spina scapulae. N. accessorius (XI. Hirnnerv) + Plexus cervicalis. Gesamtwirkung: Schultergürtel nach hinten; Pars descendens hebt Scapula; einseitig dreht Kopf zur Gegenseite; bilateral: Kopf/HWS-Extension.",
+        learningCard: { type: "reconstruct", template: "Der M. trapezius hebt und dreht die Scapula medianwärts und wird vom N. ___ (XI. Hirnnerv) innerviert; einseitig dreht er den Kopf zur ___.", blanks: ["accessorius", "Gegenseite"], distractors: ["thoracodorsalis", "gleichen Seite"], reveal: "Ursprung ist Hinterhauptbein/HWS/BWS, Ansatz Clavicula/Akromion/Spina scapulae." },
       },
       {
         type: "mc",
@@ -3938,6 +3947,12 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Elevation und Protraktion des Schultergürtels; N. accessorius", correct: false },
         ],
         explanation: "M. latissimus dorsi (breiter Rückenmuskel): Ursprung Th7-L5/Os sacrum/Os ilium, Ansatz Crista tuberculi minoris humeri. N. thoracodorsalis. Funktionen: Adduktion (heranführen), Retroversion (rückwärts führen), Innenrotation des Arms und Senkung des Schultergürtels. Auch exspiratorischer Atemhilfsmuskel.",
+        learningCard: { type: "teachback", prompt: "Welche Bewegungen führt der M. latissimus dorsi am Arm aus?", checklist: [
+          { text: "Adduktion", correct: true },
+          { text: "Retroversion (Rückführen)", correct: true },
+          { text: "Innenrotation", correct: true },
+          { text: "Abduktion", correct: false }
+        ], reveal: "Er wird vom N. thoracodorsalis innerviert und wirkt zusätzlich als exspiratorischer Atemhilfsmuskel." },
       },
       {
         type: "mc",
@@ -3950,6 +3965,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Alle drei Begriffe bezeichnen dasselbe Konzept unterschiedlich großer Muskeln", correct: false },
         ],
         explanation: "Agonist (Hauptbeweger): führt die Primärbewegung aus. Antagonist (Gegenspieler): hat entgegengesetzte Funktion; erschlafft bei Agonisten-Aktion (reziproke Hemmung). Synergist: unterstützt und feinjustiert den Agonisten. Beispiel: Ellenbogenflexion: Agonist = M. biceps brachii, Antagonist = M. triceps brachii, Synergist = M. brachialis.",
+        learningCard: { type: "predict", statement: "Ein Agonist ist der Hauptbeweger einer Bewegung, ein Antagonist der Gegenspieler mit entgegengesetzter Funktion.", answer: true, reveal: "Ein Synergist unterstützt und feinjustiert den Agonisten — bei der Ellenbogenflexion ist z.B. der M. biceps brachii Agonist, der M. triceps brachii Antagonist und der M. brachialis Synergist." },
       },
       {
         type: "mc",
@@ -3962,6 +3978,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "M. rhomboideus wird vom N. thoracodorsalis innerviert", correct: false },
         ],
         explanation: "Mm. rhomboidei major (Th1-4) und minor (C6+7): heben das Schulterblatt kranial und medial, fixieren es am Rumpf. M. levator scapulae (C1-4): hebt Schulterblatt nach oben, neigt den Hals bei fixiertem Schulterblatt zur gleichen Seite. Alle drei: N. dorsalis scapulae. Klinisch: Schwäche dieser Muskeln → schlechte Schulterblatt-Fixierung, Schmerzsyndrome.",
+        learningCard: { type: "predict", statement: "Die Mm. rhomboidei und der M. levator scapulae heben und fixieren beide das Schulterblatt.", answer: true, reveal: "Beide werden vom N. dorsalis scapulae innerviert; der M. levator scapulae neigt bei fixiertem Schulterblatt zusätzlich den Hals zur gleichen Seite." },
       },
       {
         type: "true_false",
@@ -3969,6 +3986,7 @@ const MUSKELLEHRE_1034_PLANTS = [
         statement: "Der M. latissimus dorsi kann als exspiratorischer Atemhilfsmuskel wirken.",
         answer: true,
         explanation: "M. latissimus dorsi senkt den Schultergürtel und komprimiert bei freiem Arm den Thorax von unten. Bei forcierter Ausatmung (z.B. Husten, Niesen, Sport) wird er als exspiratorischer Atemhilfsmuskel aktiv. Diese Doppelrolle gilt auch für andere Muskeln, die zwischen Rumpf und Schulter ziehen.",
+        learningCard: { type: "predict", statement: "Der M. latissimus dorsi kann als exspiratorischer Atemhilfsmuskel wirken.", answer: true, reveal: "Er senkt den Schultergürtel und komprimiert bei freiem Arm den Thorax von unten — aktiv z.B. beim Husten, Niesen oder Sport." },
       },
     ],
     phase4Questions: [
@@ -3983,6 +4001,12 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "M. latissimus dorsi und M. trapezius werden beide vom N. accessorius innerviert", correct: false },
         ],
         explanation: "Trapezius (N. accessorius): Scapula-Steuerung, Kopfdrehung zur Gegenseite, HWS-Extension. Latissimus dorsi (N. thoracodorsalis): Arm-Adduktion/Retroversion/Innenrotation. ACHTUNG: Latissimus wird NICHT vom N. accessorius innerviert — das ist der Trapezius. Diese Nerv-Muskel-Zuordnung ist prüfungsrelevant.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu M. trapezius und M. latissimus dorsi treffen zu?", checklist: [
+          { text: "M. trapezius wird vom N. accessorius innerviert und hebt/dreht die Scapula.", correct: true },
+          { text: "M. latissimus dorsi wird vom N. thoracodorsalis innerviert und adduziert/retrovertiert/innenrotiert den Arm.", correct: true },
+          { text: "M. trapezius dreht bei einseitiger Kontraktion den Kopf zur Gegenseite.", correct: true },
+          { text: "Beide Muskeln werden vom N. accessorius innerviert.", correct: false }
+        ], reveal: "Nur der M. trapezius wird vom N. accessorius innerviert — der M. latissimus dorsi hat mit dem N. thoracodorsalis einen eigenen Nerv." },
       },
       {
         type: "mc",
@@ -3995,6 +4019,12 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Adduktion/Innenrotation: M. deltoideus; Scapula-Drehung: M. rhomboideus", correct: false },
         ],
         explanation: "Klare Trennung: M. latissimus dorsi (N. thoracodorsalis) = Arm-Bewegungen (Adduktion, Retroversion, Innenrotation). M. trapezius (N. accessorius) = Scapula-Bewegungen (Hebung, Drehung medianwärts) + Kopfdrehung. Diese Zuordnung Nerv-Muskel-Funktion ist examensrelevant.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der M. latissimus dorsi adduziert und innenrotiert den Arm (N. thoracodorsalis).", isWrong: false },
+          { text: "Der M. trapezius hebt und dreht die Scapula medianwärts (N. accessorius).", isWrong: false },
+          { text: "Diese Nerv-Muskel-Zuordnung ist prüfungsrelevant.", isWrong: false },
+          { text: "Der M. trapezius adduziert und innenrotiert den Arm.", isWrong: true }
+        ], whyWrong: "Das ist die Funktion des M. latissimus dorsi — der M. trapezius bewegt die Scapula, nicht den Arm." },
       },
     ],
   }),
@@ -4014,6 +4044,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Weil er alle Atemhilfsmuskeln des Thorax innerviert", correct: false },
         ],
         explanation: "N. phrenicus: Hauptwurzel C4, Beiträge von C3 und C5. Einziger Nerv des Diaphragmas (Hauptatemmuskel). Bei Querschnittlähmung oberhalb C4: Ausfall beider N. phrenici → Atemlähmung → Beatmungspflicht. Merke: C3-C4-C5 keeps the diaphragm alive.",
+        learningCard: { type: "predict", statement: "Der N. phrenicus wird als Lebensnerv bezeichnet, weil er das Diaphragma innerviert — sein beidseitiger Ausfall führt zur vollständigen Atemlähmung.", answer: true, reveal: "Seine Hauptwurzel liegt bei C4, mit Beiträgen von C3 und C5." },
       },
       {
         type: "mc",
@@ -4026,6 +4057,12 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Einatmung: Diaphragma steigt nach oben und verdrängt das Lungenvolumen nach kranial; Ausatmung: Diaphragma flacht sich kaudalwärts ab", correct: false },
         ],
         explanation: "Atemmechanik: Inspiration = aktive Kontraktion → kuppelförmiges Diaphragma flacht sich ab → Thoraxraum vergrößert sich → Druck sinkt unter Atmosphärendruck → Luft strömt ein. Exspiration = Erschlaffung → Diaphragma wölbt sich nach oben → Thoraxraum verkleinert sich → Luft strömt aus. Bei forcierter Ausatmung helfen zusätzlich Bauchmuskeln.",
+        learningCard: { type: "teachback", prompt: "Was passiert beim Diaphragma bei Ein- und Ausatmung?", checklist: [
+          { text: "Bei Einatmung kontrahiert und flacht sich das Diaphragma ab.", correct: true },
+          { text: "Dadurch steigt das Thoraxvolumen und Luft strömt ein.", correct: true },
+          { text: "Bei Ausatmung erschlafft das Diaphragma und steigt nach oben.", correct: true },
+          { text: "Bei Einatmung erschlafft das Diaphragma passiv.", correct: false }
+        ], reveal: "Die Einatmung ist ein aktiver Vorgang durch Kontraktion des Diaphragmas — die Ausatmung erfolgt meist passiv durch Erschlaffung." },
       },
       {
         type: "mc",
@@ -4038,6 +4075,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Extension des Ellenbogens; Innervation: N. radialis", correct: false },
         ],
         explanation: "M. pectoralis major (großer Brustmuskel): Ursprung Clavicula medial/Sternum/Rippenknorpel 1-6, Ansatz Crista tuberculi majoris humeri. Nn. pectorales medialis und lateralis. Funktionen: Adduktion, Innenrotation und Anteversion des Arms. Bei fixiertem Arm hebt er den Brustkorb (Atemhilfsmuskel).",
+        learningCard: { type: "predict", statement: "Der M. pectoralis major adduziert und innenrotiert den Arm und kann bei fixiertem Arm als Atemhilfsmuskel wirken.", answer: true, reveal: "Er wird von den Nn. pectorales innerviert; Ursprung sind Clavicula, Sternum und Rippenknorpel 1–6." },
       },
       {
         type: "mc",
@@ -4050,6 +4088,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Vorgewölbte Schulter durch Hypertrophie des M. pectoralis major", correct: false },
         ],
         explanation: "Scapula alata (Flügelschulterblatt): das Schulterblatt steht flügelartig vom Rücken ab. Ursache: Lähmung des M. serratus anterior durch Schädigung des N. thoracicus longus (z.B. bei Schulteroperationen oder Druckläsion durch Rucksack). Ohne Serratus-Fixierung kann die Scapula nicht an den Thorax angepresst werden — Armhebung über die Horizontale ist eingeschränkt.",
+        learningCard: { type: "reconstruct", template: "Eine Scapula alata (Flügelschulterblatt) entsteht durch Lähmung des M. ___ infolge einer Schädigung des N. ___.", blanks: ["serratus anterior", "thoracicus longus"], distractors: ["trapezius", "accessorius"], reveal: "Ohne die Fixierung durch den Serratus kann die Scapula nicht an den Thorax angepresst werden — die Armhebung über die Horizontale ist eingeschränkt." },
       },
       {
         type: "true_false",
@@ -4057,6 +4096,7 @@ const MUSKELLEHRE_1034_PLANTS = [
         statement: "Das Diaphragma wird vom N. phrenicus innerviert, der seinen Hauptursprung im Rückenmarkssegment C4 hat.",
         answer: true,
         explanation: "N. phrenicus: Hauptwurzel C4, Beiträge von C3 und C5. Verläuft über den vorderen Skalenusmuskel nach kaudal durch den Thorax zum Diaphragma. Klinische Bedeutung: Halsmarkläsionen oberhalb C4 bedrohen die Atemfunktion. Merke: C4 ist das kritische Segment für die Eigenatmung.",
+        learningCard: { type: "predict", statement: "Das Diaphragma wird vom N. phrenicus innerviert, der seinen Hauptursprung im Rückenmarkssegment C4 hat.", answer: true, reveal: "Halsmarkläsionen oberhalb C4 bedrohen deshalb die Eigenatmung." },
       },
     ],
     phase4Questions: [
@@ -4071,6 +4111,12 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "M. pectoralis major führt Abduktion und Außenrotation des Arms aus", correct: false },
         ],
         explanation: "Diaphragma (N. phrenicus, C4): Einatmung durch Kontraktion/Abflachung. Serratus anterior (N. thoracicus longus): Scapulafixierung; Lähmung = Scapula alata. Pectoralis major (Nn. pectorales): ADDUKTION und INNENROTATION — NICHT Abduktion/Außenrotation (das ist Supraspinatus/Deltoideus).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Diaphragma, M. pectoralis major und M. serratus anterior treffen zu?", checklist: [
+          { text: "Das Diaphragma wird vom N. phrenicus (C4) innerviert; Einatmung = Kontraktion.", correct: true },
+          { text: "M. serratus anterior (N. thoracicus longus) fixiert die Scapula; sein Ausfall verursacht eine Scapula alata.", correct: true },
+          { text: "M. pectoralis major adduziert und innenrotiert den Arm.", correct: true },
+          { text: "M. pectoralis major führt Abduktion und Außenrotation aus.", correct: false }
+        ], reveal: "Abduktion/Außenrotation übernehmen andere Muskeln wie Supraspinatus/Deltoideus, nicht der M. pectoralis major." },
       },
       {
         type: "mc",
@@ -4083,6 +4129,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Kein relevanter funktioneller Unterschied — beide Muskeln werden ausschließlich vom N. thoracicus longus (C5–C7) innerviert und kontrolliert", correct: false },
         ],
         explanation: "M. serratus anterior (N. thoracicus longus): zieht Scapula nach lateral/vorne, presst sie an den Thorax, ermöglicht Armhebung über 90 Grad. M. pectoralis major (Nn. pectorales): bewegt den Arm (Adduktion, Innenrotation, Anteversion). Verschiedene Innervation, verschiedene Ansatzpunkte, verschiedene Primärfunktionen.",
+        learningCard: { type: "predict", statement: "Der M. serratus anterior fixiert die Scapula am Thorax, während der M. pectoralis major den Arm adduziert und innenrotiert.", answer: true, reveal: "Der Serratus ermöglicht dadurch die Armhebung über die Horizontale — beide Muskeln haben unterschiedliche Innervation, Ansätze und Primärfunktionen." },
       },
     ],
   }),
@@ -4102,6 +4149,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "M. sartorius + M. gracilis; Ansatz Pes anserinus; Adduktion; N. obturatorius", correct: false },
         ],
         explanation: "M. iliopsoas = M. psoas major (Th12/L1-4) + M. iliacus (Fossa iliaca). Gemeinsamer Ansatz: Trochanter minor des Femur. Innervation: N. femoralis (Plexus lumbalis). Stärkster Hüftbeuger. M. psoas major beugt zusätzlich die LWS (Inklination/Lateralflexion). Klinisch: Psoas-Verkürzung häufig bei Hohlkreuz und Hüftschmerzen.",
+        learningCard: { type: "reconstruct", template: "Der M. iliopsoas besteht aus M. psoas major und M. ___, setzt am Trochanter ___ an und ist der stärkste Hüftbeuger.", blanks: ["iliacus", "minor"], distractors: ["gluteus", "major"], reveal: "Er wird vom N. femoralis innerviert; der M. psoas major beugt zusätzlich die Lendenwirbelsäule." },
       },
       {
         type: "mc",
@@ -4114,6 +4162,12 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "M. gluteus maximus/medius/minimus; Ursprung Os ilium; Abduktion und Extension", correct: false },
         ],
         explanation: "Ischiokrurale Muskeln (Hamstrings): M. biceps femoris (Caput longum + breve), M. semitendinosus, M. semimembranosus. Gemeinsamer Ursprung: Tuber ischiadicum (Sitzbeinhöcker). Innervation: N. tibialis (Caput breve M. biceps femoris: N. peronaeus communis). Funktionen: Kniebeugung, Hüftstreckung, Unterschenkelrotation. Klinisch: Hamstring-Zerrung häufig bei Sprints.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den ischiokruralen Muskeln (Hamstrings) treffen zu?", checklist: [
+          { text: "Dazu gehören M. biceps femoris, M. semitendinosus und M. semimembranosus.", correct: true },
+          { text: "Ihr gemeinsamer Ursprung ist das Tuber ischiadicum.", correct: true },
+          { text: "Sie beugen das Knie und strecken die Hüfte.", correct: true },
+          { text: "Sie strecken das Knie.", correct: false }
+        ], reveal: "Die Kniestreckung übernimmt der M. quadriceps femoris — die Hamstrings sind Kniebeuger." },
       },
       {
         type: "mc",
@@ -4126,6 +4180,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "M. gluteus maximus, medius, minimus; Nn. glutei", correct: false },
         ],
         explanation: "Adduktorengruppe: M. adductor longus, M. adductor brevis, M. adductor magnus + M. gracilis (und M. pectineus). Innervation hauptsächlich N. obturatorius; M. adductor magnus kaudal: N. tibialis. Funktion: Adduktion (Heranziehen) und Beugung des Oberschenkels. Klinisch: Adduktorenzerrung = häufige Sportverletzung im Innenschenkelbereich.",
+        learningCard: { type: "predict", statement: "Zur Adduktorengruppe des Oberschenkels gehören M. adductor longus, brevis, magnus und M. gracilis, innerviert vom N. obturatorius.", answer: true, reveal: "Ihre Funktion ist die Adduktion und Beugung des Oberschenkels; eine Adduktorenzerrung ist eine häufige Sportverletzung." },
       },
       {
         type: "mc",
@@ -4138,6 +4193,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Kein Antagonistenverhältnis — beide wirken nur am Hüftgelenk", correct: false },
         ],
         explanation: "Klassisches Antagonistenpaar am Knie: M. quadriceps femoris (vorne, N. femoralis) = Knieextension. Ischiokrurale Muskeln (dorsal, N. tibialis) = Knieflexion. Beim Gehen, Laufen, Springen koordiniert dieses Paar die Kniesteuerung. Der M. rectus femoris des Quadriceps beugt zudem die Hüfte (zweigelenkiger Muskel).",
+        learningCard: { type: "predict", statement: "M. quadriceps femoris und die ischiokruralen Muskeln bilden am Knie ein klassisches Antagonistenpaar: Quadriceps streckt, Hamstrings beugen.", answer: true, reveal: "Der M. rectus femoris des Quadriceps beugt als zweigelenkiger Muskel zusätzlich die Hüfte." },
       },
       {
         type: "true_false",
@@ -4145,6 +4201,12 @@ const MUSKELLEHRE_1034_PLANTS = [
         statement: "Alle drei Hauptmuskeln der ischiokruralen Gruppe haben ihren Ursprung am Tuber ischiadicum.",
         answer: true,
         explanation: "M. biceps femoris Caput longum, M. semitendinosus und M. semimembranosus entspringen alle am Tuber ischiadicum. Das Caput breve des M. biceps femoris entspringt an der Linea aspera femoris. Der gemeinsame Ursprung am Tuber ischiadicum erklärt Schmerzen beim Sitzen auf harten Flächen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "M. semitendinosus entspringt am Tuber ischiadicum.", isWrong: false },
+          { text: "M. semimembranosus entspringt am Tuber ischiadicum.", isWrong: false },
+          { text: "Das Caput longum des M. biceps femoris entspringt am Tuber ischiadicum.", isWrong: false },
+          { text: "Das Caput breve des M. biceps femoris entspringt ebenfalls am Tuber ischiadicum.", isWrong: true }
+        ], whyWrong: "Das Caput breve entspringt an der Linea aspera femoris — nur die anderen drei Muskelköpfe entspringen gemeinsam am Tuber ischiadicum." },
       },
     ],
     phase4Questions: [
@@ -4159,6 +4221,12 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "Die Hamstrings sind die stärksten Kniestrecker des Oberschenkels", correct: false },
         ],
         explanation: "Iliopsoas = stärkster Hüftbeuger (N. femoralis, Trochanter minor). Hamstrings = Kniebeuger + Hüftstrecker (N. tibialis, Tuber ischiadicum). Adduktoren = Heranziehen Oberschenkel (N. obturatorius). ACHTUNG: Hamstrings sind KNIEBEUGER — der stärkste KNIESTRECKER ist der M. quadriceps femoris.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu M. iliopsoas, Hamstrings und Adduktoren treffen zu?", checklist: [
+          { text: "Der M. iliopsoas ist der stärkste Hüftbeuger (N. femoralis).", correct: true },
+          { text: "Die Hamstrings entspringen am Tuber ischiadicum und wirken als Kniebeuger und Hüftstrecker.", correct: true },
+          { text: "Die Adduktorengruppe wird vom N. obturatorius innerviert.", correct: true },
+          { text: "Die Hamstrings sind die stärksten Kniestrecker.", correct: false }
+        ], reveal: "Der stärkste Kniestrecker ist der M. quadriceps femoris — die Hamstrings sind Kniebeuger." },
       },
       {
         type: "mc",
@@ -4171,6 +4239,7 @@ const MUSKELLEHRE_1034_PLANTS = [
           { text: "M. iliopsoas: N. ischiadicus; N. obturatorius: M. quadriceps femoris", correct: false },
         ],
         explanation: "N. femoralis (L2-L4): innerviert M. iliopsoas, M. quadriceps femoris, M. sartorius, M. pectineus. N. obturatorius (L2-L4): innerviert die Adduktorengruppe (M. adductor longus/brevis/magnus, M. gracilis, M. obturatorius externus). Beide entstammen dem Plexus lumbalis. Klinisch: N.-obturatorius-Lähmung = Adduktionsschwäche, typisch bei Beckenfrakturen.",
+        learningCard: { type: "predict", statement: "Der M. iliopsoas wird vom N. femoralis innerviert, die Adduktorengruppe vom N. obturatorius.", answer: true, reveal: "Beide Nerven entstammen dem Plexus lumbalis; eine N.-obturatorius-Lähmung verursacht eine Adduktionsschwäche, typisch bei Beckenfrakturen." },
       },
     ],
   })
