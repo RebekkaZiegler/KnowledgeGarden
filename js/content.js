@@ -15554,14 +15554,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Nur schallschluckend, keine antimikrobielle Wirkung", correct: false },
           { text: "Produziert von der Tuba auditiva", correct: false }
         ],
-        explanation: "Cerumen (Ohrenschmalz) ist virostatisch, fungizid und bakterizid – es schützt den Gehörgang vor Fremdkörpern und Mikroorganismen. Es wird von Zeruminaldrüsen produziert."
+        explanation: "Cerumen (Ohrenschmalz) ist virostatisch, fungizid und bakterizid – es schützt den Gehörgang vor Fremdkörpern und Mikroorganismen. Es wird von Zeruminaldrüsen produziert.",
+        learningCard: { type: "predict", statement: "Cerumen (Ohrenschmalz) wirkt virostatisch, fungizid und bakterizid.", answer: true, reveal: "Es schützt den Gehörgang vor Fremdkörpern und Mikroorganismen und wird von Zeruminaldrüsen produziert." }
       },
       {
         type: "true_false",
         id: "1044_01_h2",
         statement: "Die drei Gehörknöchelchen sind Hammer, Amboss und Steigbügel.",
         answer: true,
-        explanation: "Die drei Gehörknöchelchen (Malleus, Incus, Stapes) bilden eine Kette: Hammer am Trommelfell – Steigbügel am ovalen Fenster des Innenohrs."
+        explanation: "Die drei Gehörknöchelchen (Malleus, Incus, Stapes) bilden eine Kette: Hammer am Trommelfell – Steigbügel am ovalen Fenster des Innenohrs.",
+        learningCard: { type: "predict", statement: "Die drei Gehörknöchelchen sind Hammer, Amboss und Steigbügel.", answer: true, reveal: "Sie bilden eine Kette: Hammer am Trommelfell — Steigbügel am ovalen Fenster des Innenohrs." }
       },
       {
         type: "mc",
@@ -15573,7 +15575,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "8000–12.000 Hz", correct: false },
           { text: "14.000–16.000 Hz", correct: false }
         ],
-        explanation: "Das Hauptempfindlichkeitsmaximum liegt zwischen 2000 und 4000 Hz – also genau im Bereich der menschlichen Sprache. Das ist auch der wichtigste Kommunikationsbereich."
+        explanation: "Das Hauptempfindlichkeitsmaximum liegt zwischen 2000 und 4000 Hz – also genau im Bereich der menschlichen Sprache. Das ist auch der wichtigste Kommunikationsbereich.",
+        learningCard: { type: "predict", statement: "Die höchste Empfindlichkeit des menschlichen Ohres liegt im Bereich von 2000–4000 Hz.", answer: true, reveal: "Das ist genau der Bereich der menschlichen Sprache — der wichtigste Kommunikationsbereich." }
       },
       {
         type: "true_false",
@@ -15581,7 +15584,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
         image: "assets/diagrams/ohr_numeriert_legende.png",
         statement: "Die Tuba auditiva (Eustachische Röhre) verbindet das Mittelohr mit dem Nasen-Rachenraum und ermöglicht Druckausgleich.",
         answer: true,
-        explanation: "Die Tuba auditiva öffnet sich beim Schlucken und gleicht den Luftdruck zwischen Mittelohr und Rachenraum aus."
+        explanation: "Die Tuba auditiva öffnet sich beim Schlucken und gleicht den Luftdruck zwischen Mittelohr und Rachenraum aus.",
+        learningCard: { type: "predict", statement: "Die Tuba auditiva (Eustachische Röhre) verbindet das Mittelohr mit dem Nasen-Rachenraum und ermöglicht Druckausgleich.", answer: true, reveal: "Sie öffnet sich beim Schlucken und gleicht den Luftdruck zwischen Mittelohr und Rachenraum aus." }
       },
       {
         type: "mc",
@@ -15593,7 +15597,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Cerumenproduktion und Muskelkontraktion im Mittelohr", correct: false },
           { text: "Reflexe des Trommelfells und Kontraktion des Steigbügelmuskels", correct: false }
         ],
-        explanation: "Zwei Mechanismen: (1) Das ovale Fenster ist kleiner als das Trommelfell → Druckverstärkung durch Flächenverjüngung. (2) Die Gehörknöchelchenkette wirkt als Hebelübersetzung."
+        explanation: "Zwei Mechanismen: (1) Das ovale Fenster ist kleiner als das Trommelfell → Druckverstärkung durch Flächenverjüngung. (2) Die Gehörknöchelchenkette wirkt als Hebelübersetzung.",
+        learningCard: { type: "reconstruct", template: "Der Schalldruck wird durch ___ (Trommelfell → ovales Fenster) und den ___ der Gehörknöchelchen erhöht.", blanks: ["Verjüngung", "Hebelmechanismus"], distractors: ["Resonanz", "Reflex"], reveal: "Das ovale Fenster ist kleiner als das Trommelfell, was zusätzlich zur Hebelübersetzung der Gehörknöchelchenkette den Druck verstärkt." }
       }
     ],
     phase4Questions: [
@@ -15608,7 +15613,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Cochlea (Schnecke)", correct: false },
           { text: "Bogengänge", correct: false }
         ],
-        explanation: "Cochlea und Bogengänge gehören zum Innenohr, nicht zum Mittelohr."
+        explanation: "Cochlea und Bogengänge gehören zum Innenohr, nicht zum Mittelohr.",
+        learningCard: { type: "teachback", prompt: "Welche Strukturen gehören zum Mittelohr?", checklist: [
+          { text: "Paukenhöhle (Cavum tympani)", correct: true },
+          { text: "Tuba auditiva (Eustachische Röhre)", correct: true },
+          { text: "Gehörknöchelchen (Hammer, Amboss, Steigbügel)", correct: true },
+          { text: "Cochlea (Schnecke)", correct: false }
+        ], reveal: "Cochlea und Bogengänge gehören zum Innenohr, nicht zum Mittelohr." }
       },
       {
         type: "mc",
@@ -15621,7 +15632,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Das ovale Fenster ist größer als das Trommelfell", correct: false },
           { text: "Die Gehörknöchelchen wirken druckverstärkend (Hebelmechanismus)", correct: true }
         ],
-        explanation: "Das ovale Fenster ist kleiner als das Trommelfell – diese Verkleinerung erhöht den Schalldruck. Alle anderen Aussagen sind korrekt."
+        explanation: "Das ovale Fenster ist kleiner als das Trommelfell – diese Verkleinerung erhöht den Schalldruck. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Schallweiterleitung sind korrekt?", checklist: [
+          { text: "Schallwellen treffen zuerst auf das Trommelfell", correct: true },
+          { text: "Der Hammer ist direkt mit dem Trommelfell verbunden", correct: true },
+          { text: "Die Gehörknöchelchen wirken druckverstärkend (Hebelmechanismus)", correct: true },
+          { text: "Das ovale Fenster ist größer als das Trommelfell", correct: false }
+        ], reveal: "Das ovale Fenster ist kleiner als das Trommelfell — diese Verkleinerung erhöht den Schalldruck." }
       }
     ]
   }),
@@ -15640,14 +15657,21 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Liquor cerebrospinalis", correct: false },
           { text: "Kammerwasser", correct: false }
         ],
-        explanation: "Der Schneckengang (Scala media) enthält Endolymphe, die kaliumhaltig ist. Die Vorhoftreppe und Paukentreppe enthalten Perilymphe (natriumhaltig)."
+        explanation: "Der Schneckengang (Scala media) enthält Endolymphe, die kaliumhaltig ist. Die Vorhoftreppe und Paukentreppe enthalten Perilymphe (natriumhaltig).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Scala media (Schneckengang) enthält Endolymphe.", isWrong: false },
+          { text: "Endolymphe ist kaliumhaltig.", isWrong: false },
+          { text: "Vorhoftreppe und Paukentreppe enthalten Perilymphe.", isWrong: false },
+          { text: "Die Scala media enthält natriumhaltige Perilymphe.", isWrong: true }
+        ], whyWrong: "Die Scala media enthält kaliumhaltige Endolymphe, nicht Perilymphe." }
       },
       {
         type: "true_false",
         id: "1044_02_h2",
         statement: "Das Corti-Organ liegt zwischen Basilar-Membran und Tektorial-Membran.",
         answer: true,
-        explanation: "Das Corti-Organ ist zwischen Basilar-Membran (unten) und Tektorial-Membran (oben) eingebettet. Die Verschiebung beider Membranen gegeneinander stimuliert die Haarzellen."
+        explanation: "Das Corti-Organ ist zwischen Basilar-Membran (unten) und Tektorial-Membran (oben) eingebettet. Die Verschiebung beider Membranen gegeneinander stimuliert die Haarzellen.",
+        learningCard: { type: "predict", statement: "Das Corti-Organ liegt zwischen Basilar-Membran und Tektorial-Membran.", answer: true, reveal: "Die Verschiebung beider Membranen gegeneinander stimuliert die Haarzellen." }
       },
       {
         type: "mc",
@@ -15659,14 +15683,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Luftdruckschwankungen", correct: false },
           { text: "Schallfrequenzen über 4000 Hz", correct: false }
         ],
-        explanation: "Die 3 Bogengänge registrieren Drehbeschleunigung (Rotation). Gravitation und Linearbeschleunigung werden durch die Maculaorgane (Utriculus/Sacculus) mit ihren Statolithen wahrgenommen."
+        explanation: "Die 3 Bogengänge registrieren Drehbeschleunigung (Rotation). Gravitation und Linearbeschleunigung werden durch die Maculaorgane (Utriculus/Sacculus) mit ihren Statolithen wahrgenommen.",
+        learningCard: { type: "predict", statement: "Die Bogengänge des Vestibularorgans registrieren Drehbeschleunigung (Winkelbeschleunigung).", answer: true, reveal: "Gravitation und Linearbeschleunigung werden dagegen von den Maculaorganen (Utriculus/Sacculus) mit ihren Statolithen wahrgenommen." }
       },
       {
         type: "true_false",
         id: "1044_02_h4",
         statement: "Die Haarzellen im Corti-Organ sind alle auf dieselbe Schallfrequenz abgestimmt.",
         answer: false,
-        explanation: "Die Haarzellen sind auf ganz bestimmte Frequenzen abgestimmt. Jede Zelle hat eine eigene Nervenfaser, sodass verschiedene Töne differenziert wahrgenommen werden können."
+        explanation: "Die Haarzellen sind auf ganz bestimmte Frequenzen abgestimmt. Jede Zelle hat eine eigene Nervenfaser, sodass verschiedene Töne differenziert wahrgenommen werden können.",
+        learningCard: { type: "predict", statement: "Die Haarzellen im Corti-Organ sind alle auf dieselbe Schallfrequenz abgestimmt.", answer: false, reveal: "Jede Haarzelle ist auf eine bestimmte Frequenz abgestimmt und hat eine eigene Nervenfaser, sodass verschiedene Töne differenziert wahrgenommen werden können." }
       },
       {
         type: "mc",
@@ -15678,7 +15704,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Corti-Organ", correct: false },
           { text: "Reissner-Membran", correct: false }
         ],
-        explanation: "Die Maculaorgane (Macula utriculi + Macula sacculi) enthalten Statolithen (Gleichgewichtssteinchen), die durch ihre Trägheit bei Bewegung die Sinneshärchen abscheren und so Gravitation/Linearbeschleunigung registrieren."
+        explanation: "Die Maculaorgane (Macula utriculi + Macula sacculi) enthalten Statolithen (Gleichgewichtssteinchen), die durch ihre Trägheit bei Bewegung die Sinneshärchen abscheren und so Gravitation/Linearbeschleunigung registrieren.",
+        learningCard: { type: "predict", statement: "Die Macula-Organe (Utriculus/Sacculus) mit ihren Statolithen nehmen Gravitation und Linearbeschleunigung wahr.", answer: true, reveal: "Die Statolithen scheren durch ihre Trägheit bei Bewegung die Sinneshärchen ab und registrieren so Gravitation und Linearbeschleunigung." }
       }
     ],
     phase4Questions: [
@@ -15693,7 +15720,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Scala tympani enthält Endolymphe", correct: false },
           { text: "Das Signal wird über den N. vestibulocochlearis weitergeleitet", correct: true }
         ],
-        explanation: "Scala tympani enthält Perilymphe (nicht Endolymphe). Alle anderen Aussagen sind korrekt."
+        explanation: "Scala tympani enthält Perilymphe (nicht Endolymphe). Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Cochlea sind korrekt?", checklist: [
+          { text: "Scala vestibuli enthält Perilymphe", correct: true },
+          { text: "Scala media enthält Endolymphe", correct: true },
+          { text: "Das Corti-Organ enthält die eigentlichen Schallrezeptoren", correct: true },
+          { text: "Scala tympani enthält Endolymphe", correct: false }
+        ], reveal: "Scala tympani enthält Perilymphe, nicht Endolymphe." }
       },
       {
         type: "mc",
@@ -15706,7 +15739,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Corti-Organ", correct: false },
           { text: "Crista ampullaris in den Bogengängen", correct: true }
         ],
-        explanation: "Das Corti-Organ gehört zur Cochlea (Hörorgan), nicht zum Gleichgewichtsorgan. Alle anderen Strukturen sind Bestandteile des Vestibularorgans."
+        explanation: "Das Corti-Organ gehört zur Cochlea (Hörorgan), nicht zum Gleichgewichtsorgan. Alle anderen Strukturen sind Bestandteile des Vestibularorgans.",
+        learningCard: { type: "teachback", prompt: "Was gehört zum Vestibularorgan (Gleichgewichtsorgan)?", checklist: [
+          { text: "3 knöcherne Bogengänge", correct: true },
+          { text: "Utriculus mit Statolithen", correct: true },
+          { text: "Crista ampullaris in den Bogengängen", correct: true },
+          { text: "Corti-Organ", correct: false }
+        ], reveal: "Das Corti-Organ gehört zur Cochlea (Hörorgan), nicht zum Gleichgewichtsorgan." }
       }
     ]
   }),
@@ -15725,14 +15764,21 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Pigmentiert und weich", correct: false },
           { text: "Enthält viele Blutgefäße", correct: false }
         ],
-        explanation: "Die Cornea (Hornhaut) ist durchsichtig, glasklar und gefäßlos – Eigenschaften, die für die Lichtdurchlässigkeit notwendig sind. Die Sklera (Lederhaut) ist undurchsichtig, hart und weiß."
+        explanation: "Die Cornea (Hornhaut) ist durchsichtig, glasklar und gefäßlos – Eigenschaften, die für die Lichtdurchlässigkeit notwendig sind. Die Sklera (Lederhaut) ist undurchsichtig, hart und weiß.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Hornhaut ist durchsichtig, glasklar und gefäßlos.", isWrong: false },
+          { text: "Die Lederhaut ist undurchsichtig, hart und weiß.", isWrong: false },
+          { text: "Die Gefäßlosigkeit der Hornhaut ist notwendig für die Lichtdurchlässigkeit.", isWrong: false },
+          { text: "Die Hornhaut enthält viele Blutgefäße.", isWrong: true }
+        ], whyWrong: "Die Hornhaut ist gefäßlos — Blutgefäße würden die Lichtdurchlässigkeit stören." }
       },
       {
         type: "true_false",
         id: "1044_03_h2",
         statement: "Der Schlemm-Kanal dient dem Abfluss des Kammerwassers. Bei Blockierung entsteht ein Glaukom.",
         answer: true,
-        explanation: "Der Schlemm-Kanal liegt am Übergang Lederhaut–Hornhaut. Wird der Abfluss des Kammerwassers behindert, steigt der Augeninnendruck → Glaukom (Grüner Star)."
+        explanation: "Der Schlemm-Kanal liegt am Übergang Lederhaut–Hornhaut. Wird der Abfluss des Kammerwassers behindert, steigt der Augeninnendruck → Glaukom (Grüner Star).",
+        learningCard: { type: "predict", statement: "Der Schlemm-Kanal dient dem Abfluss des Kammerwassers. Bei Blockierung entsteht ein Glaukom.", answer: true, reveal: "Wird der Abfluss behindert, steigt der Augeninnendruck → Glaukom (Grüner Star)." }
       },
       {
         type: "mc",
@@ -15744,14 +15790,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Iris mit Pupille", correct: true },
           { text: "Sehnerv", correct: false }
         ],
-        explanation: "Die Iris (Regenbogenhaut) regelt durch Weitung und Engstellung der Pupille den Lichteinfall ins Auge. Der Ziliarmuskel steuert die Akkommodation der Linse."
+        explanation: "Die Iris (Regenbogenhaut) regelt durch Weitung und Engstellung der Pupille den Lichteinfall ins Auge. Der Ziliarmuskel steuert die Akkommodation der Linse.",
+        learningCard: { type: "predict", statement: "Die Iris mit der Pupille reguliert den Lichteinfall ins Auge.", answer: true, reveal: "Der Ziliarmuskel steuert dagegen die Akkommodation der Linse." }
       },
       {
         type: "true_false",
         id: "1044_03_h4",
         statement: "Das Chiasma opticum ist die Stelle, an der sich die Sehnerven beider Augen kreuzen.",
         answer: true,
-        explanation: "Im Chiasma opticum (im Diencephalon) kreuzen sich Teile der Sehnervfasern beider Augen, was die binokulare Verarbeitung im Gehirn ermöglicht."
+        explanation: "Im Chiasma opticum (im Diencephalon) kreuzen sich Teile der Sehnervfasern beider Augen, was die binokulare Verarbeitung im Gehirn ermöglicht.",
+        learningCard: { type: "predict", statement: "Das Chiasma opticum ist die Stelle, an der sich die Sehnerven beider Augen kreuzen.", answer: true, reveal: "Diese Kreuzung im Diencephalon ermöglicht die binokulare Verarbeitung im Gehirn." }
       },
       {
         type: "mc",
@@ -15763,7 +15811,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Ziliardrüse (Ziliarkörper)", correct: true },
           { text: "Retina (Netzhaut)", correct: false }
         ],
-        explanation: "Das Kammerwasser wird von der Ziliardrüse (im Ziliarkörper) produziert und fließt über den Schlemm-Kanal ab. Es versorgt die gefäßlosen Strukturen Linse, Glaskörper und Hornhaut."
+        explanation: "Das Kammerwasser wird von der Ziliardrüse (im Ziliarkörper) produziert und fließt über den Schlemm-Kanal ab. Es versorgt die gefäßlosen Strukturen Linse, Glaskörper und Hornhaut.",
+        learningCard: { type: "predict", statement: "Die Ziliardrüse (Ziliarkörper) produziert das Kammerwasser.", answer: true, reveal: "Das Kammerwasser fließt über den Schlemm-Kanal ab und versorgt die gefäßlosen Strukturen Linse, Glaskörper und Hornhaut." }
       }
     ],
     phase4Questions: [
@@ -15778,7 +15827,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Sie ist die innerste Augenhaut", correct: false },
           { text: "Der Ziliarmuskel ermöglicht die Akkommodation", correct: true }
         ],
-        explanation: "Die innerste Augenhaut ist die Retina (Netzhaut), nicht die Uvea. Alle anderen Aussagen sind korrekt."
+        explanation: "Die innerste Augenhaut ist die Retina (Netzhaut), nicht die Uvea. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Uvea (mittlere Augenhaut) sind korrekt?", checklist: [
+          { text: "Sie wird auch Gefäßhaut genannt", correct: true },
+          { text: "Sie besteht aus Aderhaut, Ziliarkörper und Iris", correct: true },
+          { text: "Der Ziliarmuskel ermöglicht die Akkommodation", correct: true },
+          { text: "Sie ist die innerste Augenhaut", correct: false }
+        ], reveal: "Die innerste Augenhaut ist die Retina (Netzhaut), nicht die Uvea." }
       },
       {
         type: "mc",
@@ -15791,7 +15846,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Iris: bricht Licht und fokussiert es auf die Netzhaut", correct: false },
           { text: "Ziliardrüse: produziert Kammerwasser", correct: true }
         ],
-        explanation: "Die Iris reguliert den Lichteinfall (Pupillenweite), bricht aber kein Licht. Alle anderen Aussagen sind korrekt."
+        explanation: "Die Iris reguliert den Lichteinfall (Pupillenweite), bricht aber kein Licht. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche lichtbrechenden Strukturen des Auges sind korrekt benannt?", checklist: [
+          { text: "Glaskörper (Corpus vitreum): 98–99% Wasser, gallertartig", correct: true },
+          { text: "Linse: einzige verstellbare Struktur, ermöglicht Akkommodation", correct: true },
+          { text: "Ziliardrüse: produziert Kammerwasser", correct: true },
+          { text: "Iris: bricht Licht und fokussiert es auf die Netzhaut", correct: false }
+        ], reveal: "Die Iris reguliert den Lichteinfall (Pupillenweite), bricht aber kein Licht." }
       }
     ]
   }),
@@ -15810,14 +15871,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Kurzsichtigkeit, korrigiert durch konvexe Gläser", correct: false },
           { text: "Weitsichtigkeit, korrigiert durch konkave Gläser", correct: false }
         ],
-        explanation: "Myopie = Kurzsichtigkeit. Das Bild wird vor der Netzhaut vereinigt (verlängerter Augapfel). Korrektur durch konkave (zerstreuende) Linsen."
+        explanation: "Myopie = Kurzsichtigkeit. Das Bild wird vor der Netzhaut vereinigt (verlängerter Augapfel). Korrektur durch konkave (zerstreuende) Linsen.",
+        learningCard: { type: "predict", statement: "Myopie (Kurzsichtigkeit) wird durch konkave Gläser korrigiert.", answer: true, reveal: "Bei Myopie wird das Bild vor der Netzhaut vereinigt (verlängerter Augapfel) — konkave (zerstreuende) Linsen korrigieren das." }
       },
       {
         type: "true_false",
         id: "1044_04_h2",
         statement: "Stäbchen sind für das Hell-Dunkel-Sehen zuständig und enthalten den Sehfarbstoff Rhodopsin.",
         answer: true,
-        explanation: "Die Stäbchen enthalten Rhodopsin (= Retinal + Opsin), das bei Belichtung zerfällt und ein Aktionspotential auslöst. Bei Vitamin-A-Mangel leidet das Dämmerungssehen."
+        explanation: "Die Stäbchen enthalten Rhodopsin (= Retinal + Opsin), das bei Belichtung zerfällt und ein Aktionspotential auslöst. Bei Vitamin-A-Mangel leidet das Dämmerungssehen.",
+        learningCard: { type: "predict", statement: "Stäbchen sind für das Hell-Dunkel-Sehen zuständig und enthalten den Sehfarbstoff Rhodopsin.", answer: true, reveal: "Rhodopsin zerfällt bei Belichtung und löst ein Aktionspotential aus; bei Vitamin-A-Mangel leidet das Dämmerungssehen." }
       },
       {
         type: "mc",
@@ -15829,14 +15892,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Die Stelle des schärfsten Sehens innerhalb der Makula lutea", correct: true },
           { text: "Ein Bereich mit ausschließlich Stäbchen", correct: false }
         ],
-        explanation: "Die Fovea centralis liegt innerhalb der Makula lutea (Gelber Fleck) und enthält ausschließlich Zapfen. Sie ist die Stelle des schärfsten Sehens."
+        explanation: "Die Fovea centralis liegt innerhalb der Makula lutea (Gelber Fleck) und enthält ausschließlich Zapfen. Sie ist die Stelle des schärfsten Sehens.",
+        learningCard: { type: "predict", statement: "Die Fovea centralis liegt innerhalb der Makula lutea und ist die Stelle des schärfsten Sehens.", answer: true, reveal: "Sie enthält ausschließlich Zapfen." }
       },
       {
         type: "true_false",
         id: "1044_04_h4",
         statement: "Rhodopsin wird im Auge selbst produziert.",
         answer: false,
-        explanation: "Rhodopsin wird in der Leber synthetisiert, von dort mit dem Blut transportiert und von den Stäbchen aufgenommen. Vitamin A (bzw. Betacarotin) ist die Vorstufe des Retinals."
+        explanation: "Rhodopsin wird in der Leber synthetisiert, von dort mit dem Blut transportiert und von den Stäbchen aufgenommen. Vitamin A (bzw. Betacarotin) ist die Vorstufe des Retinals.",
+        learningCard: { type: "predict", statement: "Rhodopsin wird im Auge selbst produziert.", answer: false, reveal: "Rhodopsin wird in der Leber synthetisiert und von den Stäbchen aufgenommen; Vitamin A ist die Vorstufe des Retinals." }
       },
       {
         type: "mc",
@@ -15848,7 +15913,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "800–1200 nm (Infrarot)", correct: false },
           { text: "1000–3000 nm (Wärmestrahlung)", correct: false }
         ],
-        explanation: "Das menschliche Sehspektrum liegt zwischen 400 nm (Blau, kurzwellig) und 760 nm (Rot, langwellig). Darunter liegt UV, darüber Infrarot – beides für das Auge unsichtbar."
+        explanation: "Das menschliche Sehspektrum liegt zwischen 400 nm (Blau, kurzwellig) und 760 nm (Rot, langwellig). Darunter liegt UV, darüber Infrarot – beides für das Auge unsichtbar.",
+        learningCard: { type: "reconstruct", template: "Das menschliche Sehspektrum reicht von ___ nm (Blau) bis ___ nm (Rot).", blanks: ["400", "760"], distractors: ["300", "900"], reveal: "Darunter liegt UV, darüber Infrarot — beides für das Auge unsichtbar." }
       }
     ],
     phase4Questions: [
@@ -15863,7 +15929,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Blinder Fleck enthält besonders viele Zapfen", correct: false },
           { text: "Vitamin-A-Mangel beeinträchtigt das Dämmerungssehen", correct: true }
         ],
-        explanation: "Der Blinde Fleck (Sehnervenpapille) enthält gar keine Rezeptoren – weder Stäbchen noch Zapfen. Alle anderen Aussagen sind korrekt."
+        explanation: "Der Blinde Fleck (Sehnervenpapille) enthält gar keine Rezeptoren – weder Stäbchen noch Zapfen. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Stäbchen und Zapfen sind korrekt?", checklist: [
+          { text: "Stäbchen: ca. 120 Mio., Hell-Dunkel-Sehen, Rhodopsin", correct: true },
+          { text: "Zapfen: ca. 6 Mio., Farbsehen, 3 Typen (Blau/Rot/Grün)", correct: true },
+          { text: "Makula lutea enthält nur Zapfen (keine Stäbchen)", correct: true },
+          { text: "Blinder Fleck enthält besonders viele Zapfen", correct: false }
+        ], reveal: "Der Blinde Fleck (Sehnervenpapille) enthält gar keine Rezeptoren — weder Stäbchen noch Zapfen." }
       },
       {
         type: "mc",
@@ -15876,7 +15948,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Hyperopie wird mit konvexen (sammelnden) Gläsern korrigiert", correct: true },
           { text: "Das Netzhautbild ist verkleinert, höhen- und seitenverkehrt", correct: true }
         ],
-        explanation: "Myopie wird mit konkaven (zerstreuenden) Gläsern korrigiert, nicht mit konvexen. Alle anderen Aussagen sind korrekt."
+        explanation: "Myopie wird mit konkaven (zerstreuenden) Gläsern korrigiert, nicht mit konvexen. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum dioptrischen Apparat/Sehfehler sind korrekt?", checklist: [
+          { text: "Myopie: Bild vor der Netzhaut, verlängerter Augapfel", correct: true },
+          { text: "Hyperopie: Bild hinter der Netzhaut, verkürzter Augapfel", correct: true },
+          { text: "Hyperopie wird mit konvexen (sammelnden) Gläsern korrigiert", correct: true },
+          { text: "Myopie wird mit konvexen Gläsern korrigiert", correct: false }
+        ], reveal: "Myopie wird mit konkaven (zerstreuenden) Gläsern korrigiert, nicht mit konvexen." }
       }
     ]
   }),
@@ -15895,14 +15973,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "N. olfactorius (I)", correct: true },
           { text: "N. vagus (X)", correct: false }
         ],
-        explanation: "Der N. olfactorius (1. Hirnnerv) leitet Geruchssignale vom Riechepithel über den Riechkolben zum Rhinencephalon (Riechhirn) und limbischen System weiter."
+        explanation: "Der N. olfactorius (1. Hirnnerv) leitet Geruchssignale vom Riechepithel über den Riechkolben zum Rhinencephalon (Riechhirn) und limbischen System weiter.",
+        learningCard: { type: "predict", statement: "Der N. olfactorius (1. Hirnnerv) leitet den Geruch weiter.", answer: true, reveal: "Er leitet Geruchssignale vom Riechepithel über den Riechkolben zum Rhinencephalon (Riechhirn) und limbischen System weiter." }
       },
       {
         type: "true_false",
         id: "1044_05_h2",
         statement: "Das Stratum lucidum ist nur an dicken Hautstellen (Handflächen, Fußsohlen) vorhanden.",
         answer: true,
-        explanation: "Das Stratum lucidum (Glanzschicht) schützt gegen mechanische Beanspruchung und ist nur an besonders beanspruchten Körperstellen ausgeprägt."
+        explanation: "Das Stratum lucidum (Glanzschicht) schützt gegen mechanische Beanspruchung und ist nur an besonders beanspruchten Körperstellen ausgeprägt.",
+        learningCard: { type: "predict", statement: "Das Stratum lucidum ist nur an dicken Hautstellen (Handflächen, Fußsohlen) vorhanden.", answer: true, reveal: "Das Stratum lucidum (Glanzschicht) schützt gegen mechanische Beanspruchung und ist nur an besonders beanspruchten Körperstellen ausgeprägt." }
       },
       {
         type: "mc",
@@ -15914,14 +15994,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Stratum basale", correct: true },
           { text: "Stratum lucidum", correct: false }
         ],
-        explanation: "Melanozyten liegen im Stratum basale (Basalzellschicht). Sie produzieren Melanin, das die Hautfarbe bestimmt und UV-Schutz bietet."
+        explanation: "Melanozyten liegen im Stratum basale (Basalzellschicht). Sie produzieren Melanin, das die Hautfarbe bestimmt und UV-Schutz bietet.",
+        learningCard: { type: "predict", statement: "Melanozyten befinden sich im Stratum basale der Epidermis.", answer: true, reveal: "Sie produzieren Melanin, das die Hautfarbe bestimmt und UV-Schutz bietet." }
       },
       {
         type: "true_false",
         id: "1044_05_h4",
         statement: "Langerhans-Zellen sind Immunzellen der Haut und befinden sich im Stratum spinosum.",
         answer: true,
-        explanation: "Langerhans-Zellen sind dendritische Zellen im Stratum spinosum, die Antigene phagozytieren und dem Immunsystem präsentieren."
+        explanation: "Langerhans-Zellen sind dendritische Zellen im Stratum spinosum, die Antigene phagozytieren und dem Immunsystem präsentieren.",
+        learningCard: { type: "predict", statement: "Langerhans-Zellen sind Immunzellen der Haut und befinden sich im Stratum spinosum.", answer: true, reveal: "Sie sind dendritische Zellen, die Antigene phagozytieren und dem Immunsystem präsentieren." }
       },
       {
         type: "mc",
@@ -15933,7 +16015,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Alle 6 Monate", correct: false },
           { text: "Alle 3 Jahre", correct: false }
         ],
-        explanation: "Die Epidermis erneuert sich vollständig alle 28–30 Tage. Neue Zellen entstehen im Stratum germinativum und wandern nach oben, bis sie als Hornschuppen abschilfern."
+        explanation: "Die Epidermis erneuert sich vollständig alle 28–30 Tage. Neue Zellen entstehen im Stratum germinativum und wandern nach oben, bis sie als Hornschuppen abschilfern.",
+        learningCard: { type: "predict", statement: "Die Epidermis erneuert sich vollständig alle 28–30 Tage.", answer: true, reveal: "Neue Zellen entstehen im Stratum germinativum und wandern nach oben, bis sie als Hornschuppen abschilfern." }
       }
     ],
     phase4Questions: [
@@ -15948,7 +16031,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Langerhans-Zellen befinden sich im Stratum spinosum", correct: true },
           { text: "Melanozyten befinden sich im Stratum basale", correct: true }
         ],
-        explanation: "Das Stratum corneum ist die äußerste Schicht und nicht Teil des Stratum germinativum (Keimschicht). Alle anderen Aussagen sind korrekt."
+        explanation: "Das Stratum corneum ist die äußerste Schicht und nicht Teil des Stratum germinativum (Keimschicht). Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Schichten gehören zum Stratum germinativum?", checklist: [
+          { text: "Stratum spinosum (Stachelzellschicht)", correct: true },
+          { text: "Stratum basale (Basalzellschicht)", correct: true },
+          { text: "Langerhans-Zellen befinden sich im Stratum spinosum", correct: true },
+          { text: "Stratum corneum (Hornschicht)", correct: false }
+        ], reveal: "Das Stratum corneum ist die äußerste Schicht und nicht Teil des Stratum germinativum (Keimschicht)." }
       },
       {
         type: "mc",
@@ -15961,7 +16050,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Der Riechbereich ist von Flimmerepithel ausgekleidet", correct: false },
           { text: "N. olfactorius ist der 1. Hirnnerv", correct: true }
         ],
-        explanation: "Der Riechbereich ist der einzige Nasenbereich, der NICHT von Flimmerepithel ausgekleidet ist – stattdessen Sinnesepithel. Alle anderen Aussagen sind korrekt."
+        explanation: "Der Riechbereich ist der einzige Nasenbereich, der NICHT von Flimmerepithel ausgekleidet ist – stattdessen Sinnesepithel. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Geruchsorgan sind korrekt?", checklist: [
+          { text: "Regio olfactoria befindet sich in der oberen Nasenmuschel", correct: true },
+          { text: "Riechzellen können 5–12 Geruchsqualitäten aufnehmen", correct: true },
+          { text: "N. olfactorius ist der 1. Hirnnerv", correct: true },
+          { text: "Der Riechbereich ist von Flimmerepithel ausgekleidet", correct: false }
+        ], reveal: "Der Riechbereich ist der einzige Nasenbereich, der NICHT von Flimmerepithel, sondern von Sinnesepithel ausgekleidet ist." }
       }
     ]
   }),
@@ -15980,14 +16075,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Merkel-Tastscheiben", correct: false },
           { text: "Krause-Endkolben", correct: false }
         ],
-        explanation: "Vater-Pacini-Lamellenkörperchen in der Subcutis nehmen Tiefensensibilität und Vibration wahr. Ruffini-Körperchen registrieren Dehnung, Merkel-Tastscheiben feine Berührung/Druck."
+        explanation: "Vater-Pacini-Lamellenkörperchen in der Subcutis nehmen Tiefensensibilität und Vibration wahr. Ruffini-Körperchen registrieren Dehnung, Merkel-Tastscheiben feine Berührung/Druck.",
+        learningCard: { type: "predict", statement: "Vater-Pacini-Lamellenkörperchen nehmen Tiefensensibilität und Vibration wahr.", answer: true, reveal: "Ruffini-Körperchen registrieren dagegen Dehnung, Merkel-Tastscheiben feine Berührung/Druck." }
       },
       {
         type: "true_false",
         id: "1044_06_h2",
         statement: "Die Epidermis enthält keine Blutgefäße und wird durch Diffusion aus dem Corium ernährt.",
         answer: true,
-        explanation: "Die Epidermis ist gefäßfrei. Nährstoffe diffundieren aus den Blutgefäßen des Coriums in die Epidermis. Das erklärt, warum oberflächliche Hautschnitte kaum bluten."
+        explanation: "Die Epidermis ist gefäßfrei. Nährstoffe diffundieren aus den Blutgefäßen des Coriums in die Epidermis. Das erklärt, warum oberflächliche Hautschnitte kaum bluten.",
+        learningCard: { type: "predict", statement: "Die Epidermis enthält keine Blutgefäße und wird durch Diffusion aus dem Corium ernährt.", answer: true, reveal: "Das erklärt, warum oberflächliche Hautschnitte kaum bluten." }
       },
       {
         type: "mc",
@@ -15999,14 +16096,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Produktion des Säureschutzmantels", correct: false },
           { text: "Talgsynthese zum Schutz der Haare", correct: false }
         ],
-        explanation: "Duftdrüsen (apocrinae) produzieren Pheromone, die den charakteristischen Eigengeruch eines Menschen ausmachen. Ihre Sekretion wird durch Sexualhormone beeinflusst."
+        explanation: "Duftdrüsen (apocrinae) produzieren Pheromone, die den charakteristischen Eigengeruch eines Menschen ausmachen. Ihre Sekretion wird durch Sexualhormone beeinflusst.",
+        learningCard: { type: "predict", statement: "Duftdrüsen (Glandulae sudoriferae apocrinae) produzieren Pheromone, die den charakteristischen Eigengeruch ausmachen.", answer: true, reveal: "Ihre Sekretion wird durch Sexualhormone beeinflusst." }
       },
       {
         type: "true_false",
         id: "1044_06_h4",
         statement: "Ruffini-Körperchen befinden sich in der Subcutis und registrieren Vibrationsreize.",
         answer: false,
-        explanation: "Ruffini-Körperchen liegen im Corium (Stratum reticulare) und registrieren Dehnung. Vibration/Tiefensensibilität werden durch Vater-Pacini-Lamellenkörperchen in der Subcutis wahrgenommen."
+        explanation: "Ruffini-Körperchen liegen im Corium (Stratum reticulare) und registrieren Dehnung. Vibration/Tiefensensibilität werden durch Vater-Pacini-Lamellenkörperchen in der Subcutis wahrgenommen.",
+        learningCard: { type: "predict", statement: "Ruffini-Körperchen befinden sich in der Subcutis und registrieren Vibrationsreize.", answer: false, reveal: "Ruffini-Körperchen liegen im Corium und registrieren Dehnung; Vibration wird durch Vater-Pacini-Lamellenkörperchen in der Subcutis wahrgenommen." }
       },
       {
         type: "mc",
@@ -16018,7 +16117,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Vater-Pacini-Körperchen", correct: false },
           { text: "Langerhans-Zellen", correct: false }
         ],
-        explanation: "Talgdrüsen (Glandulae sebaceae) sezernieren eine ölige Substanz (Sebum), die Haut und Haare mit einem dünnen Fettfilm überziehen und so vor Austrocknung schützen."
+        explanation: "Talgdrüsen (Glandulae sebaceae) sezernieren eine ölige Substanz (Sebum), die Haut und Haare mit einem dünnen Fettfilm überziehen und so vor Austrocknung schützen.",
+        learningCard: { type: "predict", statement: "Talgdrüsen (Glandulae sebaceae) schützen die Haut vor Austrocknung.", answer: true, reveal: "Sie sezernieren eine ölige Substanz (Sebum), die Haut und Haare mit einem dünnen Fettfilm überzieht." }
       }
     ],
     phase4Questions: [
@@ -16033,7 +16133,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Nozizeptoren – Epidermis – Schmerz", correct: false },
           { text: "Thermorezeptoren – Dermis – Warm-/Kaltwahrnehmung", correct: true }
         ],
-        explanation: "Nozizeptoren (Schmerzrezeptoren) sind freie Nervenendigungen in der Dermis, nicht in der Epidermis. Alle anderen Zuordnungen sind korrekt."
+        explanation: "Nozizeptoren (Schmerzrezeptoren) sind freie Nervenendigungen in der Dermis, nicht in der Epidermis. Alle anderen Zuordnungen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Hautrezeptoren und ihre Orte sind korrekt zugeordnet?", checklist: [
+          { text: "Vater-Pacini – Subcutis – Tiefensensibilität/Vibration", correct: true },
+          { text: "Ruffini-Körperchen – Corium (Stratum reticulare) – Dehnung", correct: true },
+          { text: "Thermorezeptoren – Dermis – Warm-/Kaltwahrnehmung", correct: true },
+          { text: "Nozizeptoren – Epidermis – Schmerz", correct: false }
+        ], reveal: "Nozizeptoren (Schmerzrezeptoren) sind freie Nervenendigungen in der Dermis, nicht in der Epidermis." }
       },
       {
         type: "mc",
@@ -16046,7 +16152,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Sekretion wird durch somatisches Nervensystem gesteuert", correct: false },
           { text: "Schützen vor Mikroorganismen", correct: true }
         ],
-        explanation: "Die Schweißdrüsensekretion wird durch das vegetative (autonome) Nervensystem gesteuert, nicht durch das somatische. Alle anderen Aussagen sind korrekt."
+        explanation: "Die Schweißdrüsensekretion wird durch das vegetative (autonome) Nervensystem gesteuert, nicht durch das somatische. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Schweißdrüsen sind korrekt?", checklist: [
+          { text: "Dienen der Temperaturregulation durch Verdunstungskälte", correct: true },
+          { text: "Bilden den Säureschutzmantel der Haut", correct: true },
+          { text: "Schützen vor Mikroorganismen", correct: true },
+          { text: "Sekretion wird durch somatisches Nervensystem gesteuert", correct: false }
+        ], reveal: "Die Schweißdrüsensekretion wird durch das vegetative (autonome) Nervensystem gesteuert, nicht durch das somatische." }
       }
     ]
   }),
@@ -16065,14 +16177,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Telomere verkürzen sich bei jeder Zellteilung, bis Zellen ihre Funktion verlieren", correct: true },
           { text: "Verschiedene Gene sind in verschiedenen Lebensphasen aktiv", correct: false }
         ],
-        explanation: "Die Telomeren-Theorie: Telomere schützen die Chromosomenenden. Bei jeder Zellteilung verkürzen sie sich. Sind sie zu kurz, können keine wichtigen Gene mehr korrekt abgelesen werden."
+        explanation: "Die Telomeren-Theorie: Telomere schützen die Chromosomenenden. Bei jeder Zellteilung verkürzen sie sich. Sind sie zu kurz, können keine wichtigen Gene mehr korrekt abgelesen werden.",
+        learningCard: { type: "reconstruct", template: "Nach der Telomeren-Theorie verkürzen sich die ___ bei jeder ___, bis Zellen ihre Funktion verlieren.", blanks: ["Telomere", "Zellteilung"], distractors: ["Mitochondrien", "DNA-Reparatur"], reveal: "Sind Telomere zu kurz, können wichtige Gene nicht mehr korrekt abgelesen werden." }
       },
       {
         type: "true_false",
         id: "1044_07_h2",
         statement: "Das biologische Alter entspricht immer dem biographischen Alter (Geburtsdatum).",
         answer: false,
-        explanation: "Das biologische Alter beschreibt den aktuellen Gesundheitszustand und kann vom biographischen Alter erheblich abweichen – je nach Lebensstil, Erkrankungen und genetischen Faktoren."
+        explanation: "Das biologische Alter beschreibt den aktuellen Gesundheitszustand und kann vom biographischen Alter erheblich abweichen – je nach Lebensstil, Erkrankungen und genetischen Faktoren.",
+        learningCard: { type: "predict", statement: "Das biologische Alter entspricht immer dem biographischen Alter (Geburtsdatum).", answer: false, reveal: "Das biologische Alter beschreibt den aktuellen Gesundheitszustand und kann je nach Lebensstil, Erkrankungen und genetischen Faktoren erheblich vom biographischen Alter abweichen." }
       },
       {
         type: "mc",
@@ -16084,14 +16198,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Durch ärztliche Maßnahmen verursachte Krankheitsbilder", correct: true },
           { text: "Vereinsamung im Alter", correct: false }
         ],
-        explanation: "Iatrogenie = durch ärztliche Maßnahmen verursachte Erkrankungen, z.B. iatrogene Infektionen oder unerwünschte Arzneimittelwirkungen (Nebenwirkungen) bei Älteren."
+        explanation: "Iatrogenie = durch ärztliche Maßnahmen verursachte Erkrankungen, z.B. iatrogene Infektionen oder unerwünschte Arzneimittelwirkungen (Nebenwirkungen) bei Älteren.",
+        learningCard: { type: "predict", statement: "Iatrogenie bezeichnet durch ärztliche Maßnahmen verursachte Krankheitsbilder.", answer: true, reveal: "Beispiele sind iatrogene Infektionen oder unerwünschte Arzneimittelwirkungen (Nebenwirkungen) bei Älteren." }
       },
       {
         type: "true_false",
         id: "1044_07_h4",
         statement: "Die vier großen geriatrischen Syndrome sind: Instabilität, Immobilität, Intellektueller Abbau und Inkontinenz.",
         answer: true,
-        explanation: "Diese vier 'geriatrischen I's' sind die wichtigsten Syndrome. Daneben gibt es weitere wie Isolation, Inappetenz, Insomnia, Iatrogenie, Colon irritabile, Impaired eyes and ears, Impecunity."
+        explanation: "Diese vier 'geriatrischen I's' sind die wichtigsten Syndrome. Daneben gibt es weitere wie Isolation, Inappetenz, Insomnia, Iatrogenie, Colon irritabile, Impaired eyes and ears, Impecunity.",
+        learningCard: { type: "predict", statement: "Die vier großen geriatrischen Syndrome sind: Instabilität, Immobilität, Intellektueller Abbau und Inkontinenz.", answer: true, reveal: "Daneben gibt es weitere geriatrische Syndrome wie Isolation, Inappetenz, Insomnia, Iatrogenie und Impecunity." }
       },
       {
         type: "mc",
@@ -16103,7 +16219,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Telomerverlust durch UV-Strahlung", correct: false },
           { text: "Enzymatische Fehlfunktionen durch Genmutation", correct: false }
         ],
-        explanation: "Oxidativer Stress: zu viele freie Radikale (z.B. Sauerstoffradikale) bei zu wenig Antioxidantien (Vitamin C, E, Beta-Karotin) → Schäden an Proteinen, Lipiden und DNA → Altern."
+        explanation: "Oxidativer Stress: zu viele freie Radikale (z.B. Sauerstoffradikale) bei zu wenig Antioxidantien (Vitamin C, E, Beta-Karotin) → Schäden an Proteinen, Lipiden und DNA → Altern.",
+        learningCard: { type: "predict", statement: "Oxidativer Stress entsteht durch zu viele freie Radikale bei gleichzeitig zu wenig Antioxidantien.", answer: true, reveal: "Das schädigt Proteine, Lipide und DNA und trägt so zum Altern bei." }
       }
     ],
     phase4Questions: [
@@ -16118,7 +16235,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Biologisch-genetisch vorherbestimmt", correct: true },
           { text: "Durch lebenslange Schonung vollständig vermeidbar", correct: false }
         ],
-        explanation: "Altern ist nicht zu verhindern, nur zu beeinflussen. Schonung kann es nicht vollständig aufhalten – es ist biologisch-genetisch vorherbestimmt."
+        explanation: "Altern ist nicht zu verhindern, nur zu beeinflussen. Schonung kann es nicht vollständig aufhalten – es ist biologisch-genetisch vorherbestimmt.",
+        learningCard: { type: "teachback", prompt: "Welche Eigenschaften charakterisieren Alterungsprozesse?", checklist: [
+          { text: "Universal (gilt für alle höheren Lebewesen)", correct: true },
+          { text: "Irreversibel (unumkehrbar)", correct: true },
+          { text: "Biologisch-genetisch vorherbestimmt", correct: true },
+          { text: "Durch lebenslange Schonung vollständig vermeidbar", correct: false }
+        ], reveal: "Altern ist biologisch-genetisch vorherbestimmt und nicht durch Schonung vollständig zu verhindern, nur zu beeinflussen." }
       },
       {
         type: "mc",
@@ -16131,7 +16254,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Impecunity (Altersarmut)", correct: true },
           { text: "Arteriosklerose", correct: false }
         ],
-        explanation: "Arteriosklerose ist eine Erkrankung, aber kein geriatrisches Syndrom im engeren Sinne. Alle anderen sind geriatrische Syndrome ('geriatrische I's')."
+        explanation: "Arteriosklerose ist eine Erkrankung, aber kein geriatrisches Syndrom im engeren Sinne. Alle anderen sind geriatrische Syndrome ('geriatrische I's').",
+        learningCard: { type: "teachback", prompt: "Welche der folgenden gehören zu den geriatrischen Syndromen?", checklist: [
+          { text: "Instabilität", correct: true },
+          { text: "Insomnia (Schlafstörung)", correct: true },
+          { text: "Impecunity (Altersarmut)", correct: true },
+          { text: "Arteriosklerose", correct: false }
+        ], reveal: "Arteriosklerose ist eine Erkrankung, aber kein geriatrisches Syndrom im engeren Sinne." }
       }
     ]
   }),
@@ -16150,14 +16279,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Schwindel durch Gleichgewichtsstörungen im Alter", correct: false },
           { text: "Altersbedingte Verwirrtheit", correct: false }
         ],
-        explanation: "Presbyakusis = Altersschwerhörigkeit. Betrifft vor allem den oberen Frequenzbereich (>4000 Hz). Ab 30. Lebensjahr sinkt das Hörvermögen ca. 10 dB je 10 Jahre."
+        explanation: "Presbyakusis = Altersschwerhörigkeit. Betrifft vor allem den oberen Frequenzbereich (>4000 Hz). Ab 30. Lebensjahr sinkt das Hörvermögen ca. 10 dB je 10 Jahre.",
+        learningCard: { type: "predict", statement: "Presbyakusis ist eine altersbedingte Schwerhörigkeit, die vor allem hohe Frequenzen betrifft.", answer: true, reveal: "Ab dem 30. Lebensjahr sinkt das Hörvermögen um ca. 10 dB je 10 Jahre." }
       },
       {
         type: "true_false",
         id: "1044_08_h2",
         statement: "Die glomeruläre Filtrationsrate (GFR) bei einem 80-Jährigen beträgt nur noch etwa 50% eines 20-Jährigen.",
         answer: true,
-        explanation: "Die Nierenfunktion nimmt mit dem Alter deutlich ab. Die GFR bei 80-Jährigen beträgt etwa die Hälfte der eines 20-Jährigen – daher müssen renal ausgeschiedene Medikamente niedriger dosiert werden."
+        explanation: "Die Nierenfunktion nimmt mit dem Alter deutlich ab. Die GFR bei 80-Jährigen beträgt etwa die Hälfte der eines 20-Jährigen – daher müssen renal ausgeschiedene Medikamente niedriger dosiert werden.",
+        learningCard: { type: "predict", statement: "Die glomeruläre Filtrationsrate (GFR) bei einem 80-Jährigen beträgt nur noch etwa 50% eines 20-Jährigen.", answer: true, reveal: "Daher müssen renal ausgeschiedene Medikamente bei älteren Menschen niedriger dosiert werden." }
       },
       {
         type: "mc",
@@ -16169,14 +16300,21 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Alzheimer-Demenz, häufiger Männer", correct: false },
           { text: "Multiinfarkt-Demenz, häufiger Frauen", correct: false }
         ],
-        explanation: "Die Alzheimer-Demenz macht ca. 60% aller Demenzen aus und betrifft Frauen häufiger. Die Multiinfarkt-Demenz (20%) betrifft eher Männer durch vaskuläre/arteriosklerotische Ursachen."
+        explanation: "Die Alzheimer-Demenz macht ca. 60% aller Demenzen aus und betrifft Frauen häufiger. Die Multiinfarkt-Demenz (20%) betrifft eher Männer durch vaskuläre/arteriosklerotische Ursachen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Alzheimer-Demenz macht ca. 60% aller Demenzfälle aus.", isWrong: false },
+          { text: "Alzheimer-Demenz betrifft Frauen häufiger.", isWrong: false },
+          { text: "Die Multiinfarkt-Demenz betrifft eher Männer.", isWrong: false },
+          { text: "Die Multiinfarkt-Demenz macht 60% aller Demenzfälle aus.", isWrong: true }
+        ], whyWrong: "60% aller Demenzfälle sind Alzheimer-Demenz, nicht Multiinfarkt-Demenz (diese macht nur ca. 20% aus)." }
       },
       {
         type: "true_false",
         id: "1044_08_h4",
         statement: "Akute Verwirrtheit bei älteren Menschen ist immer ein Zeichen einer beginnenden Demenz.",
         answer: false,
-        explanation: "Akute Verwirrtheit (Delir) ist häufig reversibel und hat behandelbare Ursachen: Hyponatriämie, Sauerstoffmangel (TIA), Infekte, Medikamente, Flüssigkeitsmangel. Sie muss von einer Demenz abgegrenzt werden."
+        explanation: "Akute Verwirrtheit (Delir) ist häufig reversibel und hat behandelbare Ursachen: Hyponatriämie, Sauerstoffmangel (TIA), Infekte, Medikamente, Flüssigkeitsmangel. Sie muss von einer Demenz abgegrenzt werden.",
+        learningCard: { type: "predict", statement: "Akute Verwirrtheit bei älteren Menschen ist immer ein Zeichen einer beginnenden Demenz.", answer: false, reveal: "Akute Verwirrtheit (Delir) ist häufig reversibel mit behandelbaren Ursachen wie Hyponatriämie, Sauerstoffmangel, Infekten oder Flüssigkeitsmangel." }
       },
       {
         type: "mc",
@@ -16188,7 +16326,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Weil Schlafmittel im Alter schneller ausgeschieden werden", correct: false },
           { text: "Weil die Leber im Alter Schlafmittel schneller metabolisiert", correct: false }
         ],
-        explanation: "Paradoxe Medikamentenwirkungen im Alter werden vor allem durch Veränderungen im Rezeptorengefüge des Gehirns erklärt. Auch die veränderte Pharmakokinetik (Verteilung, Ausscheidung) spielt eine Rolle."
+        explanation: "Paradoxe Medikamentenwirkungen im Alter werden vor allem durch Veränderungen im Rezeptorengefüge des Gehirns erklärt. Auch die veränderte Pharmakokinetik (Verteilung, Ausscheidung) spielt eine Rolle.",
+        learningCard: { type: "predict", statement: "Ein Schlafmittel kann bei älteren Menschen paradox wirken, weil sich das Rezeptorengefüge des Gehirns im Alter verändert.", answer: true, reveal: "Auch die veränderte Pharmakokinetik (Verteilung, Ausscheidung) spielt dabei eine Rolle." }
       }
     ],
     phase4Questions: [
@@ -16203,7 +16342,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Durstempfindung nimmt im Alter zu", correct: false },
           { text: "Häufige Augenkrankheiten im Alter: Katarakt, Glaukom, Makuladegeneration", correct: true }
         ],
-        explanation: "Durstempfindung nimmt im Alter ab (nicht zu) → Exsikkose-/Verwirrtheitsgefahr. Alle anderen Aussagen sind korrekt."
+        explanation: "Durstempfindung nimmt im Alter ab (nicht zu) → Exsikkose-/Verwirrtheitsgefahr. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Altersveränderungen der Sinnesorgane sind korrekt?", checklist: [
+          { text: "Presbyopie = Altersweitsichtigkeit ab ca. 50. LJ", correct: true },
+          { text: "Presbyakusis = Altersschwerhörigkeit v.a. hoher Frequenzen", correct: true },
+          { text: "Häufige Augenkrankheiten im Alter: Katarakt, Glaukom, Makuladegeneration", correct: true },
+          { text: "Durstempfindung nimmt im Alter zu", correct: false }
+        ], reveal: "Die Durstempfindung nimmt im Alter ab, nicht zu — das erhöht die Gefahr von Exsikkose und Verwirrtheit." }
       },
       {
         type: "mc",
@@ -16216,7 +16361,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Leberfunktion↑ → schnellerer Medikamentenabbau", correct: false },
           { text: "Paradoxe Reaktionen durch verändertes Rezeptorengefüge möglich", correct: true }
         ],
-        explanation: "Die Leberfunktion nimmt im Alter ab (nicht zu) → verlangsamter Abbau vieler Medikamente. Alle anderen Aussagen sind korrekt."
+        explanation: "Die Leberfunktion nimmt im Alter ab (nicht zu) → verlangsamter Abbau vieler Medikamente. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Was verändert sich an der Pharmakokinetik im Alter?", checklist: [
+          { text: "Weniger Albumine → mehr freies (wirksames) Medikament im Blut", correct: true },
+          { text: "Nierenfunktion↓ → verringerte Ausscheidung → Akkumulationsgefahr", correct: true },
+          { text: "Paradoxe Reaktionen durch verändertes Rezeptorengefüge möglich", correct: true },
+          { text: "Leberfunktion↑ → schnellerer Medikamentenabbau", correct: false }
+        ], reveal: "Die Leberfunktion nimmt im Alter ab, nicht zu — das verlangsamt den Medikamentenabbau." }
       }
     ]
   }),
@@ -16235,14 +16386,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "N. abducens (VI. Hirnnerv)", correct: true },
           { text: "N. facialis (VII. Hirnnerv)", correct: false }
         ],
-        explanation: "M. rectus lateralis zieht das Auge nach lateral (außen) und wird vom N. abducens (VI. Hirnnerv) innerviert. N. trochlearis innerviert nur den M. obliquus superior; alle übrigen 4 Augenmuskeln werden vom N. oculomotorius (III.) innerviert."
+        explanation: "M. rectus lateralis zieht das Auge nach lateral (außen) und wird vom N. abducens (VI. Hirnnerv) innerviert. N. trochlearis innerviert nur den M. obliquus superior; alle übrigen 4 Augenmuskeln werden vom N. oculomotorius (III.) innerviert.",
+        learningCard: { type: "predict", statement: "Der M. rectus lateralis wird vom N. abducens (VI. Hirnnerv) innerviert.", answer: true, reveal: "N. trochlearis innerviert nur den M. obliquus superior; alle übrigen 4 Augenmuskeln werden vom N. oculomotorius (III.) innerviert." }
       },
       {
         id: "1044_09_h2",
         type: "true_false",
         statement: "Schielung (Strabismus) entsteht durch eine Schwäche oder Funktionsstörung der Augenmuskeln bzw. der sie innervierenden Hirnnerven (III., IV. oder VI.).",
         answer: true,
-        explanation: "Korrekt. Bei Muskelschwäche oder Hirnnervenstörung führen beide Augen keine gleichartigen Bewegungen mehr aus → Strabismus (Schielung). Die Innervation erfolgt physiologisch immer symmetrisch an beiden Augen."
+        explanation: "Korrekt. Bei Muskelschwäche oder Hirnnervenstörung führen beide Augen keine gleichartigen Bewegungen mehr aus → Strabismus (Schielung). Die Innervation erfolgt physiologisch immer symmetrisch an beiden Augen.",
+        learningCard: { type: "predict", statement: "Schielung (Strabismus) entsteht durch eine Schwäche oder Funktionsstörung der Augenmuskeln bzw. der sie innervierenden Hirnnerven (III., IV. oder VI.).", answer: true, reveal: "Bei Muskelschwäche oder Hirnnervenstörung führen beide Augen keine gleichartigen Bewegungen mehr aus." }
       },
       {
         id: "1044_09_h3",
@@ -16254,14 +16407,16 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Im inneren Augenwinkel", correct: false },
           { text: "Hinter der Iris", correct: false }
         ],
-        explanation: "Die Tränendrüse (Glandula lacrimalis) liegt lateral am oberen Augapfel. Das Sekret wird durch den Lidschlag über die Bindehaut verteilt; der Tränenkanal mit punktförmiger Öffnung am inneren Augenwinkel leitet es in die Nase ab."
+        explanation: "Die Tränendrüse (Glandula lacrimalis) liegt lateral am oberen Augapfel. Das Sekret wird durch den Lidschlag über die Bindehaut verteilt; der Tränenkanal mit punktförmiger Öffnung am inneren Augenwinkel leitet es in die Nase ab.",
+        learningCard: { type: "predict", statement: "Die Tränendrüse (Glandula lacrimalis) liegt lateral am oberen Augapfel.", answer: true, reveal: "Der Tränenkanal mit punktförmiger Öffnung am inneren Augenwinkel leitet das Sekret in die Nase ab." }
       },
       {
         id: "1044_09_h4",
         type: "true_false",
         statement: "Der M. obliquus superior wird vom N. trochlearis (IV. Hirnnerv) innerviert und ermöglicht eine leichte Rotation des Augapfels.",
         answer: true,
-        explanation: "Korrekt. N. trochlearis (IV.) innerviert ausschließlich den M. obliquus superior (ermöglicht leichte Rotation). N. abducens (VI.) → M. rectus lateralis. N. oculomotorius (III.) → alle anderen 4 Augenmuskeln."
+        explanation: "Korrekt. N. trochlearis (IV.) innerviert ausschließlich den M. obliquus superior (ermöglicht leichte Rotation). N. abducens (VI.) → M. rectus lateralis. N. oculomotorius (III.) → alle anderen 4 Augenmuskeln.",
+        learningCard: { type: "predict", statement: "Der M. obliquus superior wird vom N. trochlearis (IV. Hirnnerv) innerviert und ermöglicht eine leichte Rotation des Augapfels.", answer: true, reveal: "N. abducens (VI.) innerviert dagegen den M. rectus lateralis, N. oculomotorius (III.) alle übrigen 4 Augenmuskeln." }
       },
       {
         id: "1044_09_h5",
@@ -16273,7 +16428,8 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Meibomdrüsen", correct: true },
           { text: "Glandula lacrimalis", correct: false }
         ],
-        explanation: "Meibomdrüsen fetten den Lidrand ein – das verhindert das Überlaufen der Tränenflüssigkeit über den Lidrand. Molldrüsen = Schweißdrüsen, Zeisdrüsen = Talgdrüsen. Glandula lacrimalis = Tränendrüse, liegt lateral oben."
+        explanation: "Meibomdrüsen fetten den Lidrand ein – das verhindert das Überlaufen der Tränenflüssigkeit über den Lidrand. Molldrüsen = Schweißdrüsen, Zeisdrüsen = Talgdrüsen. Glandula lacrimalis = Tränendrüse, liegt lateral oben.",
+        learningCard: { type: "predict", statement: "Meibomdrüsen fetten den Lidrand ein und verhindern so das Überlaufen der Tränen.", answer: true, reveal: "Molldrüsen sind Schweißdrüsen, Zeisdrüsen Talgdrüsen — beide haben eine andere Funktion." }
       }
     ],
     phase4Questions: [
@@ -16289,7 +16445,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "M. rectus lateralis", correct: false },
           { text: "M. obliquus superior", correct: false }
         ],
-        explanation: "N. oculomotorius (III.) innerviert 4 Augenmuskeln: M. rectus superior, inferior, medialis und M. obliquus inferior. M. rectus lateralis → N. abducens (VI.). M. obliquus superior → N. trochlearis (IV.)."
+        explanation: "N. oculomotorius (III.) innerviert 4 Augenmuskeln: M. rectus superior, inferior, medialis und M. obliquus inferior. M. rectus lateralis → N. abducens (VI.). M. obliquus superior → N. trochlearis (IV.).",
+        learningCard: { type: "teachback", prompt: "Welche Augenmuskeln werden vom N. oculomotorius (III. Hirnnerv) innerviert?", checklist: [
+          { text: "M. rectus superior", correct: true },
+          { text: "M. rectus medialis", correct: true },
+          { text: "M. obliquus inferior", correct: true },
+          { text: "M. rectus lateralis", correct: false }
+        ], reveal: "M. rectus lateralis wird vom N. abducens (VI.) innerviert, M. obliquus superior vom N. trochlearis (IV.) — beide nicht vom N. oculomotorius." }
       },
       {
         id: "1044_09_p4_2",
@@ -16302,7 +16464,13 @@ const SINNESORGANE_GERIATRIE_1044_PLANTS = [
           { text: "Wimpern schützen das Auge vor Fremdkörpern und lösen Lidschlussreflex aus", correct: true },
           { text: "Der Tränenkanal leitet Tränenflüssigkeit in die Mundhöhle", correct: false }
         ],
-        explanation: "Der Tränenkanal leitet Tränenflüssigkeit in die NASE (nicht in die Mundhöhle) – deshalb riecht man bei starkem Weinen bisweilen salzig in der Nase. Alle anderen Aussagen sind korrekt."
+        explanation: "Der Tränenkanal leitet Tränenflüssigkeit in die NASE (nicht in die Mundhöhle) – deshalb riecht man bei starkem Weinen bisweilen salzig in der Nase. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Hilfsorganen des Auges sind korrekt?", checklist: [
+          { text: "Die Tränendrüse liegt lateral am oberen Augapfel", correct: true },
+          { text: "Meibomdrüsen fetten den Lidrand ein und verhindern das Überlaufen der Tränen", correct: true },
+          { text: "Die Bindehaut (Konjunktiva) kleidet die Innenfläche der Augenlider aus", correct: true },
+          { text: "Der Tränenkanal leitet Tränenflüssigkeit in die Mundhöhle", correct: false }
+        ], reveal: "Der Tränenkanal leitet Tränenflüssigkeit in die Nase, nicht in die Mundhöhle." }
       }
     ]
   })
