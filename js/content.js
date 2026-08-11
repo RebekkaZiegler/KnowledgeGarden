@@ -1376,27 +1376,43 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Knochen verliert immer an Masse, unabhängig von Belastung", correct: false },
         { text: "Osteoblasten sind inaktiv bei mechanischer Belastung", correct: false },
         { text: "Knochen reagiert nur auf hormonelle, nicht auf mechanische Reize", correct: false }
-      ], explanation: "Das Wolff'sche Gesetz (Julius Wolff, 1892): Knochen passt seine Struktur (Trabekelarchitektur, Kortikalisdicke) an die einwirkenden Kräfte an. Belastungslinien werden durch Trabekel im Inneren des Knochens gespiegelt. Astronauten verlieren Knochenmasse in der Schwerelosigkeit; Sportler bauen Knochen auf – ein direkter Beweis für dieses Gesetz." },
+      ], explanation: "Das Wolff'sche Gesetz (Julius Wolff, 1892): Knochen passt seine Struktur (Trabekelarchitektur, Kortikalisdicke) an die einwirkenden Kräfte an. Belastungslinien werden durch Trabekel im Inneren des Knochens gespiegelt. Astronauten verlieren Knochenmasse in der Schwerelosigkeit; Sportler bauen Knochen auf – ein direkter Beweis für dieses Gesetz.",
+        learningCard: { type: "predict", statement: "Nach dem Wolff'schen Gesetz passt Knochen seine innere Struktur an die tatsächlich einwirkenden mechanischen Kräfte an.", answer: true, reveal: "Das Wolff'sche Gesetz (Julius Wolff, 1892) besagt: Knochen passt seine Trabekelarchitektur und Kortikalisdicke an die einwirkenden Kräfte an. Astronauten verlieren in der Schwerelosigkeit Knochenmasse, Sportler bauen sie auf – ein direkter Beweis für dieses Gesetz." } },
       { id: "ko_st_h2", type: "mc", question: "Welches Hormon stimuliert den Knochenabbau (erhöhte Osteoklasenaktivität)?", options: [
         { text: "Parathormon (PTH)", correct: true },
         { text: "Calcitonin", correct: false },
         { text: "Östrogen", correct: false },
         { text: "Insulin", correct: false }
-      ], explanation: "Parathormon (PTH, aus Nebenschilddrüsen) stimuliert bei Hypokalzämie die Osteoklasten (indirekt über RANKL-Signalweg), was Kalzium aus dem Knochen freisetzt und den Blutkalziumspiegel anhebt. Calcitonin (aus C-Zellen der Schilddrüse) hemmt dagegen Osteoklasten. Östrogen schützt vor Knochenverlust (erklärt Osteoporose nach Menopause)." },
-      { id: "ko_st_h3", type: "true_false", statement: "Der menschliche Knochen wird im Erwachsenenalter vollständig innerhalb von ca. 10 Jahren durch Remodelling erneuert.", answer: true, explanation: "Knochenremodelling ist ein lebenslanger Prozess: Pro Jahr wird ca. 10% des gesamten Knochengewebes durch koordinierte Osteoklastenresorption und Osteoblastenneubildung (Remodelling-Einheiten) erneuert. Damit wird der gesamte Knochen etwa alle 10 Jahre vollständig ausgetauscht – vergleichbar einer ständigen Materialerneuerung." },
-      { id: "ko_st_h4", type: "true_false", statement: "Östrogen schützt vor Knochenabbau, was die Osteoporose nach der Menopause erklärt.", answer: true, explanation: "Östrogen hemmt die Osteoklastenaktivität und fördert die Osteoblastenaktivität. Nach der Menopause sinkt der Östrogenspiegel → Osteoklastenaktivität überwiegt → Knochenmasseverlust → postmenopausale Osteoporose. Häufigste Ursache der Osteoporose bei Frauen." },
+      ], explanation: "Parathormon (PTH, aus Nebenschilddrüsen) stimuliert bei Hypokalzämie die Osteoklasten (indirekt über RANKL-Signalweg), was Kalzium aus dem Knochen freisetzt und den Blutkalziumspiegel anhebt. Calcitonin (aus C-Zellen der Schilddrüse) hemmt dagegen Osteoklasten. Östrogen schützt vor Knochenverlust (erklärt Osteoporose nach Menopause).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Parathormon (PTH) stimuliert die Osteoklasten und setzt dadurch Kalzium aus dem Knochen frei.", isWrong: false },
+          { text: "Calcitonin hemmt die Osteoklasten und wirkt damit gegenteilig zu PTH.", isWrong: false },
+          { text: "Östrogen schützt den Knochen vor übermäßigem Abbau.", isWrong: false },
+          { text: "Calcitonin stimuliert wie PTH die Osteoklastenaktivität.", isWrong: true }
+        ], whyWrong: "Calcitonin hemmt die Osteoklasten und senkt so den Blutkalziumspiegel – das genaue Gegenteil von PTH, das die Osteoklasten aktiviert und Kalzium freisetzt." } },
+      { id: "ko_st_h3", type: "true_false", statement: "Der menschliche Knochen wird im Erwachsenenalter vollständig innerhalb von ca. 10 Jahren durch Remodelling erneuert.", answer: true, explanation: "Knochenremodelling ist ein lebenslanger Prozess: Pro Jahr wird ca. 10% des gesamten Knochengewebes durch koordinierte Osteoklastenresorption und Osteoblastenneubildung (Remodelling-Einheiten) erneuert. Damit wird der gesamte Knochen etwa alle 10 Jahre vollständig ausgetauscht – vergleichbar einer ständigen Materialerneuerung.",
+        learningCard: { type: "predict", statement: "Der menschliche Knochen wird im Erwachsenenalter durch Remodelling etwa alle 10 Jahre komplett erneuert.", answer: true, reveal: "Pro Jahr wird ca. 10% des gesamten Knochengewebes durch koordinierte Osteoklastenresorption und Osteoblastenneubildung erneuert. Damit ist der gesamte Knochen etwa alle 10 Jahre vollständig ausgetauscht." } },
+      { id: "ko_st_h4", type: "true_false", statement: "Östrogen schützt vor Knochenabbau, was die Osteoporose nach der Menopause erklärt.", answer: true, explanation: "Östrogen hemmt die Osteoklastenaktivität und fördert die Osteoblastenaktivität. Nach der Menopause sinkt der Östrogenspiegel → Osteoklastenaktivität überwiegt → Knochenmasseverlust → postmenopausale Osteoporose. Häufigste Ursache der Osteoporose bei Frauen.",
+        learningCard: { type: "reconstruct", template: "Östrogen hemmt die ___aktivität und fördert die ___aktivität; nach der Menopause sinkt der Östrogenspiegel, was zur postmenopausalen ___ führt.", blanks: ["Osteoklasten", "Osteoblasten", "Osteoporose"], distractors: ["Osteozyten", "Fraktur"] } },
       { id: "ko_st_h5", type: "mc", question: "Welche Zelle ist der 'schlafende Wächter' im Knochen und misst mechanische Belastung?", options: [
         { text: "Osteozyten (eingemauerte, ehemals aktive Osteoblasten mit Ausläufern im Kanälchensystem)", correct: true },
         { text: "Osteoklasten als Abbausensoren", correct: false },
         { text: "Periost-Fibroblasten", correct: false },
         { text: "Endostale Stammzellen", correct: false }
-      ], explanation: "Osteozyten sind in Knochenlakunen eingemauerte, ehemals aktive Osteoblasten. Ihre Ausläufer verbinden sich über Kanälchen und registrieren mechanische Verformung. Sie koordinieren dann Osteoblasten- und Osteoklastenaktivität als Mechanosensoren (Wolff'sches Gesetz auf Zellebene)." },
+      ], explanation: "Osteozyten sind in Knochenlakunen eingemauerte, ehemals aktive Osteoblasten. Ihre Ausläufer verbinden sich über Kanälchen und registrieren mechanische Verformung. Sie koordinieren dann Osteoblasten- und Osteoklastenaktivität als Mechanosensoren (Wolff'sches Gesetz auf Zellebene).",
+        learningCard: { type: "predict", statement: "Osteozyten sind eingemauerte, ehemals aktive Osteoblasten, die als Mechanosensoren mechanische Belastung im Knochen registrieren.", answer: true, reveal: "Osteozyten liegen in Knochenlakunen und verbinden sich über Ausläufer im Kanälchensystem. Sie registrieren mechanische Verformung und koordinieren darüber Osteoblasten- und Osteoklastenaktivität." } },
       { id: "ko_st_h6", type: "mc", question: "Was ist Osteoporose und wie entsteht sie?", options: [
         { text: "Verminderung der Knochendichte durch Überwiegen der Osteoklastenaktivität; führt zu Frakturrisiko", correct: true },
         { text: "Übermässige Knochenbildung durch hyperaktive Osteoblasten", correct: false },
         { text: "Entzündliche Erkrankung des Knochens durch Bakterien", correct: false },
         { text: "Knochenerweichung durch Vitamin D-Überangebot", correct: false }
-      ], explanation: "Osteoporose: Knochendichte sinkt unter kritische Grenze → Frakturrisiko steigt stark. Ursachen: Östrogenmangel (postmenopausal), Vitamin D-Mangel, Immobilität, Cortisol-Überschuss. Prophylaxe: Kalzium + Vitamin D + körperliche Aktivität." }
+      ], explanation: "Osteoporose: Knochendichte sinkt unter kritische Grenze → Frakturrisiko steigt stark. Ursachen: Östrogenmangel (postmenopausal), Vitamin D-Mangel, Immobilität, Cortisol-Überschuss. Prophylaxe: Kalzium + Vitamin D + körperliche Aktivität.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Osteoporose treffen zu?", checklist: [
+          { text: "Osteoporose ist eine Verminderung der Knochendichte durch Überwiegen der Osteoklastenaktivität.", correct: true },
+          { text: "Östrogenmangel, Vitamin-D-Mangel und Immobilität begünstigen Osteoporose.", correct: true },
+          { text: "Kalzium, Vitamin D und Bewegung wirken der Osteoporose vorbeugend entgegen.", correct: true },
+          { text: "Osteoporose entsteht durch überaktive Osteoblasten und übermäßigen Knochenaufbau.", correct: false }
+        ], reveal: "Osteoporose ist eine Verminderung der Knochendichte durch Überwiegen der Osteoklastenaktivität, begünstigt durch Östrogenmangel, Vitamin-D-Mangel und Immobilität. Vorbeugend wirken Kalzium, Vitamin D und körperliche Aktivität." } }
     ],
     phase4Questions: [
       { id: "ko_st_mc1", type: "mc", question: "Welche Hormone regulieren den Knochenstoffwechsel und wie?", options: [
@@ -1404,19 +1420,32 @@ const KNOCHENLEHRE_1033_PLANTS = [
         { text: "Calcitonin – hemmt Osteoklasten, senkt Blutkalzium", correct: true },
         { text: "Östrogen – schützt Knochen vor Abbau", correct: true },
         { text: "Insulin – ist der Hauptregulator des Knochenstoffwechsels", correct: false }
-      ], explanation: "PTH steigert die Osteoklastenaktivität und erhöht das Blutkalzium, Calcitonin hemmt Osteoklasten und senkt das Blutkalzium, und Östrogen schützt Knochen vor übermäßigem Abbau." },
+      ], explanation: "PTH steigert die Osteoklastenaktivität und erhöht das Blutkalzium, Calcitonin hemmt Osteoklasten und senkt das Blutkalzium, und Östrogen schützt Knochen vor übermäßigem Abbau.",
+        learningCard: { type: "reconstruct", template: "___ steigert die Osteoklastenaktivität und erhöht das Blutkalzium, ___ hemmt Osteoklasten und senkt das Blutkalzium, und ___ schützt den Knochen vor übermäßigem Abbau.", blanks: ["PTH", "Calcitonin", "Östrogen"], distractors: ["Insulin", "Cortisol"] } },
       { id: "ko_st_mc2", type: "mc", question: "Was erklärt den Knochenverlust bei Astronauten in der Schwerelosigkeit?", options: [
         { text: "Fehlende mechanische Belastung → reduzierte Osteoblastenaktivität gemäss Wolff'schem Gesetz", correct: true },
         { text: "Überschuss an Parathormon im Weltall", correct: false },
         { text: "Vitamin-D-Mangel durch fehlende UV-Strahlung", correct: false },
         { text: "Inhibition der Osteoklasten durch kosmische Strahlung", correct: false }
-      ], explanation: "Nach dem Wolff'schen Gesetz passt sich Knochen mechanischen Belastungen an; fehlende Schwerkraft führt zu verminderter Osteoblastenaktivität und damit zu Knochenverlust." },
+      ], explanation: "Nach dem Wolff'schen Gesetz passt sich Knochen mechanischen Belastungen an; fehlende Schwerkraft führt zu verminderter Osteoblastenaktivität und damit zu Knochenverlust.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Astronauten verlieren in der Schwerelosigkeit Knochenmasse durch fehlende mechanische Belastung.", isWrong: false },
+          { text: "Das Wolff'sche Gesetz erklärt, warum sich Knochen an Belastung anpasst.", isWrong: false },
+          { text: "Fehlende Schwerkraft führt zu verminderter Osteoblastenaktivität.", isWrong: false },
+          { text: "Der Knochenverlust bei Astronauten entsteht durch einen Überschuss an Parathormon im Weltall.", isWrong: true }
+        ], whyWrong: "Der Knochenverlust bei Astronauten entsteht durch fehlende mechanische Belastung nach dem Wolff'schen Gesetz, nicht durch einen PTH-Überschuss." } },
       { id: "ko_st_mc3", type: "mc", question: "Welche Aussagen zum Knochenstoffwechsel sind korrekt?", options: [
         { text: "Osteoblasten bauen Knochen auf, Osteoklasten bauen ab – beide sind lebenslang aktiv", correct: true },
         { text: "Östrogenmangel nach der Menopause erhöht das Osteoporoserisiko", correct: true },
         { text: "Knochenstoffwechsel ist nach dem 25. Lebensjahr abgeschlossen", correct: false },
         { text: "PTH fördert Knochenaufbau durch direkte Osteoblastenaktivierung", correct: false }
-      ], explanation: "Auf- und Abbau: lebenslang. Östrogenmangel: Osteoporose. Remodelling: lebenslang, nicht abgeschlossen. PTH: stimuliert Osteoklasten (indirekt über RANKL) → Knochenabbau → Kalziumfreisetzung."}
+      ], explanation: "Auf- und Abbau: lebenslang. Östrogenmangel: Osteoporose. Remodelling: lebenslang, nicht abgeschlossen. PTH: stimuliert Osteoklasten (indirekt über RANKL) → Knochenabbau → Kalziumfreisetzung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Knochenstoffwechsel treffen zu?", checklist: [
+          { text: "Osteoblasten bauen Knochen auf, Osteoklasten bauen ab – beide sind lebenslang aktiv.", correct: true },
+          { text: "Östrogenmangel nach der Menopause erhöht das Osteoporoserisiko.", correct: true },
+          { text: "PTH stimuliert die Osteoklasten indirekt über den RANKL-Signalweg.", correct: true },
+          { text: "Der Knochenstoffwechsel ist nach dem 25. Lebensjahr abgeschlossen.", correct: false }
+        ], reveal: "Osteoblasten und Osteoklasten sind lebenslang aktiv, Östrogenmangel erhöht das Osteoporoserisiko, und PTH stimuliert die Osteoklasten indirekt über RANKL – der Knochenstoffwechsel ist nie abgeschlossen." } }
     ]
   }),
   makeDetailedPlant({
@@ -10164,14 +10193,21 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Beide Systeme arbeiten gleich schnell über elektrische Impulse", correct: false },
           { text: "Das endokrine System wirkt nur lokal, das Nervensystem systemisch", correct: false }
         ],
-        explanation: "Das Nervensystem steuert über elektrische Impulse sehr schnell (Millisekunden). Das endokrine System setzt biochemische Botenstoffe (Hormone) frei, die über den Blutweg langsamer, aber dauerhaft auf Zielorgane wirken."
+        explanation: "Das Nervensystem steuert über elektrische Impulse sehr schnell (Millisekunden). Das endokrine System setzt biochemische Botenstoffe (Hormone) frei, die über den Blutweg langsamer, aber dauerhaft auf Zielorgane wirken.",
+        learningCard: { type: "predict", statement: "Das Nervensystem steuert schnell über elektrische Impulse, das endokrine System langsam über chemische Botenstoffe im Blut.", answer: true, reveal: "Das Nervensystem steuert über elektrische Impulse sehr schnell (im Millisekundenbereich). Das endokrine System setzt Hormone frei, die über das Blut langsamer, aber dauerhaft auf Zielorgane wirken." }
       },
       {
         id: "hormonsystem_einleitung_h2",
         type: "true_false",
         statement: "Hormone sind reine Informationsträger — sie liefern dem Körper keine Energie.",
         answer: true,
-        explanation: "Hormone transportieren Informationen (Signale) an Zielzellen, sind aber selbst keine Energielieferanten. Die Energieversorgung übernehmen Nährstoffe (Glucose, Fettsäuren). Hormone steuern lediglich, wie und wo Energie genutzt oder gespeichert wird."
+        explanation: "Hormone transportieren Informationen (Signale) an Zielzellen, sind aber selbst keine Energielieferanten. Die Energieversorgung übernehmen Nährstoffe (Glucose, Fettsäuren). Hormone steuern lediglich, wie und wo Energie genutzt oder gespeichert wird.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Hormonen als Informationsträger treffen zu?", checklist: [
+          { text: "Hormone transportieren Informationen an Zielzellen.", correct: true },
+          { text: "Hormone liefern dem Körper selbst Energie.", correct: false },
+          { text: "Die Energieversorgung übernehmen Nährstoffe wie Glucose und Fettsäuren.", correct: true },
+          { text: "Hormone steuern, wie und wo Energie genutzt oder gespeichert wird.", correct: true }
+        ], reveal: "Hormone sind reine Informationsträger, keine Energielieferanten – die Energie liefern Nährstoffe wie Glucose und Fettsäuren. Hormone steuern lediglich, wie und wo diese Energie genutzt oder gespeichert wird." }
       },
       {
         id: "hormonsystem_einleitung_h3",
@@ -10183,7 +10219,8 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "Wachstumshormon (STH / Somatotropin)", correct: true },
           { text: "Adrenalin", correct: false }
         ],
-        explanation: "Wachstumshormon (STH) ist das einzige klassische Hormon, das artspezifisch ist. Deshalb musste für die Behandlung von Wachstumsstörungen früher Hypophysenextrakt von Verstorbenen verwendet werden; heute wird es gentechnisch hergestellt."
+        explanation: "Wachstumshormon (STH) ist das einzige klassische Hormon, das artspezifisch ist. Deshalb musste für die Behandlung von Wachstumsstörungen früher Hypophysenextrakt von Verstorbenen verwendet werden; heute wird es gentechnisch hergestellt.",
+        learningCard: { type: "predict", statement: "Das Wachstumshormon (STH) ist das einzige klassische Hormon, das artspezifisch wirkt.", answer: true, reveal: "Wachstumshormon (STH) ist artspezifisch – deshalb musste früher Hypophysenextrakt von Verstorbenen für die Behandlung von Wachstumsstörungen verwendet werden. Heute wird STH gentechnisch hergestellt." }
       },
       {
         id: "hormonsystem_einleitung_h4",
@@ -10195,14 +10232,21 @@ const HORMONSYSTEM_1042_PLANTS = [
           { text: "In der Lunge und im Herz", correct: false },
           { text: "Im Dünndarm durch Verdauungsenzyme", correct: false }
         ],
-        explanation: "Hormone werden nach Erfüllung ihrer Funktion hauptsächlich in Leber und Niere enzymatisch abgebaut und ausgeschieden. Dieser geregelte Abbau ermöglicht die präzise Steuerung durch den Körper."
+        explanation: "Hormone werden nach Erfüllung ihrer Funktion hauptsächlich in Leber und Niere enzymatisch abgebaut und ausgeschieden. Dieser geregelte Abbau ermöglicht die präzise Steuerung durch den Körper.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Hormone werden nach ihrer Wirkung hauptsächlich in Leber und Niere abgebaut.", isWrong: false },
+          { text: "Der Abbau erfolgt enzymatisch.", isWrong: false },
+          { text: "Der geregelte Abbau ermöglicht eine präzise Steuerung durch den Körper.", isWrong: false },
+          { text: "Hormone werden hauptsächlich in Milz und Knochenmark abgebaut.", isWrong: true }
+        ], whyWrong: "Hormone werden nach Erfüllung ihrer Funktion hauptsächlich in Leber und Niere enzymatisch abgebaut, nicht in Milz und Knochenmark. Dieser geregelte Abbau ermöglicht die präzise Steuerung durch den Körper." }
       },
       {
         id: "hormonsystem_einleitung_h5",
         type: "true_false",
         statement: "Exokrine Drüsen geben ihre Sekrete direkt ins Blut ab, während endokrine Drüsen Ausführungsgänge besitzen.",
         answer: false,
-        explanation: "Genau umgekehrt: ENDOkrine Drüsen geben ihre Hormone OHNE Ausführungsgang direkt ins Blut ab (= innere Sekretion). EXOkrine Drüsen besitzen Ausführungsgänge und leiten ihre Sekrete nach außen oder in Körperhöhlen (z. B. Speicheldrüsen → Mundhöhle, Schweißdrüsen → Hautoberfläche)."
+        explanation: "Genau umgekehrt: ENDOkrine Drüsen geben ihre Hormone OHNE Ausführungsgang direkt ins Blut ab (= innere Sekretion). EXOkrine Drüsen besitzen Ausführungsgänge und leiten ihre Sekrete nach außen oder in Körperhöhlen (z. B. Speicheldrüsen → Mundhöhle, Schweißdrüsen → Hautoberfläche).",
+        learningCard: { type: "reconstruct", template: "___ Drüsen geben Hormone ohne Ausführungsgang direkt ins Blut ab; ___ Drüsen besitzen Ausführungsgänge und leiten ihre Sekrete nach außen.", blanks: ["Endokrine", "exokrine"], distractors: ["Lymphatische", "Neurale"], reveal: "Endokrine Drüsen geben ihre Hormone ohne Ausführungsgang direkt ins Blut ab (innere Sekretion). Exokrine Drüsen besitzen Ausführungsgänge und leiten ihre Sekrete nach außen oder in Körperhöhlen, z. B. Speicheldrüsen in die Mundhöhle." }
       }
     ],
     phase4Questions: [
