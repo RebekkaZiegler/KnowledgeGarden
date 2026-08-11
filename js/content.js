@@ -1714,6 +1714,7 @@ const HISTOLOGIE_1032_PLANTS = [
           { text: "Die Zellform entsteht durch Kontraktion der umgebenden Myoepithelzellen", correct: false },
         ],
         explanation: "Weiße Adipozyten speichern Fett als einen einzigen großen Fetttropfen. Dieser nimmt fast das gesamte Zellvolumen ein und drückt Zellkern und Zytoplasmarandzone an den Zellrand → Siegelringform. In der mikroskopischen Übersicht erscheinen solche Zellen wie leere Ringe, da das Fett bei der Präparation herausgelöst wird.",
+        learningCard: { type: "predict", statement: "Die Siegelringform der Adipozyten entsteht, weil ein zentraler Fettropfen Zytoplasma und Zellkern an die Zellperipherie verdrängt.", answer: true, reveal: "In der mikroskopischen Übersicht erscheinen solche Zellen wie leere Ringe, da das Fett bei der Präparation herausgelöst wird." },
       },
       {
         type: "mc",
@@ -1726,6 +1727,7 @@ const HISTOLOGIE_1032_PLANTS = [
           { text: "Lipogenese findet nur in der Leber statt, Lipolyse nur im Fettgewebe", correct: false },
         ],
         explanation: "Lipogenese (-genese = Entwicklung, Aufbau): Fettsäuresynthese und Einlagerung von Triglyceriden im Fettgewebe – Energiespeicherung. Lipolyse (-lyse = Auflösung, Abbau): Spaltung der Triglyceride, Freisetzung von Fettsäuren ins Blut. Beide Prozesse laufen gleichzeitig ab und werden hormonell gesteuert (z. B. Insulin fördert Lipogenese, Glucagon/Adrenalin fördern Lipolyse).",
+        learningCard: { type: "reconstruct", template: "___ ist der Aufbau von Fettsäuren und Triglyceriden, ___ ist deren Abbau und Freisetzung ins Blut.", blanks: ["Lipogenese", "Lipolyse"], distractors: ["Glykogenese", "Glykolyse"], reveal: "Insulin fördert die Lipogenese, Glucagon und Adrenalin fördern die Lipolyse — beide Prozesse laufen gleichzeitig ab." },
       },
       {
         type: "mc",
@@ -1738,6 +1740,12 @@ const HISTOLOGIE_1032_PLANTS = [
           { text: "Fettgewebe ist vollständig metabolisch inaktiv und dient ausschließlich der thermischen Isolation (vergleichbar mit Mineralwolle)", correct: false },
         ],
         explanation: "Fettgewebe ist multifunktional: 1. Energiereservoir (Triglyceride), 2. Thermische Isolierung (Fett = schlechter Wärmeleiter), 3. Wärmeproduktion (braunes Fettgewebe, besonders bei Neugeborenen), 4. Mechanisch: Stoßdämpfer und Polster, 5. Baufett: fixiert Organe (z. B. Augapfel in der Orbita). Fettgewebe ist zudem stark innerviert und reich durchblutet.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen übernimmt das Fettgewebe im Körper?", checklist: [
+          { text: "Energiespeicher", correct: true },
+          { text: "Wärmeisolierung und Wärmeproduktion (braunes Fett)", correct: true },
+          { text: "Mechanischer Schutz und Organfixierung (Baufett)", correct: true },
+          { text: "Ausschließlich Energiespeicherung ohne weitere Funktionen", correct: false }
+        ], reveal: "Fettgewebe ist zudem stark innerviert und reich durchblutet." },
       },
       {
         type: "mc",
@@ -1750,6 +1758,12 @@ const HISTOLOGIE_1032_PLANTS = [
           { text: "Speicherfett hat eine mechanische Schutzfunktion und bleibt bei Abmagerung erhalten; Baufett ist das ernährungsabhängige metabolisch aktive Depot", correct: false },
         ],
         explanation: "Baufett: Augenhöhlen, Wangen, Fußsohlen, Nierenlager – fixiert Organe, polstert Druckbelastungen ab. Es bleibt auch bei extremer Abmagerung weitgehend erhalten. Speicherfett: subkutan und viszeral, variiert stark mit Ernährungszustand und Energiestoffwechsel.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Baufett fixiert Organe und bleibt bei Abmagerung weitgehend erhalten.", isWrong: false },
+          { text: "Speicherfett variiert stark mit dem Ernährungszustand.", isWrong: false },
+          { text: "Baufett findet sich z.B. in Augenhöhlen, Wangen und Fußsohlen.", isWrong: false },
+          { text: "Speicherfett hat eine mechanische Schutzfunktion und bleibt bei Abmagerung erhalten.", isWrong: true }
+        ], whyWrong: "Das ist gerade die Eigenschaft des Baufetts — Speicherfett ist dagegen das ernährungsabhängige, metabolisch aktive Depot." },
       },
       {
         type: "true_false",
@@ -1757,6 +1771,7 @@ const HISTOLOGIE_1032_PLANTS = [
         statement: "Gutartige Geschwülste aus Fettgewebe werden als Lipome bezeichnet.",
         answer: true,
         explanation: "Lipome sind die häufigsten gutartigen Weichteiltumoren des Menschen. Sie entstehen aus Adipozyten und wachsen langsam. Bösartige Fettgewebstumore heißen Liposarkome (selten). Das Fettgewebe unterliegt einem ständigen Molekülaustausch – die im Fettgewebe angehäuften Moleküle werden beständig erneuert.",
+        learningCard: { type: "predict", statement: "Gutartige Geschwülste aus Fettgewebe werden als Lipome bezeichnet.", answer: true, reveal: "Lipome sind die häufigsten gutartigen Weichteiltumoren des Menschen; bösartige Fettgewebstumore heißen Liposarkome und sind selten." },
       },
     ],
     phase4Questions: [
@@ -1771,6 +1786,12 @@ const HISTOLOGIE_1032_PLANTS = [
           { text: "Fettgewebe hat keinerlei mechanische Bedeutung im Körper", correct: false },
         ],
         explanation: "Adipozyten: Siegelringform durch großen zentralen Fettropfen. Durchblutung: gut (große Fettlager belasten den Kreislauf). Innervation: stark (Steuerung der Lipolyse). Kohlenhydratüberschuss: wird als Fettsäuren im Fettgewebe gespeichert. Mechanisch: Baufett fixiert Organe und puffert Stöße.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum weißen Fettgewebe treffen zu?", checklist: [
+          { text: "Adipozyten besitzen eine Siegelringform durch einen zentralen Fettropfen.", correct: true },
+          { text: "Fettgewebe ist reich durchblutet und stark innerviert.", correct: true },
+          { text: "Überschüssige Kohlenhydrate können als Fettsäuren gespeichert werden.", correct: true },
+          { text: "Fettgewebe hat keinerlei mechanische Bedeutung.", correct: false }
+        ], reveal: "Baufett fixiert Organe und puffert Stöße — Fettgewebe hat also durchaus mechanische Bedeutung." },
       },
       {
         type: "mc",
@@ -1783,6 +1804,7 @@ const HISTOLOGIE_1032_PLANTS = [
           { text: "Weißes Fettgewebe produziert durch höhere Stoffwechselaktivität und mehr Mitochondrien deutlich mehr Wärme als das braune Fettgewebe", correct: false },
         ],
         explanation: "Braunes Fettgewebe: viele Mitochondrien (daher braune Farbe), enthält Uncoupling Protein 1 (UCP1/Thermogenin) → Entkopplung der Atmungskette → Wärme statt ATP. Wichtig bei Neugeborenen und Winterschläfern. Weißes Fettgewebe: Energiespeicher in Form von Triglyceriden, wenige Mitochondrien.",
+        learningCard: { type: "predict", statement: "Braunes Fettgewebe hat viele Mitochondrien und dient der Wärmeproduktion, weißes Fettgewebe dient primär der Energiespeicherung.", answer: true, reveal: "Braunes Fettgewebe enthält Uncoupling Protein 1 (UCP1), das die Atmungskette entkoppelt und Wärme statt ATP erzeugt — besonders wichtig bei Neugeborenen." },
       },
     ],
   }),
