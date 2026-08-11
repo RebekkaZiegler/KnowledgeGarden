@@ -19205,6 +19205,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Die Abwehrreaktion gegen Antigene", correct: false },
         ],
         explanation: "Disposition = Empfänglichkeit (Anfälligkeit) eines Organismus für eine Krankheit. Ätiologie = Lehre von den Ursachen; Restitutio ad integrum = vollständige Wiederherstellung.",
+        learningCard: { type: "reconstruct", template: "___ ist die Empfänglichkeit eines Organismus für eine Krankheit, während ___ die Lehre von den Krankheitsursachen bezeichnet.", blanks: ["Disposition", "Ätiologie"], distractors: ["Pathogenese", "Prognose"] }
       },
       {
         type: "mc",
@@ -19217,6 +19218,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hämophilie durch X-chromosomale Mutation", correct: false },
         ],
         explanation: "Biogeographische Disposition: durch Herkunftsregion bedingt, z. B. Sichelzellanämie in Malaria-Gebieten. Geschlechtlich (Brustkrebs), Alters- (Arteriosklerose), genetisch (Hämophilie).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Erhöhte Anfälligkeit für Sichelzellanämie bei Menschen aus Malaria-Endemiegebieten ist eine biogeographische Disposition.", isWrong: false },
+          { text: "Ein höheres Brustkrebsrisiko bei Frauen als bei Männern ist eine geschlechtliche Disposition.", isWrong: false },
+          { text: "Ein erhöhtes Arterioskleroserisiko im Alter ist eine Alters-Disposition.", isWrong: false },
+          { text: "Hämophilie durch X-chromosomale Mutation ist eine biogeographische Disposition.", isWrong: true }
+        ], whyWrong: "Hämophilie ist eine genetische Disposition durch X-chromosomale Vererbung — biogeographisch wäre z. B. die Sichelzellanämie in Malaria-Gebieten." }
       },
       {
         type: "mc",
@@ -19229,6 +19236,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Pathologie beschreibt nur makroskopische, Ätiologie nur mikroskopische Befunde", correct: false },
         ],
         explanation: "Pathologie = Wissenschaft von den krankhaften Veränderungen des Körpers. Ätiologie = Lehre von den Krankheitsursachen. Pathogenese = Entwicklung/Entstehung der Krankheit.",
+        learningCard: { type: "predict", statement: "Pathologie ist die Lehre von krankhaften Veränderungen des Körpers, Ätiologie die Lehre von den Krankheitsursachen.", answer: true, reveal: "Pathogenese beschreibt zusätzlich die Entwicklung und den Verlauf einer Krankheit." }
       },
       {
         type: "mc",
@@ -19241,6 +19249,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Biogeographische Disposition", correct: false },
         ],
         explanation: "Geschlechtliche Disposition: biologisches Geschlecht erhöht die Anfälligkeit für bestimmte Erkrankungen, hier Mammakarzinom bei Frauen.",
+        learningCard: { type: "predict", statement: "Ein 100-fach höheres Mammakarzinomrisiko bei Frauen gegenüber Männern ist ein Beispiel für eine geschlechtliche Disposition.", answer: true, reveal: "Das biologische Geschlecht erhöht hier die Anfälligkeit für eine bestimmte Erkrankung." }
       },
       {
         type: "true_false",
@@ -19248,6 +19257,11 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Pathogenese und Ätiologie sind Synonyme für dieselbe wissenschaftliche Disziplin.",
         answer: false,
         explanation: "Ätiologie = Ursachenlehre. Pathogenese = Beschreibung von Entwicklung und Verlauf der Krankheit nach Einwirken des ätiologischen Faktors.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Ätiologie und Pathogenese treffen zu?", checklist: [
+          { text: "Ätiologie ist die Lehre von den Krankheitsursachen.", correct: true },
+          { text: "Pathogenese beschreibt Entwicklung und Verlauf der Krankheit nach Einwirken des ätiologischen Faktors.", correct: true },
+          { text: "Pathogenese und Ätiologie sind Synonyme für dieselbe Disziplin.", correct: false }
+        ], reveal: "Ätiologie fragt nach der Ursache, Pathogenese beschreibt den Verlauf danach — zwei getrennte Konzepte." }
       },
     ],
     phase4Questions: [
@@ -19262,6 +19276,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Ätiologie und Pathogenese sind beim gleichen Krankheitsbild identisch", correct: false },
         ],
         explanation: "Ätiologie nennt die Ursache (Erreger), Pathogenese beschreibt den Verlauf vom Erregerkontakt bis zur Erkrankung.",
+        learningCard: { type: "predict", statement: "Bei Tuberkulose ist die Ätiologie das Mykobakterium tuberculosis; die Pathogenese verläuft über Infektion, Granulombildung und Verkäsung bei ungenügender Immunantwort.", answer: true, reveal: "Ätiologie nennt die Ursache, Pathogenese beschreibt den Verlauf vom Erregerkontakt bis zur Erkrankung." }
       },
       {
         type: "mc",
@@ -19274,6 +19289,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Disposition und Ätiologie bezeichnen dasselbe Konzept", correct: false },
         ],
         explanation: "Alters-Disposition: im Alter nehmen bestimmte Krankheitsrisiken zu. Biogeographische Disposition: populationsgenetische Anpassung an regionale Umweltbedingungen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Disposition treffen zu?", checklist: [
+          { text: "Alters-Disposition erklärt die erhöhte Arterioskleroserate im höheren Lebensalter.", correct: true },
+          { text: "Biogeographische Disposition entsteht durch die Anpassung von Populationen an regionale Bedingungen über Generationen.", correct: true },
+          { text: "Genetische Disposition ist immer zugleich eine geschlechtliche Disposition.", correct: false },
+          { text: "Disposition und Ätiologie bezeichnen dasselbe Konzept.", correct: false }
+        ], reveal: "Alters- und biogeographische Disposition sind zwei von mehreren Dispositionsarten; Disposition selbst ist klar von Ätiologie zu unterscheiden." }
       },
     ],
   }),
@@ -19293,6 +19314,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Letalität bezieht sich auf perinatale Sterblichkeit", correct: false },
         ],
         explanation: "Mortalität (Sterblichkeit) = Todesfälle in einem Zeitraum / Gesamtbevölkerung. Letalität = Anteil der Gestorbenen an den Erkrankten dieser spezifischen Krankheit.",
+        learningCard: { type: "reconstruct", template: "___ = Todesfälle in einem Zeitraum / Gesamtbevölkerung; ___ = Anteil der Gestorbenen an den Erkrankten dieser Krankheit (in %).", blanks: ["Mortalität", "Letalität"], distractors: ["Inzidenz", "Prävalenz"] }
       },
       {
         type: "mc",
@@ -19305,6 +19327,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Sie kann nur angeboren sein", correct: false },
         ],
         explanation: "Spezifische Immunität = erworbene Immunität: richtet sich gezielt gegen bestimmte Antigene durch Antikörper (B-Zellen) und T-Zellen.",
+        learningCard: { type: "predict", statement: "Die spezifische Immunität richtet sich gezielt gegen einen bestimmten Erreger oder ein Toxin durch Antikörperbildung gegen dessen Antigene.", answer: true, reveal: "Sie ist erworbene Immunität, getragen von B-Zellen (Antikörper) und T-Zellen." }
       },
       {
         type: "mc",
@@ -19317,6 +19340,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Müttersterblichkeit während Schwangerschaft, Geburt und Wochenbett pro 100.000 Lebendgeborenen (maternale Mortalität), nicht kindliche Todesfälle", correct: false },
         ],
         explanation: "Perinatale Sterblichkeit = Summe aller vor, während und bis zu einer Woche nach der Geburt verstorbenen Kinder pro 1000 Lebend- und Totgeborenen.",
+        learningCard: { type: "reconstruct", template: "Die perinatale Sterblichkeit ist die Summe aller vor, während und bis zu einer ___ nach der Geburt Verstorbenen pro 1000 ___ und Totgeborenen.", blanks: ["Woche", "Lebendgeborenen"], distractors: ["Monat", "Erkrankten"] }
       },
       {
         type: "mc",
@@ -19329,6 +19353,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Eine Erkrankung, die nur akut verläuft", correct: false },
         ],
         explanation: "Funktionelle Erkrankung: Funktion gestört, aber keine morphologische (strukturelle) Ursache nachweisbar. Organische Erkrankung: strukturelle Veränderungen vorhanden.",
+        learningCard: { type: "predict", statement: "Eine funktionelle Erkrankung zeigt eine gestörte Organfunktion ohne morphologisch nachweisbare Ursache.", answer: true, reveal: "Bei einer organischen Erkrankung sind dagegen strukturelle Veränderungen nachweisbar." }
       },
       {
         type: "true_false",
@@ -19336,6 +19361,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Ein Rezidiv bezeichnet das dauerhaft vollständige Abklingen einer Erkrankung.",
         answer: false,
         explanation: "Rezidiv = erneuter Ausbruch einer bereits überwunden geglaubten Krankheit. Remission = vorübergehendes oder dauerhaftes Nachlassen der Beschwerden.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Ein Rezidiv ist der erneute Ausbruch einer bereits überwunden geglaubten Krankheit.", isWrong: false },
+          { text: "Eine Remission ist ein vorübergehendes oder dauerhaftes Nachlassen der Beschwerden.", isWrong: false },
+          { text: "Ein Rezidiv bezeichnet nicht das dauerhaft vollständige Abklingen einer Erkrankung.", isWrong: false },
+          { text: "Rezidiv und Remission beschreiben denselben Krankheitsverlauf.", isWrong: true }
+        ], whyWrong: "Ein Rezidiv ist ein Rückfall der Krankheit, eine Remission ein Nachlassen der Beschwerden — das sind gegensätzliche Verläufe, keine Synonyme." }
       },
     ],
     phase4Questions: [
@@ -19350,6 +19381,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hyperplasie", correct: false },
         ],
         explanation: "Ausgänge: Restitutio ad integrum (vollständige Heilung), Defektheilung (bleibender Schaden), Tod, Rezidiv (Rückfall), Remission (Nachlassen). Hyperplasie ist eine Anpassungsreaktion, kein Ausgang.",
+        learningCard: { type: "teachback", prompt: "Welche Ausgänge einer Erkrankung sind möglich?", checklist: [
+          { text: "Restitutio ad integrum (vollständige Heilung)", correct: true },
+          { text: "Defektheilung (bleibender Schaden)", correct: true },
+          { text: "Remission (Nachlassen der Beschwerden)", correct: true },
+          { text: "Hyperplasie", correct: false }
+        ], reveal: "Hyperplasie ist eine Anpassungsreaktion des Gewebes, kein Ausgang einer Erkrankung." }
       },
       {
         type: "mc",
@@ -19362,6 +19399,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Akut, weil sie plötzlich auftrat", correct: false },
         ],
         explanation: "Funktionelle Erkrankung: Funktion gestört, morphologisch (strukturell) kein Befund. Dies ist unabhängig von akut/chronisch oder Symptomdauer.",
+        learningCard: { type: "predict", statement: "Eine Erkrankung mit deutlichen Symptomen aber ohne nachweisbare strukturelle Organschädigung wird als funktionell klassifiziert — unabhängig von Akuität oder Symptomdauer.", answer: true, reveal: "Entscheidend ist allein das Fehlen eines morphologischen Befunds trotz gestörter Funktion." }
       },
     ],
   }),
@@ -19381,6 +19419,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Autolyse und Verwesung", correct: false },
         ],
         explanation: "Unsichere Zeichen des klinischen Todes: Bewusstlosigkeit, fehlende Reflexe, Atemstillstand, Herzstillstand – unsicher, weil beim Scheintod ähnlich.",
+        learningCard: { type: "teachback", prompt: "Welche Merkmale zählen zu den unsicheren Zeichen des klinischen Todes?", checklist: [
+          { text: "Bewusstlosigkeit", correct: true },
+          { text: "Fehlende Reflexe", correct: true },
+          { text: "Atemstillstand und Herzstillstand", correct: true },
+          { text: "Totenstarre", correct: false }
+        ], reveal: "Diese Zeichen gelten als unsicher, weil sie auch beim Scheintod auftreten können." }
       },
       {
         type: "mc",
@@ -19393,6 +19437,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Nur Kreislauf- und Atemstillstand über 10 Minuten nötig", correct: false },
         ],
         explanation: "Hirntod gesetzlich: EEG isoelektrisch ≥30 min, 2 unabhängige Ärzte, 24-stündige Beobachtungszeit, ggf. Angiographie zum Beweis des Hirnkreislaufstillstands.",
+        learningCard: { type: "reconstruct", template: "Die gesetzliche Feststellung des Hirntods erfordert ein über ___ Minuten isoelektrisches EEG, die Untersuchung durch zwei unabhängige Ärzte und eine Beobachtungszeit von ___ Stunden.", blanks: ["30", "24"], distractors: ["15", "12"] }
       },
       {
         type: "mc",
@@ -19405,6 +19450,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Sepsis", correct: false },
         ],
         explanation: "Hellrote Livores = CO-Hämoglobin (Kohlenmonoxid) oder Barbituratvergiftung. Normal: bläulich-rote Flecken durch venöses Blut.",
+        learningCard: { type: "predict", statement: "Hellrote Totenflecke deuten auf eine CO-Vergiftung oder Barbituratvergiftung hin.", answer: true, reveal: "Normalerweise sind Totenflecke bläulich-rot gefärbt, weil sie durch venöses Blut entstehen." }
       },
       {
         type: "mc",
@@ -19417,6 +19463,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hände/Füße → proximale Gelenke → Nacken", correct: false },
         ],
         explanation: "Totenstarre: beginnt nach 2–4 h an Nacken und Kiefer, breitet sich zu Schultern, Rumpf und schließlich Extremitäten aus. Auflösung nach 2–3 Tagen.",
+        learningCard: { type: "reconstruct", template: "Die Totenstarre beginnt nach 2–4 Stunden an ___ und ___, breitet sich über Schultern und Rumpf aus und erreicht zuletzt die Extremitäten.", blanks: ["Nacken", "Kiefer"], distractors: ["Beine", "Hände"] }
       },
       {
         type: "true_false",
@@ -19424,6 +19471,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Supravitale Erscheinungen (intermediäres Leben) sind Reaktionen einzelner Gewebe, die noch nach dem klinischen Tod auf Reize ansprechen.",
         answer: true,
         explanation: "Intermediäres Leben = supravitale Erscheinungen: z. B. Pupillenreaktion auf Atropin, Muskeln reagieren noch auf elektrische Reize kurz nach dem Tod.",
+        learningCard: { type: "predict", statement: "Supravitale Erscheinungen (intermediäres Leben) sind Reaktionen einzelner Gewebe, die noch nach dem klinischen Tod auf Reize ansprechen.", answer: true, reveal: "Beispiele sind die Pupillenreaktion auf Atropin oder die Reaktion von Muskeln auf elektrische Reize kurz nach dem Tod." }
       },
     ],
     phase4Questions: [
@@ -19438,6 +19486,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Autolyse ist ein sicheres Todeszeichen", correct: true },
         ],
         explanation: "Sichere Todeszeichen: Livores mortis, Rigor mortis, Autolyse/Fäulnis, nicht mit Leben vereinbare Verletzungen. Atemstillstand = unsicheres Zeichen (auch beim Scheintod).",
+        learningCard: { type: "teachback", prompt: "Welche der folgenden sind sichere Todeszeichen?", checklist: [
+          { text: "Totenflecke (Livores mortis)", correct: true },
+          { text: "Totenstarre (Rigor mortis)", correct: true },
+          { text: "Autolyse/Fäulnis", correct: true },
+          { text: "Atemstillstand allein", correct: false }
+        ], reveal: "Atemstillstand allein ist nur ein unsicheres Zeichen, da er auch beim Scheintod auftreten kann." }
       },
       {
         type: "mc",
@@ -19450,6 +19504,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Nervenimpulse nach dem Tod → Muskelkontraktion; Auflösung sofort mit Beginn der Fäulnis", correct: false },
         ],
         explanation: "ATP-Mangel post mortem → Aktin und Myosin können sich nicht trennen → Rigor mortis. Autolyse (enzymatischer Gewebeabbau) löst die Starre nach 2–3 Tagen auf.",
+        learningCard: { type: "predict", statement: "Die Totenstarre entsteht durch ATP-Mangel, wodurch sich der Aktin-Myosin-Komplex nicht mehr lösen kann; sie löst sich nach 2–3 Tagen durch Autolyse wieder auf.", answer: true, reveal: "ATP-Mangel post mortem verhindert die Trennung von Aktin und Myosin, der enzymatische Gewebeabbau (Autolyse) löst die Starre später wieder auf." }
       },
     ],
   }),
@@ -19469,6 +19524,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Histiotoxische Hypoxie", correct: true },
         ],
         explanation: "Histiotoxisch = Zellen können O₂ nicht nutzen (Zyanid hemmt Cytochromoxidase). Hypoxämisch = zu wenig O₂ im Blut; ischämisch = Durchblutungsstörung; hypoglykämisch = Energiemangel durch Glukosemangel.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Eine Zyanidvergiftung verursacht eine histiotoxische Hypoxie, weil die Zellen den Sauerstoff nicht mehr verwerten können.", isWrong: false },
+          { text: "Bei der hypoxämischen Hypoxie ist zu wenig Sauerstoff im Blut vorhanden.", isWrong: false },
+          { text: "Bei der ischämischen Hypoxie liegt eine Durchblutungsstörung vor.", isWrong: false },
+          { text: "Bei der hypoglykämischen Hypoxie entsteht der Energiemangel durch Sauerstoffmangel in der Atemluft.", isWrong: true }
+        ], whyWrong: "Die hypoglykämische Hypoxie entsteht durch Glukosemangel als fehlendes Substrat für die ATP-Synthese, nicht durch Sauerstoffmangel in der Atemluft." }
       },
       {
         type: "mc",
@@ -19481,6 +19542,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Zellmembran", correct: false },
         ],
         explanation: "Mitochondrien sind zuerst betroffen, da sie für die aerobe ATP-Synthese zuständig sind. ATP-Abfall → Na-K-Pumpe versagt → hydropische Schwellung.",
+        learningCard: { type: "predict", statement: "Bei Hypoxie sind die Mitochondrien als Erstes betroffen, da sie für die aerobe ATP-Synthese zuständig sind.", answer: true, reveal: "Der folgende ATP-Abfall lässt die Na-K-Pumpe versagen, was zur hydropischen Schwellung der Zelle führt." }
       },
       {
         type: "mc",
@@ -19493,6 +19555,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Erhöhte ATP-Produktion durch anaerobe Glykolyse ohne Folgeschäden", correct: false },
         ],
         explanation: "Hypoxiefolgen: 1. Mitochondrien schwellen. 2. ATP-Abfall → Na-K-Pumpe versagt → hydropische Schwellung. 3. Verfettung durch gestörten Fettstoffwechsel. 4. Azidose durch anaerobe Glykolyse (Laktatbildung).",
+        learningCard: { type: "teachback", prompt: "Welche Folgen hat anhaltende Hypoxie auf die Zelle?", checklist: [
+          { text: "Mitochondrienschwellung", correct: true },
+          { text: "Hydropische Schwellung durch versagende Na-K-Pumpe", correct: true },
+          { text: "Verfettung durch gestörten Fettstoffwechsel", correct: true },
+          { text: "Sofortige Nekrose ohne Zwischenschritte", correct: false }
+        ], reveal: "Die Zellschäden verlaufen stufenweise: Mitochondrienschwellung, ATP-Abfall, hydropische Schwellung, Verfettung und intrazelluläre Azidose." }
       },
       {
         type: "mc",
@@ -19505,6 +19573,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Mangel an Glukose als Energieträger", correct: false },
         ],
         explanation: "Ischämisch = Durchblutungsstörung (z. B. Arterienverschluss) → O₂-Mangel im Gewebe. Hypoxämisch = O₂-Sättigungsabfall im Blut. Histiotoxisch = Verwertungsstörung. Hypoglykämisch = Glukosemangel.",
+        learningCard: { type: "reconstruct", template: "Die ___ Hypoxie entsteht durch eine verminderte ___ eines Gewebes, z. B. durch einen Arterienverschluss.", blanks: ["ischämische", "Durchblutung"], distractors: ["histiotoxische", "Sauerstoffsättigung"] }
       },
       {
         type: "true_false",
@@ -19512,6 +19581,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Bei höherer Gewebetemperatur steigt die Anfälligkeit für Hypoxieschäden, weil der Sauerstoffbedarf zunimmt.",
         answer: true,
         explanation: "Temperatur ist ein Einflussfaktor: höhere Temperatur → höherer Stoffwechsel → höherer O₂-Bedarf → schnellere Schädigung bei O₂-Mangel.",
+        learningCard: { type: "predict", statement: "Bei höherer Gewebetemperatur steigt die Anfälligkeit für Hypoxieschäden, weil der Sauerstoffbedarf zunimmt.", answer: true, reveal: "Ein höherer Stoffwechsel bei höherer Temperatur erhöht den Sauerstoffbedarf, sodass ein Sauerstoffmangel schneller zur Schädigung führt." }
       },
     ],
     phase4Questions: [
@@ -19526,6 +19596,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Verfettung → Azidose → Mitochondrienschwellung → Restitution", correct: false },
         ],
         explanation: "Korrekte Kaskade: O₂-Mangel → Mitochondrien zuerst betroffen → ATP↓ → Na-K-ATPase versagt → Na⁺+H₂O einströmen → hydropische Schwellung → Verfettung, intrazelluläre Azidose → bei Persistenz: Nekrose.",
+        learningCard: { type: "reconstruct", template: "Die Hypoxie-Kaskade verläuft: Mitochondrienschwellung → ATP-Abfall → ___-Versagen → hydropische Schwellung → Verfettung/___ → Nekrose.", blanks: ["Na-K-Pumpen", "Azidose"], distractors: ["Golgi-Apparat", "Alkalose"] }
       },
       {
         type: "mc",
@@ -19538,6 +19609,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hypoglykämisch: Glukosemangel, kein ausreichendes Substrat für ATP-Synthese", correct: true },
         ],
         explanation: "Hypoxämisch = zu wenig O₂ im Blut. Hypoglykämisch = Substratmangel. Ischämisch = Durchblutungsstörung. Histiotoxisch = Verwertungsstörung (Zyanid).",
+        learningCard: { type: "teachback", prompt: "Welche Hypoxieform-Ursache-Zuordnungen sind korrekt?", checklist: [
+          { text: "Hypoxämisch: O₂-Mangel in der Atemluft oder Anämie", correct: true },
+          { text: "Hypoglykämisch: Glukosemangel, kein ausreichendes Substrat für die ATP-Synthese", correct: true },
+          { text: "Ischämisch: Zyanidvergiftung hemmt die Zellatmung", correct: false },
+          { text: "Histiotoxisch: Arterienverschluss reduziert den Blutfluss", correct: false }
+        ], reveal: "Ischämisch bedeutet Durchblutungsstörung, histiotoxisch bedeutet Verwertungsstörung — die Zyanidvergiftung gehört zur histiotoxischen, der Arterienverschluss zur ischämischen Hypoxie." }
       },
     ],
   }),
@@ -19557,6 +19634,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Verkohlung des Gewebes", correct: false },
         ],
         explanation: "Grad I: nur Epidermis betroffen → Rötung, Schmerz, Abschilfern. Narbenlose Heilung. Grad II: Blasen. Grad III: vollständige Hautdestruktion, schmerzlos. Grad IV: Verkohlung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Verbrennung Grad I betrifft nur die Epidermis und heilt narbenlos.", isWrong: false },
+          { text: "Verbrennung Grad II ist von Blasenbildung gekennzeichnet.", isWrong: false },
+          { text: "Verbrennung Grad III zerstört die Haut vollständig und ist schmerzlos.", isWrong: false },
+          { text: "Verbrennung Grad IV heilt narbenlos, weil nur die Epidermis betroffen ist.", isWrong: true }
+        ], whyWrong: "Grad IV bedeutet Verkohlung des Gewebes bis in tiefe Schichten — das Gegenteil von narbenloser Heilung, die nur bei Grad I und IIa möglich ist." }
       },
       {
         type: "mc",
@@ -19569,6 +19652,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Keine systemischen Folgen, nur Schmerzen", correct: false },
         ],
         explanation: "Bei >20 % verbrannter KOF: Verbrennungskrankheit mit hypovolämischem Schock (Plasmaverlust), Infektionsgefahr/Sepsis, Multiorganversagen.",
+        learningCard: { type: "predict", statement: "Bei mehr als 20 % verbrannter Körperoberfläche entsteht eine Verbrennungskrankheit mit Schock, Sepsisgefahr und Organversagen.", answer: true, reveal: "Der große Flüssigkeits- und Eiweißverlust über die Wunde löst einen hypovolämischen Schock aus." }
       },
       {
         type: "mc",
@@ -19581,6 +19665,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "45 %", correct: false },
         ],
         explanation: "Rumpf gesamt: Thorax vorne (9 %) + Thorax hinten (9 %) + Bauch vorne (9 %) + Bauch hinten (9 %) = 36 %.",
+        learningCard: { type: "reconstruct", template: "Nach der Neuner-Regel entspricht der gesamte Rumpf (vorne und hinten) ___ % der Körperoberfläche, zusammengesetzt aus je ___ % für Thorax und Bauch, vorne und hinten.", blanks: ["36", "9"], distractors: ["18", "27"] }
       },
       {
         type: "mc",
@@ -19593,6 +19678,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Förderung der Zellteilung ohne Schadwirkung", correct: false },
         ],
         explanation: "Ionisierende Strahlung: direkte DNA-Ionisation und indirekte Wirkung durch freie Radikale (Wasserradiolyse) → DNA-Strangbrüche → Zelltod, Mutation, Karzinogenese.",
+        learningCard: { type: "predict", statement: "Ionisierende Strahlen schädigen Zellen direkt durch DNA-Ionisation und indirekt durch die Bildung freier Radikale, was zu Zelltod oder Mutation führen kann.", answer: true, reveal: "Diese Doppelwirkung erklärt, warum Strahlung Zellen abtötet und zugleich Krebs auslösen kann (Karzinogenese)." }
       },
       {
         type: "true_false",
@@ -19600,6 +19686,11 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Verbrennung Grad IIb hinterlässt Narben, weil tiefe Anteile der Dermis zerstört werden.",
         answer: true,
         explanation: "Grad IIa (oberflächlich): Regeneration aus Haarfollikeln/Drüsen → narbenlos. Grad IIb (tief): Stammzellreserve zerstört → Narbenbildung erforderlich.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Verbrennung Grad IIa und IIb treffen zu?", checklist: [
+          { text: "Grad IIa heilt narbenlos durch Regeneration aus Haarfollikeln und Drüsen.", correct: true },
+          { text: "Grad IIb hinterlässt Narben, weil die Stammzellreserve der Dermis zerstört wird.", correct: true },
+          { text: "Grad IIa und IIb heilen beide narbenlos.", correct: false }
+        ], reveal: "Der Unterschied liegt in der Tiefe: IIa lässt genug Stammzellen für narbenlose Heilung übrig, IIb nicht." }
       },
     ],
     phase4Questions: [
@@ -19614,6 +19705,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "27 %", correct: false },
         ],
         explanation: "Beide Beine: Oberschenkel li+re (9+9) + Unterschenkel/Fuß li+re (9+9) = 36 %. Vorderer Rumpf: Thorax vorne (9 %) = 9 %. Gesamt: 36+9 = 45 %.",
+        learningCard: { type: "predict", statement: "Sind bei einem Erwachsenen beide Beine und der vordere Rumpf verbrannt, sind nach der Neuner-Regel 45 % der Körperoberfläche betroffen.", answer: true, reveal: "Beide Beine ergeben zusammen 36 %, der vordere Rumpf (Thorax vorne) weitere 9 % — zusammen 45 %." }
       },
       {
         type: "mc",
@@ -19626,6 +19718,11 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Narbenlos: Grad I–III; nur Grad IV mit Narben", correct: false },
         ],
         explanation: "Grad I (Epidermis): narbenlos. Grad IIa (oberflächliche Dermis): narbenlos aus Anhangsgebilden. Grad IIb (tiefe Dermis), III (vollständig), IV (Verkohlung): immer mit Narben/Transplantation.",
+        learningCard: { type: "teachback", prompt: "Welche Verbrennungsgrade heilen narbenlos, welche mit Narben?", checklist: [
+          { text: "Grad I und Grad IIa heilen narbenlos.", correct: true },
+          { text: "Grad IIb, III und IV heilen mit Narben.", correct: true },
+          { text: "Alle Verbrennungsgrade heilen mit Narben.", correct: false }
+        ], reveal: "Nur bei Grad I und IIa bleibt genug intaktes Gewebe für eine narbenlose Regeneration." }
       },
     ],
   }),
@@ -19645,6 +19742,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hypertrophie betrifft nur Herz, Hyperplasie nur Leber", correct: false },
         ],
         explanation: "Hypertrophie: einzelne Zellen werden größer. Hyperplasie: Anzahl der Zellen nimmt zu durch Zellteilung. Herzmuskelzellen können sich nicht teilen → nur Hypertrophie möglich.",
+        learningCard: { type: "reconstruct", template: "___ bedeutet, dass einzelne Zellen größer werden bei gleicher Zellzahl; ___ bedeutet, dass die Zellzahl durch Teilung zunimmt.", blanks: ["Hypertrophie", "Hyperplasie"], distractors: ["Atrophie", "Metaplasie"] }
       },
       {
         type: "mc",
@@ -19657,6 +19755,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Rückbildung eines Organs bei mangelnder Beanspruchung (Inaktivitätsatrophie) — das Gegenteil einer kompensatorischen Reaktion", correct: false },
         ],
         explanation: "Kompensatorische Hypertrophie: z. B. Linkes Herz bei Bluthochdruck, Niere nach Nephrektomie, Leber nach Resektion, Skelettmuskel bei Training.",
+        learningCard: { type: "predict", statement: "Kompensatorische Hypertrophie ist die Vergrößerung eines Organs als Reaktion auf erhöhte funktionelle Anforderungen oder den Ausfall des paarigen Organs.", answer: true, reveal: "Beispiele sind das linke Herz bei Bluthochdruck, die Niere nach Nephrektomie oder die Leber nach Teilresektion." }
       },
       {
         type: "mc",
@@ -19669,6 +19768,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Knochenmarkhyperplasie bei Anämie", correct: false },
         ],
         explanation: "Hyperregeneratorische Hyperplasie: überschießende Regeneration mit Zellatypien (potentiell prämaligne). Beispiel: Magenschleimhaut bei chronischer Entzündung. Regeneratorisch (ohne Atypien): z. B. Leberregeneration.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Hyperregeneratorische Hyperplasie zeigt Zellatypien und gilt als potenziell prämaligne.", isWrong: false },
+          { text: "Ein Beispiel für hyperregeneratorische Hyperplasie ist die Magenschleimhaut bei chronischer Gastritis.", isWrong: false },
+          { text: "Regeneratorische Hyperplasie, wie die Leberregeneration nach Teilresektion, zeigt keine Zellatypien.", isWrong: false },
+          { text: "Regeneratorische Hyperplasie ist potenziell prämaligne, weil sie Zellatypien zeigt.", isWrong: true }
+        ], whyWrong: "Zellatypien und das prämaligne Potenzial kennzeichnen die hyperregeneratorische, nicht die regeneratorische Hyperplasie." }
       },
       {
         type: "mc",
@@ -19681,6 +19786,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Cortisol", correct: false },
         ],
         explanation: "Hormonelle Hypertrophie: Östrogene bewirken Vergrößerung der Uterusmuskelzellen. TSH → Schilddrüsenhyperplasie. Cortisol → keine direkte Organvergrößerung.",
+        learningCard: { type: "reconstruct", template: "Die hormonelle Hypertrophie des Uterus in der Schwangerschaft wird durch ___ verursacht, während ___ die Schilddrüse zur Hyperplasie anregt.", blanks: ["Östrogen", "TSH"], distractors: ["Progesteron", "Cortisol"] }
       },
       {
         type: "true_false",
@@ -19688,6 +19794,11 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Überlastungshyperplasie tritt auf, wenn Zellen durch dauerhaft erhöhte Beanspruchung häufiger teilen.",
         answer: true,
         explanation: "Überlastungshyperplasie: erhöhte funktionelle Last → vermehrte Zellteilung. Beispiel: Epidermis bei Druckbelastung (Schwiele). Vs. Überlastungshypertrophie: Herzmuskel (kann nicht teilen).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Überlastungshyperplasie treffen zu?", checklist: [
+          { text: "Sie entsteht durch dauerhaft erhöhte Beanspruchung mit vermehrter Zellteilung.", correct: true },
+          { text: "Eine Schwiele der Epidermis bei Druckbelastung ist ein Beispiel dafür.", correct: true },
+          { text: "Der Herzmuskel reagiert auf Überlastung mit Hyperplasie, da er sich gut teilen kann.", correct: false }
+        ], reveal: "Herzmuskelzellen können sich nicht teilen und reagieren auf Überlastung stattdessen mit Hypertrophie, nicht Hyperplasie." }
       },
     ],
     phase4Questions: [
@@ -19702,6 +19813,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Weil Hypertrophie immer pathologisch ist", correct: false },
         ],
         explanation: "Kardiomyozyten sind terminal differenziert: kein Zellzyklus mehr möglich → Anpassung durch Größenzunahme (Hypertrophie), nicht Zellvermehrung (Hyperplasie).",
+        learningCard: { type: "predict", statement: "Bluthochdruck führt zur Herzhypertrophie statt Herzhyperplasie, weil Herzmuskelzellen terminal differenziert sind und sich nicht mehr teilen können.", answer: true, reveal: "Die einzige mögliche Anpassung ist daher die Größenzunahme der bestehenden Zellen." }
       },
       {
         type: "mc",
@@ -19714,6 +19826,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Überlastungshyperplasie der Epidermis", correct: false },
         ],
         explanation: "Hyperregeneratorische Hyperplasie (Zellatypien) → potentiell maligne Transformation. Unkontrollierte endokrine Hyperplasie (z. B. Endometrium bei Östrogenüberschuss) → erhöhtes Karzinomrisiko.",
+        learningCard: { type: "teachback", prompt: "Welche Hyperplasieformen sind potenziell gefährlich/prämaligne?", checklist: [
+          { text: "Hyperregeneratorische Hyperplasie mit Zellatypien", correct: true },
+          { text: "Unkontrollierte endokrine Hyperplasie, z. B. des Endometriums bei Östrogenüberschuss", correct: true },
+          { text: "Regeneratorische Hyperplasie", correct: false },
+          { text: "Überlastungshyperplasie der Epidermis", correct: false }
+        ], reveal: "Nur Hyperplasieformen mit Zellatypien oder unkontrollierter Hormonstimulation bergen ein erhöhtes Krebsrisiko." }
       },
     ],
   }),
@@ -19733,6 +19851,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Baufett → Depotfett → Glykogen → Eiweiß", correct: false },
         ],
         explanation: "Hungerreihenfolge: Glykogen (Stunden) → Depotfett (Wochen) → Baufett (Perikardfett, Nierenfett – Hungerodem-Zeichen) → Eiweiß. Ca. 50 Tage bis zum Tode.",
+        learningCard: { type: "reconstruct", template: "Beim Hungern werden die Energiereserven in dieser Reihenfolge abgebaut: ___ (Stunden) → Depotfett (Wochen) → ___ → Eiweiß.", blanks: ["Glykogen", "Baufett"], distractors: ["Kollagen", "Muskelfett"] }
       },
       {
         type: "mc",
@@ -19745,6 +19864,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Käsige Konsistenz typisch für TBC", correct: false },
         ],
         explanation: "Koagulationsnekrose: Eiweißgerinnung → Gewebe bleibt fest/trocken. Herzinfarkt, Säure. Sonderformen: Gangrän (trocken/feucht), käsige Nekrose (TBC). Kolliquationsnekrose = Verflüssigung (Hirn, Lauge).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Koagulationsnekrose entsteht durch Eiweißgerinnung und macht das Gewebe fest und trocken.", isWrong: false },
+          { text: "Koagulationsnekrose ist typisch für Herzinfarkt und Säureverätzungen.", isWrong: false },
+          { text: "Käsige Nekrose ist eine Sonderform der Koagulationsnekrose, typisch bei TBC.", isWrong: false },
+          { text: "Kolliquationsnekrose macht das Gewebe fest und trocken wie die Koagulationsnekrose.", isWrong: true }
+        ], whyWrong: "Die Kolliquationsnekrose verflüssigt das Gewebe (z. B. im Gehirn oder bei Laugenverätzung) — das Gegenteil der festen, trockenen Koagulationsnekrose." }
       },
       {
         type: "mc",
@@ -19757,6 +19882,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Käsige Nekrose", correct: false },
         ],
         explanation: "Kolliquationsnekrose: Verflüssigung durch enzymatischen Abbau, typisch für Hirninfarkt (hoher Fettgehalt → Autolyse) und Laugenverletzungen. Fettgewebsnekrose bei Pankreatitis ebenfalls kolliquativ.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Kolliquationsnekrose treffen zu?", checklist: [
+          { text: "Sie entsteht durch enzymatischen Abbau und verflüssigt das Gewebe.", correct: true },
+          { text: "Sie ist typisch für den Hirninfarkt, weil das fettreiche Gehirn zur Autolyse neigt.", correct: true },
+          { text: "Auch die Fettgewebsnekrose bei Pankreatitis ist eine Kolliquationsnekrose.", correct: true },
+          { text: "Sie macht das Gewebe fest und trocken.", correct: false }
+        ], reveal: "Fest und trocken ist die Koagulationsnekrose — die Kolliquationsnekrose führt zur Gewebeverflüssigung." }
       },
       {
         type: "mc",
@@ -19769,6 +19900,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Altersatrophie", correct: false },
         ],
         explanation: "Inaktivitätsatrophie: mangelnde Beanspruchung → Gewebsrückbildung (Skelettmuskel, Knochen). Druckatrophie: anhaltender Druck (z. B. Tumor → Knochenschwund). Involutionsatrophie: physiologische Rückbildung (Thymus, Uterus post partum).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Inaktivitätsatrophie entsteht durch mangelnde Beanspruchung, z. B. bei Immobilisierung im Gips.", isWrong: false },
+          { text: "Druckatrophie entsteht durch anhaltenden Druck, z. B. durch einen Tumor auf den Knochen.", isWrong: false },
+          { text: "Involutionsatrophie ist eine physiologische Rückbildung, z. B. des Thymus oder des Uterus nach der Geburt.", isWrong: false },
+          { text: "Druckatrophie ist eine physiologische, altersbedingte Rückbildung von Organen.", isWrong: true }
+        ], whyWrong: "Physiologische, altersbedingte Rückbildung ist die Involutionsatrophie — Druckatrophie entsteht dagegen durch mechanischen Druck, z. B. von einem Tumor." }
       },
       {
         type: "true_false",
@@ -19776,6 +19913,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Fibrinoide Nekrose tritt bei Autoimmunerkrankungen und Kollagenosen auf.",
         answer: true,
         explanation: "Fibrinoide Nekrose: Fibrin-ähnliches Material in Gefäßwänden. Typisch für Autoimmunerkrankungen (z. B. systemischer Lupus, rheumatoide Arthritis, Kollagenosen).",
+        learningCard: { type: "predict", statement: "Fibrinoide Nekrose tritt bei Autoimmunerkrankungen und Kollagenosen auf.", answer: true, reveal: "Dabei lagert sich fibrinähnliches Material in den Gefäßwänden ab, typisch bei Lupus oder rheumatoider Arthritis." }
       },
     ],
     phase4Questions: [
@@ -19790,6 +19928,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Granulationsgewebe bildet sich zuerst → Hämatom entsteht sekundär → direkter Umbau zu lamellärem Knochen ohne zwischengeschaltete Kallusphase", correct: false },
         ],
         explanation: "Frakturheilung: 1. Hämatom. 2. Entzündung/Granulozyten. 3. Granulationsgewebe. 4. Weicher (bindegewebiger) Kallus (2–8 Tage). 5. Harter (knöcherner) Kallus (1–4 Wochen). 6. Lamellärer Knochen (4–6 Wochen).",
+        learningCard: { type: "reconstruct", template: "Die Frakturheilung verläuft über Hämatom und Granulationsgewebe zum ___ Kallus (2–8 Tage), dann zum ___ Kallus (1–4 Wochen) und schließlich zum lamellären Knochen (4–6 Wochen).", blanks: ["bindegewebigen", "knöchernen"], distractors: ["hyalinen", "fibrösen"] }
       },
       {
         type: "mc",
@@ -19802,6 +19941,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Fibrinoide Nekrose → Kollagenosen, Autoimmunerkrankungen", correct: true },
         ],
         explanation: "Käsige Nekrose ist typisch für TBC (Tuberkulose), nicht Karzinom. Alle anderen Zuordnungen korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Nekroseform-Erkrankung-Zuordnungen sind korrekt?", checklist: [
+          { text: "Koagulationsnekrose → Herzinfarkt, Säureverätzung", correct: true },
+          { text: "Kolliquationsnekrose → Hirninfarkt, Laugenverletzung, Pankreatitis", correct: true },
+          { text: "Fibrinoide Nekrose → Kollagenosen, Autoimmunerkrankungen", correct: true },
+          { text: "Käsige Nekrose → Bronchialkarzinom", correct: false }
+        ], reveal: "Käsige Nekrose ist typisch für Tuberkulose, nicht für das Bronchialkarzinom." }
       },
     ],
   }),
@@ -19821,6 +19966,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Amyloidose ausschließlich in Blutgefäßen", correct: false },
         ],
         explanation: "Sekundäre Amyloidose: reaktiv bei chronisch-entzündlichen Erkrankungen (TBC, Osteomyelitis, Lepra, Arthritis, Colitis ulcerosa) oder malignen Erkrankungen (Lymphogranulomatose, Nierenkarzinom, Plasmozytom). Nachweis via Rektumbiopsie.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur sekundären Amyloidose treffen zu?", checklist: [
+          { text: "Sie entsteht reaktiv bei chronisch-entzündlichen Erkrankungen wie TBC oder Osteomyelitis.", correct: true },
+          { text: "Sie kann auch bei malignen Erkrankungen wie dem Plasmozytom auftreten.", correct: true },
+          { text: "Der Nachweis erfolgt typischerweise über eine Rektumbiopsie.", correct: true },
+          { text: "Sekundäre Amyloidose ist immer idiopathisch, ohne erkennbare Grunderkrankung.", correct: false }
+        ], reveal: "Sekundäre Amyloidose ist per Definition reaktiv — sie entsteht als Folge einer chronischen Grunderkrankung, nicht idiopathisch." }
       },
       {
         type: "mc",
@@ -19833,6 +19984,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Ca. 5 Liter", correct: false },
         ],
         explanation: "Täglich werden ~20 L Flüssigkeit aus Kapillaren filtriert, ~18 L wieder resorbiert, ~2 L verbleiben im Interstitium und werden durch die Lymphe abtransportiert.",
+        learningCard: { type: "reconstruct", template: "Täglich werden etwa ___ Liter Flüssigkeit aus den Kapillaren filtriert, wovon ___ Liter resorbiert werden — der Rest von ca. 2 Litern wird über die Lymphe abtransportiert.", blanks: ["20", "18"], distractors: ["10", "15"] }
       },
       {
         type: "mc",
@@ -19845,6 +19997,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Akute Entzündung mit Kapillarpermeabilität", correct: false },
         ],
         explanation: "Onkotischer Druck = Kolloidosmotischer Druck durch Albumin. Bei Hypoalbuminämie (Eiweißmangel, Leberinsuffizienz, nephrotisches Syndrom) fällt der onkotische Druck → weniger Resorption → Ödem.",
+        learningCard: { type: "predict", statement: "Eiweißmangelernährung oder eine Leberzirrhose senken über einen Albuminmangel den onkotischen Druck und begünstigen so Ödeme.", answer: true, reveal: "Weniger Albumin im Blut bedeutet weniger Flüssigkeitsrückhalt in den Gefäßen, sodass mehr Flüssigkeit ins Gewebe austritt." }
       },
       {
         type: "mc",
@@ -19857,6 +20010,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "EKG-Veränderungen", correct: false },
         ],
         explanation: "Rektumbiopsie mit Kongorot-Färbung (apfelgrüne Doppelbrechung im polarisierten Licht) ist die Standardmethode zum Nachweis von Amyloid.",
+        learningCard: { type: "reconstruct", template: "Amyloidose wird klinisch durch eine ___ mit ___-Färbung nachgewiesen, die im polarisierten Licht eine apfelgrüne Doppelbrechung zeigt.", blanks: ["Rektumbiopsie", "Kongorot"], distractors: ["Leberbiopsie", "Hämatoxylin"] }
       },
       {
         type: "true_false",
@@ -19864,6 +20018,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Entzündlich bedingte Ödeme entstehen durch erhöhte Kapillarpermeabilität.",
         answer: true,
         explanation: "Entzündung → Histamin, Bradykinin, Prostaglandine → erhöhte Kapillarpermeabilität → Proteine und Flüssigkeit treten ins Gewebe → entzündliches Ödem (exsudatives Ödem).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Entzündliche Ödeme entstehen durch erhöhte Kapillarpermeabilität, ausgelöst u. a. durch Histamin und Bradykinin.", isWrong: false },
+          { text: "Bei entzündlichen Ödemen treten Proteine und Flüssigkeit ins Gewebe über.", isWrong: false },
+          { text: "Man nennt das entzündliche Ödem auch exsudatives Ödem.", isWrong: false },
+          { text: "Entzündliche Ödeme entstehen durch einen erniedrigten onkotischen Druck wie bei Eiweißmangel.", isWrong: true }
+        ], whyWrong: "Ein erniedrigter onkotischer Druck durch Eiweißmangel ist eine andere Ödemursache — das entzündliche Ödem entsteht durch erhöhte Kapillarpermeabilität." }
       },
     ],
     phase4Questions: [
@@ -19878,6 +20038,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Direkte Entzündung der Kapillarwände", correct: false },
         ],
         explanation: "Leberzirrhose: 1. Pfortaderhypertension → hydrostatischer Druck ↑ → Aszites. 2. Albuminsynthese ↓ → onkotischer Druck ↓ → weniger Rückresorption → Ödeme.",
+        learningCard: { type: "teachback", prompt: "Welche Mechanismen erklären Ödeme bei Leberzirrhose?", checklist: [
+          { text: "Pfortaderhochdruck erhöht den hydrostatischen Druck und begünstigt Aszites.", correct: true },
+          { text: "Verminderte Albuminproduktion senkt den onkotischen Druck.", correct: true },
+          { text: "Die Leber produziert bei Zirrhose vermehrt Lymphe.", correct: false },
+          { text: "Die Kapillarwände werden bei Leberzirrhose direkt entzündet.", correct: false }
+        ], reveal: "Bei Leberzirrhose wirken zwei Mechanismen zusammen: erhöhter hydrostatischer Druck durch Pfortaderhochdruck und erniedrigter onkotischer Druck durch Albuminmangel." }
       },
       {
         type: "mc",
@@ -19890,6 +20056,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Zuckergussmilz ist eine Hyalinoseform der Kapsel", correct: true },
         ],
         explanation: "Hyalin = glasig, homogen, eosinophil. Formen: zellulär, extrazellulär, bindegewebig, vaskulär. Lokalisationen: Gefäße (Arteriosklerose), Kapselorgane (Zuckergussleber/-milz), Pleura (Pleuraschwarte).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Hyalin ist eine glasige, homogene, eosinophile Substanz.", isWrong: false },
+          { text: "Vaskuläres Hyalin findet sich bei Arteriosklerose.", isWrong: false },
+          { text: "Die Zuckergussmilz ist eine Hyalinoseform der Kapsel.", isWrong: false },
+          { text: "Hyalinose betrifft ausschließlich die Leber.", isWrong: true }
+        ], whyWrong: "Hyalinose kommt an vielen Orten vor — Gefäße, Kapselorgane (Zuckergussleber/-milz) und Pleura (Pleuraschwarte) — nicht nur an der Leber." }
       },
     ],
   }),
@@ -19909,6 +20081,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "47,XYY; phänotypisch weiblich, normaler Intelligenz", correct: false },
         ],
         explanation: "Klinefelter: 47,XXY, phänotypisch männlich. Merkmale: Hodeninsuffizienz, Azoospermie/Sterilität, Gynäkomastie, oft Hochwuchs.",
+        learningCard: { type: "reconstruct", template: "Das Klinefelter-Syndrom hat den Karyotyp ___ und ist phänotypisch männlich mit Hodeninsuffizienz, Sterilität und ___.", blanks: ["47,XXY", "Gynäkomastie"], distractors: ["45,X0", "Kleinwuchs"] }
       },
       {
         type: "mc",
@@ -19921,6 +20094,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Ab dem 4. Schwangerschaftsmonat", correct: false },
         ],
         explanation: "Embryopathien: 15. Tag – Ende 3. Monat = Organogenese. Besonders anfällig → schwerste Fehlbildungen (Amelie, Phokomelie, Spina bifida etc.). Blastopathien: 1.–14. Tag. Fetopathien: ab 4. Monat.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Embryopathien entstehen zwischen dem 15. Tag und dem Ende des 3. Monats während der Organogenese.", isWrong: false },
+          { text: "In dieser Phase können schwerste Fehlbildungen wie Amelie, Phokomelie oder Spina bifida entstehen.", isWrong: false },
+          { text: "Blastopathien entstehen zwischen dem 1. und 14. Tag nach der Befruchtung.", isWrong: false },
+          { text: "Fetopathien entstehen bereits vor der Befruchtung als Gametenschäden.", isWrong: true }
+        ], whyWrong: "Fetopathien entstehen ab dem 4. Schwangerschaftsmonat, nicht vor der Befruchtung — das wären Gametopathien." }
       },
       {
         type: "mc",
@@ -19933,6 +20112,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Direkter Virusangriff auf fetale Erythrozyten", correct: false },
         ],
         explanation: "MHN: Rh-negatives Mutter + Rh-positives Kind. Bei 1. Geburt: Sensibilisierung → IgG Anti-D. Bei 2. Rh+ Kind: IgG passiert Plazenta → Hämolyse → Anämie, Kernikterus. Prophylaxe: Anti-D-Immunglobulin nach Geburt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Morbus haemolyticus neonatorum treffen zu?", checklist: [
+          { text: "Eine Rh-negative Mutter kann sich bei der ersten Geburt eines Rh-positiven Kindes gegen das Rhesus-Antigen sensibilisieren.", correct: true },
+          { text: "Bei einer Folgeschwangerschaft mit einem Rh-positiven Kind können mütterliche IgG-Antikörper die Plazenta passieren und eine Hämolyse auslösen.", correct: true },
+          { text: "Anti-D-Immunglobulin nach der Geburt dient der Prophylaxe dieser Sensibilisierung.", correct: true },
+          { text: "ABO-Inkompatibilität führt immer zu einer schweren Hämolyse beim ersten Kind.", correct: false }
+        ], reveal: "Die Rh-Sensibilisierung entsteht meist erst bei der ersten Geburt und betrifft folglich vor allem nachfolgende Schwangerschaften." }
       },
       {
         type: "mc",
@@ -19945,6 +20130,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Verdoppelung von Organen", correct: false },
         ],
         explanation: "Dysraphie = Schluss-Störung = Fusionsdefekt der Körperwand (Neuralrohr, Bauchwand). Typisch: Spina bifida (offener Wirbelkanal). Amelie = keine Extremitäten; Phokomelie = Robbengliedmaßen.",
+        learningCard: { type: "predict", statement: "Dysraphie ist eine Fusionsstörung von Körperwandanteilen, zum Beispiel die Spina bifida.", answer: true, reveal: "Sie betrifft den unvollständigen Verschluss des Neuralrohrs oder der Bauchwand während der Embryonalentwicklung." }
       },
       {
         type: "true_false",
@@ -19952,6 +20138,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Thalidomid (Contergan) ist ein bekanntes teratogenes Agens, das Phokomelie verursachte.",
         answer: true,
         explanation: "Thalidomid in den 1950/60er Jahren → Phokomelie (Robbengliedmaßen) und andere Fehlbildungen. Teratogene Ursachen: Strahlung, Röteln, Thalidomid, Alkohol (FAS).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Thalidomid (Contergan) verursachte in den 1950er/60er Jahren Phokomelie.", isWrong: false },
+          { text: "Röteln-Infektionen in der Schwangerschaft gehören zu den teratogenen Ursachen.", isWrong: false },
+          { text: "Alkoholkonsum in der Schwangerschaft gehört zu den teratogenen Ursachen (FAS).", isWrong: false },
+          { text: "Thalidomid gilt als unbedenklich und hat keine teratogene Wirkung.", isWrong: true }
+        ], whyWrong: "Thalidomid ist im Gegenteil eines der bekanntesten teratogenen Agenzien und verursachte Phokomelie und weitere Fehlbildungen." }
       },
     ],
     phase4Questions: [
@@ -19966,6 +20158,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Blastopathie und Embryopathie sind identisch und bezeichnen beide Schäden während der gesamten Organogenese (15. Tag bis 3. Monat)", correct: false },
         ],
         explanation: "Zeitliche Abfolge: Gametopathie (Keimzelle) → Blastopathie (1.–14. Tag → 50% Frühabort) → Embryopathie (15. Tag–3. Monat, Organogenese, schwerste Fehlbildungen) → Fetopathie (ab 4. Monat, Entwicklungsstörungen).",
+        learningCard: { type: "reconstruct", template: "Zeitlich geordnet: ___ (vor der Befruchtung) → Blastopathie (1.–14. Tag) → ___ (15. Tag bis 3. Monat, Organogenese) → Fetopathie (ab 4. Monat).", blanks: ["Gametopathie", "Embryopathie"], distractors: ["Fetopathie", "Blastopathie"] }
       },
       {
         type: "mc",
@@ -19978,6 +20171,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Fehlen von Extremitäten (Amelie)", correct: false },
         ],
         explanation: "FAS = fetales Alkoholsyndrom: Trias aus Minderwuchs + geistiger Retardierung + charakteristischen Gesichtsmerkmalen. Amelie ist eine Thalidomid-Schädigung.",
+        learningCard: { type: "teachback", prompt: "Welche Merkmale des fetalen Alkoholsyndroms (FAS) treffen zu?", checklist: [
+          { text: "Minderwuchs (prä- und postnatal)", correct: true },
+          { text: "Geistige Retardierung", correct: true },
+          { text: "Charakteristische Gesichtsmerkmale (kleines Philtrum, dünne Oberlippe)", correct: true },
+          { text: "Fehlen von Extremitäten (Amelie)", correct: false }
+        ], reveal: "Amelie ist eine Thalidomid-Schädigung, nicht Teil des fetalen Alkoholsyndroms." }
       },
     ],
   }),
@@ -19997,6 +20196,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Rötung, Schwellung, Nekrose, Fieber, BSG-Erhöhung", correct: false },
         ],
         explanation: "Kardinalsymptome nach Galen (+ Virchow): Rubor (Rötung), Tumor (Schwellung), Dolor (Schmerz), Calor (Wärme), Functio laesa (Funktionseinschränkung).",
+        learningCard: { type: "reconstruct", template: "Die fünf Kardinalsymptome der Entzündung sind ___, Tumor, Dolor, Calor und ___.", blanks: ["Rubor", "Functio laesa"], distractors: ["Fieber", "Leukozytose"] }
       },
       {
         type: "mc",
@@ -20009,6 +20209,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Erhöhte Erythrozytensedimentationsrate", correct: false },
         ],
         explanation: "Linksverschiebung = Zunahme unreifer Leukozyten (Stabkernige, Metamyelozyten) im Blut durch gesteigerte Knochenmarkproduktion bei Entzündung/Infektion.",
+        learningCard: { type: "predict", statement: "Eine Linksverschiebung im Blutbild bedeutet ein vermehrtes Auftreten unreifer Granulozyten (Stabkernige) durch gesteigerte Knochenmarkproduktion bei Entzündung.", answer: true, reveal: "Sie ist ein Hinweis auf eine gesteigerte Immunantwort, nicht auf virale Infektionen." }
       },
       {
         type: "mc",
@@ -20021,6 +20222,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Leukozytenmigration → Vasodilatation → Fibrinbildung", correct: false },
         ],
         explanation: "Lokale Entzündung: 1. Adrenalin → kurze Ischämie. 2. Histamin → Vasodilatation → Rubor + Calor. 3. Venolenverengung → Druckanstieg → Exsudation → Tumor + Dolor.",
+        learningCard: { type: "reconstruct", template: "Die lokale Entzündungsreaktion verläuft in drei Phasen: kurze Ischämie durch ___ → Vasodilatation durch ___ → Venolenverengung mit Exsudation.", blanks: ["Adrenalin", "Histamin"], distractors: ["Bradykinin", "Serotonin"] }
       },
       {
         type: "mc",
@@ -20033,6 +20235,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Entzündung ohne Allgemeinsymptome", correct: false },
         ],
         explanation: "Zeitliche Einteilung: perakut (Stunden, lebensbedrohlich z. B. fulminante Sepsis), akut (Tage–Wochen), subakut (Wochen–Monate), chronisch (Monate–Jahre).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Perakute Entzündungen verlaufen innerhalb von Stunden und sind lebensgefährlich.", isWrong: false },
+          { text: "Akute Entzündungen dauern Tage bis Wochen.", isWrong: false },
+          { text: "Chronische Entzündungen bestehen über Monate bis Jahre.", isWrong: false },
+          { text: "Perakute Entzündung bezeichnet einen Verlauf über mehr als 6 Wochen.", isWrong: true }
+        ], whyWrong: "Perakut bedeutet einen extrem schnellen, lebensbedrohlichen Verlauf über Stunden — nicht über Wochen." }
       },
       {
         type: "true_false",
@@ -20040,6 +20248,11 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "BSG (Blutkörperchensenkungsgeschwindigkeit) ist bei Entzündung erniedrigt.",
         answer: false,
         explanation: "BSG ist bei Entzündung erhöht (Akute-Phase-Proteine erhöhen die Geldrollen-Bildung der Erythrozyten → schnellere Senkung). BSG ↑ = unspezifischer Entzündungsmarker.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "BSG ist bei Entzündung erhöht.", isWrong: false },
+          { text: "Ursache ist die verstärkte Geldrollenbildung der Erythrozyten durch Akute-Phase-Proteine.", isWrong: false },
+          { text: "BSG ist bei Entzündung erniedrigt.", isWrong: true }
+        ], whyWrong: "Akute-Phase-Proteine fördern die Geldrollenbildung der Erythrozyten, wodurch die BSG bei Entzündung ansteigt, nicht sinkt." }
       },
     ],
     phase4Questions: [
@@ -20054,6 +20267,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Exsudation von Proteinen → Wärmefreisetzung", correct: false },
         ],
         explanation: "Phase 2: Histamin aus Mastzellen → arterioläre Vasodilatation → Hyperämie → mehr Blut im Gewebe → sichtbare Rötung (Rubor) und tastbare Wärme (Calor).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Entstehung von Rubor und Calor treffen zu?", checklist: [
+          { text: "Histamin aus Mastzellen bewirkt eine arterioläre Vasodilatation.", correct: true },
+          { text: "Die Vasodilatation führt zu mehr Blut im Gewebe (Hyperämie).", correct: true },
+          { text: "Dadurch entstehen Rötung (Rubor) und Wärme (Calor).", correct: true },
+          { text: "Adrenalin verursacht in dieser Phase eine Gefäßerweiterung.", correct: false }
+        ], reveal: "Adrenalin wirkt in der vorausgehenden Phase 1 gefäßverengend (Ischämie) — die Vasodilatation in Phase 2 wird durch Histamin ausgelöst." }
       },
       {
         type: "mc",
@@ -20066,6 +20285,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Psychisch (Stress)", correct: false },
         ],
         explanation: "6 Entzündungsreize: mechanisch, thermisch, chemisch, infektiös, immunologisch, ionisierend (Strahlung). Psychischer Stress ist kein direkter Entzündungsreiz.",
+        learningCard: { type: "teachback", prompt: "Welche Entzündungsreize gibt es?", checklist: [
+          { text: "Mechanisch (Trauma)", correct: true },
+          { text: "Thermisch (Verbrennung, Erfrierung)", correct: true },
+          { text: "Infektiös (Bakterien, Viren)", correct: true },
+          { text: "Psychisch (Stress)", correct: false }
+        ], reveal: "Psychischer Stress zählt nicht zu den direkten Entzündungsreizen; die sechs anerkannten Reize sind mechanisch, thermisch, chemisch, infektiös, immunologisch und ionisierend." }
       },
     ],
   }),
@@ -20085,6 +20310,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Entzündung der Haarfollikel", correct: false },
         ],
         explanation: "Phlegmone = diffuse, nicht abgekapselte eitrige Entzündung (v. a. in Bindegewebe). Abszess = abgekapselt. Empyem = Eiter in präformierter Höhle. Furunkel = eitrige Haarfollikelentzündung. Karbunkel = konfluierende Furunkel.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Eine Phlegmone ist eine diffuse, nicht abgekapselte eitrige Entzündung.", isWrong: false },
+          { text: "Ein Abszess ist eine abgekapselte Eiteransammlung.", isWrong: false },
+          { text: "Ein Furunkel ist eine eitrige Haarfollikelentzündung.", isWrong: false },
+          { text: "Ein Empyem ist eine diffuse, nicht abgekapselte Eiteransammlung im Bindegewebe.", isWrong: true }
+        ], whyWrong: "Ein Empyem ist Eiter in einer präformierten Körperhöhle (z. B. Pleura) — die diffuse, nicht abgekapselte Form im Bindegewebe ist die Phlegmone." }
       },
       {
         type: "mc",
@@ -20097,6 +20328,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hämorrhagisches Exsudat", correct: false },
         ],
         explanation: "Serös-schleimiges (mukokatarrhalisches) Exsudat: Schleim + Serum, z. B. bei Rhinitis (Schnupfen), Bronchitis. Serös = klares Transsudat-ähnliches Exsudat.",
+        learningCard: { type: "predict", statement: "Bei einem Schnupfen (Rhinitis) ist das typische Exsudat serös-schleimig.", answer: true, reveal: "Serös-schleimiges (mukokatarrhalisches) Exsudat besteht aus Schleim und Serum, wie auch bei einer Bronchitis." }
       },
       {
         type: "mc",
@@ -20109,6 +20341,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Furunkel-ähnliche Entzündung der Haut", correct: false },
         ],
         explanation: "Empyem = Eiter in einer natürlichen Körperhöhle: Pleura-Empyem, Gallen-Empyem, Gelenk-Empyem. Vs. Abszess (neu gebildeter Hohlraum) und Phlegmone (diffus).",
+        learningCard: { type: "reconstruct", template: "Ein ___ ist eine Eiteransammlung in einer präformierten Körperhöhle wie der ___ oder der Gallenblase.", blanks: ["Empyem", "Pleura"], distractors: ["Abszess", "Lunge"] }
       },
       {
         type: "mc",
@@ -20121,6 +20354,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Entzündungen, die ausschließlich als akute Reaktion (perakut bis akut, max. 4 Wochen) verlaufen — chronische Verläufe sind nicht möglich", correct: false },
         ],
         explanation: "Spezifische Entzündung: charakteristisches histologisches Bild durch bestimmten Erreger, z. B. epitheloides Granulom bei TBC. Unspezifische Entzündung: einheitliches Reaktionsmuster unabhängig vom Erreger.",
+        learningCard: { type: "reconstruct", template: "Eine ___ Entzündung entsteht durch einen bestimmten Erreger mit charakteristischem histologischen Bild, z. B. ein ___ bei Tuberkulose.", blanks: ["spezifische", "Granulom"], distractors: ["unspezifische", "Abszess"] }
       },
       {
         type: "true_false",
@@ -20128,6 +20362,11 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Ein Karbunkel entsteht durch das Konfluieren mehrerer Furunkel.",
         answer: true,
         explanation: "Furunkel = einzelne eitrige Haarfollikelentzündung. Karbunkel = mehrere konfluierende Furunkel mit tiefer Infektion des Unterhautgewebes.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Furunkel und Karbunkel treffen zu?", checklist: [
+          { text: "Ein Furunkel ist eine einzelne eitrige Haarfollikelentzündung.", correct: true },
+          { text: "Ein Karbunkel entsteht durch das Konfluieren mehrerer Furunkel mit tiefer Infektion des Unterhautgewebes.", correct: true },
+          { text: "Ein Karbunkel ist eine oberflächliche Entzündung ohne Beteiligung des Unterhautgewebes.", correct: false }
+        ], reveal: "Ein Karbunkel greift tief ins Unterhautgewebe über, im Gegensatz zu einem einzelnen oberflächlichen Furunkel." }
       },
     ],
     phase4Questions: [
@@ -20142,6 +20381,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hämorrhagisch: harmlose Erkältung", correct: false },
         ],
         explanation: "Serös: wasserklares Exsudat. Fibrinös: Fibrinauflagerungen = Pseudomembranen. Eitrig: Leukozyten-reich. Hämorrhagisch: stark destruierend (Virusgrippe, Milzbrand) – nicht harmlos.",
+        learningCard: { type: "teachback", prompt: "Welche Exsudat-Typ-Erkrankung-Zuordnungen sind korrekt?", checklist: [
+          { text: "Serös: Verbrennungsblasen, leichte Entzündungen", correct: true },
+          { text: "Fibrinös: Diphtherie, pseudomembranöse Colitis", correct: true },
+          { text: "Eitrig: Phlegmone, Abszess, Furunkel", correct: true },
+          { text: "Hämorrhagisch: harmlose Erkältung", correct: false }
+        ], reveal: "Hämorrhagisches Exsudat ist stark gewebedestruierend, z. B. bei Virusgrippe oder Milzbrand — keine harmlose Erkältung." }
       },
       {
         type: "mc",
@@ -20154,6 +20399,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Empyem entsteht ausschließlich bei tuberkulöser Infektion der Pleura (Pleuratuberkulose) — andere Erreger können keine Empyeme bilden", correct: false },
         ],
         explanation: "Eitrige Entzündungsformen: Abszess (abgekapselt, neo-gebildeter Hohlraum), Phlegmone (diffus, Bindegewebe), Empyem (präformierte Körperhöhle), Furunkel (Haarfollikel), Karbunkel (multiple Furunkel).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Ein Abszess ist eine abgekapselte Eiteransammlung in einem neu gebildeten Hohlraum.", isWrong: false },
+          { text: "Eine Phlegmone ist eine diffuse, nicht abgekapselte eitrige Entzündung.", isWrong: false },
+          { text: "Ein Empyem ist Eiter in einer bereits vorbestehenden Körperhöhle.", isWrong: false },
+          { text: "Abszess, Phlegmone und Empyem bezeichnen alle dasselbe Phänomen und sind austauschbare Fachbegriffe.", isWrong: true }
+        ], whyWrong: "Die drei Begriffe unterscheiden sich klar nach Lokalisation und Abkapselung: neu gebildeter abgekapselter Hohlraum (Abszess), diffus ohne Kapsel (Phlegmone), vorbestehende Körperhöhle (Empyem)." }
       },
     ],
   }),
@@ -20173,6 +20424,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Fehlende Vaskularisierung", correct: false },
         ],
         explanation: "Malignitätszeichen: infiltratives Wachstum, Metastasierung, Kernatypien (Polymorphie, Hyperchromasie), erhöhte Mitoserate, pathologische Mitosen, Nekrosen.",
+        learningCard: { type: "teachback", prompt: "Welche Merkmale sprechen für die Malignität eines Tumors?", checklist: [
+          { text: "Invasives (infiltratives) Wachstum", correct: true },
+          { text: "Metastasierung", correct: true },
+          { text: "Kernatypien und erhöhte Mitoserate", correct: true },
+          { text: "Kapselbildung ohne Infiltration", correct: false }
+        ], reveal: "Kapselbildung und langsames Wachstum ohne Infiltration sind dagegen typische Zeichen der Gutartigkeit (Benignität)." }
       },
       {
         type: "mc",
@@ -20185,6 +20442,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Metastasierung durch direkten Kontakt bei Operationen", correct: false },
         ],
         explanation: "Kavitäre/transkoelomale Metastasierung: Tumorzellen dringen in Körperhöhlen ein (Pleura → Pleurakarzinose; Peritoneum → Peritonealkarzinose).",
+        learningCard: { type: "predict", statement: "Kavitäre (transkoelomale) Metastasierung bedeutet die Ausbreitung von Tumorzellen über Körperhöhlen wie Pleura oder Peritoneum.", answer: true, reveal: "Tumorzellen dringen in die Höhle ein und verursachen z. B. eine Pleura- oder Peritonealkarzinose." }
       },
       {
         type: "mc",
@@ -20197,6 +20455,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Onkogene kommen ausschließlich bei virusassoziierten Tumoren vor (HPV, EBV) und fehlen bei spontanen oder chemisch induzierten Neoplasien", correct: false },
         ],
         explanation: "Onkogene: mutierte Proto-Onkogene → Wachstumssignal dauerhaft aktiv → unkontrollierte Proliferation. Tumorsuppressoren: hemmen Zellzyklus (Zwei-Treffer-Hypothese: beide Allele müssen mutieren).",
+        learningCard: { type: "reconstruct", template: "___ fördern durch Mutation eine dauerhafte Wachstumsaktivität der Zelle, während ___ bei Mutation ihre wachstumshemmende Funktion verlieren.", blanks: ["Onkogene", "Tumorsuppressor-Gene"], distractors: ["Protoonkogene", "Zytokine"] }
       },
       {
         type: "mc",
@@ -20209,6 +20468,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Transneural (über Nerven)", correct: true },
         ],
         explanation: "5 Metastasierungswege: lymphogen, hämatogen (4 Typen), kavitär/transkoelom, kanalikulär (Ductus, Bronchien), Impfmetastasen (iatrogen/traumatisch). Transneural ist kein klassischer Metastasierungsweg.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Lymphogene Metastasierung ist ein anerkannter Metastasierungsweg.", isWrong: false },
+          { text: "Hämatogene Metastasierung ist ein anerkannter Metastasierungsweg.", isWrong: false },
+          { text: "Kanalikuläre Metastasierung über Körperkanäle ist ein anerkannter Metastasierungsweg.", isWrong: false },
+          { text: "Transneurale Metastasierung über Nerven ist ein anerkannter klassischer Metastasierungsweg.", isWrong: true }
+        ], whyWrong: "Die fünf anerkannten Metastasierungswege sind lymphogen, hämatogen, kavitär, kanalikulär und Impfmetastasen — transneural gehört nicht dazu." }
       },
       {
         type: "true_false",
@@ -20216,6 +20481,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Tumorviren können durch Integration ihrer DNA/RNA in das Wirtsgenom zur malignen Transformation führen.",
         answer: true,
         explanation: "DNA-Tumorviren (HPV, EBV, HBV) und RNA-Tumorviren (Retroviren, HTLV) können durch Genomintegration Proto-Onkogene aktivieren oder Tumorsuppressoren inaktivieren.",
+        learningCard: { type: "reconstruct", template: "___-Tumorviren wie HPV, EBV und HBV sowie ___-Tumorviren wie Retroviren können durch Integration in das Wirtsgenom Protoonkogene aktivieren oder Tumorsuppressoren inaktivieren.", blanks: ["DNA", "RNA"], distractors: ["Prionen", "Bakterien"] }
       },
     ],
     phase4Questions: [
@@ -20230,6 +20496,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hämatogen (5 Typen: Lungen-, Leber-, Wirbelsäulen-, Kava-, Pfortader-), lymphogen (2 Typen), keine weiteren Wege", correct: false },
         ],
         explanation: "5 Wege: 1. Lymphogen (Lymphknoten-Filialen). 2. Hämatogen (4 Typen: Lungen-, Leber-, Wirbelsäulen-, Kavameter-Typ). 3. Kavitär (Peritoneum, Pleura). 4. Kanalikulär (Bronchien, Ductus). 5. Impfmetastasen (iatrogen).",
+        learningCard: { type: "teachback", prompt: "Welche Metastasierungswege mit Beispiel sind korrekt?", checklist: [
+          { text: "Lymphogen: Metastasierung in Lymphknoten", correct: true },
+          { text: "Hämatogen: z. B. Leber- oder Lungenmetastasen", correct: true },
+          { text: "Kavitär: z. B. Peritonealkarzinose", correct: true },
+          { text: "Perineural entlang der Nervenscheiden ist ein sechster klassischer Metastasierungsweg.", correct: false }
+        ], reveal: "Die fünf klassischen Wege sind lymphogen, hämatogen, kavitär, kanalikulär und Impfmetastasen — ein perineuraler Weg gehört nicht zur klassischen Einteilung." }
       },
       {
         type: "mc",
@@ -20242,6 +20514,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Hyperplasie → Metastase → Invasion", correct: false },
         ],
         explanation: "Karzinogenese-Sequenz: Normalgewebe → Metaplasie → Dysplasie (I–III) → CIS (auf Epithel beschränkt) → Frühkarzinom (minimal invasiv) → invasives Karzinom → Metastasen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Tumorentstehung verläuft von der Metaplasie über die Dysplasie und das Carcinoma in situ zum invasiven Karzinom.", isWrong: false },
+          { text: "Das Carcinoma in situ ist auf das Epithel beschränkt und noch nicht invasiv.", isWrong: false },
+          { text: "Ein Frühkarzinom ist bereits minimal invasiv.", isWrong: false },
+          { text: "Eine Hyperplasie entwickelt sich direkt zur Metastase, ohne Zwischenschritte wie Dysplasie oder Carcinoma in situ.", isWrong: true }
+        ], whyWrong: "Zwischen Normalgewebe und Metastase liegen die Zwischenschritte Metaplasie, Dysplasie, Carcinoma in situ und Frühkarzinom — kein direkter Sprung." }
       },
     ],
   }),
@@ -20261,6 +20539,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Großer Tumor ohne Lymphknotenbefall mit Fernmetastasen", correct: false },
         ],
         explanation: "T2 = mittelgroßer Primärtumor, N1 = 1–3 regionäre Lymphknoten befallen, M0 = keine Fernmetastasen. Klinisches Stadium II–III je nach Tumorentität.",
+        learningCard: { type: "reconstruct", template: "T2 bezeichnet einen mittelgroßen Primärtumor, N1 einen Befall von ___ regionären Lymphknoten und M0 das Fehlen von ___.", blanks: ["1–3", "Fernmetastasen"], distractors: ["4–9", "Lokalrezidiven"] }
       },
       {
         type: "mc",
@@ -20273,6 +20552,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Das klinische Gesamtstadium (Stadium I–IV) nach Kombination aller TNM-Parameter und bildgebenden Untersuchungsergebnissen", correct: false },
         ],
         explanation: "Grading = histologischer Differenzierungsgrad: G1 (gut differenziert, günstig) → G2 (mäßig) → G3 (schlecht differenziert) → G4 (undifferenziert, anaplastisch, ungünstig).",
+        learningCard: { type: "predict", statement: "Grading beschreibt die histologische Differenzierung eines Tumors von G1 (gut differenziert) bis G3/G4 (schlecht differenziert).", answer: true, reveal: "Ein niedriger Differenzierungsgrad (G3/G4, anaplastisch) gilt als prognostisch ungünstig." }
       },
       {
         type: "mc",
@@ -20285,6 +20565,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Übermäßiger Alkoholkonsum", correct: false },
         ],
         explanation: "Bronchialkarzinom: Rauchen (dominanter Faktor, ~85 %), Passivrauchen, Asbest, Radon, Luftschadstoffe. Metastasierung: lymphogen (mediastinal), hämatogen (Gehirn, Leber, Knochen, Nebenniere).",
+        learningCard: { type: "teachback", prompt: "Welche Risikofaktoren begünstigen ein Bronchialkarzinom?", checklist: [
+          { text: "Rauchen ist mit 80–90 % der dominante Risikofaktor.", correct: true },
+          { text: "Asbestexposition erhöht das Risiko.", correct: true },
+          { text: "Radon gehört zu den Risikofaktoren.", correct: true },
+          { text: "Fettreiche Ernährung ist der Hauptrisikofaktor für das Bronchialkarzinom.", correct: false }
+        ], reveal: "Der mit Abstand wichtigste Risikofaktor ist das Rauchen, nicht die Ernährung." }
       },
       {
         type: "mc",
@@ -20297,6 +20583,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "CA 125", correct: false },
         ],
         explanation: "CEA: Kolorektal-, Magen-, Pankreas-, Bronchialkarzinom. PSA: Prostata. AFP: Leberzellkarzinom, Keimzelltumoren. CA 125: Ovarialkarzinom.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "CEA ist ein Tumormarker für kolorektale, Magen-, Pankreas- und Bronchialkarzinome.", isWrong: false },
+          { text: "PSA ist der Tumormarker für das Prostatakarzinom.", isWrong: false },
+          { text: "AFP ist ein Tumormarker für Leberzellkarzinom und Keimzelltumoren.", isWrong: false },
+          { text: "CA 125 ist der spezifische Tumormarker für kolorektale Karzinome.", isWrong: true }
+        ], whyWrong: "CA 125 ist der Tumormarker für das Ovarialkarzinom — für kolorektale Karzinome ist CEA der relevante Marker." }
       },
       {
         type: "true_false",
@@ -20304,6 +20596,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Mammakarzinom metastasiert bevorzugt in Knochen, Lunge, Leber und Gehirn.",
         answer: true,
         explanation: "Mammakarzinom: lymphogen (axilläre Lymphknoten), hämatogen in Knochen (Wirbelsäule, Becken), Lunge, Leber, Gehirn. Häufigster Tumor der Frau.",
+        learningCard: { type: "reconstruct", template: "Das Mammakarzinom metastasiert lymphogen in axilläre Lymphknoten und hämatogen in ___, Lunge, Leber und ___.", blanks: ["Knochen", "Gehirn"], distractors: ["Milz", "Niere"] }
       },
     ],
     phase4Questions: [
@@ -20318,6 +20611,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Strahlentherapie, Dialyse, Transplantation, Hormontherapie", correct: false },
         ],
         explanation: "Tumorbehandlung: Chirurgie (kurativ/palliativ), Strahlentherapie, Chemotherapie, Immuntherapie (inkl. Antikörper, Checkpoint-Inhibitoren). Moderne Ergänzung: zielgerichtete Therapie/Targeted therapy.",
+        learningCard: { type: "teachback", prompt: "Welche Therapieformen stehen bei Malignomen zur Verfügung?", checklist: [
+          { text: "Chirurgie", correct: true },
+          { text: "Strahlentherapie", correct: true },
+          { text: "Chemotherapie", correct: true },
+          { text: "Homöopathie als Standardtherapie bei Malignomen", correct: false }
+        ], reveal: "Die vier etablierten Säulen der Tumortherapie sind Chirurgie, Strahlentherapie, Chemotherapie und Immuntherapie." }
       },
       {
         type: "mc",
@@ -20330,6 +20629,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Kolorektales Karzinom: CEA als Marker, früh oft asymptomatisch", correct: true },
         ],
         explanation: "Magenkarzinom metastasiert bevorzugt in Lymphknoten, Leber, Peritoneum – nicht primär ins Gehirn. Alle anderen Aussagen korrekt.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Prostatakarzinom ist der häufigste Tumor des Mannes, Tumormarker PSA.", isWrong: false },
+          { text: "Beim Zervixkarzinom ist HPV 16/18 der Hauptrisikofaktor.", isWrong: false },
+          { text: "Beim kolorektalen Karzinom dient CEA als Marker, es ist früh oft asymptomatisch.", isWrong: false },
+          { text: "Das Magenkarzinom metastasiert am häufigsten ins Gehirn.", isWrong: true }
+        ], whyWrong: "Das Magenkarzinom metastasiert bevorzugt in Lymphknoten, Leber und Peritoneum — nicht primär ins Gehirn." }
       },
     ],
   }),
@@ -20349,6 +20654,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Immunkomplex-Ablagerung; Beispiel: Serumkrankheit", correct: false },
         ],
         explanation: "Typ IV (Spättyp): T-Zell-vermittelt, Reaktion nach 24–72 h. Beispiele: Tuberkulin-Reaktion (Mantoux-Test), Kontaktekzem (Nickel, Latex), Transplantatabstoßung.",
+        learningCard: { type: "reconstruct", template: "Allergie Typ IV ist eine ___-vermittelte Spätreaktion nach 24–72 Stunden, typisches Beispiel ist die ___ oder der Tuberkulin-Test.", blanks: ["T-Zell", "Kontaktdermatitis"], distractors: ["IgE", "Anaphylaxie"] }
       },
       {
         type: "mc",
@@ -20361,6 +20667,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "T-Helferzellen aktivieren Makrophagen nach 24–72 h", correct: false },
         ],
         explanation: "Typ I: Erstkontakt → IgE-Bildung → Mastzellbindung. Zweikontakt → Antigen-IgE-Brücke → Mastzellaktivierung → Histamin → Sofortreaktion. Klinisch: Heuschnupfen, Asthma, Anaphylaxie.",
+        learningCard: { type: "reconstruct", template: "Allergie Typ I ist ___-vermittelt: Beim Zweitkontakt aktiviert die Antigen-Antikörper-Brücke Mastzellen, die ___ freisetzen — eine Sofortreaktion innerhalb von Minuten.", blanks: ["IgE", "Histamin"], distractors: ["IgG", "Bradykinin"] }
       },
       {
         type: "mc",
@@ -20373,6 +20680,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Schmerz, der sich nicht mit Opioiden behandeln lässt", correct: false },
         ],
         explanation: "IASP: chronischer Schmerz = anhaltend >3–6 Monate oder über die normale Gewebereparaturzeit hinaus. Hat eigenen Krankheitswert (Schmerzkrankheit), unabhängig von der Grunderkrankung.",
+        learningCard: { type: "predict", statement: "Chronischer Schmerz nach IASP-Definition besteht über die normale Heilungszeit hinaus, meist länger als 3–6 Monate.", answer: true, reveal: "Er gilt dann als eigenständige Schmerzkrankheit, unabhängig von der ursprünglichen Grunderkrankung." }
       },
       {
         type: "mc",
@@ -20385,6 +20693,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "A-Delta und C-Fasern leiten nur viszeralen Schmerz", correct: false },
         ],
         explanation: "A-Delta-Fasern (myelinisiert, schnell): scharfer, gut lokalisierbarer Erstschmerz. C-Fasern (unmyelinisiert, langsam): dumpfer, brennender Zweitschmerz. Aufstieg über Tractus spinothalamicus.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "A-Delta-Fasern leiten den schnellen, gut lokalisierbaren Erstschmerz.", isWrong: false },
+          { text: "C-Fasern leiten den langsamen, dumpfen Zweitschmerz.", isWrong: false },
+          { text: "Beide Fasertypen leiten den Schmerz über den Tractus spinothalamicus.", isWrong: false },
+          { text: "C-Fasern leiten den schnellen Erstschmerz, A-Delta-Fasern den langsamen Zweitschmerz.", isWrong: true }
+        ], whyWrong: "Es ist umgekehrt: A-Delta-Fasern leiten den schnellen Erstschmerz, C-Fasern den langsamen, brennenden Zweitschmerz." }
       },
       {
         type: "true_false",
@@ -20392,6 +20706,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Autoimmunerkrankungen sind mit bestimmten HLA-Typen (MHC) assoziiert.",
         answer: true,
         explanation: "Beispiele: HLA-B27 → Ankylosierende Spondylitis (M. Bechterew). HLA-DR3/DR4 → Typ-1-Diabetes. HLA-DR4 → Rheumatoide Arthritis. HLA-Assoziation erklärt genetische Suszeptibilität für Autoimmunerkrankungen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu HLA-Assoziationen bei Autoimmunerkrankungen treffen zu?", checklist: [
+          { text: "HLA-B27 ist mit der Ankylosierenden Spondylitis (Morbus Bechterew) assoziiert.", correct: true },
+          { text: "HLA-DR3/DR4 ist mit Typ-1-Diabetes assoziiert.", correct: true },
+          { text: "HLA-DR4 ist mit rheumatoider Arthritis assoziiert.", correct: true },
+          { text: "Autoimmunerkrankungen zeigen keinerlei Zusammenhang mit dem HLA-Typ (MHC).", correct: false }
+        ], reveal: "Im Gegenteil: bestimmte HLA-Typen erklären die genetische Suszeptibilität für viele Autoimmunerkrankungen." }
       },
     ],
     phase4Questions: [
@@ -20406,6 +20726,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Typ IV: IgA-vermittelt, Sofortreaktion", correct: false },
         ],
         explanation: "Typ IV ist T-Zell-vermittelt (kein Antikörper), Spätreaktion 24–72 h. Alle anderen korrekt: I=IgE/Sofort, II=zytotoxisch/IgG, III=Immunkomplex.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Typ I ist IgE-vermittelt mit Sofortreaktion durch Histamin, z. B. Anaphylaxie.", isWrong: false },
+          { text: "Typ II ist IgG/IgM-vermittelt und zytotoxisch, z. B. Transfusionsreaktion.", isWrong: false },
+          { text: "Typ III beruht auf Immunkomplexen, z. B. Serumkrankheit, Arthus-Reaktion.", isWrong: false },
+          { text: "Typ IV ist IgA-vermittelt und läuft als Sofortreaktion ab.", isWrong: true }
+        ], whyWrong: "Typ IV ist T-Zell-vermittelt (kein Antikörper) und läuft als Spätreaktion nach 24–72 Stunden ab." }
       },
       {
         type: "mc",
@@ -20418,6 +20744,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Stufe 1: Tramadol (schwaches Opioid) als erstes Mittel der Wahl; Stufe 2: Morphin (starkes Opioid); Stufe 3: Fentanyl transderm", correct: false },
         ],
         explanation: "WHO-Stufenschema (3 Stufen): 1 = Nicht-Opioide (ASS, Ibuprofen, Paracetamol). 2 = schwach wirksame Opioide (Tramadol, Codein) + Stufe-1. 3 = stark wirksame Opioide (Morphin, Oxycodon, Fentanyl) + Stufe-1. Bei jeder Stufe: Koanalgetika möglich.",
+        learningCard: { type: "teachback", prompt: "Beschreiben Sie das WHO-Schmerzstufenschema.", checklist: [
+          { text: "Stufe 1: Nicht-Opioide wie ASS, Ibuprofen oder Paracetamol", correct: true },
+          { text: "Stufe 2: schwach wirksame Opioide wie Tramadol oder Codein, zusätzlich zu Stufe 1", correct: true },
+          { text: "Stufe 3: stark wirksame Opioide wie Morphin oder Fentanyl, zusätzlich zu Stufe 1", correct: true },
+          { text: "Auf jeder Stufe sind Koanalgetika ausgeschlossen.", correct: false }
+        ], reveal: "Koanalgetika können auf jeder der drei Stufen ergänzend eingesetzt werden." }
       },
     ],
   }),
@@ -20432,6 +20764,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Karzinogene sind Noxen, die eine Tumorentstehung auslösen oder begünstigen können.",
         answer: true,
         explanation: "Korrekt. Karzinogene = tumorauslösende/-fördernde Noxen. Tumorentstehung ist multifaktoriell: genetische Prädisposition + schwache Immunabwehr + Karzinogenexposition.",
+        learningCard: { type: "predict", statement: "Karzinogene sind Noxen, die eine Tumorentstehung auslösen oder begünstigen können.", answer: true, reveal: "Die Tumorentstehung ist multifaktoriell: genetische Prädisposition, geschwächte Immunabwehr und Karzinogenexposition wirken zusammen." }
       },
       {
         id: "1049_15_h2",
@@ -20444,6 +20777,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Direkt per continuitatem in Nachbarorgane", correct: false },
         ],
         explanation: "Oberes/mittleres Rektum: über obere und mittlere Rektalvenen → Pfortader → Leber (Pfortadertyp). Unteres Rektum: über untere Rektalvene → Vena cava → rechtes Herz → Lunge (Kavatyp). Daher unterschiedliche Metastasierungsorte.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Ein Rektumkarzinom im oberen oder mittleren Drittel metastasiert hämatogen über die Pfortader in die Leber.", isWrong: false },
+          { text: "Ein Rektumkarzinom im unteren Drittel metastasiert über die untere Rektalvene und die Vena cava in die Lunge.", isWrong: false },
+          { text: "Die unterschiedliche venöse Drainage erklärt die unterschiedlichen bevorzugten Metastasierungsorte.", isWrong: false },
+          { text: "Ein Rektumkarzinom im oberen Drittel metastasiert hämatogen bevorzugt über die Vena cava direkt in die Lunge.", isWrong: true }
+        ], whyWrong: "Das obere Drittel drainiert über die oberen und mittleren Rektalvenen in die Pfortader und damit zuerst in die Leber, nicht direkt in die Lunge." }
       },
       {
         id: "1049_15_h3",
@@ -20456,6 +20795,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Eichenholzstaub", correct: false },
         ],
         explanation: "Benzol → Knochenmarktumoren (Leukämie). Asbest → Lunge/Pleura/Peritoneum. Aromatische Amine → ableitende Harnwege (Blasenkarzinom). Eichenholzstaub → Nasennebenhöhle.",
+        learningCard: { type: "reconstruct", template: "___ verursacht durch Knochenmarkschädigung eine ___, während Asbest vor allem Lunge, Pleura und Peritoneum betrifft.", blanks: ["Benzol", "Leukämie"], distractors: ["Asbest", "Anämie"] }
       },
       {
         id: "1049_15_h4",
@@ -20468,6 +20808,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Pfortadertyp", correct: false },
         ],
         explanation: "Lungentyp: Primärtumor Lunge → Lungenvenen → linkes Herz → großer Kreislauf → Fernorgane (Gehirn, Leber, Knochen). Kavatyp: Knochen/Niere/Schilddrüse → V. cava → rechtes Herz → Lunge. Pfortader: Darm → Leber.",
+        learningCard: { type: "reconstruct", template: "Beim ___ verläuft die Metastasierung von der Lunge über die Lungenvenen zum ___ Herzen und von dort in den großen Kreislauf zu Gehirn, Leber und Knochen.", blanks: ["Lungentyp", "linken"], distractors: ["Kavatyp", "rechten"] }
       },
       {
         id: "1049_15_h5",
@@ -20475,6 +20816,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Asbest ist ein Karzinogen für Lunge, Pleura und Peritoneum.",
         answer: true,
         explanation: "Korrekt. Asbest → Lungen-, Pleura- und Peritonealtumoren (malignes Mesotheliom). Typische Berufskrankheit (Baubranche). Latenzzeit: 20–40 Jahre zwischen Exposition und Tumorentwicklung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Asbest als Karzinogen treffen zu?", checklist: [
+          { text: "Asbest ist ein Karzinogen für Lunge, Pleura und Peritoneum.", correct: true },
+          { text: "Asbestbedingte Tumoren sind eine typische Berufskrankheit der Baubranche.", correct: true },
+          { text: "Zwischen Asbestexposition und Tumorentwicklung liegen typischerweise 20–40 Jahre.", correct: true },
+          { text: "Asbest wirkt nur wenige Wochen nach der Exposition krebserregend.", correct: false }
+        ], reveal: "Die Latenzzeit zwischen Asbestexposition und Tumorentwicklung beträgt typischerweise 20 bis 40 Jahre." }
       },
     ],
     phase4Questions: [
@@ -20489,6 +20836,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Aromatische Amine → Lunge", correct: false },
         ],
         explanation: "Aromatische Amine → Blasenkarzinom/Harnwege (NICHT Lunge). Benzol → Leukämie. Asbest → Lunge/Pleura/Peritoneum. Chrom/Arsen/Nickel/Quarzstaub → Lunge.",
+        learningCard: { type: "teachback", prompt: "Welche Karzinogen-Tumor-Zuordnungen sind korrekt?", checklist: [
+          { text: "Asbest → Lunge, Pleura, Peritoneum", correct: true },
+          { text: "Benzol → Knochenmark (Leukämie)", correct: true },
+          { text: "Aromatische Amine → ableitende Harnwege", correct: true },
+          { text: "Aromatische Amine → Lunge", correct: false }
+        ], reveal: "Aromatische Amine verursachen vor allem Blasenkarzinome der ableitenden Harnwege, nicht Lungenkarzinome." }
       },
       {
         id: "1049_15_p4_2",
@@ -20501,6 +20854,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Lebertyp: Leberprimärtumor → infiltriert Lunge", correct: true },
         ],
         explanation: "Lungentyp geht über Lungenvenen → LINKES Herz → großer Kreislauf (nicht rechtes Herz). Alle anderen korrekt: Pfortader→Leber, Kava→Lunge, Leber→Lunge.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Pfortadertyp führt vom Darmtrakt über die Pfortader in die Leber.", isWrong: false },
+          { text: "Der Kavatyp führt von Knochen, Niere oder Schilddrüse über die Vena cava in die Lunge.", isWrong: false },
+          { text: "Der Lebertyp beschreibt einen Leberprimärtumor, der die Lunge infiltriert.", isWrong: false },
+          { text: "Der Lungentyp führt von der Lunge über das rechte Herz in den venösen Kreislauf.", isWrong: true }
+        ], whyWrong: "Der Lungentyp führt über die Lungenvenen zum linken Herzen und von dort in den großen (arteriellen) Kreislauf — nicht über das rechte Herz." }
       },
     ],
   }),
@@ -20520,6 +20879,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Rötung durch lokale Entzündung des Tumors", correct: false },
         ],
         explanation: "Orangenschalenhaut: Tumor wächst in Lymphgefäße → Lymphabflussbehinderung → Ödem; Haarfollikel sind fixiert → bleiben vertieft → Peau d'orange. Klinisches Alarmsymptom für Mammakarzinom (neben Mamilleneinziehung und Absonderungen).",
+        learningCard: { type: "predict", statement: "Die Orangenschalenhaut (Peau d'orange) beim Mammakarzinom entsteht durch ein Lymphödem mit fixierten, eingezogenen Haarfollikeln.", answer: true, reveal: "Der Tumor wächst in Lymphgefäße ein, behindert den Lymphabfluss und führt zu diesem klinischen Alarmsymptom." }
       },
       {
         id: "1049_16_h2",
@@ -20532,6 +20892,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Leichte Dysplasie ohne Karzinomverdacht", correct: false },
         ],
         explanation: "Pap-Klassifikation (exfoliative Zytologie): I = regelgerecht, II = leichte Abweichungen (gutartig), III = unklarer Befund (Wiederholung nötig), IV = dringender Karzinomverdacht, V = invasives Karzinom. STIKO empfiehlt HPV-Impfung seit 2007.",
+        learningCard: { type: "reconstruct", template: "In der Papanicolaou-Klassifikation bedeutet Pap ___ ein invasives Karzinom mit sicher malignen Zellen, während Pap ___ ein regelgerechtes Zellbild beschreibt.", blanks: ["V", "I"], distractors: ["III", "IV"] }
       },
       {
         id: "1049_16_h3",
@@ -20539,6 +20900,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
         statement: "Beim Magen-Frühkarzinom (auf Mucosa und Submucosa beschränkt) beträgt die 5-Jahres-Überlebensrate etwa 90 %.",
         answer: true,
         explanation: "Korrekt. Magen-Frühkarzinom: 5-JÜR ~90 %. Ausgedehntes Magenkarzinom: nur 20–30 %. Das Frühkarzinom ist auf Mucosa und Submucosa beschränkt; eine Metastasierung kann trotzdem bereits erfolgt sein.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Magen-Frühkarzinom ist auf Mucosa und Submucosa beschränkt.", isWrong: false },
+          { text: "Die 5-Jahres-Überlebensrate beim Magen-Frühkarzinom liegt bei etwa 90 %.", isWrong: false },
+          { text: "Auch beim Frühkarzinom kann bereits eine Metastasierung stattgefunden haben.", isWrong: false },
+          { text: "Ein ausgedehntes Magenkarzinom hat dieselbe 5-Jahres-Überlebensrate von etwa 90 % wie das Frühkarzinom.", isWrong: true }
+        ], whyWrong: "Ein ausgedehntes Magenkarzinom hat nur eine 5-Jahres-Überlebensrate von 20–30 %, deutlich schlechter als das Frühkarzinom." }
       },
       {
         id: "1049_16_h4",
@@ -20551,6 +20918,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Pemphigus, rheumatoide Arthritis", correct: false },
         ],
         explanation: "HLA-DR3 → Basedow, Addison, Myasthenia gravis, Diabetes Typ I, Sjögren, Zöliakie. HLA-B27 → Bechterew. HLA-DR5 → Hashimoto + perniziöse Anämie. HLA-DR4 → Pemphigus + rh. Arthritis. HLA-DR2 → Multiple Sklerose + Sklerodermie.",
+        learningCard: { type: "teachback", prompt: "Welche Autoimmunerkrankungen sind mit HLA-DR3 assoziiert?", checklist: [
+          { text: "Morbus Basedow", correct: true },
+          { text: "Diabetes mellitus Typ I", correct: true },
+          { text: "Myasthenia gravis, Sjögren-Syndrom und Zöliakie", correct: true },
+          { text: "Morbus Bechterew", correct: false }
+        ], reveal: "Morbus Bechterew (Ankylosierende Spondylitis) ist mit HLA-B27 assoziiert, nicht mit HLA-DR3." }
       },
       {
         id: "1049_16_h5",
@@ -20563,6 +20936,7 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Autoimmunreaktion des Spenders gegen eigenes Gewebe nach Transplantation", correct: false },
         ],
         explanation: "Graft-versus-Host (GvH): Spenderzellen (immunkompetent) erkennen Empfänger als fremd → Angriff. Beispiel: Knochenmarktransplantation. Vs. klassische Abstoßung = Host-versus-Graft (Empfänger-Immunsystem gegen Transplantat).",
+        learningCard: { type: "reconstruct", template: "Bei der Graft-versus-Host-Reaktion erkennen immunkompetente ___-Zellen den ___ als fremd und greifen ihn an — typisch nach Knochenmarktransplantation.", blanks: ["Spender", "Empfängerorganismus"], distractors: ["Empfänger", "Spenderorganismus"] }
       },
     ],
     phase4Questions: [
@@ -20577,6 +20951,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "Prostatakarzinom → CEA als primärer Tumormarker", correct: false },
         ],
         explanation: "Prostatakarzinom → PSA (Prostata-spezifisches Antigen), NICHT CEA. CEA → kolorektales/Magen-/Pankreas-/Bronchialkarzinom. Alle anderen Zuordnungen korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Tumor-Klinisches-Zeichen-Zuordnungen sind korrekt?", checklist: [
+          { text: "Mammakarzinom → Orangenschalenhaut (Peau d'orange)", correct: true },
+          { text: "Magenkarzinom → Virchow-Drüse (palpable supraklavikuläre Lymphknotenmetastase)", correct: true },
+          { text: "Bronchialkarzinom → blutiges Sputum als Alarmsymptom", correct: true },
+          { text: "Prostatakarzinom → CEA als primärer Tumormarker", correct: false }
+        ], reveal: "Beim Prostatakarzinom ist PSA der primäre Tumormarker, nicht CEA." }
       },
       {
         id: "1049_16_p4_2",
@@ -20589,6 +20969,12 @@ const HUMANPATHOLOGIE_1049_PLANTS = [
           { text: "HLA-DR2 → Morbus Bechterew", correct: false },
         ],
         explanation: "HLA-DR2 → Multiple Sklerose und Sklerodermie (NICHT Bechterew). HLA-B27 → Bechterew. HLA-DR3 → Basedow/Diabetes Typ I/Myasthenia gravis/Sjögren/Zöliakie/Addison. HLA-DR5 → Hashimoto/perniziöse Anämie.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "HLA-B27 ist mit dem Morbus Bechterew (Ankylosierende Spondylitis) assoziiert.", isWrong: false },
+          { text: "HLA-DR3 ist mit Morbus Basedow und Diabetes mellitus Typ I assoziiert.", isWrong: false },
+          { text: "HLA-DR5 ist mit Hashimoto-Thyreoiditis und perniziöser Anämie assoziiert.", isWrong: false },
+          { text: "HLA-DR2 ist mit dem Morbus Bechterew assoziiert.", isWrong: true }
+        ], whyWrong: "HLA-DR2 ist mit Multipler Sklerose und Sklerodermie assoziiert — Morbus Bechterew gehört zu HLA-B27." }
       },
     ],
   }),
