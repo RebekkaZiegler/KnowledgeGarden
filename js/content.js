@@ -658,17 +658,33 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Meiose I und II sind identische Teilungen", correct: false },
         { text: "Meiose I trennt Schwesterchromatiden; Meiose II trennt homologe Chromosomen", correct: false },
         { text: "Nur Meiose I ist eine echte Teilung; Meiose II ist eine Zellverschmelzung", correct: false }
-      ], explanation: "Meiose I (Reduktionsteilung): Homologe Chromosomenpaare (Bivalente) werden getrennt → Chromosomenzahl halbiert (2n→n). Meiose II (äquationale Teilung): Schwesterchromatiden werden wie bei der Mitose getrennt. Ergebnis: aus 1 diploiden Zelle entstehen 4 haploide Zellen." },
+      ], explanation: "Meiose I (Reduktionsteilung): Homologe Chromosomenpaare (Bivalente) werden getrennt → Chromosomenzahl halbiert (2n→n). Meiose II (äquationale Teilung): Schwesterchromatiden werden wie bei der Mitose getrennt. Ergebnis: aus 1 diploiden Zelle entstehen 4 haploide Zellen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Meiose I und Meiose II treffen zu?", checklist: [
+          { text: "Meiose I trennt homologe Chromosomen (Reduktionsteilung).", correct: true },
+          { text: "Meiose II trennt Schwesterchromatiden wie bei der Mitose.", correct: true },
+          { text: "Aus einer diploiden Zelle entstehen am Ende 4 haploide Zellen.", correct: true },
+          { text: "Meiose I und II sind identische Teilungen.", correct: false }
+        ], reveal: "Meiose I halbiert die Chromosomenzahl (2n→n), Meiose II trennt die Schwesterchromatiden." } },
       { id: "me_h2", type: "mc", question: "Was bezeichnet man als 'Synapsis' in der Prophase I?", options: [
         { text: "Die paarweise Anlagerung homologer Chromosomen (Bivalentbildung) mit Ausbildung des Synaptonemalkomplexes", correct: true },
         { text: "Die Trennung der Schwesterchromatiden", correct: false },
         { text: "Die Auflösung der Kernhülle", correct: false },
         { text: "Die Ausrichtung der Chromosomen in der Äquatorialplatte", correct: false }
-      ], explanation: "In der Prophase I der Meiose lagern sich homologe Chromosomenpaare zusammen (Synapsis), verbunden durch den Synaptonemalkomplex. An Chiasmata (Überkreuzungsstellen) findet das Crossing-over statt. Jedes Paar bildet ein Bivalent (Tetrade) aus vier Chromatiden." },
-      { id: "me_h3", type: "true_false", statement: "Durch Crossing-over und unabhängige Verteilung in Meiose I können theoretisch 2^23 verschiedene Gametenkombinationen entstehen.", answer: true, explanation: "Jedes der 23 Chromosomenpaare kann in zwei Orientierungen in der Metaphaseplatte aufgestellt werden (Independent Assortment), was 2^23 ≈ 8,4 Millionen Kombinationen erzeugt. Zusätzlich bewirkt Crossing-over genetische Rekombination innerhalb von Chromosomen. Zusammen erklärt das die immense genetische Vielfalt." },
-      { id: "me_h4", type: "true_false", statement: "Zwischen Meiose I und Meiose II gibt es keine vollständige DNA-Replikation.", answer: true, explanation: "Die Interkinese zwischen Meiose I und II ist sehr kurz – keine vollständige S-Phase mit DNA-Replikation. Das ist ein wichtiger Unterschied zur Mitose: Bei der Meiose wird DNA nur einmal (vor Meiose I) repliziert, aber zweimal geteilt. Deshalb entstehen haploide Zellen." },
-      { id: "me_h5", type: "true_false", statement: "Bei Meiose I bleibt die Chromosomenzahl unverändert erhalten.", answer: false, explanation: "Meiose I ist die Reduktions­teilung: Hier werden die 23 Paare homologer Chromosomen getrennt, sodass jede Tochterzelle nur noch 23 Chromosomen (aber noch je zwei Schwesterchromatiden) erhält – die Chromosomenzahl wird also von 46 auf 23 halbiert." },
-      { id: "me_h6", type: "true_false", statement: "Das Crossing-over findet in der Prophase I der Meiose statt.", answer: true, explanation: "In der Prophase I der Meiose lagern sich homologe Chromosomen im Tetrade-Stadium zusammen (Synapsis). An Chiasma genannten Überkreuzungsstellen werden homologe DNA-Segmente ausgetauscht. Dieser Austausch erzeugt Chromosomen mit neuen Allelkombinationen und damit genetische Vielfalt." }
+      ], explanation: "In der Prophase I der Meiose lagern sich homologe Chromosomenpaare zusammen (Synapsis), verbunden durch den Synaptonemalkomplex. An Chiasmata (Überkreuzungsstellen) findet das Crossing-over statt. Jedes Paar bildet ein Bivalent (Tetrade) aus vier Chromatiden.",
+        learningCard: { type: "predict", statement: "Synapsis bezeichnet die paarweise Anlagerung homologer Chromosomen in der Prophase I, verbunden durch den Synaptonemalkomplex.", answer: true, reveal: "An den Chiasmata (Überkreuzungsstellen) findet dabei das Crossing-over statt; jedes Paar bildet ein Bivalent (Tetrade) aus vier Chromatiden." } },
+      { id: "me_h3", type: "true_false", statement: "Durch Crossing-over und unabhängige Verteilung in Meiose I können theoretisch 2^23 verschiedene Gametenkombinationen entstehen.", answer: true, explanation: "Jedes der 23 Chromosomenpaare kann in zwei Orientierungen in der Metaphaseplatte aufgestellt werden (Independent Assortment), was 2^23 ≈ 8,4 Millionen Kombinationen erzeugt. Zusätzlich bewirkt Crossing-over genetische Rekombination innerhalb von Chromosomen. Zusammen erklärt das die immense genetische Vielfalt.",
+        learningCard: { type: "predict", statement: "Durch Crossing-over und unabhängige Verteilung in Meiose I können theoretisch 2^23 verschiedene Gametenkombinationen entstehen.", answer: true, reveal: "Jedes der 23 Chromosomenpaare kann in zwei Orientierungen in der Metaphaseplatte liegen — zusammen mit dem Crossing-over erklärt das die immense genetische Vielfalt." } },
+      { id: "me_h4", type: "true_false", statement: "Zwischen Meiose I und Meiose II gibt es keine vollständige DNA-Replikation.", answer: true, explanation: "Die Interkinese zwischen Meiose I und II ist sehr kurz – keine vollständige S-Phase mit DNA-Replikation. Das ist ein wichtiger Unterschied zur Mitose: Bei der Meiose wird DNA nur einmal (vor Meiose I) repliziert, aber zweimal geteilt. Deshalb entstehen haploide Zellen.",
+        learningCard: { type: "predict", statement: "Zwischen Meiose I und Meiose II gibt es keine vollständige DNA-Replikation.", answer: true, reveal: "Die kurze Interkinese hat keine vollständige S-Phase — DNA wird nur einmal vor Meiose I repliziert, aber zweimal geteilt, sodass haploide Zellen entstehen." } },
+      { id: "me_h5", type: "true_false", statement: "Bei Meiose I bleibt die Chromosomenzahl unverändert erhalten.", answer: false, explanation: "Meiose I ist die Reduktions­teilung: Hier werden die 23 Paare homologer Chromosomen getrennt, sodass jede Tochterzelle nur noch 23 Chromosomen (aber noch je zwei Schwesterchromatiden) erhält – die Chromosomenzahl wird also von 46 auf 23 halbiert.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Meiose I ist die Reduktionsteilung.", isWrong: false },
+          { text: "Dabei werden die 23 Paare homologer Chromosomen getrennt.", isWrong: false },
+          { text: "Die Chromosomenzahl wird von 46 auf 23 halbiert.", isWrong: false },
+          { text: "Bei Meiose I bleibt die Chromosomenzahl unverändert.", isWrong: true }
+        ], whyWrong: "Meiose I halbiert gerade die Chromosomenzahl (46→23) — das ist ihr definierendes Merkmal als Reduktionsteilung." } },
+      { id: "me_h6", type: "true_false", statement: "Das Crossing-over findet in der Prophase I der Meiose statt.", answer: true, explanation: "In der Prophase I der Meiose lagern sich homologe Chromosomen im Tetrade-Stadium zusammen (Synapsis). An Chiasma genannten Überkreuzungsstellen werden homologe DNA-Segmente ausgetauscht. Dieser Austausch erzeugt Chromosomen mit neuen Allelkombinationen und damit genetische Vielfalt.",
+        learningCard: { type: "predict", statement: "Das Crossing-over findet in der Prophase I der Meiose statt.", answer: true, reveal: "An den Chiasmata werden dabei homologe DNA-Segmente ausgetauscht, was neue Allelkombinationen und genetische Vielfalt erzeugt." } }
     ],
     phase4Questions: [
       { id: "me_mc1", type: "mc", question: "Welche Aussage beschreibt korrekt die Unterschiede der Meiose gegenüber der Mitose?", options: [
@@ -676,13 +692,20 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "Meiose: 2 haploide Zellen, kein Crossing-over, in allen Körperzellen, eine Teilungsrunde", correct: false },
         { text: "Meiose: 4 diploide Zellen, Crossing-over in Prophase II, nur in Keimdrüsen, eine Teilungsrunde", correct: false },
         { text: "Meiose: 2 diploide Zellen, Crossing-over, in allen Körperzellen, zwei Teilungsrunden", correct: false }
-      ], explanation: "Meiose unterscheidet sich durch: (1) 4 haploide Tochterzellen statt 2 diploide, (2) Crossing-over in Prophase I als Quelle genetischer Vielfalt, (3) Ablauf nur in Keimdrüsen, (4) zwei aufeinanderfolgende Teilungsrunden (Meiose I und II)." },
+      ], explanation: "Meiose unterscheidet sich durch: (1) 4 haploide Tochterzellen statt 2 diploide, (2) Crossing-over in Prophase I als Quelle genetischer Vielfalt, (3) Ablauf nur in Keimdrüsen, (4) zwei aufeinanderfolgende Teilungsrunden (Meiose I und II).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen beschreiben die Unterschiede der Meiose gegenüber der Mitose?", checklist: [
+          { text: "Meiose erzeugt 4 haploide Zellen.", correct: true },
+          { text: "Crossing-over findet in Prophase I statt.", correct: true },
+          { text: "Meiose läuft nur in Keimdrüsen ab, in zwei Teilungsrunden.", correct: true },
+          { text: "Meiose erzeugt 2 diploide Zellen in einer Teilungsrunde.", correct: false }
+        ], reveal: "Die Mitose erzeugt dagegen 2 diploide Zellen in nur einer Teilungsrunde, ohne Crossing-over." } },
       { id: "me_mc2", type: "mc", question: "Was sind die beiden Quellen genetischer Vielfalt bei der Meiose?", options: [
         { text: "Crossing-over (Prophase I) und unabhängige Chromosomensegregation (Metaphase I)", correct: true },
         { text: "DNA-Replikation und Zellkernauflösung", correct: false },
         { text: "Karyokinese und Zytokinese", correct: false },
         { text: "Centrosom-Spaltung und Membranfusion", correct: false }
-      ], explanation: "Genetische Vielfalt bei der Meiose entsteht durch Crossing-over in der Prophase I (Rekombination) und zufällige Verteilung homologer Chromosomen in der Metaphase I." }
+      ], explanation: "Genetische Vielfalt bei der Meiose entsteht durch Crossing-over in der Prophase I (Rekombination) und zufällige Verteilung homologer Chromosomen in der Metaphase I.",
+        learningCard: { type: "predict", statement: "Die beiden Quellen genetischer Vielfalt bei der Meiose sind Crossing-over (Prophase I) und unabhängige Chromosomensegregation (Metaphase I).", answer: true, reveal: "Beide Mechanismen zusammen erzeugen die immense Vielfalt möglicher Gametenkombinationen." } }
     ]
   }),
   makeDetailedPlant({
@@ -694,22 +717,38 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "45, X0", correct: false },
         { text: "47, XY+21", correct: false },
         { text: "46, XY", correct: false }
-      ], explanation: "Klinefelter-Syndrom: 47, XXY – betroffene Männer haben ein zusätzliches X-Chromosom. Klinisch: Hochwuchs, Gynäkomastie, Hodensatrophie, Infertilität. Turner-Syndrom: 45, X0 (ein X fehlt) – betrifft Frauen. Down-Syndrom: 47, +21 (Trisomie 21)." },
+      ], explanation: "Klinefelter-Syndrom: 47, XXY – betroffene Männer haben ein zusätzliches X-Chromosom. Klinisch: Hochwuchs, Gynäkomastie, Hodensatrophie, Infertilität. Turner-Syndrom: 45, X0 (ein X fehlt) – betrifft Frauen. Down-Syndrom: 47, +21 (Trisomie 21).",
+        learningCard: { type: "predict", statement: "Das Klinefelter-Syndrom hat den Karyotyp 47, XXY.", answer: true, reveal: "Klinisch zeigen sich Hochwuchs, Gynäkomastie, Hodenatrophie und Infertilität; das Turner-Syndrom (45, X0) und das Down-Syndrom (47, +21) sind andere Chromosomenanomalien." } },
       { id: "ca_h2", type: "mc", question: "Was ist 'Non-Disjunction' und wann tritt sie auf?", options: [
         { text: "Fehlerhafte Chromosomentrennung in der Meiose, sodass beide homologen Chromosomen in eine Tochterzelle wandern", correct: true },
         { text: "Spontane Mutation einzelner Gene ohne Chromosomenzahlveränderung", correct: false },
         { text: "Vollständiger Verlust eines Chromosoms durch Strahlung", correct: false },
         { text: "Fusion zweier Chromosomen (Robertson-Translokation)", correct: false }
-      ], explanation: "Non-Disjunction (nicht-Trennung): In Meiose I oder II oder Mitose werden Chromosomen nicht korrekt auf Tochterzellen verteilt. Meiose-I-Fehler: beide homologen Chromosomen wandern in dieselbe Zelle. Meiose-II-Fehler: Schwesterchromatiden wandern zusammen. Ergebnis: Tochterzellen mit zu viel oder zu wenig Chromosomen." },
-      { id: "ca_h3", type: "true_false", statement: "Strukturelle Chromosomenaberrationen verändern die Struktur, nicht die Anzahl von Chromosomen.", answer: true, explanation: "Strukturelle Aberrationen entstehen durch Chromosomenbrüche und fehlerhafte Reparatur. Typen: Deletion (Stück fehlt), Duplikation (Stück doppelt), Inversion (Stück umgedreht), Translokation (Stück auf anderem Chromosom). Sie können zu Genunterschreitungen oder -überdosierungen führen." },
-      { id: "ca_h4", type: "true_false", statement: "Das Down-Syndrom ist eine autosomale Trisomie des Chromosoms 21.", answer: true, explanation: "Trisomie 21 entsteht durch Non-Disjunction in der Meiose: Ein Elternteil gibt eine Keimzelle mit zwei Chromosomen 21 ab. Das befruchtete Ei hat dann drei Chromosomen 21 (Trisomie) statt zwei, was zu charakteristischen Merkmalen und intellektüllen Einschränkungen führen kann." },
-      { id: "ca_h5", type: "true_false", statement: "Das Turner-Syndrom (Karyotyp 45, X0) ist die einzige lebensfähige menschliche Monosomie.", answer: true, explanation: "Monosomien der Autosomen (Verlust eines Autosoms) sind in aller Regel letal und führen zur Fehlgeburt. Monosomie X (Turner, 45, X0) ist die einzige lebensfähige Monosomie, da ein X-Chromosom ausreicht. Klinisch: Kleinwuchs, Gonadendysgenesie, Infertilität, Pterygium colli." },
+      ], explanation: "Non-Disjunction (nicht-Trennung): In Meiose I oder II oder Mitose werden Chromosomen nicht korrekt auf Tochterzellen verteilt. Meiose-I-Fehler: beide homologen Chromosomen wandern in dieselbe Zelle. Meiose-II-Fehler: Schwesterchromatiden wandern zusammen. Ergebnis: Tochterzellen mit zu viel oder zu wenig Chromosomen.",
+        learningCard: { type: "predict", statement: "Non-Disjunction ist die fehlerhafte Chromosomentrennung, bei der beide homologen Chromosomen in eine Tochterzelle wandern.", answer: true, reveal: "Sie kann in Meiose I, Meiose II oder Mitose auftreten und führt zu Tochterzellen mit zu viel oder zu wenig Chromosomen." } },
+      { id: "ca_h3", type: "true_false", statement: "Strukturelle Chromosomenaberrationen verändern die Struktur, nicht die Anzahl von Chromosomen.", answer: true, explanation: "Strukturelle Aberrationen entstehen durch Chromosomenbrüche und fehlerhafte Reparatur. Typen: Deletion (Stück fehlt), Duplikation (Stück doppelt), Inversion (Stück umgedreht), Translokation (Stück auf anderem Chromosom). Sie können zu Genunterschreitungen oder -überdosierungen führen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu strukturellen Chromosomenaberrationen treffen zu?", checklist: [
+          { text: "Sie verändern die Struktur, nicht die Anzahl von Chromosomen.", correct: true },
+          { text: "Sie entstehen durch Chromosomenbrüche und fehlerhafte Reparatur.", correct: true },
+          { text: "Zu den Typen zählen Deletion, Duplikation, Inversion und Translokation.", correct: true },
+          { text: "Sie verändern immer die Chromosomenzahl.", correct: false }
+        ], reveal: "Die Chromosomenzahl bleibt bei strukturellen Aberrationen unverändert — das unterscheidet sie von numerischen Aberrationen wie der Trisomie." } },
+      { id: "ca_h4", type: "true_false", statement: "Das Down-Syndrom ist eine autosomale Trisomie des Chromosoms 21.", answer: true, explanation: "Trisomie 21 entsteht durch Non-Disjunction in der Meiose: Ein Elternteil gibt eine Keimzelle mit zwei Chromosomen 21 ab. Das befruchtete Ei hat dann drei Chromosomen 21 (Trisomie) statt zwei, was zu charakteristischen Merkmalen und intellektüllen Einschränkungen führen kann.",
+        learningCard: { type: "predict", statement: "Das Down-Syndrom ist eine autosomale Trisomie des Chromosoms 21.", answer: true, reveal: "Es entsteht durch Non-Disjunction in der Meiose, wenn ein Elternteil eine Keimzelle mit zwei Chromosomen 21 abgibt." } },
+      { id: "ca_h5", type: "true_false", statement: "Das Turner-Syndrom (Karyotyp 45, X0) ist die einzige lebensfähige menschliche Monosomie.", answer: true, explanation: "Monosomien der Autosomen (Verlust eines Autosoms) sind in aller Regel letal und führen zur Fehlgeburt. Monosomie X (Turner, 45, X0) ist die einzige lebensfähige Monosomie, da ein X-Chromosom ausreicht. Klinisch: Kleinwuchs, Gonadendysgenesie, Infertilität, Pterygium colli.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Turner-Syndrom hat den Karyotyp 45, X0.", isWrong: false },
+          { text: "Autosomale Monosomien sind in der Regel letal.", isWrong: false },
+          { text: "Turner-Syndrom ist die einzige lebensfähige menschliche Monosomie.", isWrong: false },
+          { text: "Autosomale Monosomien sind genauso häufig lebensfähig wie das Turner-Syndrom.", isWrong: true }
+        ], whyWrong: "Autosomale Monosomien führen fast immer zur Fehlgeburt — nur die Monosomie X (Turner-Syndrom) ist lebensfähig, da ein X-Chromosom ausreicht." } },
       { id: "ca_h6", type: "mc", question: "Welche drei Trisomien für Autosomen sind mit dem Leben vereinbar?", options: [
         { text: "Trisomie 21 (Down), Trisomie 18 (Edwards), Trisomie 13 (Patau)", correct: true },
         { text: "Trisomie 1, 2, 3 als häufigstes Vorkommen", correct: false },
         { text: "Trisomie X, Trisomie Y und XXY sind autosomal", correct: false },
         { text: "Alle Trisomien sind mit dem Leben vereinbar", correct: false }
-      ], explanation: "Trisomie 21 (Down), 18 (Edwards-Syndrom, schwerste Fehlbildungen, meist Frühtod) und 13 (Patau-Syndrom, schwere Fehlbildungen) sind die einzigen autosomalenTrisomien, die überlebt werden können. Alle anderen autosomalenTrisomien führen zur Fehlgeburt oder Stillgeburt." }
+      ], explanation: "Trisomie 21 (Down), 18 (Edwards-Syndrom, schwerste Fehlbildungen, meist Frühtod) und 13 (Patau-Syndrom, schwere Fehlbildungen) sind die einzigen autosomalenTrisomien, die überlebt werden können. Alle anderen autosomalenTrisomien führen zur Fehlgeburt oder Stillgeburt.",
+        learningCard: { type: "reconstruct", template: "Nur drei autosomale Trisomien sind mit dem Leben vereinbar: Trisomie 21 (Down), Trisomie 18 (___) und Trisomie 13 (___).", blanks: ["Edwards", "Patau"], distractors: ["Turner", "Klinefelter"], reveal: "Alle anderen autosomalen Trisomien führen zur Fehl- oder Stillgeburt." } }
     ],
     phase4Questions: [
       { id: "ca_mc1", type: "mc", question: "Welche Karyotypen und Syndrome sind korrekt zugeordnet?", options: [
@@ -717,13 +756,20 @@ const ZYTOLOGIE_1031_PLANTS = [
         { text: "45, X0 – Turner-Syndrom", correct: true },
         { text: "47, +21 – Down-Syndrom", correct: true },
         { text: "47, +18 – Klinefelter-Syndrom", correct: false }
-      ], explanation: "47,XXY ist das Klinefelter-Syndrom, 45,X0 das Turner-Syndrom und 47,+21 das Down-Syndrom; 47,+18 ist die Trisomie 18 (Edwards-Syndrom), nicht Klinefelter." },
+      ], explanation: "47,XXY ist das Klinefelter-Syndrom, 45,X0 das Turner-Syndrom und 47,+21 das Down-Syndrom; 47,+18 ist die Trisomie 18 (Edwards-Syndrom), nicht Klinefelter.",
+        learningCard: { type: "teachback", prompt: "Welche Karyotypen und Syndrome sind korrekt zugeordnet?", checklist: [
+          { text: "47, XXY – Klinefelter-Syndrom", correct: true },
+          { text: "45, X0 – Turner-Syndrom", correct: true },
+          { text: "47, +21 – Down-Syndrom", correct: true },
+          { text: "47, +18 – Klinefelter-Syndrom", correct: false }
+        ], reveal: "47, +18 ist die Trisomie 18 (Edwards-Syndrom), nicht das Klinefelter-Syndrom." } },
       { id: "ca_mc2", type: "mc", question: "Was unterscheidet numerische von strukturellen Chromosomenaberrationen?", options: [
         { text: "Numerisch = Änderung der Chromosomenzahl; strukturell = Änderung der Chromosomenstruktur bei gleicher Zahl", correct: true },
         { text: "Numerisch = nur Gonosomen betroffen; strukturell = nur Autosomen betroffen", correct: false },
         { text: "Beide Begriffe bezeichnen dieselbe Art von Aberration", correct: false },
         { text: "Strukturelle Aberrationen sind nie klinisch relevant", correct: false }
-      ], explanation: "Numerische Aberrationen verändern die Chromosomenzahl (z.B. Trisomie), während strukturelle Aberrationen (Deletion, Duplikation, Translokation) die Chromosomenstruktur bei gleicher Zahl verändern." }
+      ], explanation: "Numerische Aberrationen verändern die Chromosomenzahl (z.B. Trisomie), während strukturelle Aberrationen (Deletion, Duplikation, Translokation) die Chromosomenstruktur bei gleicher Zahl verändern.",
+        learningCard: { type: "predict", statement: "Numerische Chromosomenaberrationen verändern die Chromosomenzahl, strukturelle verändern die Chromosomenstruktur bei gleicher Zahl.", answer: true, reveal: "Beispiele für numerische Aberrationen sind Trisomien, für strukturelle Deletion, Duplikation und Translokation." } }
     ]
   }),
 
@@ -742,6 +788,12 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Apoptose = durch Strahlung ausgelöst; Nekrose = selbst induziert", correct: false },
         ],
         explanation: "Nekrose: äußere Einflüsse → Membrandefekte → unkontrollierter Zellinhaltsaustritt → Entzündung. Apoptose: genetisch programmiert, kontrolliert, physiologisch notwendig für Entwicklung und Gewebehomöostase.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Nekrose und Apoptose treffen zu?", checklist: [
+          { text: "Nekrose entsteht durch äußere Schädigung und löst eine Entzündung aus.", correct: true },
+          { text: "Apoptose ist programmierter Zelltod ohne Entzündung.", correct: true },
+          { text: "Beide Prozesse sind grundverschieden.", correct: true },
+          { text: "Nekrose ist immer physiologisch.", correct: false }
+        ], reveal: "Apoptose ist physiologisch notwendig für Entwicklung und Gewebehomöostase, Nekrose entsteht dagegen durch äußere Schädigung." },
       },
       {
         type: "mc",
@@ -754,6 +806,7 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Programmierter Zelltod durch genetische Signale", correct: false },
         ],
         explanation: "Autolyse = enzymatische Selbstauflösung nach dem Zelltod: abbauende Enzyme wandern ein, Kern zerfällt in einzelne Stücke und löst sich auf. Dies ist ein Bestandteil der Verwesung.",
+        learningCard: { type: "predict", statement: "Autolyse ist die Selbstauflösung abgestorbener Körperzellen durch eigene Enzyme.", answer: true, reveal: "Abbauende Enzyme wandern ein, der Zellkern zerfällt und löst sich auf — Autolyse ist Bestandteil der Verwesung." },
       },
       {
         type: "mc",
@@ -766,6 +819,7 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Alle Körperzellen können ersetzt werden", correct: false },
         ],
         explanation: "Nervenzellen und Herzmuskelzellen sind terminal differenziert und können nicht ersetzt werden. Erythrozyten (Lebensdauer ~120 Tage) und viele andere Zellen werden regelmäßig erneuert.",
+        learningCard: { type: "predict", statement: "Nervenzellen und Herzmuskelzellen können nicht ersetzt werden.", answer: true, reveal: "Sie sind terminal differenziert — im Gegensatz zu Erythrozyten und vielen anderen Zellen, die regelmäßig erneuert werden." },
       },
       {
         type: "mc",
@@ -778,6 +832,7 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Ausschließlich durch Virusinfektion", correct: false },
         ],
         explanation: "Nekrose = pathologischer Zelltod durch äußere Einflüsse: chemisch (Säure, Gifte), thermisch (Verbrennung, Erfrierung), mechanisch (Trauma), strahlenbedingt. Folge: Membrandefekte → Entzündungsreaktion.",
+        learningCard: { type: "reconstruct", template: "Nekrose entsteht durch ___, thermische, mechanische oder ___ Zerstörung der Zellstruktur.", blanks: ["chemische", "strahlenbedingte"], distractors: ["genetische", "programmierte"], reveal: "Die Folge sind Membrandefekte und eine Entzündungsreaktion." },
       },
       {
         type: "true_false",
@@ -785,6 +840,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         statement: "Die Apoptose eliminiert unter anderem entartete Zellen und verhindert so die Tumorentstehung.",
         answer: true,
         explanation: "Apoptose = zelluläre Qualitätskontrolle: Elimination genetisch geschädigter oder entarteter Zellen ist ein Tumorsuppressmechanismus. Defekte Apoptose begünstigt Krebsentstehung.",
+        learningCard: { type: "predict", statement: "Die Apoptose eliminiert unter anderem entartete Zellen und verhindert so die Tumorentstehung.", answer: true, reveal: "Eine defekte Apoptose begünstigt daher die Krebsentstehung." },
       },
     ],
     phase4Questions: [
@@ -799,6 +855,12 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Nekrose ist immer ein programmierter, kontrollierter Prozess", correct: false },
         ],
         explanation: "Nekrose = unkontrolliert, Entzündung. Apoptose = kontrolliert, kein Entzündungsreiz. Autolyse = postmortale enzymatische Auflösung. Alle drei sind verschiedene Phänomene.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Zelltodformen sind korrekt?", checklist: [
+          { text: "Nekrose führt zu einer Entzündungsreaktion im umliegenden Gewebe", correct: true },
+          { text: "Apoptose ist physiologisch sinnvoll und notwendig für die normale Entwicklung", correct: true },
+          { text: "Autolyse bezeichnet die Selbstauflösung durch körpereigene Enzyme nach dem Zelltod", correct: true },
+          { text: "Nekrose ist immer ein programmierter, kontrollierter Prozess", correct: false },
+        ], reveal: "Nekrose = unkontrolliert mit Entzündung, Apoptose = kontrolliert ohne Entzündungsreiz, Autolyse = postmortale enzymatische Auflösung." },
       },
       {
         type: "mc",
@@ -811,6 +873,12 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Weil sie durch NF-κB-Aktivierung Entzündungsreaktionen mit Zytokinausschüttung auslöst, die systemische Infektionen des Organismus bekämpfen", correct: false },
         ],
         explanation: "Apoptose ist multifunktional: 1. Kontrolle der Zellanzahl/Gewebegröße. 2. Elimination entarteter Zellen. 3. Zellturnover (z. B. Riechepithel). 4. Selektion genetisch intakter Keimzellen.",
+        learningCard: { type: "teachback", prompt: "Welche Funktionen erfüllt die Apoptose im Organismus?", checklist: [
+          { text: "Kontrolle der Zellanzahl und Gewebegröße", correct: true },
+          { text: "Elimination entarteter (potenziell krebsartiger) Zellen", correct: true },
+          { text: "Zellturnover, z. B. im Riechepithel", correct: true },
+          { text: "Auslösung systemischer Entzündungsreaktionen zur Infektabwehr", correct: false },
+        ], reveal: "Zusätzlich selektiert Apoptose genetisch intakte Keimzellen — sie ist damit für Entwicklung und Gewebeerneuerung unerlässlich." },
       },
     ],
   }),
@@ -830,6 +898,7 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Nur Steroidhormone mit mehr als 20 Kohlenstoffatomen", correct: false },
         ],
         explanation: "Membranrezeptoren: für hydrophile (wasserlösliche) Hormone, die die Membran nicht durchdringen können. Lipophile Hormone (Steroide, Thyroxin) diffundieren direkt durch die Membran zu intrazellulären Rezeptoren.",
+        learningCard: { type: "predict", statement: "Membranrezeptoren binden hydrophile Hormone wie Katecholamine, Peptid- und Glycoproteinhormone.", answer: true, reveal: "Lipophile Hormone (Steroide, Thyroxin) durchdringen die Membran direkt und binden an intrazelluläre Rezeptoren." },
       },
       {
         type: "mc",
@@ -842,6 +911,12 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Sie bilden den Spindelapparat bei der Zellteilung", correct: false },
         ],
         explanation: "Kernrezeptoren: werden durch Bindung eines lipophilen Liganden aktiviert → binden an DNA → Transkription ein- oder ausschalten. Zuständig für Steroid- und Thyreoideahormone.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Kernrezeptoren binden lipophile Hormone", isWrong: false },
+          { text: "Sie aktivieren oder hemmen die DNA-Transkription", isWrong: false },
+          { text: "Sie sind zuständig für Steroid- und Thyreoideahormone", isWrong: false },
+          { text: "Sie leiten elektrische Signale über die Zellmembran weiter", isWrong: true },
+        ], whyWrong: "Elektrische Signalweiterleitung ist Aufgabe von Membranrezeptoren/Ionenkanälen, nicht der Kernrezeptoren." },
       },
       {
         type: "mc",
@@ -854,6 +929,12 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Das Prinzip der Zellteilung durch Mitose", correct: false },
         ],
         explanation: "Pischinger (1953): Das Bindegewebe verbindet alle Organe. Extrazellularflüssigkeit = Versorgungs- und Entsorgungsmedium. Kapillare, Nerven und Lymphgefäße münden darin. Verschlackung → gestörte Nährstoffversorgung → Befindlichkeitsstörungen.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen beschreiben das Grundregulationssystem nach Pischinger?", checklist: [
+          { text: "Das Bindegewebe verbindet alle Organe als Versorgungs- und Entsorgungssystem", correct: true },
+          { text: "Die Extrazellularflüssigkeit ist das Versorgungs- und Entsorgungsmedium", correct: true },
+          { text: "Kapillare, Nerven und Lymphgefäße münden in die Extrazellularflüssigkeit", correct: true },
+          { text: "Es beschreibt ausschließlich die spezifische Immunabwehr durch T- und B-Zellen", correct: false },
+        ], reveal: "Verschlackung dieses Systems stört die Nährstoffversorgung und führt zu Befindlichkeitsstörungen jeglicher Art." },
       },
       {
         type: "mc",
@@ -866,6 +947,7 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Nur Reize aus dem eigenen Organ", correct: false },
         ],
         explanation: "Reizbarkeit der Zelle: Rezeptoren für chemische Reize (Botenstoffe – am wichtigsten), elektrische, thermische, mechanische und nervöse Reize. Membranrezeptoren = Sinnesorgane der Zelle.",
+        learningCard: { type: "reconstruct", template: "Eine Zelle kann ___, elektrische, thermische, mechanische und ___ Reize über Rezeptoren aufnehmen.", blanks: ["chemische", "nervöse"], distractors: ["hormonelle", "genetische"], reveal: "Chemische Reize (Botenstoffe) sind dabei am wichtigsten; Membranrezeptoren gelten als die Sinnesorgane der Zelle." },
       },
       {
         type: "true_false",
@@ -873,6 +955,7 @@ const ZYTOLOGIE_1031_PLANTS = [
         statement: "Bei Überlastung der Ausscheidungsorgane können sich Stoffwechselrückstände im Bindegewebe ansammeln und die Nährstoffversorgung der Zellen beeinträchtigen.",
         answer: true,
         explanation: "Verschlackung: Ausscheidungsorgane überlastet → Stoffwechselrückstände im Bindegewebe → Nährstoffaufnahme der Zellen gestört → Befindlichkeitsstörungen jeglicher Art.",
+        learningCard: { type: "predict", statement: "Bei Überlastung der Ausscheidungsorgane können sich Stoffwechselrückstände im Bindegewebe ansammeln und die Nährstoffversorgung der Zellen beeinträchtigen.", answer: true, reveal: "Diese Verschlackung führt zu gestörter Nährstoffaufnahme der Zellen und Befindlichkeitsstörungen jeglicher Art." },
       },
     ],
     phase4Questions: [
@@ -887,6 +970,12 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Membranrezeptoren nur für Steroidhormone; Kernrezeptoren für alle anderen", correct: false },
         ],
         explanation: "Zwei Klassen: 1. Membranrezeptoren: hydrophile Hormone (Katecholamine, Peptide, Glykoproteine). 2. Intrazelluläre/Kernrezeptoren: lipophile Hormone (Steroide, Thyroxin) diffundieren durch Membran.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den zwei Rezeptortypen und ihren Hormonklassen treffen zu?", checklist: [
+          { text: "Membranrezeptoren erkennen hydrophile Hormone wie Katecholamine und Peptide", correct: true },
+          { text: "Intrazelluläre (Kern-)Rezeptoren erkennen lipophile Hormone wie Steroide und Thyroxin", correct: true },
+          { text: "Lipophile Hormone diffundieren direkt durch die Zellmembran", correct: true },
+          { text: "Beide Rezeptortypen sind für dieselben Hormonklassen zuständig", correct: false },
+        ], reveal: "Membranrezeptoren binden also hydrophile, intrazelluläre Rezeptoren lipophile Hormone." },
       },
       {
         type: "mc",
@@ -899,6 +988,12 @@ const ZYTOLOGIE_1031_PLANTS = [
           { text: "Keine klinische Relevanz, da Lymphe die Funktion übernimmt", correct: false },
         ],
         explanation: "Pischinger: Verschlackung des Extrazellularraums → Grundregulation nur noch unvollständig → direkte Nährstoffmängel in Zellen → Befindlichkeitsstörungen jeglicher Art.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Grundregulation wird eingeschränkt", isWrong: false },
+          { text: "Es entstehen Nährstoffmängel in den Zellen", isWrong: false },
+          { text: "Es kommt zu Befindlichkeitsstörungen jeglicher Art", isWrong: false },
+          { text: "Es aktiviert verstärkt das Immunsystem mit gesteigerter Abwehr", isWrong: true },
+        ], whyWrong: "Verschlackung schwächt die Grundregulation, sie aktiviert nicht das Immunsystem." },
       },
     ],
   })
@@ -8288,14 +8383,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Dentin", correct: false },
           { text: "Zement", correct: false }
         ],
-        explanation: "Die Pulpa (Zahnmark) füllt den Innenraum des Zahns und enthält Nerven und Blutgefäße. Zahnschmelz ist nervenlos (frühe Karies ist daher schmerzlos). Dentin ist der voluminöse Hauptbestandteil, Zement verankert die Wurzel."
+        explanation: "Die Pulpa (Zahnmark) füllt den Innenraum des Zahns und enthält Nerven und Blutgefäße. Zahnschmelz ist nervenlos (frühe Karies ist daher schmerzlos). Dentin ist der voluminöse Hauptbestandteil, Zement verankert die Wurzel.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Zahnstrukturen treffen zu?", checklist: [
+          { text: "Die Pulpa enthält Nerven und Blutgefäße.", correct: true },
+          { text: "Dentin ist der voluminöse Hauptbestandteil des Zahns.", correct: true },
+          { text: "Zement verankert die Zahnwurzel.", correct: true },
+          { text: "Zahnschmelz enthält Nerven, weshalb frühe Karies schmerzt.", correct: false }
+        ], reveal: "Die Pulpa enthält Nerven und Blutgefäße, Dentin bildet den Hauptteil des Zahns, und Zement verankert die Wurzel. Zahnschmelz dagegen ist nervenlos, weshalb frühe Karies schmerzlos bleibt." }
       },
       {
         id: "mundhoehl_zaehne_h2",
         type: "true_false",
         statement: "Das Milchgebiss besteht aus 20 Zähnen und bricht ab dem 6. Lebensmonat durch.",
         answer: true,
-        explanation: "Das Milchgebiss (Formel 212/212 × 2) hat 20 Zähne. Der Durchbruch beginnt ca. ab dem 6. Lebensmonat und ist ca. im 2. Lebensjahr abgeschlossen."
+        explanation: "Das Milchgebiss (Formel 212/212 × 2) hat 20 Zähne. Der Durchbruch beginnt ca. ab dem 6. Lebensmonat und ist ca. im 2. Lebensjahr abgeschlossen.",
+        learningCard: { type: "reconstruct", template: "Das Milchgebiss hat ___ Zähne, der Durchbruch beginnt ab dem ___. Lebensmonat.", blanks: ["20", "6"], distractors: ["32", "12"], reveal: "Das Milchgebiss (Formel 212/212 × 2) hat 20 Zähne. Der Durchbruch beginnt ca. ab dem 6. Lebensmonat und ist im 2. Lebensjahr abgeschlossen." }
       },
       {
         id: "mundhoehl_zaehne_h3",
@@ -8307,7 +8409,13 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Zement", correct: false },
           { text: "Pulpa", correct: false }
         ],
-        explanation: "Dentin bildet den größten Teil der Zahnsubstanz und umgibt die Pulpa. Zahnschmelz bedeckt nur die Zahnkrone, ist aber die härteste Substanz des Körpers."
+        explanation: "Dentin bildet den größten Teil der Zahnsubstanz und umgibt die Pulpa. Zahnschmelz bedeckt nur die Zahnkrone, ist aber die härteste Substanz des Körpers.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Dentin bildet den größten Teil der Zahnsubstanz.", isWrong: false },
+          { text: "Zahnschmelz ist die härteste Substanz des Körpers.", isWrong: false },
+          { text: "Zahnschmelz bedeckt nur die Zahnkrone.", isWrong: false },
+          { text: "Dentin bedeckt nur die Zahnkrone, während Zahnschmelz den Zahn umgibt.", isWrong: true }
+        ], whyWrong: "Es ist umgekehrt: Zahnschmelz bedeckt nur die Zahnkrone, während Dentin den größten Teil der Zahnsubstanz bildet und die Pulpa umgibt." }
       },
       {
         id: "mundhoehl_zaehne_h4",
@@ -8319,14 +8427,16 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "1-1-2-3", correct: false },
           { text: "2-0-2-3", correct: false }
         ],
-        explanation: "Pro Quadrant im Dauergebiss: 2 Schneidezähne, 1 Eckzahn, 2 Prämolaren, 3 Molaren → Formel 2123. Das Milchgebiss hat keine Prämolaren und Molaren: Formel 212."
+        explanation: "Pro Quadrant im Dauergebiss: 2 Schneidezähne, 1 Eckzahn, 2 Prämolaren, 3 Molaren → Formel 2123. Das Milchgebiss hat keine Prämolaren und Molaren: Formel 212.",
+        learningCard: { type: "reconstruct", template: "Die Zahnformel des Dauergebisses lautet pro Quadrant: ___ Schneidezähne, ___ Eckzahn, ___ Prämolaren, ___ Molaren.", blanks: ["2", "1", "2", "3"], distractors: ["4", "0"], reveal: "Pro Quadrant hat das Dauergebiss 2 Schneidezähne, 1 Eckzahn, 2 Prämolaren und 3 Molaren (Formel 2123). Das Milchgebiss hat dagegen keine Prämolaren und Molaren (Formel 212)." }
       },
       {
         id: "mundhoehl_zaehne_h5",
         type: "true_false",
         statement: "Die Molaren des Dauergebisses ersetzen entsprechende Milchmolaren, da diese in derselben Kieferposition gewachsen sind.",
         answer: false,
-        explanation: "Das Milchgebiss enthält keine Molaren. Die Molaren des Dauergebisses werden direkt als Dauerzähne angelegt und eruptieren in neu entstehenden Knochenbereichen hinter den Milchzähnen — ohne Vorläufer im Milchgebiss."
+        explanation: "Das Milchgebiss enthält keine Molaren. Die Molaren des Dauergebisses werden direkt als Dauerzähne angelegt und eruptieren in neu entstehenden Knochenbereichen hinter den Milchzähnen — ohne Vorläufer im Milchgebiss.",
+        learningCard: { type: "predict", statement: "Die Molaren des Dauergebisses ersetzen entsprechende Milchmolaren, die an derselben Stelle standen.", answer: false, reveal: "Das Milchgebiss enthält gar keine Molaren. Die Dauermolaren werden direkt als Dauerzähne angelegt und brechen in neu entstehenden Kieferbereichen hinter den Milchzähnen durch — ohne Vorläufer im Milchgebiss." }
       }
     ],
     phase4Questions: [
@@ -8341,6 +8451,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Dentin ist nervenlos und bildet nur die äußere Zahnoberfläche", correct: false }
         ],
         explanation: "Zahnschmelz ist die härteste Substanz des Körpers; die Pulpa enthält Nerven und Gefäße (Schmerzempfindung); Dentin ist über Odontoblastenfortsätze innerviert, bildet aber nicht die äußere Zahnoberfläche — das ist der Schmelz.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Mundhöhle und den Zähnen treffen zu?", checklist: [
+          { text: "Zahnschmelz ist die härteste Substanz des Körpers.", correct: true },
+          { text: "Die Pulpa enthält Nerven und Blutgefäße.", correct: true },
+          { text: "Das Mundhöhlenepithel ist mehrschichtig, unverhornt und plattenförmig.", correct: true },
+          { text: "Dentin bildet die äußere Zahnoberfläche.", correct: false }
+        ], reveal: "Zahnschmelz ist die härteste Substanz des Körpers und bildet die äußere Zahnoberfläche, nicht Dentin. Die Pulpa enthält Nerven und Blutgefäße, und das Mundhöhlenepithel ist mehrschichtig, unverhornt und plattenförmig." },
       },
       {
         id: "mundhoehl_zaehne_mc2",
@@ -8353,6 +8469,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Das Dauergebiss bricht ab dem 6. Lebensmonat durch", correct: false }
         ],
         explanation: "Das Milchgebiss hat 20 Zähne, das Dauergebiss 32 (einschließlich Weisheitszähne); Molaren kommen nur im Dauergebiss vor; das Dauergebiss bricht ab dem 6. Lebensjahr (nicht Monat) durch.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Dauergebiss hat 32 Zähne.", isWrong: false },
+          { text: "Das Milchgebiss hat 20 Zähne.", isWrong: false },
+          { text: "Molaren kommen nur im Dauergebiss vor.", isWrong: false },
+          { text: "Das Dauergebiss bricht ab dem 6. Lebensmonat durch.", isWrong: true }
+        ], whyWrong: "Das Dauergebiss bricht erst ab dem 6. Lebensjahr durch, nicht ab dem 6. Lebensmonat — das ist der Start des Milchgebisses. Milchgebiss (20 Zähne) und Dauergebiss (32 Zähne, nur hier Molaren) sind davon unabhängig korrekt beschrieben." },
       }
     ]
   }),
@@ -8371,14 +8493,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Lipase", correct: false },
           { text: "Trypsin", correct: false }
         ],
-        explanation: "Ptyalin (Alpha-Amylase) im Speichel spaltet Stärke bereits im Mund. Pepsin ist ein Magenenzym (Eiweißspaltung), Lipase und Trypsin sind Pankreasenzyme."
+        explanation: "Ptyalin (Alpha-Amylase) im Speichel spaltet Stärke bereits im Mund. Pepsin ist ein Magenenzym (Eiweißspaltung), Lipase und Trypsin sind Pankreasenzyme.",
+        learningCard: { type: "predict", statement: "Ptyalin (Alpha-Amylase) im Speichel beginnt bereits im Mund mit der Stärkespaltung.", answer: true, reveal: "Ptyalin (Alpha-Amylase) im Speichel spaltet Stärke bereits im Mund. Pepsin ist dagegen ein Magenenzym für die Eiweißspaltung, Lipase und Trypsin sind Pankreasenzyme." }
       },
       {
         id: "speicheldruesen_h2",
         type: "true_false",
         statement: "Die Glandula parotis ist auch als Ohrspeicheldrüse bekannt und liegt paarig vor dem Ohr.",
         answer: true,
-        explanation: "Die Glandula parotis (Ohrspeicheldrüse) ist die größte der drei paarigen Speicheldrüsen und liegt vor dem Ohr. Ihr Ausführungsgang mündet in die Wangenschleimhaut."
+        explanation: "Die Glandula parotis (Ohrspeicheldrüse) ist die größte der drei paarigen Speicheldrüsen und liegt vor dem Ohr. Ihr Ausführungsgang mündet in die Wangenschleimhaut.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Glandula parotis treffen zu?", checklist: [
+          { text: "Die Glandula parotis ist die größte der drei paarigen Speicheldrüsen.", correct: true },
+          { text: "Die Glandula parotis liegt paarig vor dem Ohr.", correct: true },
+          { text: "Ihr Ausführungsgang mündet in die Wangenschleimhaut.", correct: true },
+          { text: "Die Glandula parotis liegt unter der Zunge.", correct: false }
+        ], reveal: "Die Glandula parotis (Ohrspeicheldrüse) ist die größte der drei paarigen Speicheldrüsen, liegt vor dem Ohr, und ihr Ausführungsgang mündet in die Wangenschleimhaut." }
       },
       {
         id: "speicheldruesen_h3",
@@ -8390,14 +8519,16 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "ca. 3 Liter", correct: false },
           { text: "ca. 5 Liter", correct: false }
         ],
-        explanation: "Alle Speicheldrüsen produzieren täglich ca. 1,5 Liter Speichel. Zum Vergleich: der Magen produziert 2–3 Liter Magensaft täglich."
+        explanation: "Alle Speicheldrüsen produzieren täglich ca. 1,5 Liter Speichel. Zum Vergleich: der Magen produziert 2–3 Liter Magensaft täglich.",
+        learningCard: { type: "reconstruct", template: "Alle Speicheldrüsen zusammen produzieren täglich ca. ___ Liter Speichel, der Magen dagegen ___–3 Liter Magensaft.", blanks: ["1,5", "2"], distractors: ["3", "0,5"], reveal: "Alle Speicheldrüsen produzieren zusammen täglich ca. 1,5 Liter Speichel. Zum Vergleich produziert der Magen 2–3 Liter Magensaft täglich." }
       },
       {
         id: "speicheldruesen_h4",
         type: "true_false",
         statement: "Speichel kann zur Diagnose einer Schwermetallvergiftung (z. B. Blei, Cadmium, Arsen) herangezogen werden.",
         answer: true,
-        explanation: "Schwermetalle wie Blei (Pb), Cadmium (Cd) und Arsen (As) werden in den Speichel ausgeschieden und sind daher im Speichel nachweisbar — Speichel eignet sich daher als diagnostisches Medium."
+        explanation: "Schwermetalle wie Blei (Pb), Cadmium (Cd) und Arsen (As) werden in den Speichel ausgeschieden und sind daher im Speichel nachweisbar — Speichel eignet sich daher als diagnostisches Medium.",
+        learningCard: { type: "predict", statement: "Speichel kann zur Diagnose einer Schwermetallvergiftung herangezogen werden, da Blei, Cadmium und Arsen in ihn ausgeschieden werden.", answer: true, reveal: "Schwermetalle wie Blei, Cadmium und Arsen werden in den Speichel ausgeschieden und sind dort nachweisbar. Speichel eignet sich daher als diagnostisches Medium für Schwermetallvergiftungen." }
       },
       {
         id: "speicheldruesen_h5",
@@ -8409,7 +8540,13 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Nur Chemorezeptoren bei direktem Nahrungskontakt", correct: false },
           { text: "Nur psychische Reize (Konditionierung)", correct: false }
         ],
-        explanation: "Die Speichelproduktion wird durch drei Reiztypen ausgelöst: Chemorezeptoren (Geschmack und Geruch), mechanische Kaubewegungen sowie psychische Reize (allein der Gedanke an Essen kann Speichelfluss auslösen)."
+        explanation: "Die Speichelproduktion wird durch drei Reiztypen ausgelöst: Chemorezeptoren (Geschmack und Geruch), mechanische Kaubewegungen sowie psychische Reize (allein der Gedanke an Essen kann Speichelfluss auslösen).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Chemorezeptoren für Geschmack und Geruch lösen Speichelfluss aus.", isWrong: false },
+          { text: "Mechanische Kaubewegungen lösen Speichelfluss aus.", isWrong: false },
+          { text: "Schon der Gedanke an Essen kann Speichelfluss auslösen.", isWrong: false },
+          { text: "Speichelfluss wird ausschließlich durch direkten Nahrungskontakt im Mund ausgelöst.", isWrong: true }
+        ], whyWrong: "Speichelfluss wird durch drei Reiztypen ausgelöst — Chemorezeptoren, Kaubewegungen und psychische Reize wie den bloßen Gedanken an Essen. Direkter Nahrungskontakt ist also nicht die einzige Auslösequelle." }
       }
     ],
     phase4Questions: [
@@ -8424,6 +8561,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Speichel wird ausschließlich durch mechanische Kaureize produziert", correct: false }
         ],
         explanation: "Die Glandula parotis liegt paarig vor dem Ohr; Speichel enthält Alpha-Amylase (Ptyalin) für die orale Kohlenhydratverdauung, ca. 1,5 L/Tag; Speichelproduktion wird durch mechanische, olfaktorische und visuelle Reize ausgelöst.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Speicheldrüsen und Speichel treffen zu?", checklist: [
+          { text: "Die Glandula parotis liegt paarig vor dem Ohr.", correct: true },
+          { text: "Speichel enthält Alpha-Amylase (Ptyalin) zur Kohlenhydratverdauung.", correct: true },
+          { text: "Die tägliche Speichelproduktion beträgt ca. 1,5 Liter.", correct: true },
+          { text: "Speichel wird ausschließlich durch mechanische Kaureize produziert.", correct: false }
+        ], reveal: "Die Glandula parotis liegt paarig vor dem Ohr; Speichel enthält Alpha-Amylase (Ptyalin) zur Kohlenhydratverdauung und wird täglich mit ca. 1,5 Litern produziert. Ausgelöst wird die Produktion aber nicht nur mechanisch, sondern auch durch olfaktorische und visuelle Reize." },
       },
       {
         id: "speicheldruesen_mc2",
@@ -8436,6 +8579,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Speichel besteht zu 100 % aus Wasser ohne Enzyme", correct: false }
         ],
         explanation: "Speichel hat bakterizide Wirkung (IgA, Lysozym), ist als Diagnostikmaterial nutzbar (Schwermetalle, Hormone), und Kleinspeicheldrüsen sezernieren kontinuierlich Gleitspeichel; Speichel enthält Wasser, Enzyme, Elektrolyte und Muzine — nicht nur Wasser.",
+        learningCard: { type: "reconstruct", template: "Speichel wirkt bakterizid durch ___ und ___ und besteht außerdem aus Wasser, Elektrolyten und Muzinen.", blanks: ["IgA", "Lysozym"], distractors: ["Pepsin", "Trypsin"], reveal: "Speichel wirkt bakterizid durch IgA und Lysozym, dient auch als Diagnostikmaterial (z. B. für Schwermetalle und Hormone), und besteht aus Wasser, Enzymen, Elektrolyten und Muzinen — nicht nur aus Wasser." }
       }
     ]
   }),
@@ -8454,14 +8598,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Papillae foliatae (blattförmige)", correct: false },
           { text: "Papillae vallatae (wallförmige)", correct: false }
         ],
-        explanation: "Die Papillae filiformes sind die häufigsten Papillen und geben der Zunge ihre raue Textur. Sie enthalten keine Geschmacksknospen und vermitteln nur Tastsinn. Alle anderen drei Typen (fungiformes, foliatae, vallatae) sind am Geschmackssinn beteiligt."
+        explanation: "Die Papillae filiformes sind die häufigsten Papillen und geben der Zunge ihre raue Textur. Sie enthalten keine Geschmacksknospen und vermitteln nur Tastsinn. Alle anderen drei Typen (fungiformes, foliatae, vallatae) sind am Geschmackssinn beteiligt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Zungenpapillen treffen zu?", checklist: [
+          { text: "Papillae filiformes sind die häufigsten Papillen der Zunge.", correct: true },
+          { text: "Papillae filiformes enthalten keine Geschmacksknospen.", correct: true },
+          { text: "Fungiformes, foliatae und vallatae sind am Geschmackssinn beteiligt.", correct: true },
+          { text: "Papillae filiformes vermitteln Geschmack ebenso wie Tastsinn.", correct: false }
+        ], reveal: "Papillae filiformes sind die häufigsten Papillen, geben der Zunge ihre raue Textur und enthalten keine Geschmacksknospen — sie vermitteln nur Tastsinn. Fungiformes, foliatae und vallatae dagegen sind alle am Geschmackssinn beteiligt." }
       },
       {
         id: "zunge_geschmack_h2",
         type: "true_false",
         statement: "Umami ist eine der fünf anerkannten Grundgeschmacksrichtungen und wird durch Glutaminsäure ausgelöst.",
         answer: true,
-        explanation: "Umami (japanisch für 'Wohlgeschmack') ist die fünfte Grundgeschmacksrichtung neben süß, sauer, salzig und bitter. Er wird durch Glutaminsäure (Glutamat) ausgelöst und ist typisch für Fleisch, Parmesan und Pilze."
+        explanation: "Umami (japanisch für 'Wohlgeschmack') ist die fünfte Grundgeschmacksrichtung neben süß, sauer, salzig und bitter. Er wird durch Glutaminsäure (Glutamat) ausgelöst und ist typisch für Fleisch, Parmesan und Pilze.",
+        learningCard: { type: "predict", statement: "Umami gehört zu den fünf anerkannten Grundgeschmacksrichtungen und wird durch Glutaminsäure ausgelöst.", answer: true, reveal: "Umami ist die fünfte Grundgeschmacksrichtung neben süß, sauer, salzig und bitter. Er wird durch Glutaminsäure (Glutamat) ausgelöst und ist typisch für Fleisch, Parmesan und Pilze." }
       },
       {
         id: "zunge_geschmack_h3",
@@ -8473,14 +8624,26 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Ibuprofen bei Entzündungen", correct: false },
           { text: "Metformin bei Diabetes", correct: false }
         ],
-        explanation: "Nitrolingual (Nitroglyzerin) wird sublingual (unter die Zunge) gegeben und wirkt innerhalb von Minuten durch direkte Resorption ins Blut — ohne hepatischen First-Pass-Effekt. Adalat (Nifedipin) ist ein weiteres Beispiel."
+        explanation: "Nitrolingual (Nitroglyzerin) wird sublingual (unter die Zunge) gegeben und wirkt innerhalb von Minuten durch direkte Resorption ins Blut — ohne hepatischen First-Pass-Effekt. Adalat (Nifedipin) ist ein weiteres Beispiel.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Nitrolingual wird sublingual (unter die Zunge) verabreicht.", isWrong: false },
+          { text: "Nitrolingual wirkt innerhalb von Minuten.", isWrong: false },
+          { text: "Adalat (Nifedipin) ist ein weiteres Beispiel für sublinguale Gabe.", isWrong: false },
+          { text: "Nitrolingual muss zuerst die Leber passieren, bevor es wirkt.", isWrong: true }
+        ], whyWrong: "Sublinguale Gabe wie bei Nitrolingual umgeht gerade den First-Pass-Effekt der Leber, weil der Wirkstoff direkt über die Mundschleimhaut ins Blut gelangt. Genau das macht die schnelle Wirkung innerhalb von Minuten möglich." }
       },
       {
         id: "zunge_geschmack_h4",
         type: "true_false",
         statement: "Die sublinguale Resorption (unter der Zunge) umgeht den First-Pass-Effekt der Leber, da Wirkstoffe direkt ins Blut gelangen.",
         answer: true,
-        explanation: "Sublinguale Wirkstoffe werden über die Mundschleimhaut direkt ins Blut aufgenommen und umgehen so den Abbau in der Leber (First-Pass-Effekt). Nitrolingual (Nitroglyzerin) und Adalat (Nifedipin) sind klassische Beispiele für diese Applikationsform."
+        explanation: "Sublinguale Wirkstoffe werden über die Mundschleimhaut direkt ins Blut aufgenommen und umgehen so den Abbau in der Leber (First-Pass-Effekt). Nitrolingual (Nitroglyzerin) und Adalat (Nifedipin) sind klassische Beispiele für diese Applikationsform.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur sublingualen Resorption treffen zu?", checklist: [
+          { text: "Sublinguale Wirkstoffe werden über die Mundschleimhaut direkt ins Blut aufgenommen.", correct: true },
+          { text: "Sublinguale Gabe umgeht den First-Pass-Effekt der Leber.", correct: true },
+          { text: "Nitrolingual und Adalat sind klassische Beispiele für sublinguale Gabe.", correct: true },
+          { text: "Sublinguale Wirkstoffe müssen zuerst die Leber passieren.", correct: false }
+        ], reveal: "Sublinguale Wirkstoffe werden über die Mundschleimhaut direkt ins Blut aufgenommen und umgehen so den First-Pass-Effekt der Leber. Nitrolingual (Nitroglyzerin) und Adalat (Nifedipin) sind klassische Beispiele dafür." }
       },
       {
         id: "zunge_geschmack_h5",
@@ -8492,7 +8655,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Ausschließlich am vorderen Zungenrand", correct: false },
           { text: "An der Zungenspitze (Apex linguae)", correct: false }
         ],
-        explanation: "Die Papillae vallatae (wallförmige Papillen) sind die größten Papillen und in einer V-förmigen Reihe im hinteren Zungenbereich angeordnet. Sie sind besonders reich an Geschmacksknospen."
+        explanation: "Die Papillae vallatae (wallförmige Papillen) sind die größten Papillen und in einer V-förmigen Reihe im hinteren Zungenbereich angeordnet. Sie sind besonders reich an Geschmacksknospen.",
+        learningCard: { type: "reconstruct", template: "Die Papillae vallatae sind die ___ Papillen und liegen in einer ___-förmigen Reihe im hinteren Zungenbereich.", blanks: ["größten", "V"], distractors: ["kleinsten", "U"], reveal: "Die Papillae vallatae sind die größten Papillen der Zunge und liegen in einer V-förmigen Reihe im hinteren Zungenbereich. Sie sind besonders reich an Geschmacksknospen." }
       }
     ],
     phase4Questions: [
@@ -8507,6 +8671,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Papillae foliatae befinden sich am hinteren Zungenrand und nehmen am Geschmack teil", correct: true }
         ],
         explanation: "Drei Papillentypen tragen Geschmacksknospen: fungiformes (verteilt über die Zunge), vallatae (V-förmig, 8-12 Stück hinten) und foliatae (seitlich hinten); Papillae filiformes dienen nur dem mechanischen Ertasten und haben keine Geschmacksknospen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Papillae fungiformes sind am Geschmackssinn beteiligt.", isWrong: false },
+          { text: "Papillae vallatae liegen V-förmig im hinteren Zungenbereich.", isWrong: false },
+          { text: "Papillae foliatae liegen seitlich hinten und sind am Geschmack beteiligt.", isWrong: false },
+          { text: "Papillae filiformes enthalten Geschmacksknospen.", isWrong: true }
+        ], whyWrong: "Papillae filiformes enthalten keine Geschmacksknospen — sie dienen nur dem mechanischen Ertasten. Fungiformes, vallatae und foliatae sind dagegen alle am Geschmackssinn beteiligt." },
       },
       {
         id: "zunge_geschmack_mc2",
@@ -8519,6 +8689,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die Zunge besteht aus glatter Muskulatur und ist unwillkürlich gesteuert", correct: false }
         ],
         explanation: "Die fünf Grundgeschmacksrichtungen sind süß, sauer, salzig, bitter und umami (glutamatsensitiv); sublinguale Resorption umgeht den First-Pass-Effekt der Leber; die Zunge besteht aus quergestreifter Skelettmuskulatur und ist willkürlich steuerbar.",
+        learningCard: { type: "reconstruct", template: "Die fünf Grundgeschmacksrichtungen sind süß, sauer, salzig, bitter und ___; die Zunge besteht aus ___ Muskulatur und ist willkürlich steuerbar.", blanks: ["umami", "quergestreifter"], distractors: ["metallisch", "glatter"], reveal: "Die fünf Grundgeschmacksrichtungen sind süß, sauer, salzig, bitter und umami (glutamatsensitiv). Die Zunge besteht aus quergestreifter Skelettmuskulatur, ist damit willkürlich steuerbar, und sublinguale Resorption umgeht den First-Pass-Effekt der Leber." }
       }
     ]
   }),
@@ -8537,14 +8708,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Hypopharynx (Pars laryngea)", correct: false },
           { text: "Ösophagus", correct: false }
         ],
-        explanation: "Der Epipharynx (Pars nasalis) liegt hinter der Nase und ist ausschließlich Luftweg. Der Mesopharynx lässt Luft und Speise passieren, der Hypopharynx ist reiner Speiseweg."
+        explanation: "Der Epipharynx (Pars nasalis) liegt hinter der Nase und ist ausschließlich Luftweg. Der Mesopharynx lässt Luft und Speise passieren, der Hypopharynx ist reiner Speiseweg.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Rachenabschnitten treffen zu?", checklist: [
+          { text: "Der Epipharynx (Pars nasalis) ist ausschließlich Luftweg.", correct: true },
+          { text: "Der Mesopharynx lässt sowohl Luft als auch Speise passieren.", correct: true },
+          { text: "Der Hypopharynx ist reiner Speiseweg.", correct: true },
+          { text: "Der Epipharynx dient sowohl dem Luft- als auch dem Speiseweg.", correct: false }
+        ], reveal: "Der Epipharynx (Pars nasalis) ist ausschließlich Luftweg, der Mesopharynx lässt Luft und Speise passieren, und der Hypopharynx ist reiner Speiseweg." }
       },
       {
         id: "rachen_schluckakt_h2",
         type: "true_false",
         statement: "Die orale Vorbereitungsphase des Schluckakts ist willkürlich steuerbar.",
         answer: true,
-        explanation: "Die ersten beiden Phasen des Schluckakts — orale Vorbereitungsphase (Zerkleinerung, Einspeichelung) und orale Transportphase (Zungenrücken transportiert Bolus) — sind willkürlich. Erst die pharyngeale Phase ist unwillkürlich."
+        explanation: "Die ersten beiden Phasen des Schluckakts — orale Vorbereitungsphase (Zerkleinerung, Einspeichelung) und orale Transportphase (Zungenrücken transportiert Bolus) — sind willkürlich. Erst die pharyngeale Phase ist unwillkürlich.",
+        learningCard: { type: "predict", statement: "Die orale Vorbereitungsphase des Schluckakts ist willkürlich steuerbar.", answer: true, reveal: "Die ersten beiden Phasen des Schluckakts — orale Vorbereitungsphase (Zerkleinerung, Einspeichelung) und orale Transportphase (Bolustransport) — sind willkürlich. Erst die pharyngeale Phase läuft unwillkürlich ab." }
       },
       {
         id: "rachen_schluckakt_h3",
@@ -8556,7 +8734,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "N. hypoglossus und N. accessorius", correct: false },
           { text: "N. olfactorius und N. opticus", correct: false }
         ],
-        explanation: "Der N. glossopharyngeus (IX) und N. vagus (X) koordinieren in der pharyngealen Phase den Schluckreflex. Ab diesem Moment läuft der Schluckakt unwillkürlich ab."
+        explanation: "Der N. glossopharyngeus (IX) und N. vagus (X) koordinieren in der pharyngealen Phase den Schluckreflex. Ab diesem Moment läuft der Schluckakt unwillkürlich ab.",
+        learningCard: { type: "reconstruct", template: "Der Schluckreflex wird in der pharyngealen Phase durch N. ___ (IX) und N. ___ (X) koordiniert.", blanks: ["glossopharyngeus", "vagus"], distractors: ["trigeminus", "facialis"], reveal: "Der N. glossopharyngeus (IX) und N. vagus (X) koordinieren den Schluckreflex in der pharyngealen Phase. Ab diesem Moment läuft der Schluckakt unwillkürlich ab." }
       },
       {
         id: "rachen_schluckakt_h4",
@@ -8568,14 +8747,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Zungenbein und Gaumenbögen", correct: false },
           { text: "Tonsillen und Uvula", correct: false }
         ],
-        explanation: "Obere Atemwege werden durch Gaumensegel + Passavant-Ringwulst verschlossen. Untere Atemwege werden durch Stimmlippen-Schluss + Epiglottis (Kehldeckel) gesichert."
+        explanation: "Obere Atemwege werden durch Gaumensegel + Passavant-Ringwulst verschlossen. Untere Atemwege werden durch Stimmlippen-Schluss + Epiglottis (Kehldeckel) gesichert.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die oberen Atemwege werden durch Gaumensegel und Passavant-Ringwulst verschlossen.", isWrong: false },
+          { text: "Die unteren Atemwege werden durch Stimmlippenschluss gesichert.", isWrong: false },
+          { text: "Die Epiglottis schützt die unteren Atemwege.", isWrong: false },
+          { text: "Die Epiglottis verschließt die oberen Atemwege im Nasopharynx.", isWrong: true }
+        ], whyWrong: "Die Epiglottis schützt die unteren Atemwege, nicht die oberen. Die oberen Atemwege werden stattdessen durch Gaumensegel und Passavant-Ringwulst verschlossen." }
       },
       {
         id: "rachen_schluckakt_h5",
         type: "true_false",
         statement: "Flüssigkeiten und feste Nahrung werden in der ösophagealen Phase des Schluckakts auf dieselbe Weise (durch Peristaltik) in den Magen befördert.",
         answer: false,
-        explanation: "Flüssigkeiten gelangen per Spritzschluck schnell in den Magen, feste Nahrung wird durch propulsive Peristaltik transportiert. Bei steckenbleibenden Resten aktiviert sich sekundäre Peristaltik."
+        explanation: "Flüssigkeiten gelangen per Spritzschluck schnell in den Magen, feste Nahrung wird durch propulsive Peristaltik transportiert. Bei steckenbleibenden Resten aktiviert sich sekundäre Peristaltik.",
+        learningCard: { type: "predict", statement: "Flüssigkeiten und feste Nahrung werden in der ösophagealen Phase auf dieselbe Weise transportiert.", answer: false, reveal: "Flüssigkeiten gelangen per Spritzschluck schnell in den Magen, während feste Nahrung durch propulsive Peristaltik transportiert wird. Bleiben Reste stecken, aktiviert sich zusätzlich die sekundäre Peristaltik." }
       }
     ],
     phase4Questions: [
@@ -8590,6 +8776,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die Tonsillen blockieren den Speiseweg zur Verbesserung der Passage", correct: false }
         ],
         explanation: "In der pharyngealen Phase werden die Atemwege dreifach gesichert: Gaumensegel + Passavant-Wulst (Nasopharynx), Stimmritzenschluss und Epiglottis-Abkippen; die Tonsillen haben dabei keine Sperrfunktion für den Speiseweg.",
+        learningCard: { type: "teachback", prompt: "Welche Schutzmaßnahmen in der pharyngealen Phase treffen zu?", checklist: [
+          { text: "Gaumensegel und Passavant-Wulst verschließen den Nasopharynx.", correct: true },
+          { text: "Der Stimmritzenschluss schützt die unteren Atemwege.", correct: true },
+          { text: "Die Epiglottis kippt zum Schutz des Larynx nach hinten.", correct: true },
+          { text: "Die Tonsillen blockieren den Speiseweg.", correct: false }
+        ], reveal: "In der pharyngealen Phase werden die Atemwege dreifach gesichert: Gaumensegel und Passavant-Wulst verschließen den Nasopharynx, Stimmritzenschluss und Epiglottis-Abkippen schützen die unteren Atemwege. Die Tonsillen haben dabei keine Sperrfunktion für den Speiseweg." },
       },
       {
         id: "rachen_schluckakt_mc2",
@@ -8602,6 +8794,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Der gesamte Schluckakt ist von Beginn an ein unwillkürlicher Reflex", correct: false }
         ],
         explanation: "Der Schluckakt beginnt willkürlich (orale Phase), wird dann durch Berühren der Rachenhinterwand reflexartig über N. glossopharyngeus (IX) und N. vagus (X) ausgelöst; der Epipharynx dient ausschließlich als Luftweg.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Schluckakt beginnt willkürlich in der oralen Phase.", isWrong: false },
+          { text: "Der Schluckreflex wird über N. glossopharyngeus und N. vagus ausgelöst.", isWrong: false },
+          { text: "Der Epipharynx dient ausschließlich als Luftweg.", isWrong: false },
+          { text: "Der gesamte Schluckakt ist von Beginn an ein unwillkürlicher Reflex.", isWrong: true }
+        ], whyWrong: "Der Schluckakt beginnt willkürlich mit der oralen Phase und wird erst durch Berühren der Rachenhinterwand reflexartig über N. glossopharyngeus und N. vagus ausgelöst. Er ist also nicht von Beginn an unwillkürlich." },
       }
     ]
   }),
@@ -8620,14 +8818,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "ca. 40 cm", correct: false },
           { text: "ca. 35 cm", correct: false }
         ],
-        explanation: "Die Constrictio bronchoaortica liegt auf Höhe des Aortenbogens (Th4), ca. 25 cm ab der Zahnreihe. Die Constrictio cricoidea liegt bei ca. 15 cm, die Constrictio diaphragmatica (Hiatus) bei ca. 40 cm."
+        explanation: "Die Constrictio bronchoaortica liegt auf Höhe des Aortenbogens (Th4), ca. 25 cm ab der Zahnreihe. Die Constrictio cricoidea liegt bei ca. 15 cm, die Constrictio diaphragmatica (Hiatus) bei ca. 40 cm.",
+        learningCard: { type: "reconstruct", template: "Die Constrictio cricoidea liegt bei ca. ___ cm, die Constrictio bronchoaortica bei ca. ___ cm ab der Zahnreihe.", blanks: ["15", "25"], distractors: ["20", "30"], reveal: "Die Constrictio cricoidea liegt bei ca. 15 cm, die Constrictio bronchoaortica bei ca. 25 cm (Höhe Aortenbogen, Th4), und die Constrictio diaphragmatica bei ca. 40 cm ab der Zahnreihe." }
       },
       {
         id: "oesophagus_h2",
         type: "true_false",
         statement: "Die äußerste Schicht des Ösophagus ist — anders als beim restlichen Magen-Darm-Trakt — eine Tunica adventitia und keine Serosa.",
         answer: true,
-        explanation: "Der Ösophagus hat außen eine Tunica adventitia (lockeres Bindegewebe), die Verschieblichkeit bei der Peristaltik erlaubt. Magen, Dünndarm und Dickdarm haben eine Tunica serosa als äußerste Schicht."
+        explanation: "Der Ösophagus hat außen eine Tunica adventitia (lockeres Bindegewebe), die Verschieblichkeit bei der Peristaltik erlaubt. Magen, Dünndarm und Dickdarm haben eine Tunica serosa als äußerste Schicht.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Ösophagus hat außen eine Tunica adventitia.", isWrong: false },
+          { text: "Die Tunica adventitia erlaubt Verschieblichkeit bei der Peristaltik.", isWrong: false },
+          { text: "Magen, Dünndarm und Dickdarm haben außen eine Tunica serosa.", isWrong: false },
+          { text: "Der Ösophagus hat wie der restliche Magen-Darm-Trakt außen eine Tunica serosa.", isWrong: true }
+        ], whyWrong: "Der Ösophagus hat als Besonderheit außen eine Tunica adventitia statt einer Serosa — anders als Magen, Dünndarm und Dickdarm, die eine Serosa besitzen." }
       },
       {
         id: "oesophagus_h3",
@@ -8639,7 +8844,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "N. phrenicus", correct: false },
           { text: "Plexus brachialis", correct: false }
         ],
-        explanation: "Der N. vagus (X. Hirnnerv) versorgt den Ösophagus motorisch und koordiniert die Peristaltik. Der N. phrenicus versorgt das Zwerchfell, der N. glossopharyngeus Rachen und Zunge."
+        explanation: "Der N. vagus (X. Hirnnerv) versorgt den Ösophagus motorisch und koordiniert die Peristaltik. Der N. phrenicus versorgt das Zwerchfell, der N. glossopharyngeus Rachen und Zunge.",
+        learningCard: { type: "predict", statement: "Der N. vagus steuert die Peristaltik des Ösophagus.", answer: true, reveal: "Der N. vagus (X. Hirnnerv) versorgt den Ösophagus motorisch und koordiniert die Peristaltik. Der N. phrenicus versorgt dagegen das Zwerchfell, der N. glossopharyngeus Rachen und Zunge." }
       },
       {
         id: "oesophagus_h4",
@@ -8651,14 +8857,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "35–40 cm", correct: false },
           { text: "50–55 cm", correct: false }
         ],
-        explanation: "Der Ösophagus ist 23–28 cm lang und hat einen Außendurchmesser von 3–3,5 cm. Er reicht von C6/C7 bis Th9–Th11."
+        explanation: "Der Ösophagus ist 23–28 cm lang und hat einen Außendurchmesser von 3–3,5 cm. Er reicht von C6/C7 bis Th9–Th11.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Maßen des Ösophagus treffen zu?", checklist: [
+          { text: "Der Ösophagus ist 23–28 cm lang.", correct: true },
+          { text: "Der Ösophagus hat einen Außendurchmesser von 3–3,5 cm.", correct: true },
+          { text: "Der Ösophagus reicht von C6/C7 bis Th9–Th11.", correct: true },
+          { text: "Der Ösophagus ist über 50 cm lang.", correct: false }
+        ], reveal: "Der Ösophagus ist 23–28 cm lang, hat einen Außendurchmesser von 3–3,5 cm und reicht von C6/C7 bis Th9–Th11." }
       },
       {
         id: "oesophagus_h5",
         type: "true_false",
         statement: "Die Constrictio cricoidea ist die am weitesten von der Zahnreihe entfernte Engstelle des Ösophagus.",
         answer: false,
-        explanation: "Die Constrictio cricoidea liegt mit ca. 15 cm am nächsten an der Zahnreihe. Die am weitesten entfernte Engstelle ist die Constrictio diaphragmatica (Hiatus oesophageus) bei ca. 40 cm."
+        explanation: "Die Constrictio cricoidea liegt mit ca. 15 cm am nächsten an der Zahnreihe. Die am weitesten entfernte Engstelle ist die Constrictio diaphragmatica (Hiatus oesophageus) bei ca. 40 cm.",
+        learningCard: { type: "predict", statement: "Die Constrictio cricoidea ist die am weitesten von der Zahnreihe entfernte Engstelle des Ösophagus.", answer: false, reveal: "Die Constrictio cricoidea liegt mit ca. 15 cm am nächsten an der Zahnreihe. Am weitesten entfernt liegt die Constrictio diaphragmatica bei ca. 40 cm." }
       }
     ],
     phase4Questions: [
@@ -8673,6 +8886,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Es gibt insgesamt vier physiologische Engstellen des Ösophagus", correct: false }
         ],
         explanation: "Der Ösophagus hat drei (nicht vier) physiologische Engstellen: Constrictio cricoidea (~15 cm), bronchoaortica (~25 cm) und diaphragmatica (~40 cm) — dort bleiben Fremdkörper und Karzinome bevorzugt hängen.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Die Constrictio cricoidea liegt ca. 15 cm von der Zahnreihe entfernt.", isWrong: false },
+          { text: "Die Constrictio bronchoaortica liegt ca. 25 cm von der Zahnreihe entfernt.", isWrong: false },
+          { text: "Die Constrictio diaphragmatica liegt ca. 40 cm von der Zahnreihe entfernt.", isWrong: false },
+          { text: "Der Ösophagus hat insgesamt vier physiologische Engstellen.", isWrong: true }
+        ], whyWrong: "Der Ösophagus hat nur drei physiologische Engstellen — cricoidea, bronchoaortica und diaphragmatica —, nicht vier. Dort bleiben Fremdkörper und Karzinome bevorzugt hängen." },
       },
       {
         id: "oesophagus_mc2",
@@ -8685,6 +8904,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Der Ösophagus hat außen eine Serosa wie Magen und Dünndarm", correct: false }
         ],
         explanation: "Im Gegensatz zum restlichen Verdauungstrakt hat der Ösophagus mehrschichtiges unverhorntes Plattenepithel und außen eine Adventitia (keine Serosa), was Ösophagusperforation schwerer abgrenzt; die Submucosa enthält schleimproduzierende Glandulae oesophageae.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Feinbau des Ösophagus treffen zu?", checklist: [
+          { text: "Die innerste Schicht ist eine Tunica mucosa aus mehrschichtigem unverhorntem Plattenepithel.", correct: true },
+          { text: "Die äußerste Schicht ist eine Tunica adventitia (keine Serosa).", correct: true },
+          { text: "Die Tunica submucosa enthält Glandulae oesophageae.", correct: true },
+          { text: "Der Ösophagus hat außen eine Serosa wie Magen und Dünndarm.", correct: false }
+        ], reveal: "Der Ösophagus hat innen mehrschichtiges unverhorntes Plattenepithel, außen eine Tunica adventitia statt Serosa, und die Submucosa enthält schleimproduzierende Glandulae oesophageae." },
       }
     ]
   }),
@@ -8703,14 +8928,16 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Fundus; Luftblasen verursachen lokale Irritationen", correct: false },
           { text: "Antrum; höchste Säurekonzentration im Antrum", correct: false }
         ],
-        explanation: "An der Kardia wechselt das Plattenepithel des Ösophagus in das Zylinderepithel des Magens. Dieser Gewebewechsel ist ein typischer Ort für Geschwüre und maligne Tumore (z. B. Adenokarzinom des gastroösophagealen Übergangs)."
+        explanation: "An der Kardia wechselt das Plattenepithel des Ösophagus in das Zylinderepithel des Magens. Dieser Gewebewechsel ist ein typischer Ort für Geschwüre und maligne Tumore (z. B. Adenokarzinom des gastroösophagealen Übergangs).",
+        learningCard: { type: "predict", statement: "An der Kardia findet ein Epithelwechsel statt, der Geschwüre und Tumoren begünstigt.", answer: true, reveal: "An der Kardia wechselt das Plattenepithel des Ösophagus in das Zylinderepithel des Magens. Dieser Gewebewechsel ist ein typischer Ort für Geschwüre und maligne Tumore." }
       },
       {
         id: "magen_aufbau_h2",
         type: "true_false",
         statement: "Der Fundus des Magens enthält typischerweise Luftblasen und ist der Grund für das Aufstoßen nach dem Essen.",
         answer: true,
-        explanation: "Der kuppelförmige Fundus liegt oberhalb der Kardia und sammelt beim Stehen Luft (z. B. aus kohlensäurehaltigen Getränken). Diese Luft wird durch Aufstoßen (Rülpsen) entlassen."
+        explanation: "Der kuppelförmige Fundus liegt oberhalb der Kardia und sammelt beim Stehen Luft (z. B. aus kohlensäurehaltigen Getränken). Diese Luft wird durch Aufstoßen (Rülpsen) entlassen.",
+        learningCard: { type: "reconstruct", template: "Der ___ des Magens liegt oberhalb der Kardia und sammelt beim Stehen ___, die durch Aufstoßen entlassen wird.", blanks: ["Fundus", "Luft"], distractors: ["Pylorus", "Säure"], reveal: "Der kuppelförmige Fundus liegt oberhalb der Kardia und sammelt beim Stehen Luft, die durch Aufstoßen (Rülpsen) entlassen wird." }
       },
       {
         id: "magen_aufbau_h3",
@@ -8722,7 +8949,13 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Ein Muskelband am Pylorus", correct: false },
           { text: "Die Bauchfellhülle des Ösophagus", correct: false }
         ],
-        explanation: "Das Omentum majus (große Netz) hängt als Bauchfellschürze an der Curvatura major und fällt über die Darmschlingen. Das Omentum minus verbindet Magen und Leber (Curvatura minor → Ligamentum hepatogastricum)."
+        explanation: "Das Omentum majus (große Netz) hängt als Bauchfellschürze an der Curvatura major und fällt über die Darmschlingen. Das Omentum minus verbindet Magen und Leber (Curvatura minor → Ligamentum hepatogastricum).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Das Omentum majus hängt an der Curvatura major.", isWrong: false },
+          { text: "Das Omentum majus fällt als Bauchfellschürze über die Darmschlingen.", isWrong: false },
+          { text: "Das Omentum minus verbindet Magen und Leber über die Curvatura minor.", isWrong: false },
+          { text: "Das Omentum majus verbindet Magen und Leber an der Curvatura minor.", isWrong: true }
+        ], whyWrong: "Nicht das Omentum majus, sondern das Omentum minus verbindet Magen und Leber über die Curvatura minor. Das Omentum majus hängt dagegen als Schürze an der Curvatura major über die Darmschlingen." }
       },
       {
         id: "magen_aufbau_h4",
@@ -8735,14 +8968,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Verschluss des Pylorus (Sphinkterfunktion)", correct: false },
           { text: "Transport entlang der Curvatura minor (Magenstraße)", correct: false }
         ],
-        explanation: "Die innerste schräge Muskelschicht ist nur im Magen vorhanden. Sie durchmischt den Chymus und trennt die Magenstraße (Transportkanal) vom Magensack (Verdauungsreservoir). Die innere Ringschicht steuert Peristaltik und Entleerung."
+        explanation: "Die innerste schräge Muskelschicht ist nur im Magen vorhanden. Sie durchmischt den Chymus und trennt die Magenstraße (Transportkanal) vom Magensack (Verdauungsreservoir). Die innere Ringschicht steuert Peristaltik und Entleerung.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur schrägen Muskelschicht des Magens treffen zu?", checklist: [
+          { text: "Die schräge Muskelschicht ist nur im Magen vorhanden.", correct: true },
+          { text: "Die schräge Muskelschicht durchmischt den Chymus.", correct: true },
+          { text: "Die schräge Muskelschicht trennt Magenstraße von Magensack.", correct: true },
+          { text: "Die Ringmuskelschicht durchmischt den Chymus.", correct: false }
+        ], reveal: "Die innerste schräge Muskelschicht kommt nur im Magen vor, durchmischt den Chymus und trennt die Magenstraße vom Magensack. Die Ringschicht dagegen steuert Peristaltik und Entleerung." }
       },
       {
         id: "magen_aufbau_h5",
         type: "true_false",
         statement: "Die Magenstraße dient der enzymatischen Verdauung von Nahrung im Magen.",
         answer: false,
-        explanation: "Die Magenstraße ist ein Transportkanal entlang der Curvatura minor und dient dem raschen Transport des Chymus — nicht der Verdauung. Die Verdauung findet im Magensack (Corpus und Fundus) statt, wo die Nahrung mit Magensaft durchmischt wird."
+        explanation: "Die Magenstraße ist ein Transportkanal entlang der Curvatura minor und dient dem raschen Transport des Chymus — nicht der Verdauung. Die Verdauung findet im Magensack (Corpus und Fundus) statt, wo die Nahrung mit Magensaft durchmischt wird.",
+        learningCard: { type: "predict", statement: "Die Magenstraße dient der enzymatischen Verdauung von Nahrung im Magen.", answer: false, reveal: "Die Magenstraße ist ein Transportkanal entlang der Curvatura minor, der dem raschen Transport des Chymus dient — nicht der Verdauung. Die eigentliche Verdauung findet im Magensack (Corpus und Fundus) statt." }
       }
     ],
     phase4Questions: [
@@ -8758,6 +8998,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Die Curvatura major liegt rechts und hängt das Omentum minus", correct: false }
         ],
         explanation: "An der Kardia begünstigt der Epithelübergang Barrett-Ösophagus; im Fundus sammeln sich Luftblasen; der Pylorus wird durch den M. sphincter pylori kontrolliert; das Omentum minus hängt an der Curvatura minor (nicht major) zur Leber.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Magenabschnitten treffen zu?", checklist: [
+          { text: "An der Kardia findet ein Gewebewechsel statt, der Geschwüre und Tumoren begünstigt.", correct: true },
+          { text: "Im Fundus sammeln sich Luftblasen.", correct: true },
+          { text: "Der Pylorus wird durch den M. sphincter pylori kontrolliert.", correct: true },
+          { text: "Die Curvatura major hängt das Omentum minus.", correct: false }
+        ], reveal: "An der Kardia begünstigt der Epithelwechsel Geschwüre und Tumore, im Fundus sammeln sich Luftblasen, und der Pylorus wird durch den M. sphincter pylori kontrolliert. Das Omentum minus hängt dagegen an der Curvatura minor, nicht an der Curvatura major." },
       },
       {
         id: "magen_aufbau_mc2",
@@ -8770,6 +9016,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Das Omentum majus hängt an der Curvatura minor in Richtung Leber", correct: false }
         ],
         explanation: "Die drei Muskelschichten des Magens (Längs-, Ring-, Schräg-) ermöglichen Knetbewegungen; die schräge Schicht dient der Durchmischung; die Magenstraße entlang der kleinen Kurvatur dient dem schnellen Flüssigkeitstransport; das Omentum majus hängt an der Curvatura major.",
+        learningCard: { type: "reconstruct", template: "Die Magenwand hat drei Muskelschichten: ___, Ring- und ___ Muskelschicht.", blanks: ["Längs-", "schräge"], distractors: ["Quer-", "radiäre"], reveal: "Die Magenwand hat drei Muskelschichten (Längs-, Ring- und Schrägmuskulatur), die Knetbewegungen ermöglichen; die schräge Schicht durchmischt den Chymus, und das Omentum majus hängt an der Curvatura major." }
       }
     ]
   }),
@@ -8788,14 +9035,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Nebenzellen", correct: false },
           { text: "Becherzellen", correct: false }
         ],
-        explanation: "Belegzellen (Parietalzellen) produzieren zwei Sekrete: HCl und den Intrinsic-Faktor. Fehlt der Intrinsic-Faktor, kann Vitamin B₁₂ im terminalen Ileum nicht resorbiert werden → perniziöse Anämie."
+        explanation: "Belegzellen (Parietalzellen) produzieren zwei Sekrete: HCl und den Intrinsic-Faktor. Fehlt der Intrinsic-Faktor, kann Vitamin B₁₂ im terminalen Ileum nicht resorbiert werden → perniziöse Anämie.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Belegzellen treffen zu?", checklist: [
+          { text: "Belegzellen produzieren HCl.", correct: true },
+          { text: "Belegzellen produzieren den Intrinsic-Faktor.", correct: true },
+          { text: "Fehlt der Intrinsic-Faktor, kann Vitamin B₁₂ nicht resorbiert werden.", correct: true },
+          { text: "Belegzellen produzieren Pepsinogen.", correct: false }
+        ], reveal: "Belegzellen (Parietalzellen) produzieren HCl und den Intrinsic-Faktor. Fehlt der Intrinsic-Faktor, kann Vitamin B₁₂ im terminalen Ileum nicht resorbiert werden — es entsteht eine perniziöse Anämie." }
       },
       {
         id: "magen_sekretion_h2",
         type: "true_false",
         statement: "Ein Mangel an Intrinsic-Faktor kann zu einer perniziösen Anämie führen, da Vitamin B₁₂ ohne ihn nicht resorbiert werden kann.",
         answer: true,
-        explanation: "Vitamin B₁₂ kann im terminalen Ileum nur in Verbindung mit dem Intrinsic-Faktor (von Belegzellen produziert) resorbiert werden. Fehlt der Intrinsic-Faktor (z. B. bei Autoimmungastritis oder Magenresektion), entsteht eine perniziöse Anämie — Therapie: B₁₂ intramuskulär."
+        explanation: "Vitamin B₁₂ kann im terminalen Ileum nur in Verbindung mit dem Intrinsic-Faktor (von Belegzellen produziert) resorbiert werden. Fehlt der Intrinsic-Faktor (z. B. bei Autoimmungastritis oder Magenresektion), entsteht eine perniziöse Anämie — Therapie: B₁₂ intramuskulär.",
+        learningCard: { type: "predict", statement: "Ein Mangel an Intrinsic-Faktor kann zu einer perniziösen Anämie führen, da Vitamin B₁₂ ohne ihn nicht resorbiert werden kann.", answer: true, reveal: "Vitamin B₁₂ kann im terminalen Ileum nur zusammen mit dem Intrinsic-Faktor (von Belegzellen produziert) resorbiert werden. Fehlt er, entsteht eine perniziöse Anämie, behandelt durch intramuskuläre B₁₂-Gabe." }
       },
       {
         id: "magen_sekretion_h3",
@@ -8807,7 +9061,13 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Insulin", correct: false },
           { text: "Cholecystokinin", correct: false }
         ],
-        explanation: "Gastrin ist das stärkste Stimulans für die HCl-Produktion der Belegzellen. Es wird in der cephalischen und gastralen Phase freigesetzt. Sekretin ist der Antagonist und hemmt Gastrin bei niedrigem Duodenum-pH."
+        explanation: "Gastrin ist das stärkste Stimulans für die HCl-Produktion der Belegzellen. Es wird in der cephalischen und gastralen Phase freigesetzt. Sekretin ist der Antagonist und hemmt Gastrin bei niedrigem Duodenum-pH.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Gastrin ist das stärkste Stimulans für die HCl-Produktion.", isWrong: false },
+          { text: "Gastrin wird in der cephalischen und gastralen Phase freigesetzt.", isWrong: false },
+          { text: "Sekretin hemmt Gastrin bei niedrigem Duodenum-pH.", isWrong: false },
+          { text: "Sekretin ist der stärkste Stimulus für die HCl-Produktion.", isWrong: true }
+        ], whyWrong: "Gastrin ist der stärkste Stimulus für die HCl-Produktion, nicht Sekretin. Sekretin wirkt umgekehrt als Gastrin-Antagonist und hemmt die Säureproduktion bei niedrigem Duodenum-pH." }
       },
       {
         id: "magen_sekretion_h4",
@@ -8819,14 +9079,16 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Salzsäure (HCl)", correct: false },
           { text: "Intrinsic-Faktor", correct: false }
         ],
-        explanation: "Nebenzellen produzieren Muzin (mucöser Schleim aus Glykoproteinen). Muzin bildet eine Schutzschicht, die die Magenschleimhaut vor Eigenverdauung durch HCl und Pepsin schützt. Nebenzellen können sich zu Hauptzellen differenzieren."
+        explanation: "Nebenzellen produzieren Muzin (mucöser Schleim aus Glykoproteinen). Muzin bildet eine Schutzschicht, die die Magenschleimhaut vor Eigenverdauung durch HCl und Pepsin schützt. Nebenzellen können sich zu Hauptzellen differenzieren.",
+        learningCard: { type: "reconstruct", template: "Nebenzellen produzieren ___, das die Magenschleimhaut vor Eigenverdauung durch HCl und ___ schützt.", blanks: ["Muzin", "Pepsin"], distractors: ["Gastrin", "Sekretin"], reveal: "Nebenzellen produzieren Muzin, das die Magenschleimhaut vor Eigenverdauung durch HCl und Pepsin schützt. Nebenzellen können sich außerdem zu Hauptzellen differenzieren." }
       },
       {
         id: "magen_sekretion_h5",
         type: "true_false",
         statement: "Die cephalische Phase der Magensekretion wird hauptsächlich durch den N. vagus vermittelt und kann bereits durch Hunger oder den Anblick von Essen ausgelöst werden.",
         answer: true,
-        explanation: "Die cephalische Phase beginnt vor dem Essen: Reize wie Hunger, Geruch, Anblick oder Gedanken an Essen stimulieren über den N. vagus die Gastrinfreisetzung und damit die HCl-Produktion. ZNS-Einflüsse (Durst, Hunger) spielen ebenfalls eine Rolle."
+        explanation: "Die cephalische Phase beginnt vor dem Essen: Reize wie Hunger, Geruch, Anblick oder Gedanken an Essen stimulieren über den N. vagus die Gastrinfreisetzung und damit die HCl-Produktion. ZNS-Einflüsse (Durst, Hunger) spielen ebenfalls eine Rolle.",
+        learningCard: { type: "predict", statement: "Die cephalische Phase der Magensekretion wird hauptsächlich durch den N. vagus vermittelt und kann bereits vor dem Essen ausgelöst werden.", answer: true, reveal: "Die cephalische Phase beginnt schon vor dem Essen: Reize wie Hunger, Geruch, Anblick oder Gedanken an Essen stimulieren über den N. vagus die Gastrinfreisetzung und damit die HCl-Produktion." }
       }
     ],
     phase4Questions: [
@@ -8841,6 +9103,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Belegzellen produzieren Gastrin als stärksten HCl-Stimulus", correct: false }
         ],
         explanation: "Belegzellen (Parietalzellen) bilden HCl und den Intrinsic-Faktor (Vitamin-B12-Resorption), Hauptzellen produzieren Pepsinogen, Nebenzellen Muzin; Gastrin wird von G-Zellen im Antrum produziert (nicht Belegzellen).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Belegzellen produzieren HCl und den Intrinsic-Faktor.", isWrong: false },
+          { text: "Hauptzellen produzieren Pepsinogen.", isWrong: false },
+          { text: "Nebenzellen produzieren Muzin.", isWrong: false },
+          { text: "Belegzellen produzieren Gastrin als stärksten HCl-Stimulus.", isWrong: true }
+        ], whyWrong: "Gastrin wird von G-Zellen im Antrum produziert, nicht von Belegzellen. Belegzellen produzieren stattdessen HCl und den Intrinsic-Faktor." },
       },
       {
         id: "magen_sekretion_mc2",
@@ -8853,6 +9121,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Hyposekretion bei Stress führt zu Gastritis und Geschwüren", correct: false }
         ],
         explanation: "Die drei Sekretionsphasen: cephalisch (N. vagus), gastrisch (Gastrin, stärkster HCl-Stimulus), intestinal (Sekretin als Gastrin-Antagonist bei pH < 4 im Duodenum); Hypersekretion (nicht Hyposekretion) bei Stress führt zu Gastritis und Geschwüren.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Sekretionsphasen des Magens treffen zu?", checklist: [
+          { text: "Die cephalische Phase wird durch den N. vagus vermittelt.", correct: true },
+          { text: "Gastrin ist der stärkste Stimulus für die HCl-Produktion.", correct: true },
+          { text: "Sekretin ist ein Gastrin-Antagonist bei pH < 4 im Duodenum.", correct: true },
+          { text: "Hyposekretion bei Stress führt zu Gastritis und Geschwüren.", correct: false }
+        ], reveal: "Die drei Sekretionsphasen sind cephalisch (N. vagus), gastrisch (Gastrin, stärkster HCl-Stimulus) und intestinal (Sekretin als Gastrin-Antagonist bei pH < 4). Bei Stress führt aber Hypersekretion — nicht Hyposekretion — zu Gastritis und Geschwüren." },
       }
     ]
   }),
@@ -8871,14 +9145,16 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Im terminalen Ileum", correct: false },
           { text: "An der Ampulla duodeni (Pars superior)", correct: false }
         ],
-        explanation: "Die Papilla vateri (Papilla duodeni major) liegt in der Pars descendens des Duodenums. Hier münden der Ductus pancreaticus (Bauchspeicheldrüsengang) und der Ductus choledochus (gemeinsamer Gallengang) gemeinsam ein."
+        explanation: "Die Papilla vateri (Papilla duodeni major) liegt in der Pars descendens des Duodenums. Hier münden der Ductus pancreaticus (Bauchspeicheldrüsengang) und der Ductus choledochus (gemeinsamer Gallengang) gemeinsam ein.",
+        learningCard: { type: "reconstruct", template: "Die ___ liegt in der Pars descendens des Duodenums; hier münden Ductus pancreaticus und Ductus ___ gemeinsam ein.", blanks: ["Papilla vateri", "choledochus"], distractors: ["Bauhin-Klappe", "cysticus"], reveal: "Die Papilla vateri liegt in der Pars descendens des Duodenums. Hier münden der Ductus pancreaticus und der Ductus choledochus gemeinsam ein." }
       },
       {
         id: "duenndarm_h2",
         type: "true_false",
         statement: "Das terminale Ileum ist der einzige Ort im GI-Trakt, an dem Vitamin B₁₂ resorbiert werden kann.",
         answer: true,
-        explanation: "Vitamin B₁₂ wird ausschließlich im terminalen Ileum resorbiert — gebunden an den Intrinsic-Faktor der Belegzellen. Erkrankungen (Morbus Crohn) oder Resektion des terminalen Ileums führen zu Vitamin-B₁₂-Mangel und perniziöser Anämie → Therapie: B₁₂ i.m."
+        explanation: "Vitamin B₁₂ wird ausschließlich im terminalen Ileum resorbiert — gebunden an den Intrinsic-Faktor der Belegzellen. Erkrankungen (Morbus Crohn) oder Resektion des terminalen Ileums führen zu Vitamin-B₁₂-Mangel und perniziöser Anämie → Therapie: B₁₂ i.m.",
+        learningCard: { type: "predict", statement: "Das terminale Ileum ist der einzige Ort im GI-Trakt, an dem Vitamin B₁₂ resorbiert werden kann.", answer: true, reveal: "Vitamin B₁₂ wird ausschließlich im terminalen Ileum resorbiert, gebunden an den Intrinsic-Faktor der Belegzellen. Erkrankungen wie Morbus Crohn oder eine Resektion des terminalen Ileums führen daher zu Vitamin-B₁₂-Mangel und perniziöser Anämie." }
       },
       {
         id: "duenndarm_h3",
@@ -8890,7 +9166,13 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Belegzellen", correct: false },
           { text: "Brunner-Drüsenzellen", correct: false }
         ],
-        explanation: "Paneth-Zellen sitzen am Grund der Lieberkühnn-Krypten und produzieren Defensine, die antimikrobiell wirken. Becherzellen produzieren Schleim (mucopolysaccharidreich, auch in Atemwegen), Brunner-Drüsen sezernieren alkalisches Sekret (nur Duodenum)."
+        explanation: "Paneth-Zellen sitzen am Grund der Lieberkühnn-Krypten und produzieren Defensine, die antimikrobiell wirken. Becherzellen produzieren Schleim (mucopolysaccharidreich, auch in Atemwegen), Brunner-Drüsen sezernieren alkalisches Sekret (nur Duodenum).",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Paneth-Zellen produzieren antimikrobielle Defensine.", isWrong: false },
+          { text: "Becherzellen produzieren mucopolysaccharidreichen Schleim.", isWrong: false },
+          { text: "Brunner-Drüsen sezernieren alkalisches Sekret nur im Duodenum.", isWrong: false },
+          { text: "Becherzellen produzieren die antimikrobiellen Defensine.", isWrong: true }
+        ], whyWrong: "Defensine werden von Paneth-Zellen produziert, nicht von Becherzellen. Becherzellen produzieren stattdessen mucopolysaccharidreichen Schleim." }
       },
       {
         id: "duenndarm_h4",
@@ -8902,14 +9184,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Brunner-Drüsenzellen", correct: false },
           { text: "Belegzellen", correct: false }
         ],
-        explanation: "Becherzellen produzieren mucopolysaccharidreichen Schleim. Paneth-Zellen am Grund der Lieberkühnn-Krypten produzieren antimikrobielle Defensine. Brunner-Drüsen im Duodenum sezernieren alkalisches Sekret."
+        explanation: "Becherzellen produzieren mucopolysaccharidreichen Schleim. Paneth-Zellen am Grund der Lieberkühnn-Krypten produzieren antimikrobielle Defensine. Brunner-Drüsen im Duodenum sezernieren alkalisches Sekret.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Sekreten des Dünndarms treffen zu?", checklist: [
+          { text: "Becherzellen produzieren mucopolysaccharidreichen Schleim.", correct: true },
+          { text: "Paneth-Zellen produzieren antimikrobielle Defensine.", correct: true },
+          { text: "Brunner-Drüsen sezernieren alkalisches Sekret im Duodenum.", correct: true },
+          { text: "Becherzellen produzieren antimikrobielle Defensine.", correct: false }
+        ], reveal: "Becherzellen produzieren mucopolysaccharidreichen Schleim, Paneth-Zellen produzieren antimikrobielle Defensine, und Brunner-Drüsen im Duodenum sezernieren alkalisches Sekret." }
       },
       {
         id: "duenndarm_h5",
         type: "true_false",
         statement: "Der Plexus myentericus (Auerbach-Plexus) liegt zwischen Längs- und Ringmuskelschicht und ist für die motorische Steuerung des Darms zuständig.",
         answer: true,
-        explanation: "Der Plexus myentericus (Auerbach-Plexus) liegt anatomisch zwischen der äußeren Längs- und der inneren Ringmuskelschicht und koordiniert die Darmmotorik. Der Plexus submucosus (Meissner-Plexus) liegt in der Submukosa und steuert die Sekretion."
+        explanation: "Der Plexus myentericus (Auerbach-Plexus) liegt anatomisch zwischen der äußeren Längs- und der inneren Ringmuskelschicht und koordiniert die Darmmotorik. Der Plexus submucosus (Meissner-Plexus) liegt in der Submukosa und steuert die Sekretion.",
+        learningCard: { type: "predict", statement: "Der Plexus myentericus (Auerbach-Plexus) liegt zwischen Längs- und Ringmuskelschicht und steuert die Darmmotorik.", answer: true, reveal: "Der Plexus myentericus (Auerbach-Plexus) liegt zwischen der äußeren Längs- und der inneren Ringmuskelschicht und koordiniert die Darmmotorik. Der Plexus submucosus (Meissner-Plexus) liegt dagegen in der Submukosa und steuert die Sekretion." }
       }
     ],
     phase4Questions: [
@@ -8924,6 +9213,7 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Brunner-Drüsen kommen im gesamten Dünndarm vor und sezernieren sauren Schleim", correct: false }
         ],
         explanation: "Die dreifache Oberflächenvergrößerung im Dünndarm: Kerckring-Falten (~1,2 m2), Darmzotten und Mikrovilli (Gesamtfläche ~200-400 m2); Brunner-Drüsen kommen nur im Duodenum (nicht im gesamten Dünndarm) vor und sezernieren alkalischen Schleim.",
+        learningCard: { type: "reconstruct", template: "Kerckring-Falten vergrößern die Oberfläche auf ca. ___ m², die Gesamtoberfläche durch Mikrovilli beträgt ca. ___–400 m².", blanks: ["1,2", "200"], distractors: ["0,4", "50"], reveal: "Kerckring-Falten vergrößern die Oberfläche auf ca. 1,2 m², und durch Darmzotten und Mikrovilli erreicht die Gesamtfläche ca. 200–400 m². Brunner-Drüsen kommen dabei nur im Duodenum vor, nicht im gesamten Dünndarm." },
       },
       {
         id: "duenndarm_mc2",
@@ -8936,6 +9226,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Propulsive Peristaltik dient der Durchmischung des Chymus", correct: false }
         ],
         explanation: "Auerbach-Plexus (myenterisch) steuert Motorik, Meissner-Plexus (submukös) steuert Sekretion; Vitamin B12 wird nur im terminalen Ileum resorbiert; propulsive Peristaltik transportiert (nicht durchmischt) den Chymus.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Auerbach-Plexus (myenterisch) steuert die Motorik.", isWrong: false },
+          { text: "Der Meissner-Plexus (submukös) steuert die Sekretion.", isWrong: false },
+          { text: "Vitamin B12 wird nur im terminalen Ileum resorbiert.", isWrong: false },
+          { text: "Propulsive Peristaltik dient der Durchmischung des Chymus.", isWrong: true }
+        ], whyWrong: "Propulsive Peristaltik transportiert den Chymus weiter, sie durchmischt ihn nicht. Die Durchmischung übernehmen andere Bewegungsformen wie die Segmentationsperistaltik." },
       }
     ]
   }),
@@ -8954,14 +9250,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Sie trennt Colon transversum und Colon descendens", correct: false },
           { text: "Sie steuert den Defäkationsreflex", correct: false }
         ],
-        explanation: "Die Bauhin-Klappe (Valva ileocaecalis, Ostium ileocaecale) liegt am Übergang von Ileum zu Caecum und verhindert den Rückfluss von Dickdarminhalt in den Dünndarm."
+        explanation: "Die Bauhin-Klappe (Valva ileocaecalis, Ostium ileocaecale) liegt am Übergang von Ileum zu Caecum und verhindert den Rückfluss von Dickdarminhalt in den Dünndarm.",
+        learningCard: { type: "predict", statement: "Die Bauhin-Klappe verhindert den Rückfluss von Dickdarminhalt in den Dünndarm.", answer: true, reveal: "Die Bauhin-Klappe (Valva ileocaecalis) liegt am Übergang von Ileum zu Caecum und verhindert den Rückfluss von Dickdarminhalt in den Dünndarm." }
       },
       {
         id: "dickdarm_h2",
         type: "true_false",
         statement: "Das Darmmikrobiom kann Vitamin K synthetisieren.",
         answer: true,
-        explanation: "E. coli und andere Darmbakterien synthetisieren Vitamin K (Menachinon, Vitamin K2) im Dickdarm. Dies ist eine wichtige Funktion des Mikrobioms, da der Mensch Vitamin K für die Blutgerinnung benötigt."
+        explanation: "E. coli und andere Darmbakterien synthetisieren Vitamin K (Menachinon, Vitamin K2) im Dickdarm. Dies ist eine wichtige Funktion des Mikrobioms, da der Mensch Vitamin K für die Blutgerinnung benötigt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Vitamin-K-Synthese durch das Mikrobiom treffen zu?", checklist: [
+          { text: "E. coli synthetisiert Vitamin K im Dickdarm.", correct: true },
+          { text: "Vitamin K wird für die Blutgerinnung benötigt.", correct: true },
+          { text: "Das Darmmikrobiom hat eine wichtige Funktion bei der Vitamin-K-Versorgung.", correct: true },
+          { text: "Vitamin K wird ausschließlich über die Nahrung aufgenommen.", correct: false }
+        ], reveal: "E. coli und andere Darmbakterien synthetisieren Vitamin K (Menachinon, Vitamin K2) im Dickdarm. Der Mensch benötigt Vitamin K für die Blutgerinnung, weshalb diese Mikrobiomfunktion wichtig ist." }
       },
       {
         id: "dickdarm_h3",
@@ -8973,7 +9276,13 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Ruminococcus", correct: false },
           { text: "Lactobacillus", correct: false }
         ],
-        explanation: "Der Enterotyp Bacteroides dominiert bei fett- und proteinreicher Ernährung (westliche Diät). Prevotella überwiegt bei kohlenhydratreicher Ernährung. Ruminococcus ist ein Mischtyp. Die Enterotypen spiegeln Ernährungsgewohnheiten wider."
+        explanation: "Der Enterotyp Bacteroides dominiert bei fett- und proteinreicher Ernährung (westliche Diät). Prevotella überwiegt bei kohlenhydratreicher Ernährung. Ruminococcus ist ein Mischtyp. Die Enterotypen spiegeln Ernährungsgewohnheiten wider.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Enterotyp Bacteroides dominiert bei fett- und proteinreicher Ernährung.", isWrong: false },
+          { text: "Prevotella überwiegt bei kohlenhydratreicher Ernährung.", isWrong: false },
+          { text: "Ruminococcus ist ein Mischtyp.", isWrong: false },
+          { text: "Prevotella dominiert bei fett- und proteinreicher Ernährung.", isWrong: true }
+        ], whyWrong: "Bei fett- und proteinreicher Ernährung dominiert der Enterotyp Bacteroides, nicht Prevotella. Prevotella überwiegt stattdessen bei kohlenhydratreicher Ernährung." }
       },
       {
         id: "dickdarm_h4",
@@ -8985,14 +9294,16 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Er besteht ausschließlich aus abgestorbenen Darmzellen", correct: false },
           { text: "Er enthält Gallensalze in hoher bakterizider Konzentration", correct: false }
         ],
-        explanation: "Fäzes bestehen aus 75–80% Wasser und 20–25% Feststoffen. Von der festen Materie können bis zu 30% auf Bakterien entfallen — daher ist Stuhl hochinfektiös und erfordert entsprechende Hygienemaßnahmen."
+        explanation: "Fäzes bestehen aus 75–80% Wasser und 20–25% Feststoffen. Von der festen Materie können bis zu 30% auf Bakterien entfallen — daher ist Stuhl hochinfektiös und erfordert entsprechende Hygienemaßnahmen.",
+        learningCard: { type: "reconstruct", template: "Fäzes bestehen aus ___–80 % Wasser; von der festen Materie können bis zu ___ % auf Bakterien entfallen.", blanks: ["75", "30"], distractors: ["50", "10"], reveal: "Fäzes bestehen aus 75–80 % Wasser und 20–25 % Feststoffen. Von der festen Materie können bis zu 30 % auf Bakterien entfallen — Stuhl ist daher hochinfektiös." }
       },
       {
         id: "dickdarm_h5",
         type: "true_false",
         statement: "Der äußere Schließmuskel des Anus (M. sphincter ani externus) steht erst nach dem 2. Lebensjahr unter willkürlicher ZNS-Kontrolle.",
         answer: true,
-        explanation: "Der M. sphincter ani externus besteht aus quergestreifter Muskulatur und ist willkürlich kontrollierbar. Da die ZNS-Reifung für diese Kontrolle erst nach dem 2. Lebensjahr abgeschlossen ist, ist Sauberkeitserziehung erst dann sinnvoll und erfolgreich."
+        explanation: "Der M. sphincter ani externus besteht aus quergestreifter Muskulatur und ist willkürlich kontrollierbar. Da die ZNS-Reifung für diese Kontrolle erst nach dem 2. Lebensjahr abgeschlossen ist, ist Sauberkeitserziehung erst dann sinnvoll und erfolgreich.",
+        learningCard: { type: "predict", statement: "Der äußere Schließmuskel des Anus steht erst nach dem 2. Lebensjahr unter willkürlicher ZNS-Kontrolle.", answer: true, reveal: "Der M. sphincter ani externus besteht aus quergestreifter, willkürlich kontrollierbarer Muskulatur. Die dafür nötige ZNS-Reifung ist erst nach dem 2. Lebensjahr abgeschlossen, weshalb Sauberkeitserziehung erst dann sinnvoll ist." }
       }
     ],
     phase4Questions: [
@@ -9007,6 +9318,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Kerckring-Falten (Plicae circulares) wie im Dünndarm", correct: false }
         ],
         explanation: "Der Dickdarm ist morphologisch erkennbar an Taenien (3 Längsmuskelstreifen), Haustren (Ausbuchtungen mit Plicae semilunares) und Appendices epiploicae (Fettanhängsel); Kerckring-Falten kommen nur im Dünndarm vor.",
+        learningCard: { type: "teachback", prompt: "Welche morphologischen Merkmale des Dickdarms treffen zu?", checklist: [
+          { text: "Taenien sind 3 Längsmuskelstreifen des Dickdarms.", correct: true },
+          { text: "Haustren sind dynamische Ausbuchtungen mit Plicae semilunares.", correct: true },
+          { text: "Appendices epiploicae sind Fettanhängsel des Dickdarms.", correct: true },
+          { text: "Kerckring-Falten kommen im Dickdarm vor.", correct: false }
+        ], reveal: "Der Dickdarm ist morphologisch erkennbar an Taenien (3 Längsmuskelstreifen), Haustren (Ausbuchtungen mit Plicae semilunares) und Appendices epiploicae (Fettanhängsel). Kerckring-Falten kommen dagegen nur im Dünndarm vor." },
       },
       {
         id: "dickdarm_mc2",
@@ -9019,6 +9336,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Der Enterotyp Prevotella dominiert bei fett- und proteinreicher Ernährung", correct: false }
         ],
         explanation: "Das Darmmikrobiom entwickelt sich erst nach der Geburt (steriler Darm); beim Erwachsenen ca. 1,5 kg Darmbakterienmasse; E. coli synthetisiert Vitamin K2; der Enterotyp Bacteroides (nicht Prevotella) dominiert bei fett- und proteinreicher Ernährung.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Darm ist bei der Geburt steril.", isWrong: false },
+          { text: "Die Gesamtbakterienmasse beträgt beim Erwachsenen ca. 1,5 kg.", isWrong: false },
+          { text: "E. coli synthetisiert Vitamin K im Dickdarm.", isWrong: false },
+          { text: "Der Enterotyp Prevotella dominiert bei fett- und proteinreicher Ernährung.", isWrong: true }
+        ], whyWrong: "Bei fett- und proteinreicher Ernährung dominiert der Enterotyp Bacteroides, nicht Prevotella. Prevotella überwiegt stattdessen bei kohlenhydratreicher Ernährung." },
       }
     ]
   }),
@@ -9037,14 +9360,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Duodenum, Pankreas und Colon ascendens", correct: false },
           { text: "Harnleiter und V. cava inferior", correct: false }
         ],
-        explanation: "Intraperitoneal: Magen, Leber, Milz, Jejunum + Ileum, Colon transversum, Colon sigmoideum. Nieren, Nebennieren, Aorta = primär retroperitoneal. Duodenum, Pankreas, Colon ascendens/descendens = sekundär retroperitoneal."
+        explanation: "Intraperitoneal: Magen, Leber, Milz, Jejunum + Ileum, Colon transversum, Colon sigmoideum. Nieren, Nebennieren, Aorta = primär retroperitoneal. Duodenum, Pankreas, Colon ascendens/descendens = sekundär retroperitoneal.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Lage der Bauchorgane treffen zu?", checklist: [
+          { text: "Magen, Milz und Colon transversum liegen intraperitoneal.", correct: true },
+          { text: "Nieren und Nebennieren liegen primär retroperitoneal.", correct: true },
+          { text: "Duodenum und Pankreas liegen sekundär retroperitoneal.", correct: true },
+          { text: "Nieren liegen intraperitoneal.", correct: false }
+        ], reveal: "Magen, Leber, Milz, Jejunum, Ileum, Colon transversum und Colon sigmoideum liegen intraperitoneal. Nieren, Nebennieren und Aorta liegen primär retroperitoneal, Duodenum, Pankreas und Colon ascendens/descendens sekundär retroperitoneal." }
       },
       {
         id: "peritoneum_lage_h2",
         type: "true_false",
         statement: "Das Duodenum liegt sekundär retroperitoneal, obwohl es entwicklungsgeschichtlich ursprünglich intraperitoneal war.",
         answer: true,
-        explanation: "Das Duodenum, das Pankreas sowie Colon ascendens und descendens sind sekundär retroperitoneal — sie lagen ursprünglich intraperitoneal und wurden im Verlauf der Entwicklung durch das Bauchfell fixiert und hinterwandständig."
+        explanation: "Das Duodenum, das Pankreas sowie Colon ascendens und descendens sind sekundär retroperitoneal — sie lagen ursprünglich intraperitoneal und wurden im Verlauf der Entwicklung durch das Bauchfell fixiert und hinterwandständig.",
+        learningCard: { type: "predict", statement: "Das Duodenum liegt sekundär retroperitoneal, obwohl es entwicklungsgeschichtlich ursprünglich intraperitoneal war.", answer: true, reveal: "Das Duodenum, das Pankreas sowie Colon ascendens und descendens sind sekundär retroperitoneal. Sie lagen ursprünglich intraperitoneal und wurden im Verlauf der Entwicklung durch das Bauchfell fixiert." }
       },
       {
         id: "peritoneum_lage_h3",
@@ -9056,7 +9386,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Ein Blindsack am Übergang von Dünn- zu Dickdarm (Caecum)", correct: false },
           { text: "Eine Erweiterung des Bauchfells in der Leistengegend", correct: false }
         ],
-        explanation: "Der Douglas-Raum (Excavatio rectouterina) ist die tiefste Stelle der Bauchhöhle bei der Frau — zwischen Uterus und Rectum. Hier kann sich Flüssigkeit oder Eiter (Douglas-Abszess) ansammeln."
+        explanation: "Der Douglas-Raum (Excavatio rectouterina) ist die tiefste Stelle der Bauchhöhle bei der Frau — zwischen Uterus und Rectum. Hier kann sich Flüssigkeit oder Eiter (Douglas-Abszess) ansammeln.",
+        learningCard: { type: "reconstruct", template: "Der ___-Raum ist die tiefste Stelle der Bauchhöhle bei der Frau, zwischen ___ und Rectum.", blanks: ["Douglas", "Uterus"], distractors: ["Retzius", "Ovar"], reveal: "Der Douglas-Raum (Excavatio rectouterina) ist die tiefste Stelle der Bauchhöhle bei der Frau, zwischen Uterus und Rectum. Hier kann sich Flüssigkeit oder Eiter (Douglas-Abszess) ansammeln." }
       },
       {
         id: "peritoneum_lage_h4",
@@ -9068,14 +9399,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Duodenum und Pankreas", correct: false },
           { text: "Colon transversum und Colon sigmoideum", correct: false }
         ],
-        explanation: "Primär retroperitoneal = von Anfang an ohne peritoneale Hülle: Nieren, Nebennieren, Harnleiter, Aorta abdominalis, V. cava inferior. Diese lagen nie intraperitoneal."
+        explanation: "Primär retroperitoneal = von Anfang an ohne peritoneale Hülle: Nieren, Nebennieren, Harnleiter, Aorta abdominalis, V. cava inferior. Diese lagen nie intraperitoneal.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Nieren liegen primär retroperitoneal.", isWrong: false },
+          { text: "Die Aorta abdominalis liegt primär retroperitoneal.", isWrong: false },
+          { text: "Primär retroperitoneale Organe lagen nie intraperitoneal.", isWrong: false },
+          { text: "Nieren lagen ursprünglich intraperitoneal und wurden dann fixiert.", isWrong: true }
+        ], whyWrong: "Nieren sind primär retroperitoneal und lagen nie intraperitoneal — das trifft nur auf sekundär retroperitoneale Organe wie Duodenum und Pankreas zu." }
       },
       {
         id: "peritoneum_lage_h5",
         type: "true_false",
         statement: "Das Colon sigmoideum liegt retroperitoneal.",
         answer: false,
-        explanation: "Das Colon sigmoideum liegt intraperitoneal — es hängt am Mesosigmoid und ist vollständig von Bauchfell umhüllt. Retroperitoneal sind Colon ascendens und Colon descendens (sekundär retroperitoneal)."
+        explanation: "Das Colon sigmoideum liegt intraperitoneal — es hängt am Mesosigmoid und ist vollständig von Bauchfell umhüllt. Retroperitoneal sind Colon ascendens und Colon descendens (sekundär retroperitoneal).",
+        learningCard: { type: "predict", statement: "Das Colon sigmoideum liegt retroperitoneal.", answer: false, reveal: "Das Colon sigmoideum liegt intraperitoneal — es hängt am Mesosigmoid und ist vollständig von Bauchfell umhüllt. Retroperitoneal sind dagegen Colon ascendens und Colon descendens." }
       }
     ],
     phase4Questions: [
@@ -9090,6 +9428,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Duodenum", correct: false }
         ],
         explanation: "Intraperitoneal liegende Organe sind allseitig von Peritoneum umgeben: Magen, Milz, Leber, Jejunum, Ileum, Colon transversum und sigmoideum; das Duodenum liegt sekundär retroperitoneal.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Magen liegt intraperitoneal.", isWrong: false },
+          { text: "Milz liegt intraperitoneal.", isWrong: false },
+          { text: "Colon sigmoideum liegt intraperitoneal.", isWrong: false },
+          { text: "Duodenum liegt intraperitoneal.", isWrong: true }
+        ], whyWrong: "Das Duodenum liegt sekundär retroperitoneal, nicht intraperitoneal. Magen, Milz und Colon sigmoideum dagegen sind allseitig von Peritoneum umgeben." },
       },
       {
         id: "peritoneum_lage_mc2",
@@ -9102,6 +9446,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Das Colon sigmoideum liegt retroperitoneal", correct: false }
         ],
         explanation: "Primär retroperitoneal (z.B. Nieren) hatten nie Peritonealbezug; sekundär retroperitoneal (Duodenum, Pankreas) ursprünglich intraperitoneal dann fixiert; der Douglas-Raum zwischen Uterus und Rektum ist klinisch relevant für Aszites; Colon sigmoideum liegt intraperitoneal.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Retroperitoneum und Douglas-Raum treffen zu?", checklist: [
+          { text: "Nieren und Nebennieren liegen primär retroperitoneal.", correct: true },
+          { text: "Duodenum und Pankreas liegen sekundär retroperitoneal.", correct: true },
+          { text: "Der Douglas-Raum liegt zwischen Gebärmutter und Mastdarm.", correct: true },
+          { text: "Das Colon sigmoideum liegt retroperitoneal.", correct: false }
+        ], reveal: "Nieren und Nebennieren liegen primär retroperitoneal (nie Peritonealbezug), Duodenum und Pankreas sekundär retroperitoneal (ursprünglich intraperitoneal, dann fixiert), und der Douglas-Raum liegt zwischen Uterus und Rektum. Das Colon sigmoideum liegt dagegen intraperitoneal." },
       }
     ]
   }),
@@ -9120,14 +9470,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Pendelbewegung", correct: false },
           { text: "Propulsive Peristaltik", correct: false }
         ],
-        explanation: "Retrograde Peristaltik (antiperistaltische Wellen) ist charakteristisch für den Dickdarm: sie verlangsamt den Transport → verlängert Verweildauer für H2O-Resorption. Segmentationsperistaltik und Pendelbewegung sind Dünndarm-typisch. Propulsive Peristaltik kommt in beiden Darmabschnitten vor."
+        explanation: "Retrograde Peristaltik (antiperistaltische Wellen) ist charakteristisch für den Dickdarm: sie verlangsamt den Transport → verlängert Verweildauer für H2O-Resorption. Segmentationsperistaltik und Pendelbewegung sind Dünndarm-typisch. Propulsive Peristaltik kommt in beiden Darmabschnitten vor.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu den Bewegungsformen des Dickdarms treffen zu?", checklist: [
+          { text: "Retrograde Peristaltik ist charakteristisch für den Dickdarm.", correct: true },
+          { text: "Retrograde Peristaltik verlängert die Verweildauer für die H2O-Resorption.", correct: true },
+          { text: "Propulsive Peristaltik kommt in beiden Darmabschnitten vor.", correct: true },
+          { text: "Segmentationsperistaltik ist typisch für den Dickdarm.", correct: false }
+        ], reveal: "Retrograde Peristaltik ist charakteristisch für den Dickdarm und verlängert die Verweildauer für die H2O-Resorption. Segmentationsperistaltik und Pendelbewegung sind dagegen Dünndarm-typisch, propulsive Peristaltik kommt in beiden Abschnitten vor." }
       },
       {
         id: "dickdarmmot_h2",
         type: "true_false",
         statement: "Große Colonbewegungen treten 1–3x täglich auf und werden häufig durch den gastro-colischen Reflex nach einer Mahlzeit ausgelöst.",
         answer: true,
-        explanation: "Große Colonbewegungen (mass movements) sind kräftige peristaltische Wellen, die große Dickdarmabschnitte erfassen und 1–3x täglich auftreten. Der gastro-colische Reflex (Magenausdehnung → Colonaktivierung) ist ein Hauptauslöser → Defäkationsdrang nach dem Essen."
+        explanation: "Große Colonbewegungen (mass movements) sind kräftige peristaltische Wellen, die große Dickdarmabschnitte erfassen und 1–3x täglich auftreten. Der gastro-colische Reflex (Magenausdehnung → Colonaktivierung) ist ein Hauptauslöser → Defäkationsdrang nach dem Essen.",
+        learningCard: { type: "predict", statement: "Große Colonbewegungen treten 1–3x täglich auf und werden häufig durch den gastro-colischen Reflex nach einer Mahlzeit ausgelöst.", answer: true, reveal: "Große Colonbewegungen sind kräftige peristaltische Wellen, die große Dickdarmabschnitte erfassen und 1–3x täglich auftreten. Der gastro-colische Reflex (Magenausdehnung → Colonaktivierung) ist ein Hauptauslöser für den Defäkationsdrang nach dem Essen." }
       },
       {
         id: "dickdarmmot_h3",
@@ -9139,14 +9496,21 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Hirnstamm (Medulla oblongata)", correct: false },
           { text: "Thorakales Rückenmark (Th6–Th8)", correct: false }
         ],
-        explanation: "Das Centrum anospinale liegt im Sakralmark S3–S4. Dehnungsrezeptoren im Rectum leiten Afferenzen dorthin; der Reflex entspannt den M. sphincter ani internus (glatte Muskulatur, unwillkürlich). Der willkürliche Sphinkter externus (quergestreift) kann die Defäkation hinausschieben."
+        explanation: "Das Centrum anospinale liegt im Sakralmark S3–S4. Dehnungsrezeptoren im Rectum leiten Afferenzen dorthin; der Reflex entspannt den M. sphincter ani internus (glatte Muskulatur, unwillkürlich). Der willkürliche Sphinkter externus (quergestreift) kann die Defäkation hinausschieben.",
+        learningCard: { type: "reconstruct", template: "Das Centrum anospinale liegt im Sakralmark ___–___.", blanks: ["S3", "S4"], distractors: ["S1", "S2"], reveal: "Das Centrum anospinale liegt im Sakralmark S3–S4. Dehnungsrezeptoren im Rectum leiten Afferenzen dorthin, und der Reflex entspannt den unwillkürlichen M. sphincter ani internus." }
       },
       {
         id: "dickdarmmot_h4",
         type: "true_false",
         statement: "Der M. sphincter ani internus erschlafft beim Defäkationsreflex unwillkürlich, weil er aus glatter Muskulatur besteht.",
         answer: true,
-        explanation: "M. sphincter ani internus (glatte Muskulatur, unwillkürlich): relaxiert bei Rectumfüllung automatisch über den Defäkationsreflex (Centrum anospinale S3–S4). Der M. sphincter ani externus (quergestreift, willkürlich) kann dagegen aktiv zugehalten werden, bis ein geeigneter Zeitpunkt zur Defäkation besteht."
+        explanation: "M. sphincter ani internus (glatte Muskulatur, unwillkürlich): relaxiert bei Rectumfüllung automatisch über den Defäkationsreflex (Centrum anospinale S3–S4). Der M. sphincter ani externus (quergestreift, willkürlich) kann dagegen aktiv zugehalten werden, bis ein geeigneter Zeitpunkt zur Defäkation besteht.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der M. sphincter ani internus besteht aus glatter Muskulatur.", isWrong: false },
+          { text: "Der M. sphincter ani internus relaxiert unwillkürlich bei Rectumfüllung.", isWrong: false },
+          { text: "Der M. sphincter ani externus kann die Defäkation willkürlich hinauszögern.", isWrong: false },
+          { text: "Der M. sphincter ani externus besteht aus glatter, unwillkürlicher Muskulatur.", isWrong: true }
+        ], whyWrong: "Der M. sphincter ani externus besteht aus quergestreifter, willkürlicher Muskulatur — nur der innere Sphinkter besteht aus glatter, unwillkürlicher Muskulatur." }
       },
       {
         id: "dickdarmmot_h5",
@@ -9158,7 +9522,8 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Retrograder Transport zur Verlängerung der Verweildauer", correct: false },
           { text: "Auslösung des Defäkationsreflexes durch Rectumfüllung", correct: false }
         ],
-        explanation: "Haustren-Peristaltik: rhythmische Kontraktionen der Haustrationsmuskulatur → Durchmischung des Dickdarminhalts + Verbesserung des Wandkontakts → effizientere H2O- und Elektrolytresorption. Retrograder Transport: retrograde Peristaltik. Analer Weitertransport: große Colonbewegungen."
+        explanation: "Haustren-Peristaltik: rhythmische Kontraktionen der Haustrationsmuskulatur → Durchmischung des Dickdarminhalts + Verbesserung des Wandkontakts → effizientere H2O- und Elektrolytresorption. Retrograder Transport: retrograde Peristaltik. Analer Weitertransport: große Colonbewegungen.",
+        learningCard: { type: "predict", statement: "Die Hauptfunktion der Haustren-Peristaltik ist die Durchmischung des Darminhalts zur besseren Resorption.", answer: true, reveal: "Haustren-Peristaltik durchmischt durch rhythmische Kontraktionen den Dickdarminhalt und verbessert den Wandkontakt für die H2O- und Elektrolytresorption. Retrograder Transport erfolgt dagegen durch retrograde Peristaltik, der analer Weitertransport durch große Colonbewegungen." }
       }
     ],
     phase4Questions: [
@@ -9173,6 +9538,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Haustren-Peristaltik dient der Durchmischung des Darminhalts", correct: true }
         ],
         explanation: "Haustren-Peristaltik dient der Durchmischung, retrograde Peristaltik verlangsamt den Transport, große Colonbewegungen 1-3x/Tag fördern den Stuhlvorschub; der gastro-colische Reflex steigert (nicht hemmt) die Colonmotorik nach einer Mahlzeit.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Retrograde Peristaltik verlangsamt den Weitertransport und verlängert die Verweildauer.", isWrong: false },
+          { text: "Große Colonbewegungen treten 1–3x täglich auf.", isWrong: false },
+          { text: "Haustren-Peristaltik dient der Durchmischung des Darminhalts.", isWrong: false },
+          { text: "Der gastro-colische Reflex hemmt die Colonmotorik nach einer Mahlzeit.", isWrong: true }
+        ], whyWrong: "Der gastro-colische Reflex steigert die Colonmotorik nach einer Mahlzeit, er hemmt sie nicht — das erklärt den Defäkationsdrang nach dem Essen." },
       },
       {
         id: "dickdarmmot_mc2",
@@ -9185,6 +9556,12 @@ const VERDAUUNGSTRAKT_1038_PLANTS = [
           { text: "Der M. sphincter ani internus besteht aus quergestreifter Muskulatur und ist willkürlich kontrollierbar", correct: false }
         ],
         explanation: "Das Centrum anospinale (S3-S4) steuert den Defäkationsreflex; Dehnungsrezeptoren im Rektum lösen ihn aus; der innere Sphinkter (glatte Muskulatur) ist unwillkürlich, der äußere (Skelettmuskulatur) erlaubt willkürliche Kontrolle.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Defäkationsreflex treffen zu?", checklist: [
+          { text: "Das Centrum anospinale liegt im Sakralmark (S3–S4).", correct: true },
+          { text: "Dehnungsrezeptoren im Rectum lösen den Defäkationsreflex aus.", correct: true },
+          { text: "Der M. sphincter ani externus kann den Defäkationsreflex willkürlich hemmen.", correct: true },
+          { text: "Der M. sphincter ani internus besteht aus quergestreifter Muskulatur und ist willkürlich kontrollierbar.", correct: false }
+        ], reveal: "Das Centrum anospinale (S3–S4) steuert den Defäkationsreflex, ausgelöst durch Dehnungsrezeptoren im Rektum. Der innere Sphinkter (glatte Muskulatur) ist unwillkürlich, der äußere (Skelettmuskulatur) erlaubt willkürliche Kontrolle." },
       }
     ]
   })
