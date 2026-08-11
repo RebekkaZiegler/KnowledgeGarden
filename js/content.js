@@ -14618,14 +14618,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Reizfrequenz (Wiederholungen pro Woche)", correct: true },
           { text: "Reizdauer", correct: false }
         ],
-        explanation: "Die vier Wirkfaktoren sind: Reizfläche, Reizintensität, Reizdauer und Temperaturdifferenz. Die wöchentliche Anwendungsfrequenz gehört nicht dazu."
+        explanation: "Die vier Wirkfaktoren sind: Reizfläche, Reizintensität, Reizdauer und Temperaturdifferenz. Die wöchentliche Anwendungsfrequenz gehört nicht dazu.",
+        learningCard: { type: "reconstruct", template: "Die vier Wirkfaktoren einer hydrotherapeutischen Anwendung sind Reizfläche, ___, Reizdauer und ___.", blanks: ["Reizintensität", "Temperaturdifferenz"], distractors: ["Reizfrequenz", "Reizrichtung"], reveal: "Die wöchentliche Anwendungshäufigkeit (Reizfrequenz) gehört nicht zu den vier Wirkfaktoren." }
       },
       {
         type: "true_false",
         id: "1046_01_h2",
         statement: "Kalte Wickel werden bei Fieber, Entzündungen und Prellungen eingesetzt.",
         answer: true,
-        explanation: "Kalte Wickel leiten Wärme ab und wirken antiphlogistisch – daher geeignet bei Fieber, Entzündungen und akuten Verletzungen."
+        explanation: "Kalte Wickel leiten Wärme ab und wirken antiphlogistisch – daher geeignet bei Fieber, Entzündungen und akuten Verletzungen.",
+        learningCard: { type: "predict", statement: "Kalte Wickel werden bei Fieber, Entzündungen und Prellungen eingesetzt.", answer: true, reveal: "Kalte Wickel leiten Wärme ab und wirken antiphlogistisch (entzündungshemmend)." }
       },
       {
         type: "mc",
@@ -14637,14 +14639,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Gelenkrheumatismus und Koliken", correct: true },
           { text: "Akute Entzündungen", correct: false }
         ],
-        explanation: "Heiße Wickel wirken wärmend und muskelentspannend, daher sind sie bei chronischen Gelenkentzündungen (Rheumatismus) und Koliken (Krampfzuständen) indiziert."
+        explanation: "Heiße Wickel wirken wärmend und muskelentspannend, daher sind sie bei chronischen Gelenkentzündungen (Rheumatismus) und Koliken (Krampfzuständen) indiziert.",
+        learningCard: { type: "predict", statement: "Heiße Wickel werden bei Gelenkrheumatismus und Koliken eingesetzt.", answer: true, reveal: "Heiße Wickel wirken wärmend und muskelentspannend und eignen sich daher bei chronischen Gelenkentzündungen und Krampfzuständen." }
       },
       {
         type: "true_false",
         id: "1046_01_h4",
         statement: "Kneipp-Güsse werden als harter Wasserstrahl direkt auf die Haut gerichtet.",
         answer: false,
-        explanation: "Kneipp-Güsse werden fächerartig (kein harter Strahl) in aufsteigender Richtung über die Extremitäten geführt – schonender Flächenreiz, kein Schockstrahl."
+        explanation: "Kneipp-Güsse werden fächerartig (kein harter Strahl) in aufsteigender Richtung über die Extremitäten geführt – schonender Flächenreiz, kein Schockstrahl.",
+        learningCard: { type: "predict", statement: "Kneipp-Güsse werden als harter Wasserstrahl direkt auf die Haut gerichtet.", answer: false, reveal: "Kneipp-Güsse werden fächerartig, in aufsteigender Richtung über die Extremitäten geführt — ein schonender Flächenreiz, kein Schockstrahl." }
       },
       {
         type: "mc",
@@ -14656,7 +14660,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Keine Wirkung auf die Gefäße", correct: false },
           { text: "Zuerst Dilatation, dann Konstriktion", correct: false }
         ],
-        explanation: "Länger andauernde Kälte führt zu anhaltender Vasokonstriktion. Kurze Kälteanwendung hingegen führt nach initialer Konstriktion zur reaktiven Vasodilatation."
+        explanation: "Länger andauernde Kälte führt zu anhaltender Vasokonstriktion. Kurze Kälteanwendung hingegen führt nach initialer Konstriktion zur reaktiven Vasodilatation.",
+        learningCard: { type: "predict", statement: "Länger andauernde Kälteanwendung führt zu einer anhaltenden Vasokonstriktion der Blutgefäße.", answer: true, reveal: "Kurze Kälteanwendung führt dagegen nach initialer Konstriktion zu einer reaktiven Vasodilatation." }
       }
     ],
     phase4Questions: [
@@ -14671,7 +14676,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Temperaturdifferenz ist ein Wirkfaktor", correct: true },
           { text: "Nach Kneipp-Güssen sollte man sich warm halten oder bewegen", correct: true }
         ],
-        explanation: "Kalte Wickel gehören zu den Indikationen Fieber/Entzündungen/Prellungen, nicht Gelenkrheumatismus (dafür heiße Wickel)."
+        explanation: "Kalte Wickel gehören zu den Indikationen Fieber/Entzündungen/Prellungen, nicht Gelenkrheumatismus (dafür heiße Wickel).",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Hydrotherapie nach Kneipp treffen zu?", checklist: [
+          { text: "Reizfläche beeinflusst die Wirkstärke", correct: true },
+          { text: "Kneipp-Güsse wirken tonisierend und stoffwechselanregend", correct: true },
+          { text: "Temperaturdifferenz ist ein Wirkfaktor", correct: true },
+          { text: "Kalte Wickel werden bei Gelenkrheumatismus eingesetzt", correct: false }
+        ], reveal: "Kalte Wickel sind bei Fieber, Entzündungen und Prellungen indiziert — Gelenkrheumatismus wird mit heißen Wickeln behandelt." }
       },
       {
         type: "mc",
@@ -14684,7 +14695,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Akute Prellungen", correct: false },
           { text: "Hohes Fieber", correct: false }
         ],
-        explanation: "Akute Prellungen und Fieber werden mit Kälte behandelt. Heiße Wickel sind bei chronisch-muskulären und krampfartigen Beschwerden indiziert."
+        explanation: "Akute Prellungen und Fieber werden mit Kälte behandelt. Heiße Wickel sind bei chronisch-muskulären und krampfartigen Beschwerden indiziert.",
+        learningCard: { type: "teachback", prompt: "Welche Indikationen sprechen für heiße Wickel?", checklist: [
+          { text: "Gelenkrheumatismus", correct: true },
+          { text: "Koliken", correct: true },
+          { text: "Muskelverspannungen", correct: true },
+          { text: "Akute Prellungen", correct: false }
+        ], reveal: "Akute Prellungen und Fieber werden mit Kälte behandelt, nicht mit heißen Wickeln." }
       }
     ]
   }),
@@ -14703,14 +14720,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "H₂O₂", correct: false },
           { text: "CO₂", correct: false }
         ],
-        explanation: "Ozon ist dreiatomiger Sauerstoff (O₃). Er ist instabil und gibt leicht ein Sauerstoffatom ab, was die starke oxidierende Wirkung erklärt."
+        explanation: "Ozon ist dreiatomiger Sauerstoff (O₃). Er ist instabil und gibt leicht ein Sauerstoffatom ab, was die starke oxidierende Wirkung erklärt.",
+        learningCard: { type: "predict", statement: "Ozon hat die chemische Formel O₃.", answer: true, reveal: "Ozon ist instabil und gibt leicht ein Sauerstoffatom ab, was die starke oxidierende Wirkung erklärt." }
       },
       {
         type: "true_false",
         id: "1046_02_h2",
         statement: "Die intravenöse Ozonzufuhr ist in Deutschland aus Sicherheitsgründen verboten.",
         answer: true,
-        explanation: "Die direkte i.v.-Gabe von Ozon ist in Deutschland verboten, da sie eine tödliche Gasembolie verursachen kann."
+        explanation: "Die direkte i.v.-Gabe von Ozon ist in Deutschland verboten, da sie eine tödliche Gasembolie verursachen kann.",
+        learningCard: { type: "predict", statement: "Die intravenöse Ozonzufuhr ist in Deutschland aus Sicherheitsgründen verboten.", answer: true, reveal: "Die direkte i.v.-Gabe von Ozon ist verboten, da sie eine tödliche Gasembolie verursachen kann." }
       },
       {
         type: "mc",
@@ -14722,14 +14741,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "50–100 ml", correct: true },
           { text: "200–500 ml", correct: false }
         ],
-        explanation: "Bei der großen Eigenblutbehandlung werden 50–100 ml Blut entnommen, mit Ozon/Sauerstoff angereichert und als Infusion zurückgegeben. Die kleine Variante verwendet nur 1–5 ml."
+        explanation: "Bei der großen Eigenblutbehandlung werden 50–100 ml Blut entnommen, mit Ozon/Sauerstoff angereichert und als Infusion zurückgegeben. Die kleine Variante verwendet nur 1–5 ml.",
+        learningCard: { type: "reconstruct", template: "Bei der großen Eigenblutbehandlung mit Ozon werden ___–___ ml Blut entnommen.", blanks: ["50", "100"], distractors: ["10", "20"], reveal: "Das Blut wird mit Ozon/Sauerstoff angereichert und als Infusion zurückgegeben; die kleine Variante verwendet nur 1–5 ml." }
       },
       {
         type: "true_false",
         id: "1046_02_h4",
         statement: "Biomolekulare Therapie wirkt organspezifisch nach homöopathischem Prinzip.",
         answer: true,
-        explanation: "VitOrgan-Präparate aus gleichartigen Zellen werden organspezifisch eingesetzt und folgen dem homöopathischen Prinzip (Ähnliches mit Ähnlichem behandeln)."
+        explanation: "VitOrgan-Präparate aus gleichartigen Zellen werden organspezifisch eingesetzt und folgen dem homöopathischen Prinzip (Ähnliches mit Ähnlichem behandeln).",
+        learningCard: { type: "predict", statement: "Biomolekulare Therapie wirkt organspezifisch nach homöopathischem Prinzip.", answer: true, reveal: "VitOrgan-Präparate aus gleichartigen Zellen werden organspezifisch eingesetzt und folgen dem Prinzip 'Ähnliches mit Ähnlichem behandeln'." }
       },
       {
         type: "mc",
@@ -14741,7 +14762,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Chronische Wunden", correct: false },
           { text: "Immunschwäche", correct: false }
         ],
-        explanation: "Kontraindikationen der Ozontherapie: Blutgerinnungsstörungen, Anämie, Schilddrüsenüberfunktion, Kinder, Schwangerschaft – da Ozon oxidativen Stress erzeugt."
+        explanation: "Kontraindikationen der Ozontherapie: Blutgerinnungsstörungen, Anämie, Schilddrüsenüberfunktion, Kinder, Schwangerschaft – da Ozon oxidativen Stress erzeugt.",
+        learningCard: { type: "predict", statement: "Blutgerinnungsstörungen sind eine Kontraindikation für die Ozontherapie.", answer: true, reveal: "Weitere Kontraindikationen sind Anämie, Schilddrüsenüberfunktion, Kindesalter und Schwangerschaft, da Ozon oxidativen Stress erzeugt." }
       }
     ],
     phase4Questions: [
@@ -14756,7 +14778,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Schwangerschaft", correct: true },
           { text: "Chronische Gelenkerkrankungen", correct: false }
         ],
-        explanation: "Chronische Gelenkerkrankungen (z.B. Arthrose) sind eher eine Indikation für Ozontherapie. Die vier genannten Kontraindikationen (+ Kinder) sind klar definiert."
+        explanation: "Chronische Gelenkerkrankungen (z.B. Arthrose) sind eher eine Indikation für Ozontherapie. Die vier genannten Kontraindikationen (+ Kinder) sind klar definiert.",
+        learningCard: { type: "teachback", prompt: "Welche Kontraindikationen gelten für die Ozontherapie?", checklist: [
+          { text: "Blutgerinnungsstörungen", correct: true },
+          { text: "Anämie", correct: true },
+          { text: "Schilddrüsenüberfunktion", correct: true },
+          { text: "Chronische Gelenkerkrankungen", correct: false }
+        ], reveal: "Chronische Gelenkerkrankungen wie Arthrose sind eher eine Indikation für Ozontherapie, keine Kontraindikation." }
       },
       {
         type: "mc",
@@ -14769,7 +14797,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Direkte intravenöse Ozonzufuhr", correct: false },
           { text: "Rektale Begasung", correct: true }
         ],
-        explanation: "Die direkte i.v.-Ozonzufuhr (ohne Blut als Träger) ist in Deutschland verboten. Alle anderen genannten Formen sind erlaubt und gebräuchlich."
+        explanation: "Die direkte i.v.-Ozonzufuhr (ohne Blut als Träger) ist in Deutschland verboten. Alle anderen genannten Formen sind erlaubt und gebräuchlich.",
+        learningCard: { type: "teachback", prompt: "Welche Anwendungsformen der Ozontherapie sind in Deutschland erlaubt?", checklist: [
+          { text: "Große Eigenblutbehandlung (i.v. Reinfusion)", correct: true },
+          { text: "Kleine Eigenblutbehandlung (i.m./s.c.)", correct: true },
+          { text: "Rektale Begasung", correct: true },
+          { text: "Direkte intravenöse Ozonzufuhr", correct: false }
+        ], reveal: "Nur die direkte i.v.-Ozonzufuhr ohne Blut als Träger ist verboten — alle anderen genannten Formen sind erlaubt." }
       }
     ]
   }),
@@ -14788,14 +14822,21 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Fiebersenkend und schweißtreibend", correct: false },
           { text: "Tonisierend und stoffwechselanregend", correct: false }
         ],
-        explanation: "Der Südpol wirkt beruhigend, entzündungshemmend und schmerzlindernd. Der Nordpol wirkt aktivierend und durchblutungsfördernd."
+        explanation: "Der Südpol wirkt beruhigend, entzündungshemmend und schmerzlindernd. Der Nordpol wirkt aktivierend und durchblutungsfördernd.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Der Südpol wirkt beruhigend und entzündungshemmend.", isWrong: false },
+          { text: "Der Südpol wirkt zusätzlich schmerzlindernd.", isWrong: false },
+          { text: "Der Nordpol wirkt aktivierend und durchblutungsfördernd.", isWrong: false },
+          { text: "Der Südpol wirkt aktivierend und durchblutungsfördernd.", isWrong: true }
+        ], whyWrong: "Das ist die Wirkung des Nordpols — der Südpol wirkt beruhigend und entzündungshemmend." }
       },
       {
         type: "true_false",
         id: "1046_03_h2",
         statement: "LASER steht für Light Amplification by Stimulated Emission of Radiation.",
         answer: true,
-        explanation: "Das Akronym LASER beschreibt das physikalische Prinzip: Lichtverstärkung durch stimulierte Emission von Strahlung."
+        explanation: "Das Akronym LASER beschreibt das physikalische Prinzip: Lichtverstärkung durch stimulierte Emission von Strahlung.",
+        learningCard: { type: "predict", statement: "LASER steht für Light Amplification by Stimulated Emission of Radiation.", answer: true, reveal: "Das Akronym beschreibt das physikalische Prinzip: Lichtverstärkung durch stimulierte Emission von Strahlung." }
       },
       {
         type: "mc",
@@ -14807,14 +14848,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Laserlicht enthält alle Farben des Spektrums", correct: false },
           { text: "Laserlicht kann nicht reflektiert werden", correct: false }
         ],
-        explanation: "Monochromasie bedeutet: Laserlicht besteht aus einer einzigen Wellenlänge (Farbe). Dies unterscheidet es von weißem Licht, das alle Wellenlängen enthält."
+        explanation: "Monochromasie bedeutet: Laserlicht besteht aus einer einzigen Wellenlänge (Farbe). Dies unterscheidet es von weißem Licht, das alle Wellenlängen enthält.",
+        learningCard: { type: "predict", statement: "Monochromasie bedeutet, dass Laserlicht nur eine einzige Wellenlänge besitzt.", answer: true, reveal: "Dies unterscheidet Laserlicht von weißem Licht, das alle Wellenlängen enthält." }
       },
       {
         type: "true_false",
         id: "1046_03_h4",
         statement: "Lasertherapie steigert die ATP-Synthese in den Mitochondrien.",
         answer: true,
-        explanation: "Die Photobiomodulation durch Laser regt Mitochondrien zur verstärkten ATP-Produktion an, was Zellstoffwechsel und Heilungsprozesse fördern."
+        explanation: "Die Photobiomodulation durch Laser regt Mitochondrien zur verstärkten ATP-Produktion an, was Zellstoffwechsel und Heilungsprozesse fördern.",
+        learningCard: { type: "predict", statement: "Lasertherapie steigert die ATP-Synthese in den Mitochondrien.", answer: true, reveal: "Die Photobiomodulation durch Laser regt Mitochondrien zur verstärkten ATP-Produktion an, was Zellstoffwechsel und Heilungsprozesse fördert." }
       },
       {
         type: "mc",
@@ -14826,7 +14869,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Maligne Tumoren", correct: false },
           { text: "Schwangerschaft", correct: false }
         ],
-        explanation: "Wundheilungsstörungen gehören zu den Indikationen der Magnetfeldtherapie. Maligne Tumoren und Schwangerschaft sind Kontraindikationen."
+        explanation: "Wundheilungsstörungen gehören zu den Indikationen der Magnetfeldtherapie. Maligne Tumoren und Schwangerschaft sind Kontraindikationen.",
+        learningCard: { type: "predict", statement: "Wundheilungsstörungen sind eine Indikation für die Magnetfeldtherapie.", answer: true, reveal: "Maligne Tumoren und Schwangerschaft sind dagegen Kontraindikationen der Magnetfeldtherapie." }
       }
     ],
     phase4Questions: [
@@ -14841,7 +14885,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Hohe Divergenz (breite Streuung)", correct: false },
           { text: "Polychromatisch (alle Wellenlängen)", correct: false }
         ],
-        explanation: "Laserlicht ist monochromatisch, kohärent und divergenzarm. Diese drei Eigenschaften ermöglichen die hohe Energiedichte auf kleiner Fläche."
+        explanation: "Laserlicht ist monochromatisch, kohärent und divergenzarm. Diese drei Eigenschaften ermöglichen die hohe Energiedichte auf kleiner Fläche.",
+        learningCard: { type: "teachback", prompt: "Welche Eigenschaften hat Laserlicht?", checklist: [
+          { text: "Monochromasie (eine Wellenlänge)", correct: true },
+          { text: "Kohärenz (Wellen in Phase)", correct: true },
+          { text: "Geringe Divergenz (paralleles Licht)", correct: true },
+          { text: "Hohe Divergenz (breite Streuung)", correct: false }
+        ], reveal: "Diese drei Eigenschaften (Monochromasie, Kohärenz, geringe Divergenz) ermöglichen die hohe Energiedichte auf kleiner Fläche." }
       },
       {
         type: "mc",
@@ -14854,7 +14904,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Immunstimulation", correct: true },
           { text: "Hemmung der Wundheilung", correct: false }
         ],
-        explanation: "Lasertherapie fördert die Wundheilung (nicht hemmt sie). Alle anderen Punkte sind korrekte biologische Wirkungen der Photobiomodulation."
+        explanation: "Lasertherapie fördert die Wundheilung (nicht hemmt sie). Alle anderen Punkte sind korrekte biologische Wirkungen der Photobiomodulation.",
+        learningCard: { type: "teachback", prompt: "Welche biologischen Wirkungen hat die Lasertherapie?", checklist: [
+          { text: "Steigerung der ATP-Synthese", correct: true },
+          { text: "Förderung der Eiweißsynthese", correct: true },
+          { text: "Bildung kollagener Fasern", correct: true },
+          { text: "Hemmung der Wundheilung", correct: false }
+        ], reveal: "Lasertherapie fördert die Wundheilung, sie hemmt sie nicht." }
       }
     ]
   }),
@@ -14873,14 +14929,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "10 ml, 1× pro Woche", correct: false },
           { text: "5 ml, täglich", correct: false }
         ],
-        explanation: "Die Standarddosierung der Eigenharntherapie beträgt 2 ml Morgenurin, 2× pro Woche, i.m. oder s.c. injiziert."
+        explanation: "Die Standarddosierung der Eigenharntherapie beträgt 2 ml Morgenurin, 2× pro Woche, i.m. oder s.c. injiziert.",
+        learningCard: { type: "reconstruct", template: "Bei der Eigenharntherapie werden ___ ml Morgenurin, ___× pro Woche injiziert.", blanks: ["2", "2"], distractors: ["10", "1"], reveal: "Die Injektion erfolgt i.m. oder s.c." }
       },
       {
         type: "true_false",
         id: "1046_04_h2",
         statement: "In der Farbtherapie wird Rot vorsichtig eingesetzt, da es stark stimulierend wirkt.",
         answer: true,
-        explanation: "Rot ist wärmend und stark aktivierend (Durchblutung↑). Deshalb muss die Dosierung vorsichtig erfolgen, besonders bei sensiblen Patienten."
+        explanation: "Rot ist wärmend und stark aktivierend (Durchblutung↑). Deshalb muss die Dosierung vorsichtig erfolgen, besonders bei sensiblen Patienten.",
+        learningCard: { type: "predict", statement: "In der Farbtherapie wird Rot vorsichtig eingesetzt, da es stark stimulierend wirkt.", answer: true, reveal: "Rot ist wärmend und stark aktivierend (Durchblutung↑), daher muss die Dosierung vorsichtig erfolgen, besonders bei sensiblen Patienten." }
       },
       {
         type: "mc",
@@ -14892,14 +14950,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Orange", correct: false },
           { text: "Blau", correct: true }
         ],
-        explanation: "Blau wirkt kühlend und beruhigend. Es hemmt Entzündungen und dämpft Erregungszustände – daher indiziert bei Entzündungen, Angst, Fieber und Schlaflosigkeit."
+        explanation: "Blau wirkt kühlend und beruhigend. Es hemmt Entzündungen und dämpft Erregungszustände – daher indiziert bei Entzündungen, Angst, Fieber und Schlaflosigkeit.",
+        learningCard: { type: "predict", statement: "Blau wird in der Farbtherapie bei Entzündungen, Schlaflosigkeit und Angst eingesetzt.", answer: true, reveal: "Blau wirkt kühlend und beruhigend, hemmt Entzündungen und dämpft Erregungszustände." }
       },
       {
         type: "true_false",
         id: "1046_04_h4",
         statement: "Für die Eigenharntherapie wird Abendurin bevorzugt, da er die meisten Inhaltsstoffe enthält.",
         answer: false,
-        explanation: "Es wird Morgenurin verwendet, da er konzentrierter ist und das längste Nüchternintervall repräsentiert – optimale Antigenkonzentration."
+        explanation: "Es wird Morgenurin verwendet, da er konzentrierter ist und das längste Nüchternintervall repräsentiert – optimale Antigenkonzentration.",
+        learningCard: { type: "predict", statement: "Für die Eigenharntherapie wird Abendurin bevorzugt, da er die meisten Inhaltsstoffe enthält.", answer: false, reveal: "Es wird Morgenurin verwendet, da er konzentrierter ist und das längste Nüchternintervall repräsentiert — optimale Antigenkonzentration." }
       },
       {
         type: "mc",
@@ -14911,7 +14971,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Gelb", correct: true },
           { text: "Orange", correct: false }
         ],
-        explanation: "Gelb steht für Verstand, Wachheit und Verdauungsfunktionen. Indikationen: Leber, Knochen, Immunschwäche."
+        explanation: "Gelb steht für Verstand, Wachheit und Verdauungsfunktionen. Indikationen: Leber, Knochen, Immunschwäche.",
+        learningCard: { type: "predict", statement: "Gelb wird in der Farbtherapie mit Verdauung, Wachheit und Verstand assoziiert.", answer: true, reveal: "Weitere Indikationen für Gelb sind Leber, Knochen und Immunschwäche." }
       }
     ],
     phase4Questions: [
@@ -14926,7 +14987,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Anwendung: 10 ml täglich i.v.", correct: false },
           { text: "Alternativ äußerliche Anwendung (Einreiben) möglich", correct: true }
         ],
-        explanation: "Die i.v.-Anwendung und die Tagesdosis von 10 ml sind falsch. Standard: 2 ml Morgenurin, 2× pro Woche, i.m./s.c. oder äußerlich."
+        explanation: "Die i.v.-Anwendung und die Tagesdosis von 10 ml sind falsch. Standard: 2 ml Morgenurin, 2× pro Woche, i.m./s.c. oder äußerlich.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Eigenharntherapie sind korrekt?", checklist: [
+          { text: "Es handelt sich um eine Reiztherapie", correct: true },
+          { text: "Bevorzugt wird Morgenurin verwendet", correct: true },
+          { text: "Indiziert bei Hauterkrankungen und Arthrosen", correct: true },
+          { text: "Anwendung: 10 ml täglich i.v.", correct: false }
+        ], reveal: "Standard ist 2 ml Morgenurin, 2× pro Woche, i.m./s.c. oder äußerlich — nicht i.v." }
       },
       {
         type: "mc",
@@ -14939,7 +15006,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Orange – hemmend, appetitmindernd", correct: false },
           { text: "Violett – Heilung, Ausgeglichenheit", correct: true }
         ],
-        explanation: "Orange ist erheiternd und appetitfördernd (nicht hemmend). Alle anderen Zuordnungen sind korrekt."
+        explanation: "Orange ist erheiternd und appetitfördernd (nicht hemmend). Alle anderen Zuordnungen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Farbzuordnungen sind in der Farbtherapie korrekt?", checklist: [
+          { text: "Rot – wärmend, durchblutungsfördernd", correct: true },
+          { text: "Blau – kühlend, beruhigend", correct: true },
+          { text: "Violett – Heilung, Ausgeglichenheit", correct: true },
+          { text: "Orange – hemmend, appetitmindernd", correct: false }
+        ], reveal: "Orange wirkt erheiternd und appetitfördernd, nicht hemmend." }
       }
     ]
   }),
@@ -14958,14 +15031,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Spanische Fliege", correct: true },
           { text: "Blutegel", correct: false }
         ],
-        explanation: "Cantharidin wird aus der spanischen Fliege (Cantharis vesicatoria) gewonnen. Es ist ein starkes Hautreizmittel, das eine Blase erzeugt."
+        explanation: "Cantharidin wird aus der spanischen Fliege (Cantharis vesicatoria) gewonnen. Es ist ein starkes Hautreizmittel, das eine Blase erzeugt.",
+        learningCard: { type: "predict", statement: "Der Wirkstoff des Canthariden-Pflasters wird aus der spanischen Fliege gewonnen.", answer: true, reveal: "Cantharidin ist ein starkes Hautreizmittel, das eine Blase auf der Haut erzeugt." }
       },
       {
         type: "true_false",
         id: "1046_05_h2",
         statement: "Das Canthariden-Pflaster wird nach 18–20 Stunden entfernt, bevor die Blase platzt.",
         answer: true,
-        explanation: "Die Entfernung nach 18–20 Stunden verhindert, dass die Blase platzt und es zu Superinfektionen oder tieferen Gewebeschäden kommt."
+        explanation: "Die Entfernung nach 18–20 Stunden verhindert, dass die Blase platzt und es zu Superinfektionen oder tieferen Gewebeschäden kommt.",
+        learningCard: { type: "predict", statement: "Das Canthariden-Pflaster wird nach 18–20 Stunden entfernt, bevor die Blase platzt.", answer: true, reveal: "Die rechtzeitige Entfernung verhindert Superinfektionen oder tiefere Gewebeschäden." }
       },
       {
         type: "mc",
@@ -14977,14 +15052,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Krotonöl", correct: true },
           { text: "Teebaumöl", correct: false }
         ],
-        explanation: "Krotonöl war früher Bestandteil des Baunscheidt-Öls, ist aber heute wegen seiner stark hautreizenden und kanzerogenen Eigenschaften verboten."
+        explanation: "Krotonöl war früher Bestandteil des Baunscheidt-Öls, ist aber heute wegen seiner stark hautreizenden und kanzerogenen Eigenschaften verboten.",
+        learningCard: { type: "predict", statement: "Krotonöl war früher Bestandteil des Baunscheidt-Öls und ist heute verboten.", answer: true, reveal: "Krotonöl ist wegen seiner stark hautreizenden und kanzerogenen Eigenschaften verboten." }
       },
       {
         type: "true_false",
         id: "1046_05_h4",
         statement: "Pigmentveränderungen nach dem Baunscheidt-Verfahren können bis zu 3 Jahre anhalten.",
         answer: true,
-        explanation: "Die Hautstiche und die Öl-Einreibung können zu Hyperpigmentierungen führen, die lange bestehen bleiben. Patienten müssen hierüber aufgeklärt werden."
+        explanation: "Die Hautstiche und die Öl-Einreibung können zu Hyperpigmentierungen führen, die lange bestehen bleiben. Patienten müssen hierüber aufgeklärt werden.",
+        learningCard: { type: "predict", statement: "Pigmentveränderungen nach dem Baunscheidt-Verfahren können bis zu 3 Jahre anhalten.", answer: true, reveal: "Patienten müssen über diese möglichen langanhaltenden Hyperpigmentierungen aufgeklärt werden." }
       },
       {
         type: "mc",
@@ -14996,7 +15073,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Blutgerinnungsstörungen", correct: false },
           { text: "Schilddrüsenerkrankungen", correct: false }
         ],
-        explanation: "Das Baunscheidt-Verfahren wird als Ableitungstherapie bei Rheuma, Wirbelsäulenerkrankungen und Bronchitis eingesetzt."
+        explanation: "Das Baunscheidt-Verfahren wird als Ableitungstherapie bei Rheuma, Wirbelsäulenerkrankungen und Bronchitis eingesetzt.",
+        learningCard: { type: "predict", statement: "Das Baunscheidt-Verfahren wird bei Rheuma, Wirbelsäulenerkrankungen und Bronchitis eingesetzt.", answer: true, reveal: "Es wirkt als Ableitungstherapie über Hautstiche und Öleinreibung." }
       }
     ],
     phase4Questions: [
@@ -15011,7 +15089,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Muss nach 6–8 Stunden entfernt werden", correct: false },
           { text: "Wird nach 18–20 Stunden entfernt", correct: true }
         ],
-        explanation: "Das Pflaster wird nach 18–20 Stunden entfernt (nicht nach 6–8 Stunden), um ein Platzen der Blase zu verhindern."
+        explanation: "Das Pflaster wird nach 18–20 Stunden entfernt (nicht nach 6–8 Stunden), um ein Platzen der Blase zu verhindern.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Canthariden-Pflaster sind korrekt?", checklist: [
+          { text: "Wirkstoff aus der spanischen Fliege", correct: true },
+          { text: "Erzeugt eine Blase auf der Haut", correct: true },
+          { text: "Indiziert bei Gelenkerkrankungen", correct: true },
+          { text: "Muss nach 6–8 Stunden entfernt werden", correct: false }
+        ], reveal: "Das Pflaster wird erst nach 18–20 Stunden entfernt, um ein Platzen der Blase zu verhindern." }
       },
       {
         type: "mc",
@@ -15024,7 +15108,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Pigmentveränderungen können bis 3 Jahre anhalten", correct: true },
           { text: "Indiziert bei akuten Infektionskrankheiten", correct: false }
         ],
-        explanation: "Akute Infektionskrankheiten sind keine Indikation für das Baunscheidt-Verfahren. Alle anderen Aussagen sind korrekt."
+        explanation: "Akute Infektionskrankheiten sind keine Indikation für das Baunscheidt-Verfahren. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zum Baunscheidt-Verfahren sind korrekt?", checklist: [
+          { text: "Verwendet ein Stichelgerät (Nadelrad)", correct: true },
+          { text: "Baunscheidt-Öl enthält Senföl und Cantharidin", correct: true },
+          { text: "Krotonöl ist heute verboten", correct: true },
+          { text: "Indiziert bei akuten Infektionskrankheiten", correct: false }
+        ], reveal: "Akute Infektionskrankheiten sind keine Indikation für das Baunscheidt-Verfahren." }
       }
     ]
   }),
@@ -15043,14 +15133,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Ein Antibiotikum im Egelspeichel", correct: false },
           { text: "Ein Schmerzmittel aus dem Egelspeichel", correct: false }
         ],
-        explanation: "Hirudin ist ein Polypeptid (Thrombinhemmer) im Speichel des Blutegels. Es hemmt spezifisch Thrombin und verhindert so die Blutgerinnung."
+        explanation: "Hirudin ist ein Polypeptid (Thrombinhemmer) im Speichel des Blutegels. Es hemmt spezifisch Thrombin und verhindert so die Blutgerinnung.",
+        learningCard: { type: "predict", statement: "Hirudin ist ein Polypeptid im Speichel des Blutegels, das die Blutgerinnung hemmt.", answer: true, reveal: "Es hemmt spezifisch Thrombin und verhindert so die Blutgerinnung." }
       },
       {
         type: "true_false",
         id: "1046_06_h2",
         statement: "Bluteger dürfen bei Patienten mit Blutgerinnungsstörungen eingesetzt werden.",
         answer: false,
-        explanation: "Blutgerinnungsstörungen sind eine Kontraindikation der Blutegeltherapie. Die gerinnungshemmende Wirkung des Hirudins würde die Störung verstärken."
+        explanation: "Blutgerinnungsstörungen sind eine Kontraindikation der Blutegeltherapie. Die gerinnungshemmende Wirkung des Hirudins würde die Störung verstärken.",
+        learningCard: { type: "predict", statement: "Bluteger dürfen bei Patienten mit Blutgerinnungsstörungen eingesetzt werden.", answer: false, reveal: "Blutgerinnungsstörungen sind eine Kontraindikation — die gerinnungshemmende Wirkung des Hirudins würde die Störung verstärken." }
       },
       {
         type: "mc",
@@ -15062,14 +15154,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "50–100 ml", correct: false },
           { text: "Ca. 200 ml", correct: false }
         ],
-        explanation: "Ein Blutegel saugt ca. 10 ml Blut in 10–40 Minuten. Die Nachblutung aus der Wunde beträgt weitere 10–40 ml in den folgenden 24 Stunden."
+        explanation: "Ein Blutegel saugt ca. 10 ml Blut in 10–40 Minuten. Die Nachblutung aus der Wunde beträgt weitere 10–40 ml in den folgenden 24 Stunden.",
+        learningCard: { type: "reconstruct", template: "Ein Blutegel saugt ca. ___ ml Blut in 10–___ Minuten.", blanks: ["10", "40"], distractors: ["50", "60"], reveal: "Die Nachblutung aus der Wunde beträgt weitere 10–40 ml in den folgenden 24 Stunden." }
       },
       {
         type: "true_false",
         id: "1046_06_h4",
         statement: "Blutegel dürfen nach der Behandlung mit hochprozentigem Alkohol oder durch Einfrieren bei -18 °C entsorgt werden.",
         answer: true,
-        explanation: "Medizinische Blutegel sind nach Gebrauch als Sondermüll zu behandeln. Erlaubte Methoden: hochprozentiger Alkohol oder Einfrieren bei -18 °C."
+        explanation: "Medizinische Blutegel sind nach Gebrauch als Sondermüll zu behandeln. Erlaubte Methoden: hochprozentiger Alkohol oder Einfrieren bei -18 °C.",
+        learningCard: { type: "predict", statement: "Blutegel dürfen nach der Behandlung mit hochprozentigem Alkohol oder durch Einfrieren bei -18 °C entsorgt werden.", answer: true, reveal: "Medizinische Blutegel sind nach Gebrauch als Sondermüll zu behandeln." }
       },
       {
         type: "mc",
@@ -15081,7 +15175,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Bluthochdruck", correct: false },
           { text: "Diabetes mellitus", correct: false }
         ],
-        explanation: "Die Gonarthrose (Kniegelenksarthrose) ist eine der wichtigsten Indikationen der Blutegeltherapie – mit guter Evidenz für Schmerzreduktion und Entzündungshemmung."
+        explanation: "Die Gonarthrose (Kniegelenksarthrose) ist eine der wichtigsten Indikationen der Blutegeltherapie – mit guter Evidenz für Schmerzreduktion und Entzündungshemmung.",
+        learningCard: { type: "predict", statement: "Die Gonarthrose (Kniegelenksarthrose) ist eine besonders bekannte Indikation der Blutegeltherapie.", answer: true, reveal: "Es gibt gute Evidenz für Schmerzreduktion und Entzündungshemmung bei dieser Indikation." }
       }
     ],
     phase4Questions: [
@@ -15096,7 +15191,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Blutdrucksenkend (direkt)", correct: false },
           { text: "Immunstimulierend", correct: true }
         ],
-        explanation: "Die direkte Blutdrucksenkung ist keine primäre Wirkung der Blutegeltherapie. Alle anderen genannten Wirkungen sind belegt."
+        explanation: "Die direkte Blutdrucksenkung ist keine primäre Wirkung der Blutegeltherapie. Alle anderen genannten Wirkungen sind belegt.",
+        learningCard: { type: "teachback", prompt: "Welche Wirkungen hat die Blutegeltherapie?", checklist: [
+          { text: "Gerinnungshemmend (Hirudin)", correct: true },
+          { text: "Lymphstrombeschleunigend", correct: true },
+          { text: "Entzündungswidrig", correct: true },
+          { text: "Blutdrucksenkend (direkt)", correct: false }
+        ], reveal: "Die direkte Blutdrucksenkung ist keine primäre Wirkung der Blutegeltherapie." }
       },
       {
         type: "mc",
@@ -15109,7 +15210,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Hirudinallergie", correct: true },
           { text: "Gonarthrose", correct: false }
         ],
-        explanation: "Gonarthrose ist eine Indikation, keine Kontraindikation. Die vier genannten Faktoren erhöhen das Blutungs- oder Allergierisiko und verbieten den Egeleinsatz."
+        explanation: "Gonarthrose ist eine Indikation, keine Kontraindikation. Die vier genannten Faktoren erhöhen das Blutungs- oder Allergierisiko und verbieten den Egeleinsatz.",
+        learningCard: { type: "teachback", prompt: "Welche Kontraindikationen gelten für die Blutegeltherapie?", checklist: [
+          { text: "Blutgerinnungsstörungen", correct: true },
+          { text: "Einnahme von Gerinnungshemmern", correct: true },
+          { text: "Hirudinallergie", correct: true },
+          { text: "Gonarthrose", correct: false }
+        ], reveal: "Gonarthrose ist eine Indikation, keine Kontraindikation der Blutegeltherapie." }
       }
     ]
   }),
@@ -15128,14 +15235,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Dickdarm, Harnblase, Herz", correct: false },
           { text: "Leber, Magen, Gallenblase", correct: false }
         ],
-        explanation: "Yin-Organe (Zang/Speicherorgane): Milz-Pankreas, Lunge, Herz, Leber, Niere. Yang-Organe (Fu/Hohlorgane): Magen, Gallenblase, Dünndarm, Dickdarm, Harnblase."
+        explanation: "Yin-Organe (Zang/Speicherorgane): Milz-Pankreas, Lunge, Herz, Leber, Niere. Yang-Organe (Fu/Hohlorgane): Magen, Gallenblase, Dünndarm, Dickdarm, Harnblase.",
+        learningCard: { type: "reconstruct", template: "Die Yin-Speicherorgane (Zang) sind Milz-Pankreas, ___, Herz, Leber und ___.", blanks: ["Lunge", "Niere"], distractors: ["Magen", "Dickdarm"], reveal: "Yang-Organe (Fu/Hohlorgane) sind dagegen Magen, Gallenblase, Dünndarm, Dickdarm und Harnblase." }
       },
       {
         type: "true_false",
         id: "1046_07_h2",
         statement: "Das Sekundenphänomen in der Neuraltherapie muss mindestens 8 Stunden anhalten, um als echter Heilerfolg zu gelten.",
         answer: true,
-        explanation: "Huneke definierte das Sekundenphänomen: Nach Injektion ins Störfeld tritt sofortige Besserung ein. Diese muss ≥8 Stunden dauern, um als therapeutischer Erfolg zu gelten."
+        explanation: "Huneke definierte das Sekundenphänomen: Nach Injektion ins Störfeld tritt sofortige Besserung ein. Diese muss ≥8 Stunden dauern, um als therapeutischer Erfolg zu gelten.",
+        learningCard: { type: "predict", statement: "Das Sekundenphänomen in der Neuraltherapie muss mindestens 8 Stunden anhalten, um als echter Heilerfolg zu gelten.", answer: true, reveal: "Nach Injektion ins Störfeld tritt eine sofortige Besserung ein — Huneke definierte, dass diese mindestens 8 Stunden andauern muss." }
       },
       {
         type: "mc",
@@ -15147,14 +15256,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Morphin", correct: false },
           { text: "Bupivacain", correct: false }
         ],
-        explanation: "Procain (sowie Lidocain/Novocain) ist das klassische Mittel in der Neuraltherapie. Es blockiert pathologische Nervenimpulse im Segment oder Störfeld."
+        explanation: "Procain (sowie Lidocain/Novocain) ist das klassische Mittel in der Neuraltherapie. Es blockiert pathologische Nervenimpulse im Segment oder Störfeld.",
+        learningCard: { type: "predict", statement: "Procain ist das hauptsächlich verwendete Lokalanästhetikum in der Neuraltherapie nach Huneke.", answer: true, reveal: "Es blockiert pathologische Nervenimpulse im Segment oder Störfeld." }
       },
       {
         type: "true_false",
         id: "1046_07_h4",
         statement: "In der TCM verlaufen Yang-Meridiane an der Innenseite des Körpers und der Bauchhöhle.",
         answer: false,
-        explanation: "Yang-Meridiane verlaufen außen/dorsal (Rückenseite), Yin-Meridiane verlaufen innen/ventral (Bauchseite/Innenseite der Extremitäten)."
+        explanation: "Yang-Meridiane verlaufen außen/dorsal (Rückenseite), Yin-Meridiane verlaufen innen/ventral (Bauchseite/Innenseite der Extremitäten).",
+        learningCard: { type: "predict", statement: "In der TCM verlaufen Yang-Meridiane an der Innenseite des Körpers und der Bauchhöhle.", answer: false, reveal: "Yang-Meridiane verlaufen außen/dorsal (Rückenseite), Yin-Meridiane verlaufen innen/ventral (Bauchseite)." }
       },
       {
         type: "mc",
@@ -15166,7 +15277,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Arzneimittelgesetz (rezeptpflichtig)", correct: true },
           { text: "Freiverkäufliche Heilmittel", correct: false }
         ],
-        explanation: "Lokalanästhetika wie Procain unterliegen dem Arzneimittelgesetz und sind rezeptpflichtig. Dies ist für Heilpraktiker bei der Neuraltherapie rechtlich relevant."
+        explanation: "Lokalanästhetika wie Procain unterliegen dem Arzneimittelgesetz und sind rezeptpflichtig. Dies ist für Heilpraktiker bei der Neuraltherapie rechtlich relevant.",
+        learningCard: { type: "predict", statement: "Lokalanästhetika in der Neuraltherapie unterliegen dem Arzneimittelgesetz und sind rezeptpflichtig.", answer: true, reveal: "Dies ist für Heilpraktiker bei der Neuraltherapie rechtlich relevant." }
       }
     ],
     phase4Questions: [
@@ -15181,7 +15293,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Yin-Organe werden als Hohlorgane bezeichnet", correct: false },
           { text: "Diagnose erfolgt u.a. durch Pulstastung", correct: true }
         ],
-        explanation: "Yin-Organe sind Speicherorgane (Zang), nicht Hohlorgane. Hohlorgane (Fu) sind Yang zugeordnet. Alle anderen Aussagen sind korrekt."
+        explanation: "Yin-Organe sind Speicherorgane (Zang), nicht Hohlorgane. Hohlorgane (Fu) sind Yang zugeordnet. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur TCM-Akupunktur sind korrekt?", checklist: [
+          { text: "Qi ist die Lebensenergie, die durch Meridiane fließt", correct: true },
+          { text: "Es gibt 12 paarige Hauptmeridiane", correct: true },
+          { text: "Yang-Meridiane verlaufen dorsal/außen", correct: true },
+          { text: "Yin-Organe werden als Hohlorgane bezeichnet", correct: false }
+        ], reveal: "Yin-Organe sind Speicherorgane (Zang) — Hohlorgane (Fu) sind Yang zugeordnet." }
       },
       {
         type: "mc",
@@ -15194,7 +15312,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Procain ist frei verkäuflich", correct: false },
           { text: "Allergietest in der Augenbindehaut vor Anwendung", correct: true }
         ],
-        explanation: "Procain/Lidocain/Novocain sind rezeptpflichtig (Arzneimittelgesetz) – nicht frei verkäuflich. Alle anderen Aussagen sind korrekt."
+        explanation: "Procain/Lidocain/Novocain sind rezeptpflichtig (Arzneimittelgesetz) – nicht frei verkäuflich. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zur Neuraltherapie nach Huneke sind korrekt?", checklist: [
+          { text: "Segmenttherapie wirkt über Dermatome/Head-Zonen", correct: true },
+          { text: "Störfeldtherapie behandelt Narben und Entzündungsherde", correct: true },
+          { text: "Sekundenphänomen muss mindestens 8 Stunden anhalten", correct: true },
+          { text: "Procain ist frei verkäuflich", correct: false }
+        ], reveal: "Procain/Lidocain/Novocain sind rezeptpflichtig (Arzneimittelgesetz), nicht frei verkäuflich." }
       }
     ]
   }),
@@ -15213,14 +15337,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Knochenbrüche mit Nervenbeteiligung", correct: false },
           { text: "Entzündliche Gelenkerkrankungen", correct: false }
         ],
-        explanation: "Subluxationen sind partielle Gelenkfehlstellungen mit Funktionsstörung – keine vollständigen Ausrenkungen. Sie gehen mit Muskelverspannungen und Nervenirritationen einher."
+        explanation: "Subluxationen sind partielle Gelenkfehlstellungen mit Funktionsstörung – keine vollständigen Ausrenkungen. Sie gehen mit Muskelverspannungen und Nervenirritationen einher.",
+        learningCard: { type: "predict", statement: "Subluxationen in der Chiropraktik sind Gelenkblockaden mit Muskelverspannungen und Nervenirritationen.", answer: true, reveal: "Sie sind partielle Gelenkfehlstellungen mit Funktionsstörung — keine vollständigen Ausrenkungen." }
       },
       {
         type: "true_false",
         id: "1046_08_h2",
         statement: "Massage kann den Muskeltonus normalisieren und die Erythropoese (Bildung roter Blutkörperchen) fördern.",
         answer: true,
-        explanation: "Massage normalisiert Hyper- und Hypotonus und steigert nachweislich die Bildung roter Blutkörperchen durch verbesserte Durchblutung und Stoffwechselaktivierung."
+        explanation: "Massage normalisiert Hyper- und Hypotonus und steigert nachweislich die Bildung roter Blutkörperchen durch verbesserte Durchblutung und Stoffwechselaktivierung.",
+        learningCard: { type: "predict", statement: "Massage kann den Muskeltonus normalisieren und die Erythropoese (Bildung roter Blutkörperchen) fördern.", answer: true, reveal: "Massage normalisiert Hyper- und Hypotonus und steigert durch verbesserte Durchblutung und Stoffwechselaktivierung die Bildung roter Blutkörperchen." }
       },
       {
         type: "mc",
@@ -15232,14 +15358,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "5", correct: false },
           { text: "7", correct: false }
         ],
-        explanation: "Das Reiki-System nach Mikao Usui kennt 3 Grade: Grad 1 (Selbstbehandlung), Grad 2 (Fernbehandlung), Grad 3 (Meister/Lehrgrad)."
+        explanation: "Das Reiki-System nach Mikao Usui kennt 3 Grade: Grad 1 (Selbstbehandlung), Grad 2 (Fernbehandlung), Grad 3 (Meister/Lehrgrad).",
+        learningCard: { type: "predict", statement: "Das Reiki-System nach Mikao Usui kennt 3 Grade.", answer: true, reveal: "Grad 1 (Selbstbehandlung), Grad 2 (Fernbehandlung), Grad 3 (Meister/Lehrgrad)." }
       },
       {
         type: "true_false",
         id: "1046_08_h4",
         statement: "Bewegungstherapie kann nur aktiv durchgeführt werden – passive Anwendungen sind nicht möglich.",
         answer: false,
-        explanation: "Bewegungstherapie unterscheidet aktive (Patient bewegt selbst, langsam steigernd) und passive Anwendungen (bei Lähmungen/Bettlägerigkeit, durch Therapeuten geführt)."
+        explanation: "Bewegungstherapie unterscheidet aktive (Patient bewegt selbst, langsam steigernd) und passive Anwendungen (bei Lähmungen/Bettlägerigkeit, durch Therapeuten geführt).",
+        learningCard: { type: "predict", statement: "Bewegungstherapie kann nur aktiv durchgeführt werden – passive Anwendungen sind nicht möglich.", answer: false, reveal: "Bewegungstherapie unterscheidet aktive (Patient bewegt selbst) und passive Anwendungen (bei Lähmungen/Bettlägerigkeit, durch Therapeuten geführt)." }
       },
       {
         type: "mc",
@@ -15251,7 +15379,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Mikao Usui", correct: true },
           { text: "Ferdinand Huneke", correct: false }
         ],
-        explanation: "Mikao Usui (Japan) entwickelte das Reiki-System. Baunscheidt: Baunscheidt-Verfahren, Kneipp: Hydrotherapie, Huneke: Neuraltherapie."
+        explanation: "Mikao Usui (Japan) entwickelte das Reiki-System. Baunscheidt: Baunscheidt-Verfahren, Kneipp: Hydrotherapie, Huneke: Neuraltherapie.",
+        learningCard: { type: "oddoneout", statements: [
+          { text: "Mikao Usui begründete das Reiki-System.", isWrong: false },
+          { text: "Friedrich Baunscheidt entwickelte das Baunscheidt-Verfahren.", isWrong: false },
+          { text: "Ferdinand Huneke begründete die Neuraltherapie.", isWrong: false },
+          { text: "Sebastian Kneipp begründete das Reiki-System.", isWrong: true }
+        ], whyWrong: "Sebastian Kneipp entwickelte die Hydrotherapie, nicht Reiki — Reiki geht auf Mikao Usui zurück." }
       }
     ],
     phase4Questions: [
@@ -15266,7 +15400,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Direkte Knochenregeneration", correct: false },
           { text: "Anregung des Stoffwechsels", correct: true }
         ],
-        explanation: "Direkte Knochenregeneration ist keine Massagewirkung. Alle anderen genannten Effekte sind physiologisch belegte Wirkungen der klassischen Massage."
+        explanation: "Direkte Knochenregeneration ist keine Massagewirkung. Alle anderen genannten Effekte sind physiologisch belegte Wirkungen der klassischen Massage.",
+        learningCard: { type: "teachback", prompt: "Welche Wirkungen hat die klassische Massage?", checklist: [
+          { text: "Förderung von Durchblutung und Lymphfluss", correct: true },
+          { text: "Normalisierung des Muskeltonus", correct: true },
+          { text: "Vermehrung roter Blutkörperchen", correct: true },
+          { text: "Direkte Knochenregeneration", correct: false }
+        ], reveal: "Direkte Knochenregeneration ist keine Wirkung der klassischen Massage." }
       },
       {
         type: "mc",
@@ -15279,7 +15419,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Reiki-Grad 2 erlaubt Fernbehandlung", correct: true },
           { text: "Aktive Bewegungstherapie beginnt mit maximaler Belastung", correct: false }
         ],
-        explanation: "Aktive Bewegungstherapie beginnt langsam steigernd – nicht mit maximaler Belastung. Alle anderen Aussagen sind korrekt."
+        explanation: "Aktive Bewegungstherapie beginnt langsam steigernd – nicht mit maximaler Belastung. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Bewegungstherapie und Reiki sind korrekt?", checklist: [
+          { text: "Bewegungstherapie verhindert Kräfteverfall und Muskelschwund", correct: true },
+          { text: "Passive Bewegungstherapie wird bei Lähmungen eingesetzt", correct: true },
+          { text: "Reiki-Grad 2 erlaubt Fernbehandlung", correct: true },
+          { text: "Aktive Bewegungstherapie beginnt mit maximaler Belastung", correct: false }
+        ], reveal: "Aktive Bewegungstherapie beginnt langsam steigernd, nicht mit maximaler Belastung." }
       }
     ]
   }),
@@ -15298,14 +15444,21 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Nur morgens anwenden, immer kalt beginnen, immer warm beenden", correct: false },
           { text: "Nie bei Kindern, nie bei Älteren, nie bei Herzerkrankungen", correct: false }
         ],
-        explanation: "Die 3 Grundsatzregeln sichern die physiologische Reaktionsfähigkeit des Gewebes. Kaltes Gewebe reagiert nicht; frierender/übermüdeter Patient kann nicht thermoregulieren; kalte/zugige Räume verhindern die erwünschte Erwärmungsphase."
+        explanation: "Die 3 Grundsatzregeln sichern die physiologische Reaktionsfähigkeit des Gewebes. Kaltes Gewebe reagiert nicht; frierender/übermüdeter Patient kann nicht thermoregulieren; kalte/zugige Räume verhindern die erwünschte Erwärmungsphase.",
+        learningCard: { type: "teachback", prompt: "Welche Grundsatzregeln gelten für alle hydrotherapeutischen Anwendungen?", checklist: [
+          { text: "Nie auf kaltes Gewebe anwenden", correct: true },
+          { text: "Nie bei frierendem oder übermüdetem Patienten anwenden", correct: true },
+          { text: "Nie in kalten oder zugigen Räumen anwenden", correct: true },
+          { text: "Immer mit Massage kombinieren", correct: false }
+        ], reveal: "Diese drei Regeln sichern die physiologische Reaktionsfähigkeit des Gewebes." }
       },
       {
         id: "1046_09_h2",
         type: "true_false",
         statement: "Der Kneipp-Wickel besteht aus feuchtem Leinentuch + trockenem Baumwolltuch + trockenem Wolltuch.",
         answer: true,
-        explanation: "Korrekt. Der Kneipp-Wickel hat drei Schichten: feuchtes Leinentuch (innen), Baumwolltuch (Mitte), Wolltuch (außen). Der Prießnitz-Wickel besteht nur aus zwei Schichten: feuchtes Leinentuch + Wolltuch."
+        explanation: "Korrekt. Der Kneipp-Wickel hat drei Schichten: feuchtes Leinentuch (innen), Baumwolltuch (Mitte), Wolltuch (außen). Der Prießnitz-Wickel besteht nur aus zwei Schichten: feuchtes Leinentuch + Wolltuch.",
+        learningCard: { type: "predict", statement: "Der Kneipp-Wickel besteht aus feuchtem Leinentuch + trockenem Baumwolltuch + trockenem Wolltuch.", answer: true, reveal: "Der Prießnitz-Wickel besteht dagegen nur aus zwei Schichten: feuchtes Leinentuch + Wolltuch." }
       },
       {
         id: "1046_09_h3",
@@ -15317,14 +15470,16 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Anhaltende Vasokonstriktion mit Mangeldurchblutung", correct: true },
           { text: "Keine Wirkung – nur kurze Anwendungen wirken", correct: false }
         ],
-        explanation: "Länger andauernde Kälte → anhaltende Vasokonstriktion → Mangeldurchblutung. Dagegen: plötzliche/kurze Kälte → zunächst Konstriktion, dann starke reaktive Vasodilatation (therapeutisch genutzt bei Kneipp-Güssen)."
+        explanation: "Länger andauernde Kälte → anhaltende Vasokonstriktion → Mangeldurchblutung. Dagegen: plötzliche/kurze Kälte → zunächst Konstriktion, dann starke reaktive Vasodilatation (therapeutisch genutzt bei Kneipp-Güssen).",
+        learningCard: { type: "predict", statement: "Eine länger andauernde Kälteanwendung führt zu anhaltender Vasokonstriktion mit Mangeldurchblutung.", answer: true, reveal: "Kurze Kälteanwendung führt dagegen zunächst zu Konstriktion, dann zu starker reaktiver Vasodilatation — therapeutisch genutzt bei Kneipp-Güssen." }
       },
       {
         id: "1046_09_h4",
         type: "true_false",
         statement: "Plötzliche Wärme führt zunächst zu kurzer Vasokonstriktion, bevor die Vasodilatation einsetzt.",
         answer: true,
-        explanation: "Korrekt. Plötzliche Wärme → kurze Konstriktion → dann Dilatation. Länger andauernde Wärme → direkte anhaltende Vasodilatation (ohne initiale Konstriktion)."
+        explanation: "Korrekt. Plötzliche Wärme → kurze Konstriktion → dann Dilatation. Länger andauernde Wärme → direkte anhaltende Vasodilatation (ohne initiale Konstriktion).",
+        learningCard: { type: "predict", statement: "Plötzliche Wärme führt zunächst zu kurzer Vasokonstriktion, bevor die Vasodilatation einsetzt.", answer: true, reveal: "Länger andauernde Wärme führt dagegen direkt zu anhaltender Vasodilatation ohne initiale Konstriktion." }
       },
       {
         id: "1046_09_h5",
@@ -15336,7 +15491,8 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Moor-Wickel", correct: false },
           { text: "Schaf-Wickel", correct: false }
         ],
-        explanation: "Der Prießnitz-Wickel = feuchtes Leinentuch + trockenes Wolltuch (2 Schichten). Der Kneipp-Wickel hat drei Schichten: Leinen + Baumwolle + Wolle."
+        explanation: "Der Prießnitz-Wickel = feuchtes Leinentuch + trockenes Wolltuch (2 Schichten). Der Kneipp-Wickel hat drei Schichten: Leinen + Baumwolle + Wolle.",
+        learningCard: { type: "reconstruct", template: "Der ___-Wickel besteht aus nur ___ Schichten: feuchtem Leinentuch und trockenem Wolltuch.", blanks: ["Prießnitz", "zwei"], distractors: ["Kneipp", "drei"], reveal: "Der Kneipp-Wickel hat dagegen drei Schichten: Leinen + Baumwolle + Wolle." }
       }
     ],
     phase4Questions: [
@@ -15351,7 +15507,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Plötzliche Wärme → sofortige anhaltende Dilatation ohne initiale Konstriktion", correct: false },
           { text: "Kurzer Kältereiz (z.B. Kneipp-Guss) nutzt die reaktive Dilatationsphase", correct: true }
         ],
-        explanation: "Plötzliche Wärme bewirkt zunächst kurze Konstriktion, dann Dilatation – nicht sofortige Dilatation. Alle anderen Aussagen beschreiben die vasomotorischen Reaktionen korrekt."
+        explanation: "Plötzliche Wärme bewirkt zunächst kurze Konstriktion, dann Dilatation – nicht sofortige Dilatation. Alle anderen Aussagen beschreiben die vasomotorischen Reaktionen korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche vasomotorischen Reaktionen sind korrekt beschrieben?", checklist: [
+          { text: "Länger andauernde Wärme → Vasodilatation", correct: true },
+          { text: "Länger andauernde Kälte → Vasokonstriktion/Mangeldurchblutung", correct: true },
+          { text: "Plötzliche Kälte → zunächst Konstriktion, dann starke Dilatation", correct: true },
+          { text: "Plötzliche Wärme → sofortige anhaltende Dilatation ohne initiale Konstriktion", correct: false }
+        ], reveal: "Plötzliche Wärme bewirkt zunächst kurze Konstriktion, dann Dilatation — nicht sofortige Dilatation." }
       },
       {
         id: "1046_09_p4_2",
@@ -15364,7 +15526,13 @@ const NATURHEILVERFAHREN2_1046_PLANTS = [
           { text: "Nie bei frierendem oder übermüdetem Patienten anwenden", correct: true },
           { text: "Kalte Wickel sind indiziert bei Fieber, Entzündungen, Verstauchungen", correct: true }
         ],
-        explanation: "Hydrotherapie NIE auf kaltes Gewebe anwenden – kaltes Gewebe kann nicht reagieren. Alle anderen Aussagen sind korrekt."
+        explanation: "Hydrotherapie NIE auf kaltes Gewebe anwenden – kaltes Gewebe kann nicht reagieren. Alle anderen Aussagen sind korrekt.",
+        learningCard: { type: "teachback", prompt: "Welche Aussagen zu Wickeltypen und Grundsatzregeln der Hydrotherapie sind korrekt?", checklist: [
+          { text: "Prießnitz-Wickel: 2 Schichten (Leinen + Wolle)", correct: true },
+          { text: "Kneipp-Wickel: 3 Schichten (Leinen + Baumwolle + Wolle)", correct: true },
+          { text: "Nie bei frierendem oder übermüdetem Patienten anwenden", correct: true },
+          { text: "Hydrotherapie darf auf kaltes Gewebe angewendet werden", correct: false }
+        ], reveal: "Hydrotherapie darf niemals auf kaltes Gewebe angewendet werden, da es nicht reagieren kann." }
       }
     ]
   })
