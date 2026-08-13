@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "3.6.0";   // ← bump this with every push
+const APP_VERSION    = "3.7.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -710,12 +710,14 @@ function getCorrectAnswerText(q) {
   return (q.options || []).filter(o => o.correct).map(o => o.text).join(", ");
 }
 
-function showQuestion(contextText, entry, onCorrect, onWrong, onDone, isLearningPhase) {
+function showQuestion(contextText, entry, onCorrect, onWrong, onDone, isLearningPhase, hintAvailable) {
   const modal    = document.getElementById("modal-question");
   const ctxEl    = document.getElementById("question-context");
   const statsEl  = document.getElementById("question-stats");
   const imgEl    = document.getElementById("question-image");
   const textEl   = document.getElementById("question-text");
+  const hintBtn  = document.getElementById("question-hint-btn");
+  const hintBox  = document.getElementById("question-hint-box");
   const optsEl   = document.getElementById("question-options");
   const fbEl     = document.getElementById("question-feedback");
   const contBtn  = document.getElementById("question-continue-btn");
@@ -736,6 +738,15 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone, isLearning
   fbEl.textContent   = q.explanation || "";
   fbEl.hidden        = true;
   contBtn.hidden     = true;
+  hintBox.hidden     = true;
+  hintBox.textContent = "";
+  if (isLearningPhase && hintAvailable && q.explanation) {
+    hintBtn.hidden   = false;
+    hintBtn.onclick  = () => { hintBox.textContent = q.explanation; hintBox.hidden = false; hintBtn.hidden = true; };
+  } else {
+    hintBtn.hidden = true;
+    hintBtn.onclick = null;
+  }
 
   if (q.type === "true_false") {
     ["Wahr", "Falsch"].forEach(label => {
@@ -798,6 +809,8 @@ function showQuestion(contextText, entry, onCorrect, onWrong, onDone, isLearning
 function finishAnswer(isCorrect, entry, pickedText, onCorrect, onWrong, onDone, isLearningPhase) {
   const fbEl    = document.getElementById("question-feedback");
   const contBtn = document.getElementById("question-continue-btn");
+  document.getElementById("question-hint-btn").hidden = true;
+  document.getElementById("question-hint-box").hidden = true;
   fbEl.hidden    = false;
   contBtn.hidden = false;
 
@@ -881,12 +894,14 @@ function buildVirtualQuestion(q) {
 // slots (in order) drawn from learningCard.template, then confirms. Builds
 // into the same #question-options container showQuestion already uses
 // dynamically, so no markup changes are needed.
-function renderReconstructCard(contextText, entry, learningCard, onCorrect, onWrong, onDone) {
+function renderReconstructCard(contextText, entry, learningCard, onCorrect, onWrong, onDone, hintAvailable) {
   const modal    = document.getElementById("modal-question");
   const ctxEl    = document.getElementById("question-context");
   const statsEl  = document.getElementById("question-stats");
   const imgEl    = document.getElementById("question-image");
   const textEl   = document.getElementById("question-text");
+  const hintBtn  = document.getElementById("question-hint-btn");
+  const hintBox  = document.getElementById("question-hint-box");
   const optsEl   = document.getElementById("question-options");
   const fbEl     = document.getElementById("question-feedback");
   const contBtn  = document.getElementById("question-continue-btn");
@@ -900,6 +915,15 @@ function renderReconstructCard(contextText, entry, learningCard, onCorrect, onWr
   fbEl.textContent   = learningCard.reveal || "";
   fbEl.hidden        = true;
   contBtn.hidden     = true;
+  hintBox.hidden     = true;
+  hintBox.textContent = "";
+  if (hintAvailable && learningCard.reveal) {
+    hintBtn.hidden   = false;
+    hintBtn.onclick  = () => { hintBox.textContent = learningCard.reveal; hintBox.hidden = false; hintBtn.hidden = true; };
+  } else {
+    hintBtn.hidden = true;
+    hintBtn.onclick = null;
+  }
 
   const blanks = learningCard.blanks;
   const words  = shuffleArray([...blanks, ...(learningCard.distractors || [])]);
@@ -985,10 +1009,14 @@ function presentEntry(contextText, entry, onCorrect, onWrong, onDone) {
     const vq = buildVirtualQuestion(entry.question);
     const learnEntry = { chapterId: entry.chapterId, question: vq, isRetry: entry.isRetry };
     const badgedContext = "📖 Lernen · " + contextText;
+    // Hint (the reveal/explanation shown up front) is only offered on the
+    // very first pass — the second pass is meant to be recalled unaided,
+    // right before the real quiz question takes over.
+    const hintAvailable = (qs ? (qs.learningPasses || 0) : 0) === 0;
     if (vq.type === "reconstruct") {
-      renderReconstructCard(badgedContext, learnEntry, entry.question.learningCard, onCorrect, onWrong, onDone);
+      renderReconstructCard(badgedContext, learnEntry, entry.question.learningCard, onCorrect, onWrong, onDone, hintAvailable);
     } else {
-      showQuestion(badgedContext, learnEntry, onCorrect, onWrong, onDone, true);
+      showQuestion(badgedContext, learnEntry, onCorrect, onWrong, onDone, true, hintAvailable);
     }
     return;
   }
