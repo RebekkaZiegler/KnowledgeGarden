@@ -3351,6 +3351,27 @@ function importSave(file) {
   reader.readAsText(file);
 }
 
+// The "Update" button used to just reload with a ?v= cache-buster, which
+// does nothing once a stale service worker + Cache Storage entry is stuck —
+// the SW's own fetch handler is what needs replacing, and a plain reload
+// can't do that. This unregisters the SW and wipes Cache Storage directly
+// (neither touches localStorage, so the save is untouched) before reloading,
+// so "update" is a real hard reset instead of relying on someone remembering
+// to bump sw.js's CACHE version on every deploy.
+async function forceFullUpdate() {
+  try {
+    if ("serviceWorker" in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(r => r.unregister()));
+    }
+    if (window.caches) {
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+  } catch { /* best-effort — reload happens regardless */ }
+  window.location.href = location.origin + location.pathname + "?v=" + Date.now();
+}
+
 /* ══════════════════════════════════════════════════════════
    TOAST
 ══════════════════════════════════════════════════════════ */
@@ -3653,6 +3674,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById("update-btn")?.addEventListener("click",        () => openModal("modal-update"));
   document.getElementById("update-cancel-btn")?.addEventListener("click", () => closeModal("modal-update"));
+  document.getElementById("update-confirm-btn")?.addEventListener("click", forceFullUpdate);
 
   // Esc closes top modal
   document.addEventListener("keydown", e => {
