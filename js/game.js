@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "3.7.0";   // ← bump this with every push
+const APP_VERSION    = "3.8.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -170,7 +170,27 @@ function defaultState() {
       sessionAnswered: 0,
     },
 
-    activeMode:     "tama",
+    activeMode:     "dorf",
+
+    dorf: {
+      seed:  Math.floor(Math.random() * 2147483647), // fixed at first creation, then stable via normalizeState's merge
+      player: { x: 0, y: 0 },
+      skills: {
+        chopping: { xp: 0, level: 1 },
+        mining:   { xp: 0, level: 1 },
+        foraging: { xp: 0, level: 1 }
+      },
+      inventory:     {}, // itemId -> count; separate namespace from the Taverne's own `inventory`
+      overrides:     {}, // "x,y" -> {depleted/respawnAt} | {built} | {repaired} — chopped/mined/built/repaired tiles
+      buildingState: {}, // "x,y" -> settlement-building mutable state (repaired/hired/housed/prodAccum)
+      npcMemory: {
+        timesTalked:  0,
+        relationship: 0,
+        gifts:        {},
+        flags:        {},
+        lastComment:  null
+      }
+    },
 
     stats: {
       totalQuestionsAnswered: 0,
@@ -401,6 +421,21 @@ function normalizeState(s) {
   s.restaurant.totalStats      = Object.assign({ veryHappy: 0, happy: 0, neutral: 0, sad: 0 }, s.restaurant.totalStats || {});
   s.restaurant.sessionCorrect  = 0;
   s.restaurant.sessionAnswered = 0;
+  // Dorf (open-world village) — brand-new feature, so any pre-existing save
+  // simply has no `dorf` key yet. That absence is also our one-time signal
+  // to land returning players on the new main screen instead of wherever
+  // they last were, same as the tamagotchi species check further up.
+  const isFirstDorfLoad = !s.dorf;
+  s.dorf = Object.assign({}, d.dorf, s.dorf || {});
+  s.dorf.player     = Object.assign({}, d.dorf.player, s.dorf.player || {});
+  s.dorf.skills     = Object.assign({}, d.dorf.skills, s.dorf.skills || {});
+  s.dorf.inventory  = s.dorf.inventory     || {};
+  s.dorf.overrides  = s.dorf.overrides     || {};
+  s.dorf.buildingState = s.dorf.buildingState || {};
+  s.dorf.npcMemory  = Object.assign({}, d.dorf.npcMemory, s.dorf.npcMemory || {});
+  if (!Number.isFinite(s.dorf.seed)) s.dorf.seed = Math.floor(Math.random() * 2147483647);
+  if (isFirstDorfLoad) s.activeMode = "dorf";
+
   s.chapters      = s.chapters      || {};
   // Backfill learningPasses on question states saved before learning cards
   // existed — must default via || 0, since `undefined < 2` is false, not
@@ -3612,7 +3647,7 @@ function renderAll() {
 /* ══════════════════════════════════════════════════════════
    MODE SWITCHING — top tabs (Alräunchen / Taverne)
 ══════════════════════════════════════════════════════════ */
-const TOP_TAB_SCREENS = { tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", mosaik: "screen-mosaik", fresko: "screen-fresko", hole: "screen-hole" };
+const TOP_TAB_SCREENS = { dorf: "screen-dorf", tama: "screen-tama", games: "screen-games", watersort: "screen-watersort", mosaik: "screen-mosaik", fresko: "screen-fresko", hole: "screen-hole" };
 
 function switchTopTab(tab) {
   Object.entries(TOP_TAB_SCREENS).forEach(([t, id]) => {
@@ -3626,6 +3661,7 @@ function switchTopTab(tab) {
   document.querySelectorAll(".top-tab").forEach(btn => btn.classList.remove("top-tab--active"));
   document.getElementById(`top-tab-${tab}`)?.classList.add("top-tab--active");
 
+  if (tab === "dorf") window.dorfInit && window.dorfInit();
   if (tab === "tama") renderTamagotchi();
   if (tab === "watersort") window.wsEnsureQueueAndLevel && window.wsEnsureQueueAndLevel();
   if (tab === "mosaik") window.msEnsureQueueAndLevel && window.msEnsureQueueAndLevel();
@@ -3711,7 +3747,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (open) open.hidden = true;
   });
 
-  // Top tabs (Alräunchen / Taverne / Tränke / Mosaik / Loch)
+  // Top tabs (Dorf / Alräunchen / Taverne / Tränke / Mosaik / Loch)
+  document.getElementById("top-tab-dorf")?.addEventListener("click",      () => switchTopTab("dorf"));
   document.getElementById("top-tab-tama")?.addEventListener("click",      () => switchTopTab("tama"));
   document.getElementById("top-tab-games")?.addEventListener("click",     () => switchTopTab("games"));
   document.getElementById("top-tab-watersort")?.addEventListener("click", () => switchTopTab("watersort"));

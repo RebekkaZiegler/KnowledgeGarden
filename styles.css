@@ -4525,3 +4525,133 @@ body.plant-open #back-to-garden-btn { display: block; }
   box-shadow: 0 0 0 2px var(--bg1, #141a17);
 }
 
+/* ═══════════════════════════════════════
+   DORF (open-world hub — canvas + overlay UI)
+═══════════════════════════════════════ */
+#screen-dorf {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#dorf-wrap {
+  position: relative;
+  max-width: 100%;
+  margin: 0.5rem auto 0;
+}
+#dorf-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block;
+  max-width: 96vw;
+  max-height: 62vh;
+  height: auto;
+  touch-action: none;
+  border-radius: 8px;
+  background: #2b2b2b;
+  border: 3px solid var(--bg3, #3a3428);
+}
+#dorf-hint {
+  font-size: 0.72rem;
+  color: var(--muted);
+  max-width: 640px;
+  text-align: center;
+  padding: 0.4rem 1rem 1rem;
+  margin: 0;
+}
+@media (pointer: coarse) {
+  #dorf-hint { display: none; }
+}
+
+/* Inventory bar */
+#dorf-invBar {
+  position: absolute; left: 0; right: 0; bottom: 8px;
+  display: flex; justify-content: center; gap: 4px; pointer-events: none; flex-wrap: wrap;
+}
+.dorf-slot {
+  width: 38px; height: 38px; background: rgba(20,18,14,0.85);
+  border: 2px solid #5a4f3a; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.dorf-slot img { width: 26px; height: 26px; image-rendering: pixelated; }
+.dorf-slot .dorf-count {
+  position: absolute; right: 2px; bottom: 1px; font-size: 10px; font-weight: bold;
+  color: #fff; text-shadow: 1px 1px 0 #000;
+}
+
+/* Skill bar */
+#dorf-skillBar {
+  position: absolute; top: 8px; left: 8px; display: flex; flex-direction: column; gap: 3px;
+  font-size: 11px; color: #ddd; background: rgba(20,18,14,0.7); padding: 6px 8px; border-radius: 6px;
+  pointer-events: none;
+}
+.dorf-skillRow { display: flex; align-items: center; gap: 6px; width: 140px; }
+.dorf-skillRow .dorf-bar { flex: 1; height: 5px; background: #3a3428; border-radius: 3px; overflow: hidden; }
+.dorf-skillRow .dorf-fill { height: 100%; background: #7a9b57; }
+
+/* Toasts */
+#dorf-toasts {
+  position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px;
+  align-items: flex-end; pointer-events: none;
+}
+.dorf-toast {
+  background: rgba(20,18,14,0.9); border: 1px solid #7a9b57; color: #d8ecc0;
+  padding: 5px 10px; border-radius: 6px; font-size: 12px; animation: dorfFadeOut 3s forwards;
+}
+@keyframes dorfFadeOut { 0% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Build palette */
+#dorf-buildBar {
+  position: absolute; left: 50%; top: 8px; transform: translateX(-50%);
+  display: none; gap: 4px;
+  background: rgba(20,18,14,0.85); padding: 6px; border-radius: 6px; border: 2px solid #5a4f3a;
+}
+#dorf-buildBar.dorf-show { display: flex; }
+.dorf-opt {
+  width: 34px; height: 34px; border-radius: 4px; border: 2px solid transparent;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.dorf-opt.dorf-active { border-color: #d8b25c; }
+.dorf-opt img { width: 22px; height: 22px; image-rendering: pixelated; }
+
+/* Dialogue */
+#dorf-dialogue {
+  position: absolute; left: 50%; bottom: 90px; transform: translateX(-50%);
+  width: 380px; max-width: 88%; background: rgba(20,18,14,0.95); border: 2px solid #d8b25c;
+  border-radius: 8px; padding: 14px 16px; display: none; z-index: 5;
+}
+#dorf-dialogue.dorf-show { display: block; }
+.dorf-dlg-who { color: #d8b25c; font-weight: bold; font-size: 13px; margin-bottom: 4px; }
+.dorf-dlg-line { font-size: 13px; line-height: 1.4; color: #eee; }
+.dorf-dlg-opts { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+.dorf-dlg-opts button {
+  background: #3a3428; border: 1px solid #7a6f52; color: #eee; padding: 5px 10px;
+  border-radius: 5px; font-size: 12px; cursor: pointer;
+}
+
+/* Touch controls — only shown on touch-primary devices */
+#dorf-touchControls { display: none; }
+@media (pointer: coarse) {
+  #dorf-touchControls { display: block; }
+}
+#dorf-dpad {
+  position: absolute; left: 8px; bottom: 8px;
+  display: grid; grid-template-columns: repeat(3, 40px); grid-template-rows: repeat(3, 40px); gap: 3px;
+}
+#dorf-dpad button, #dorf-actionPad button {
+  width: 40px; height: 40px; border-radius: 8px; border: 2px solid #5a4f3a;
+  background: rgba(20,18,14,0.78); color: #eee; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  user-select: none; -webkit-user-select: none; touch-action: none; padding: 0;
+}
+#dorf-dpad .dorf-up    { grid-column: 2; grid-row: 1; }
+#dorf-dpad .dorf-left  { grid-column: 1; grid-row: 2; }
+#dorf-dpad .dorf-right { grid-column: 3; grid-row: 2; }
+#dorf-dpad .dorf-down  { grid-column: 2; grid-row: 3; }
+#dorf-actionPad {
+  position: absolute; right: 8px; bottom: 8px;
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+}
+#dorf-actionPad button { width: 52px; height: 52px; font-size: 19px; }
+#dorf-btnBuild.dorf-active { border-color: #d8b25c; }
+

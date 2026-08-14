@@ -28,7 +28,8 @@
        TOP TABS
   ════════════════════════════════════════════════════ -->
   <div id="top-tabs">
-    <button id="top-tab-tama"      class="top-tab top-tab--active">🌱 Alräunchen</button>
+    <button id="top-tab-dorf"      class="top-tab top-tab--active">🏘️ Dorf</button>
+    <button id="top-tab-tama"      class="top-tab">🌱 Alräunchen</button>
     <button id="top-tab-games"     class="top-tab">🍕 Taverne</button>
     <button id="top-tab-watersort" class="top-tab">🧪 Tränke</button>
     <button id="top-tab-mosaik"    class="top-tab">🧩 Mosaik</button>
@@ -37,9 +38,44 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════
+       SCREEN: Dorf (open-world hub — chop/mine/forage feed real
+       harvestQuestions via askQuestions(); Taverne + Alräunchenzimmer
+       buildings jump into the existing tabs below)
+  ════════════════════════════════════════════════════ -->
+  <div id="screen-dorf" class="mode-screen">
+    <div id="dorf-wrap">
+      <canvas id="dorf-canvas" width="720" height="480"></canvas>
+      <div id="dorf-skillBar"></div>
+      <div id="dorf-toasts"></div>
+      <div id="dorf-buildBar"></div>
+      <div id="dorf-invBar"></div>
+      <div id="dorf-dialogue">
+        <div class="dorf-dlg-who" id="dorf-dlgWho"></div>
+        <div class="dorf-dlg-line" id="dorf-dlgLine"></div>
+        <div class="dorf-dlg-opts" id="dorf-dlgOpts"></div>
+      </div>
+      <div id="dorf-touchControls">
+        <div id="dorf-dpad">
+          <button class="dorf-up" data-dir="up">▲</button>
+          <button class="dorf-left" data-dir="left">◀</button>
+          <button class="dorf-right" data-dir="right">▶</button>
+          <button class="dorf-down" data-dir="down">▼</button>
+        </div>
+        <div id="dorf-actionPad">
+          <button id="dorf-btnBuild" title="Baumodus">🔨</button>
+          <button id="dorf-btnAction" title="Aktion">E</button>
+        </div>
+      </div>
+    </div>
+    <p id="dorf-hint">
+      WASD/Pfeiltasten: laufen · E: Aktion (ernten/reden/reparieren/einsammeln) · B: Baumodus · Ressourcen sammeln stellt eine echte Lernfrage — Bäume fällen, Fels abbauen, Pilze sammeln kostet 1 Frage, genau wie die anderen Aktionen in der App.
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════
        SCREEN: Alräunchen (main focus)
   ════════════════════════════════════════════════════ -->
-  <div id="screen-tama" class="mode-screen">
+  <div id="screen-tama" class="mode-screen" hidden>
     <div id="tama-screen-body" class="tama-screen-body"></div>
     <button id="tama-feed-btn" class="clicker-study-btn">
       📖 Frage beantworten
@@ -372,6 +408,7 @@
     })();
   </script>
   <script src="./js/game.js"></script>
+  <script src="./js/dorf.js"></script>
   <script src="./js/watersort.js"></script>
   <script src="./js/mosaik.js"></script>
   <script src="./js/fresko.js"></script>
