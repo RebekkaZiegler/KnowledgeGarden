@@ -86,7 +86,8 @@ const DORF_BIOME_RESOURCE_TABLE = {
 };
 
 const DORF_ITEM_ICON  = { holz: "woodfloor", stein: "rock", edelstein: "gem" };
-const DORF_ITEM_LABEL = { holz: "Holz", stein: "Stein", edelstein: "Edelstein" };
+const DORF_ITEM_LABEL = { holz: "Holz", stein: "Stein", edelstein: "Edelstein", dough: "Teig" };
+const DORF_ITEM_EMOJI_FALLBACK = { dough: "🍞" }; // Dorf-only goods with no sprite icon
 const DORF_STACK_CAP  = 9999;
 
 const DORF_BUILD_OPTIONS = [
@@ -101,10 +102,18 @@ const DORF_BUILD_OPTIONS = [
 // stocks mozzarella for pizza-making. Ham/bacon/sucuk and salami all trace
 // back to "salami"/"ham", so one Metzgerei variant covers all three
 // toppings, matching how the real kitchen already groups them.
+//
+// `kind` controls how the tick/collect loop treats the building:
+//  - "passive"  (default) — produces `produce` out of thin air, like before.
+//  - "processor" — needs `consumes` (an input ingredient + amount) on hand
+//    each tick to make progress; produces a Dorf-only intermediate good
+//    instead of a real ingredient, since the Kitchen doesn't consume it.
+//  - "flavor" — no production loop at all once staffed; exists purely for
+//    its own sake (a happy villager, nothing to collect).
 const DORF_JOB_TYPES = [
   { id: "sawmill",        label: "Sägewerk",              produce: "holz",       real: false, emoji: "🪵", roof: "#a0622c" },
   { id: "quarry",         label: "Steinbruch",            produce: "stein",      real: false, emoji: "🪨", roof: "#7a7a7a" },
-  { id: "bakery",         label: "Bäckerei",              produce: "wheat",      real: true,  emoji: "🌾", roof: "#c9a227" },
+  { id: "farm_wheat",     label: "Kornfeld",              produce: "wheat",      real: true,  emoji: "🌾", roof: "#c9a227" },
   { id: "farm_tomato",    label: "Gärtnerei (Tomate)",    produce: "tomato",     real: true,  emoji: "🍅", roof: "#b5432f" },
   { id: "farm_onion",     label: "Gärtnerei (Zwiebel)",   produce: "onion",      real: true,  emoji: "🧅", roof: "#b5432f" },
   { id: "farm_garlic",    label: "Gärtnerei (Knoblauch)", produce: "garlic",     real: true,  emoji: "🧄", roof: "#b5432f" },
@@ -116,16 +125,23 @@ const DORF_JOB_TYPES = [
   { id: "butcher_ham",    label: "Metzgerei (Schinken)",  produce: "ham",        real: true,  emoji: "🍖", roof: "#8a4a3c" },
   { id: "butcher_salami", label: "Metzgerei (Salami)",    produce: "salami",     real: true,  emoji: "🥩", roof: "#8a4a3c" },
   { id: "fisherman",      label: "Fischerhütte",          produce: "anchovies",  real: true,  emoji: "🐟", roof: "#3c6e8a" },
-  { id: "henhouse",       label: "Hühnerstall",           produce: "eggs",       real: true,  emoji: "🥚", roof: "#d8c458" }
+  { id: "henhouse",       label: "Hühnerstall",           produce: "eggs",       real: true,  emoji: "🥚", roof: "#d8c458" },
+  { id: "bakery",         label: "Bäckerei",              produce: "dough",      real: false, emoji: "🍞", roof: "#c9a227",
+    kind: "processor", consumes: { item: "wheat", amount: 1, real: true } },
+  { id: "flowershop",     label: "Blumenladen",           produce: null,         real: false, emoji: "🌸", roof: "#d888c0",
+    kind: "flavor" }
 ];
 const DORF_JOB_TYPE_BY_ID = {};
-DORF_JOB_TYPES.forEach(j => { DORF_JOB_TYPE_BY_ID[j.id] = j; });
+DORF_JOB_TYPES.forEach(j => { j.kind = j.kind || "passive"; DORF_JOB_TYPE_BY_ID[j.id] = j; });
 const DORF_HOUSE_COST = { holz: 6, stein: 3 };
 const DORF_JOB_COST   = { holz: 5, stein: 5 };
 const DORF_BUILDING_PROD_CAP = 30;
-// How many distinct workshop types a single settlement gets — always fewer
-// than the full roster, so villages genuinely lack ingredients.
-const DORF_JOBS_PER_SETTLEMENT = 4;
+// How many distinct workshop types a settlement gets — always fewer than
+// the full roster, so villages genuinely lack ingredients. Cities are a
+// rarer, bigger settlement tier with more houses and more workshops.
+const DORF_JOBS_PER_VILLAGE = 4;
+const DORF_JOBS_PER_CITY = 8;
+const DORF_CITY_CHANCE = 0.22; // of settlements that spawn at all (excludes the forced Startdorf)
 
 function dorfJobLabel(type) { return type === "house" ? "Haus" : DORF_JOB_TYPE_BY_ID[type].label; }
 function dorfBuildingCost(type) { return type === "house" ? DORF_HOUSE_COST : DORF_JOB_COST; }
@@ -139,6 +155,7 @@ function dorfItemLabel(id) {
   return ing ? ing.name : id;
 }
 function dorfItemEmoji(id) {
+  if (DORF_ITEM_EMOJI_FALLBACK[id]) return DORF_ITEM_EMOJI_FALLBACK[id];
   const ing = typeof ALL_INGREDIENTS !== "undefined" ? ALL_INGREDIENTS.find(i => i.id === id) : null;
   return ing ? ing.emoji : "❔";
 }
@@ -222,6 +239,32 @@ function dorfPickJobTypes(cx, cy, count) {
   return picked;
 }
 
+// Village: 2 houses / 4 workshops. City: 4 houses / 8 workshops, roughly
+// twice the footprint — rarer, and never the forced Startdorf, so your
+// first village stays small and easy to read.
+const DORF_VILLAGE_TEMPLATE = [
+  { dx: -2, dy: -1, kind: "house" },
+  { dx: 2, dy: -1, kind: "house" },
+  { dx: -3, dy: 1, kind: "job" },
+  { dx: -1, dy: 1, kind: "job" },
+  { dx: 1, dy: 1, kind: "job" },
+  { dx: 3, dy: 1, kind: "job" }
+];
+const DORF_CITY_TEMPLATE = [
+  { dx: -4, dy: -2, kind: "house" },
+  { dx: 4, dy: -2, kind: "house" },
+  { dx: -4, dy: 2, kind: "house" },
+  { dx: 4, dy: 2, kind: "house" },
+  { dx: -2, dy: -3, kind: "job" },
+  { dx: 0, dy: -3, kind: "job" },
+  { dx: 2, dy: -3, kind: "job" },
+  { dx: -3, dy: 0, kind: "job" },
+  { dx: 3, dy: 0, kind: "job" },
+  { dx: -2, dy: 3, kind: "job" },
+  { dx: 0, dy: 3, kind: "job" },
+  { dx: 2, dy: 3, kind: "job" }
+];
+
 function dorfSettlementAt(rx, ry) {
   const forced = rx === 0 && ry === 0; // guarantee a Startdorf near spawn
   const h = dorfHash2(rx, ry, dorfSeed + 7777);
@@ -230,18 +273,14 @@ function dorfSettlementAt(rx, ry) {
   const cyOff = 8 + Math.floor(dorfHash2(rx * 7 + 3, ry * 11 + 4, dorfSeed + 8889) * (DORF_REGION - 16));
   const cx = rx * DORF_REGION + cxOff, cy = ry * DORF_REGION + cyOff;
 
+  const isCity = !forced && dorfHash2(rx * 5 + 2, ry * 9 + 4, dorfSeed + 6060) < DORF_CITY_CHANCE;
+  const template = isCity ? DORF_CITY_TEMPLATE : DORF_VILLAGE_TEMPLATE;
+  const jobCount = isCity ? DORF_JOBS_PER_CITY : DORF_JOBS_PER_VILLAGE;
+
   // Fixed layout — always exactly this many pre-broken buildings, no
   // free-form building menu for settlements (that's what DORF_BUILD_OPTIONS
   // is for, and it stays separate/anywhere-placeable).
-  const template = [
-    { dx: -2, dy: -1, kind: "house" },
-    { dx: 2, dy: -1, kind: "house" },
-    { dx: -3, dy: 1, kind: "job" },
-    { dx: -1, dy: 1, kind: "job" },
-    { dx: 1, dy: 1, kind: "job" },
-    { dx: 3, dy: 1, kind: "job" }
-  ];
-  const jobPicks = dorfPickJobTypes(cx, cy, DORF_JOBS_PER_SETTLEMENT);
+  const jobPicks = dorfPickJobTypes(cx, cy, jobCount);
   let jobIndex = 0;
   const slots = template.map(t => {
     if (t.kind === "house") return { x: cx + t.dx, y: cy + t.dy, type: "house" };
@@ -251,6 +290,7 @@ function dorfSettlementAt(rx, ry) {
 
   return {
     id: "s_" + rx + "_" + ry,
+    size: isCity ? "city" : "village",
     center: { x: cx, y: cy },
     tavern: { x: cx, y: cy },
     alraunchen: { x: cx, y: cy - 2 },
@@ -311,8 +351,12 @@ function dorfHandleBuildingInteract(x, y, b) {
     dorfToast(dorfVillagerNameFor(b.type) + " braucht noch ein Zuhause in der Nähe.");
     return;
   }
+  const job = DORF_JOB_TYPE_BY_ID[b.type];
+  if (job.kind === "flavor") {
+    dorfToast(dorfVillagerNameFor(b.type) + " winkt fröhlich — hier gibt's nichts einzusammeln, nur gute Laune.");
+    return;
+  }
   if (st.prodAccum > 0) {
-    const job = DORF_JOB_TYPE_BY_ID[b.type];
     if (job.real) {
       G.inventory[job.produce] = (G.inventory[job.produce] || 0) + st.prodAccum;
     } else {
@@ -321,6 +365,8 @@ function dorfHandleBuildingInteract(x, y, b) {
     dorfToast("+" + st.prodAccum + " " + dorfItemLabel(job.produce) + " eingesammelt.");
     st.prodAccum = 0;
     saveState();
+  } else if (job.kind === "processor") {
+    dorfToast(dorfVillagerNameFor(b.type) + " wartet auf " + dorfItemLabel(job.consumes.item) + ".");
   } else {
     dorfToast(dorfVillagerNameFor(b.type) + " arbeitet noch...");
   }
@@ -351,6 +397,14 @@ function dorfRunSettlementTick() {
         }
       }
       if (!st.housed) continue;
+    }
+    const job = DORF_JOB_TYPE_BY_ID[bld.type];
+    if (job.kind === "flavor") continue; // staffed and content, nothing to tick
+    if (job.kind === "processor") {
+      const c = job.consumes;
+      const have = c.real ? (G.inventory[c.item] || 0) : (dorfInventory[c.item] || 0);
+      if (have < c.amount) continue; // no input on hand this tick, no progress
+      if (c.real) G.inventory[c.item] -= c.amount; else dorfInventory[c.item] -= c.amount;
     }
     st.prodAccum = Math.min(DORF_BUILDING_PROD_CAP, st.prodAccum + 1);
     changed = true;
@@ -672,13 +726,21 @@ function dorfRenderSkillBar() {
 function dorfRenderInventory() {
   const el = document.getElementById("dorf-invBar");
   el.innerHTML = "";
-  // Dorf-only building materials (sprite icons)...
+  // Dorf-only goods — sprite icon where we have one (holz/stein/edelstein),
+  // emoji fallback for newer Dorf-only intermediates like Teig.
   Object.keys(dorfInventory).filter(k => dorfInventory[k] > 0).forEach(id => {
     const slot = document.createElement("div");
     slot.className = "dorf-slot";
-    const img = document.createElement("img");
-    img.src = DORF_TILE_SRC[DORF_ITEM_ICON[id]];
-    slot.appendChild(img);
+    if (DORF_ITEM_ICON[id]) {
+      const img = document.createElement("img");
+      img.src = DORF_TILE_SRC[DORF_ITEM_ICON[id]];
+      slot.appendChild(img);
+    } else {
+      const emoji = document.createElement("div");
+      emoji.className = "dorf-emoji";
+      emoji.textContent = dorfItemEmoji(id);
+      slot.appendChild(emoji);
+    }
     const count = document.createElement("div");
     count.className = "dorf-count";
     count.textContent = dorfInventory[id];
@@ -845,7 +907,7 @@ function dorfDrawBuildingTile(b, sx, sy, biome) {
       dorfCtx.fillStyle = "#d8b25c";
       dorfCtx.font = "bold 12px sans-serif";
       dorfCtx.fillText("?", sx + DORF_CELL - 16, sy + 16);
-    } else if (st.prodAccum > 0) {
+    } else if (job.kind === "flavor" || st.prodAccum > 0) {
       dorfCtx.fillStyle = "#7a9b57";
       dorfCtx.beginPath(); dorfCtx.arc(sx + DORF_CELL - 10, sy + 10, 5, 0, Math.PI * 2); dorfCtx.fill();
     }
