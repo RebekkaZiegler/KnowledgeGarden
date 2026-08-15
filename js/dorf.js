@@ -7,6 +7,14 @@
    other minigames do. World, inventory, skills and settlement
    state live under G.dorf (see defaultState() in game.js) so they
    ride along with the app's existing save/export/import/reset.
+
+   Settlement workshops mirror the real pizza-ingredient roster
+   (ALL_INGREDIENTS/RE_TOPPINGS in game.js) — a repaired, staffed
+   workshop deposits straight into the real G.inventory, so a
+   Käserei genuinely stocks the Kitchen with mozzarella. Only a
+   random subset of the roster spawns per settlement, so no single
+   village can make every topping — the gap is the reason trade
+   between villages will eventually matter.
 ══════════════════════════════════════════════════════════ */
 "use strict";
 
@@ -22,6 +30,7 @@ const DORF_TILE_SRC = {
   rock:     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAV0lEQVR4nGNcsW37fwYKABMlmqlrACcHB16FIHlsaphgjO8/fmDVRAiw4JNENhSbBSguIBcwDR0DOHEEKBO6IlwKaRaILMTYgg+Q7AJ0L5JsALorKQ4DAEOQFWrsLa1tAAAAAElFTkSuQmCC",
   woodfloor:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAb0lEQVR4nGNcURfyn4eVkQEGvvz+z0AKn4mBQsCEzAGZTipgIVcjVhfwIPkNG8BmEQsxtuBzIRMxNsPksaljQVdEjK0YLkAH2DTjciUTVlEivEXQAGINYaLEdpBXWYhSiUUjXhcQC0AuJcsFVM2NAN9eI+vE5j3RAAAAAElFTkSuQmCC",
   water:    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAARklEQVR4nGNMPnr+PwMFgIkSzbQxQJufhzIDrn78QpkBpAImuhqgjSV8mEgxAFv4MDFQCJiwCZISlUzYBEmJSiaiVQ5fAwCELgwWzSVYvwAAAABJRU5ErkJggg==",
+  sand:     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXElEQVR4nGN8dmv/fwYKABMlmmlvwOcPrzD46GJM+AzgFRAj6AIWXLZi04xNjImgFaS6gJcIZ1PVBUxUM+AzWvSQHAa8OPyObDBNYoGJHE3IrsKIRnRAKEFR7AUACEcY2b/QQYgAAAAASUVORK5CYII=",
   villager_quarry:  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABL0lEQVR4nGNgoBAwYhMsirD8j028b8VxDPWM2DTrq0pite3i7ecYhrDgcpqLuzcKf8/OrVjVMaELWJibYWiGGQhyGbr3mHC5ANlGXLaDACOIqCuKgJuqIyvOYG2qh1Vx75Q5YFfc/coG5jf1rWBkBGmWk1fAUOxprMqwb0IrmO1UUM2w/extBtY3t8ABqWVpDxZ/9PAB7kAEafAsqIazQQCkGeSC30jqWJA1gUwUFBJk4OXlB/NXHTgDpmF8kGawC0TUEAbogPxsrArmzHz4AKz48+ePKBph/MdQF7hA1R/99x17LIA0wjQj82EuICoaGbAAWBggA5Qw+PLsIQMr9y+cBsBc4OKOZEBY4UTGVf35GJkH3anINh89fQlMg/SiZAyQQbBEBFIEUoBPHKQQAMIleZXjqjqhAAAAAElFTkSuQmCC",
   villager_sawmill: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABJUlEQVR4nGNgoBAwYhMsirD8j028b8VxDPWM2DTrq0pite3i7ecYhrDgcpq6uh4K/+bNS1jVMWGzHV0zzECQHLr3mHC54MqlC1jZ6IARRCwOUQKb+k/TAOzPMB93rIpXbdkJdgXTdYiBsWvuMTKCNCsLsoIF1nwWYkD2wu0Ni8C0akAcPBxAFoTwvgPz777/jRqIIM0gBaovroL5MIP/HVwOpi9CLWB48Q57GFy8/RyiAAeAWYAMWH4q6TEw6RlAFECdyK+hjdWAizcgFjCpQ8Lo56ULqF6AuUDsKcQLyOCVtDbcBcjRzETIiYS8iGIAKHpgIYwOQK4CycGiEAbA6WBOWQA8delAwwMW8nDD7SPBNHKiSunawIiSMZAzEnLGwSUOUggALyCEUZR/qaEAAAAASUVORK5CYII=",
   villager_farm:    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA/klEQVR4nGNgGGjAiE1w/8bm/9jEHf1rMdQzYtOsrKyK1ba7d29jGMKCTSHzh68MxAImdIHX996A6T07t8LFYGyYHDJgBBFFEZZwP1uYmzFYm+phte3o6UsMJ06egvP7VhxnZAFpdrYxhgu+efmYgYEBuwHf3z1mQFbLwMDwHyMMRMSlUJyPLoc3DN68fMbglNwNVogNg+RAalDCoCjC8r++qiROG7ABmCEXbz/HjAVSARMhm9CdjA5QAvH1hwgGdSMJOF9ICVPDzXMvGBgZ+hAGgOISlg70dFAVIgNkg0F+BwGQXpR0LZ+c8J9fSxPM/njtOsPDuQvA8rjEQQoBPxJkXF9hnCsAAAAASUVORK5CYII="
@@ -39,12 +48,24 @@ const DORF_REGION = 40;
 
 const DORF_T = { GRASS: 0, WATER: 1 };
 const DORF_RES = { NONE: 0, TREE: 1, ROCK: 2, GEM: 3, MUSHROOM: 4, BROKEN_BRIDGE: 5 };
+const DORF_BIOME = { FOREST: 0, SNOW: 1, MOUNTAIN: 2, DESERT: 3 };
+// Radius (in tiles) around spawn that's always forest, so the Startdorf and
+// its immediate surroundings never roll into a biome that feels alien on
+// your very first walk.
+const DORF_HOME_BIOME_RADIUS = 70;
+// Biome regions are much bigger than settlement-search regions so they read
+// as real stretches of terrain, not a patchwork.
+const DORF_BIOME_NOISE_SCALE = 220;
 
+// Personal gathering (chop/mine/forage) — resource nodes scattered on the
+// ground, gated by askQuestions() in dorfTryInteract(). `real:true` means
+// the reward lands in the app's actual G.inventory (mushrooms are a genuine
+// pizza ingredient); everything else is a Dorf-only building material.
 const DORF_RESOURCE_YIELD = {
-  [DORF_RES.TREE]:     { item: "holz",      skill: "chopping" },
-  [DORF_RES.ROCK]:     { item: "stein",     skill: "mining" },
-  [DORF_RES.GEM]:      { item: "edelstein", skill: "mining" },
-  [DORF_RES.MUSHROOM]: { item: "pilz",      skill: "foraging" }
+  [DORF_RES.TREE]:     { item: "holz",      skill: "chopping", real: false },
+  [DORF_RES.ROCK]:     { item: "stein",     skill: "mining",    real: false },
+  [DORF_RES.GEM]:      { item: "edelstein", skill: "mining",    real: false },
+  [DORF_RES.MUSHROOM]: { item: "mushrooms", skill: "foraging",  real: true }
 };
 const DORF_ACTION_LABEL = {
   [DORF_RES.TREE]:     "🪓 Baum fällen",
@@ -54,8 +75,18 @@ const DORF_ACTION_LABEL = {
 };
 const DORF_RESPAWN_MS = { [DORF_RES.TREE]: 25000, [DORF_RES.ROCK]: 40000, [DORF_RES.GEM]: 90000, [DORF_RES.MUSHROOM]: 15000 };
 
-const DORF_ITEM_ICON  = { holz: "woodfloor", stein: "rock", edelstein: "gem", pilz: "item", nahrung: "item" };
-const DORF_ITEM_LABEL = { holz: "Holz", stein: "Stein", edelstein: "Edelstein", pilz: "Pilz", nahrung: "Nahrung" };
+// Per-biome resource-node odds, checked in order (first match wins), same
+// cascading-threshold shape as before — just parameterized per biome so
+// e.g. the desert has no trees and the mountains are rock/gem-heavy.
+const DORF_BIOME_RESOURCE_TABLE = {
+  [DORF_BIOME.FOREST]:   [[0.05, DORF_RES.TREE], [0.056, DORF_RES.ROCK], [0.06, DORF_RES.GEM], [0.10, DORF_RES.MUSHROOM]],
+  [DORF_BIOME.SNOW]:     [[0.045, DORF_RES.TREE], [0.05, DORF_RES.ROCK], [0.053, DORF_RES.GEM], [0.065, DORF_RES.MUSHROOM]],
+  [DORF_BIOME.MOUNTAIN]: [[0.11, DORF_RES.ROCK], [0.15, DORF_RES.GEM]],
+  [DORF_BIOME.DESERT]:   [[0.035, DORF_RES.ROCK], [0.05, DORF_RES.GEM]]
+};
+
+const DORF_ITEM_ICON  = { holz: "woodfloor", stein: "rock", edelstein: "gem" };
+const DORF_ITEM_LABEL = { holz: "Holz", stein: "Stein", edelstein: "Edelstein" };
 const DORF_STACK_CAP  = 9999;
 
 const DORF_BUILD_OPTIONS = [
@@ -64,20 +95,53 @@ const DORF_BUILD_OPTIONS = [
   { id: "fence",    label: "Zaun",       icon: "rock",      cost: { stein: 2 } }
 ];
 
-const DORF_BUILDING_COST = {
-  house:   { holz: 6, stein: 3 },
-  sawmill: { holz: 5, stein: 5 },
-  quarry:  { holz: 5, stein: 5 },
-  farm:    { holz: 5, stein: 5 }
-};
-const DORF_BUILDING_LABEL = { house: "Haus", sawmill: "Sägewerk", quarry: "Steinbruch", farm: "Farm" };
-const DORF_BUILDING_PRODUCE = {
-  sawmill: { item: "holz" },
-  quarry:  { item: "stein" },
-  farm:    { item: "nahrung" }
-};
+// Settlement workshops. `real:true` deposits straight into G.inventory
+// using the SAME ingredient id the Kitchen/RE_TOPPINGS system already
+// reads (see ALL_INGREDIENTS in game.js) — a repaired Käserei genuinely
+// stocks mozzarella for pizza-making. Ham/bacon/sucuk and salami all trace
+// back to "salami"/"ham", so one Metzgerei variant covers all three
+// toppings, matching how the real kitchen already groups them.
+const DORF_JOB_TYPES = [
+  { id: "sawmill",        label: "Sägewerk",              produce: "holz",       real: false, emoji: "🪵", roof: "#a0622c" },
+  { id: "quarry",         label: "Steinbruch",            produce: "stein",      real: false, emoji: "🪨", roof: "#7a7a7a" },
+  { id: "bakery",         label: "Bäckerei",              produce: "wheat",      real: true,  emoji: "🌾", roof: "#c9a227" },
+  { id: "farm_tomato",    label: "Gärtnerei (Tomate)",    produce: "tomato",     real: true,  emoji: "🍅", roof: "#b5432f" },
+  { id: "farm_onion",     label: "Gärtnerei (Zwiebel)",   produce: "onion",      real: true,  emoji: "🧅", roof: "#b5432f" },
+  { id: "farm_garlic",    label: "Gärtnerei (Knoblauch)", produce: "garlic",     real: true,  emoji: "🧄", roof: "#b5432f" },
+  { id: "farm_pepper",    label: "Gärtnerei (Paprika)",   produce: "bell_pepper",real: true,  emoji: "🫑", roof: "#b5432f" },
+  { id: "farm_basil",     label: "Gärtnerei (Basilikum)", produce: "basil",      real: true,  emoji: "🌿", roof: "#b5432f" },
+  { id: "farm_olives",    label: "Gärtnerei (Oliven)",    produce: "olives",     real: true,  emoji: "🫒", roof: "#b5432f" },
+  { id: "farm_mushroom",  label: "Gärtnerei (Pilze)",     produce: "mushrooms",  real: true,  emoji: "🍄", roof: "#b5432f" },
+  { id: "dairy",          label: "Käserei",               produce: "mozzarella", real: true,  emoji: "🧀", roof: "#d8c458" },
+  { id: "butcher_ham",    label: "Metzgerei (Schinken)",  produce: "ham",        real: true,  emoji: "🍖", roof: "#8a4a3c" },
+  { id: "butcher_salami", label: "Metzgerei (Salami)",    produce: "salami",     real: true,  emoji: "🥩", roof: "#8a4a3c" },
+  { id: "fisherman",      label: "Fischerhütte",          produce: "anchovies",  real: true,  emoji: "🐟", roof: "#3c6e8a" },
+  { id: "henhouse",       label: "Hühnerstall",           produce: "eggs",       real: true,  emoji: "🥚", roof: "#d8c458" }
+];
+const DORF_JOB_TYPE_BY_ID = {};
+DORF_JOB_TYPES.forEach(j => { DORF_JOB_TYPE_BY_ID[j.id] = j; });
+const DORF_HOUSE_COST = { holz: 6, stein: 3 };
+const DORF_JOB_COST   = { holz: 5, stein: 5 };
 const DORF_BUILDING_PROD_CAP = 30;
-function dorfVillagerNameFor(type) { return DORF_BUILDING_LABEL[type] + "-Bewohner"; }
+// How many distinct workshop types a single settlement gets — always fewer
+// than the full roster, so villages genuinely lack ingredients.
+const DORF_JOBS_PER_SETTLEMENT = 4;
+
+function dorfJobLabel(type) { return type === "house" ? "Haus" : DORF_JOB_TYPE_BY_ID[type].label; }
+function dorfBuildingCost(type) { return type === "house" ? DORF_HOUSE_COST : DORF_JOB_COST; }
+function dorfVillagerNameFor(type) { return dorfJobLabel(type) + "-Bewohner"; }
+
+// Real-ingredient display name/emoji piggyback on the app's own ingredient
+// table so labels never drift out of sync with the Kitchen.
+function dorfItemLabel(id) {
+  if (DORF_ITEM_LABEL[id]) return DORF_ITEM_LABEL[id];
+  const ing = typeof ALL_INGREDIENTS !== "undefined" ? ALL_INGREDIENTS.find(i => i.id === id) : null;
+  return ing ? ing.name : id;
+}
+function dorfItemEmoji(id) {
+  const ing = typeof ALL_INGREDIENTS !== "undefined" ? ALL_INGREDIENTS.find(i => i.id === id) : null;
+  return ing ? ing.emoji : "❔";
+}
 
 const DORF_SKILL_LABEL = { chopping: "Holzfällen", mining: "Bergbau", foraging: "Sammeln" };
 
@@ -124,7 +188,40 @@ function dorfValueNoise(x, y, seed, scale) {
 }
 function dorfTileKey(x, y) { return x + "," + y; }
 
+/* ---------------------------- biomes ---------------------------- */
+function dorfBiomeAt(x, y) {
+  if (Math.abs(x) <= DORF_HOME_BIOME_RADIUS && Math.abs(y) <= DORF_HOME_BIOME_RADIUS) return DORF_BIOME.FOREST;
+  const n = dorfValueNoise(x, y, dorfSeed + 31337, DORF_BIOME_NOISE_SCALE);
+  if (n < 0.30) return DORF_BIOME.SNOW;
+  if (n < 0.62) return DORF_BIOME.FOREST;
+  if (n < 0.82) return DORF_BIOME.MOUNTAIN;
+  return DORF_BIOME.DESERT;
+}
+function dorfGroundImage(biome) {
+  if (biome === DORF_BIOME.DESERT) return DORF_IMAGES.sand;
+  if (biome === DORF_BIOME.MOUNTAIN) return DORF_IMAGES.rock;
+  return DORF_IMAGES.floor; // forest + snow (snow gets a colour wash on top, see dorfDrawGround)
+}
+function dorfDrawGround(biome, sx, sy) {
+  dorfCtx.drawImage(dorfGroundImage(biome), sx, sy, DORF_CELL, DORF_CELL);
+  if (biome === DORF_BIOME.SNOW) {
+    dorfCtx.fillStyle = "rgba(235,245,250,0.72)";
+    dorfCtx.fillRect(sx, sy, DORF_CELL, DORF_CELL);
+  }
+}
+
 /* ---------------------------- settlements ---------------------------- */
+function dorfPickJobTypes(cx, cy, count) {
+  const pool = DORF_JOB_TYPES.slice();
+  const picked = [];
+  for (let i = 0; i < count && pool.length; i++) {
+    const r = dorfHash2(cx * 31 + i * 7, cy * 37 + i * 11, dorfSeed + 4242);
+    const idx = Math.floor(r * pool.length);
+    picked.push(pool.splice(idx, 1)[0]);
+  }
+  return picked;
+}
+
 function dorfSettlementAt(rx, ry) {
   const forced = rx === 0 && ry === 0; // guarantee a Startdorf near spawn
   const h = dorfHash2(rx, ry, dorfSeed + 7777);
@@ -132,21 +229,26 @@ function dorfSettlementAt(rx, ry) {
   const cxOff = 8 + Math.floor(dorfHash2(rx * 3 + 1, ry * 5 + 2, dorfSeed + 8888) * (DORF_REGION - 16));
   const cyOff = 8 + Math.floor(dorfHash2(rx * 7 + 3, ry * 11 + 4, dorfSeed + 8889) * (DORF_REGION - 16));
   const cx = rx * DORF_REGION + cxOff, cy = ry * DORF_REGION + cyOff;
+
+  // Fixed layout — always exactly this many pre-broken buildings, no
+  // free-form building menu for settlements (that's what DORF_BUILD_OPTIONS
+  // is for, and it stays separate/anywhere-placeable).
   const template = [
     { dx: -2, dy: -1, kind: "house" },
     { dx: 2, dy: -1, kind: "house" },
-    { dx: -2, dy: 1, kind: "job" },
-    { dx: 2, dy: 1, kind: "job" }
+    { dx: -3, dy: 1, kind: "job" },
+    { dx: -1, dy: 1, kind: "job" },
+    { dx: 1, dy: 1, kind: "job" },
+    { dx: 3, dy: 1, kind: "job" }
   ];
-  const jobTypes = ["sawmill", "quarry", "farm"];
-  const slots = template.map((t, i) => {
-    let type = t.kind;
-    if (t.kind === "job") {
-      const jr = dorfHash2(cx * 13 + i, cy * 17 + i, dorfSeed + 9999 + i);
-      type = jobTypes[Math.floor(jr * jobTypes.length)];
-    }
-    return { x: cx + t.dx, y: cy + t.dy, type };
+  const jobPicks = dorfPickJobTypes(cx, cy, DORF_JOBS_PER_SETTLEMENT);
+  let jobIndex = 0;
+  const slots = template.map(t => {
+    if (t.kind === "house") return { x: cx + t.dx, y: cy + t.dy, type: "house" };
+    const job = jobPicks[jobIndex++];
+    return { x: cx + t.dx, y: cy + t.dy, type: job.id };
   });
+
   return {
     id: "s_" + rx + "_" + ry,
     center: { x: cx, y: cy },
@@ -188,15 +290,15 @@ function dorfHandleBuildingInteract(x, y, b) {
   const key = dorfTileKey(x, y);
   const st = b.state;
   if (!st.repaired) {
-    const cost = DORF_BUILDING_COST[b.type];
+    const cost = dorfBuildingCost(b.type);
     if (dorfHasItems(cost)) {
       dorfSpendItems(cost);
       st.repaired = true;
-      if (b.type !== "house") st.hired = true;
-      dorfToast(DORF_BUILDING_LABEL[b.type] + " repariert!");
+      if (b.type !== "house") st.hired = true; // a villager claims the job right away
+      dorfToast(dorfJobLabel(b.type) + " repariert!");
       saveState();
     } else {
-      const need = Object.entries(cost).map(([k, v]) => v + " " + DORF_ITEM_LABEL[k]).join(", ");
+      const need = Object.entries(cost).map(([k, v]) => v + " " + dorfItemLabel(k)).join(", ");
       dorfToast("Brauchst " + need + " zum Reparieren.");
     }
     return;
@@ -210,9 +312,13 @@ function dorfHandleBuildingInteract(x, y, b) {
     return;
   }
   if (st.prodAccum > 0) {
-    const item = DORF_BUILDING_PRODUCE[b.type].item;
-    dorfAddItem(item, st.prodAccum);
-    dorfToast("+" + st.prodAccum + " " + DORF_ITEM_LABEL[item] + " eingesammelt.");
+    const job = DORF_JOB_TYPE_BY_ID[b.type];
+    if (job.real) {
+      G.inventory[job.produce] = (G.inventory[job.produce] || 0) + st.prodAccum;
+    } else {
+      dorfAddItem(job.produce, st.prodAccum);
+    }
+    dorfToast("+" + st.prodAccum + " " + dorfItemLabel(job.produce) + " eingesammelt.");
     st.prodAccum = 0;
     saveState();
   } else {
@@ -255,31 +361,31 @@ setInterval(dorfRunSettlementTick, 5000);
 
 /* ---------------------------- world tiles ---------------------------- */
 function dorfGenerateTile(x, y) {
+  const biome = dorfBiomeAt(x, y);
   const n = dorfValueNoise(x, y, dorfSeed, 9);
   const terrain = n < 0.24 ? DORF_T.WATER : DORF_T.GRASS;
   let resource = DORF_RES.NONE;
   if (terrain === DORF_T.GRASS) {
     const r = dorfHash2(x * 13 + 7, y * 29 + 3, dorfSeed + 999);
-    if (r < 0.05) resource = DORF_RES.TREE;
-    else if (r < 0.056) resource = DORF_RES.ROCK;
-    else if (r < 0.06) resource = DORF_RES.GEM;
-    else if (r < 0.10) resource = DORF_RES.MUSHROOM;
+    const table = DORF_BIOME_RESOURCE_TABLE[biome];
+    for (const [thresh, res] of table) { if (r < thresh) { resource = res; break; } }
   } else {
     const r = dorfHash2(x * 41 + 5, y * 17 + 11, dorfSeed + 555);
     if (r < 0.02) resource = DORF_RES.BROKEN_BRIDGE;
   }
-  return { terrain, resource };
+  return { terrain, resource, biome };
 }
 
 function dorfGetTile(x, y) {
   const key = dorfTileKey(x, y);
+  const biome = dorfBiomeAt(x, y);
 
   const special = dorfSpecialAt(x, y);
-  if (special) return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, special };
+  if (special) return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, special, biome };
 
   const bld = dorfBuildingAt(x, y);
   if (bld) {
-    return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, building: { type: bld.type, state: dorfGetBuildingState(key, bld.type) } };
+    return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, building: { type: bld.type, state: dorfGetBuildingState(key, bld.type) }, biome };
   }
 
   const ov = dorfOverrides[key];
@@ -289,9 +395,9 @@ function dorfGetTile(x, y) {
     delete dorfOverrides[key];
     return base;
   }
-  if (ov.built) return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, built: ov.built };
-  if (ov.repaired) return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, built: "floor" };
-  if (ov.depleted) return { terrain: base.terrain, resource: DORF_RES.NONE };
+  if (ov.built) return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, built: ov.built, biome };
+  if (ov.repaired) return { terrain: DORF_T.GRASS, resource: DORF_RES.NONE, built: "floor", biome };
+  if (ov.depleted) return { terrain: base.terrain, resource: DORF_RES.NONE, biome };
   return base;
 }
 
@@ -359,7 +465,7 @@ function dorfNpcGreeting() {
   if (mem.lastComment) {
     const item = mem.lastComment;
     mem.lastComment = null;
-    return "Das " + DORF_ITEM_LABEL[item] + " von letztens war klasse, danke nochmal.";
+    return "Das " + dorfItemLabel(item) + " von letztens war klasse, danke nochmal.";
   }
   const lines = DORF_DIALOGUE[dorfNpcTier()];
   return lines[mem.timesTalked % lines.length];
@@ -411,11 +517,15 @@ function dorfTryInteract() {
     const label = DORF_ACTION_LABEL[tile.resource];
     askQuestions(label, 1, () => {
       const amount = dorfYieldFor(info.skill);
-      dorfAddItem(info.item, amount);
+      if (info.real) {
+        G.inventory[info.item] = (G.inventory[info.item] || 0) + amount;
+      } else {
+        dorfAddItem(info.item, amount);
+      }
       dorfGainXp(info.skill, 10);
       dorfOverrides[key] = { depleted: true, respawnAt: Date.now() + DORF_RESPAWN_MS[tile.resource] };
       if (tile.resource === DORF_RES.TREE) dorfNotifyNpcOfAction(fx, fy, "chop");
-      dorfToast("+" + amount + " " + DORF_ITEM_LABEL[info.item]);
+      dorfToast("+" + amount + " " + dorfItemLabel(info.item));
       saveState();
     });
   }
@@ -433,12 +543,12 @@ function dorfOpenDialogue() {
 
   Object.keys(dorfInventory).filter(k => (dorfInventory[k] || 0) > 0).forEach(itemId => {
     const btn = document.createElement("button");
-    btn.textContent = "Schenke " + DORF_ITEM_LABEL[itemId];
+    btn.textContent = "Schenke " + dorfItemLabel(itemId);
     btn.onclick = () => {
       dorfInventory[itemId]--;
       dorfRenderInventory();
       dorfNpcOnGift(itemId);
-      dorfDlgLine.textContent = "Danke für das " + DORF_ITEM_LABEL[itemId] + "!";
+      dorfDlgLine.textContent = "Danke für das " + dorfItemLabel(itemId) + "!";
       dorfDlgOpts.innerHTML = "";
       const closeBtn = document.createElement("button");
       closeBtn.textContent = "Tschüss";
@@ -474,7 +584,7 @@ function dorfRenderBuildBar() {
     const img = document.createElement("img");
     img.src = DORF_TILE_SRC[opt.icon];
     div.appendChild(img);
-    div.title = opt.label + " (" + Object.entries(opt.cost).map(([k, v]) => v + " " + DORF_ITEM_LABEL[k]).join(", ") + ")";
+    div.title = opt.label + " (" + Object.entries(opt.cost).map(([k, v]) => v + " " + dorfItemLabel(k)).join(", ") + ")";
     div.addEventListener("click", () => { dorfSelectedBuild = i; dorfRenderBuildBar(); });
     dorfBuildBarEl.appendChild(div);
   });
@@ -562,6 +672,7 @@ function dorfRenderSkillBar() {
 function dorfRenderInventory() {
   const el = document.getElementById("dorf-invBar");
   el.innerHTML = "";
+  // Dorf-only building materials (sprite icons)...
   Object.keys(dorfInventory).filter(k => dorfInventory[k] > 0).forEach(id => {
     const slot = document.createElement("div");
     slot.className = "dorf-slot";
@@ -574,6 +685,28 @@ function dorfRenderInventory() {
     slot.appendChild(count);
     el.appendChild(slot);
   });
+  // ...plus real pizza ingredients this session has actually touched, so
+  // gathering/collecting still gives visible feedback even though the
+  // amount really lives in G.inventory (shared with the Kitchen).
+  if (typeof G !== "undefined" && G.inventory) {
+    DORF_JOB_TYPES.filter(j => j.real).map(j => j.produce)
+      .concat(["mushrooms"])
+      .filter((id, i, arr) => arr.indexOf(id) === i)
+      .filter(id => (G.inventory[id] || 0) > 0)
+      .forEach(id => {
+        const slot = document.createElement("div");
+        slot.className = "dorf-slot";
+        const emoji = document.createElement("div");
+        emoji.className = "dorf-emoji";
+        emoji.textContent = dorfItemEmoji(id);
+        slot.appendChild(emoji);
+        const count = document.createElement("div");
+        count.className = "dorf-count";
+        count.textContent = G.inventory[id];
+        slot.appendChild(count);
+        el.appendChild(slot);
+      });
+  }
 }
 
 /* ---------------------------- input ---------------------------- */
@@ -653,8 +786,21 @@ function dorfUpdateNpc(dtMs) {
 /* ---------------------------- render ---------------------------- */
 let dorfCanvas, dorfCtx, dorfCamX = 0, dorfCamY = 0;
 
-function dorfDrawBuildingTile(b, sx, sy) {
-  dorfCtx.drawImage(DORF_IMAGES.floor, sx, sy, DORF_CELL, DORF_CELL);
+// Simple deterministic string hash, used only to pick a villager sprite —
+// we have 3 base sprites and 15 job types, so this just adds some visual
+// variety without needing a dedicated sprite per profession.
+function dorfStrHash(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+const DORF_VILLAGER_SPRITES = ["villager_sawmill", "villager_quarry", "villager_farm"];
+function dorfVillagerSpriteFor(type) {
+  return DORF_IMAGES[DORF_VILLAGER_SPRITES[dorfStrHash(type) % DORF_VILLAGER_SPRITES.length]];
+}
+
+function dorfDrawBuildingTile(b, sx, sy, biome) {
+  dorfDrawGround(biome, sx, sy);
   const st = b.state;
   if (!st.repaired) {
     dorfCtx.fillStyle = "rgba(90,80,70,0.55)";
@@ -683,14 +829,18 @@ function dorfDrawBuildingTile(b, sx, sy) {
     }
     return;
   }
-  const roofColor = { sawmill: "#a0622c", quarry: "#7a7a7a", farm: "#6a8f3c" }[b.type];
-  dorfCtx.fillStyle = roofColor;
+
+  const job = DORF_JOB_TYPE_BY_ID[b.type];
+  dorfCtx.fillStyle = job.roof;
   dorfCtx.fillRect(sx + 6, sy + 8, DORF_CELL - 12, DORF_CELL * 0.4);
-  const badgeImg = { sawmill: DORF_IMAGES.tree, quarry: DORF_IMAGES.rock, farm: DORF_IMAGES.item }[b.type];
-  dorfCtx.drawImage(badgeImg, sx + DORF_CELL - 20, sy + DORF_CELL - 20, 16, 16);
+  dorfCtx.font = "14px sans-serif";
+  dorfCtx.textAlign = "center";
+  dorfCtx.textBaseline = "middle";
+  dorfCtx.fillText(job.emoji, sx + DORF_CELL - 12, sy + DORF_CELL - 12);
+  dorfCtx.textAlign = "start";
+  dorfCtx.textBaseline = "alphabetic";
   if (st.hired) {
-    const villagerImg = { sawmill: DORF_IMAGES.villager_sawmill, quarry: DORF_IMAGES.villager_quarry, farm: DORF_IMAGES.villager_farm }[b.type];
-    dorfCtx.drawImage(villagerImg, sx + 4, sy + DORF_CELL * 0.4, 20, 20);
+    dorfCtx.drawImage(dorfVillagerSpriteFor(b.type), sx + 4, sy + DORF_CELL * 0.4, 20, 20);
     if (!st.housed) {
       dorfCtx.fillStyle = "#d8b25c";
       dorfCtx.font = "bold 12px sans-serif";
@@ -702,8 +852,8 @@ function dorfDrawBuildingTile(b, sx, sy) {
   }
 }
 
-function dorfDrawSpecialTile(kind, sx, sy) {
-  dorfCtx.drawImage(DORF_IMAGES.floor, sx, sy, DORF_CELL, DORF_CELL);
+function dorfDrawSpecialTile(kind, sx, sy, biome) {
+  dorfDrawGround(biome, sx, sy);
   dorfCtx.fillStyle = kind === "tavern" ? "#b5502f" : "#4f7a3c";
   dorfCtx.beginPath();
   dorfCtx.roundRect ? dorfCtx.roundRect(sx + 4, sy + 4, DORF_CELL - 8, DORF_CELL - 8, 8) : dorfCtx.rect(sx + 4, sy + 4, DORF_CELL - 8, DORF_CELL - 8);
@@ -717,9 +867,9 @@ function dorfDrawSpecialTile(kind, sx, sy) {
 }
 
 function dorfDrawTileAt(tile, sx, sy) {
-  if (tile.special) { dorfDrawSpecialTile(tile.special, sx, sy); return; }
-  if (tile.building) { dorfDrawBuildingTile(tile.building, sx, sy); return; }
-  dorfCtx.drawImage(DORF_IMAGES.floor, sx, sy, DORF_CELL, DORF_CELL);
+  if (tile.special) { dorfDrawSpecialTile(tile.special, sx, sy, tile.biome); return; }
+  if (tile.building) { dorfDrawBuildingTile(tile.building, sx, sy, tile.biome); return; }
+  dorfDrawGround(tile.biome, sx, sy);
   if (tile.terrain === DORF_T.WATER && !tile.built) {
     dorfCtx.drawImage(DORF_IMAGES.water, sx, sy, DORF_CELL, DORF_CELL);
     if (tile.resource === DORF_RES.BROKEN_BRIDGE) {
