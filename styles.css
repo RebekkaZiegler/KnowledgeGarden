@@ -4587,7 +4587,7 @@ body.plant-open #back-to-garden-btn { display: block; }
 }
 .dorf-skillRow { display: flex; align-items: center; gap: 6px; width: 140px; }
 .dorf-skillRow .dorf-bar { flex: 1; height: 5px; background: #3a3428; border-radius: 3px; overflow: hidden; }
-.dorf-skillRow .dorf-fill { height: 100%; background: #7a9b57; }
+.dorf-skillRow .dorf-fill { display: block; height: 100%; background: #7a9b57; }
 
 /* Toasts */
 #dorf-toasts {
