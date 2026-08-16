@@ -126,8 +126,9 @@ const DORF_JOB_TYPES = [
 ];
 const DORF_JOB_TYPE_BY_ID = {};
 DORF_JOB_TYPES.forEach(j => { j.kind = j.kind || "passive"; DORF_JOB_TYPE_BY_ID[j.id] = j; });
-const DORF_HOUSE_COST = { holz: 6, stein: 3 };
-const DORF_JOB_COST   = { holz: 5, stein: 5 };
+const DORF_HOUSE_COST     = { holz: 6, stein: 3 };
+const DORF_JOB_COST       = { holz: 5, stein: 5 };
+const DORF_PORTSTONE_COST = { holz: 4, stein: 8 };
 const DORF_BUILDING_PROD_CAP = 30;
 // How many distinct workshop types a settlement gets — always fewer than
 // the full roster, so villages genuinely lack ingredients. Cities are a
@@ -136,9 +137,32 @@ const DORF_JOBS_PER_VILLAGE = 4;
 const DORF_JOBS_PER_CITY = 8;
 const DORF_CITY_CHANCE = 0.22; // of settlements that spawn at all (excludes the forced Startdorf)
 
-function dorfJobLabel(type) { return type === "house" ? "Haus" : DORF_JOB_TYPE_BY_ID[type].label; }
-function dorfBuildingCost(type) { return type === "house" ? DORF_HOUSE_COST : DORF_JOB_COST; }
+function dorfJobLabel(type) {
+  if (type === "house") return "Haus";
+  if (type === "portstone") return "Portstein";
+  return DORF_JOB_TYPE_BY_ID[type].label;
+}
+function dorfBuildingCost(type) {
+  if (type === "house") return DORF_HOUSE_COST;
+  if (type === "portstone") return DORF_PORTSTONE_COST;
+  return DORF_JOB_COST;
+}
 function dorfVillagerNameFor(type) { return dorfJobLabel(type) + "-Bewohner"; }
+
+/* ---------------------------- settlement names ---------------------------- */
+const DORF_NAME_PREFIX = [
+  "Fichten", "Birken", "Stein", "Nord", "Süd", "Grün", "Tannen", "Wolfs", "Bären", "Eichen",
+  "Silber", "Gold", "Nebel", "Sonnen", "Mond", "Fluss", "Tal", "Berg", "Rot", "Schwarz",
+  "Weiß", "Dorn", "Hasel", "Lärchen", "Raben", "Fuchs", "Hirsch", "Wind"
+];
+const DORF_NAME_SUFFIX_VILLAGE = ["dorf", "hausen", "bach", "hain", "au", "weiler", "furt", "heim", "born", "winkel"];
+const DORF_NAME_SUFFIX_CITY    = ["burg", "stadt", "feste", "halle", "turm", "brück", "gard", "hafen"];
+function dorfNameFor(cx, cy, isCity) {
+  const suffixes = isCity ? DORF_NAME_SUFFIX_CITY : DORF_NAME_SUFFIX_VILLAGE;
+  const prefix = DORF_NAME_PREFIX[Math.floor(dorfHash2(cx * 7 + 1, cy * 13 + 2, dorfSeed + 7171) * DORF_NAME_PREFIX.length)];
+  const suffix = suffixes[Math.floor(dorfHash2(cx * 11 + 3, cy * 17 + 4, dorfSeed + 7272) * suffixes.length)];
+  return prefix + suffix;
+}
 
 // Real-ingredient display name/emoji piggyback on the app's own ingredient
 // table so labels never drift out of sync with the Kitchen.
@@ -337,9 +361,15 @@ function dorfSettlementAt(rx, ry) {
     const job = jobPicks[jobIndex++];
     return { x: cx + t.dx, y: cy + t.dy, type: job.id };
   });
+  // Every settlement also gets a Portstein — not drawn from the job pool,
+  // always present, its own repair-then-teleport behavior (see
+  // dorfHandleBuildingInteract). Sits opposite the Alräunchenzimmer so it
+  // never collides with either template's house/job offsets.
+  slots.push({ x: cx, y: cy + 2, type: "portstone" });
 
   return {
     id: "s_" + rx + "_" + ry,
+    name: dorfNameFor(cx, cy, isCity),
     size: isCity ? "city" : "village",
     center: { x: cx, y: cy },
     tavern: { x: cx, y: cy },
@@ -384,7 +414,8 @@ function dorfHandleBuildingInteract(x, y, b) {
     if (dorfHasItems(cost)) {
       dorfSpendItems(cost);
       st.repaired = true;
-      if (b.type !== "house") st.hired = true; // a villager claims the job right away
+      if (b.type !== "house" && b.type !== "portstone") st.hired = true; // a villager claims the job right away
+      if (b.type === "portstone") dorfRegisterPortstone(x, y);
       dorfToast(dorfJobLabel(b.type) + " repariert!");
       saveState();
     } else {
@@ -397,6 +428,7 @@ function dorfHandleBuildingInteract(x, y, b) {
     dorfToast("Haus: " + st.occupants + "/" + st.capacity + " bewohnt.");
     return;
   }
+  if (b.type === "portstone") { dorfOpenTeleportMenu(x, y); return; }
   if (!st.housed) {
     dorfToast(dorfVillagerNameFor(b.type) + " braucht noch ein Zuhause in der Nähe.");
     return;
@@ -430,6 +462,8 @@ function dorfRunSettlementTick() {
     const bld = dorfBuildingAt(xs, ys);
     if (!bld || bld.type === "house") continue;
     const st = dorfBuildingState[key];
+    // Portstones never get `hired` set (see dorfHandleBuildingInteract), so
+    // they fall out here too — no production loop, nothing more to do.
     if (!st.repaired || !st.hired) continue;
     if (!st.housed) {
       const settlement = dorfSettlementForTile(xs, ys);
@@ -673,6 +707,50 @@ function dorfOpenDialogue() {
 function dorfCloseDialogue() {
   dorfDialogueOpen = false;
   dorfDlgEl.classList.remove("dorf-show");
+}
+
+/* ---------------------------- portstones (fast travel) ---------------------------- */
+function dorfRegisterPortstone(x, y) {
+  const settlement = dorfSettlementForTile(x, y);
+  if (!settlement) return;
+  dorfPortstones[settlement.id] = { x, y, name: settlement.name, size: settlement.size };
+}
+
+function dorfTeleportTo(dest) {
+  dorfPlayer.x = dest.x; dorfPlayer.y = dest.y;
+  dorfPlayer.px = dorfPlayer.x * DORF_CELL; dorfPlayer.py = dorfPlayer.y * DORF_CELL;
+  dorfPlayer.moving = false;
+  dorfPendingPath = null; dorfPendingInteractTarget = null;
+  dorfMarkExplored(dorfPlayer.x, dorfPlayer.y, DORF_EXPLORE_RADIUS);
+  dorfToast("Nach " + dest.name + " teleportiert!");
+  dorfCloseDialogue();
+  saveState();
+}
+
+function dorfOpenTeleportMenu(x, y) {
+  const here = dorfSettlementForTile(x, y);
+  dorfDialogueOpen = true;
+  dorfDlgWho.textContent = "🗿 Portstein" + (here ? " · " + here.name : "");
+  dorfDlgOpts.innerHTML = "";
+
+  const destinations = Object.entries(dorfPortstones).filter(([id]) => !here || id !== here.id);
+  if (!destinations.length) {
+    dorfDlgLine.textContent = "Noch keine anderen aktiven Portsteine bekannt — erst andernorts einen reparieren.";
+  } else {
+    dorfDlgLine.textContent = "Wohin möchtest du reisen?";
+    destinations.forEach(([, dest]) => {
+      const btn = document.createElement("button");
+      btn.textContent = (dest.size === "city" ? "🏙️ " : "🏘️ ") + dest.name;
+      btn.onclick = () => dorfTeleportTo(dest);
+      dorfDlgOpts.appendChild(btn);
+    });
+  }
+  const closeBtn = document.createElement("button");
+  closeBtn.textContent = "Abbrechen";
+  closeBtn.onclick = dorfCloseDialogue;
+  dorfDlgOpts.appendChild(closeBtn);
+
+  dorfDlgEl.classList.add("dorf-show");
 }
 
 /* ---------------------------- pathfinding / click-to-move ---------------------------- */
@@ -1014,6 +1092,21 @@ function dorfDrawBuildingTile(b, sx, sy, biome) {
     }
     return;
   }
+  if (b.type === "portstone") {
+    dorfCtx.fillStyle = "#5a4a7a";
+    dorfCtx.fillRect(sx + DORF_CELL * 0.4, sy + DORF_CELL * 0.15, DORF_CELL * 0.2, DORF_CELL * 0.7);
+    dorfCtx.fillStyle = "#b39ddb";
+    dorfCtx.beginPath();
+    dorfCtx.arc(sx + DORF_CELL / 2, sy + DORF_CELL * 0.22, 5, 0, Math.PI * 2);
+    dorfCtx.fill();
+    dorfCtx.font = "12px sans-serif";
+    dorfCtx.textAlign = "center";
+    dorfCtx.textBaseline = "middle";
+    dorfCtx.fillText("🗿", sx + DORF_CELL * 0.75, sy + DORF_CELL * 0.75);
+    dorfCtx.textAlign = "start";
+    dorfCtx.textBaseline = "alphabetic";
+    return;
+  }
 
   const job = DORF_JOB_TYPE_BY_ID[b.type];
   dorfCtx.fillStyle = job.roof;
@@ -1113,7 +1206,7 @@ function dorfDraw(now) {
 }
 
 /* ---------------------------- boot ---------------------------- */
-let dorfSeed, dorfPlayer, dorfInventory, dorfSkills, dorfOverrides, dorfBuildingState, dorfExplored;
+let dorfSeed, dorfPlayer, dorfInventory, dorfSkills, dorfOverrides, dorfBuildingState, dorfExplored, dorfPortstones;
 let dorfBooted = false, dorfWantsStart = false;
 
 function dorfFindNearestWalkable(x, y) {
@@ -1136,6 +1229,7 @@ function dorfActuallyStart() {
   dorfOverrides      = G.dorf.overrides;
   dorfBuildingState  = G.dorf.buildingState;
   dorfExplored       = G.dorf.explored;
+  dorfPortstones     = G.dorf.portstones;
 
   dorfPlayer.px = dorfPlayer.x * DORF_CELL;
   dorfPlayer.py = dorfPlayer.y * DORF_CELL;

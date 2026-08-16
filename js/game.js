@@ -3,7 +3,7 @@
 /* ══════════════════════════════════════════════════════════
    CONSTANTS & CONFIG
 ══════════════════════════════════════════════════════════ */
-const APP_VERSION    = "3.13.0";   // ← bump this with every push
+const APP_VERSION    = "3.14.0";   // ← bump this with every push
 const SAVE_KEY       = "kg_v2";
 const SAVE_VERSION   = 1;
 const EXAM_DEADLINE  = new Date("2026-12-01").getTime();
@@ -184,6 +184,7 @@ function defaultState() {
       overrides:     {}, // "x,y" -> {depleted/respawnAt} | {built} | {repaired} — chopped/mined/built/repaired tiles
       buildingState: {}, // "x,y" -> settlement-building mutable state (repaired/hired/housed/prodAccum)
       explored:      {}, // coarse "cellX,cellY" -> cached map color, for the minimap/full map fog of war
+      portstones:    {}, // settlementId -> {x,y,name,size} — repaired waystones, fast-travel destinations
       npcMemory: {
         timesTalked:  0,
         relationship: 0,
@@ -434,6 +435,7 @@ function normalizeState(s) {
   s.dorf.overrides  = s.dorf.overrides     || {};
   s.dorf.buildingState = s.dorf.buildingState || {};
   s.dorf.explored = s.dorf.explored || {};
+  s.dorf.portstones = s.dorf.portstones || {};
   s.dorf.npcMemory  = Object.assign({}, d.dorf.npcMemory, s.dorf.npcMemory || {});
   if (!Number.isFinite(s.dorf.seed)) s.dorf.seed = Math.floor(Math.random() * 2147483647);
   if (isFirstDorfLoad) s.activeMode = "dorf";
