@@ -734,9 +734,25 @@ function dorfAdvancePath() {
 // Tapped tile is a resource/building/NPC/special — walk adjacent to it,
 // then interact automatically. Tapped tile is plain ground — just walk
 // there. Cancels/replaces whatever path was already in progress.
+// A single tap only ever walks (adjacent, for something you'd interact
+// with — right up to it, for open ground); the actual chop/mine/talk/
+// repair only fires on a second tap on the SAME tile within the window
+// below, so one accidental tap near a tree never silently spends an
+// action. Also caps how far a single tap can send the player, so tapping
+// anywhere on screen doesn't feel like it "does something" everywhere.
+const DORF_CLICK_MOVE_RADIUS = 12;
+const DORF_DOUBLE_TAP_MS = 500;
+let dorfLastTapTarget = null;
+let dorfLastTapTime = 0;
+
 function dorfHandleWorldClick(wx, wy) {
   if (!dorfCanAct()) return;
   if (wx === dorfPlayer.x && wy === dorfPlayer.y) return;
+
+  if (Math.abs(wx - dorfPlayer.x) + Math.abs(wy - dorfPlayer.y) > DORF_CLICK_MOVE_RADIUS) {
+    dorfToast("Zu weit weg.");
+    return;
+  }
 
   const tile = dorfGetTile(wx, wy);
   const isNpcTile = wx === dorfNpc.x && wy === dorfNpc.y;
@@ -744,7 +760,30 @@ function dorfHandleWorldClick(wx, wy) {
     tile.building || (tile.resource && tile.resource !== DORF_RES.NONE);
 
   if (interactable) {
+    const now = performance.now();
+    const isDoubleTap = dorfLastTapTarget && dorfLastTapTarget.x === wx && dorfLastTapTarget.y === wy &&
+      (now - dorfLastTapTime) < DORF_DOUBLE_TAP_MS;
+    dorfLastTapTarget = { x: wx, y: wy };
+    dorfLastTapTime = now;
+
     const goal = (x, y) => Math.abs(x - wx) + Math.abs(y - wy) === 1;
+    const alreadyAdjacent = goal(dorfPlayer.x, dorfPlayer.y);
+
+    if (!isDoubleTap) {
+      if (alreadyAdjacent) return; // first tap while already standing next to it: wait for the confirming second tap
+      const path = dorfBfsPath(dorfPlayer.x, dorfPlayer.y, goal, DORF_PATH_MAX_STEPS);
+      if (!path) { dorfToast("Kein Weg dorthin."); return; }
+      dorfPendingPath = path;
+      dorfPendingInteractTarget = null; // walk only — no auto-interact on the first tap
+      dorfAdvancePath();
+      return;
+    }
+
+    if (alreadyAdjacent) {
+      dorfLastDir = { dx: wx - dorfPlayer.x, dy: wy - dorfPlayer.y };
+      dorfTryInteract();
+      return;
+    }
     const path = dorfBfsPath(dorfPlayer.x, dorfPlayer.y, goal, DORF_PATH_MAX_STEPS);
     if (!path) { dorfToast("Kein Weg dorthin."); return; }
     dorfPendingPath = path;
