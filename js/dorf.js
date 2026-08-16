@@ -25,7 +25,6 @@ const DORF_TILE_SRC = {
   floor:    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAXElEQVR4nGPsPWL6n4ECwESJZtob8P37dww+uhgTPgM4OTkJuoAFl63YNGMTYyJoBaku4CTC2VR1ARPVDPiOFj0khwEnDr8jG0yTWGAiRxOyqzCiER0QSlAUewEAQ18XyB1243kAAAAASUVORK5CYII=",
   tree:     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAnklEQVR4nGP8//8/AyWABZdEaq8xismzi88yYlPHiM0FIM0qhqhid85jN4SJGM0gABJDdxVeL3z+8AuFzyvAhlUdEzbb0TXDDMTmCiZCTkcH6IYw4XL6j69/sLoCayyk4nE6NgAKD1isMKFLgmzGZjsuwITPeTAD0QGyWhZ0SQ5uFrx8dMCY0mNEkv9hABYOGGFAKgAbQKrtyHoodgEAKM9Xy5+VSPEAAAAASUVORK5CYII=",
   item:     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDElEQVR4nGOsXqvzn4ECwIIuIDbvE5z9KomPoAFM2ARNpThJd4EY1GYhThYEDRUDuQSXy5jQbVYWZGWwTHkOptFdgs1ljKBAfPECIaG37SVY4eln3xkueYmD+TAXgQy9+/43w7vvf+AuYYJplJD4DsbIAMbH5zJGWDSCXIFuAD6XYQSihMR3uAaYs8UYPmGNSphFIPUs2CRgzgbZBnMZyKCtYBlWuGaQOAuyAdiiEuYakLORXQmzjAXdebAAAgUYwxxJcKCBXALTUOG2DEU9C3KAvfDiZLgEC4M5kogAM+BjYHiB6kUODg5MF6DHAnqAIYOXLyFew4gFfAGGDWC4ADmQ0AMMGezatQvMAAD2JoTPnt45mAAAAABJRU5ErkJggg==",
-  campfire: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA80lEQVR4nGP8//8/AyWAiSLdDAwMLPgkl4Qqw50Xs/ouI0kuWBKq/F9ZkJUBhPEBJnyaQeDu+9+kG4AMYK5A9g4yYESOhQkZDnCOyNvHGM4HuQY9LJjQTVSVEcOqGRdgQhd4f/EsimbLkptw298Iy2KPxglITkcGMM3IAKa2YMYBRhQXqMqIgTEyON6jDmeDXAXyGroaJhhDkIcdjJWsrVCiDmYISAwkB1KD4QUGBgaGUzcewwVV9Y0Z/iMpfP/lJ8MbplcMb5DUwABGNCI78faTVyhOBvFhfsfwArpXYIpBNEwMG8DITDCvwGwC0bhiCaQQAO9jZWIEtemaAAAAAElFTkSuQmCC",
   gem:      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAlUlEQVR4nGP8//8/AyWAiSLdowYMEgNY8EmqFObAE8md/imMZLlAxMoKrzwjtpQIs5mVl4+BX1eH4ePlKwy/P3/C6hIWQjafkM9ksGCYDma/OXaMsAtSppnBBQ7cNgMbBNLooHoKrmZO1im4K7C6QELiO4RxG1PsxQtO/C6AuQJuCBIAaUa2HacByF4BGQSzFV0zSBAAPtc/vKab8PcAAAAASUVORK5CYII=",
   rock:     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAV0lEQVR4nGNcsW37fwYKABMlmqlrACcHB16FIHlsaphgjO8/fmDVRAiw4JNENhSbBSguIBcwDR0DOHEEKBO6IlwKaRaILMTYgg+Q7AJ0L5JsALorKQ4DAEOQFWrsLa1tAAAAAElFTkSuQmCC",
   woodfloor:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAb0lEQVR4nGNcURfyn4eVkQEGvvz+z0AKn4mBQsCEzAGZTipgIVcjVhfwIPkNG8BmEQsxtuBzIRMxNsPksaljQVdEjK0YLkAH2DTjciUTVlEivEXQAGINYaLEdpBXWYhSiUUjXhcQC0AuJcsFVM2NAN9eI+vE5j3RAAAAAElFTkSuQmCC",
@@ -89,12 +88,6 @@ const DORF_ITEM_ICON  = { holz: "woodfloor", stein: "rock", edelstein: "gem" };
 const DORF_ITEM_LABEL = { holz: "Holz", stein: "Stein", edelstein: "Edelstein", dough: "Teig" };
 const DORF_ITEM_EMOJI_FALLBACK = { dough: "🍞" }; // Dorf-only goods with no sprite icon
 const DORF_STACK_CAP  = 9999;
-
-const DORF_BUILD_OPTIONS = [
-  { id: "floor",    label: "Weg",        icon: "woodfloor", cost: { holz: 2 } },
-  { id: "campfire", label: "Lagerfeuer", icon: "campfire",  cost: { stein: 3, holz: 2 } },
-  { id: "fence",    label: "Zaun",       icon: "rock",      cost: { stein: 2 } }
-];
 
 // Settlement workshops. `real:true` deposits straight into G.inventory
 // using the SAME ingredient id the Kitchen/RE_TOPPINGS system already
@@ -335,9 +328,8 @@ function dorfSettlementAt(rx, ry) {
   const template = isCity ? DORF_CITY_TEMPLATE : DORF_VILLAGE_TEMPLATE;
   const jobCount = isCity ? DORF_JOBS_PER_CITY : DORF_JOBS_PER_VILLAGE;
 
-  // Fixed layout — always exactly this many pre-broken buildings, no
-  // free-form building menu for settlements (that's what DORF_BUILD_OPTIONS
-  // is for, and it stays separate/anywhere-placeable).
+  // Fixed layout — always exactly this many pre-broken buildings, tapped
+  // to repair. No free-form building menu.
   const jobPicks = dorfPickJobTypes(cx, cy, jobCount);
   let jobIndex = 0;
   const slots = template.map(t => {
@@ -517,7 +509,7 @@ function dorfIsWalkable(x, y) {
   const t = dorfGetTile(x, y);
   if (t.special) return true;
   if (t.building) return t.building.state.repaired;
-  if (t.built) return t.built !== "fence";
+  if (t.built) return true; // only "floor" is ever set (repaired bridges)
   if (t.terrain === DORF_T.WATER) return false;
   if (t.resource === DORF_RES.TREE || t.resource === DORF_RES.ROCK) return false;
   return true;
@@ -683,81 +675,103 @@ function dorfCloseDialogue() {
   dorfDlgEl.classList.remove("dorf-show");
 }
 
-/* ---------------------------- build mode ---------------------------- */
-let dorfBuildMode = false;
-let dorfSelectedBuild = 0;
-let dorfBuildBarEl;
+/* ---------------------------- pathfinding / click-to-move ---------------------------- */
+const DORF_PATH_DIRS = [{ dx: 0, dy: -1 }, { dx: 0, dy: 1 }, { dx: -1, dy: 0 }, { dx: 1, dy: 0 }];
+const DORF_PATH_MAX_STEPS = 40;
 
-function dorfRenderBuildBar() {
-  dorfBuildBarEl.innerHTML = "";
-  DORF_BUILD_OPTIONS.forEach((opt, i) => {
-    const div = document.createElement("div");
-    div.className = "dorf-opt" + (i === dorfSelectedBuild ? " dorf-active" : "");
-    const img = document.createElement("img");
-    img.src = DORF_TILE_SRC[opt.icon];
-    div.appendChild(img);
-    div.title = opt.label + " (" + Object.entries(opt.cost).map(([k, v]) => v + " " + dorfItemLabel(k)).join(", ") + ")";
-    div.addEventListener("click", () => { dorfSelectedBuild = i; dorfRenderBuildBar(); });
-    dorfBuildBarEl.appendChild(div);
-  });
-}
-function dorfToggleBuildMode() {
-  dorfBuildMode = !dorfBuildMode;
-  dorfBuildBarEl.classList.toggle("dorf-show", dorfBuildMode);
-  document.getElementById("dorf-btnBuild").classList.toggle("dorf-active", dorfBuildMode);
-  dorfToast(dorfBuildMode ? "Baumodus an — Material oben wählen, tippen zum Platzieren" : "Baumodus aus");
-}
+function dorfIsBlockedByNpc(x, y) { return x === dorfNpc.x && y === dorfNpc.y; }
 
-function dorfPlaceBuild(x, y) {
-  const opt = DORF_BUILD_OPTIONS[dorfSelectedBuild];
-  if (!dorfHasItems(opt.cost)) { dorfToast("Nicht genug Material für " + opt.label); return; }
-  const tile = dorfGetTile(x, y);
-  if (tile.terrain === DORF_T.WATER || tile.resource !== DORF_RES.NONE || tile.built || tile.building || tile.special) {
-    dorfToast("Hier kann nichts gebaut werden."); return;
+// Breadth-first search on the walkable grid. `goalTest(x,y)` decides when
+// a node counts as "arrived" — either the exact target tile, or any tile
+// orthogonally adjacent to it (for tiles you can't stand on, like a tree).
+function dorfBfsPath(sx, sy, goalTest, maxSteps) {
+  if (goalTest(sx, sy)) return [];
+  const visited = new Set([sx + "," + sy]);
+  const queue = [{ x: sx, y: sy, path: [] }];
+  let head = 0;
+  while (head < queue.length) {
+    const cur = queue[head++];
+    if (cur.path.length >= maxSteps) continue;
+    for (const d of DORF_PATH_DIRS) {
+      const nx = cur.x + d.dx, ny = cur.y + d.dy;
+      const key = nx + "," + ny;
+      if (visited.has(key)) continue;
+      visited.add(key);
+      if (!dorfIsWalkable(nx, ny) || dorfIsBlockedByNpc(nx, ny)) continue;
+      const path = cur.path.concat([d]);
+      if (goalTest(nx, ny)) return path;
+      queue.push({ x: nx, y: ny, path });
+    }
   }
-  if (x === dorfNpc.x && y === dorfNpc.y) { dorfToast("Nicht auf " + dorfNpc.name + "!"); return; }
-  dorfSpendItems(opt.cost);
-  dorfOverrides[dorfTileKey(x, y)] = { built: opt.id };
-  dorfToast(opt.label + " gebaut!");
-  saveState();
+  return null; // unreachable within maxSteps
 }
 
-/* ---------------------------- touch controls ---------------------------- */
-function dorfBindHold(el, fn) {
-  let iv = null;
-  const start = (e) => { e.preventDefault(); fn(); if (iv) clearInterval(iv); iv = setInterval(fn, 160); };
-  const stop = () => { if (iv) { clearInterval(iv); iv = null; } };
-  el.addEventListener("touchstart", start, { passive: false });
-  el.addEventListener("touchend", stop);
-  el.addEventListener("touchcancel", stop);
-  el.addEventListener("mousedown", start);
-  el.addEventListener("mouseup", stop);
-  el.addEventListener("mouseleave", stop);
+let dorfPendingPath = null;
+let dorfPendingInteractTarget = null;
+
+function dorfAdvancePath() {
+  if (!dorfPendingPath || !dorfPendingPath.length) {
+    dorfPendingPath = null;
+    if (dorfPendingInteractTarget) {
+      const t = dorfPendingInteractTarget;
+      dorfPendingInteractTarget = null;
+      dorfLastDir = { dx: t.x - dorfPlayer.x, dy: t.y - dorfPlayer.y };
+      if (Math.abs(dorfLastDir.dx) + Math.abs(dorfLastDir.dy) === 1) dorfTryInteract();
+    }
+    return;
+  }
+  const step = dorfPendingPath.shift();
+  const nx = dorfPlayer.x + step.dx, ny = dorfPlayer.y + step.dy;
+  if (!dorfIsWalkable(nx, ny) || dorfIsBlockedByNpc(nx, ny)) {
+    dorfPendingPath = null;
+    dorfPendingInteractTarget = null;
+    dorfToast("Weg blockiert.");
+    return;
+  }
+  dorfTryMove(step.dx, step.dy);
 }
-function dorfSetupTouchControls() {
-  const moves = {
-    up: () => dorfTryMove(0, -1), down: () => dorfTryMove(0, 1),
-    left: () => dorfTryMove(-1, 0), right: () => dorfTryMove(1, 0)
-  };
-  document.querySelectorAll("#dorf-dpad button").forEach(btn => {
-    dorfBindHold(btn, () => { if (dorfCanAct()) moves[btn.dataset.dir](); });
-  });
-  const actionBtn = document.getElementById("dorf-btnAction");
-  actionBtn.addEventListener("touchstart", (e) => { e.preventDefault(); if (dorfCanAct()) dorfTryInteract(); });
-  actionBtn.addEventListener("click", () => { if (dorfCanAct()) dorfTryInteract(); });
-  const buildBtn = document.getElementById("dorf-btnBuild");
-  buildBtn.addEventListener("touchstart", (e) => { e.preventDefault(); dorfToggleBuildMode(); });
-  buildBtn.addEventListener("click", dorfToggleBuildMode);
+
+// Tapped tile is a resource/building/NPC/special — walk adjacent to it,
+// then interact automatically. Tapped tile is plain ground — just walk
+// there. Cancels/replaces whatever path was already in progress.
+function dorfHandleWorldClick(wx, wy) {
+  if (!dorfCanAct()) return;
+  if (wx === dorfPlayer.x && wy === dorfPlayer.y) return;
+
+  const tile = dorfGetTile(wx, wy);
+  const isNpcTile = wx === dorfNpc.x && wy === dorfNpc.y;
+  const interactable = isNpcTile || tile.special ||
+    tile.building || (tile.resource && tile.resource !== DORF_RES.NONE);
+
+  if (interactable) {
+    const goal = (x, y) => Math.abs(x - wx) + Math.abs(y - wy) === 1;
+    const path = dorfBfsPath(dorfPlayer.x, dorfPlayer.y, goal, DORF_PATH_MAX_STEPS);
+    if (!path) { dorfToast("Kein Weg dorthin."); return; }
+    dorfPendingPath = path;
+    dorfPendingInteractTarget = { x: wx, y: wy };
+    dorfAdvancePath();
+    return;
+  }
+
+  if (dorfIsWalkable(wx, wy) && !isNpcTile) {
+    const goal = (x, y) => x === wx && y === wy;
+    const path = dorfBfsPath(dorfPlayer.x, dorfPlayer.y, goal, DORF_PATH_MAX_STEPS);
+    if (!path) { dorfToast("Kein Weg dorthin."); return; }
+    dorfPendingPath = path;
+    dorfPendingInteractTarget = null;
+    dorfAdvancePath();
+  }
 }
+
 function dorfSetupCanvasClick() {
   dorfCanvas.addEventListener("click", (e) => {
-    if (!dorfBuildMode || !dorfCanAct()) return;
+    if (!dorfCanAct()) return;
     const rect = dorfCanvas.getBoundingClientRect();
     const scaleX = dorfCanvas.width / rect.width, scaleY = dorfCanvas.height / rect.height;
     const mx = (e.clientX - rect.left) * scaleX, my = (e.clientY - rect.top) * scaleY;
     const worldX = Math.floor((dorfCamX + mx) / DORF_CELL);
     const worldY = Math.floor((dorfCamY + my) / DORF_CELL);
-    dorfPlaceBuild(worldX, worldY);
+    dorfHandleWorldClick(worldX, worldY);
   });
 }
 
@@ -864,6 +878,7 @@ function dorfTryMove(dx, dy) {
     else {
       dorfPlayer.x = nx; dorfPlayer.y = ny; dorfPlayer.bob = 0; dorfPlayer.moving = false;
       dorfMarkExplored(nx, ny, DORF_EXPLORE_RADIUS);
+      if (dorfPendingPath) dorfAdvancePath();
     }
   }
   requestAnimationFrame(step);
@@ -882,18 +897,18 @@ function dorfSetupKeyboard() {
     if (!dorfCanAct()) return;
     if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key)) e.preventDefault();
 
-    if (e.key === "b" || e.key === "B") { dorfToggleBuildMode(); return; }
-    if (dorfBuildMode && ["1","2","3"].includes(e.key)) {
-      dorfSelectedBuild = parseInt(e.key, 10) - 1;
-      dorfRenderBuildBar();
-      return;
-    }
-    if (e.key === "e" || e.key === "E" || e.key === " ") { dorfTryInteract(); return; }
+    if (e.key === "e" || e.key === "E" || e.key === " ") { dorfPendingPath = null; dorfPendingInteractTarget = null; dorfTryInteract(); return; }
 
-    if (e.key === "ArrowUp" || e.key === "w" || e.key === "W")    dorfTryMove(0, -1);
-    if (e.key === "ArrowDown" || e.key === "s" || e.key === "S")  dorfTryMove(0, 1);
-    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A")  dorfTryMove(-1, 0);
-    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") dorfTryMove(1, 0);
+    const moves = {
+      ArrowUp: [0, -1], w: [0, -1], W: [0, -1],
+      ArrowDown: [0, 1], s: [0, 1], S: [0, 1],
+      ArrowLeft: [-1, 0], a: [-1, 0], A: [-1, 0],
+      ArrowRight: [1, 0], d: [1, 0], D: [1, 0]
+    };
+    if (moves[e.key]) {
+      dorfPendingPath = null; dorfPendingInteractTarget = null; // manual input overrides any click-to-move path
+      dorfTryMove(moves[e.key][0], moves[e.key][1]);
+    }
   });
 }
 
@@ -1013,8 +1028,6 @@ function dorfDrawTileAt(tile, sx, sy) {
     return;
   }
   if (tile.built === "floor") dorfCtx.drawImage(DORF_IMAGES.woodfloor, sx, sy, DORF_CELL, DORF_CELL);
-  else if (tile.built === "campfire") dorfCtx.drawImage(DORF_IMAGES.campfire, sx, sy, DORF_CELL, DORF_CELL);
-  else if (tile.built === "fence") dorfCtx.drawImage(DORF_IMAGES.rock, sx, sy, DORF_CELL, DORF_CELL);
   else if (tile.resource === DORF_RES.TREE) dorfCtx.drawImage(DORF_IMAGES.tree, sx, sy, DORF_CELL, DORF_CELL);
   else if (tile.resource === DORF_RES.ROCK) dorfCtx.drawImage(DORF_IMAGES.rock, sx, sy, DORF_CELL, DORF_CELL);
   else if (tile.resource === DORF_RES.GEM) dorfCtx.drawImage(DORF_IMAGES.gem, sx, sy, DORF_CELL, DORF_CELL);
@@ -1121,15 +1134,12 @@ function dorfActuallyStart() {
   dorfDlgWho  = document.getElementById("dorf-dlgWho");
   dorfDlgLine = document.getElementById("dorf-dlgLine");
   dorfDlgOpts = document.getElementById("dorf-dlgOpts");
-  dorfBuildBarEl = document.getElementById("dorf-buildBar");
 
   dorfMarkExplored(dorfPlayer.x, dorfPlayer.y, DORF_EXPLORE_RADIUS);
 
   dorfRenderSkillBar();
   dorfRenderInventory();
-  dorfRenderBuildBar();
   dorfSetupCanvasClick();
-  dorfSetupTouchControls();
   dorfSetupKeyboard();
   dorfSetupMapControls();
 

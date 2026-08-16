@@ -4547,6 +4547,7 @@ body.plant-open #back-to-garden-btn { display: block; }
   max-height: 62vh;
   height: auto;
   touch-action: none;
+  cursor: pointer;
   border-radius: 8px;
   background: #2b2b2b;
   border: 3px solid var(--bg3, #3a3428);
@@ -4601,20 +4602,6 @@ body.plant-open #back-to-garden-btn { display: block; }
 }
 @keyframes dorfFadeOut { 0% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
 
-/* Build palette */
-#dorf-buildBar {
-  position: absolute; left: 50%; top: 8px; transform: translateX(-50%);
-  display: none; gap: 4px;
-  background: rgba(20,18,14,0.85); padding: 6px; border-radius: 6px; border: 2px solid #5a4f3a;
-}
-#dorf-buildBar.dorf-show { display: flex; }
-.dorf-opt {
-  width: 34px; height: 34px; border-radius: 4px; border: 2px solid transparent;
-  display: flex; align-items: center; justify-content: center; cursor: pointer;
-}
-.dorf-opt.dorf-active { border-color: #d8b25c; }
-.dorf-opt img { width: 22px; height: 22px; image-rendering: pixelated; }
-
 /* Dialogue */
 #dorf-dialogue {
   position: absolute; left: 50%; bottom: 90px; transform: translateX(-50%);
@@ -4629,32 +4616,6 @@ body.plant-open #back-to-garden-btn { display: block; }
   background: #3a3428; border: 1px solid #7a6f52; color: #eee; padding: 5px 10px;
   border-radius: 5px; font-size: 12px; cursor: pointer;
 }
-
-/* Touch controls — only shown on touch-primary devices */
-#dorf-touchControls { display: none; }
-@media (pointer: coarse) {
-  #dorf-touchControls { display: block; }
-}
-#dorf-dpad {
-  position: absolute; left: 8px; bottom: 8px;
-  display: grid; grid-template-columns: repeat(3, 40px); grid-template-rows: repeat(3, 40px); gap: 3px;
-}
-#dorf-dpad button, #dorf-actionPad button {
-  width: 40px; height: 40px; border-radius: 8px; border: 2px solid #5a4f3a;
-  background: rgba(20,18,14,0.78); color: #eee; font-size: 15px;
-  display: flex; align-items: center; justify-content: center;
-  user-select: none; -webkit-user-select: none; touch-action: none; padding: 0;
-}
-#dorf-dpad .dorf-up    { grid-column: 2; grid-row: 1; }
-#dorf-dpad .dorf-left  { grid-column: 1; grid-row: 2; }
-#dorf-dpad .dorf-right { grid-column: 3; grid-row: 2; }
-#dorf-dpad .dorf-down  { grid-column: 2; grid-row: 3; }
-#dorf-actionPad {
-  position: absolute; right: 8px; bottom: 8px;
-  display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
-}
-#dorf-actionPad button { width: 52px; height: 52px; font-size: 19px; }
-#dorf-btnBuild.dorf-active { border-color: #d8b25c; }
 
 /* Minimap */
 #dorf-minimap {
