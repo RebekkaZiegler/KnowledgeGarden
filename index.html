@@ -46,9 +46,16 @@
     <div id="dorf-wrap">
       <canvas id="dorf-canvas" width="720" height="480"></canvas>
       <div id="dorf-skillBar"></div>
+      <canvas id="dorf-minimap" width="100" height="100" title="Tippen für große Karte"></canvas>
       <div id="dorf-toasts"></div>
       <div id="dorf-buildBar"></div>
       <div id="dorf-invBar"></div>
+      <div id="dorf-mapOverlay">
+        <div id="dorf-mapBox">
+          <canvas id="dorf-mapCanvas" width="440" height="440"></canvas>
+          <button id="dorf-mapCloseBtn">Schließen</button>
+        </div>
+      </div>
       <div id="dorf-dialogue">
         <div class="dorf-dlg-who" id="dorf-dlgWho"></div>
         <div class="dorf-dlg-line" id="dorf-dlgLine"></div>
@@ -68,7 +75,7 @@
       </div>
     </div>
     <p id="dorf-hint">
-      WASD/Pfeiltasten: laufen · E: Aktion (ernten/reden/reparieren/einsammeln) · B: Baumodus · Ressourcen sammeln stellt eine echte Lernfrage — Bäume fällen, Fels abbauen, Pilze sammeln kostet 1 Frage, genau wie die anderen Aktionen in der App.
+      WASD/Pfeiltasten: laufen · E: Aktion (ernten/reden/reparieren/einsammeln) · B: Baumodus · M oder Minimap antippen: große Karte · Ressourcen sammeln stellt eine echte Lernfrage — Bäume fällen, Fels abbauen, Pilze sammeln kostet 1 Frage, genau wie die anderen Aktionen in der App.
     </p>
   </div>
 

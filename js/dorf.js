@@ -227,6 +227,64 @@ function dorfDrawGround(biome, sx, sy) {
   }
 }
 
+/* ---------------------------- map / fog of war ---------------------------- */
+// Explored state is tracked at a coarse cell size (not per-tile) so the
+// persisted G.dorf.explored object and the minimap/full-map render loops
+// both stay cheap even after a long play session. Each cell's display
+// color is computed once, the first time it's revealed, and cached —
+// re-rendering the map every frame is then just object lookups + fillRect,
+// no re-hashing of terrain.
+const DORF_EXPLORE_CELL = 4; // tiles per map cell
+const DORF_EXPLORE_RADIUS = 9; // tiles revealed around the player per step
+function dorfCellColorFor(cx, cy) {
+  const tx = cx * DORF_EXPLORE_CELL, ty = cy * DORF_EXPLORE_CELL;
+  const tile = dorfGetTile(tx, ty);
+  if (tile.special) return "#e8c86a";
+  if (tile.building) return tile.building.state.repaired ? "#c98a4a" : "#5a5248";
+  if (tile.terrain === DORF_T.WATER) return "#4a90b8";
+  switch (tile.biome) {
+    case DORF_BIOME.SNOW:     return "#dce8ee";
+    case DORF_BIOME.MOUNTAIN: return "#8a8a8a";
+    case DORF_BIOME.DESERT:   return "#d8c07a";
+    default:                  return "#5a8a44"; // forest
+  }
+}
+function dorfMarkExplored(x, y, radiusTiles) {
+  const ccx = Math.floor(x / DORF_EXPLORE_CELL), ccy = Math.floor(y / DORF_EXPLORE_CELL);
+  const cellRadius = Math.ceil(radiusTiles / DORF_EXPLORE_CELL);
+  for (let dcx = -cellRadius; dcx <= cellRadius; dcx++) {
+    for (let dcy = -cellRadius; dcy <= cellRadius; dcy++) {
+      if (dcx * dcx + dcy * dcy > cellRadius * cellRadius) continue; // circular reveal
+      const key = (ccx + dcx) + "," + (ccy + dcy);
+      if (dorfExplored[key]) continue; // already computed once, cheap skip
+      dorfExplored[key] = dorfCellColorFor(ccx + dcx, ccy + dcy);
+    }
+  }
+}
+function dorfDrawMapView(ctx, w, h, cellPixel, radiusCells) {
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = "#0d0d0d";
+  ctx.fillRect(0, 0, w, h);
+  const pcx = Math.floor(dorfPlayer.x / DORF_EXPLORE_CELL), pcy = Math.floor(dorfPlayer.y / DORF_EXPLORE_CELL);
+  const cx0 = w / 2, cy0 = h / 2;
+  for (let dcy = -radiusCells; dcy <= radiusCells; dcy++) {
+    for (let dcx = -radiusCells; dcx <= radiusCells; dcx++) {
+      const color = dorfExplored[(pcx + dcx) + "," + (pcy + dcy)];
+      if (!color) continue; // fog — unexplored, leave blank
+      ctx.fillStyle = color;
+      ctx.fillRect(cx0 + dcx * cellPixel - cellPixel / 2, cy0 + dcy * cellPixel - cellPixel / 2, cellPixel, cellPixel);
+    }
+  }
+  ctx.fillStyle = "#ffce54";
+  ctx.beginPath(); ctx.arc(cx0, cy0, Math.max(2, cellPixel * 0.6), 0, Math.PI * 2); ctx.fill();
+}
+
+let dorfMapOpen = false;
+function dorfToggleMap() {
+  dorfMapOpen = !dorfMapOpen;
+  document.getElementById("dorf-mapOverlay").classList.toggle("dorf-show", dorfMapOpen);
+}
+
 /* ---------------------------- settlements ---------------------------- */
 function dorfPickJobTypes(cx, cy, count) {
   const pool = DORF_JOB_TYPES.slice();
@@ -778,6 +836,7 @@ function dorfCanAct() {
   const screen = document.getElementById("screen-dorf");
   if (!screen || screen.hidden) return false;
   if (dorfDialogueOpen) return false;
+  if (dorfMapOpen) return false;
   const qModal = document.getElementById("modal-question");
   if (qModal && !qModal.hidden) return false;
   return true;
@@ -804,13 +863,22 @@ function dorfTryMove(dx, dy) {
     if (t < 1) requestAnimationFrame(step);
     else {
       dorfPlayer.x = nx; dorfPlayer.y = ny; dorfPlayer.bob = 0; dorfPlayer.moving = false;
+      dorfMarkExplored(nx, ny, DORF_EXPLORE_RADIUS);
     }
   }
   requestAnimationFrame(step);
 }
 
+function dorfSetupMapControls() {
+  document.getElementById("dorf-minimap").addEventListener("click", () => { if (dorfCanAct()) dorfToggleMap(); });
+  document.getElementById("dorf-mapCloseBtn").addEventListener("click", dorfToggleMap);
+}
+
 function dorfSetupKeyboard() {
   window.addEventListener("keydown", (e) => {
+    const screen = document.getElementById("screen-dorf");
+    if (!screen || screen.hidden) return;
+    if (e.key === "m" || e.key === "M") { dorfToggleMap(); return; }
     if (!dorfCanAct()) return;
     if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key)) e.preventDefault();
 
@@ -847,6 +915,7 @@ function dorfUpdateNpc(dtMs) {
 
 /* ---------------------------- render ---------------------------- */
 let dorfCanvas, dorfCtx, dorfCamX = 0, dorfCamY = 0;
+let dorfMinimapCanvas, dorfMinimapCtx, dorfMapCanvas, dorfMapCtx;
 
 // Simple deterministic string hash, used only to pick a villager sprite —
 // we have 3 base sprites and 15 job types, so this just adds some visual
@@ -985,11 +1054,14 @@ function dorfDraw(now) {
   dorfDrawSprite(DORF_IMAGES.npc, dorfNpc.x * DORF_CELL, dorfNpc.y * DORF_CELL, dorfNpc.facing, 0);
   dorfDrawSprite(DORF_IMAGES.player, dorfPlayer.px, dorfPlayer.py, dorfPlayer.facing, dorfPlayer.bob);
 
+  dorfDrawMapView(dorfMinimapCtx, dorfMinimapCanvas.width, dorfMinimapCanvas.height, 3, 16);
+  if (dorfMapOpen) dorfDrawMapView(dorfMapCtx, dorfMapCanvas.width, dorfMapCanvas.height, 4, 55);
+
   requestAnimationFrame(dorfDraw);
 }
 
 /* ---------------------------- boot ---------------------------- */
-let dorfSeed, dorfPlayer, dorfInventory, dorfSkills, dorfOverrides, dorfBuildingState;
+let dorfSeed, dorfPlayer, dorfInventory, dorfSkills, dorfOverrides, dorfBuildingState, dorfExplored;
 let dorfBooted = false, dorfWantsStart = false;
 
 function dorfFindNearestWalkable(x, y) {
@@ -1011,6 +1083,7 @@ function dorfActuallyStart() {
   dorfSkills         = G.dorf.skills;
   dorfOverrides      = G.dorf.overrides;
   dorfBuildingState  = G.dorf.buildingState;
+  dorfExplored       = G.dorf.explored;
 
   dorfPlayer.px = dorfPlayer.x * DORF_CELL;
   dorfPlayer.py = dorfPlayer.y * DORF_CELL;
@@ -1037,11 +1110,20 @@ function dorfActuallyStart() {
   dorfCtx = dorfCanvas.getContext("2d");
   dorfCtx.imageSmoothingEnabled = false;
 
+  dorfMinimapCanvas = document.getElementById("dorf-minimap");
+  dorfMinimapCtx = dorfMinimapCanvas.getContext("2d");
+  dorfMinimapCtx.imageSmoothingEnabled = false;
+  dorfMapCanvas = document.getElementById("dorf-mapCanvas");
+  dorfMapCtx = dorfMapCanvas.getContext("2d");
+  dorfMapCtx.imageSmoothingEnabled = false;
+
   dorfDlgEl   = document.getElementById("dorf-dialogue");
   dorfDlgWho  = document.getElementById("dorf-dlgWho");
   dorfDlgLine = document.getElementById("dorf-dlgLine");
   dorfDlgOpts = document.getElementById("dorf-dlgOpts");
   dorfBuildBarEl = document.getElementById("dorf-buildBar");
+
+  dorfMarkExplored(dorfPlayer.x, dorfPlayer.y, DORF_EXPLORE_RADIUS);
 
   dorfRenderSkillBar();
   dorfRenderInventory();
@@ -1049,6 +1131,7 @@ function dorfActuallyStart() {
   dorfSetupCanvasClick();
   dorfSetupTouchControls();
   dorfSetupKeyboard();
+  dorfSetupMapControls();
 
   dorfLastFrame = performance.now();
   requestAnimationFrame(dorfDraw);

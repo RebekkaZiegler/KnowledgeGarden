@@ -4590,9 +4590,9 @@ body.plant-open #back-to-garden-btn { display: block; }
 .dorf-skillRow .dorf-bar { flex: 1; height: 5px; background: #3a3428; border-radius: 3px; overflow: hidden; }
 .dorf-skillRow .dorf-fill { display: block; height: 100%; background: #7a9b57; }
 
-/* Toasts */
+/* Toasts — pushed below the minimap in the same corner */
 #dorf-toasts {
-  position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 4px;
+  position: absolute; top: 116px; right: 8px; display: flex; flex-direction: column; gap: 4px;
   align-items: flex-end; pointer-events: none;
 }
 .dorf-toast {
@@ -4655,4 +4655,36 @@ body.plant-open #back-to-garden-btn { display: block; }
 }
 #dorf-actionPad button { width: 52px; height: 52px; font-size: 19px; }
 #dorf-btnBuild.dorf-active { border-color: #d8b25c; }
+
+/* Minimap */
+#dorf-minimap {
+  position: absolute; top: 8px; right: 8px;
+  width: 100px; height: 100px;
+  border: 2px solid #5a4f3a; border-radius: 6px;
+  background: #0d0d0d;
+  cursor: pointer;
+  image-rendering: pixelated;
+}
+
+/* Full map overlay */
+#dorf-mapOverlay {
+  position: absolute; inset: 0; z-index: 10;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(10,9,7,0.85); border-radius: 8px;
+}
+#dorf-mapOverlay.dorf-show { display: flex; }
+#dorf-mapBox {
+  background: rgba(20,18,14,0.95); border: 2px solid #d8b25c; border-radius: 8px;
+  padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  max-width: 92%; max-height: 92%;
+}
+#dorf-mapCanvas {
+  border: 2px solid #5a4f3a; border-radius: 6px; background: #0d0d0d;
+  image-rendering: pixelated;
+  max-width: 100%; height: auto;
+}
+#dorf-mapCloseBtn {
+  background: #3a3428; border: 1px solid #7a6f52; color: #eee; padding: 6px 16px;
+  border-radius: 5px; font-size: 13px; cursor: pointer;
+}
 
