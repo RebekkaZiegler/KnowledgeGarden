@@ -46,7 +46,7 @@ const DORF_COLS = 15, DORF_ROWS = 10;
 const DORF_REGION = 40;
 
 const DORF_T = { GRASS: 0, WATER: 1 };
-const DORF_RES = { NONE: 0, TREE: 1, ROCK: 2, GEM: 3, MUSHROOM: 4, BROKEN_BRIDGE: 5 };
+const DORF_RES = { NONE: 0, TREE: 1, ROCK: 2, GEM: 3, MUSHROOM: 4, BROKEN_BRIDGE: 5, FISH: 6 };
 const DORF_BIOME = { FOREST: 0, SNOW: 1, MOUNTAIN: 2, DESERT: 3 };
 // Radius (in tiles) around spawn that's always forest, so the Startdorf and
 // its immediate surroundings never roll into a biome that feels alien on
@@ -64,15 +64,17 @@ const DORF_RESOURCE_YIELD = {
   [DORF_RES.TREE]:     { item: "holz",      skill: "chopping", real: false },
   [DORF_RES.ROCK]:     { item: "stein",     skill: "mining",    real: false },
   [DORF_RES.GEM]:      { item: "edelstein", skill: "mining",    real: false },
-  [DORF_RES.MUSHROOM]: { item: "mushrooms", skill: "foraging",  real: true }
+  [DORF_RES.MUSHROOM]: { item: "mushrooms", skill: "foraging",  real: true },
+  [DORF_RES.FISH]:     { item: "anchovies", skill: "foraging",  real: true } // Sardellen — a real topping, also covers Garnelen
 };
 const DORF_ACTION_LABEL = {
   [DORF_RES.TREE]:     "🪓 Baum fällen",
   [DORF_RES.ROCK]:     "⛏️ Fels abbauen",
   [DORF_RES.GEM]:      "💎 Edelstein bergen",
-  [DORF_RES.MUSHROOM]: "🍄 Pilze sammeln"
+  [DORF_RES.MUSHROOM]: "🍄 Pilze sammeln",
+  [DORF_RES.FISH]:     "🎣 Angeln"
 };
-const DORF_RESPAWN_MS = { [DORF_RES.TREE]: 25000, [DORF_RES.ROCK]: 40000, [DORF_RES.GEM]: 90000, [DORF_RES.MUSHROOM]: 15000 };
+const DORF_RESPAWN_MS = { [DORF_RES.TREE]: 25000, [DORF_RES.ROCK]: 40000, [DORF_RES.GEM]: 90000, [DORF_RES.MUSHROOM]: 15000, [DORF_RES.FISH]: 20000 };
 
 // Per-biome resource-node odds, checked in order (first match wins), same
 // cascading-threshold shape as before — just parameterized per biome so
@@ -510,6 +512,7 @@ function dorfGenerateTile(x, y) {
   } else {
     const r = dorfHash2(x * 41 + 5, y * 17 + 11, dorfSeed + 555);
     if (r < 0.02) resource = DORF_RES.BROKEN_BRIDGE;
+    else if (r < 0.10) resource = DORF_RES.FISH;
   }
   return { terrain, resource, biome };
 }
@@ -1156,6 +1159,13 @@ function dorfDrawTileAt(tile, sx, sy) {
       dorfCtx.moveTo(sx + 8, sy + 8); dorfCtx.lineTo(sx + DORF_CELL - 8, sy + DORF_CELL - 8);
       dorfCtx.moveTo(sx + DORF_CELL - 8, sy + 8); dorfCtx.lineTo(sx + 8, sy + DORF_CELL - 8);
       dorfCtx.stroke();
+    } else if (tile.resource === DORF_RES.FISH) {
+      dorfCtx.font = "20px sans-serif";
+      dorfCtx.textAlign = "center";
+      dorfCtx.textBaseline = "middle";
+      dorfCtx.fillText("🐟", sx + DORF_CELL / 2, sy + DORF_CELL / 2 + 1);
+      dorfCtx.textAlign = "start";
+      dorfCtx.textBaseline = "alphabetic";
     }
     return;
   }
